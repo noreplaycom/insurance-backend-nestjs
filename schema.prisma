@@ -1,0 +1,179 @@
+model Participant {
+    id             Int                    @id @default(autoincrement())
+    noPeserta      String                 @unique
+    namaPeserta    String
+    jenisKelamin   String
+    tanggalLahir   DateTime
+    umur           Int
+    jk             String
+    usia           Int
+    kelas          String
+    cabangPembayar String
+    claims         Claim[]
+    nik            String                 @unique
+    noKK           String
+    npwp           String?
+    statusPeserta  String
+    kodePeserta    String                 @unique
+    jenjab         String?
+    sAktif         Boolean
+    tanggalMasuk   DateTime
+    employment     Employment[]
+    contactInfo    ContactInfo[]
+    bankAccount    BankAccount[]
+    participation  ProgramParticipation[]
+}
+
+model Program {
+    id                   Int                    @id @default(autoincrement())
+    jenisProgram         String
+    noDana               String
+    programParticipation ProgramParticipation[]
+}
+
+model ContactInfo {
+    id            Int         @id @default(autoincrement())
+    telp          String
+    participant   Participant @relation(fields: [participantId], references: [id])
+    participantId Int
+    address       Address     @relation(fields: [addressId], references: [id])
+    addressId     Int
+}
+
+model Address {
+    id          Int           @id @default(autoincrement())
+    alamat      String
+    kota        String
+    kodePos     String
+    contactInfo ContactInfo[]
+}
+
+model BankAccount {
+    id            Int         @id @default(autoincrement())
+    noRekening    String
+    rekeningAn    String
+    participant   Participant @relation(fields: [participantId], references: [id])
+    participantId Int
+}
+
+model Employment {
+    id             Int         @id @default(autoincrement())
+    cabangPembayar String
+    participant    Participant @relation(fields: [participantId], references: [id])
+    participantId  Int
+    cabang         String
+    group          String
+    wilayah        String
+}
+
+model ProgramParticipation {
+    id              Int         @id @default(autoincrement())
+    plan            String
+    planPerHari     Float
+    tanggalEfektif  DateTime
+    noBPJS          String?
+    participant     Participant @relation(fields: [participantId], references: [id])
+    participantId   Int
+    program         Program     @relation(fields: [programId], references: [id])
+    programId       Int
+    tanggalNonaktif DateTime?
+    ketNonAktif     String?
+}
+
+model Claim {
+    id                Int             @id @default(autoincrement())
+    noUrut            String
+    nopol             String
+    prsh              String
+    participant       Participant     @relation(fields: [participantId], references: [id])
+    participantId     Int
+    hospitalization   Hospitalization @relation(fields: [hospitalizationId], references: [id])
+    hospitalizationId Int
+    claimStatus       ClaimStatus     @relation(fields: [claimStatusId], references: [id])
+    claimStatusId     Int
+    claimFinancial    ClaimFinancial  @relation(fields: [claimFinancialId], references: [id])
+    claimFinancialId  Int
+    claimProcess      ClaimProcess    @relation(fields: [claimProcessId], references: [id])
+    claimProcessId    Int
+    claimDiagnosis    ClaimDiagnosis  @relation(fields: [claimDiagnosisId], references: [id])
+    claimDiagnosisId  Int
+    Disease           Disease?        @relation(fields: [diseaseId], references: [id])
+    diseaseId         Int?
+    Clinic            Clinic?         @relation(fields: [clinicId], references: [id])
+    clinicId          Int?
+}
+
+model ClaimStatus {
+    id           Int     @id @default(autoincrement())
+    statAdmedika String
+    statKlaim    String
+    reklaim      String
+    alasanTolak  String?
+    claim        Claim
+}
+
+model ClaimFinancial {
+    id               Int   @id @default(autoincrement())
+    aju              Float
+    bayar            Float
+    tolak            Float
+    jumlahKlaim      Float
+    plafonSantunan   Float
+    counterPengajuan Int
+    sisaPlafon       Float
+    claim            Claim
+}
+
+model ClaimProcess {
+    id                Int       @id @default(autoincrement())
+    tmulaiRawat       DateTime
+    takhirRawat       DateTime
+    bulanRawat        String
+    tahunRawat        Int
+    tklaim            DateTime
+    tekspedisi        DateTime
+    transfer          DateTime
+    tProsesPengajuan  DateTime
+    tProsesTransaksi  DateTime
+    nomorSm           String
+    ketPengajuan      String
+    keterangan        String
+    ketTambahan       String
+    nomorSuratTolak   String?
+    tanggalSuratTolak DateTime?
+    noRekap           String
+    noSurJam          String
+    claim             Claim
+}
+
+model ClaimDiagnosis {
+    id        Int     @id @default(autoincrement())
+    disease   Disease @relation(fields: [diseaseId], references: [id])
+    diseaseId Int
+    claim     Claim
+}
+
+model Hospitalization {
+    id      Int    @id @default(autoincrement())
+    jenisRI String
+    plan    String
+    claim   Claim  @relation(fields: [claimId], references: [id])
+    claimId Int
+}
+
+model Disease {
+    id                   Int              @id @default(autoincrement())
+    kodePenyakit         String
+    namaPenyakit         String
+    groupDiagnosa        String
+    penggolonganDiagnosa String
+    claims               Claim[]
+    ClaimDiagnosis       ClaimDiagnosis[]
+}
+
+model Clinic {
+    id         Int     @id @default(autoincrement())
+    kodeKlinik String
+    namaKlinik String
+    claims     Claim[]
+}
