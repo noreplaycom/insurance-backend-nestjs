@@ -1,34 +1,53 @@
+model User {
+    id       Int     @id @default(autoincrement())
+    username String  @unique
+    password String // Consider hashing the password
+    role     Role    @relation(fields: [roleId], references: [id])
+    roleId   Int
+    claims   Claim[]
+}
+
+model Role {
+    id          Int      @id @default(autoincrement())
+    name        String // E.g., 'superuser', 'analyst', 'group leader'
+    permissions String[] // Array of permissions like 'create-claim', 'approve-claim'
+    users       User[]
+}
+
 model Participant {
-    id             Int                    @id @default(autoincrement())
-    noPeserta      String                 @unique
-    namaPeserta    String
-    jenisKelamin   String
-    tanggalLahir   DateTime
-    umur           Int
-    jk             String
-    usia           Int
-    kelas          String
-    cabangPembayar String
-    claims         Claim[]
-    nik            String                 @unique
-    noKK           String
-    npwp           String?
-    statusPeserta  String
-    kodePeserta    String                 @unique
-    jenjab         String?
-    sAktif         Boolean
-    tanggalMasuk   DateTime
-    employment     Employment[]
-    contactInfo    ContactInfo[]
-    bankAccount    BankAccount[]
-    participation  ProgramParticipation[]
+    id                    Int                    @id @default(autoincrement())
+    participantNumber     String                 @unique
+    participantName       String
+    gender                String
+    birthDate             DateTime
+    age                   Int
+    genderAbbrev          String
+    retirementAge         Int
+    class                 String
+    paymentBranch         String
+    claims                Claim[]
+    nationalID            String                 @unique
+    familyCardNumber      String
+    taxID                 String?
+    participantStatus     String
+    participantCode       String                 @unique
+    employmentType        String?
+    isActive              Boolean
+    entryDate             DateTime
+    claimTypes            ClaimType[]
+    processingSteps       ProcessingStep[]
+    employments           Employment[]
+    contactInfos          ContactInfo[]
+    bankAccounts          BankAccount[]
+    programParticipations ProgramParticipation[]
+    balances              Balance[]
 }
 
 model Program {
-    id                   Int                    @id @default(autoincrement())
-    jenisProgram         String
-    noDana               String
-    programParticipation ProgramParticipation[]
+    id                    Int                    @id @default(autoincrement())
+    programType           String
+    fundingNumber         String
+    programParticipations ProgramParticipation[]
 }
 
 model ContactInfo {
@@ -81,76 +100,111 @@ model ProgramParticipation {
 }
 
 model Claim {
-    id                Int             @id @default(autoincrement())
-    noUrut            String
-    nopol             String
-    prsh              String
-    participant       Participant     @relation(fields: [participantId], references: [id])
+    id                Int               @id @default(autoincrement())
+    orderNumber       String
+    policyNumber      String
+    company           String
+    participant       Participant       @relation(fields: [participantId], references: [id])
     participantId     Int
-    hospitalization   Hospitalization @relation(fields: [hospitalizationId], references: [id])
+    hospitalizations  Hospitalization[] @relation(fields: [hospitalizationId], references: [id])
     hospitalizationId Int
-    claimStatus       ClaimStatus     @relation(fields: [claimStatusId], references: [id])
+    claimStatuses     ClaimStatus[]     @relation(fields: [claimStatusId], references: [id])
     claimStatusId     Int
-    claimFinancial    ClaimFinancial  @relation(fields: [claimFinancialId], references: [id])
+    claimFinancials   ClaimFinancial[]  @relation(fields: [claimFinancialId], references: [id])
     claimFinancialId  Int
-    claimProcess      ClaimProcess    @relation(fields: [claimProcessId], references: [id])
+    claimProcesses    ClaimProcess[]    @relation(fields: [claimProcessId], references: [id])
     claimProcessId    Int
-    claimDiagnosis    ClaimDiagnosis  @relation(fields: [claimDiagnosisId], references: [id])
+    claimDiagnoses    ClaimDiagnosis[]  @relation(fields: [claimDiagnosisId], references: [id])
     claimDiagnosisId  Int
-    Disease           Disease?        @relation(fields: [diseaseId], references: [id])
+    diseases          Disease?          @relation(fields: [diseaseId], references: [id])
     diseaseId         Int?
-    Clinic            Clinic?         @relation(fields: [clinicId], references: [id])
+    clinics           Clinic?           @relation(fields: [clinicId], references: [id])
     clinicId          Int?
+    users             User?             @relation(fields: [userId], references: [id])
+    userId            Int?
+    claimTypes        ClaimType?        @relation(fields: [claimTypeId], references: [id])
+    claimTypeId       Int?
+    processingSteps   ProcessingStep[]
+}
+
+model ClaimType {
+    id            Int           @id @default(autoincrement())
+    type          String // E.g., 'daily hospitalization', 'hemodialysis'
+    maxAllowance  Float
+    claimPeriod   Int // Number of days
+    conditions    String
+    participant   Participant   @relation(fields: [participantId], references: [id])
+    participantId Int
+    claims        Claim[]
+    ClaimStatus   ClaimStatus[]
 }
 
 model ClaimStatus {
-    id           Int     @id @default(autoincrement())
-    statAdmedika String
-    statKlaim    String
-    reklaim      String
-    alasanTolak  String?
-    claim        Claim
+    id              Int       @id @default(autoincrement())
+    admedikaStatus  String
+    claimStatus     String
+    reclaim         String
+    rejectionReason String?
+    claimType       ClaimType @relation(fields: [claimTypeId], references: [id])
+    claimTypeId     Int
+    status          String // E.g., 'pending', 'approved', 'rejected'
+    claim           Claim     @relation(fields: [claimId], references: [id])
+    claimId         Int
 }
 
 model ClaimFinancial {
     id               Int   @id @default(autoincrement())
-    aju              Float
-    bayar            Float
-    tolak            Float
-    jumlahKlaim      Float
-    plafonSantunan   Float
-    counterPengajuan Int
-    sisaPlafon       Float
-    claim            Claim
+    requestedAmount  Float
+    paidAmount       Float
+    rejectedAmount   Float
+    totalClaim       Float
+    allowanceCeiling Float
+    submissionCount  Int
+    remainingCeiling Float
+    claim            Claim @relation(fields: [claimId], references: [id])
+    claimId          Int
 }
 
 model ClaimProcess {
-    id                Int       @id @default(autoincrement())
-    tmulaiRawat       DateTime
-    takhirRawat       DateTime
-    bulanRawat        String
-    tahunRawat        Int
-    tklaim            DateTime
-    tekspedisi        DateTime
-    transfer          DateTime
-    tProsesPengajuan  DateTime
-    tProsesTransaksi  DateTime
-    nomorSm           String
-    ketPengajuan      String
-    keterangan        String
-    ketTambahan       String
-    nomorSuratTolak   String?
-    tanggalSuratTolak DateTime?
-    noRekap           String
-    noSurJam          String
-    claim             Claim
+    id                     Int       @id @default(autoincrement())
+    startTreatment         DateTime
+    endTreatment           DateTime
+    treatmentMonth         String
+    treatmentYear          Int
+    claimDate              DateTime
+    expeditionDate         DateTime
+    transferDate           DateTime
+    submissionProcessDate  DateTime
+    transactionProcessDate DateTime
+    incomingNumber         String
+    submissionNote         String
+    description            String
+    additionalNote         String
+    rejectionLetterNumber  String?
+    rejectionLetterDate    DateTime?
+    recapNumber            String
+    guaranteeLetterNumber  String
+    claim                  Claim     @relation(fields: [claimId], references: [id])
+    claimId                Int
+}
+
+model ProcessingStep {
+    id            Int         @id @default(autoincrement())
+    step          String // E.g., 'input', 'completeness check', 'approval'
+    role          String // E.g., 'analyst', 'group leader'
+    action        String // E.g., 'verify', 'approve', 'reject'
+    participant   Participant @relation(fields: [participantId], references: [id])
+    participantId Int
+    claim         Claim       @relation(fields: [claimId], references: [id])
+    claimId       Int
 }
 
 model ClaimDiagnosis {
     id        Int     @id @default(autoincrement())
     disease   Disease @relation(fields: [diseaseId], references: [id])
     diseaseId Int
-    claim     Claim
+    claim     Claim   @relation(fields: [claimId], references: [id])
+    claimId   Int
 }
 
 model Hospitalization {
@@ -176,4 +230,22 @@ model Clinic {
     kodeKlinik String
     namaKlinik String
     claims     Claim[]
+}
+
+model Balance {
+    id             Int           @id @default(autoincrement())
+    currentBalance Float
+    participant    Participant   @relation(fields: [participantId], references: [id])
+    participantId  Int
+    transactions   Transaction[]
+}
+
+model Transaction {
+    id              Int      @id @default(autoincrement())
+    amount          Float
+    transactionType String // 'credit' or 'debit'
+    description     String?
+    date            DateTime
+    balance         Balance  @relation(fields: [balanceId], references: [id])
+    balanceId       Int
 }
