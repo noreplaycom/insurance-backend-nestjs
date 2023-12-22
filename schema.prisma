@@ -56,8 +56,7 @@ model User {
 
     roleId Int
 
-    participant Participant? @relation(fields: [participantId], references: [userId])
-
+    participant   Participant?
     participantId Int?
 
     //-------------------------- m relations --------------------------------
@@ -68,12 +67,23 @@ model User {
 }
 
 model Role {
-    id          Int      @id @default(autoincrement())
-    name        String // E.g., 'superuser', 'analyst', 'group leader'
-    permissions String[] // Array of permissions like 'create-claim', 'approve-claim'
-    users       User[]
+    id Int @id @default(autoincrement())
 
-    @@map("UserRoles")
+    name String // E.g., 'superuser', 'analyst', 'group leader'
+
+    permissions Permission[]
+
+    users User[]
+
+    @@map("roles")
+}
+
+enum Permission {
+    CREATE_CLAIM
+    APPROVE_CLAIM
+    REJECT_CLAIM
+
+    // Add other permission values as needed
 }
 
 model Participant {
@@ -82,6 +92,7 @@ model Participant {
     ///Nomer peserta (jika Pensiunan menggunakan -1, Pasangan -2, Yatim -3, 6 bulan -4)
     participantNumber String
 
+    ///Jenis Kelamin
     gender Gender
 
     ///Tanggal Lahir
@@ -125,6 +136,8 @@ model Participant {
     programParticipations ProgramParticipation[]
 
     balances Balance[]
+
+    ClaimType ClaimType[]
 }
 
 enum ParticipantStatus {
@@ -206,21 +219,25 @@ model Employment {
 }
 
 model Branch {
-    id   Int    @id @default(autoincrement())
-    name String
+    id             Int              @id @default(autoincrement())
+    name           String
     // Other fields specific to branches
+    Employment     Employment[]
+    ClaimFinancial ClaimFinancial[]
 }
 
 model Group {
-    id   Int    @id @default(autoincrement())
-    name String
+    id         Int          @id @default(autoincrement())
+    name       String
     // Other fields specific to groups
+    Employment Employment[]
 }
 
 model Region {
-    id   Int    @id @default(autoincrement())
-    name String
+    id         Int          @id @default(autoincrement())
+    name       String
     // Other fields specific to regions
+    Employment Employment[]
 }
 
 model ProgramParticipation {
@@ -272,10 +289,6 @@ model Claim {
 
     participantId Int
 
-    hospitalizations Hospitalization[] @relation(fields: [hospitalizationId], references: [id])
-
-    hospitalizationId Int
-
     claimStatuses ClaimStatus[] @relation(fields: [claimStatusId], references: [id])
 
     claimStatusId Int
@@ -326,15 +339,27 @@ model Company {
 }
 
 model ClaimType {
-    id            Int           @id @default(autoincrement())
-    type          String // E.g., 'daily hospitalization', 'hemodialysis'
-    maxAllowance  Float
-    claimPeriod   Int // Number of days
-    conditions    String
-    participant   Participant   @relation(fields: [participantId], references: [userId])
+    id Int @id @default(autoincrement())
+
+    type String // E.g., 'daily hospitalization', 'hemodialysis'
+
+    jenisRI String
+
+    plan String
+
+    maxAllowance Float
+
+    claimPeriod Int // Number of days
+
+    conditions String
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
     participantId Int
-    claims        Claim[]
-    ClaimStatus   ClaimStatus[]
+
+    claims Claim[]
+
+    ClaimStatus ClaimStatus[]
 }
 
 model ClaimStatus {
@@ -353,7 +378,7 @@ model ClaimStatus {
 model ClaimFinancial {
     id               Int    @id @default(autoincrement())
     ///Cabang: Cabang Pembayar Pensiun
-    branchPayee      Branch
+    branchPayee      Branch @relation(fields: [branchId], references: [id])
     requestedAmount  Float
     paidAmount       Float
     rejectedAmount   Float
@@ -363,104 +388,139 @@ model ClaimFinancial {
     remainingCeiling Float
     claim            Claim  @relation(fields: [claimId], references: [id])
     claimId          Int
+    branchId         Int
 }
 
 model ClaimProcess {
-    id                     Int       @id @default(autoincrement())
-    startTreatment         DateTime
-    endTreatment           DateTime
-    treatmentMonth         String
-    treatmentYear          Int
-    claimDate              DateTime
-    expeditionDate         DateTime
-    transferDate           DateTime
-    submissionProcessDate  DateTime
+    id Int @id @default(autoincrement())
+
+    startTreatment DateTime
+
+    endTreatment DateTime
+
+    treatmentMonth String
+
+    treatmentYear Int
+
+    claimDate DateTime
+
+    expeditionDate DateTime
+
+    transferDate DateTime
+
+    submissionProcessDate DateTime
+
     transactionProcessDate DateTime
-    incomingNumber         String
-    submissionNote         String
-    description            String
-    additionalNote         String
-    rejectionLetterNumber  String?
-    rejectionLetterDate    DateTime?
-    recapNumber            String
-    guaranteeLetterNumber  String
-    claim                  Claim     @relation(fields: [claimId], references: [id])
-    claimId                Int
+
+    incomingNumber String
+
+    submissionNote String
+
+    description String
+
+    additionalNote String
+
+    rejectionLetterNumber String?
+
+    rejectionLetterDate DateTime?
+
+    recapNumber String
+
+    guaranteeLetterNumber String
+
+    claim Claim @relation(fields: [claimId], references: [id])
+
+    claimId Int
 }
 
 model ProcessingStep {
-    id            Int         @id @default(autoincrement())
-    step          String // E.g., 'input', 'completeness check', 'approval'
-    role          String // E.g., 'analyst', 'group leader'
-    action        String // E.g., 'verify', 'approve', 'reject'
-    participant   Participant @relation(fields: [participantId], references: [id])
+    id Int @id @default(autoincrement())
+
+    step String // E.g., 'input', 'completeness check', 'approval'
+
+    role String // E.g., 'analyst', 'group leader'
+
+    action String // E.g., 'verify', 'approve', 'reject'
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
     participantId Int
-    claim         Claim       @relation(fields: [claimId], references: [id])
-    claimId       Int
+
+    claim Claim @relation(fields: [claimId], references: [id])
+
+    claimId Int
 }
 
 model ClaimDiagnosis {
-    id        Int     @id @default(autoincrement())
-    disease   Disease @relation(fields: [diseaseId], references: [id])
-    diseaseId Int
-    claim     Claim   @relation(fields: [claimId], references: [id])
-    claimId   Int
-}
+    id Int @id @default(autoincrement())
 
-model Hospitalization {
-    id      Int    @id @default(autoincrement())
-    jenisRI String
-    plan    String
-    claim   Claim  @relation(fields: [claimId], references: [id])
+    disease Disease @relation(fields: [diseaseId], references: [id])
+
+    diseaseId Int
+
+    claim Claim @relation(fields: [claimId], references: [id])
+
     claimId Int
 }
 
 model Disease {
-    id                   Int              @id @default(autoincrement())
-    kodePenyakit         String
-    namaPenyakit         String
-    groupDiagnosa        String
+    id Int @id @default(autoincrement())
+
+    kodePenyakit String
+
+    namaPenyakit String
+
+    groupDiagnosa String
+
     penggolonganDiagnosa String
-    claims               Claim[]
-    ClaimDiagnosis       ClaimDiagnosis[]
+
+    claims Claim[]
+
+    ClaimDiagnosis ClaimDiagnosis[]
 }
 
 model Clinic {
-    id         Int     @id @default(autoincrement())
+    id Int @id @default(autoincrement())
+
     kodeKlinik String
+
     namaKlinik String
-    claims     Claim[]
+
+    claims Claim[]
 }
 
 model Balance {
-    id             Int           @id @default(autoincrement())
+    id Int @id @default(autoincrement())
+
     currentBalance Float
-    participant    Participant   @relation(fields: [participantId], references: [id])
-    participantId  Int
-    transactions   Transaction[]
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
+    participantId Int
+
+    transactions Transaction[]
 }
 
 model Transaction {
-    id              Int      @id @default(autoincrement())
-    amount          Float
+    id Int @id @default(autoincrement())
+
+    amount Float
+
     transactionType String // 'credit' or 'debit'
-    description     String?
-    date            DateTime
-    balance         Balance  @relation(fields: [balanceId], references: [id])
-    balanceId       Int
+
+    description String?
+
+    date DateTime
+
+    balance Balance @relation(fields: [balanceId], references: [id])
+
+    balanceId Int
 }
 
 enum Gender {
     MALE
     FEMALE
     OTHER
-}
-
-enum RoleName {
-    SUPERUSER
-    ANALYST
-    GROUP_LEADER
-    // Add other roles as necessary
 }
 
 enum ClaimStatusType {
