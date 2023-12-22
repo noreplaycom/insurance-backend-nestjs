@@ -1,10 +1,67 @@
+//----------------------------------------BASE-------------------------
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator fake_data {
+    provider = "prisma-generator-fake-data"
+    output   = "./fake-data.ts"
+}
+
+generator nestgraphql {
+    provider                              = "node node_modules/prisma-nestjs-graphql"
+    output                                = "../src/@generated"
+    reExport                              = Single
+    fields_Validator_from                 = "class-validator"
+    fields_Validator_input                = true
+    requireSingleFieldsInWhereUniqueInput = true
+    emitSingle                            = true
+    emitCompiled                          = true
+    purgeOutput                           = true
+    noTypeId                              = true
+}
+
+//-----------------------------------------------------------------
+
 model User {
-    id       Int     @id @default(autoincrement())
-    username String  @unique
-    password String // Consider hashing the password
-    role     Role    @relation(fields: [roleId], references: [id])
-    roleId   Int
-    claims   Claim[]
+    //-----------------------------scalars-------------------------
+    id Int @id @default(autoincrement())
+
+    fullName String
+
+    email String @unique
+
+    emailVerifiedAt DateTime?
+
+    password String
+
+    /// @HideField({ output: false, input: true })
+    createdAt DateTime @default(now())
+
+    /// @HideField({ output: false, input: true })
+    updatedAt DateTime @updatedAt
+
+    deletedAt DateTime? //implement softdelete
+
+    //-------------------------- 1 relations --------------------------------
+
+    role Role @relation(fields: [roleId], references: [id])
+
+    roleId Int
+
+    participant Participant? @relation(fields: [participantId], references: [userId])
+
+    participantId Int?
+
+    //-------------------------- m relations --------------------------------
+
+    claimsInput Claim[]
 }
 
 model Role {
@@ -15,32 +72,77 @@ model Role {
 }
 
 model Participant {
-    id                    Int                    @id @default(autoincrement())
-    participantNumber     String                 @unique
-    participantName       String
-    gender                String
-    birthDate             DateTime
-    age                   Int
-    genderAbbrev          String
-    retirementAge         Int
-    class                 String
-    paymentBranch         String
-    claims                Claim[]
-    nationalID            String                 @unique
-    familyCardNumber      String
-    taxID                 String?
-    participantStatus     String
-    participantCode       String                 @unique
-    employmentType        String?
-    isActive              Boolean
-    entryDate             DateTime
-    claimTypes            ClaimType[]
-    processingSteps       ProcessingStep[]
-    employments           Employment[]
-    contactInfos          ContactInfo[]
-    bankAccounts          BankAccount[]
+    //-------------------------- scalars --------------------------------
+
+    ///Nomer peserta (jika Pensiunan menggunakan -1, Pasangan -2, Yatim -3, 6 bulan -4)
+    participantNumber String
+
+    gender Gender
+
+    ///Tanggal Lahir
+    birthDate DateTime
+
+    age Int
+
+    retirementAge Int
+
+    class String
+
+    paymentBranch String
+
+    claims Claim[]
+
+    ///Nomer Kartu tanda Penduduk
+    nationalID String
+
+    ///Nomer kartu Keluarga
+    familyCardNumber String
+
+    ///Nomer NPWP
+    taxID String?
+
+    ///Pensiunan,Pasangan, Yatim, Janda/duda 6 bulan
+    participantStatus String
+
+    //Jenjng Jabatan terakhir
+    employmentPosition Position
+
+    //-------------------------- 1 relations --------------------------------
+
+    isActive Boolean
+
+    entryDate DateTime
+
+    user User @relation(fields: [userId], references: [id])
+
+    userId String @id
+
+    claimTypes ClaimType[]
+
+    processingSteps ProcessingStep[]
+
+    employments Employment[]
+
+    contactInfos ContactInfo[]
+
+    bankAccounts BankAccount[]
+
     programParticipations ProgramParticipation[]
-    balances              Balance[]
+
+    balances Balance[]
+}
+
+enum Position {
+    AMGR
+    AVP
+    PGD
+    MGR
+    SASST
+    VP
+    SAVP
+    SMGR
+    SAMGR
+    ASST
 }
 
 model Program {
@@ -248,4 +350,46 @@ model Transaction {
     date            DateTime
     balance         Balance  @relation(fields: [balanceId], references: [id])
     balanceId       Int
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+}
+
+enum RoleName {
+    SUPERUSER
+    ANALYST
+    GROUP_LEADER
+    // Add other roles as necessary
+}
+
+enum ClaimStatusType {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+enum TransactionType {
+    CREDIT
+    DEBIT
+}
+
+enum Step {
+    INPUT
+    COMPLETENESS_CHECK
+    APPROVAL
+}
+
+enum RoleType {
+    SUPERUSER
+    ANALYST
+    GROUP_LEADER
+}
+
+enum ActionType {
+    VERIFY
+    APPROVE
+    REJECT
 }
