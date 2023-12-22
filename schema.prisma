@@ -42,6 +42,7 @@ model User {
     password String
 
     /// @HideField({ output: false, input: true })
+    ///Tgl.Masuk Peserta
     createdAt DateTime @default(now())
 
     /// @HideField({ output: false, input: true })
@@ -62,6 +63,8 @@ model User {
     //-------------------------- m relations --------------------------------
 
     claimsInput Claim[]
+
+    @@map("users")
 }
 
 model Role {
@@ -69,6 +72,8 @@ model Role {
     name        String // E.g., 'superuser', 'analyst', 'group leader'
     permissions String[] // Array of permissions like 'create-claim', 'approve-claim'
     users       User[]
+
+    @@map("UserRoles")
 }
 
 model Participant {
@@ -82,15 +87,7 @@ model Participant {
     ///Tanggal Lahir
     birthDate DateTime
 
-    age Int
-
-    retirementAge Int
-
-    class String
-
-    paymentBranch String
-
-    claims Claim[]
+    // age Int //tidak perlu disimpan ke db
 
     ///Nomer Kartu tanda Penduduk
     nationalID String
@@ -104,20 +101,18 @@ model Participant {
     ///Pensiunan,Pasangan, Yatim, Janda/duda 6 bulan
     participantStatus String
 
-    //Jenjng Jabatan terakhir
-    employmentPosition Position
-
     //-------------------------- 1 relations --------------------------------
 
+    ///Aktif/Non Aktif:	Status Kepesertaan Aktif/non aktif
     isActive Boolean
-
-    entryDate DateTime
 
     user User @relation(fields: [userId], references: [id])
 
-    userId String @id
+    userId Int @id
 
-    claimTypes ClaimType[]
+    //-------------------------- m relations --------------------------------
+
+    claims Claim[]
 
     processingSteps ProcessingStep[]
 
@@ -130,6 +125,13 @@ model Participant {
     programParticipations ProgramParticipation[]
 
     balances Balance[]
+}
+
+enum ParticipantStatus {
+    PENSIUNAN
+    PASANGAN
+    YATIM
+    JANDADUDA6BULAN
 }
 
 enum Position {
@@ -155,7 +157,7 @@ model Program {
 model ContactInfo {
     id            Int         @id @default(autoincrement())
     telp          String
-    participant   Participant @relation(fields: [participantId], references: [id])
+    participant   Participant @relation(fields: [participantId], references: [userId])
     participantId Int
     address       Address     @relation(fields: [addressId], references: [id])
     addressId     Int
@@ -173,60 +175,154 @@ model BankAccount {
     id            Int         @id @default(autoincrement())
     noRekening    String
     rekeningAn    String
-    participant   Participant @relation(fields: [participantId], references: [id])
+    participant   Participant @relation(fields: [participantId], references: [userId])
     participantId Int
 }
 
 model Employment {
-    id             Int         @id @default(autoincrement())
-    cabangPembayar String
-    participant    Participant @relation(fields: [participantId], references: [id])
-    participantId  Int
-    cabang         String
-    group          String
-    wilayah        String
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    //-------------------------- 1 relations --------------------------------
+
+    ///Jenjang Jabatan terakhir
+    employmentPosition Position
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
+    participantId Int
+
+    branch Branch @relation(fields: [branchId], references: [id])
+
+    branchId Int
+
+    group Group? @relation(fields: [groupId], references: [id])
+
+    groupId Int
+
+    region   Region? @relation(fields: [regionId], references: [id])
+    regionId Int
+}
+
+model Branch {
+    id   Int    @id @default(autoincrement())
+    name String
+    // Other fields specific to branches
+}
+
+model Group {
+    id   Int    @id @default(autoincrement())
+    name String
+    // Other fields specific to groups
+}
+
+model Region {
+    id   Int    @id @default(autoincrement())
+    name String
+    // Other fields specific to regions
 }
 
 model ProgramParticipation {
-    id              Int         @id @default(autoincrement())
-    plan            String
-    planPerHari     Float
-    tanggalEfektif  DateTime
-    noBPJS          String?
-    participant     Participant @relation(fields: [participantId], references: [id])
-    participantId   Int
-    program         Program     @relation(fields: [programId], references: [id])
-    programId       Int
+    ///Nopol:	Nomer Polish
+    id Int @id @default(autoincrement())
+
+    plan String
+
+    planPerHari Float
+
+    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
+    class String
+
+    ///Tgl. Efektif: Tanggal mulai ikut program Fasilitas Kesehatan
+    effectiveDate DateTime
+
+    ///No.BPJS/ASKES: Nomer kartu BPJS
+    bpjsNumber String?
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
+    participantId Int
+
+    program Program @relation(fields: [programId], references: [id])
+
+    programId Int
+
     tanggalNonaktif DateTime?
-    ketNonAktif     String?
+
+    ketNonAktif String?
 }
 
 model Claim {
-    id                Int               @id @default(autoincrement())
-    orderNumber       String
-    policyNumber      String
-    company           String
-    participant       Participant       @relation(fields: [participantId], references: [id])
-    participantId     Int
-    hospitalizations  Hospitalization[] @relation(fields: [hospitalizationId], references: [id])
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    //orderNumber  String //tidak perlu nomor urut
+
+    //-------------------------- 1 relations --------------------------------
+
+    ///Prsh:	Perusahaan
+    company Company @relation(fields: [companyId], references: [id])
+
+    ///Prsh:	Perusahaan
+    companyId Int
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
+    participantId Int
+
+    hospitalizations Hospitalization[] @relation(fields: [hospitalizationId], references: [id])
+
     hospitalizationId Int
-    claimStatuses     ClaimStatus[]     @relation(fields: [claimStatusId], references: [id])
-    claimStatusId     Int
-    claimFinancials   ClaimFinancial[]  @relation(fields: [claimFinancialId], references: [id])
-    claimFinancialId  Int
-    claimProcesses    ClaimProcess[]    @relation(fields: [claimProcessId], references: [id])
-    claimProcessId    Int
-    claimDiagnoses    ClaimDiagnosis[]  @relation(fields: [claimDiagnosisId], references: [id])
-    claimDiagnosisId  Int
-    diseases          Disease?          @relation(fields: [diseaseId], references: [id])
-    diseaseId         Int?
-    clinics           Clinic?           @relation(fields: [clinicId], references: [id])
-    clinicId          Int?
-    users             User?             @relation(fields: [userId], references: [id])
-    userId            Int?
-    claimTypes        ClaimType?        @relation(fields: [claimTypeId], references: [id])
-    claimTypeId       Int?
-    processingSteps   ProcessingStep[]
+
+    claimStatuses ClaimStatus[] @relation(fields: [claimStatusId], references: [id])
+
+    claimStatusId Int
+
+    claimFinancials ClaimFinancial[] @relation(fields: [claimFinancialId], references: [id])
+
+    claimFinancialId Int
+
+    claimProcesses ClaimProcess[] @relation(fields: [claimProcessId], references: [id])
+
+    claimProcessId Int
+
+    claimDiagnoses ClaimDiagnosis[] @relation(fields: [claimDiagnosisId], references: [id])
+
+    claimDiagnosisId Int
+
+    diseases Disease? @relation(fields: [diseaseId], references: [id])
+
+    diseaseId Int?
+
+    clinics Clinic? @relation(fields: [clinicId], references: [id])
+
+    clinicId Int?
+
+    users User? @relation(fields: [userId], references: [id])
+
+    userId Int?
+
+    claimTypes ClaimType? @relation(fields: [claimTypeId], references: [id])
+
+    claimTypeId Int?
+
+    //-------------------------- m relations --------------------------------
+
+    processingSteps ProcessingStep[]
+}
+
+model Company {
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    name String
+
+    //-------------------------- m relations --------------------------------
+
+    claims Claim[]
 }
 
 model ClaimType {
@@ -235,7 +331,7 @@ model ClaimType {
     maxAllowance  Float
     claimPeriod   Int // Number of days
     conditions    String
-    participant   Participant   @relation(fields: [participantId], references: [id])
+    participant   Participant   @relation(fields: [participantId], references: [userId])
     participantId Int
     claims        Claim[]
     ClaimStatus   ClaimStatus[]
@@ -255,7 +351,9 @@ model ClaimStatus {
 }
 
 model ClaimFinancial {
-    id               Int   @id @default(autoincrement())
+    id               Int    @id @default(autoincrement())
+    ///Cabang: Cabang Pembayar Pensiun
+    branchPayee      Branch
     requestedAmount  Float
     paidAmount       Float
     rejectedAmount   Float
@@ -263,7 +361,7 @@ model ClaimFinancial {
     allowanceCeiling Float
     submissionCount  Int
     remainingCeiling Float
-    claim            Claim @relation(fields: [claimId], references: [id])
+    claim            Claim  @relation(fields: [claimId], references: [id])
     claimId          Int
 }
 
