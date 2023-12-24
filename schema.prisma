@@ -73,7 +73,8 @@ model User {
 model Role {
     id Int @id @default(autoincrement())
 
-    name String // E.g., 'superuser', 'analyst', 'group leader'
+    /// E.g., 'superuser', 'analyst', 'group leader'
+    name String
 
     permissions Permission[]
 
@@ -393,6 +394,8 @@ model Program {
     //-------------------------- m relations --------------------------------
 
     programParticipations ProgramParticipation[]
+
+    claimType ClaimType[]
 }
 
 enum PlanType {
@@ -411,15 +414,10 @@ model Claim {
     //-------------------------- scalars --------------------------------
 
     ///Nok:	Nomer Register Klaim
+    ///Nomor Sm	nomer register Surat masuk (Klaim melalui WA/Reguler/Exception/Email)
     id String @id @default(cuid())
 
     //orderNumber  String //tidak perlu nomor urut
-
-    ///Reklaim:	Keterangan untuk klaim ulang
-    reclaim String?
-
-    ///TProses Pengajuan:	Tanggal Proses pengajuan
-    processDate DateTime?
 
     ///Tklaim:	Tanggal Klaim
     createdAt DateTime @default(now())
@@ -430,6 +428,9 @@ model Claim {
 
     //-------------------------- 1 relations --------------------------------
 
+    ///Metode Klaim:	WA,E-mail,Reguler, Telepon
+    channel ClaimChannel
+
     ///Stat. Admedika:	Status Admedika
     admedicaStatus AdmedicaStatus
 
@@ -438,8 +439,6 @@ model Claim {
 
     ///Prsh:	Perusahaan
     companyId Int
-
-    channel ClaimChannel
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
@@ -469,13 +468,13 @@ model Claim {
 
     userId Int?
 
-    claimTypes ClaimType? @relation(fields: [claimTypeId], references: [id])
+    claimTypes ClaimType @relation(fields: [claimTypeId], references: [id])
 
-    claimTypeId Int?
+    claimTypeId Int @unique
 
     //-------------------------- m relations --------------------------------
 
-    documents Document[]
+    uploadedDocuments Document[]
 
     tags Tag[]
 
@@ -491,14 +490,19 @@ enum ClaimChannel {
 model Document {
     //-------------------------- scalars --------------------------------
 
+    ///Nodok:	Nomer Dokumen
     id String @id @default(cuid())
 
+    ///Nama Dokumen
     name String
 
+    ///Path:	Path file dokumen
     path String
 
+    ///Ukuran:	Ukuran dokumen
     size Int
 
+    ///Jumlah Cetak:	Jumlah cetak dokumen
     printCount Int
 
     createdAt DateTime @default(now())
@@ -513,6 +517,10 @@ model Document {
     claim Claim @relation(fields: [claimId], references: [id])
 
     claimId String
+
+    rejectionLetterOf ClaimStatus? @relation("rejectionLetter")
+
+    guaranteeLetterOf ClaimStatus? @relation("guaranteeLetter")
 }
 
 enum DocumentSource {
@@ -572,9 +580,8 @@ model Company {
 }
 
 model ClaimType {
+    //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
-
-    type ApplicationType
 
     ///Jenis:	Jenis Produk Bantuan
     jenis String
@@ -585,11 +592,21 @@ model ClaimType {
     ///Plan	Plan = jenis Rawat inap atau disingkat RI
     plan String
 
-    claimPeriod Int // Number of days
+    claimPeriod Int
 
     conditions String
 
-    claims Claim[]
+    //-------------------------- 1 relations --------------------------------
+
+    program Program @relation(fields: [programId], references: [id])
+
+    programId Int
+
+    //-------------------------- m relations --------------------------------
+
+    claims Claim?
+
+    claimId Int @unique
 }
 
 enum ApplicationType {
@@ -652,6 +669,12 @@ model ClaimProcess {
     ///Tekspedisi	Tanggal ekspedisi
     expeditionDate DateTime
 
+    ///Reklaim:	Keterangan untuk klaim ulang
+    reclaim String?
+
+    ///TProses Pengajuan:	Tanggal Proses pengajuan
+    processDate DateTime?
+
     incomingNumber String
 
     ///Ket.Pengajuan:	Keterangan konfirmasi
@@ -663,16 +686,7 @@ model ClaimProcess {
     ///Ket.Tambahan	keterangan tambahan
     additionalNote String
 
-    rejectionLetterNumber String?
-
-    rejectionLetterDate DateTime?
-
-    recapNumber String
-
-    guaranteeLetterNumber String
-
     //-------------------------- 1 relations --------------------------------
-
     claim Claim?
 
     claimId String @unique
@@ -682,6 +696,8 @@ model ClaimStatus {
     //-------------------------- scalars --------------------------------
 
     id Int @id @default(autoincrement())
+
+    description String?
 
     rejectionReason String?
 
@@ -698,6 +714,21 @@ model ClaimStatus {
     claim Claim @relation(fields: [claimId], references: [id])
 
     claimId String
+
+    ///Nomor surat tolak
+    ///Tanggal surat tolak
+    rejectionLetter Document? @relation("rejectionLetter", fields: [rejectionLetterId], references: [id])
+
+    ///Nomor surat tolak
+    ///Tanggal surat tolak
+    rejectionLetterId String? @unique
+
+    ///No SurJam:	Nomer Surat jaminan
+    guaranteeLetter Document? @relation("guaranteeLetter", fields: [guaranteeLetterId], references: [id])
+
+    ///No SurJam:	Nomer Surat jaminan
+    //Tanggal Surjam:	Tanggal Surat Jaminan
+    guaranteeLetterId String? @unique
 }
 
 model ClaimDiagnosis {
@@ -777,7 +808,7 @@ enum Gender {
 }
 
 enum ClaimStatusType {
-    INPUT
+    DOCUMENT
     PENDING
     APPROVED
     REJECTED
