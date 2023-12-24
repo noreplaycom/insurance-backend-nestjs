@@ -88,8 +88,7 @@ enum Permission {
     REJECT_CLAIM
     READ_CLAIM
     UPDATE_CLAIM
-
-    // Add other permission values as needed
+    UPDATE_FINANCIAL_TRANSFER
 }
 
 model Participant {
@@ -337,9 +336,6 @@ model ProgramParticipation {
     ///No.BPJS/ASKES: Nomer kartu BPJS
     bpjsNumber String?
 
-    ///Plan	PlanType = jenis Rawat inap atau disingkat RI
-    planType PlanType
-
     ///Keterangan Non Aktif:	keterangan perihal penonaktifan
     nonActiveReason String?
 
@@ -351,9 +347,6 @@ model ProgramParticipation {
 
     //-------------------------- 1 relations --------------------------------
 
-    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-    class Class
-
     participant Participant @relation(fields: [participantId], references: [userId])
 
     participantId Int
@@ -363,6 +356,43 @@ model ProgramParticipation {
 
     ///Nomor Dana
     fundingId Int
+
+    Program Program? @relation(fields: [programId], references: [id])
+
+    programId Int?
+}
+
+model Program {
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    ///Nama Program
+    name ApplicationType
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    deletedAt DateTime?
+
+    ///Plafon Santunan:	Plafon Santnan Harian Rawat Inap
+    allowanceCeiling Float
+
+    //-------------------------- 1 relations --------------------------------
+
+    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
+    class Class
+
+    ///Plan	PlanType = jenis Rawat inap atau disingkat RI
+    planType PlanType
+
+    ///Maksimal biaya perawatan 
+    maxAllowance Float
+
+    //-------------------------- m relations --------------------------------
+
+    programParticipations ProgramParticipation[]
 }
 
 enum PlanType {
@@ -389,6 +419,9 @@ model Claim {
     reclaim String?
 
     ///TProses Pengajuan:	Tanggal Proses pengajuan
+    processDate DateTime?
+
+    ///Tklaim:	Tanggal Klaim
     createdAt DateTime @default(now())
 
     updatedAt DateTime @updatedAt
@@ -414,15 +447,15 @@ model Claim {
 
     claimFinancials ClaimFinancial @relation(fields: [claimFinancialId], references: [id])
 
-    claimFinancialId Int
+    claimFinancialId Int @unique
 
     claimProcesses ClaimProcess @relation(fields: [claimProcessId], references: [id])
 
-    claimProcessId Int
+    claimProcessId Int @unique
 
     claimDiagnoses ClaimDiagnosis @relation(fields: [claimDiagnosisId], references: [id])
 
-    claimDiagnosisId Int
+    claimDiagnosisId Int @unique
 
     diseases Disease? @relation(fields: [diseaseId], references: [id])
 
@@ -458,7 +491,7 @@ enum ClaimChannel {
 model Document {
     //-------------------------- scalars --------------------------------
 
-    id Int @id @default(autoincrement())
+    id String @id @default(cuid())
 
     name String
 
@@ -466,14 +499,34 @@ model Document {
 
     size Int
 
+    printCount Int
+
     createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
     //-------------------------- 1 relations --------------------------------
 
-    // Add more fields as needed, such as uploader information, document type, etc.
+    source DocumentSource
 
-    Claim Claim @relation(fields: [claimId], references: [id])
+    type DocumentType
 
-    claimId Int
+    claim Claim @relation(fields: [claimId], references: [id])
+
+    claimId String
+}
+
+enum DocumentSource {
+    UPLOADED
+    GENERATED
+}
+
+enum DocumentType {
+    CLAIM_FORM
+    REJECTION_LETTER
+    GUARANTEE_LETTER
+    RECAP
+    EXPEDITION
+    TRANSFER
 }
 
 model Tag {
@@ -523,12 +576,14 @@ model ClaimType {
 
     type ApplicationType
 
+    ///Jenis:	Jenis Produk Bantuan
+    jenis String
+
     ///Jenis RI:	Hospital Cash Plan
     jenisRI String
 
+    ///Plan	Plan = jenis Rawat inap atau disingkat RI
     plan String
-
-    maxAllowance Float
 
     claimPeriod Int // Number of days
 
@@ -548,6 +603,7 @@ enum ApplicationType {
 
 enum AdmedicaStatus {
     NON_ADMEDICA
+    ADMEDICA
 }
 
 model ClaimFinancial {
@@ -561,56 +617,50 @@ model ClaimFinancial {
     ///Bayar:	Jumlah nominal klaim dibayar
     paidAmount Float?
 
-    ///Tolak	Jumlah Nominal Klaim ditolak
+    ///Tolak:	Jumlah Nominal Klaim ditolak
     rejectedAmount Float?
 
-    totalClaim Float
+    ///TProses Transaksi:	Tanggal Proses Transaksi
+    transactionProcessDate DateTime?
 
-    allowanceCeiling Float
-
-    submissionCount Int
-
-    remainingCeiling Float
+    ///Transfer:	Tanggal Transfer
+    transferDate DateTime?
 
     //-------------------------- 1 relations --------------------------------
 
     ///Cabang: Cabang Pembayar Pensiun
     branchPayee Branch @relation(fields: [branchId], references: [id])
 
-    claim Claim @relation(fields: [claimId], references: [id])
+    claim Claim?
 
-    claimId Int
+    claimId String @unique
 
+    ///Cabang: Cabang Pembayar Pensiun
     branchId Int
 }
 
 model ClaimProcess {
+    //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
 
+    ///Tmulairawat	Tanggal mulai Rawat
     startTreatment DateTime
 
+    ///Takhirrawat	Tanggal akhir rawat
     endTreatment DateTime
 
-    treatmentMonth String
-
-    treatmentYear Int
-
-    claimDate DateTime
-
+    ///Tekspedisi	Tanggal ekspedisi
     expeditionDate DateTime
-
-    transferDate DateTime
-
-    submissionProcessDate DateTime
-
-    transactionProcessDate DateTime
 
     incomingNumber String
 
+    ///Ket.Pengajuan:	Keterangan konfirmasi
     submissionNote String
 
+    ///Keterangan:	isi keterangan 
     description String
 
+    ///Ket.Tambahan	keterangan tambahan
     additionalNote String
 
     rejectionLetterNumber String?
@@ -621,9 +671,11 @@ model ClaimProcess {
 
     guaranteeLetterNumber String
 
-    claim Claim @relation(fields: [claimId], references: [id])
+    //-------------------------- 1 relations --------------------------------
 
-    claimId Int
+    claim Claim?
+
+    claimId String @unique
 }
 
 model ClaimStatus {
@@ -632,6 +684,8 @@ model ClaimStatus {
     id Int @id @default(autoincrement())
 
     rejectionReason String?
+
+    createdAt DateTime @default(now())
 
     //-------------------------- 1 relations --------------------------------
 
@@ -643,9 +697,7 @@ model ClaimStatus {
 
     claim Claim @relation(fields: [claimId], references: [id])
 
-    claimId Int
-
-    createdAt DateTime @default(now())
+    claimId String
 }
 
 model ClaimDiagnosis {
@@ -655,9 +707,9 @@ model ClaimDiagnosis {
 
     diseaseId Int
 
-    claim Claim @relation(fields: [claimId], references: [id])
+    claim Claim?
 
-    claimId Int
+    claimId Int @unique
 }
 
 model Disease {
@@ -687,16 +739,19 @@ model Clinic {
 }
 
 model Account {
+    //Nomer Dana
     id Int @id @default(autoincrement())
 
+    ///Sisa Plafon:	Sisa Plafon Santunan Harian Rawat Inap
     currentBalance Float
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
     participantId Int
 
-    transactions         Transaction[]
-    ProgramParticipation ProgramParticipation[]
+    transactions Transaction[]
+
+    programParticipation ProgramParticipation[]
 }
 
 model Transaction {
