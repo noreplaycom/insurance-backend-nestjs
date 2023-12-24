@@ -31,7 +31,7 @@ generator nestgraphql {
 
 model User {
     //-----------------------------scalars-------------------------
-    id Int @id @default(autoincrement())
+    id String @id @default(uuid())
 
     ///Nama Lengkap
     fullName String
@@ -71,10 +71,13 @@ model User {
 }
 
 model Role {
+    //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
 
     /// E.g., 'superuser', 'analyst', 'group leader'
     name String
+
+    //-------------------------- m relations --------------------------------
 
     permissions Permission[]
 
@@ -125,12 +128,12 @@ model Participant {
 
     user User @relation(fields: [userId], references: [id])
 
-    userId Int @id
+    userId String @id
 
     ///Anggota keluarga dari
     relation Participant? @relation("ParticipantRelation", fields: [relationId], references: [userId])
 
-    relationId Int?
+    relationId String?
 
     bankAccount BankAccount?
 
@@ -150,6 +153,8 @@ model Participant {
 
     ///Anggota keluarga dari
     Participant Participant[] @relation("ParticipantRelation")
+
+    @@map("participants")
 }
 
 enum ParticipantStatus {
@@ -189,7 +194,7 @@ model ContactInfo {
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
-    participantId Int
+    participantId String
 
     address Address @relation(fields: [addressId], references: [id])
 
@@ -250,7 +255,7 @@ model BankAccount {
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
-    participantId Int @unique
+    participantId String @unique
 }
 
 model Employment {
@@ -265,7 +270,7 @@ model Employment {
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
-    participantId Int
+    participantId String
 
     branch Branch @relation(fields: [branchId], references: [id])
 
@@ -350,7 +355,7 @@ model ProgramParticipation {
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
-    participantId Int
+    participantId String
 
     ///Dana
     funding Account @relation(fields: [fundingId], references: [id])
@@ -369,7 +374,8 @@ model Program {
     id Int @id @default(autoincrement())
 
     ///Nama Program
-    name ApplicationType
+    ///Plan	PlanType = jenis Rawat inap atau disingkat RI
+    plan ApplicationType
 
     createdAt DateTime @default(now())
 
@@ -385,9 +391,6 @@ model Program {
     ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
     class Class
 
-    ///Plan	PlanType = jenis Rawat inap atau disingkat RI
-    planType PlanType
-
     ///Maksimal biaya perawatan 
     maxAllowance Float
 
@@ -396,11 +399,6 @@ model Program {
     programParticipations ProgramParticipation[]
 
     claimType ClaimType[]
-}
-
-enum PlanType {
-    RAWAT_INAP
-    RAWAT_JALAN
 }
 
 ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
@@ -442,7 +440,7 @@ model Claim {
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
-    participantId Int
+    participantId String
 
     claimFinancials ClaimFinancial @relation(fields: [claimFinancialId], references: [id])
 
@@ -452,21 +450,17 @@ model Claim {
 
     claimProcessId Int @unique
 
-    claimDiagnoses ClaimDiagnosis @relation(fields: [claimDiagnosisId], references: [id])
-
-    claimDiagnosisId Int @unique
-
-    diseases Disease? @relation(fields: [diseaseId], references: [id])
+    disease Disease? @relation(fields: [diseaseId], references: [id])
 
     diseaseId Int?
 
-    clinics Clinic? @relation(fields: [clinicId], references: [id])
+    clinics Clinic @relation(fields: [clinicId], references: [id])
 
-    clinicId Int?
+    clinicId Int
 
-    users User? @relation(fields: [userId], references: [id])
+    inputedBy User? @relation(fields: [inputedById], references: [id])
 
-    userId Int?
+    inputedById String?
 
     claimTypes ClaimType @relation(fields: [claimTypeId], references: [id])
 
@@ -661,21 +655,19 @@ model ClaimProcess {
     id Int @id @default(autoincrement())
 
     ///Tmulairawat	Tanggal mulai Rawat
-    startTreatment DateTime
+    startTreatment DateTime?
 
     ///Takhirrawat	Tanggal akhir rawat
-    endTreatment DateTime
+    endTreatment DateTime?
 
     ///Tekspedisi	Tanggal ekspedisi
-    expeditionDate DateTime
+    expeditionDate DateTime?
 
     ///Reklaim:	Keterangan untuk klaim ulang
     reclaim String?
 
     ///TProses Pengajuan:	Tanggal Proses pengajuan
     processDate DateTime?
-
-    incomingNumber String
 
     ///Ket.Pengajuan:	Keterangan konfirmasi
     submissionNote String
@@ -707,9 +699,9 @@ model ClaimStatus {
 
     status ClaimStatusType
 
-    user User @relation(fields: [userId], references: [id])
+    createBy User @relation(fields: [createById], references: [id])
 
-    userId Int
+    createById String
 
     claim Claim @relation(fields: [claimId], references: [id])
 
@@ -731,54 +723,102 @@ model ClaimStatus {
     guaranteeLetterId String? @unique
 }
 
-model ClaimDiagnosis {
-    id Int @id @default(autoincrement())
-
-    disease Disease @relation(fields: [diseaseId], references: [id])
-
-    diseaseId Int
-
-    claim Claim?
-
-    claimId Int @unique
-}
-
 model Disease {
+    //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
 
-    kodePenyakit String
+    ///KodePenyakit: kode jenis penyakit
+    code String
 
-    namaPenyakit String
+    ///NamaPenyakit: nama penyakit
+    name String
 
-    groupDiagnosa String
+    createdAt DateTime @default(now())
 
-    penggolonganDiagnosa String
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- 1 relations --------------------------------
+
+    group DiseaseGroup @relation(fields: [groupId], references: [id])
+
+    groupId Int @unique
+
+    //-------------------------- m relations --------------------------------
 
     claims Claim[]
+}
 
-    ClaimDiagnosis ClaimDiagnosis[]
+model DiseaseGroup {
+    //-------------------------- scalars --------------------------------
+    id Int @id @default(autoincrement())
+
+    name String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- 1 relations --------------------------------
+
+    DiseaseCluster DiseaseCluster @relation(fields: [diseaseClusterId], references: [id])
+
+    diseaseClusterId Int
+
+    //-------------------------- m relations --------------------------------
+
+    disease Disease[]
+}
+
+model DiseaseCluster {
+    //-------------------------- scalars --------------------------------
+    id Int @id @default(autoincrement())
+
+    name String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- m relations --------------------------------
+
+    diseaseGroups DiseaseGroup[]
 }
 
 model Clinic {
+    //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
 
-    kodeKlinik String
+    code String
 
-    namaKlinik String
+    name String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- m relations --------------------------------
 
     claims Claim[]
 }
 
 model Account {
+    //-------------------------- scalars --------------------------------
+
     //Nomer Dana
     id Int @id @default(autoincrement())
 
     ///Sisa Plafon:	Sisa Plafon Santunan Harian Rawat Inap
     currentBalance Float
 
+    currentBalanceLastUpdate DateTime?
+
+    //-------------------------- 1 relations --------------------------------
+
     participant Participant @relation(fields: [participantId], references: [userId])
 
-    participantId Int
+    participantId String
+
+    //-------------------------- m relations --------------------------------
 
     transactions Transaction[]
 
@@ -786,15 +826,18 @@ model Account {
 }
 
 model Transaction {
+    //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
 
     amount Float
 
-    transactionType String // 'credit' or 'debit'
+    transactionType String
 
     description String?
 
-    date DateTime
+    createdAt DateTime @default(now())
+
+    //-------------------------- 1 relations --------------------------------
 
     account Account @relation(fields: [accountId], references: [id])
 
@@ -804,7 +847,7 @@ model Transaction {
 enum Gender {
     MALE
     FEMALE
-    OTHER
+    UNKNOWN
 }
 
 enum ClaimStatusType {
