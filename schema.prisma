@@ -33,6 +33,7 @@ model User {
     //-----------------------------scalars-------------------------
     id Int @id @default(autoincrement())
 
+    ///Nama Lengkap
     fullName String
 
     email String @unique
@@ -86,15 +87,13 @@ enum Permission {
     APPROVE_CLAIM
     REJECT_CLAIM
     READ_CLAIM
+    UPDATE_CLAIM
 
     // Add other permission values as needed
 }
 
 model Participant {
     //-------------------------- scalars --------------------------------
-
-    ///Nomer peserta (jika Pensiunan menggunakan -1, Pasangan -2, Yatim -3, 6 bulan -4)
-    participantNumber String
 
     ///Jenis Kelamin
     gender Gender
@@ -113,17 +112,25 @@ model Participant {
     ///Nomer NPWP
     taxID String?
 
-    ///Pensiunan,Pasangan, Yatim, Janda/duda 6 bulan
-    participantStatus String
+    ///Aktif/Non Aktif:	Status Kepesertaan Aktif/non aktif
+    isActive Boolean
+
+    // ///Nomer peserta (jika Pensiunan menggunakan -1, Pasangan -2, Yatim -3, 6 bulan -4)
+    // participantNumber String
 
     //-------------------------- 1 relations --------------------------------
 
-    ///Aktif/Non Aktif:	Status Kepesertaan Aktif/non aktif
-    isActive Boolean
+    ///Pensiunan,Pasangan, Yatim, Janda/duda 6 bulan
+    participantStatus ParticipantStatus
 
     user User @relation(fields: [userId], references: [id])
 
     userId Int @id
+
+    ///Anggota keluarga dari
+    relation Participant? @relation("ParticipantRelation", fields: [relationId], references: [userId])
+
+    relationId Int?
 
     //-------------------------- m relations --------------------------------
 
@@ -138,6 +145,9 @@ model Participant {
     programParticipations ProgramParticipation[]
 
     balances Account[]
+
+    ///Anggota keluarga dari
+    Participant Participant[] @relation("ParticipantRelation")
 }
 
 enum ParticipantStatus {
@@ -160,20 +170,28 @@ enum Position {
     ASST
 }
 
-model Program {
-    id                    Int                    @id @default(autoincrement())
-    programType           String
-    fundingNumber         String
-    programParticipations ProgramParticipation[]
-}
-
 model ContactInfo {
-    id            Int         @id @default(autoincrement())
-    telp          String
-    participant   Participant @relation(fields: [participantId], references: [userId])
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    telp String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    deletedAt DateTime?
+
+    //-------------------------- 1 relations --------------------------------
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
     participantId Int
-    address       Address     @relation(fields: [addressId], references: [id])
-    addressId     Int
+
+    address Address @relation(fields: [addressId], references: [id])
+
+    addressId Int
 }
 
 model Address {
@@ -241,33 +259,52 @@ model Region {
 }
 
 model ProgramParticipation {
+    //-------------------------- scalars --------------------------------
+
     ///Nopol:	Nomer Polish
     id Int @id @default(autoincrement())
 
-    plan String
+    ///No.BPJS/ASKES: Nomer kartu BPJS
+    bpjsNumber String?
 
-    planPerHari Float
+    ///Plan	PlanType = jenis Rawat inap atau disingkat RI
+    planType PlanType
 
-    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-    class String
+    ///Keterangan Non Aktif:	keterangan perihal penonaktifan
+    nonActiveReason String?
 
     ///Tgl. Efektif: Tanggal mulai ikut program Fasilitas Kesehatan
     effectiveDate DateTime
 
-    ///No.BPJS/ASKES: Nomer kartu BPJS
-    bpjsNumber String?
+    ///Tgl Non Aktif:	tanggal penonaktifan peserta
+    nonActiveDate DateTime?
+
+    //-------------------------- 1 relations --------------------------------
+
+    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
+    class Class
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
     participantId Int
 
-    program Program @relation(fields: [programId], references: [id])
+    ///Nomor Dana
+    funding Account @relation(fields: [fundingId], references: [id])
 
-    programId Int
+    ///Nomor Dana
+    fundingId Int
+}
 
-    tanggalNonaktif DateTime?
+enum PlanType {
+    RAWAT_INAP
+    RAWAT_JALAN
+}
 
-    ketNonAktif String?
+///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
+enum Class {
+    I
+    II
+    III
 }
 
 model Claim {
@@ -277,7 +314,7 @@ model Claim {
 
     //orderNumber  String //tidak perlu nomor urut
 
-    ///Reklaim	Keterangan untuk klaim ulang
+    ///Reklaim:	Keterangan untuk klaim ulang
     reclaim String?
 
     ///TProses Pengajuan:	Tanggal Proses pengajuan
@@ -290,7 +327,7 @@ model Claim {
     //-------------------------- 1 relations --------------------------------
 
     ///Stat. Admedika:	Status Admedika
-    admedikaStatus AdmedicaStatus
+    admedicaStatus AdmedicaStatus
 
     ///Prsh:	Perusahaan
     company Company @relation(fields: [companyId], references: [id])
@@ -348,14 +385,24 @@ enum ClaimChannel {
 }
 
 model Document {
-    id         Int      @id @default(autoincrement())
-    fileName   String
-    filePath   String
-    fileSize   Int
-    uploadDate DateTime @default(now())
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    name String
+
+    path String
+
+    size Int
+
+    createdAt DateTime @default(now())
+    //-------------------------- 1 relations --------------------------------
+
     // Add more fields as needed, such as uploader information, document type, etc.
-    Claim      Claim?   @relation(fields: [claimId], references: [id])
-    claimId    Int?
+
+    Claim Claim @relation(fields: [claimId], references: [id])
+
+    claimId Int
 }
 
 model Tag {
@@ -405,6 +452,7 @@ model ClaimType {
 
     type ApplicationType
 
+    ///Jenis RI:	Hospital Cash Plan
     jenisRI String
 
     plan String
@@ -560,7 +608,8 @@ model Account {
 
     participantId Int
 
-    transactions Transaction[]
+    transactions         Transaction[]
+    ProgramParticipation ProgramParticipation[]
 }
 
 model Transaction {
@@ -591,7 +640,10 @@ enum ClaimStatusType {
     APPROVED
     REJECTED
     RELEASE
+    PAID
     COMPLETED
+    CANCELLED
+    REOPEN
 }
 
 enum TransactionType {
