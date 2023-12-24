@@ -104,13 +104,13 @@ model Participant {
     // age Int //tidak perlu disimpan ke db
 
     ///Nomer Kartu tanda Penduduk
-    nationalID String
+    nationalId String
 
     ///Nomer kartu Keluarga
     familyCardNumber String
 
     ///Nomer NPWP
-    taxID String?
+    taxId String?
 
     ///Aktif/Non Aktif:	Status Kepesertaan Aktif/non aktif
     isActive Boolean
@@ -121,7 +121,7 @@ model Participant {
     //-------------------------- 1 relations --------------------------------
 
     ///Pensiunan,Pasangan, Yatim, Janda/duda 6 bulan
-    participantStatus ParticipantStatus
+    status ParticipantStatus
 
     user User @relation(fields: [userId], references: [id])
 
@@ -132,6 +132,10 @@ model Participant {
 
     relationId Int?
 
+    bankAccount BankAccount?
+
+    bankAccountId Int
+
     //-------------------------- m relations --------------------------------
 
     claims Claim[]
@@ -139,8 +143,6 @@ model Participant {
     employments Employment[]
 
     contactInfos ContactInfo[]
-
-    bankAccounts BankAccount[]
 
     programParticipations ProgramParticipation[]
 
@@ -195,19 +197,60 @@ model ContactInfo {
 }
 
 model Address {
-    id          Int           @id @default(autoincrement())
-    alamat      String
-    kota        String
-    kodePos     String
-    contactInfo ContactInfo[]
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    ///Alamat
+    address String
+
+    ///Kota
+    city City @relation(fields: [cityId], references: [id])
+
+    ///Kota
+    cityId Int
+
+    ///Kode Pos
+    postalCode String
+
+    //-------------------------- scalars --------------------------------
+
+    ContactInfo ContactInfo[]
+}
+
+model City {
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    ///Nama Kota
+    name String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- m relations --------------------------------
+
+    address Address[]
 }
 
 model BankAccount {
-    id            Int         @id @default(autoincrement())
-    noRekening    String
-    rekeningAn    String
-    participant   Participant @relation(fields: [participantId], references: [userId])
-    participantId Int
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    ///No. Rekening	Nomer Rekening Penerimaan Manfaat Pensiun
+    accountNumber Float
+
+    ///Rekening a/n.	Nama pada rekening bank
+    accountName String
+
+    //-------------------------- 1 relations --------------------------------
+
+    participant Participant @relation(fields: [participantId], references: [userId])
+
+    participantId Int @unique
 }
 
 model Employment {
@@ -232,30 +275,57 @@ model Employment {
 
     groupId Int
 
-    region   Region? @relation(fields: [regionId], references: [id])
+    region Region? @relation(fields: [regionId], references: [id])
+
     regionId Int
 }
 
 model Branch {
-    id             Int              @id @default(autoincrement())
-    name           String
-    // Other fields specific to branches
-    Employment     Employment[]
-    ClaimFinancial ClaimFinancial[]
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    ///Nama Cabang
+    name String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- m relations --------------------------------
+
+    employment Employment[]
+
+    claimFinancial ClaimFinancial[]
 }
 
 model Group {
-    id         Int          @id @default(autoincrement())
-    name       String
-    // Other fields specific to groups
-    Employment Employment[]
+    //-------------------------- scalars --------------------------------
+    id Int @id @default(autoincrement())
+
+    name String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- m relations --------------------------------
+
+    employment Employment[]
 }
 
 model Region {
-    id         Int          @id @default(autoincrement())
-    name       String
-    // Other fields specific to regions
-    Employment Employment[]
+    //-------------------------- scalars --------------------------------
+    id Int @id @default(autoincrement())
+
+    name String
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- m relations --------------------------------
+    employment Employment[]
 }
 
 model ProgramParticipation {
@@ -288,7 +358,7 @@ model ProgramParticipation {
 
     participantId Int
 
-    ///Nomor Dana
+    ///Dana
     funding Account @relation(fields: [fundingId], references: [id])
 
     ///Nomor Dana
@@ -310,7 +380,8 @@ enum Class {
 model Claim {
     //-------------------------- scalars --------------------------------
 
-    id Int @id @default(autoincrement())
+    ///Nok:	Nomer Register Klaim
+    id String @id @default(cuid())
 
     //orderNumber  String //tidak perlu nomor urut
 
@@ -341,15 +412,15 @@ model Claim {
 
     participantId Int
 
-    claimFinancials ClaimFinancial[] @relation(fields: [claimFinancialId], references: [id])
+    claimFinancials ClaimFinancial @relation(fields: [claimFinancialId], references: [id])
 
     claimFinancialId Int
 
-    claimProcesses ClaimProcess[] @relation(fields: [claimProcessId], references: [id])
+    claimProcesses ClaimProcess @relation(fields: [claimProcessId], references: [id])
 
     claimProcessId Int
 
-    claimDiagnoses ClaimDiagnosis[] @relation(fields: [claimDiagnosisId], references: [id])
+    claimDiagnoses ClaimDiagnosis @relation(fields: [claimDiagnosisId], references: [id])
 
     claimDiagnosisId Int
 
@@ -480,21 +551,37 @@ enum AdmedicaStatus {
 }
 
 model ClaimFinancial {
+    //-------------------------- scalars --------------------------------
+
     id Int @id @default(autoincrement())
+
+    ///Aju:	Jumlah nominal klaim diajukan
+    requestedAmount Float
+
+    ///Bayar:	Jumlah nominal klaim dibayar
+    paidAmount Float?
+
+    ///Tolak	Jumlah Nominal Klaim ditolak
+    rejectedAmount Float?
+
+    totalClaim Float
+
+    allowanceCeiling Float
+
+    submissionCount Int
+
+    remainingCeiling Float
+
+    //-------------------------- 1 relations --------------------------------
 
     ///Cabang: Cabang Pembayar Pensiun
     branchPayee Branch @relation(fields: [branchId], references: [id])
 
-    requestedAmount  Float
-    paidAmount       Float
-    rejectedAmount   Float
-    totalClaim       Float
-    allowanceCeiling Float
-    submissionCount  Int
-    remainingCeiling Float
-    claim            Claim @relation(fields: [claimId], references: [id])
-    claimId          Int
-    branchId         Int
+    claim Claim @relation(fields: [claimId], references: [id])
+
+    claimId Int
+
+    branchId Int
 }
 
 model ClaimProcess {
