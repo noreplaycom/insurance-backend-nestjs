@@ -56,12 +56,15 @@ model User {
 
     roleId Int
 
-    participant   Participant?
+    participant Participant?
+
     participantId Int?
 
     //-------------------------- m relations --------------------------------
 
     claimsInput Claim[]
+
+    claimActions ClaimStatus[]
 
     @@map("users")
 }
@@ -82,6 +85,7 @@ enum Permission {
     CREATE_CLAIM
     APPROVE_CLAIM
     REJECT_CLAIM
+    READ_CLAIM
 
     // Add other permission values as needed
 }
@@ -125,8 +129,6 @@ model Participant {
 
     claims Claim[]
 
-    processingSteps ProcessingStep[]
-
     employments Employment[]
 
     contactInfos ContactInfo[]
@@ -135,9 +137,7 @@ model Participant {
 
     programParticipations ProgramParticipation[]
 
-    balances Balance[]
-
-    ClaimType ClaimType[]
+    balances Account[]
 }
 
 enum ParticipantStatus {
@@ -277,7 +277,20 @@ model Claim {
 
     //orderNumber  String //tidak perlu nomor urut
 
+    ///Reklaim	Keterangan untuk klaim ulang
+    reclaim String?
+
+    ///TProses Pengajuan:	Tanggal Proses pengajuan
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    deletedAt DateTime?
+
     //-------------------------- 1 relations --------------------------------
+
+    ///Stat. Admedika:	Status Admedika
+    admedikaStatus AdmedicaStatus
 
     ///Prsh:	Perusahaan
     company Company @relation(fields: [companyId], references: [id])
@@ -285,13 +298,11 @@ model Claim {
     ///Prsh:	Perusahaan
     companyId Int
 
+    channel ClaimChannel
+
     participant Participant @relation(fields: [participantId], references: [userId])
 
     participantId Int
-
-    claimStatuses ClaimStatus[] @relation(fields: [claimStatusId], references: [id])
-
-    claimStatusId Int
 
     claimFinancials ClaimFinancial[] @relation(fields: [claimFinancialId], references: [id])
 
@@ -323,7 +334,54 @@ model Claim {
 
     //-------------------------- m relations --------------------------------
 
-    processingSteps ProcessingStep[]
+    documents Document[]
+
+    tags Tag[]
+
+    claimStatuses ClaimStatus[]
+}
+
+enum ClaimChannel {
+    REGULER
+    WA
+    EMAIL
+}
+
+model Document {
+    id         Int      @id @default(autoincrement())
+    fileName   String
+    filePath   String
+    fileSize   Int
+    uploadDate DateTime @default(now())
+    // Add more fields as needed, such as uploader information, document type, etc.
+    Claim      Claim?   @relation(fields: [claimId], references: [id])
+    claimId    Int?
+}
+
+model Tag {
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    name String
+
+    color Color
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- m relations --------------------------------
+
+    Claims Claim[]
+}
+
+enum Color {
+    WHITE
+    BLUE
+    RED
+    YELLOW
+    GREEN
 }
 
 model Company {
@@ -336,12 +394,16 @@ model Company {
     //-------------------------- m relations --------------------------------
 
     claims Claim[]
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
 }
 
 model ClaimType {
     id Int @id @default(autoincrement())
 
-    type String // E.g., 'daily hospitalization', 'hemodialysis'
+    type ApplicationType
 
     jenisRI String
 
@@ -353,32 +415,28 @@ model ClaimType {
 
     conditions String
 
-    participant Participant @relation(fields: [participantId], references: [userId])
-
-    participantId Int
-
     claims Claim[]
-
-    ClaimStatus ClaimStatus[]
 }
 
-model ClaimStatus {
-    id              Int       @id @default(autoincrement())
-    admedikaStatus  String
-    claimStatus     String
-    reclaim         String
-    rejectionReason String?
-    claimType       ClaimType @relation(fields: [claimTypeId], references: [id])
-    claimTypeId     Int
-    status          String // E.g., 'pending', 'approved', 'rejected'
-    claim           Claim     @relation(fields: [claimId], references: [id])
-    claimId         Int
+enum ApplicationType {
+    SANTUNAN_HARIAN_RAWAT_INAP
+    BANTUAN_BIAYA_CUCI_DARAH
+    BANTUAN_KURSI_RODA
+    BANTUAN_WALKER
+    BANTUAN_IGD_UGD
+    BANTUAN_RAWAT_INAP
+}
+
+enum AdmedicaStatus {
+    NON_ADMEDICA
 }
 
 model ClaimFinancial {
-    id               Int    @id @default(autoincrement())
+    id Int @id @default(autoincrement())
+
     ///Cabang: Cabang Pembayar Pensiun
-    branchPayee      Branch @relation(fields: [branchId], references: [id])
+    branchPayee Branch @relation(fields: [branchId], references: [id])
+
     requestedAmount  Float
     paidAmount       Float
     rejectedAmount   Float
@@ -386,7 +444,7 @@ model ClaimFinancial {
     allowanceCeiling Float
     submissionCount  Int
     remainingCeiling Float
-    claim            Claim  @relation(fields: [claimId], references: [id])
+    claim            Claim @relation(fields: [claimId], references: [id])
     claimId          Int
     branchId         Int
 }
@@ -433,22 +491,26 @@ model ClaimProcess {
     claimId Int
 }
 
-model ProcessingStep {
+model ClaimStatus {
+    //-------------------------- scalars --------------------------------
+
     id Int @id @default(autoincrement())
 
-    step String // E.g., 'input', 'completeness check', 'approval'
+    rejectionReason String?
 
-    role String // E.g., 'analyst', 'group leader'
+    //-------------------------- 1 relations --------------------------------
 
-    action String // E.g., 'verify', 'approve', 'reject'
+    status ClaimStatusType
 
-    participant Participant @relation(fields: [participantId], references: [userId])
+    user User @relation(fields: [userId], references: [id])
 
-    participantId Int
+    userId Int
 
     claim Claim @relation(fields: [claimId], references: [id])
 
     claimId Int
+
+    createdAt DateTime @default(now())
 }
 
 model ClaimDiagnosis {
@@ -489,7 +551,7 @@ model Clinic {
     claims Claim[]
 }
 
-model Balance {
+model Account {
     id Int @id @default(autoincrement())
 
     currentBalance Float
@@ -512,9 +574,9 @@ model Transaction {
 
     date DateTime
 
-    balance Balance @relation(fields: [balanceId], references: [id])
+    account Account @relation(fields: [accountId], references: [id])
 
-    balanceId Int
+    accountId Int
 }
 
 enum Gender {
@@ -524,30 +586,15 @@ enum Gender {
 }
 
 enum ClaimStatusType {
+    INPUT
     PENDING
     APPROVED
     REJECTED
+    RELEASE
+    COMPLETED
 }
 
 enum TransactionType {
     CREDIT
     DEBIT
-}
-
-enum Step {
-    INPUT
-    COMPLETENESS_CHECK
-    APPROVAL
-}
-
-enum RoleType {
-    SUPERUSER
-    ANALYST
-    GROUP_LEADER
-}
-
-enum ActionType {
-    VERIFY
-    APPROVE
-    REJECT
 }
