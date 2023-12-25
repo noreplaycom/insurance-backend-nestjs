@@ -1,4 +1,4 @@
-//----------------------------------------BASE-------------------------
+//See the visual ER Diagram here https://prisma-erd.simonknott.de/
 
 datasource db {
     provider = "postgresql"
@@ -77,22 +77,37 @@ model Role {
     /// E.g., 'superuser', 'analyst', 'group leader'
     name String
 
+    description String?
+
+    higherLevelThan Role? @relation("level", fields: [higherLevelThanId], references: [id])
+
+    higherLevelThanId Int?
+
     //-------------------------- m relations --------------------------------
 
     permissions Permission[]
 
     users User[]
 
+    lowerLevelThan Role[] @relation("level")
+
     @@map("roles")
 }
 
 enum Permission {
     CREATE_CLAIM
-    APPROVE_CLAIM
-    REJECT_CLAIM
-    READ_CLAIM
     UPDATE_CLAIM
-    UPDATE_FINANCIAL_TRANSFER
+    UPDATE_CLAIM_STATUS
+    UPDATE_STATUS_FINANCIAL
+    RELEASE_CLAIM
+    DELETE_CLAIM_DOCUMENT
+    CREATE_CLAIM_DOCUMENT
+    IMPORT_CLAIM
+    EXPORT_CLAIM
+    CREATE_PARTICIPANT
+    UPDATE_PARTICIPANT
+    IMPORT_PARTICIPANT
+    EXPORT_PARTICIPANT
 }
 
 model Participant {
@@ -468,8 +483,6 @@ model Claim {
 
     //-------------------------- m relations --------------------------------
 
-    uploadedDocuments Document[]
-
     tags Tag[]
 
     claimStatuses ClaimStatus[]
@@ -508,13 +521,13 @@ model Document {
 
     type DocumentType
 
-    claim Claim @relation(fields: [claimId], references: [id])
-
-    claimId String
-
     rejectionLetterOf ClaimStatus? @relation("rejectionLetter")
 
     guaranteeLetterOf ClaimStatus? @relation("guaranteeLetter")
+
+    claimProcess ClaimProcess? @relation(fields: [claimProcessId], references: [id])
+
+    claimProcessId Int?
 }
 
 enum DocumentSource {
@@ -523,6 +536,7 @@ enum DocumentSource {
 }
 
 enum DocumentType {
+    INVOICE
     CLAIM_FORM
     REJECTION_LETTER
     GUARANTEE_LETTER
@@ -682,6 +696,9 @@ model ClaimProcess {
     claim Claim?
 
     claimId String @unique
+
+    ///Kwitansi, data, dll: Bukti Pembayaran/Invoice Rumah Sakit oleh Peserta
+    documents Document[]
 }
 
 model ClaimStatus {
