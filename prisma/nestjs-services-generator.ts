@@ -37,6 +37,8 @@ To run the script, use the following command:
 ```bash
 bun run duplicatePrismaModels.ts <schemaPath> <sourceFolder> <outputBaseFolder> [excludedModels...]
 ```
+example 
+ bun run prisma/nestjs-services-generator.ts ./prisma/schema.prisma ./prisma/template/file ./src/services modelName1 modelName2
 
 ## Command Line Arguments
 

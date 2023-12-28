@@ -1,7 +1,7 @@
 //See the visual ER Diagram here https://prisma-erd.simonknott.de/
 
 datasource db {
-    provider = "postgresql"
+    provider = "mysql"
     url      = env("DATABASE_URL")
 }
 
@@ -85,13 +85,22 @@ model Role {
 
     //-------------------------- m relations --------------------------------
 
-    permissions Permission[]
+    rolePermissions RolePermission[]
 
     users User[]
 
     lowerLevelThan Role[] @relation("level")
 
     @@map("roles")
+}
+
+model RolePermission {
+    roleId Int
+    role   Role @relation(fields: [roleId], references: [id])
+
+    permission Permission
+
+    @@id([roleId, permission])
 }
 
 enum Permission {
