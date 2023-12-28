@@ -1,3 +1,75 @@
+/*
+
+Created By Dikki Setiawan
+
+Certainly! Here's a basic template for a README file for the provided script:
+
+---
+
+# Duplicate Prisma Models Script
+
+This script automates the duplication of Prisma models in a specified source folder to an output base folder, while applying certain transformations.
+
+## Introduction
+
+The **Duplicate Prisma Models Script** is designed to ease the process of duplicating Prisma models from a source folder to an output base folder. It performs transformations on the content of the files during duplication.
+
+## Prerequisites
+
+Before using this script, ensure that you have the following installed:
+
+- [Node.js](https://nodejs.org/)
+
+## Installation
+
+1. Clone this repository or download the script file.
+2. Open a terminal and navigate to the directory containing the script.
+3. Run the following command to install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+To run the script, use the following command:
+
+```bash
+bun run duplicatePrismaModels.ts <schemaPath> <sourceFolder> <outputBaseFolder> [excludedModels...]
+```
+
+## Command Line Arguments
+
+- `<schemaPath>`: Path to the Prisma schema file.
+- `<sourceFolder>`: Path to the source folder containing the Prisma models to be duplicated.
+- `<outputBaseFolder>`: Path to the base folder where duplicated models will be saved.
+- `[excludedModels...]`: Optional list of models to be excluded during duplication.
+
+## Example
+
+```bash
+bun run duplicatePrismaModels.ts ./prisma/schema.prisma ./prisma/template/file ./src/services modelName1 modelName2
+```
+
+## Notes
+
+- Make sure you have the necessary permissions to execute the script.
+- If there are issues, the script will output error messages to the console.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
+
+## License
+
+This script is licensed under the [MIT License](LICENSE).
+
+---
+
+Feel free to customize the README to better suit your needs.
+
+*/
+
 import {
   readFileSync,
   writeFileSync,
