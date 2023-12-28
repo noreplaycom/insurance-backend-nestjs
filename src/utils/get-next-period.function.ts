@@ -1,4 +1,4 @@
-import { Period } from 'src/model/enums';
+import { Period } from 'src/model/period.enum';
 
 export function getNextPeriodDate(currentDate: Date, period: Period): Date {
   const nextDate = new Date(currentDate);
