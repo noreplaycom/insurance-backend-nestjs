@@ -12,11 +12,11 @@ import { AddressModule } from './services/address/address.module';
 import { CityModule } from './services/city/city.module';
 import { ConfigsModule } from './config/config.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UploaderModule } from './services/uploader/uploader.module';
-import { UploaderProcessor } from './queues/uploader.queue';
-import { SchedulerService } from './scheduler/scheduler.service';
-import { SchedulerModule } from './scheduler/scheduler.module';
-import { EmailModule } from './services/email/email.module';
+// import { UploaderModule } from './services/uploader/uploader.module';
+// import { UploaderProcessor } from './queues/uploader.queue';
+// import { SchedulerService } from './scheduler/scheduler.service';
+// import { SchedulerModule } from './scheduler/scheduler.module';
+//import { EmailModule } from './services/email/email.module';
 
 @Module({
   imports: [
@@ -42,10 +42,10 @@ import { EmailModule } from './services/email/email.module';
       name: 'uploader',
     }),
     //for shceduler
-    SchedulerModule,
+    // SchedulerModule,
     ConfigsModule,
-    EmailModule,
-    UploaderModule,
+    //EmailModule,
+    // UploaderModule,
     UserModule,
     TransactionModule,
     AccountModule,
@@ -53,6 +53,10 @@ import { EmailModule } from './services/email/email.module';
     CityModule,
   ],
   controllers: [],
-  providers: [PrismaService, UploaderProcessor, SchedulerService],
+  providers: [
+    PrismaService,
+    // UploaderProcessor,
+    // SchedulerService
+  ],
 })
 export class AppModule {}
