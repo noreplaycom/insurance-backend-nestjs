@@ -62,6 +62,10 @@ export declare enum ProgramScalarFieldEnum {
     'class' = "class",
     maxAllowance = "maxAllowance"
 }
+export declare enum TransactionType {
+    CREDIT = "CREDIT",
+    DEBIT = "DEBIT"
+}
 export declare enum TransactionIsolationLevel {
     ReadUncommitted = "ReadUncommitted",
     ReadCommitted = "ReadCommitted",
@@ -12976,6 +12980,24 @@ export declare class EnumPositionWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumPositionFilter>;
     _max?: InstanceType<typeof NestedEnumPositionFilter>;
 }
+export declare class EnumTransactionTypeFieldUpdateOperationsInput {
+    set?: keyof typeof TransactionType;
+}
+export declare class EnumTransactionTypeFilter {
+    equals?: keyof typeof TransactionType;
+    in?: Array<keyof typeof TransactionType>;
+    notIn?: Array<keyof typeof TransactionType>;
+    not?: InstanceType<typeof NestedEnumTransactionTypeFilter>;
+}
+export declare class EnumTransactionTypeWithAggregatesFilter {
+    equals?: keyof typeof TransactionType;
+    in?: Array<keyof typeof TransactionType>;
+    notIn?: Array<keyof typeof TransactionType>;
+    not?: InstanceType<typeof NestedEnumTransactionTypeWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntFilter>;
+    _min?: InstanceType<typeof NestedEnumTransactionTypeFilter>;
+    _max?: InstanceType<typeof NestedEnumTransactionTypeFilter>;
+}
 export declare class FloatFieldUpdateOperationsInput {
     set?: number;
     increment?: number;
@@ -13326,6 +13348,21 @@ export declare class NestedEnumPositionWithAggregatesFilter {
     _count?: InstanceType<typeof NestedIntFilter>;
     _min?: InstanceType<typeof NestedEnumPositionFilter>;
     _max?: InstanceType<typeof NestedEnumPositionFilter>;
+}
+export declare class NestedEnumTransactionTypeFilter {
+    equals?: keyof typeof TransactionType;
+    in?: Array<keyof typeof TransactionType>;
+    notIn?: Array<keyof typeof TransactionType>;
+    not?: InstanceType<typeof NestedEnumTransactionTypeFilter>;
+}
+export declare class NestedEnumTransactionTypeWithAggregatesFilter {
+    equals?: keyof typeof TransactionType;
+    in?: Array<keyof typeof TransactionType>;
+    notIn?: Array<keyof typeof TransactionType>;
+    not?: InstanceType<typeof NestedEnumTransactionTypeWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntFilter>;
+    _min?: InstanceType<typeof NestedEnumTransactionTypeFilter>;
+    _max?: InstanceType<typeof NestedEnumTransactionTypeFilter>;
 }
 export declare class NestedFloatFilter {
     equals?: number;
@@ -16577,14 +16614,14 @@ export declare class TransactionCreateManyAccountInputEnvelope {
 export declare class TransactionCreateManyAccountInput {
     id?: number;
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
 }
 export declare class TransactionCreateManyInput {
     id?: number;
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
     accountId: number;
@@ -16601,13 +16638,13 @@ export declare class TransactionCreateOrConnectWithoutAccountInput {
 }
 export declare class TransactionCreateWithoutAccountInput {
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
 }
 export declare class TransactionCreateInput {
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
     account: InstanceType<typeof AccountCreateNestedOneWithoutTransactionsInput>;
@@ -16628,7 +16665,7 @@ export declare class TransactionGroupByArgs {
 export declare class TransactionGroupBy {
     id: number;
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt: Date | string;
     accountId: number;
@@ -16654,7 +16691,7 @@ export declare class TransactionMaxAggregateInput {
 export declare class TransactionMaxAggregate {
     id?: number;
     amount?: number;
-    transactionType?: string;
+    transactionType?: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
     accountId?: number;
@@ -16678,7 +16715,7 @@ export declare class TransactionMinAggregateInput {
 export declare class TransactionMinAggregate {
     id?: number;
     amount?: number;
-    transactionType?: string;
+    transactionType?: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
     accountId?: number;
@@ -16722,7 +16759,7 @@ export declare class TransactionScalarWhereWithAggregatesInput {
     NOT?: Array<TransactionScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     amount?: InstanceType<typeof FloatWithAggregatesFilter>;
-    transactionType?: InstanceType<typeof StringWithAggregatesFilter>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeWithAggregatesFilter>;
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     accountId?: InstanceType<typeof IntWithAggregatesFilter>;
@@ -16733,7 +16770,7 @@ export declare class TransactionScalarWhereInput {
     NOT?: Array<TransactionScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     amount?: InstanceType<typeof FloatFilter>;
-    transactionType?: InstanceType<typeof StringFilter>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     accountId?: InstanceType<typeof IntFilter>;
@@ -16762,14 +16799,14 @@ export declare class TransactionUncheckedCreateNestedManyWithoutAccountInput {
 export declare class TransactionUncheckedCreateWithoutAccountInput {
     id?: number;
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
 }
 export declare class TransactionUncheckedCreateInput {
     id?: number;
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
     accountId: number;
@@ -16790,14 +16827,14 @@ export declare class TransactionUncheckedUpdateManyWithoutAccountNestedInput {
 export declare class TransactionUncheckedUpdateManyWithoutAccountInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    transactionType?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class TransactionUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    transactionType?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     accountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -16805,21 +16842,21 @@ export declare class TransactionUncheckedUpdateManyInput {
 export declare class TransactionUncheckedUpdateWithoutAccountInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    transactionType?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class TransactionUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    transactionType?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     accountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class TransactionUpdateManyMutationInput {
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    transactionType?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
@@ -16846,13 +16883,13 @@ export declare class TransactionUpdateWithWhereUniqueWithoutAccountInput {
 }
 export declare class TransactionUpdateWithoutAccountInput {
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    transactionType?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class TransactionUpdateInput {
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    transactionType?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     account?: InstanceType<typeof AccountUpdateOneRequiredWithoutTransactionsNestedInput>;
@@ -16868,7 +16905,7 @@ export declare class TransactionWhereUniqueInput {
     OR?: Array<TransactionWhereInput>;
     NOT?: Array<TransactionWhereInput>;
     amount?: InstanceType<typeof FloatFilter>;
-    transactionType?: InstanceType<typeof StringFilter>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     accountId?: InstanceType<typeof IntFilter>;
@@ -16880,7 +16917,7 @@ export declare class TransactionWhereInput {
     NOT?: Array<TransactionWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     amount?: InstanceType<typeof FloatFilter>;
-    transactionType?: InstanceType<typeof StringFilter>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     accountId?: InstanceType<typeof IntFilter>;
@@ -16889,7 +16926,7 @@ export declare class TransactionWhereInput {
 export declare class Transaction {
     id: number;
     amount: number;
-    transactionType: string;
+    transactionType: keyof typeof TransactionType;
     description: string | null;
     createdAt: Date;
     accountId: number;

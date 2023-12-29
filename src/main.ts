@@ -4,7 +4,6 @@ import { AppModule } from './app.module';
 import { IExceptionFilter } from './utils/exception/custom-exception-filter';
 import { ConfigService } from '@nestjs/config';
 // Ignore the import error
-// @ts-ignore
 import { graphqlUploadExpress } from 'graphql-upload';
 
 async function bootstrap() {
@@ -16,7 +15,7 @@ async function bootstrap() {
   const port = configService.get<number>('APP_PORT');
   const environment = configService.get<string>('NODE_ENV');
 
-  //supaya client bisa download file dan image.test
+  //supaya client bisa download file
   app.enableCors({
     origin: '*', // You can specify the allowed origins here (e.g., 'http://example.com')
     methods: 'GET,PUT,PATCH,POST,DELETE',

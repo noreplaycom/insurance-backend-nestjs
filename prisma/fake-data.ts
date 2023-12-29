@@ -489,7 +489,7 @@ export function fakeAccountComplete() {
 export function fakeTransaction() {
   return {
     amount: faker.datatype.float(),
-    transactionType: faker.lorem.words(5),
+    transactionType: faker.helpers.arrayElement([TransactionType.CREDIT, TransactionType.DEBIT] as const),
     description: undefined,
   };
 }
@@ -497,7 +497,7 @@ export function fakeTransactionComplete() {
   return {
     id: faker.datatype.number(),
     amount: faker.datatype.float(),
-    transactionType: faker.lorem.words(5),
+    transactionType: faker.helpers.arrayElement([TransactionType.CREDIT, TransactionType.DEBIT] as const),
     description: undefined,
     createdAt: new Date(),
     accountId: faker.datatype.number(),

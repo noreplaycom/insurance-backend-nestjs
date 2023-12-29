@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import * as dotenv from 'dotenv';
-import { IConfig } from 'src/services/uploader/interfaces/config.interface';
+// import { IConfig } from 'src/services/uploader/interfaces/config.interface';
 
 export enum ConfigKey {
   App = 'APP',
