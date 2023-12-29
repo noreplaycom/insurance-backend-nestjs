@@ -16,6 +16,13 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+  },
+  "include": ["src"],
+  "exclude": [
+    "prisma/template/**",
+    "prisma/seed-functions/**",
+    "prisma/fake-data.ts",
+    "prisma/seed.ts"
+  ]
 }
