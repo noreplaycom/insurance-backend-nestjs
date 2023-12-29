@@ -857,7 +857,7 @@ model Transaction {
 
     amount Float
 
-    transactionType String
+    transactionType TransactionType
 
     description String?
 

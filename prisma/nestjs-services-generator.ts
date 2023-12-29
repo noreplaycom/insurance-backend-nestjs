@@ -2,10 +2,6 @@
 
 Created By Dikki Setiawan
 
-Certainly! Here's a basic template for a README file for the provided script:
-
----
-
 # Duplicate Prisma Models Script
 
 This script automates the duplication of Prisma models in a specified source folder to an output base folder, while applying certain transformations.
@@ -65,10 +61,6 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 ## License
 
 This script is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to customize the README to better suit your needs.
 
 */
 
