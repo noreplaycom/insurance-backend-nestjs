@@ -16,7 +16,7 @@ import {
   UpdateManyClaimProcessArgs,
   UpdateOneClaimProcessArgs,
 } from 'src/@generated';
-import { ClaimProcessController } from './claimProcess.controller';
+import { ClaimProcessController } from './claim-process.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

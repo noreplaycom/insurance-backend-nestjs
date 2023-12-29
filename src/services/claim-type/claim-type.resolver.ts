@@ -16,7 +16,7 @@ import {
   UpdateManyClaimTypeArgs,
   UpdateOneClaimTypeArgs,
 } from 'src/@generated';
-import { ClaimTypeController } from './claimType.controller';
+import { ClaimTypeController } from './claim-type.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

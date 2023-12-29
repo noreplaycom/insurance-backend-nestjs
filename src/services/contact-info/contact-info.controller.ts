@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ContactInfoService } from './contactInfo.service';
+import { ContactInfoService } from './contact-info.service';
 
 @Injectable()
 export class ContactInfoController {

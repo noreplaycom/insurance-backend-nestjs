@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { DiseaseClusterService } from './diseaseCluster.service';
-import { DiseaseClusterResolver } from './diseaseCluster.resolver';
+import { DiseaseClusterService } from './disease-cluster.service';
+import { DiseaseClusterResolver } from './disease-cluster.resolver';
 import { PrismaService } from 'prisma/prisma.service';
-import { DiseaseClusterController } from './diseaseCluster.controller';
+import { DiseaseClusterController } from './disease-cluster.controller';
 
 @Module({
   providers: [PrismaService, DiseaseClusterResolver, DiseaseClusterController, DiseaseClusterService],

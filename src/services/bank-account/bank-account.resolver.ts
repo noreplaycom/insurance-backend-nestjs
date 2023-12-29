@@ -16,7 +16,7 @@ import {
   UpdateManyBankAccountArgs,
   UpdateOneBankAccountArgs,
 } from 'src/@generated';
-import { BankAccountController } from './bankAccount.controller';
+import { BankAccountController } from './bank-account.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

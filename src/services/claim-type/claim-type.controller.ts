@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ClaimTypeService } from './claimType.service';
+import { ClaimTypeService } from './claim-type.service';
 
 @Injectable()
 export class ClaimTypeController {

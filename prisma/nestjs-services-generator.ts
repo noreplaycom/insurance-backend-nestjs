@@ -129,10 +129,9 @@ const replacePreservingCase = (
 // Replace paths with hyphens in import statements
 const replacePathsWithHyphens = (input: string): string =>
   input.replace(
-    /(['"])((?:[^'"]|\\.)+)(['"])(?<=from\s)/g,
-    //   /(['"])((?:[^'"]|\\.)+)(['"])/g,
+    /from\s+(['"])(.*?)(['"])/g,
     (match, startQuote, path, endQuote) =>
-      startQuote + toKebabCase(path) + endQuote,
+      `from ${startQuote}${toKebabCase(path)}${endQuote}`,
   );
 
 // Duplicate a folder recursively

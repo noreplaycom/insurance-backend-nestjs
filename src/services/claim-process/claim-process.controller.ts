@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ClaimProcessService } from './claimProcess.service';
+import { ClaimProcessService } from './claim-process.service';
 
 @Injectable()
 export class ClaimProcessController {

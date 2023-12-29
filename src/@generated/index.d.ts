@@ -76,6 +76,10 @@ export declare enum SortOrder {
     asc = "asc",
     desc = "desc"
 }
+export declare enum QueryMode {
+    'default' = "default",
+    insensitive = "insensitive"
+}
 export declare enum Position {
     AMGR = "AMGR",
     AVP = "AVP",
@@ -13560,6 +13564,7 @@ export declare class StringFilter {
     contains?: string;
     startsWith?: string;
     endsWith?: string;
+    mode?: keyof typeof QueryMode;
     not?: InstanceType<typeof NestedStringFilter>;
 }
 export declare class StringNullableFilter {
@@ -13573,6 +13578,7 @@ export declare class StringNullableFilter {
     contains?: string;
     startsWith?: string;
     endsWith?: string;
+    mode?: keyof typeof QueryMode;
     not?: InstanceType<typeof NestedStringNullableFilter>;
 }
 export declare class StringNullableWithAggregatesFilter {
@@ -13586,6 +13592,7 @@ export declare class StringNullableWithAggregatesFilter {
     contains?: string;
     startsWith?: string;
     endsWith?: string;
+    mode?: keyof typeof QueryMode;
     not?: InstanceType<typeof NestedStringNullableWithAggregatesFilter>;
     _count?: InstanceType<typeof NestedIntNullableFilter>;
     _min?: InstanceType<typeof NestedStringNullableFilter>;
@@ -13602,6 +13609,7 @@ export declare class StringWithAggregatesFilter {
     contains?: string;
     startsWith?: string;
     endsWith?: string;
+    mode?: keyof typeof QueryMode;
     not?: InstanceType<typeof NestedStringWithAggregatesFilter>;
     _count?: InstanceType<typeof NestedIntFilter>;
     _min?: InstanceType<typeof NestedStringFilter>;

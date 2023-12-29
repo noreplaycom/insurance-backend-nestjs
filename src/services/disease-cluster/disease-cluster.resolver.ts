@@ -16,7 +16,7 @@ import {
   UpdateManyDiseaseClusterArgs,
   UpdateOneDiseaseClusterArgs,
 } from 'src/@generated';
-import { DiseaseClusterController } from './diseaseCluster.controller';
+import { DiseaseClusterController } from './disease-cluster.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

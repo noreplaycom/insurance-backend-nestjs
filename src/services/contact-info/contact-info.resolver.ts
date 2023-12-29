@@ -16,7 +16,7 @@ import {
   UpdateManyContactInfoArgs,
   UpdateOneContactInfoArgs,
 } from 'src/@generated';
-import { ContactInfoController } from './contactInfo.controller';
+import { ContactInfoController } from './contact-info.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

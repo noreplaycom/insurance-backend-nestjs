@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ContactInfoService } from './contactInfo.service';
-import { ContactInfoResolver } from './contactInfo.resolver';
+import { ContactInfoService } from './contact-info.service';
+import { ContactInfoResolver } from './contact-info.resolver';
 import { PrismaService } from 'prisma/prisma.service';
-import { ContactInfoController } from './contactInfo.controller';
+import { ContactInfoController } from './contact-info.controller';
 
 @Module({
   providers: [PrismaService, ContactInfoResolver, ContactInfoController, ContactInfoService],

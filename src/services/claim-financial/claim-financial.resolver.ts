@@ -16,7 +16,7 @@ import {
   UpdateManyClaimFinancialArgs,
   UpdateOneClaimFinancialArgs,
 } from 'src/@generated';
-import { ClaimFinancialController } from './claimFinancial.controller';
+import { ClaimFinancialController } from './claim-financial.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

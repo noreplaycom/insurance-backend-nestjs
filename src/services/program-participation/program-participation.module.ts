@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ProgramParticipationService } from './programParticipation.service';
-import { ProgramParticipationResolver } from './programParticipation.resolver';
+import { ProgramParticipationService } from './program-participation.service';
+import { ProgramParticipationResolver } from './program-participation.resolver';
 import { PrismaService } from 'prisma/prisma.service';
-import { ProgramParticipationController } from './programParticipation.controller';
+import { ProgramParticipationController } from './program-participation.controller';
 
 @Module({
   providers: [PrismaService, ProgramParticipationResolver, ProgramParticipationController, ProgramParticipationService],

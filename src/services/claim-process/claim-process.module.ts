@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ClaimProcessService } from './claimProcess.service';
-import { ClaimProcessResolver } from './claimProcess.resolver';
+import { ClaimProcessService } from './claim-process.service';
+import { ClaimProcessResolver } from './claim-process.resolver';
 import { PrismaService } from 'prisma/prisma.service';
-import { ClaimProcessController } from './claimProcess.controller';
+import { ClaimProcessController } from './claim-process.controller';
 
 @Module({
   providers: [PrismaService, ClaimProcessResolver, ClaimProcessController, ClaimProcessService],

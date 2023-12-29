@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { RolePermissionService } from './rolePermission.service';
-import { RolePermissionResolver } from './rolePermission.resolver';
+import { RolePermissionService } from './role-permission.service';
+import { RolePermissionResolver } from './role-permission.resolver';
 import { PrismaService } from 'prisma/prisma.service';
-import { RolePermissionController } from './rolePermission.controller';
+import { RolePermissionController } from './role-permission.controller';
 
 @Module({
   providers: [PrismaService, RolePermissionResolver, RolePermissionController, RolePermissionService],

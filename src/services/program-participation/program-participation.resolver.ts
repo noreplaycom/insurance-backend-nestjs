@@ -16,7 +16,7 @@ import {
   UpdateManyProgramParticipationArgs,
   UpdateOneProgramParticipationArgs,
 } from 'src/@generated';
-import { ProgramParticipationController } from './programParticipation.controller';
+import { ProgramParticipationController } from './program-participation.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { DiseaseClusterService } from './diseaseCluster.service';
+import { DiseaseClusterService } from './disease-cluster.service';
 
 @Injectable()
 export class DiseaseClusterController {

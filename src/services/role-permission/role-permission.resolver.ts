@@ -16,7 +16,7 @@ import {
   UpdateManyRolePermissionArgs,
   UpdateOneRolePermissionArgs,
 } from 'src/@generated';
-import { RolePermissionController } from './rolePermission.controller';
+import { RolePermissionController } from './role-permission.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 

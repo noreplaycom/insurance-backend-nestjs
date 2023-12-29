@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ProgramParticipationService } from './programParticipation.service';
+import { ProgramParticipationService } from './program-participation.service';
 
 @Injectable()
 export class ProgramParticipationController {
