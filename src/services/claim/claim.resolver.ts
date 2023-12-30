@@ -22,7 +22,7 @@ interface ClaimSelect {
   select: Prisma.ClaimSelect;
 }
 
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 @Resolver(() => Claim)
 export class ClaimResolver {
   constructor(
