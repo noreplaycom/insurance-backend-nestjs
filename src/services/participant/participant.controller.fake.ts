@@ -31,7 +31,7 @@ export class FakeParticipantController implements ParticipantController {
   }
 
   async findOne(participantFindUniqueArgs: Prisma.ParticipantFindUniqueArgs): Promise<Participant> {
-    return this.participants.find(participant => participant.id === participantFindUniqueArgs.where.id);
+    return this.participants.find(participant => participant.userId === participantFindUniqueArgs.where.userId);
   }
 
   async findMany(participantFindManyArgs: Prisma.ParticipantFindManyArgs): Promise<Participant[]> {
@@ -43,14 +43,12 @@ export class FakeParticipantController implements ParticipantController {
   }
 
   async updateOne(participantUpdateOneArgs: Prisma.ParticipantUpdateArgs): Promise<Participant> {
-    const idx = this.participants.findIndex(participant => participant.id === participantUpdateOneArgs.where.id);
+    const idx = this.participants.findIndex(participant => participant.userId === participantUpdateOneArgs.where.userId);
     this.participants[idx] = {
       ...fakeParticipantComplete(),
-      id: participantUpdateOneArgs.where.id
     }
     return {
       ...fakeParticipantComplete(),
-      id: participantUpdateOneArgs.where.id
     }
   }
 
