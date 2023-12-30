@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { AddressService } from './address.service';
+import { Address } from 'src/@generated';
 
 @Injectable()
-export class AddressController {
-  constructor(private readonly addressService: AddressService) {}
+export abstract class AddressController {
+  abstract createOne(addressCreateArgs: Prisma.AddressCreateArgs): Promise<Address>;
 
-  async createOne(addressCreateArgs: Prisma.AddressCreateArgs) {
-    return await this.addressService.createOne(addressCreateArgs);
-  }
+  abstract createMany(addressCreateManyArgs: Prisma.AddressCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(addressCreateManyArgs: Prisma.AddressCreateManyArgs) {
-    return await this.addressService.createMany(addressCreateManyArgs);
-  }
+  abstract findOne(addressFindUniqueArgs: Prisma.AddressFindUniqueArgs): Promise<Address>;
 
-  async findOne(addressFindUniqueArgs: Prisma.AddressFindUniqueArgs) {
-    return await this.addressService.findOne(addressFindUniqueArgs);
-  }
+  abstract findMany(addressFindManyArgs: Prisma.AddressFindManyArgs): Promise<Address[]>;
 
-  async findMany(addressFindManyArgs: Prisma.AddressFindManyArgs) {
-    return await this.addressService.findMany(addressFindManyArgs);
-  }
+  abstract findFirst(addressFindFirstArgs: Prisma.AddressFindFirstArgs): Promise<Address>;
 
-  async findFirst(addressFindFirstArgs: Prisma.AddressFindFirstArgs) {
-    return await this.addressService.findFirst(addressFindFirstArgs);
-  }
+  abstract updateOne(addressUpdateOneArgs: Prisma.AddressUpdateArgs): Promise<Address>;
 
-  async updateOne(addressUpdateOneArgs: Prisma.AddressUpdateArgs) {
-    return await this.addressService.updateOne(addressUpdateOneArgs);
-  }
+  abstract updateMany(addressUpdateManyArgs: Prisma.AddressUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(addressUpdateManyArgs: Prisma.AddressUpdateManyArgs) {
-    return await this.addressService.updateMany(addressUpdateManyArgs);
-  }
+  abstract delete(addressDeleteArgs: Prisma.AddressDeleteArgs): Promise<boolean>;
 
-  async delete(addressDeleteArgs: Prisma.AddressDeleteArgs) {
-    return await this.addressService.delete(addressDeleteArgs);
-  }
+  abstract deleteMany(addressDeleteManyArgs: Prisma.AddressDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(addressDeleteManyArgs: Prisma.AddressDeleteManyArgs) {
-    return await this.addressService.deleteMany(addressDeleteManyArgs);
-  }
+  abstract aggregate(addressAggregateArgs: Prisma.AddressAggregateArgs): Promise<Prisma.GetAddressAggregateType<Prisma.AddressAggregateArgs>>;
 
-  async aggregate(addressAggregateArgs: Prisma.AddressAggregateArgs) {
-    return await this.addressService.aggregate(addressAggregateArgs);
-  }
-
-  async count(addressCountArgs: Prisma.AddressCountArgs) {
-    return await this.addressService.count(addressCountArgs);
-  }
+  abstract count(addressCountArgs: Prisma.AddressCountArgs): Promise<number>;
 }

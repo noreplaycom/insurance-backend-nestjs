@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { DiseaseService } from './disease.service';
+import { Disease } from 'src/@generated';
 
 @Injectable()
-export class DiseaseController {
-  constructor(private readonly diseaseService: DiseaseService) {}
+export abstract class DiseaseController {
+  abstract createOne(diseaseCreateArgs: Prisma.DiseaseCreateArgs): Promise<Disease>;
 
-  async createOne(diseaseCreateArgs: Prisma.DiseaseCreateArgs) {
-    return await this.diseaseService.createOne(diseaseCreateArgs);
-  }
+  abstract createMany(diseaseCreateManyArgs: Prisma.DiseaseCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(diseaseCreateManyArgs: Prisma.DiseaseCreateManyArgs) {
-    return await this.diseaseService.createMany(diseaseCreateManyArgs);
-  }
+  abstract findOne(diseaseFindUniqueArgs: Prisma.DiseaseFindUniqueArgs): Promise<Disease>;
 
-  async findOne(diseaseFindUniqueArgs: Prisma.DiseaseFindUniqueArgs) {
-    return await this.diseaseService.findOne(diseaseFindUniqueArgs);
-  }
+  abstract findMany(diseaseFindManyArgs: Prisma.DiseaseFindManyArgs): Promise<Disease[]>;
 
-  async findMany(diseaseFindManyArgs: Prisma.DiseaseFindManyArgs) {
-    return await this.diseaseService.findMany(diseaseFindManyArgs);
-  }
+  abstract findFirst(diseaseFindFirstArgs: Prisma.DiseaseFindFirstArgs): Promise<Disease>;
 
-  async findFirst(diseaseFindFirstArgs: Prisma.DiseaseFindFirstArgs) {
-    return await this.diseaseService.findFirst(diseaseFindFirstArgs);
-  }
+  abstract updateOne(diseaseUpdateOneArgs: Prisma.DiseaseUpdateArgs): Promise<Disease>;
 
-  async updateOne(diseaseUpdateOneArgs: Prisma.DiseaseUpdateArgs) {
-    return await this.diseaseService.updateOne(diseaseUpdateOneArgs);
-  }
+  abstract updateMany(diseaseUpdateManyArgs: Prisma.DiseaseUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(diseaseUpdateManyArgs: Prisma.DiseaseUpdateManyArgs) {
-    return await this.diseaseService.updateMany(diseaseUpdateManyArgs);
-  }
+  abstract delete(diseaseDeleteArgs: Prisma.DiseaseDeleteArgs): Promise<boolean>;
 
-  async delete(diseaseDeleteArgs: Prisma.DiseaseDeleteArgs) {
-    return await this.diseaseService.delete(diseaseDeleteArgs);
-  }
+  abstract deleteMany(diseaseDeleteManyArgs: Prisma.DiseaseDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(diseaseDeleteManyArgs: Prisma.DiseaseDeleteManyArgs) {
-    return await this.diseaseService.deleteMany(diseaseDeleteManyArgs);
-  }
+  abstract aggregate(diseaseAggregateArgs: Prisma.DiseaseAggregateArgs): Promise<Prisma.GetDiseaseAggregateType<Prisma.DiseaseAggregateArgs>>;
 
-  async aggregate(diseaseAggregateArgs: Prisma.DiseaseAggregateArgs) {
-    return await this.diseaseService.aggregate(diseaseAggregateArgs);
-  }
-
-  async count(diseaseCountArgs: Prisma.DiseaseCountArgs) {
-    return await this.diseaseService.count(diseaseCountArgs);
-  }
+  abstract count(diseaseCountArgs: Prisma.DiseaseCountArgs): Promise<number>;
 }

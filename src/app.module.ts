@@ -34,8 +34,8 @@ import { RegionModule } from './services/region/region.module';
 import { RoleModule } from './services/role/role.module';
 import { RolePermissionModule } from './services/role-permission/role-permission.module';
 import { TagModule } from './services/tag/tag.module';
-import { DashboardModule } from './services/Dashboard/dashboard.module';
-import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
+// import { DashboardModule } from './services/Dashboard/dashboard.module';
+// import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
 // import { UploaderModule } from './services/uploader/uploader.module';
 // import { UploaderProcessor } from './queues/uploader.queue';
 // import { SchedulerService } from './scheduler/scheduler.service';
@@ -96,9 +96,9 @@ import { ClaimManagementModule } from './services/ClaimManagement/claim-manageme
     // RolePermissionModule,
     // TagModule,
     // TransactionModule,
-    // UserModule,
-    DashboardModule,
-    ClaimManagementModule,
+    UserModule,
+    // DashboardModule,
+    // ClaimManagementModule,
   ],
   controllers: [],
   providers: [

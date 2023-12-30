@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ClinicService } from './clinic.service';
+import { Clinic } from 'src/@generated';
 
 @Injectable()
-export class ClinicController {
-  constructor(private readonly clinicService: ClinicService) {}
+export abstract class ClinicController {
+  abstract createOne(clinicCreateArgs: Prisma.ClinicCreateArgs): Promise<Clinic>;
 
-  async createOne(clinicCreateArgs: Prisma.ClinicCreateArgs) {
-    return await this.clinicService.createOne(clinicCreateArgs);
-  }
+  abstract createMany(clinicCreateManyArgs: Prisma.ClinicCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(clinicCreateManyArgs: Prisma.ClinicCreateManyArgs) {
-    return await this.clinicService.createMany(clinicCreateManyArgs);
-  }
+  abstract findOne(clinicFindUniqueArgs: Prisma.ClinicFindUniqueArgs): Promise<Clinic>;
 
-  async findOne(clinicFindUniqueArgs: Prisma.ClinicFindUniqueArgs) {
-    return await this.clinicService.findOne(clinicFindUniqueArgs);
-  }
+  abstract findMany(clinicFindManyArgs: Prisma.ClinicFindManyArgs): Promise<Clinic[]>;
 
-  async findMany(clinicFindManyArgs: Prisma.ClinicFindManyArgs) {
-    return await this.clinicService.findMany(clinicFindManyArgs);
-  }
+  abstract findFirst(clinicFindFirstArgs: Prisma.ClinicFindFirstArgs): Promise<Clinic>;
 
-  async findFirst(clinicFindFirstArgs: Prisma.ClinicFindFirstArgs) {
-    return await this.clinicService.findFirst(clinicFindFirstArgs);
-  }
+  abstract updateOne(clinicUpdateOneArgs: Prisma.ClinicUpdateArgs): Promise<Clinic>;
 
-  async updateOne(clinicUpdateOneArgs: Prisma.ClinicUpdateArgs) {
-    return await this.clinicService.updateOne(clinicUpdateOneArgs);
-  }
+  abstract updateMany(clinicUpdateManyArgs: Prisma.ClinicUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(clinicUpdateManyArgs: Prisma.ClinicUpdateManyArgs) {
-    return await this.clinicService.updateMany(clinicUpdateManyArgs);
-  }
+  abstract delete(clinicDeleteArgs: Prisma.ClinicDeleteArgs): Promise<boolean>;
 
-  async delete(clinicDeleteArgs: Prisma.ClinicDeleteArgs) {
-    return await this.clinicService.delete(clinicDeleteArgs);
-  }
+  abstract deleteMany(clinicDeleteManyArgs: Prisma.ClinicDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(clinicDeleteManyArgs: Prisma.ClinicDeleteManyArgs) {
-    return await this.clinicService.deleteMany(clinicDeleteManyArgs);
-  }
+  abstract aggregate(clinicAggregateArgs: Prisma.ClinicAggregateArgs): Promise<Prisma.GetClinicAggregateType<Prisma.ClinicAggregateArgs>>;
 
-  async aggregate(clinicAggregateArgs: Prisma.ClinicAggregateArgs) {
-    return await this.clinicService.aggregate(clinicAggregateArgs);
-  }
-
-  async count(clinicCountArgs: Prisma.ClinicCountArgs) {
-    return await this.clinicService.count(clinicCountArgs);
-  }
+  abstract count(clinicCountArgs: Prisma.ClinicCountArgs): Promise<number>;
 }

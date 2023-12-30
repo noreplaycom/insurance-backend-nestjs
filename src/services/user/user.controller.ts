@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { UserService } from './user.service';
+import { User } from 'src/@generated';
 
 @Injectable()
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+export abstract class UserController {
+  abstract createOne(userCreateArgs: Prisma.UserCreateArgs): Promise<User>;
 
-  async createOne(userCreateArgs: Prisma.UserCreateArgs) {
-    return await this.userService.createOne(userCreateArgs);
-  }
+  abstract createMany(userCreateManyArgs: Prisma.UserCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(userCreateManyArgs: Prisma.UserCreateManyArgs) {
-    return await this.userService.createMany(userCreateManyArgs);
-  }
+  abstract findOne(userFindUniqueArgs: Prisma.UserFindUniqueArgs): Promise<User>;
 
-  async findOne(userFindUniqueArgs: Prisma.UserFindUniqueArgs) {
-    return await this.userService.findOne(userFindUniqueArgs);
-  }
+  abstract findMany(userFindManyArgs: Prisma.UserFindManyArgs): Promise<User[]>;
 
-  async findMany(userFindManyArgs: Prisma.UserFindManyArgs) {
-    return await this.userService.findMany(userFindManyArgs);
-  }
+  abstract findFirst(userFindFirstArgs: Prisma.UserFindFirstArgs): Promise<User>;
 
-  async findFirst(userFindFirstArgs: Prisma.UserFindFirstArgs) {
-    return await this.userService.findFirst(userFindFirstArgs);
-  }
+  abstract updateOne(userUpdateOneArgs: Prisma.UserUpdateArgs): Promise<User>;
 
-  async updateOne(userUpdateOneArgs: Prisma.UserUpdateArgs) {
-    return await this.userService.updateOne(userUpdateOneArgs);
-  }
+  abstract updateMany(userUpdateManyArgs: Prisma.UserUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(userUpdateManyArgs: Prisma.UserUpdateManyArgs) {
-    return await this.userService.updateMany(userUpdateManyArgs);
-  }
+  abstract delete(userDeleteArgs: Prisma.UserDeleteArgs): Promise<boolean>;
 
-  async delete(userDeleteArgs: Prisma.UserDeleteArgs) {
-    return await this.userService.delete(userDeleteArgs);
-  }
+  abstract deleteMany(userDeleteManyArgs: Prisma.UserDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(userDeleteManyArgs: Prisma.UserDeleteManyArgs) {
-    return await this.userService.deleteMany(userDeleteManyArgs);
-  }
+  abstract aggregate(userAggregateArgs: Prisma.UserAggregateArgs): Promise<Prisma.GetUserAggregateType<Prisma.UserAggregateArgs>>;
 
-  async aggregate(userAggregateArgs: Prisma.UserAggregateArgs) {
-    return await this.userService.aggregate(userAggregateArgs);
-  }
-
-  async count(userCountArgs: Prisma.UserCountArgs) {
-    return await this.userService.count(userCountArgs);
-  }
+  abstract count(userCountArgs: Prisma.UserCountArgs): Promise<number>;
 }

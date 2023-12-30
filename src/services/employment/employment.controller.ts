@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { EmploymentService } from './employment.service';
+import { Employment } from 'src/@generated';
 
 @Injectable()
-export class EmploymentController {
-  constructor(private readonly employmentService: EmploymentService) {}
+export abstract class EmploymentController {
+  abstract createOne(employmentCreateArgs: Prisma.EmploymentCreateArgs): Promise<Employment>;
 
-  async createOne(employmentCreateArgs: Prisma.EmploymentCreateArgs) {
-    return await this.employmentService.createOne(employmentCreateArgs);
-  }
+  abstract createMany(employmentCreateManyArgs: Prisma.EmploymentCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(employmentCreateManyArgs: Prisma.EmploymentCreateManyArgs) {
-    return await this.employmentService.createMany(employmentCreateManyArgs);
-  }
+  abstract findOne(employmentFindUniqueArgs: Prisma.EmploymentFindUniqueArgs): Promise<Employment>;
 
-  async findOne(employmentFindUniqueArgs: Prisma.EmploymentFindUniqueArgs) {
-    return await this.employmentService.findOne(employmentFindUniqueArgs);
-  }
+  abstract findMany(employmentFindManyArgs: Prisma.EmploymentFindManyArgs): Promise<Employment[]>;
 
-  async findMany(employmentFindManyArgs: Prisma.EmploymentFindManyArgs) {
-    return await this.employmentService.findMany(employmentFindManyArgs);
-  }
+  abstract findFirst(employmentFindFirstArgs: Prisma.EmploymentFindFirstArgs): Promise<Employment>;
 
-  async findFirst(employmentFindFirstArgs: Prisma.EmploymentFindFirstArgs) {
-    return await this.employmentService.findFirst(employmentFindFirstArgs);
-  }
+  abstract updateOne(employmentUpdateOneArgs: Prisma.EmploymentUpdateArgs): Promise<Employment>;
 
-  async updateOne(employmentUpdateOneArgs: Prisma.EmploymentUpdateArgs) {
-    return await this.employmentService.updateOne(employmentUpdateOneArgs);
-  }
+  abstract updateMany(employmentUpdateManyArgs: Prisma.EmploymentUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(employmentUpdateManyArgs: Prisma.EmploymentUpdateManyArgs) {
-    return await this.employmentService.updateMany(employmentUpdateManyArgs);
-  }
+  abstract delete(employmentDeleteArgs: Prisma.EmploymentDeleteArgs): Promise<boolean>;
 
-  async delete(employmentDeleteArgs: Prisma.EmploymentDeleteArgs) {
-    return await this.employmentService.delete(employmentDeleteArgs);
-  }
+  abstract deleteMany(employmentDeleteManyArgs: Prisma.EmploymentDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(employmentDeleteManyArgs: Prisma.EmploymentDeleteManyArgs) {
-    return await this.employmentService.deleteMany(employmentDeleteManyArgs);
-  }
+  abstract aggregate(employmentAggregateArgs: Prisma.EmploymentAggregateArgs): Promise<Prisma.GetEmploymentAggregateType<Prisma.EmploymentAggregateArgs>>;
 
-  async aggregate(employmentAggregateArgs: Prisma.EmploymentAggregateArgs) {
-    return await this.employmentService.aggregate(employmentAggregateArgs);
-  }
-
-  async count(employmentCountArgs: Prisma.EmploymentCountArgs) {
-    return await this.employmentService.count(employmentCountArgs);
-  }
+  abstract count(employmentCountArgs: Prisma.EmploymentCountArgs): Promise<number>;
 }

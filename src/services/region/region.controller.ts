@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { RegionService } from './region.service';
+import { Region } from 'src/@generated';
 
 @Injectable()
-export class RegionController {
-  constructor(private readonly regionService: RegionService) {}
+export abstract class RegionController {
+  abstract createOne(regionCreateArgs: Prisma.RegionCreateArgs): Promise<Region>;
 
-  async createOne(regionCreateArgs: Prisma.RegionCreateArgs) {
-    return await this.regionService.createOne(regionCreateArgs);
-  }
+  abstract createMany(regionCreateManyArgs: Prisma.RegionCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(regionCreateManyArgs: Prisma.RegionCreateManyArgs) {
-    return await this.regionService.createMany(regionCreateManyArgs);
-  }
+  abstract findOne(regionFindUniqueArgs: Prisma.RegionFindUniqueArgs): Promise<Region>;
 
-  async findOne(regionFindUniqueArgs: Prisma.RegionFindUniqueArgs) {
-    return await this.regionService.findOne(regionFindUniqueArgs);
-  }
+  abstract findMany(regionFindManyArgs: Prisma.RegionFindManyArgs): Promise<Region[]>;
 
-  async findMany(regionFindManyArgs: Prisma.RegionFindManyArgs) {
-    return await this.regionService.findMany(regionFindManyArgs);
-  }
+  abstract findFirst(regionFindFirstArgs: Prisma.RegionFindFirstArgs): Promise<Region>;
 
-  async findFirst(regionFindFirstArgs: Prisma.RegionFindFirstArgs) {
-    return await this.regionService.findFirst(regionFindFirstArgs);
-  }
+  abstract updateOne(regionUpdateOneArgs: Prisma.RegionUpdateArgs): Promise<Region>;
 
-  async updateOne(regionUpdateOneArgs: Prisma.RegionUpdateArgs) {
-    return await this.regionService.updateOne(regionUpdateOneArgs);
-  }
+  abstract updateMany(regionUpdateManyArgs: Prisma.RegionUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(regionUpdateManyArgs: Prisma.RegionUpdateManyArgs) {
-    return await this.regionService.updateMany(regionUpdateManyArgs);
-  }
+  abstract delete(regionDeleteArgs: Prisma.RegionDeleteArgs): Promise<boolean>;
 
-  async delete(regionDeleteArgs: Prisma.RegionDeleteArgs) {
-    return await this.regionService.delete(regionDeleteArgs);
-  }
+  abstract deleteMany(regionDeleteManyArgs: Prisma.RegionDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(regionDeleteManyArgs: Prisma.RegionDeleteManyArgs) {
-    return await this.regionService.deleteMany(regionDeleteManyArgs);
-  }
+  abstract aggregate(regionAggregateArgs: Prisma.RegionAggregateArgs): Promise<Prisma.GetRegionAggregateType<Prisma.RegionAggregateArgs>>;
 
-  async aggregate(regionAggregateArgs: Prisma.RegionAggregateArgs) {
-    return await this.regionService.aggregate(regionAggregateArgs);
-  }
-
-  async count(regionCountArgs: Prisma.RegionCountArgs) {
-    return await this.regionService.count(regionCountArgs);
-  }
+  abstract count(regionCountArgs: Prisma.RegionCountArgs): Promise<number>;
 }

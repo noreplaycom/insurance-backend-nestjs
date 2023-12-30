@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { AggregateClaim, Claim } from 'src/@generated';
+import { Claim } from 'src/@generated';
 
 @Injectable()
 export abstract class ClaimController {

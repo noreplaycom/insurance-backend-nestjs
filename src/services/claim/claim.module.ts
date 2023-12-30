@@ -3,18 +3,23 @@ import { ClaimService } from './claim.service';
 import { ClaimResolver } from './claim.resolver';
 import { PrismaService } from 'prisma/prisma.service';
 import { ClaimController } from './claim.controller';
-import { FakeClaimController } from './controller/fake-claim.controller';
+import { FakeClaimController } from './claim.controller.fake';
 
 @Module({
   providers: [
     PrismaService,
     ClaimResolver,
+    ClaimService,
     {
       provide: ClaimController,
-      useClass: FakeClaimController
-    },
-    ClaimService
+      useClass: FakeClaimController,
+    }
   ],
-  exports: [ClaimController],
+  exports: [
+    {
+      provide: ClaimController,
+      useClass: FakeClaimController,
+    }
+  ],
 })
 export class ClaimModule {}

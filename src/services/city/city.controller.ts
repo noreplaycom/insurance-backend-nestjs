@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { CityService } from './city.service';
+import { City } from 'src/@generated';
 
 @Injectable()
-export class CityController {
-  constructor(private readonly cityService: CityService) {}
+export abstract class CityController {
+  abstract createOne(cityCreateArgs: Prisma.CityCreateArgs): Promise<City>;
 
-  async createOne(cityCreateArgs: Prisma.CityCreateArgs) {
-    return await this.cityService.createOne(cityCreateArgs);
-  }
+  abstract createMany(cityCreateManyArgs: Prisma.CityCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(cityCreateManyArgs: Prisma.CityCreateManyArgs) {
-    return await this.cityService.createMany(cityCreateManyArgs);
-  }
+  abstract findOne(cityFindUniqueArgs: Prisma.CityFindUniqueArgs): Promise<City>;
 
-  async findOne(cityFindUniqueArgs: Prisma.CityFindUniqueArgs) {
-    return await this.cityService.findOne(cityFindUniqueArgs);
-  }
+  abstract findMany(cityFindManyArgs: Prisma.CityFindManyArgs): Promise<City[]>;
 
-  async findMany(cityFindManyArgs: Prisma.CityFindManyArgs) {
-    return await this.cityService.findMany(cityFindManyArgs);
-  }
+  abstract findFirst(cityFindFirstArgs: Prisma.CityFindFirstArgs): Promise<City>;
 
-  async findFirst(cityFindFirstArgs: Prisma.CityFindFirstArgs) {
-    return await this.cityService.findFirst(cityFindFirstArgs);
-  }
+  abstract updateOne(cityUpdateOneArgs: Prisma.CityUpdateArgs): Promise<City>;
 
-  async updateOne(cityUpdateOneArgs: Prisma.CityUpdateArgs) {
-    return await this.cityService.updateOne(cityUpdateOneArgs);
-  }
+  abstract updateMany(cityUpdateManyArgs: Prisma.CityUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(cityUpdateManyArgs: Prisma.CityUpdateManyArgs) {
-    return await this.cityService.updateMany(cityUpdateManyArgs);
-  }
+  abstract delete(cityDeleteArgs: Prisma.CityDeleteArgs): Promise<boolean>;
 
-  async delete(cityDeleteArgs: Prisma.CityDeleteArgs) {
-    return await this.cityService.delete(cityDeleteArgs);
-  }
+  abstract deleteMany(cityDeleteManyArgs: Prisma.CityDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(cityDeleteManyArgs: Prisma.CityDeleteManyArgs) {
-    return await this.cityService.deleteMany(cityDeleteManyArgs);
-  }
+  abstract aggregate(cityAggregateArgs: Prisma.CityAggregateArgs): Promise<Prisma.GetCityAggregateType<Prisma.CityAggregateArgs>>;
 
-  async aggregate(cityAggregateArgs: Prisma.CityAggregateArgs) {
-    return await this.cityService.aggregate(cityAggregateArgs);
-  }
-
-  async count(cityCountArgs: Prisma.CityCountArgs) {
-    return await this.cityService.count(cityCountArgs);
-  }
+  abstract count(cityCountArgs: Prisma.CityCountArgs): Promise<number>;
 }

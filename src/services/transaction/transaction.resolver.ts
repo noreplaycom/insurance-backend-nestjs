@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Resolver, Query, Mutation, Args, Float } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Relations } from 'src/utils/relations.decorator';
@@ -50,9 +51,7 @@ export class TransactionResolver {
     @Args()
     createManyTransactionArgs: CreateManyTransactionArgs,
   ) {
-    return await this.transactionController.createMany(
-      createManyTransactionArgs,
-    );
+    return await this.transactionController.createMany(createManyTransactionArgs);
   }
 
   @Query(() => Transaction, {
@@ -117,9 +116,7 @@ export class TransactionResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  async transactionUpdateMany(
-    @Args() updateManyTransactionArgs: UpdateManyTransactionArgs,
-  ) {
+  async transactionUpdateMany(@Args() updateManyTransactionArgs: UpdateManyTransactionArgs) {
     return this.transactionController.updateMany(updateManyTransactionArgs);
   }
 
@@ -141,9 +138,7 @@ export class TransactionResolver {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
-  async transactionDeleteMany(
-    @Args() deleteManyTransactionArgs: DeleteManyTransactionArgs,
-  ) {
+  async transactionDeleteMany(@Args() deleteManyTransactionArgs: DeleteManyTransactionArgs) {
     return this.transactionController.deleteMany(deleteManyTransactionArgs);
   }
 
@@ -151,9 +146,7 @@ export class TransactionResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  transactionAggregate(
-    @Args() transactionAggregateArgs: TransactionAggregateArgs,
-  ) {
+  transactionAggregate(@Args() transactionAggregateArgs: TransactionAggregateArgs) {
     return this.transactionController.aggregate(transactionAggregateArgs);
   }
 
@@ -161,9 +154,7 @@ export class TransactionResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  transactionCount(
-    @Args() transactionCountAggregateInput: FindManyTransactionArgs,
-  ) {
+  transactionCount(@Args() transactionCountAggregateInput: FindManyTransactionArgs) {
     return this.transactionController.count(transactionCountAggregateInput);
   }
 }
