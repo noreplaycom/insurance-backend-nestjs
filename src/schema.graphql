@@ -1848,6 +1848,15 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   claimCountTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriodArgs: ClaimCountTotalPercentageVsCustomPeriodArgs!): ClaimCountTotalPercentageVsCustomPeriodQuery
+
+  """Deskripsinya ada disini loh"""
+  getEmploymentPosition: [String!]
+
+  """Deskripsinya ada disini loh"""
+  getClassProgram: [String!]
+
+  """Deskripsinya ada disini loh"""
+  regionFindMany(where: RegionWhereInput, orderBy: [RegionOrderByWithRelationInput!], cursor: RegionWhereUniqueInput, take: Int, skip: Int, distinct: [RegionScalarFieldEnum!]): [Region!]
 }
 
 input ClaimWhereInput {
@@ -3241,4 +3250,30 @@ input ClaimCountTotalByCustomRangeAndPeriodArgs {
 
 input ClaimCountTotalPercentageVsCustomPeriodArgs {
   period: Period!
+}
+
+input RegionOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  employment: EmploymentOrderByRelationAggregateInput
+}
+
+input RegionWhereUniqueInput {
+  id: Int
+  AND: [RegionWhereInput!]
+  OR: [RegionWhereInput!]
+  NOT: [RegionWhereInput!]
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+}
+
+enum RegionScalarFieldEnum {
+  id
+  name
+  createdAt
+  updatedAt
 }

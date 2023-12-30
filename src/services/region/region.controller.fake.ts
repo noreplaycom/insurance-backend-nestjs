@@ -8,7 +8,12 @@ import { fakeRegionComplete } from '../../../prisma/fake-data';
 export class FakeRegionController implements RegionController {
   private regions: Region[] = [];
 
-  constructor() {}
+  constructor() {
+    const initial = 150;
+    for (let i = 0; i < initial; i++) {
+      this.regions.push(fakeRegionComplete());
+    }
+  }
 
   async createOne(regionCreateArgs: Prisma.RegionCreateArgs): Promise<Region> {
     const fake = fakeRegionComplete()

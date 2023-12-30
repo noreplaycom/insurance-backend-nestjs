@@ -51,4 +51,8 @@ export class PrismaEmploymentController implements EmploymentController {
   async count(employmentCountArgs: Prisma.EmploymentCountArgs): Promise<number> {
     return await this.employmentService.count(employmentCountArgs);
   }
+
+  async getEmploymentPosition(): Promise<string[]> {
+    return [];
+  }
 }

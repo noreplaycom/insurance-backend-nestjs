@@ -25,4 +25,6 @@ export abstract class ProgramController {
   abstract aggregate(programAggregateArgs: Prisma.ProgramAggregateArgs): Promise<Prisma.GetProgramAggregateType<Prisma.ProgramAggregateArgs>>;
 
   abstract count(programCountArgs: Prisma.ProgramCountArgs): Promise<number>;
+
+  abstract getClassProgram(): Promise<string[]>;
 }
