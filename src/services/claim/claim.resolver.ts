@@ -1,15 +1,13 @@
 // @ts-nocheck
-import { Resolver, Query, Mutation, Args, Float } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Float, ResolveField, Parent } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Relations } from 'src/utils/relations.decorator';
 import {
-  CreateManyClaimArgs,
   FindManyClaimArgs,
   Claim,
+  Company,
 } from 'src/@generated';
 import { ClaimController } from './claim.controller';
-import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
-import BatchPayload from 'src/model/batch-payload.model';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
 import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
@@ -21,7 +19,9 @@ interface ClaimSelect {
 
 @Resolver(() => Claim)
 export class ClaimResolver {
-  constructor(private readonly claimController: ClaimController) {}
+  constructor(
+    private readonly claimController: ClaimController,
+  ) {}
 
   @Query(() => [Claim], {
     nullable: true,
@@ -35,6 +35,15 @@ export class ClaimResolver {
       ...claimFindManyArgs,
       select: relations.select,
     });
+  }
+
+  @ResolveField(() => Company, { nullable: true })
+  async company(@Parent() claim: Claim): Promise<Company> {
+    const selectedClaim = await this.claimController.findOne({
+      where: { id: claim.id },
+      select: { company: true }
+    })
+    return selectedClaim.company || null;
   }
 
   @Query(() => Float, {
