@@ -1818,6 +1818,18 @@ type ClaimCountTotalByCustomRangeAndPeriodQuery {
   amount: Float
 }
 
+type ClaimCountTotalPercentageVsCustomPeriodQuery {
+  period: Period!
+  percentage: Float!
+}
+
+"""Period options for data retrieval"""
+enum Period {
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
 type Query {
   """Deskripsinya ada disini loh"""
   claimFindMany(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): [Claim!]
@@ -1829,10 +1841,13 @@ type Query {
   claimCountQuantityByCustomRangeAndPeriod(claimCountQuantityByCustomRangeAndPeriodArgs: ClaimCountQuantityByCustomRangeAndPeriodArgs!): [ClaimCountQuantityByCustomRangeAndPeriodQuery!]
 
   """Deskripsinya ada disini loh"""
-  countQuantityByStatus(claimCountQuantityByStatusArgs: ClaimCountQuantityByStatusArgs!): ClaimCountQuantityByStatusQuery
+  claimCountQuantityByStatus(claimCountQuantityByStatusArgs: ClaimCountQuantityByStatusArgs!): ClaimCountQuantityByStatusQuery
 
   """Deskripsinya ada disini loh"""
-  countTotalByCustomRangeAndPeriod(claimCountTotalByCustomRangeAndPeriodArgs: ClaimCountTotalByCustomRangeAndPeriodArgs!): ClaimCountTotalByCustomRangeAndPeriodQuery
+  claimCountTotalByCustomRangeAndPeriod(claimCountTotalByCustomRangeAndPeriodArgs: ClaimCountTotalByCustomRangeAndPeriodArgs!): ClaimCountTotalByCustomRangeAndPeriodQuery
+
+  """Deskripsinya ada disini loh"""
+  claimCountTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriodArgs: ClaimCountTotalPercentageVsCustomPeriodArgs!): ClaimCountTotalPercentageVsCustomPeriodQuery
 }
 
 input ClaimWhereInput {
@@ -3210,13 +3225,6 @@ input ClaimCountQuantityByCustomRangeAndPeriodArgs {
   where: ClaimWhereInput
 }
 
-"""Period options for data retrieval"""
-enum Period {
-  WEEKLY
-  MONTHLY
-  YEARLY
-}
-
 input ClaimCountQuantityByStatusArgs {
   start: DateTime!
   end: DateTime!
@@ -3229,4 +3237,8 @@ input ClaimCountTotalByCustomRangeAndPeriodArgs {
   end: DateTime!
   period: Period!
   where: ClaimWhereInput
+}
+
+input ClaimCountTotalPercentageVsCustomPeriodArgs {
+  period: Period!
 }

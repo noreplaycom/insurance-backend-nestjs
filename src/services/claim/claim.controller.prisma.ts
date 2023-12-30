@@ -7,6 +7,8 @@ import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCusto
 import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.function';
+import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
+import { Period } from 'src/model/period.enum';
 
 @Injectable()
 export class PrismaClaimController implements ClaimController {
@@ -72,5 +74,12 @@ export class PrismaClaimController implements ClaimController {
       amount: generateRandomRupiah(),
       period: args.period,
     }
+  }
+
+  async countTotalPercentageVsCustomPeriod(args: ClaimCountTotalPercentageVsCustomPeriodArgs): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery> {
+    return {
+      period: args.period,
+      percentage: Math.random() * 20
+    };
   }
 }

@@ -13,6 +13,7 @@ import BatchPayload from 'src/model/batch-payload.model';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
 import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 
 interface ClaimSelect {
   select: Prisma.ClaimSelect;
@@ -21,7 +22,7 @@ interface ClaimSelect {
 @Resolver(() => Claim)
 export class ClaimResolver {
   constructor(private readonly claimController: ClaimController) {}
-  
+
   @Query(() => [Claim], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -59,7 +60,7 @@ export class ClaimResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  countQuantityByStatus(
+  claimCountQuantityByStatus(
     @Args('claimCountQuantityByStatusArgs') 
     claimCountQuantityByStatusArgs: ClaimCountQuantityByStatusArgs
   ) {
@@ -70,10 +71,21 @@ export class ClaimResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  countTotalByCustomRangeAndPeriod(
+  claimCountTotalByCustomRangeAndPeriod(
     @Args('claimCountTotalByCustomRangeAndPeriodArgs') 
     claimCountTotalByCustomRangeAndPeriodArgs: ClaimCountTotalByCustomRangeAndPeriodArgs
   ) {
     return this.claimController.countTotalByCustomRangeAndPeriod(claimCountTotalByCustomRangeAndPeriodArgs);
+  }
+  
+  @Query(() => ClaimCountTotalPercentageVsCustomPeriodQuery, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimCountTotalPercentageVsCustomPeriod(
+    @Args('claimCountTotalPercentageVsCustomPeriodArgs')
+    claimCountTotalPercentageVsCustomPeriod: ClaimCountTotalPercentageVsCustomPeriodArgs
+  ) {
+    return this.claimController.countTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriod);
   }
 }

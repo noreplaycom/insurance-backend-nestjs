@@ -9,6 +9,7 @@ import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCusto
 import { ClaimByStatus, ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.function';
+import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 
 @Injectable()
 export class FakeClaimController implements ClaimController {
@@ -139,8 +140,11 @@ export class FakeClaimController implements ClaimController {
     return filteredClaims.length;
   }
 
-  async countTotalPercentageVsCustomPeriod(): Promise<any> {
-
+  async countTotalPercentageVsCustomPeriod(args: ClaimCountTotalPercentageVsCustomPeriodArgs): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery> {
+    return {
+      period: args.period as Period,
+      percentage: +(Math.random() * 20).toFixed(2)
+    };
   }
 
   async countQuantityByStatus(args: ClaimCountQuantityByStatusArgs): Promise<ClaimCountQuantityByStatusQuery> {

@@ -4,6 +4,7 @@ import { Claim } from 'src/@generated';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
 import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 
 @Injectable()
 export abstract class ClaimController {
@@ -34,4 +35,6 @@ export abstract class ClaimController {
   abstract countQuantityByStatus(args: ClaimCountQuantityByStatusArgs): Promise<ClaimCountQuantityByStatusQuery>;
 
   abstract countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodQuery): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery>;
+  
+  abstract countTotalPercentageVsCustomPeriod(args: ClaimCountTotalPercentageVsCustomPeriodArgs): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery>;
 }
