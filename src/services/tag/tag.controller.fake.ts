@@ -8,7 +8,12 @@ import { fakeTagComplete } from '../../../prisma/fake-data';
 export class FakeTagController implements TagController {
   private tags: Tag[] = [];
 
-  constructor() {}
+  constructor() {
+    const initial = 200;
+    for (let i = 0; i < initial; i++) {
+      this.tags.push(fakeTagComplete());
+    }
+  }
 
   async createOne(tagCreateArgs: Prisma.TagCreateArgs): Promise<Tag> {
     const fake = fakeTagComplete()

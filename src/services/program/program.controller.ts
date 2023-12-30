@@ -26,5 +26,7 @@ export abstract class ProgramController {
 
   abstract count(programCountArgs: Prisma.ProgramCountArgs): Promise<number>;
 
-  abstract getClassProgram(): Promise<string[]>;
+  abstract getClassesProgram(): Promise<string[]>;
+
+  abstract getApplicationTypesProgram(): Promise<string[]>;
 }

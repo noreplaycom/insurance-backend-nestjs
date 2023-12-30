@@ -82,4 +82,8 @@ export class PrismaClaimController implements ClaimController {
       percentage: Math.random() * 20
     };
   }
+
+  async getClaimChannels(): Promise<string[]> {
+    return [];
+  }
 }

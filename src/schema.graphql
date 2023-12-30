@@ -1850,13 +1850,28 @@ type Query {
   claimCountTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriodArgs: ClaimCountTotalPercentageVsCustomPeriodArgs!): ClaimCountTotalPercentageVsCustomPeriodQuery
 
   """Deskripsinya ada disini loh"""
+  getClaimChannels: [String!]
+
+  """Deskripsinya ada disini loh"""
+  getClaimStatusTypes: [String!]
+
+  """Deskripsinya ada disini loh"""
   getEmploymentPosition: [String!]
 
   """Deskripsinya ada disini loh"""
-  getClassProgram: [String!]
+  getClassesProgram: [String!]
+
+  """Deskripsinya ada disini loh"""
+  getApplicationTypesProgram: [String!]
 
   """Deskripsinya ada disini loh"""
   regionFindMany(where: RegionWhereInput, orderBy: [RegionOrderByWithRelationInput!], cursor: RegionWhereUniqueInput, take: Int, skip: Int, distinct: [RegionScalarFieldEnum!]): [Region!]
+
+  """Deskripsinya ada disini loh"""
+  tagFindMany(where: TagWhereInput, orderBy: [TagOrderByWithRelationInput!], cursor: TagWhereUniqueInput, take: Int, skip: Int, distinct: [TagScalarFieldEnum!]): [Tag!]
+
+  """Deskripsinya ada disini loh"""
+  userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 }
 
 input ClaimWhereInput {
@@ -3276,4 +3291,64 @@ enum RegionScalarFieldEnum {
   name
   createdAt
   updatedAt
+}
+
+input TagOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  color: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  Claims: ClaimOrderByRelationAggregateInput
+}
+
+input TagWhereUniqueInput {
+  id: Int
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  NOT: [TagWhereInput!]
+  name: StringFilter
+  color: EnumColorFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  Claims: ClaimListRelationFilter
+}
+
+enum TagScalarFieldEnum {
+  id
+  name
+  color
+  createdAt
+  updatedAt
+}
+
+input UserWhereUniqueInput {
+  id: String
+  email: String
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  fullName: StringFilter
+  emailVerifiedAt: DateTimeNullableFilter
+  password: StringFilter
+  deletedAt: DateTimeNullableFilter
+  roleId: IntFilter
+  participantId: IntNullableFilter
+  role: RoleRelationFilter
+  participant: ParticipantNullableRelationFilter
+  claimsInput: ClaimListRelationFilter
+  claimActions: ClaimStatusListRelationFilter
+}
+
+enum UserScalarFieldEnum {
+  id
+  fullName
+  email
+  emailVerifiedAt
+  password
+  createdAt
+  updatedAt
+  deletedAt
+  roleId
+  participantId
 }

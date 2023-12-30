@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ClaimController } from './claim.controller';
-import { Claim, ClaimStatusType } from 'src/@generated';
+import { Claim, ClaimChannel, ClaimStatusType } from 'src/@generated';
 import { fakeClaimComplete } from '../../../prisma/fake-data';
 import { Period } from 'src/model/period.enum';
 import { getNextPeriodDate } from 'src/utils/get-next-period.function';
@@ -167,5 +167,9 @@ export class FakeClaimController implements ClaimController {
       amount: generateRandomRupiah(),
       period: args.period,
     }
+  }
+
+  async getClaimChannels(): Promise<string[]> {
+    return Object.keys(ClaimChannel);
   }
 }

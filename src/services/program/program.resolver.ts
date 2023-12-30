@@ -162,7 +162,15 @@ export class ProgramResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  getClassProgram() {
-    return this.programController.getClassProgram();
+  getClassesProgram() {
+    return this.programController.getClassesProgram();
+  }
+  
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  getApplicationTypesProgram() {
+    return this.programController.getApplicationTypesProgram();
   }
 }

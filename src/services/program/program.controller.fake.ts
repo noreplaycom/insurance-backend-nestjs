@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ProgramController } from './program.controller';
-import { Class, Program } from 'src/@generated';
+import { ApplicationType, Class, Program } from 'src/@generated';
 import { fakeProgramComplete } from '../../../prisma/fake-data';
 
 @Injectable()
@@ -80,7 +80,11 @@ export class FakeProgramController implements ProgramController {
     return this.programs.length;
   }
 
-  async getClassProgram(): Promise<string[]> {
+  async getClassesProgram(): Promise<string[]> {
     return Object.keys(Class);
+  }
+
+  async getApplicationTypesProgram(): Promise<string[]> {
+    return Object.keys(ApplicationType);
   }
 }

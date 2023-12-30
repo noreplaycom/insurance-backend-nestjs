@@ -52,7 +52,11 @@ export class PrismaProgramController implements ProgramController {
     return await this.programService.count(programCountArgs);
   }
 
-  async getClassProgram(): Promise<string[]> {
+  async getClassesProgram(): Promise<string[]> {
+    return [];
+  }
+
+  async getApplicationTypesProgram(): Promise<string[]> {
     return [];
   }
 }

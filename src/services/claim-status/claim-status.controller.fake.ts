@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { ClaimStatusType, Prisma } from '@prisma/client';
 import { ClaimStatusController } from './claim-status.controller';
 import { ClaimStatus } from 'src/@generated';
 import { fakeClaimStatusComplete } from '../../../prisma/fake-data';
+import { DefaultArgs } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class FakeClaimStatusController implements ClaimStatusController {
@@ -78,5 +79,9 @@ export class FakeClaimStatusController implements ClaimStatusController {
 
   async count(claimStatusCountArgs: Prisma.ClaimStatusCountArgs): Promise<number> {
     return this.claimStatuss.length;
+  }
+
+  async getClaimStatusTypes(claimStatusCountArgs: Prisma.ClaimStatusCountArgs<DefaultArgs>): Promise<string[]> {
+    return Object.keys(ClaimStatusType)
   }
 }

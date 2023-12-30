@@ -8,7 +8,12 @@ import { fakeUserComplete } from '../../../prisma/fake-data';
 export class FakeUserController implements UserController {
   private users: User[] = [];
 
-  constructor() {}
+  constructor() {
+    const initial = 200;
+    for (let i = 0; i < initial; i++) {
+      this.users.push(fakeUserComplete());
+    }
+  }
 
   async createOne(userCreateArgs: Prisma.UserCreateArgs): Promise<User> {
     const fake = fakeUserComplete()

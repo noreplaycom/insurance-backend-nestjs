@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client';
 import { ClaimStatusService } from './claim-status.service';
 import { ClaimStatusController } from './claim-status.controller';
 import { ClaimStatus } from 'src/@generated';
+import { DefaultArgs } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class PrismaClaimStatusController implements ClaimStatusController {
@@ -50,5 +51,9 @@ export class PrismaClaimStatusController implements ClaimStatusController {
 
   async count(claimStatusCountArgs: Prisma.ClaimStatusCountArgs): Promise<number> {
     return await this.claimStatusService.count(claimStatusCountArgs);
+  }
+
+  async getClaimStatusTypes(claimStatusCountArgs: Prisma.ClaimStatusCountArgs<DefaultArgs>): Promise<string[]> {
+    return [];
   }
 }

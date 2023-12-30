@@ -5,7 +5,6 @@ import { Relations } from 'src/utils/relations.decorator';
 import {
   FindManyClaimArgs,
   Claim,
-  Company,
 } from 'src/@generated';
 import { ClaimController } from './claim.controller';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
@@ -35,15 +34,6 @@ export class ClaimResolver {
       ...claimFindManyArgs,
       select: relations.select,
     });
-  }
-
-  @ResolveField(() => Company, { nullable: true })
-  async company(@Parent() claim: Claim): Promise<Company> {
-    const selectedClaim = await this.claimController.findOne({
-      where: { id: claim.id },
-      select: { company: true }
-    })
-    return selectedClaim.company || null;
   }
 
   @Query(() => Float, {
@@ -96,5 +86,13 @@ export class ClaimResolver {
     claimCountTotalPercentageVsCustomPeriod: ClaimCountTotalPercentageVsCustomPeriodArgs
   ) {
     return this.claimController.countTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriod);
+  }
+  
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  getClaimChannels() {
+    return this.claimController.getClaimChannels();
   }
 }
