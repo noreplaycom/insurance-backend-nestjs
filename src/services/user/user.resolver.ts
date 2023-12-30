@@ -28,20 +28,20 @@ interface UserSelect {
 export class UserResolver {
   constructor(private readonly userController: UserController) {}
 
-  // @Mutation(() => User, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async userCreateOne(
-  //   @Args()
-  //   userCreateArgs: CreateOneUserArgs,
-  //   @Relations() relations: UserSelect,
-  // ): Promise<User | void> {
-  //   return await this.userController.createOne({
-  //     ...userCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userCreateOne(
+    @Args()
+    userCreateArgs: CreateOneUserArgs,
+    @Relations() relations: UserSelect,
+  ): Promise<User | void> {
+    return await this.userController.createOne({
+      ...userCreateArgs,
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,
@@ -120,19 +120,19 @@ export class UserResolver {
   //   return this.userController.updateMany(updateManyUserArgs);
   // }
 
-  // @Mutation(() => Boolean, {
-  //   nullable: false,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async userDelete(
-  //   @Args() deleteOneUserArgs: DeleteOneUserArgs,
-  //   @Relations() relations: UserSelect,
-  // ) {
-  //   return this.userController.delete({
-  //     ...deleteOneUserArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userDeleteOne(
+    @Args() deleteOneUserArgs: DeleteOneUserArgs,
+    @Relations() relations: UserSelect,
+  ) {
+    return this.userController.delete({
+      ...deleteOneUserArgs,
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => Boolean, {
   //   nullable: false,

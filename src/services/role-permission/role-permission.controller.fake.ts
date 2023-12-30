@@ -8,7 +8,12 @@ import { fakeRolePermissionComplete } from '../../../prisma/fake-data';
 export class FakeRolePermissionController implements RolePermissionController {
   private rolePermissions: RolePermission[] = [];
 
-  constructor() {}
+  constructor() {
+    const initial = 50;
+    for (let i = 0; i < initial; i++) {
+      this.rolePermissions.push(fakeRolePermissionComplete())
+    }
+  }
 
   async createOne(rolePermissionCreateArgs: Prisma.RolePermissionCreateArgs): Promise<RolePermission> {
     const fake = fakeRolePermissionComplete()

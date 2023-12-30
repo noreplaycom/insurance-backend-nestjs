@@ -15,11 +15,14 @@ import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from 
 import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/guard/auth.guard';
 
 interface ClaimSelect {
   select: Prisma.ClaimSelect;
 }
 
+@UseGuards(AuthGuard)
 @Resolver(() => Claim)
 export class ClaimResolver {
   constructor(
