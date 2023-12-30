@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { Claim } from 'src/@generated';
+import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
+import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
+import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 
 @Injectable()
 export abstract class ClaimController {
@@ -25,4 +28,10 @@ export abstract class ClaimController {
   abstract aggregate(claimAggregateArgs: Prisma.ClaimAggregateArgs): Promise<Prisma.GetClaimAggregateType<Prisma.ClaimAggregateArgs>>;
 
   abstract count(claimCountArgs: Prisma.ClaimCountArgs): Promise<number>;
+
+  abstract countQuantityByCustomRangeAndPeriod(args: ClaimCountQuantityByCustomRangeAndPeriodArgs): Promise<ClaimCountQuantityByCustomRangeAndPeriodQuery[]>;
+
+  abstract countQuantityByStatus(args: ClaimCountQuantityByStatusArgs): Promise<ClaimCountQuantityByStatusQuery>;
+
+  abstract countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodQuery): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery>;
 }

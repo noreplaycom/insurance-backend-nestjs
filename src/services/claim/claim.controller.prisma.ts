@@ -3,6 +3,10 @@ import { Prisma } from '@prisma/client';
 import { ClaimService } from './claim.service';
 import { ClaimController } from './claim.controller';
 import { Claim } from 'src/@generated';
+import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
+import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
+import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.function';
 
 @Injectable()
 export class PrismaClaimController implements ClaimController {
@@ -50,5 +54,23 @@ export class PrismaClaimController implements ClaimController {
 
   async count(claimCountArgs: Prisma.ClaimCountArgs): Promise<number> {
     return await this.claimService.count(claimCountArgs);
+  }
+
+  async countQuantityByCustomRangeAndPeriod(args: ClaimCountQuantityByCustomRangeAndPeriodArgs): Promise<ClaimCountQuantityByCustomRangeAndPeriodQuery[]> {
+    return [];
+  }
+
+  async countQuantityByStatus(args: ClaimCountQuantityByStatusArgs): Promise<ClaimCountQuantityByStatusQuery> {
+    return {
+      claims: [],
+      period: args.period
+    }
+  }
+
+  async countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodQuery): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery> {
+    return {
+      amount: generateRandomRupiah(),
+      period: args.period,
+    }
   }
 }
