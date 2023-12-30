@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ParticipantController } from './participant.controller';
-import { Participant } from 'src/@generated';
+import { Participant, ParticipantStatus } from 'src/@generated';
 import { fakeParticipantComplete } from '../../../prisma/fake-data';
 
 @Injectable()
 export class FakeParticipantController implements ParticipantController {
   private participants: Participant[] = [];
 
-  constructor() {}
+  constructor() {
+    const initial = 200;
+    for (let i = 0; i < initial; i++) {
+      this.participants.push(fakeParticipantComplete());
+    }
+  }
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs): Promise<Participant> {
     const fake = fakeParticipantComplete()
@@ -76,5 +81,9 @@ export class FakeParticipantController implements ParticipantController {
 
   async count(participantCountArgs: Prisma.ParticipantCountArgs): Promise<number> {
     return this.participants.length;
+  }
+
+  async getParticipantStatuses(): Promise<string[]> {
+    return Object.keys(ParticipantStatus);
   }
 }

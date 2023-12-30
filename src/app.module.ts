@@ -88,7 +88,7 @@ import { TagModule } from './services/tag/tag.module';
     // DocumentModule,
     EmploymentModule,
     // GroupModule,
-    // ParticipantModule,
+    ParticipantModule,
     ProgramModule,
     // ProgramParticipationModule,
     RegionModule,

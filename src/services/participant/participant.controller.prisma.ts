@@ -51,4 +51,8 @@ export class PrismaParticipantController implements ParticipantController {
   async count(participantCountArgs: Prisma.ParticipantCountArgs): Promise<number> {
     return await this.participantService.count(participantCountArgs);
   }
+
+  async getParticipantStatuses(): Promise<string[]> {
+    return [];
+  }
 }

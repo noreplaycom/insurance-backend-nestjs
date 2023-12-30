@@ -1865,6 +1865,12 @@ type Query {
   getEmploymentPosition: [String!]
 
   """Deskripsinya ada disini loh"""
+  participantFindMany(where: ParticipantWhereInput, orderBy: [ParticipantOrderByWithRelationInput!], cursor: ParticipantWhereUniqueInput, take: Int, skip: Int, distinct: [ParticipantScalarFieldEnum!]): [Participant!]
+
+  """Deskripsinya ada disini loh"""
+  getParticipantStatuses: [String!]
+
+  """Deskripsinya ada disini loh"""
   getClassesProgram: [String!]
 
   """Deskripsinya ada disini loh"""
@@ -3337,6 +3343,44 @@ enum ClaimStatusScalarFieldEnum {
   claimId
   rejectionLetterId
   guaranteeLetterId
+}
+
+input ParticipantWhereUniqueInput {
+  userId: String
+  AND: [ParticipantWhereInput!]
+  OR: [ParticipantWhereInput!]
+  NOT: [ParticipantWhereInput!]
+  gender: EnumGenderFilter
+  birthDate: DateTimeFilter
+  nationalId: StringFilter
+  familyCardNumber: StringFilter
+  taxId: StringNullableFilter
+  isActive: BoolFilter
+  status: EnumParticipantStatusFilter
+  relationId: StringNullableFilter
+  bankAccountId: IntFilter
+  user: UserRelationFilter
+  relation: ParticipantNullableRelationFilter
+  bankAccount: BankAccountNullableRelationFilter
+  claims: ClaimListRelationFilter
+  employments: EmploymentListRelationFilter
+  contactInfos: ContactInfoListRelationFilter
+  programParticipations: ProgramParticipationListRelationFilter
+  balances: AccountListRelationFilter
+  Participant: ParticipantListRelationFilter
+}
+
+enum ParticipantScalarFieldEnum {
+  gender
+  birthDate
+  nationalId
+  familyCardNumber
+  taxId
+  isActive
+  status
+  userId
+  relationId
+  bankAccountId
 }
 
 input RegionOrderByWithRelationInput {
@@ -4918,31 +4962,6 @@ input ParticipantCreateWithoutRelationInput {
 input ParticipantCreateOrConnectWithoutRelationInput {
   where: ParticipantWhereUniqueInput!
   create: ParticipantCreateWithoutRelationInput!
-}
-
-input ParticipantWhereUniqueInput {
-  userId: String
-  AND: [ParticipantWhereInput!]
-  OR: [ParticipantWhereInput!]
-  NOT: [ParticipantWhereInput!]
-  gender: EnumGenderFilter
-  birthDate: DateTimeFilter
-  nationalId: StringFilter
-  familyCardNumber: StringFilter
-  taxId: StringNullableFilter
-  isActive: BoolFilter
-  status: EnumParticipantStatusFilter
-  relationId: StringNullableFilter
-  bankAccountId: IntFilter
-  user: UserRelationFilter
-  relation: ParticipantNullableRelationFilter
-  bankAccount: BankAccountNullableRelationFilter
-  claims: ClaimListRelationFilter
-  employments: EmploymentListRelationFilter
-  contactInfos: ContactInfoListRelationFilter
-  programParticipations: ProgramParticipationListRelationFilter
-  balances: AccountListRelationFilter
-  Participant: ParticipantListRelationFilter
 }
 
 input ParticipantCreateManyRelationInputEnvelope {
