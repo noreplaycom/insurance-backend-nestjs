@@ -46,7 +46,9 @@ export class FakeClaimController implements ClaimController {
   }
 
   async findMany(claimFindManyArgs: Prisma.ClaimFindManyArgs): Promise<Claim[]> {
-    return this.claims.filter(claim => claim);
+    const skipped = claimFindManyArgs.skip ?? 0;
+    const taken = claimFindManyArgs.take ?? 10;
+    return this.claims.slice(skipped, skipped + taken);
   }
 
   async findFirst(claimFindFirstArgs: Prisma.ClaimFindFirstArgs): Promise<Claim> {
