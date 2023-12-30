@@ -92,7 +92,7 @@ import { TagModule } from './services/tag/tag.module';
     ProgramModule,
     // ProgramParticipationModule,
     RegionModule,
-    // RoleModule,
+    RoleModule,
     // RolePermissionModule,
     TagModule,
     // TransactionModule,

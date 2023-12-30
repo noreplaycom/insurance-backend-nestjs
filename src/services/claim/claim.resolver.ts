@@ -5,11 +5,14 @@ import { Relations } from 'src/utils/relations.decorator';
 import {
   FindManyClaimArgs,
   Claim,
+  FindUniqueClaimArgs,
+  UpdateOneClaimArgs,
 } from 'src/@generated';
 import { ClaimController } from './claim.controller';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
 import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 
 interface ClaimSelect {
@@ -22,6 +25,20 @@ export class ClaimResolver {
     private readonly claimController: ClaimController,
   ) {}
 
+  @Query(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimFindOne(
+    @Args() claimFindUniqueArgs: FindUniqueClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ) {
+    return this.claimController.findOne({
+      ...claimFindUniqueArgs,
+      select: relations.select,
+    });
+  }
+
   @Query(() => [Claim], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -32,6 +49,20 @@ export class ClaimResolver {
   ) {
     return this.claimController.findMany({
       ...claimFindManyArgs,
+      select: relations.select,
+    });
+  }
+  
+  @Mutation(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimUpdateOne(
+    @Args() claimUpdateOneArgs: UpdateOneClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ) {
+    return this.claimController.updateOne({
+      ...replaceNullWithUndefined(claimUpdateOneArgs),
       select: relations.select,
     });
   }
