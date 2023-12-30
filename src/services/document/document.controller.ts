@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { DocumentService } from './document.service';
+import { Document } from 'src/@generated';
 
 @Injectable()
-export class DocumentController {
-  constructor(private readonly documentService: DocumentService) {}
+export abstract class DocumentController {
+  abstract createOne(documentCreateArgs: Prisma.DocumentCreateArgs): Promise<Document>;
 
-  async createOne(documentCreateArgs: Prisma.DocumentCreateArgs) {
-    return await this.documentService.createOne(documentCreateArgs);
-  }
+  abstract createMany(documentCreateManyArgs: Prisma.DocumentCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(documentCreateManyArgs: Prisma.DocumentCreateManyArgs) {
-    return await this.documentService.createMany(documentCreateManyArgs);
-  }
+  abstract findOne(documentFindUniqueArgs: Prisma.DocumentFindUniqueArgs): Promise<Document>;
 
-  async findOne(documentFindUniqueArgs: Prisma.DocumentFindUniqueArgs) {
-    return await this.documentService.findOne(documentFindUniqueArgs);
-  }
+  abstract findMany(documentFindManyArgs: Prisma.DocumentFindManyArgs): Promise<Document[]>;
 
-  async findMany(documentFindManyArgs: Prisma.DocumentFindManyArgs) {
-    return await this.documentService.findMany(documentFindManyArgs);
-  }
+  abstract findFirst(documentFindFirstArgs: Prisma.DocumentFindFirstArgs): Promise<Document>;
 
-  async findFirst(documentFindFirstArgs: Prisma.DocumentFindFirstArgs) {
-    return await this.documentService.findFirst(documentFindFirstArgs);
-  }
+  abstract updateOne(documentUpdateOneArgs: Prisma.DocumentUpdateArgs): Promise<Document>;
 
-  async updateOne(documentUpdateOneArgs: Prisma.DocumentUpdateArgs) {
-    return await this.documentService.updateOne(documentUpdateOneArgs);
-  }
+  abstract updateMany(documentUpdateManyArgs: Prisma.DocumentUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(documentUpdateManyArgs: Prisma.DocumentUpdateManyArgs) {
-    return await this.documentService.updateMany(documentUpdateManyArgs);
-  }
+  abstract delete(documentDeleteArgs: Prisma.DocumentDeleteArgs): Promise<boolean>;
 
-  async delete(documentDeleteArgs: Prisma.DocumentDeleteArgs) {
-    return await this.documentService.delete(documentDeleteArgs);
-  }
+  abstract deleteMany(documentDeleteManyArgs: Prisma.DocumentDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(documentDeleteManyArgs: Prisma.DocumentDeleteManyArgs) {
-    return await this.documentService.deleteMany(documentDeleteManyArgs);
-  }
+  abstract aggregate(documentAggregateArgs: Prisma.DocumentAggregateArgs): Promise<Prisma.GetDocumentAggregateType<Prisma.DocumentAggregateArgs>>;
 
-  async aggregate(documentAggregateArgs: Prisma.DocumentAggregateArgs) {
-    return await this.documentService.aggregate(documentAggregateArgs);
-  }
-
-  async count(documentCountArgs: Prisma.DocumentCountArgs) {
-    return await this.documentService.count(documentCountArgs);
-  }
+  abstract count(documentCountArgs: Prisma.DocumentCountArgs): Promise<number>;
 }

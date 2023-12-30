@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { CompanyService } from './company.service';
+import { Company } from 'src/@generated';
 
 @Injectable()
-export class CompanyController {
-  constructor(private readonly companyService: CompanyService) {}
+export abstract class CompanyController {
+  abstract createOne(companyCreateArgs: Prisma.CompanyCreateArgs): Promise<Company>;
 
-  async createOne(companyCreateArgs: Prisma.CompanyCreateArgs) {
-    return await this.companyService.createOne(companyCreateArgs);
-  }
+  abstract createMany(companyCreateManyArgs: Prisma.CompanyCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(companyCreateManyArgs: Prisma.CompanyCreateManyArgs) {
-    return await this.companyService.createMany(companyCreateManyArgs);
-  }
+  abstract findOne(companyFindUniqueArgs: Prisma.CompanyFindUniqueArgs): Promise<Company>;
 
-  async findOne(companyFindUniqueArgs: Prisma.CompanyFindUniqueArgs) {
-    return await this.companyService.findOne(companyFindUniqueArgs);
-  }
+  abstract findMany(companyFindManyArgs: Prisma.CompanyFindManyArgs): Promise<Company[]>;
 
-  async findMany(companyFindManyArgs: Prisma.CompanyFindManyArgs) {
-    return await this.companyService.findMany(companyFindManyArgs);
-  }
+  abstract findFirst(companyFindFirstArgs: Prisma.CompanyFindFirstArgs): Promise<Company>;
 
-  async findFirst(companyFindFirstArgs: Prisma.CompanyFindFirstArgs) {
-    return await this.companyService.findFirst(companyFindFirstArgs);
-  }
+  abstract updateOne(companyUpdateOneArgs: Prisma.CompanyUpdateArgs): Promise<Company>;
 
-  async updateOne(companyUpdateOneArgs: Prisma.CompanyUpdateArgs) {
-    return await this.companyService.updateOne(companyUpdateOneArgs);
-  }
+  abstract updateMany(companyUpdateManyArgs: Prisma.CompanyUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(companyUpdateManyArgs: Prisma.CompanyUpdateManyArgs) {
-    return await this.companyService.updateMany(companyUpdateManyArgs);
-  }
+  abstract delete(companyDeleteArgs: Prisma.CompanyDeleteArgs): Promise<boolean>;
 
-  async delete(companyDeleteArgs: Prisma.CompanyDeleteArgs) {
-    return await this.companyService.delete(companyDeleteArgs);
-  }
+  abstract deleteMany(companyDeleteManyArgs: Prisma.CompanyDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(companyDeleteManyArgs: Prisma.CompanyDeleteManyArgs) {
-    return await this.companyService.deleteMany(companyDeleteManyArgs);
-  }
+  abstract aggregate(companyAggregateArgs: Prisma.CompanyAggregateArgs): Promise<Prisma.GetCompanyAggregateType<Prisma.CompanyAggregateArgs>>;
 
-  async aggregate(companyAggregateArgs: Prisma.CompanyAggregateArgs) {
-    return await this.companyService.aggregate(companyAggregateArgs);
-  }
-
-  async count(companyCountArgs: Prisma.CompanyCountArgs) {
-    return await this.companyService.count(companyCountArgs);
-  }
+  abstract count(companyCountArgs: Prisma.CompanyCountArgs): Promise<number>;
 }

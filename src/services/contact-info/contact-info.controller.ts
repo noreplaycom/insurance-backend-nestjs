@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ContactInfoService } from './contact-info.service';
+import { ContactInfo } from 'src/@generated';
 
 @Injectable()
-export class ContactInfoController {
-  constructor(private readonly contactInfoService: ContactInfoService) {}
+export abstract class ContactInfoController {
+  abstract createOne(contactInfoCreateArgs: Prisma.ContactInfoCreateArgs): Promise<ContactInfo>;
 
-  async createOne(contactInfoCreateArgs: Prisma.ContactInfoCreateArgs) {
-    return await this.contactInfoService.createOne(contactInfoCreateArgs);
-  }
+  abstract createMany(contactInfoCreateManyArgs: Prisma.ContactInfoCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(contactInfoCreateManyArgs: Prisma.ContactInfoCreateManyArgs) {
-    return await this.contactInfoService.createMany(contactInfoCreateManyArgs);
-  }
+  abstract findOne(contactInfoFindUniqueArgs: Prisma.ContactInfoFindUniqueArgs): Promise<ContactInfo>;
 
-  async findOne(contactInfoFindUniqueArgs: Prisma.ContactInfoFindUniqueArgs) {
-    return await this.contactInfoService.findOne(contactInfoFindUniqueArgs);
-  }
+  abstract findMany(contactInfoFindManyArgs: Prisma.ContactInfoFindManyArgs): Promise<ContactInfo[]>;
 
-  async findMany(contactInfoFindManyArgs: Prisma.ContactInfoFindManyArgs) {
-    return await this.contactInfoService.findMany(contactInfoFindManyArgs);
-  }
+  abstract findFirst(contactInfoFindFirstArgs: Prisma.ContactInfoFindFirstArgs): Promise<ContactInfo>;
 
-  async findFirst(contactInfoFindFirstArgs: Prisma.ContactInfoFindFirstArgs) {
-    return await this.contactInfoService.findFirst(contactInfoFindFirstArgs);
-  }
+  abstract updateOne(contactInfoUpdateOneArgs: Prisma.ContactInfoUpdateArgs): Promise<ContactInfo>;
 
-  async updateOne(contactInfoUpdateOneArgs: Prisma.ContactInfoUpdateArgs) {
-    return await this.contactInfoService.updateOne(contactInfoUpdateOneArgs);
-  }
+  abstract updateMany(contactInfoUpdateManyArgs: Prisma.ContactInfoUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(contactInfoUpdateManyArgs: Prisma.ContactInfoUpdateManyArgs) {
-    return await this.contactInfoService.updateMany(contactInfoUpdateManyArgs);
-  }
+  abstract delete(contactInfoDeleteArgs: Prisma.ContactInfoDeleteArgs): Promise<boolean>;
 
-  async delete(contactInfoDeleteArgs: Prisma.ContactInfoDeleteArgs) {
-    return await this.contactInfoService.delete(contactInfoDeleteArgs);
-  }
+  abstract deleteMany(contactInfoDeleteManyArgs: Prisma.ContactInfoDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(contactInfoDeleteManyArgs: Prisma.ContactInfoDeleteManyArgs) {
-    return await this.contactInfoService.deleteMany(contactInfoDeleteManyArgs);
-  }
+  abstract aggregate(contactInfoAggregateArgs: Prisma.ContactInfoAggregateArgs): Promise<Prisma.GetContactInfoAggregateType<Prisma.ContactInfoAggregateArgs>>;
 
-  async aggregate(contactInfoAggregateArgs: Prisma.ContactInfoAggregateArgs) {
-    return await this.contactInfoService.aggregate(contactInfoAggregateArgs);
-  }
-
-  async count(contactInfoCountArgs: Prisma.ContactInfoCountArgs) {
-    return await this.contactInfoService.count(contactInfoCountArgs);
-  }
+  abstract count(contactInfoCountArgs: Prisma.ContactInfoCountArgs): Promise<number>;
 }

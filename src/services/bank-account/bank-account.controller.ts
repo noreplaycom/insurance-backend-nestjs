@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { BankAccountService } from './bank-account.service';
+import { BankAccount } from 'src/@generated';
 
 @Injectable()
-export class BankAccountController {
-  constructor(private readonly bankAccountService: BankAccountService) {}
+export abstract class BankAccountController {
+  abstract createOne(bankAccountCreateArgs: Prisma.BankAccountCreateArgs): Promise<BankAccount>;
 
-  async createOne(bankAccountCreateArgs: Prisma.BankAccountCreateArgs) {
-    return await this.bankAccountService.createOne(bankAccountCreateArgs);
-  }
+  abstract createMany(bankAccountCreateManyArgs: Prisma.BankAccountCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(bankAccountCreateManyArgs: Prisma.BankAccountCreateManyArgs) {
-    return await this.bankAccountService.createMany(bankAccountCreateManyArgs);
-  }
+  abstract findOne(bankAccountFindUniqueArgs: Prisma.BankAccountFindUniqueArgs): Promise<BankAccount>;
 
-  async findOne(bankAccountFindUniqueArgs: Prisma.BankAccountFindUniqueArgs) {
-    return await this.bankAccountService.findOne(bankAccountFindUniqueArgs);
-  }
+  abstract findMany(bankAccountFindManyArgs: Prisma.BankAccountFindManyArgs): Promise<BankAccount[]>;
 
-  async findMany(bankAccountFindManyArgs: Prisma.BankAccountFindManyArgs) {
-    return await this.bankAccountService.findMany(bankAccountFindManyArgs);
-  }
+  abstract findFirst(bankAccountFindFirstArgs: Prisma.BankAccountFindFirstArgs): Promise<BankAccount>;
 
-  async findFirst(bankAccountFindFirstArgs: Prisma.BankAccountFindFirstArgs) {
-    return await this.bankAccountService.findFirst(bankAccountFindFirstArgs);
-  }
+  abstract updateOne(bankAccountUpdateOneArgs: Prisma.BankAccountUpdateArgs): Promise<BankAccount>;
 
-  async updateOne(bankAccountUpdateOneArgs: Prisma.BankAccountUpdateArgs) {
-    return await this.bankAccountService.updateOne(bankAccountUpdateOneArgs);
-  }
+  abstract updateMany(bankAccountUpdateManyArgs: Prisma.BankAccountUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(bankAccountUpdateManyArgs: Prisma.BankAccountUpdateManyArgs) {
-    return await this.bankAccountService.updateMany(bankAccountUpdateManyArgs);
-  }
+  abstract delete(bankAccountDeleteArgs: Prisma.BankAccountDeleteArgs): Promise<boolean>;
 
-  async delete(bankAccountDeleteArgs: Prisma.BankAccountDeleteArgs) {
-    return await this.bankAccountService.delete(bankAccountDeleteArgs);
-  }
+  abstract deleteMany(bankAccountDeleteManyArgs: Prisma.BankAccountDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(bankAccountDeleteManyArgs: Prisma.BankAccountDeleteManyArgs) {
-    return await this.bankAccountService.deleteMany(bankAccountDeleteManyArgs);
-  }
+  abstract aggregate(bankAccountAggregateArgs: Prisma.BankAccountAggregateArgs): Promise<Prisma.GetBankAccountAggregateType<Prisma.BankAccountAggregateArgs>>;
 
-  async aggregate(bankAccountAggregateArgs: Prisma.BankAccountAggregateArgs) {
-    return await this.bankAccountService.aggregate(bankAccountAggregateArgs);
-  }
-
-  async count(bankAccountCountArgs: Prisma.BankAccountCountArgs) {
-    return await this.bankAccountService.count(bankAccountCountArgs);
-  }
+  abstract count(bankAccountCountArgs: Prisma.BankAccountCountArgs): Promise<number>;
 }

@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { RoleService } from './role.service';
+import { Role } from 'src/@generated';
 
 @Injectable()
-export class RoleController {
-  constructor(private readonly roleService: RoleService) {}
+export abstract class RoleController {
+  abstract createOne(roleCreateArgs: Prisma.RoleCreateArgs): Promise<Role>;
 
-  async createOne(roleCreateArgs: Prisma.RoleCreateArgs) {
-    return await this.roleService.createOne(roleCreateArgs);
-  }
+  abstract createMany(roleCreateManyArgs: Prisma.RoleCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(roleCreateManyArgs: Prisma.RoleCreateManyArgs) {
-    return await this.roleService.createMany(roleCreateManyArgs);
-  }
+  abstract findOne(roleFindUniqueArgs: Prisma.RoleFindUniqueArgs): Promise<Role>;
 
-  async findOne(roleFindUniqueArgs: Prisma.RoleFindUniqueArgs) {
-    return await this.roleService.findOne(roleFindUniqueArgs);
-  }
+  abstract findMany(roleFindManyArgs: Prisma.RoleFindManyArgs): Promise<Role[]>;
 
-  async findMany(roleFindManyArgs: Prisma.RoleFindManyArgs) {
-    return await this.roleService.findMany(roleFindManyArgs);
-  }
+  abstract findFirst(roleFindFirstArgs: Prisma.RoleFindFirstArgs): Promise<Role>;
 
-  async findFirst(roleFindFirstArgs: Prisma.RoleFindFirstArgs) {
-    return await this.roleService.findFirst(roleFindFirstArgs);
-  }
+  abstract updateOne(roleUpdateOneArgs: Prisma.RoleUpdateArgs): Promise<Role>;
 
-  async updateOne(roleUpdateOneArgs: Prisma.RoleUpdateArgs) {
-    return await this.roleService.updateOne(roleUpdateOneArgs);
-  }
+  abstract updateMany(roleUpdateManyArgs: Prisma.RoleUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(roleUpdateManyArgs: Prisma.RoleUpdateManyArgs) {
-    return await this.roleService.updateMany(roleUpdateManyArgs);
-  }
+  abstract delete(roleDeleteArgs: Prisma.RoleDeleteArgs): Promise<boolean>;
 
-  async delete(roleDeleteArgs: Prisma.RoleDeleteArgs) {
-    return await this.roleService.delete(roleDeleteArgs);
-  }
+  abstract deleteMany(roleDeleteManyArgs: Prisma.RoleDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(roleDeleteManyArgs: Prisma.RoleDeleteManyArgs) {
-    return await this.roleService.deleteMany(roleDeleteManyArgs);
-  }
+  abstract aggregate(roleAggregateArgs: Prisma.RoleAggregateArgs): Promise<Prisma.GetRoleAggregateType<Prisma.RoleAggregateArgs>>;
 
-  async aggregate(roleAggregateArgs: Prisma.RoleAggregateArgs) {
-    return await this.roleService.aggregate(roleAggregateArgs);
-  }
-
-  async count(roleCountArgs: Prisma.RoleCountArgs) {
-    return await this.roleService.count(roleCountArgs);
-  }
+  abstract count(roleCountArgs: Prisma.RoleCountArgs): Promise<number>;
 }

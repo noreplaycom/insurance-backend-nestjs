@@ -1,52 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ClaimProcessService } from './claim-process.service';
+import { ClaimProcess } from 'src/@generated';
 
 @Injectable()
-export class ClaimProcessController {
-  constructor(private readonly claimProcessService: ClaimProcessService) {}
+export abstract class ClaimProcessController {
+  abstract createOne(claimProcessCreateArgs: Prisma.ClaimProcessCreateArgs): Promise<ClaimProcess>;
 
-  async createOne(claimProcessCreateArgs: Prisma.ClaimProcessCreateArgs) {
-    return await this.claimProcessService.createOne(claimProcessCreateArgs);
-  }
+  abstract createMany(claimProcessCreateManyArgs: Prisma.ClaimProcessCreateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async createMany(claimProcessCreateManyArgs: Prisma.ClaimProcessCreateManyArgs) {
-    return await this.claimProcessService.createMany(claimProcessCreateManyArgs);
-  }
+  abstract findOne(claimProcessFindUniqueArgs: Prisma.ClaimProcessFindUniqueArgs): Promise<ClaimProcess>;
 
-  async findOne(claimProcessFindUniqueArgs: Prisma.ClaimProcessFindUniqueArgs) {
-    return await this.claimProcessService.findOne(claimProcessFindUniqueArgs);
-  }
+  abstract findMany(claimProcessFindManyArgs: Prisma.ClaimProcessFindManyArgs): Promise<ClaimProcess[]>;
 
-  async findMany(claimProcessFindManyArgs: Prisma.ClaimProcessFindManyArgs) {
-    return await this.claimProcessService.findMany(claimProcessFindManyArgs);
-  }
+  abstract findFirst(claimProcessFindFirstArgs: Prisma.ClaimProcessFindFirstArgs): Promise<ClaimProcess>;
 
-  async findFirst(claimProcessFindFirstArgs: Prisma.ClaimProcessFindFirstArgs) {
-    return await this.claimProcessService.findFirst(claimProcessFindFirstArgs);
-  }
+  abstract updateOne(claimProcessUpdateOneArgs: Prisma.ClaimProcessUpdateArgs): Promise<ClaimProcess>;
 
-  async updateOne(claimProcessUpdateOneArgs: Prisma.ClaimProcessUpdateArgs) {
-    return await this.claimProcessService.updateOne(claimProcessUpdateOneArgs);
-  }
+  abstract updateMany(claimProcessUpdateManyArgs: Prisma.ClaimProcessUpdateManyArgs): Promise<Prisma.BatchPayload>;
 
-  async updateMany(claimProcessUpdateManyArgs: Prisma.ClaimProcessUpdateManyArgs) {
-    return await this.claimProcessService.updateMany(claimProcessUpdateManyArgs);
-  }
+  abstract delete(claimProcessDeleteArgs: Prisma.ClaimProcessDeleteArgs): Promise<boolean>;
 
-  async delete(claimProcessDeleteArgs: Prisma.ClaimProcessDeleteArgs) {
-    return await this.claimProcessService.delete(claimProcessDeleteArgs);
-  }
+  abstract deleteMany(claimProcessDeleteManyArgs: Prisma.ClaimProcessDeleteManyArgs): Promise<boolean>;
 
-  async deleteMany(claimProcessDeleteManyArgs: Prisma.ClaimProcessDeleteManyArgs) {
-    return await this.claimProcessService.deleteMany(claimProcessDeleteManyArgs);
-  }
+  abstract aggregate(claimProcessAggregateArgs: Prisma.ClaimProcessAggregateArgs): Promise<Prisma.GetClaimProcessAggregateType<Prisma.ClaimProcessAggregateArgs>>;
 
-  async aggregate(claimProcessAggregateArgs: Prisma.ClaimProcessAggregateArgs) {
-    return await this.claimProcessService.aggregate(claimProcessAggregateArgs);
-  }
-
-  async count(claimProcessCountArgs: Prisma.ClaimProcessCountArgs) {
-    return await this.claimProcessService.count(claimProcessCountArgs);
-  }
+  abstract count(claimProcessCountArgs: Prisma.ClaimProcessCountArgs): Promise<number>;
 }
