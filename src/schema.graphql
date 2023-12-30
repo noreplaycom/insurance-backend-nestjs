@@ -1856,6 +1856,9 @@ type Query {
   getClaimChannels: [String!]
 
   """Deskripsinya ada disini loh"""
+  claimStatusFindMany(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): [ClaimStatus!]
+
+  """Deskripsinya ada disini loh"""
   getClaimStatusTypes: [String!]
 
   """Deskripsinya ada disini loh"""
@@ -3273,6 +3276,69 @@ input ClaimCountTotalPercentageVsCustomPeriodArgs {
   period: Period!
 }
 
+input ClaimStatusOrderByWithRelationInput {
+  id: SortOrder
+  description: SortOrderInput
+  rejectionReason: SortOrderInput
+  createdAt: SortOrder
+  status: SortOrder
+  createById: SortOrder
+  claimId: SortOrder
+  rejectionLetterId: SortOrderInput
+  guaranteeLetterId: SortOrderInput
+  createBy: UserOrderByWithRelationInput
+  claim: ClaimOrderByWithRelationInput
+  rejectionLetter: DocumentOrderByWithRelationInput
+  guaranteeLetter: DocumentOrderByWithRelationInput
+}
+
+input DocumentOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  path: SortOrder
+  size: SortOrder
+  printCount: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  source: SortOrder
+  type: SortOrder
+  claimProcessId: SortOrderInput
+  rejectionLetterOf: ClaimStatusOrderByWithRelationInput
+  guaranteeLetterOf: ClaimStatusOrderByWithRelationInput
+  claimProcess: ClaimProcessOrderByWithRelationInput
+}
+
+input ClaimStatusWhereUniqueInput {
+  id: Int
+  rejectionLetterId: String
+  guaranteeLetterId: String
+  AND: [ClaimStatusWhereInput!]
+  OR: [ClaimStatusWhereInput!]
+  NOT: [ClaimStatusWhereInput!]
+  description: StringNullableFilter
+  rejectionReason: StringNullableFilter
+  createdAt: DateTimeFilter
+  status: EnumClaimStatusTypeFilter
+  createById: StringFilter
+  claimId: StringFilter
+  createBy: UserRelationFilter
+  claim: ClaimRelationFilter
+  rejectionLetter: DocumentNullableRelationFilter
+  guaranteeLetter: DocumentNullableRelationFilter
+}
+
+enum ClaimStatusScalarFieldEnum {
+  id
+  description
+  rejectionReason
+  createdAt
+  status
+  createById
+  claimId
+  rejectionLetterId
+  guaranteeLetterId
+}
+
 input RegionOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
@@ -3375,54 +3441,35 @@ enum UserScalarFieldEnum {
 
 type Mutation {
   """Deskripsinya ada disini loh"""
+  claimCreateOne(data: ClaimCreateInput!): Claim
+
+  """Deskripsinya ada disini loh"""
   claimUpdateOne(data: ClaimUpdateInput!, where: ClaimWhereUniqueInput!): Claim
 }
 
-input ClaimUpdateInput {
-  id: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  deletedAt: NullableDateTimeFieldUpdateOperationsInput
-  channel: EnumClaimChannelFieldUpdateOperationsInput
-  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
-  company: CompanyUpdateOneRequiredWithoutClaimsNestedInput
-  participant: ParticipantUpdateOneRequiredWithoutClaimsNestedInput
-  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
-  claimProcesses: ClaimProcessUpdateOneRequiredWithoutClaimNestedInput
-  disease: DiseaseUpdateOneWithoutClaimsNestedInput
-  clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
-  inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
-  claimTypes: ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput
-  tags: TagUpdateManyWithoutClaimsNestedInput
-  claimStatuses: ClaimStatusUpdateManyWithoutClaimNestedInput
+input ClaimCreateInput {
+  id: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: CompanyCreateNestedOneWithoutClaimsInput!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
+  disease: DiseaseCreateNestedOneWithoutClaimsInput
+  clinics: ClinicCreateNestedOneWithoutClaimsInput!
+  inputedBy: UserCreateNestedOneWithoutClaimsInputInput
+  claimTypes: ClaimTypeCreateNestedOneWithoutClaimsInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
+  claimStatuses: ClaimStatusCreateNestedManyWithoutClaimInput
 }
 
-input StringFieldUpdateOperationsInput {
-  set: String
-}
-
-input DateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
-
-input NullableDateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
-
-input EnumClaimChannelFieldUpdateOperationsInput {
-  set: ClaimChannel
-}
-
-input EnumAdmedicaStatusFieldUpdateOperationsInput {
-  set: AdmedicaStatus
-}
-
-input CompanyUpdateOneRequiredWithoutClaimsNestedInput {
+input CompanyCreateNestedOneWithoutClaimsInput {
   create: CompanyCreateWithoutClaimsInput
   connectOrCreate: CompanyCreateOrConnectWithoutClaimsInput
-  upsert: CompanyUpsertWithoutClaimsInput
   connect: CompanyWhereUniqueInput
-  update: CompanyUpdateToOneWithWhereWithoutClaimsInput
 }
 
 input CompanyCreateWithoutClaimsInput {
@@ -3447,29 +3494,10 @@ input CompanyWhereUniqueInput {
   claims: ClaimListRelationFilter
 }
 
-input CompanyUpsertWithoutClaimsInput {
-  update: CompanyUpdateWithoutClaimsInput!
-  create: CompanyCreateWithoutClaimsInput!
-  where: CompanyWhereInput
-}
-
-input CompanyUpdateWithoutClaimsInput {
-  name: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input CompanyUpdateToOneWithWhereWithoutClaimsInput {
-  where: CompanyWhereInput
-  data: CompanyUpdateWithoutClaimsInput!
-}
-
-input ParticipantUpdateOneRequiredWithoutClaimsNestedInput {
+input ParticipantCreateNestedOneWithoutClaimsInput {
   create: ParticipantCreateWithoutClaimsInput
   connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
-  upsert: ParticipantUpsertWithoutClaimsInput
   connect: ParticipantWhereUniqueInput
-  update: ParticipantUpdateToOneWithWhereWithoutClaimsInput
 }
 
 input ParticipantCreateWithoutClaimsInput {
@@ -3698,12 +3726,6 @@ input ClaimCreateWithoutParticipantInput {
   claimTypes: ClaimTypeCreateNestedOneWithoutClaimsInput!
   tags: TagCreateNestedManyWithoutClaimsInput
   claimStatuses: ClaimStatusCreateNestedManyWithoutClaimInput
-}
-
-input CompanyCreateNestedOneWithoutClaimsInput {
-  create: CompanyCreateWithoutClaimsInput
-  connectOrCreate: CompanyCreateOrConnectWithoutClaimsInput
-  connect: CompanyWhereUniqueInput
 }
 
 input ClaimFinancialCreateNestedOneWithoutClaimInput {
@@ -4000,42 +4022,6 @@ input ClaimCreateWithoutClaimFinancialsInput {
   claimTypes: ClaimTypeCreateNestedOneWithoutClaimsInput!
   tags: TagCreateNestedManyWithoutClaimsInput
   claimStatuses: ClaimStatusCreateNestedManyWithoutClaimInput
-}
-
-input ParticipantCreateNestedOneWithoutClaimsInput {
-  create: ParticipantCreateWithoutClaimsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
-  connect: ParticipantWhereUniqueInput
-}
-
-input ParticipantCreateOrConnectWithoutClaimsInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutClaimsInput!
-}
-
-input ParticipantWhereUniqueInput {
-  userId: String
-  AND: [ParticipantWhereInput!]
-  OR: [ParticipantWhereInput!]
-  NOT: [ParticipantWhereInput!]
-  gender: EnumGenderFilter
-  birthDate: DateTimeFilter
-  nationalId: StringFilter
-  familyCardNumber: StringFilter
-  taxId: StringNullableFilter
-  isActive: BoolFilter
-  status: EnumParticipantStatusFilter
-  relationId: StringNullableFilter
-  bankAccountId: IntFilter
-  user: UserRelationFilter
-  relation: ParticipantNullableRelationFilter
-  bankAccount: BankAccountNullableRelationFilter
-  claims: ClaimListRelationFilter
-  employments: EmploymentListRelationFilter
-  contactInfos: ContactInfoListRelationFilter
-  programParticipations: ProgramParticipationListRelationFilter
-  balances: AccountListRelationFilter
-  Participant: ParticipantListRelationFilter
 }
 
 input ClaimProcessCreateNestedOneWithoutClaimInput {
@@ -4591,25 +4577,6 @@ input ClaimStatusCreateOrConnectWithoutGuaranteeLetterInput {
   create: ClaimStatusCreateWithoutGuaranteeLetterInput!
 }
 
-input ClaimStatusWhereUniqueInput {
-  id: Int
-  rejectionLetterId: String
-  guaranteeLetterId: String
-  AND: [ClaimStatusWhereInput!]
-  OR: [ClaimStatusWhereInput!]
-  NOT: [ClaimStatusWhereInput!]
-  description: StringNullableFilter
-  rejectionReason: StringNullableFilter
-  createdAt: DateTimeFilter
-  status: EnumClaimStatusTypeFilter
-  createById: StringFilter
-  claimId: StringFilter
-  createBy: UserRelationFilter
-  claim: ClaimRelationFilter
-  rejectionLetter: DocumentNullableRelationFilter
-  guaranteeLetter: DocumentNullableRelationFilter
-}
-
 input ClaimProcessCreateNestedOneWithoutDocumentsInput {
   create: ClaimProcessCreateWithoutDocumentsInput
   connectOrCreate: ClaimProcessCreateOrConnectWithoutDocumentsInput
@@ -4951,6 +4918,31 @@ input ParticipantCreateWithoutRelationInput {
 input ParticipantCreateOrConnectWithoutRelationInput {
   where: ParticipantWhereUniqueInput!
   create: ParticipantCreateWithoutRelationInput!
+}
+
+input ParticipantWhereUniqueInput {
+  userId: String
+  AND: [ParticipantWhereInput!]
+  OR: [ParticipantWhereInput!]
+  NOT: [ParticipantWhereInput!]
+  gender: EnumGenderFilter
+  birthDate: DateTimeFilter
+  nationalId: StringFilter
+  familyCardNumber: StringFilter
+  taxId: StringNullableFilter
+  isActive: BoolFilter
+  status: EnumParticipantStatusFilter
+  relationId: StringNullableFilter
+  bankAccountId: IntFilter
+  user: UserRelationFilter
+  relation: ParticipantNullableRelationFilter
+  bankAccount: BankAccountNullableRelationFilter
+  claims: ClaimListRelationFilter
+  employments: EmploymentListRelationFilter
+  contactInfos: ContactInfoListRelationFilter
+  programParticipations: ProgramParticipationListRelationFilter
+  balances: AccountListRelationFilter
+  Participant: ParticipantListRelationFilter
 }
 
 input ParticipantCreateManyRelationInputEnvelope {
@@ -5368,6 +5360,83 @@ input RoleCreateOrConnectWithoutUsersInput {
 input UserCreateOrConnectWithoutParticipantInput {
   where: UserWhereUniqueInput!
   create: UserCreateWithoutParticipantInput!
+}
+
+input ParticipantCreateOrConnectWithoutClaimsInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutClaimsInput!
+}
+
+input ClaimUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  channel: EnumClaimChannelFieldUpdateOperationsInput
+  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
+  company: CompanyUpdateOneRequiredWithoutClaimsNestedInput
+  participant: ParticipantUpdateOneRequiredWithoutClaimsNestedInput
+  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
+  claimProcesses: ClaimProcessUpdateOneRequiredWithoutClaimNestedInput
+  disease: DiseaseUpdateOneWithoutClaimsNestedInput
+  clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
+  inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
+  claimTypes: ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput
+  tags: TagUpdateManyWithoutClaimsNestedInput
+  claimStatuses: ClaimStatusUpdateManyWithoutClaimNestedInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input NullableDateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input EnumClaimChannelFieldUpdateOperationsInput {
+  set: ClaimChannel
+}
+
+input EnumAdmedicaStatusFieldUpdateOperationsInput {
+  set: AdmedicaStatus
+}
+
+input CompanyUpdateOneRequiredWithoutClaimsNestedInput {
+  create: CompanyCreateWithoutClaimsInput
+  connectOrCreate: CompanyCreateOrConnectWithoutClaimsInput
+  upsert: CompanyUpsertWithoutClaimsInput
+  connect: CompanyWhereUniqueInput
+  update: CompanyUpdateToOneWithWhereWithoutClaimsInput
+}
+
+input CompanyUpsertWithoutClaimsInput {
+  update: CompanyUpdateWithoutClaimsInput!
+  create: CompanyCreateWithoutClaimsInput!
+  where: CompanyWhereInput
+}
+
+input CompanyUpdateWithoutClaimsInput {
+  name: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input CompanyUpdateToOneWithWhereWithoutClaimsInput {
+  where: CompanyWhereInput
+  data: CompanyUpdateWithoutClaimsInput!
+}
+
+input ParticipantUpdateOneRequiredWithoutClaimsNestedInput {
+  create: ParticipantCreateWithoutClaimsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
+  upsert: ParticipantUpsertWithoutClaimsInput
+  connect: ParticipantWhereUniqueInput
+  update: ParticipantUpdateToOneWithWhereWithoutClaimsInput
 }
 
 input ParticipantUpsertWithoutClaimsInput {

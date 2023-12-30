@@ -7,6 +7,7 @@ import {
   Claim,
   FindUniqueClaimArgs,
   UpdateOneClaimArgs,
+  CreateOneClaimArgs,
 } from 'src/@generated';
 import { ClaimController } from './claim.controller';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
@@ -24,6 +25,21 @@ export class ClaimResolver {
   constructor(
     private readonly claimController: ClaimController,
   ) {}
+
+  @Mutation(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimCreateOne(
+    @Args()
+    claimCreateArgs: CreateOneClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ): Promise<Claim | void> {
+    return await this.claimController.createOne({
+      ...claimCreateArgs,
+      select: relations.select,
+    });
+  }
 
   @Query(() => Claim, {
     nullable: true,

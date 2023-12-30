@@ -9,7 +9,12 @@ import { DefaultArgs } from '@prisma/client/runtime/library';
 export class FakeClaimStatusController implements ClaimStatusController {
   private claimStatuss: ClaimStatus[] = [];
 
-  constructor() {}
+  constructor() {
+    const initial = 100;
+    for (let i = 0; i < initial; i++) {
+      this.claimStatuss.push(fakeClaimStatusComplete());
+    }
+  }
 
   async createOne(claimStatusCreateArgs: Prisma.ClaimStatusCreateArgs): Promise<ClaimStatus> {
     const fake = fakeClaimStatusComplete()
