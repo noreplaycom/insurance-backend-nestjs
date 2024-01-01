@@ -39,13 +39,9 @@ export class UploaderResolver {
       stream.on('error', reject);
     });
     const result = Buffer.concat(chunks);
-    // const base64 = result.toString('base64');
-    // const fileDestination = process.cwd() + '/upload-result/' + file.filename
-    // await writeFile(fileDestination, buffer);
-    // console.log('length: ', base64.length)
     const workbook = (read(result))
+    console.log(workbook.SheetNames)
     const sheet = workbook.Sheets['Sheet 1']
-    // console.log(sheet['Sheet 1'])
     console.log(utils.sheet_to_json(sheet))
     return 'success'
   }
