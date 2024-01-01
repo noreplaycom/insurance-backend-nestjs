@@ -25,4 +25,6 @@ export abstract class ParticipantController {
   abstract aggregate(participantAggregateArgs: Prisma.ParticipantAggregateArgs): Promise<Prisma.GetParticipantAggregateType<Prisma.ParticipantAggregateArgs>>;
 
   abstract count(participantCountArgs: Prisma.ParticipantCountArgs): Promise<number>;
+
+  abstract getParticipantStatuses(): Promise<string[]>;
 }

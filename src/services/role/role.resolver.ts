@@ -28,31 +28,31 @@ interface RoleSelect {
 export class RoleResolver {
   constructor(private readonly roleController: RoleController) {}
 
-  @Mutation(() => Role, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async roleCreateOne(
-    @Args()
-    roleCreateArgs: CreateOneRoleArgs,
-    @Relations() relations: RoleSelect,
-  ): Promise<Role | void> {
-    return await this.roleController.createOne({
-      ...roleCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Role, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async roleCreateOne(
+  //   @Args()
+  //   roleCreateArgs: CreateOneRoleArgs,
+  //   @Relations() relations: RoleSelect,
+  // ): Promise<Role | void> {
+  //   return await this.roleController.createOne({
+  //     ...roleCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => BatchPayload, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async roleCreateMany(
-    @Args()
-    createManyRoleArgs: CreateManyRoleArgs,
-  ) {
-    return await this.roleController.createMany(createManyRoleArgs);
-  }
+  // @Mutation(() => BatchPayload, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async roleCreateMany(
+  //   @Args()
+  //   createManyRoleArgs: CreateManyRoleArgs,
+  // ) {
+  //   return await this.roleController.createMany(createManyRoleArgs);
+  // }
 
   @Query(() => Role, {
     nullable: true,
@@ -69,92 +69,92 @@ export class RoleResolver {
     });
   }
 
-  @Query(() => [Role], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  roleFindMany(
-    @Args() roleFindManyArgs: FindManyRoleArgs,
-    @Relations() relations: RoleSelect,
-  ) {
-    return this.roleController.findMany({
-      ...roleFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [Role], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // roleFindMany(
+  //   @Args() roleFindManyArgs: FindManyRoleArgs,
+  //   @Relations() relations: RoleSelect,
+  // ) {
+  //   return this.roleController.findMany({
+  //     ...roleFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Query(() => Role, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  roleFindFirst(
-    @Args()
-    findFirstRoleArgs: FindFirstRoleArgs,
-    @Relations() relations: RoleSelect,
-  ): Promise<Role | void> {
-    return this.roleController.findFirst({
-      ...findFirstRoleArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => Role, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // roleFindFirst(
+  //   @Args()
+  //   findFirstRoleArgs: FindFirstRoleArgs,
+  //   @Relations() relations: RoleSelect,
+  // ): Promise<Role | void> {
+  //   return this.roleController.findFirst({
+  //     ...findFirstRoleArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Role, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async roleUpdateOne(
-    @Args() roleUpdateOneArgs: UpdateOneRoleArgs,
-    @Relations() relations: RoleSelect,
-  ) {
-    return this.roleController.updateOne({
-      ...replaceNullWithUndefined(roleUpdateOneArgs),
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Role, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async roleUpdateOne(
+  //   @Args() roleUpdateOneArgs: UpdateOneRoleArgs,
+  //   @Relations() relations: RoleSelect,
+  // ) {
+  //   return this.roleController.updateOne({
+  //     ...replaceNullWithUndefined(roleUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Role, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async roleUpdateMany(@Args() updateManyRoleArgs: UpdateManyRoleArgs) {
-    return this.roleController.updateMany(updateManyRoleArgs);
-  }
+  // @Mutation(() => Role, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async roleUpdateMany(@Args() updateManyRoleArgs: UpdateManyRoleArgs) {
+  //   return this.roleController.updateMany(updateManyRoleArgs);
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async roleDelete(
-    @Args() deleteOneRoleArgs: DeleteOneRoleArgs,
-    @Relations() relations: RoleSelect,
-  ) {
-    return this.roleController.delete({
-      ...deleteOneRoleArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async roleDelete(
+  //   @Args() deleteOneRoleArgs: DeleteOneRoleArgs,
+  //   @Relations() relations: RoleSelect,
+  // ) {
+  //   return this.roleController.delete({
+  //     ...deleteOneRoleArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async roleDeleteMany(@Args() deleteManyRoleArgs: DeleteManyRoleArgs) {
-    return this.roleController.deleteMany(deleteManyRoleArgs);
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async roleDeleteMany(@Args() deleteManyRoleArgs: DeleteManyRoleArgs) {
+  //   return this.roleController.deleteMany(deleteManyRoleArgs);
+  // }
 
-  @Query(() => AggregateRole, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  roleAggregate(@Args() roleAggregateArgs: RoleAggregateArgs) {
-    return this.roleController.aggregate(roleAggregateArgs);
-  }
+  // @Query(() => AggregateRole, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // roleAggregate(@Args() roleAggregateArgs: RoleAggregateArgs) {
+  //   return this.roleController.aggregate(roleAggregateArgs);
+  // }
 
-  @Query(() => Float, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  roleCount(@Args() roleCountAggregateInput: FindManyRoleArgs) {
-    return this.roleController.count(roleCountAggregateInput);
-  }
+  // @Query(() => Float, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // roleCount(@Args() roleCountAggregateInput: FindManyRoleArgs) {
+  //   return this.roleController.count(roleCountAggregateInput);
+  // }
 }

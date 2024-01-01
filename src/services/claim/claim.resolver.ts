@@ -5,23 +5,58 @@ import { Relations } from 'src/utils/relations.decorator';
 import {
   FindManyClaimArgs,
   Claim,
-  Company,
+  FindUniqueClaimArgs,
+  UpdateOneClaimArgs,
+  CreateOneClaimArgs,
 } from 'src/@generated';
 import { ClaimController } from './claim.controller';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
 import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/guard/auth.guard';
 
 interface ClaimSelect {
   select: Prisma.ClaimSelect;
 }
 
+// @UseGuards(AuthGuard)
 @Resolver(() => Claim)
 export class ClaimResolver {
   constructor(
     private readonly claimController: ClaimController,
   ) {}
+
+  @Mutation(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimCreateOne(
+    @Args()
+    claimCreateArgs: CreateOneClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ): Promise<Claim | void> {
+    return await this.claimController.createOne({
+      ...claimCreateArgs,
+      select: relations.select,
+    });
+  }
+
+  @Query(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimFindOne(
+    @Args() claimFindUniqueArgs: FindUniqueClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ) {
+    return this.claimController.findOne({
+      ...claimFindUniqueArgs,
+      select: relations.select,
+    });
+  }
 
   @Query(() => [Claim], {
     nullable: true,
@@ -36,14 +71,19 @@ export class ClaimResolver {
       select: relations.select,
     });
   }
-
-  @ResolveField(() => Company, { nullable: true })
-  async company(@Parent() claim: Claim): Promise<Company> {
-    const selectedClaim = await this.claimController.findOne({
-      where: { id: claim.id },
-      select: { company: true }
-    })
-    return selectedClaim.company || null;
+  
+  @Mutation(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimUpdateOne(
+    @Args() claimUpdateOneArgs: UpdateOneClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ) {
+    return this.claimController.updateOne({
+      ...replaceNullWithUndefined(claimUpdateOneArgs),
+      select: relations.select,
+    });
   }
 
   @Query(() => Float, {
@@ -96,5 +136,13 @@ export class ClaimResolver {
     claimCountTotalPercentageVsCustomPeriod: ClaimCountTotalPercentageVsCustomPeriodArgs
   ) {
     return this.claimController.countTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriod);
+  }
+  
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  getClaimChannels() {
+    return this.claimController.getClaimChannels();
   }
 }

@@ -25,4 +25,6 @@ export abstract class ClaimStatusController {
   abstract aggregate(claimStatusAggregateArgs: Prisma.ClaimStatusAggregateArgs): Promise<Prisma.GetClaimStatusAggregateType<Prisma.ClaimStatusAggregateArgs>>;
 
   abstract count(claimStatusCountArgs: Prisma.ClaimStatusCountArgs): Promise<number>;
+
+  abstract getClaimStatusTypes(claimStatusCountArgs: Prisma.ClaimStatusCountArgs): Promise<string[]>;
 }
