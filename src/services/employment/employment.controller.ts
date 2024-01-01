@@ -25,4 +25,6 @@ export abstract class EmploymentController {
   abstract aggregate(employmentAggregateArgs: Prisma.EmploymentAggregateArgs): Promise<Prisma.GetEmploymentAggregateType<Prisma.EmploymentAggregateArgs>>;
 
   abstract count(employmentCountArgs: Prisma.EmploymentCountArgs): Promise<number>;
+  
+  abstract getEmploymentPosition(): Promise<string[]>;
 }

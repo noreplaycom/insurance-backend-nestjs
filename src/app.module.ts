@@ -34,6 +34,8 @@ import { RegionModule } from './services/region/region.module';
 import { RoleModule } from './services/role/role.module';
 import { RolePermissionModule } from './services/role-permission/role-permission.module';
 import { TagModule } from './services/tag/tag.module';
+import { JwtModule } from '@nestjs/jwt';
+import { UploaderModule } from './services/uploader/uploader.module';
 // import { DashboardModule } from './services/Dashboard/dashboard.module';
 // import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
 // import { UploaderModule } from './services/uploader/uploader.module';
@@ -44,11 +46,37 @@ import { TagModule } from './services/tag/tag.module';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.graphql'),
-      playground: false,
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      useFactory: () => {
+        return {
+          autoSchemaFile: join(process.cwd(), 'graphql/schema.gql'),
+          playground: false,
+          plugins: [ApolloServerPluginLandingPageLocalDefault()],
+          formatError: (error) => {
+            const originalError = error.extensions?.originalError as any;
+            if (!originalError) {
+              return {
+                message: error.message,
+                code: error.extensions?.code,
+              };
+            }
+            return {
+              message: originalError.message,
+              code: error.extensions?.code,
+            };
+          }
+        }
+      }
+    }),
+    JwtModule.registerAsync({
+      global: true,
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        return {
+          secret: config.get('ENCRYPTION_TOKEN')
+        }
+      },
     }),
     //for Queue
     BullModule.forRootAsync({
@@ -77,7 +105,7 @@ import { TagModule } from './services/tag/tag.module';
     // CityModule,
     ClaimModule,
     // ClaimProcessModule,
-    // ClaimStatusModule,
+    ClaimStatusModule,
     // ClaimTypeModule,
     // ClinicModule,
     // CompanyModule,
@@ -86,19 +114,20 @@ import { TagModule } from './services/tag/tag.module';
     // DiseaseClusterModule,
     // DiseaseGroupModule,
     // DocumentModule,
-    // EmploymentModule,
+    EmploymentModule,
     // GroupModule,
-    // ParticipantModule,
-    // ProgramModule,
+    ParticipantModule,
+    ProgramModule,
     // ProgramParticipationModule,
-    // RegionModule,
-    // RoleModule,
-    // RolePermissionModule,
-    // TagModule,
+    RegionModule,
+    RoleModule,
+    RolePermissionModule,
+    TagModule,
     // TransactionModule,
-    // UserModule,
+    UserModule,
     // DashboardModule,
     // ClaimManagementModule,
+    UploaderModule,
   ],
   controllers: [],
   providers: [

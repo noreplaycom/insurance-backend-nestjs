@@ -37,4 +37,6 @@ export abstract class ClaimController {
   abstract countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodQuery): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery>;
   
   abstract countTotalPercentageVsCustomPeriod(args: ClaimCountTotalPercentageVsCustomPeriodArgs): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery>;
+  
+  abstract getClaimChannels(): Promise<string[]>;
 }

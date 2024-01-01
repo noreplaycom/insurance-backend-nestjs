@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ClaimService } from './claim.service';
 import { ClaimController } from './claim.controller';
-import { Claim } from 'src/@generated';
+import { Claim, ClaimChannel } from 'src/@generated';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
 import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
@@ -81,5 +81,9 @@ export class PrismaClaimController implements ClaimController {
       period: args.period,
       percentage: Math.random() * 20
     };
+  }
+
+  async getClaimChannels(): Promise<string[]> {
+    return Object.keys(ClaimChannel);
   }
 }

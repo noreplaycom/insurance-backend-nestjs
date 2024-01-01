@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ProgramService } from './program.service';
 import { ProgramController } from './program.controller';
-import { Program } from 'src/@generated';
+import { ApplicationType, Class, Program } from 'src/@generated';
 
 @Injectable()
 export class PrismaProgramController implements ProgramController {
@@ -50,5 +50,13 @@ export class PrismaProgramController implements ProgramController {
 
   async count(programCountArgs: Prisma.ProgramCountArgs): Promise<number> {
     return await this.programService.count(programCountArgs);
+  }
+
+  async getClassesProgram(): Promise<string[]> {
+    return Object.keys(Class);
+  }
+
+  async getApplicationTypesProgram(): Promise<string[]> {
+    return Object.keys(ApplicationType);
   }
 }

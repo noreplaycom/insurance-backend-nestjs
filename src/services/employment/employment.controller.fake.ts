@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { EmploymentController } from './employment.controller';
-import { Employment } from 'src/@generated';
+import { Employment, Position } from 'src/@generated';
 import { fakeEmploymentComplete } from '../../../prisma/fake-data';
 
 @Injectable()
@@ -78,5 +78,9 @@ export class FakeEmploymentController implements EmploymentController {
 
   async count(employmentCountArgs: Prisma.EmploymentCountArgs): Promise<number> {
     return this.employments.length;
+  }
+
+  async getEmploymentPosition(): Promise<string[]> {
+    return Object.keys(Position);
   }
 }

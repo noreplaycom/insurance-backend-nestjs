@@ -3527,6 +3527,11 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   userDeleteOne(where: UserWhereUniqueInput!): Boolean!
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  uploadSingleFile(file: Upload): String
 }
 
 input ClaimCreateInput {
@@ -7857,3 +7862,6 @@ input UserCreateInput {
   claimsInput: ClaimCreateNestedManyWithoutInputedByInput
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
