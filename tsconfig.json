@@ -20,9 +20,9 @@
   },
   "include": ["src"],
   "exclude": [
-    "prisma/template/**",
-    "prisma/seed-functions/**",
-    "prisma/fake-data.ts",
-    "prisma/seed.ts"
+    // "prisma/template/**",
+    // "prisma/seed-functions/**",
+    // "prisma/fake-data.ts",
+    // "prisma/seed.ts"
   ]
 }
