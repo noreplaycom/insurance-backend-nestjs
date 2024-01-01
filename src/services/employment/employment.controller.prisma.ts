@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { EmploymentService } from './employment.service';
 import { EmploymentController } from './employment.controller';
-import { Employment } from 'src/@generated';
+import { Employment, Position } from 'src/@generated';
 
 @Injectable()
 export class PrismaEmploymentController implements EmploymentController {
@@ -53,6 +53,6 @@ export class PrismaEmploymentController implements EmploymentController {
   }
 
   async getEmploymentPosition(): Promise<string[]> {
-    return [];
+    return Object.keys(Position);
   }
 }

@@ -21,10 +21,7 @@ export function fakeUserComplete() {
     email: faker.internet.email(),
     emailVerifiedAt: undefined,
     password: faker.lorem.words(5),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     roleId: faker.datatype.number(),
@@ -93,10 +90,7 @@ export function fakeContactInfoComplete() {
   return {
     id: faker.datatype.number(),
     telp: faker.lorem.words(5),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     participantId: faker.datatype.uuid(),
@@ -127,10 +121,7 @@ export function fakeCityComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -173,10 +164,7 @@ export function fakeBranchComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -190,10 +178,7 @@ export function fakeGroupComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -207,10 +192,7 @@ export function fakeRegionComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -248,10 +230,7 @@ export function fakeProgramComplete() {
   return {
     id: faker.datatype.number(),
     plan: faker.helpers.arrayElement([ApplicationType.SANTUNAN_HARIAN_RAWAT_INAP, ApplicationType.BANTUAN_BIAYA_CUCI_DARAH, ApplicationType.BANTUAN_KURSI_RODA, ApplicationType.BANTUAN_WALKER, ApplicationType.BANTUAN_IGD_UGD, ApplicationType.BANTUAN_RAWAT_INAP] as const),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     allowanceCeiling: faker.datatype.float(),
@@ -270,10 +249,7 @@ export function fakeClaim() {
 export function fakeClaimComplete() {
   return {
     id: faker.datatype.uuid(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     channel: faker.helpers.arrayElement([ClaimChannel.REGULER, ClaimChannel.WA, ClaimChannel.EMAIL] as const),
@@ -306,10 +282,7 @@ export function fakeDocumentComplete() {
     path: faker.lorem.words(5),
     size: faker.datatype.number(),
     printCount: faker.datatype.number(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     source: faker.helpers.arrayElement([DocumentSource.UPLOADED, DocumentSource.GENERATED] as const),
     type: faker.helpers.arrayElement([DocumentType.INVOICE, DocumentType.CLAIM_FORM, DocumentType.REJECTION_LETTER, DocumentType.GUARANTEE_LETTER, DocumentType.RECAP, DocumentType.EXPEDITION, DocumentType.TRANSFER] as const),
@@ -328,10 +301,7 @@ export function fakeTagComplete() {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
     color: faker.helpers.arrayElement([Color.WHITE, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN] as const),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -345,10 +315,7 @@ export function fakeCompanyComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -435,10 +402,7 @@ export function fakeClaimStatusComplete() {
     id: faker.datatype.number(),
     description: undefined,
     rejectionReason: undefined,
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     status: faker.helpers.arrayElement([ClaimStatusType.DOCUMENT, ClaimStatusType.PENDING, ClaimStatusType.APPROVED, ClaimStatusType.REJECTED, ClaimStatusType.RELEASE, ClaimStatusType.PAID, ClaimStatusType.COMPLETED, ClaimStatusType.CANCELLED, ClaimStatusType.REOPEN] as const),
     createById: faker.datatype.uuid(),
     claimId: faker.datatype.uuid(),
@@ -458,10 +422,7 @@ export function fakeDiseaseComplete() {
     id: faker.datatype.number(),
     code: faker.lorem.words(5),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     groupId: faker.datatype.number(),
   };
@@ -476,10 +437,7 @@ export function fakeDiseaseGroupComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     diseaseClusterId: faker.datatype.number(),
   };
@@ -494,10 +452,7 @@ export function fakeDiseaseClusterComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -513,10 +468,7 @@ export function fakeClinicComplete() {
     id: faker.datatype.number(),
     code: faker.lorem.words(5),
     name: faker.name.fullName(),
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -547,10 +499,7 @@ export function fakeTransactionComplete() {
     amount: faker.datatype.float(),
     transactionType: faker.helpers.arrayElement([TransactionType.CREDIT, TransactionType.DEBIT] as const),
     description: undefined,
-    createdAt: faker.datatype.datetime({
-      max: Math.floor(new Date('2024-12-31').getTime()),
-      min: Math.floor(new Date('2023-01-01').getTime()),
-    }),
+    createdAt: new Date(),
     accountId: faker.datatype.number(),
   };
 }

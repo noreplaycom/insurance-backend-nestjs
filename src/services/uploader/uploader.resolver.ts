@@ -1,27 +1,52 @@
-// import { Mutation, Resolver } from '@nestjs/graphql';
-// import { GraphQLUpload } from 'graphql-upload';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
+import { writeFile } from 'fs/promises';
+import { read, utils } from 'xlsx';
 
-// @Resolver()
-// export class UploaderResolver {
-//   @Mutation(() => String, {
-//     nullable: true,
-//     description:
-//       'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
-//   })
-//   async uploadSingleFile(
-//     @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
-//     file: FileUpload,
-//     @Args('userId', { type: () => String, nullable: false }) userId: string,
-//     @Args('ratioForImage', { type: () => RatioEnum, nullable: true })
-//     ratioForImage?: RatioEnum,
-//   ) {
-//     //validate user id
-//     await this.validateUserId(userId);
+@Resolver()
+export class UploaderResolver {
+  @Mutation(() => String, {
+    nullable: true,
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async uploadSingleFile(
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+    // @Args('userId', { type: () => String, nullable: false }) userId: string,
+    // @Args('ratioForImage', { type: () => RatioEnum, nullable: true }) ratioForImage?: RatioEnum,
+  ) {
+    //validate user id
+    // await this.validateUserId(userId);
 
-//     return await this.uploaderService.uploadSingleFile({
-//       userId: userId,
-//       ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
-//       file: file,
-//     });
-//   }
-// }
+    // return await this.uploaderService.uploadSingleFile({
+    //   userId: userId,
+    //   ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
+    //   file: file,
+    // });
+    const { createReadStream } = file;
+    const stream = createReadStream();
+    const chunks = [];
+    await new Promise<Buffer>((resolve, reject) => {
+      let buffer: Buffer;
+      stream.on('data', function (chunk: any) {
+        chunks.push(chunk);
+      });
+      stream.on('end', function () {
+        buffer = Buffer.concat(chunks);
+        resolve(buffer);
+      });
+      stream.on('error', reject);
+    });
+    const result = Buffer.concat(chunks);
+    // const base64 = result.toString('base64');
+    // const fileDestination = process.cwd() + '/upload-result/' + file.filename
+    // await writeFile(fileDestination, buffer);
+    // console.log('length: ', base64.length)
+    const workbook = (read(result))
+    const sheet = workbook.Sheets['Sheet 1']
+    // console.log(sheet['Sheet 1'])
+    console.log(utils.sheet_to_json(sheet))
+    return 'success'
+  }
+}

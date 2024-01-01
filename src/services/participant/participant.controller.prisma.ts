@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ParticipantService } from './participant.service';
 import { ParticipantController } from './participant.controller';
-import { Participant } from 'src/@generated';
+import { Participant, ParticipantStatus } from 'src/@generated';
 
 @Injectable()
 export class PrismaParticipantController implements ParticipantController {
@@ -53,6 +53,6 @@ export class PrismaParticipantController implements ParticipantController {
   }
 
   async getParticipantStatuses(): Promise<string[]> {
-    return [];
+    return Object.keys(ParticipantStatus);
   }
 }
