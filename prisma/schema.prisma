@@ -79,6 +79,8 @@ model Role {
 
     description String?
 
+    order Int
+
     higherLevelThan Role? @relation("level", fields: [higherLevelThanId], references: [id])
 
     higherLevelThanId Int?
@@ -95,8 +97,11 @@ model Role {
 }
 
 model RolePermission {
+    //-------------------------- scalars --------------------------------
     roleId Int
-    role   Role @relation(fields: [roleId], references: [id])
+
+    //-------------------------- 1 relations --------------------------------
+    role Role @relation(fields: [roleId], references: [id])
 
     permission Permission
 
@@ -131,13 +136,13 @@ model Participant {
     // age Int //tidak perlu disimpan ke db
 
     ///Nomer Kartu tanda Penduduk
-    nationalId String
+    // nationalId String
 
-    ///Nomer kartu Keluarga
-    familyCardNumber String
+    // ///Nomer kartu Keluarga
+    // familyCardNumber String
 
-    ///Nomer NPWP
-    taxId String?
+    // ///Nomer NPWP
+    // taxId String?
 
     ///Aktif/Non Aktif:	Status Kepesertaan Aktif/non aktif
     isActive Boolean
@@ -534,6 +539,12 @@ model Document {
 
     guaranteeLetterOf ClaimStatus? @relation("guaranteeLetter")
 
+    ///Surat transaksi
+    transactionLetterOf ClaimStatus? @relation("transactionLetter")
+
+    ///Perintah Pembukuan
+    bookKeepingOrderOf ClaimStatus? @relation("bookKeepingOrder")
+
     claimProcess ClaimProcess? @relation(fields: [claimProcessId], references: [id])
 
     claimProcessId Int?
@@ -609,10 +620,6 @@ model ClaimType {
     ///Plan	Plan = jenis Rawat inap atau disingkat RI
     plan String
 
-    claimPeriod Int
-
-    conditions String
-
     //-------------------------- 1 relations --------------------------------
 
     program Program @relation(fields: [programId], references: [id])
@@ -671,6 +678,10 @@ model ClaimFinancial {
 
     ///Cabang: Cabang Pembayar Pensiun
     branchId Int
+
+    claimStatus ClaimStatus @relation(fields: [claimStatusId], references: [id])
+
+    claimStatusId Int @unique
 }
 
 model ClaimProcess {
@@ -747,6 +758,17 @@ model ClaimStatus {
     ///No SurJam:	Nomer Surat jaminan
     //Tanggal Surjam:	Tanggal Surat Jaminan
     guaranteeLetterId String? @unique
+
+    transactionLetter Document? @relation("transactionLetter", fields: [transactionLetterId], references: [id])
+
+    transactionLetterId String? @unique
+
+    //Perintah Pembukuan
+    bookKeepingOrder Document? @relation("bookKeepingOrder", fields: [bookKeepingOrderId], references: [id])
+
+    bookKeepingOrderId String? @unique
+
+    claimFinancial ClaimFinancial?
 }
 
 model Disease {
