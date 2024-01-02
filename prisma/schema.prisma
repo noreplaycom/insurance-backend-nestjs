@@ -787,50 +787,50 @@ model Disease {
 
     //-------------------------- 1 relations --------------------------------
 
-    group DiseaseGroup @relation(fields: [groupId], references: [id])
+    // group DiseaseGroup @relation(fields: [groupId], references: [id])
 
-    groupId Int @unique
+    // groupId Int @unique
 
     //-------------------------- m relations --------------------------------
 
     claims Claim[]
 }
 
-model DiseaseGroup {
-    //-------------------------- scalars --------------------------------
-    id Int @id @default(autoincrement())
+// model DiseaseGroup {
+//     //-------------------------- scalars --------------------------------
+//     id Int @id @default(autoincrement())
 
-    name String
+//     name String
 
-    createdAt DateTime @default(now())
+//     createdAt DateTime @default(now())
 
-    updatedAt DateTime @updatedAt
+//     updatedAt DateTime @updatedAt
 
-    //-------------------------- 1 relations --------------------------------
+//     //-------------------------- 1 relations --------------------------------
 
-    DiseaseCluster DiseaseCluster @relation(fields: [diseaseClusterId], references: [id])
+//     DiseaseCluster DiseaseCluster @relation(fields: [diseaseClusterId], references: [id])
 
-    diseaseClusterId Int
+//     diseaseClusterId Int
 
-    //-------------------------- m relations --------------------------------
+//     //-------------------------- m relations --------------------------------
 
-    disease Disease[]
-}
+//     disease Disease[]
+// }
 
-model DiseaseCluster {
-    //-------------------------- scalars --------------------------------
-    id Int @id @default(autoincrement())
+// model DiseaseCluster {
+//     //-------------------------- scalars --------------------------------
+//     id Int @id @default(autoincrement())
 
-    name String
+//     name String
 
-    createdAt DateTime @default(now())
+//     createdAt DateTime @default(now())
 
-    updatedAt DateTime @updatedAt
+//     updatedAt DateTime @updatedAt
 
-    //-------------------------- m relations --------------------------------
+//     //-------------------------- m relations --------------------------------
 
-    diseaseGroups DiseaseGroup[]
-}
+//     diseaseGroups DiseaseGroup[]
+// }
 
 model Clinic {
     //-------------------------- scalars --------------------------------
@@ -893,9 +893,9 @@ model Transaction {
 }
 
 enum Gender {
+    UNKNOWN
     MALE
     FEMALE
-    UNKNOWN
 }
 
 enum ClaimStatusType {
