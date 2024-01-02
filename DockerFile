@@ -22,4 +22,4 @@ COPY . .
 # Set the development stage as the final stage
 FROM development AS final
 
-CMD ["npm", "start"]
+CMD ["npm", "start:dev"]

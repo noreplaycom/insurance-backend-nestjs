@@ -32,6 +32,7 @@ export function fakeRole() {
   return {
     name: faker.name.fullName(),
     description: undefined,
+    order: faker.datatype.number(),
   };
 }
 export function fakeRoleComplete() {
@@ -39,6 +40,7 @@ export function fakeRoleComplete() {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
     description: undefined,
+    order: faker.datatype.number(),
     higherLevelThanId: undefined,
   };
 }
@@ -55,11 +57,8 @@ export function fakeRolePermissionComplete() {
 }
 export function fakeParticipant() {
   return {
-    gender: faker.helpers.arrayElement([Gender.MALE, Gender.FEMALE, Gender.UNKNOWN] as const),
+    gender: faker.helpers.arrayElement([Gender.UNKNOWN, Gender.MALE, Gender.FEMALE] as const),
     birthDate: faker.datatype.datetime(),
-    nationalId: faker.lorem.words(5),
-    familyCardNumber: faker.lorem.words(5),
-    taxId: undefined,
     isActive: faker.datatype.boolean(),
     status: faker.helpers.arrayElement([ParticipantStatus.PENSIUNAN, ParticipantStatus.PASANGAN, ParticipantStatus.YATIM, ParticipantStatus.JANDADUDA6BULAN] as const),
     bankAccountId: faker.datatype.number(),
@@ -67,11 +66,8 @@ export function fakeParticipant() {
 }
 export function fakeParticipantComplete() {
   return {
-    gender: faker.helpers.arrayElement([Gender.MALE, Gender.FEMALE, Gender.UNKNOWN] as const),
+    gender: faker.helpers.arrayElement([Gender.UNKNOWN, Gender.MALE, Gender.FEMALE] as const),
     birthDate: faker.datatype.datetime(),
-    nationalId: faker.lorem.words(5),
-    familyCardNumber: faker.lorem.words(5),
-    taxId: undefined,
     isActive: faker.datatype.boolean(),
     status: faker.helpers.arrayElement([ParticipantStatus.PENSIUNAN, ParticipantStatus.PASANGAN, ParticipantStatus.YATIM, ParticipantStatus.JANDADUDA6BULAN] as const),
     userId: faker.datatype.uuid(),
@@ -324,8 +320,6 @@ export function fakeClaimType() {
     jenis: faker.lorem.words(5),
     jenisRI: faker.lorem.words(5),
     plan: faker.lorem.words(5),
-    claimPeriod: faker.datatype.number(),
-    conditions: faker.lorem.words(5),
     claimId: faker.datatype.number(),
   };
 }
@@ -335,8 +329,6 @@ export function fakeClaimTypeComplete() {
     jenis: faker.lorem.words(5),
     jenisRI: faker.lorem.words(5),
     plan: faker.lorem.words(5),
-    claimPeriod: faker.datatype.number(),
-    conditions: faker.lorem.words(5),
     programId: faker.datatype.number(),
     claimId: faker.datatype.number(),
   };
@@ -361,6 +353,7 @@ export function fakeClaimFinancialComplete() {
     transferDate: undefined,
     claimId: faker.lorem.words(5),
     branchId: faker.datatype.number(),
+    claimStatusId: faker.datatype.number(),
   };
 }
 export function fakeClaimProcess() {
@@ -408,6 +401,8 @@ export function fakeClaimStatusComplete() {
     claimId: faker.datatype.uuid(),
     rejectionLetterId: undefined,
     guaranteeLetterId: undefined,
+    transactionLetterId: undefined,
+    bookKeepingOrderId: undefined,
   };
 }
 export function fakeDisease() {
@@ -421,36 +416,6 @@ export function fakeDiseaseComplete() {
   return {
     id: faker.datatype.number(),
     code: faker.lorem.words(5),
-    name: faker.name.fullName(),
-    createdAt: new Date(),
-    updatedAt: faker.datatype.datetime(),
-    groupId: faker.datatype.number(),
-  };
-}
-export function fakeDiseaseGroup() {
-  return {
-    name: faker.name.fullName(),
-    updatedAt: faker.datatype.datetime(),
-  };
-}
-export function fakeDiseaseGroupComplete() {
-  return {
-    id: faker.datatype.number(),
-    name: faker.name.fullName(),
-    createdAt: new Date(),
-    updatedAt: faker.datatype.datetime(),
-    diseaseClusterId: faker.datatype.number(),
-  };
-}
-export function fakeDiseaseCluster() {
-  return {
-    name: faker.name.fullName(),
-    updatedAt: faker.datatype.datetime(),
-  };
-}
-export function fakeDiseaseClusterComplete() {
-  return {
-    id: faker.datatype.number(),
     name: faker.name.fullName(),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
