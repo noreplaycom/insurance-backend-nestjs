@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+
+  # mysql: 
+  #   image: mysql:latest
+  #   container_name: mysql
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #   restart: always
+  #   ports:
+  #     - "3306:3306"
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - nestjs-network
+
+  # nginx:
+  #   container_name: nginx
+  #   image: nginx:latest
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   restart: always
+  #   volumes:
+  #     - ./volume/nginx/conf/:/etc/nginx/conf.d/:ro
+  #     - ./volume/certbot/www:/var/www/certbot/:ro
+  #     - ./volume/certbot/conf/:/etc/nginx/ssl/:ro
+  #     - data-volume:/var/www/files:ro
+  #     - /usr/src/flutter/bangsatnyacintapertama-frontend/build/web:/usr/src/flutter/bangsatnyacintapertama-frontend/build/web:ro
+  #   networks:
+  #     - nestjs-network
+
+  # certbot:
+  #   container_name: certbot
+  #   image: certbot/certbot
+  #   volumes:
+  #     - ./volume/certbot/www/:/var/www/certbot/:rw
+  #     - ./volume/certbot/conf/:/etc/letsencrypt/:rw
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    ports:
+      - 9000:9000
+    restart: always
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - nestjs-network
+
+  graphql-backend:
+    container_name: graphql-backend
+    image: nestjs-api-dev:1.0.0
+    build:
+      context: .
+      dockerfile: ./DockerFile
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+      - "9229:9229"
+    networks:
+      - nestjs-network
+    volumes:
+      - data-volume:/usr/src/app
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - portainer
+      # - redis
+      # - mysql
+      # - nginx
+
+  # redis:
+  #   image: redis:latest
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - nestjs-network
+  #   restart: always
+
+networks:
+  nestjs-network:
+
+volumes:
+  data:
+  data-volume:
+  # mysql-data:
