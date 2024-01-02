@@ -42,6 +42,8 @@ model User {
 
     password String
 
+    profilePictureUrl String?
+
     /// @HideField({ output: false, input: true })
     ///Tgl.Masuk Peserta
     createdAt DateTime @default(now())
@@ -66,6 +68,10 @@ model User {
     claimsInput Claim[]
 
     claimActions ClaimStatus[]
+
+    announcementCreated Announcement[]
+
+    notification Notification[]
 
     @@map("users")
 }
@@ -360,6 +366,57 @@ model Region {
 
     //-------------------------- m relations --------------------------------
     employment Employment[]
+}
+
+model Announcement {
+    //-------------------------- scalars --------------------------------
+    id Int @id @default(autoincrement())
+
+    title String
+
+    content String
+
+    imageUrl String?
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
+
+    //-------------------------- 1 relations --------------------------------
+
+    createdBy User @relation(fields: [createdById], references: [id])
+
+    createdById String
+}
+
+model Notification {
+    //-------------------------- scalars --------------------------------
+
+    id Int @id @default(autoincrement())
+
+    /// @Validator.IsNotEmpty()
+    title String
+
+    subtitle String
+
+    /// @Validator.IsNotEmpty()
+    content String
+
+    createdAt DateTime @default(now())
+
+    isRead Boolean @default(false)
+
+    isCleared Boolean @default(false)
+
+    deepLink String?
+
+    fcmToken String?
+
+    //-------------------------- 1 relations --------------------------------
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    userId String
 }
 
 model ProgramParticipation {
