@@ -1924,6 +1924,9 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
+
+  """Deskripsinya ada disini loh"""
+  notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
 }
 
 input ClaimWhereUniqueInput {
@@ -3561,6 +3564,50 @@ enum UserScalarFieldEnum {
   participantId
 }
 
+input NotificationOrderByWithRelationInput {
+  id: SortOrder
+  title: SortOrder
+  subtitle: SortOrder
+  content: SortOrder
+  createdAt: SortOrder
+  isRead: SortOrder
+  isCleared: SortOrder
+  deepLink: SortOrderInput
+  fcmToken: SortOrderInput
+  userId: SortOrder
+  user: UserOrderByWithRelationInput
+}
+
+input NotificationWhereUniqueInput {
+  id: Int
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  title: StringFilter
+  subtitle: StringFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  isRead: BoolFilter
+  isCleared: BoolFilter
+  deepLink: StringNullableFilter
+  fcmToken: StringNullableFilter
+  userId: StringFilter
+  user: UserRelationFilter
+}
+
+enum NotificationScalarFieldEnum {
+  id
+  title
+  subtitle
+  content
+  createdAt
+  isRead
+  isCleared
+  deepLink
+  fcmToken
+  userId
+}
+
 type Mutation {
   """Deskripsinya ada disini loh"""
   claimCreateOne(data: ClaimCreateInput!): Claim
@@ -3576,6 +3623,12 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   userDeleteOne(where: UserWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  notificationUpdateOne(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+
+  """Deskripsinya ada disini loh"""
+  notificationUpdateMany(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): Notification
 
   """
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
@@ -5044,23 +5097,6 @@ input NotificationCreateWithoutUserInput {
 input NotificationCreateOrConnectWithoutUserInput {
   where: NotificationWhereUniqueInput!
   create: NotificationCreateWithoutUserInput!
-}
-
-input NotificationWhereUniqueInput {
-  id: Int
-  AND: [NotificationWhereInput!]
-  OR: [NotificationWhereInput!]
-  NOT: [NotificationWhereInput!]
-  title: StringFilter
-  subtitle: StringFilter
-  content: StringFilter
-  createdAt: DateTimeFilter
-  isRead: BoolFilter
-  isCleared: BoolFilter
-  deepLink: StringNullableFilter
-  fcmToken: StringNullableFilter
-  userId: StringFilter
-  user: UserRelationFilter
 }
 
 input NotificationCreateManyUserInputEnvelope {
@@ -8423,6 +8459,74 @@ input UserUpdateInput {
   claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
   announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
   notification: NotificationUpdateManyWithoutUserNestedInput
+}
+
+input NotificationUpdateInput {
+  title: StringFieldUpdateOperationsInput
+  subtitle: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  isRead: BoolFieldUpdateOperationsInput
+  isCleared: BoolFieldUpdateOperationsInput
+  deepLink: NullableStringFieldUpdateOperationsInput
+  fcmToken: NullableStringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutNotificationNestedInput
+}
+
+input UserUpdateOneRequiredWithoutNotificationNestedInput {
+  create: UserCreateWithoutNotificationInput
+  connectOrCreate: UserCreateOrConnectWithoutNotificationInput
+  upsert: UserUpsertWithoutNotificationInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateToOneWithWhereWithoutNotificationInput
+}
+
+input UserCreateWithoutNotificationInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput!
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+}
+
+input UserCreateOrConnectWithoutNotificationInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutNotificationInput!
+}
+
+input UserUpsertWithoutNotificationInput {
+  update: UserUpdateWithoutNotificationInput!
+  create: UserCreateWithoutNotificationInput!
+  where: UserWhereInput
+}
+
+input UserUpdateWithoutNotificationInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
+  role: RoleUpdateOneRequiredWithoutUsersNestedInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+}
+
+input UserUpdateToOneWithWhereWithoutNotificationInput {
+  where: UserWhereInput
+  data: UserUpdateWithoutNotificationInput!
 }
 
 """The `Upload` scalar type represents a file upload."""
