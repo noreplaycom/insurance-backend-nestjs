@@ -22,8 +22,6 @@ import { ClinicModule } from './services/clinic/clinic.module';
 import { CompanyModule } from './services/company/company.module';
 import { ContactInfoModule } from './services/contact-info/contact-info.module';
 import { DiseaseModule } from './services/disease/disease.module';
-import { DiseaseClusterModule } from './services/disease-cluster/disease-cluster.module';
-import { DiseaseGroupModule } from './services/disease-group/disease-group.module';
 import { DocumentModule } from './services/document/document.module';
 import { EmploymentModule } from './services/employment/employment.module';
 import { GroupModule } from './services/group/group.module';
@@ -65,17 +63,17 @@ import { UploaderModule } from './services/uploader/uploader.module';
               message: originalError.message,
               code: error.extensions?.code,
             };
-          }
-        }
-      }
+          },
+        };
+      },
     }),
     JwtModule.registerAsync({
       global: true,
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         return {
-          secret: config.get('ENCRYPTION_TOKEN')
-        }
+          secret: config.get('ENCRYPTION_TOKEN'),
+        };
       },
     }),
     //for Queue

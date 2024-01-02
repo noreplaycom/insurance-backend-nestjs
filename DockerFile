@@ -15,11 +15,11 @@ RUN npm install
 
 COPY . .
 
-# RUN npx prisma generate
+RUN npx prisma generate
 
 # RUN nest build
 
 # Set the development stage as the final stage
 FROM development AS final
 
-CMD ["npm", "start:dev"]
+CMD ["npm", "run", "start:dev"]
