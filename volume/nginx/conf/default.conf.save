@@ -1,0 +1,50 @@
+upstream portainer {
+	server 127.0.0.1:9443;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name bangsatnyacintapertama.com www.bangsatnyacintapertama.com;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name bangsatnyacintapertama.com www.bangsatnyacintapertama.com;
+
+    ssl_certificate /etc/nginx/ssl/live/bangsatnyacintapertama.com/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/bangsatnyacintapertama.com/privkey.pem;
+
+    # Other SSL configuration options go here
+
+    location / {
+        # Your HTTPS-specific configuration
+    }
+
+    location /portainer {
+        proxy_pass http://webserver:9443;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name portainer.bangsatnyacintapertama.com;
+
+    location / {
+        proxy_pass http://webserver:9443;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}

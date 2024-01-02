@@ -15,28 +15,27 @@ services:
   #   networks:
   #     - nestjs-network
 
-  # nginx:
-  #   container_name: nginx
-  #   image: nginx:latest
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   restart: always
-  #   volumes:
-  #     - ./volume/nginx/conf/:/etc/nginx/conf.d/:ro
-  #     - ./volume/certbot/www:/var/www/certbot/:ro
-  #     - ./volume/certbot/conf/:/etc/nginx/ssl/:ro
-  #     - data-volume:/var/www/files:ro
-  #     - /usr/src/flutter/bangsatnyacintapertama-frontend/build/web:/usr/src/flutter/bangsatnyacintapertama-frontend/build/web:ro
-  #   networks:
-  #     - nestjs-network
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./volume/nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./volume/certbot/www:/var/www/certbot/:ro
+      - ./volume/certbot/conf/:/etc/nginx/ssl/:ro
+      - data-volume:/var/www/files:ro
+    networks:
+      - nestjs-network
 
-  # certbot:
-  #   container_name: certbot
-  #   image: certbot/certbot
-  #   volumes:
-  #     - ./volume/certbot/www/:/var/www/certbot/:rw
-  #     - ./volume/certbot/conf/:/etc/letsencrypt/:rw
+  certbot:
+    container_name: certbot
+    image: certbot/certbot
+    volumes:
+      - ./volume/certbot/www/:/var/www/certbot/:rw
+      - ./volume/certbot/conf/:/etc/letsencrypt/:rw
 
   portainer:
     container_name: portainer
