@@ -9,6 +9,7 @@ export function fakeUser() {
     email: faker.internet.email(),
     emailVerifiedAt: undefined,
     password: faker.lorem.words(5),
+    profilePictureUrl: undefined,
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     participantId: undefined,
@@ -21,6 +22,7 @@ export function fakeUserComplete() {
     email: faker.internet.email(),
     emailVerifiedAt: undefined,
     password: faker.lorem.words(5),
+    profilePictureUrl: undefined,
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
@@ -190,6 +192,48 @@ export function fakeRegionComplete() {
     name: faker.name.fullName(),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
+  };
+}
+export function fakeAnnouncement() {
+  return {
+    title: faker.lorem.words(5),
+    content: faker.lorem.words(5),
+    imageUrl: undefined,
+    updatedAt: faker.datatype.datetime(),
+  };
+}
+export function fakeAnnouncementComplete() {
+  return {
+    id: faker.datatype.number(),
+    title: faker.lorem.words(5),
+    content: faker.lorem.words(5),
+    imageUrl: undefined,
+    createdAt: new Date(),
+    updatedAt: faker.datatype.datetime(),
+    createdById: faker.datatype.uuid(),
+  };
+}
+export function fakeNotification() {
+  return {
+    title: faker.lorem.words(5),
+    subtitle: faker.lorem.words(5),
+    content: faker.lorem.words(5),
+    deepLink: undefined,
+    fcmToken: undefined,
+  };
+}
+export function fakeNotificationComplete() {
+  return {
+    id: faker.datatype.number(),
+    title: faker.lorem.words(5),
+    subtitle: faker.lorem.words(5),
+    content: faker.lorem.words(5),
+    createdAt: new Date(),
+    isRead: false,
+    isCleared: false,
+    deepLink: undefined,
+    fcmToken: undefined,
+    userId: faker.datatype.uuid(),
   };
 }
 export function fakeProgramParticipation() {

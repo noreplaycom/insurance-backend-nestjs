@@ -69,6 +69,7 @@ export class ClaimStatusResolver {
   //   });
   // }
 
+  // ClaimStatusFindMany
   @Query(() => [ClaimStatus], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -158,11 +159,12 @@ export class ClaimStatusResolver {
   //   return this.claimStatusController.count(claimStatusCountAggregateInput);
   // }
 
+  // ClaimStatusTypeFindMany
   @Query(() => [String], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  getClaimStatusTypes() {
+  claimStatusTypeFindMany() {
     return this.claimStatusController.getClaimStatusTypes();
   }
 }

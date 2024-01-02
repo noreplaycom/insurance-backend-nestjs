@@ -69,6 +69,7 @@ export class TagResolver {
   //   });
   // }
 
+  // TagFindMany
   @Query(() => [Tag], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',

@@ -29,6 +29,7 @@ export class ClaimResolver {
     private readonly claimController: ClaimController,
   ) {}
 
+  // ClaimCreateOne
   @Mutation(() => Claim, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -44,6 +45,7 @@ export class ClaimResolver {
     });
   }
 
+  // ClaimFindOne
   @Query(() => Claim, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -58,6 +60,7 @@ export class ClaimResolver {
     });
   }
 
+  // ClaimFindMany
   @Query(() => [Claim], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -72,11 +75,26 @@ export class ClaimResolver {
     });
   }
   
+  // @Mutation(() => Claim, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimUpdateOne(
+  //   @Args() claimUpdateOneArgs: UpdateOneClaimArgs,
+  //   @Relations() relations: ClaimSelect,
+  // ) {
+  //   return this.claimController.updateOne({
+  //     ...replaceNullWithUndefined(claimUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
+
+  // ClaimUpdateOneOfStatus
   @Mutation(() => Claim, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  async claimUpdateOne(
+  async claimUpdateOneOfStatus(
     @Args() claimUpdateOneArgs: UpdateOneClaimArgs,
     @Relations() relations: ClaimSelect,
   ) {
@@ -86,25 +104,36 @@ export class ClaimResolver {
     });
   }
 
+  // @Query(() => Float, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimCount(@Args() claimCountAggregateInput: FindManyClaimArgs) {
+  //   return this.claimController.count(claimCountAggregateInput);
+  // }
+  
+  // ClaimCountQuantity
   @Query(() => Float, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  claimCount(@Args() claimCountAggregateInput: FindManyClaimArgs) {
+  claimCountQuantity(@Args() claimCountAggregateInput: FindManyClaimArgs) {
     return this.claimController.count(claimCountAggregateInput);
   }
   
+  // ClaimCountQuantityAtCustomRange
   @Query(() => [ClaimCountQuantityByCustomRangeAndPeriodQuery], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  claimCountQuantityByCustomRangeAndPeriod(
+  claimCountQuantityByCustomRange(
     @Args('claimCountQuantityByCustomRangeAndPeriodArgs') 
     claimCountQuantityByCustomRangeAndPeriodArgs: ClaimCountQuantityByCustomRangeAndPeriodArgs
   ) {
     return this.claimController.countQuantityByCustomRangeAndPeriod(claimCountQuantityByCustomRangeAndPeriodArgs);
   }
   
+  // ClaimCountQuantityByStatus
   @Query(() => ClaimCountQuantityByStatusQuery, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -116,6 +145,7 @@ export class ClaimResolver {
     return this.claimController.countQuantityByStatus(claimCountQuantityByStatusArgs);
   }
   
+  // ClaimCountTotalByCustomRangeAndPeriod
   @Query(() => ClaimCountTotalByCustomRangeAndPeriodQuery, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -127,6 +157,7 @@ export class ClaimResolver {
     return this.claimController.countTotalByCustomRangeAndPeriod(claimCountTotalByCustomRangeAndPeriodArgs);
   }
   
+  // ClaimCountTotalPercentageVsCustomPeriod
   @Query(() => ClaimCountTotalPercentageVsCustomPeriodQuery, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -138,11 +169,12 @@ export class ClaimResolver {
     return this.claimController.countTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriod);
   }
   
+  // ClaimChannelFindMany
   @Query(() => [String], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  getClaimChannels() {
+  claimChannelFindMany() {
     return this.claimController.getClaimChannels();
   }
 }
