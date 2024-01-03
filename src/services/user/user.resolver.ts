@@ -16,12 +16,14 @@ import {
   UpdateManyUserArgs,
   UpdateOneUserArgs,
 } from 'src/@generated';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { UserController } from './user.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
 import { UserFindOneByIdArgs } from './dto/user_find_one';
 import { UserUpdateOneByIdArgs } from './dto/user_update_one';
+import { UserDeleteOneByIdArgs } from './dto/user_delete_one';
 
 interface UserSelect {
   select: Prisma.UserSelect;
@@ -206,5 +208,56 @@ export class UserResolver {
     // @Relations() relations: UserSelect,
   ) {
     return this.userController.updateOneById(userUpdateOneByIdArgs);
+  }
+
+  // ? USER LIST SCREEN
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userDeleteOne(
+    @Args('userDeleteOneByIdArgs') userDeleteOneByIdArgs: UserDeleteOneByIdArgs,
+    // @Relations() relations: UserSelect,
+  ) {
+    return this.userController.delete(userDeleteOneByIdArgs);
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: true,
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async userImport(
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+  ) {
+    const { createReadStream } = file;
+    const stream = createReadStream();
+    const chunks = [];
+    await new Promise<Buffer>((resolve, reject) => {
+      let buffer: Buffer;
+      stream.on('data', function (chunk: any) {
+        chunks.push(chunk);
+      });
+      stream.on('end', function () {
+        buffer = Buffer.concat(chunks);
+        resolve(buffer);
+      });
+      stream.on('error', reject);
+    });
+    const result = Buffer.concat(chunks);
+    // const workbook = (read(result))
+    // console.log(workbook.SheetNames)
+    // const sheet = workbook.Sheets['Sheet 1']
+    // console.log(utils.sheet_to_json(sheet))
+    return true
+  }
+
+  @Query(() => String, {
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async userExport() {
+    return 'https://dsaagroup.com/uploaded_file/user.xlsx'
   }
 }

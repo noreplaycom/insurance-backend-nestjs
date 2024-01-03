@@ -6,6 +6,7 @@ import { fakeUserComplete } from '../../../prisma/fake-data';
 import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
 import { UserFindOneByIdArgs } from './dto/user_find_one';
 import { UserUpdateOneByIdArgs } from './dto/user_update_one';
+import { UserDeleteOneByIdArgs } from './dto/user_delete_one';
 
 @Injectable()
 export class FakeUserController implements UserController {
@@ -102,5 +103,9 @@ export class FakeUserController implements UserController {
   
   async updateOneById(userUpdateOneByIdArgs: UserUpdateOneByIdArgs): Promise<User> {
     return fakeUserComplete();
+  }
+
+  async deleteById(userDeleteOneByIdArgs: UserDeleteOneByIdArgs): Promise<boolean> {
+    return true;
   }
 }

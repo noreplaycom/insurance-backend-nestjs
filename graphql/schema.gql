@@ -1903,6 +1903,11 @@ type Query {
   """Deskripsinya ada disini loh"""
   userFindOne(userFindOneByIdArgs: UserFindOneByIdArgs!): User
 
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  userExport: String!
+
   """Deskripsinya ada disini loh"""
   notificationFindMany: [Notification!]
 }
@@ -3385,6 +3390,14 @@ type Mutation {
   userUpdateOne(userUpdateOneByIdArgs: UserUpdateOneByIdArgs!): User
 
   """Deskripsinya ada disini loh"""
+  userDeleteOne(userDeleteOneByIdArgs: UserDeleteOneByIdArgs!): Boolean!
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  userImport(file: Upload): Boolean
+
+  """Deskripsinya ada disini loh"""
   notificationUpdateOne(notificationUpdateOneIsReadAndIsClearedArgs: NotificationUpdateOneIsReadAndIsClearedArgs!): Notification
 
   """Deskripsinya ada disini loh"""
@@ -3431,6 +3444,10 @@ input UserUpdateOneByIdArgs {
   emailVerifiedAt: DateTime
   password: String
   profilePictureUrl: String
+}
+
+input UserDeleteOneByIdArgs {
+  id: String!
 }
 
 input NotificationUpdateOneIsReadAndIsClearedArgs {

@@ -6,6 +6,7 @@ import { User } from 'src/@generated';
 import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
 import { UserFindOneByIdArgs } from './dto/user_find_one';
 import { UserUpdateOneByIdArgs } from './dto/user_update_one';
+import { UserDeleteOneByIdArgs } from './dto/user_delete_one';
 
 @Injectable()
 export class PrismaUserController implements UserController {
@@ -69,5 +70,9 @@ export class PrismaUserController implements UserController {
 
   async updateOneById(userUpdateOneByIdArgs: UserUpdateOneByIdArgs): Promise<User> {
     return await this.userService.findFirst({});
+  }
+
+  async deleteById(userDeleteOneByIdArgs: UserDeleteOneByIdArgs): Promise<boolean> {
+    return true
   }
 }

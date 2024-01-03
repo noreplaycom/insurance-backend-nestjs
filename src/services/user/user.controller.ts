@@ -4,6 +4,7 @@ import { User } from 'src/@generated';
 import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
 import { UserFindOneByIdArgs } from './dto/user_find_one';
 import { UserUpdateOneByIdArgs } from './dto/user_update_one';
+import { UserDeleteOneByIdArgs } from './dto/user_delete_one';
 
 @Injectable()
 export abstract class UserController {
@@ -36,4 +37,6 @@ export abstract class UserController {
   abstract findOneById(userFindOneByIdArgs: UserFindOneByIdArgs): Promise<User>;
   
   abstract updateOneById(userUpdateOneByIdArgs: UserUpdateOneByIdArgs): Promise<User>;
+  
+  abstract deleteById(userDeleteOneByIdArgs: UserDeleteOneByIdArgs): Promise<boolean>;
 }
