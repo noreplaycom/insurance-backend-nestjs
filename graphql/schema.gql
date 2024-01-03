@@ -1884,6 +1884,14 @@ type Query {
   roleFindOne(roleFindOneByUserArgs: RoleFindOneByUserArgs!): Role
 
   """Deskripsinya ada disini loh"""
+  permissionFindOne(permissionFindOneByUserIdArgs: PermissionFindOneByUserIdArgs!): RolePermission
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  participantExport: String!
+
+  """Deskripsinya ada disini loh"""
   tagFindMany: [Tag!]
 
   """Deskripsinya ada disini loh"""
@@ -3334,6 +3342,10 @@ input RoleFindOneByUserArgs {
   userId: String
 }
 
+input PermissionFindOneByUserIdArgs {
+  userId: String!
+}
+
 type Mutation {
   """
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
@@ -3350,6 +3362,11 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   claimCreateOne(claimFormCreateOneArgs: ClaimFormCreateOneArgs!): Claim
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  participantImport(file: Upload): Boolean
 
   """Deskripsinya ada disini loh"""
   notificationUpdateOne(notificationUpdateOneIsReadAndIsClearedArgs: NotificationUpdateOneIsReadAndIsClearedArgs!): Notification

@@ -120,7 +120,7 @@ import { NotificationModule } from './services/notification/notification.module'
     // ProgramParticipationModule,
     // RegionModule,
     RoleModule,
-    // RolePermissionModule,
+    RolePermissionModule,
     TagModule,
     // TransactionModule,
     UserModule,
