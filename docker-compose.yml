@@ -68,9 +68,10 @@ services:
       - .env
     depends_on:
       - portainer
+      - nginx
       # - redis
       # - mysql
-      # - nginx
+     
 
   # redis:
   #   image: redis:latest
