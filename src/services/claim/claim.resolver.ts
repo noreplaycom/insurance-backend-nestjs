@@ -18,6 +18,8 @@ import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageV
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/guard/auth.guard';
+import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
+import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
 
 interface ClaimSelect {
   select: Prisma.ClaimSelect;
@@ -212,5 +214,54 @@ export class ClaimResolver {
   })
   async claimExport() {
     return 'https://dsaagroup.com/uploaded_file/claim.xlsx'
+  }
+
+  // ? CLAIM DETAIL SCREEN
+  @Query(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimFindOne(
+    @Args('claimFindOneByIdArgs') claimFindOneByIdArgs: ClaimFindOneByIdArgs,
+    // @Relations() relations: ClaimSelect,
+  ) {
+    return this.claimController.findOneById(claimFindOneByIdArgs);
+  }
+
+  @Mutation(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimUpdateOne(
+    @Args('claimUpdateOneOfStatusArgs') claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs,
+    // @Relations() relations: ClaimSelect,
+  ) {
+    return this.claimController.updateOneOfStatus(ClaimUpdateOneOfStatusArgs);
+  }
+
+  @Mutation(() => String, {
+    nullable: true,
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async claimFileUpload(
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+  ) {
+    const { createReadStream } = file;
+    const stream = createReadStream();
+    const chunks = [];
+    await new Promise<Buffer>((resolve, reject) => {
+      let buffer: Buffer;
+      stream.on('data', function (chunk: any) {
+        chunks.push(chunk);
+      });
+      stream.on('end', function () {
+        buffer = Buffer.concat(chunks);
+        resolve(buffer);
+      });
+      stream.on('error', reject);
+    });
+    return `https://dsaagroup.com/uploaded_file/${file.filename}`
   }
 }

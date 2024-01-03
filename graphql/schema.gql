@@ -1866,6 +1866,9 @@ type Query {
   claimExport: String!
 
   """Deskripsinya ada disini loh"""
+  claimFindOne(claimFindOneByIdArgs: ClaimFindOneByIdArgs!): Claim
+
+  """Deskripsinya ada disini loh"""
   claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
@@ -3309,6 +3312,10 @@ enum ClaimScalarFieldEnum {
   claimTypeId
 }
 
+input ClaimFindOneByIdArgs {
+  id: String!
+}
+
 input RoleFindOneByUserArgs {
   userId: String
 }
@@ -3320,6 +3327,14 @@ type Mutation {
   claimImport(file: Upload): Boolean
 
   """Deskripsinya ada disini loh"""
+  claimUpdateOne(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs!): Claim
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  claimFileUpload(file: Upload): String
+
+  """Deskripsinya ada disini loh"""
   notificationUpdateOne(notificationUpdateOneIsReadAndIsClearedArgs: NotificationUpdateOneIsReadAndIsClearedArgs!): Notification
 
   """Deskripsinya ada disini loh"""
@@ -3328,6 +3343,11 @@ type Mutation {
 
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
+
+input ClaimUpdateOneOfStatusArgs {
+  id: String!
+  status: ClaimStatusType!
+}
 
 input NotificationUpdateOneIsReadAndIsClearedArgs {
   id: Int!

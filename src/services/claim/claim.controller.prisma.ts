@@ -9,6 +9,8 @@ import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRange
 import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 import { Period } from 'src/model/period.enum';
+import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
+import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
 
 @Injectable()
 export class PrismaClaimController implements ClaimController {
@@ -85,5 +87,13 @@ export class PrismaClaimController implements ClaimController {
 
   async getClaimChannels(): Promise<string[]> {
     return Object.keys(ClaimChannel);
+  }
+
+  async findOneById(claimFindOneByIdArgs: ClaimFindOneByIdArgs): Promise<Claim> {
+    return await this.claimService.findFirst({});
+  }
+
+  async updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim> {
+    return await this.claimService.findFirst({});
   }
 }

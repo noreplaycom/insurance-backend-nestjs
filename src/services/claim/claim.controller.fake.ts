@@ -10,6 +10,8 @@ import { ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_s
 import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
+import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
+import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
 
 @Injectable()
 export class FakeClaimController implements ClaimController {
@@ -170,5 +172,13 @@ export class FakeClaimController implements ClaimController {
 
   async getClaimChannels(): Promise<string[]> {
     return Object.keys(ClaimChannel);
+  }
+
+  async findOneById(claimFindOneByIdArgs: ClaimFindOneByIdArgs): Promise<Claim> {
+    return this.claims.find(v => v);
+  }
+  
+  async updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim> {
+    return this.claims.find(v => v);
   }
 }
