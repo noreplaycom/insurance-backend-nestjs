@@ -9,7 +9,7 @@ export class FakeTagController implements TagController {
   private tags: Tag[] = [];
 
   constructor() {
-    const initial = 200;
+    const initial = 30;
     for (let i = 0; i < initial; i++) {
       this.tags.push(fakeTagComplete());
     }

@@ -69,20 +69,19 @@ export class ClaimStatusResolver {
   //   });
   // }
 
-  // ClaimStatusFindMany
-  @Query(() => [ClaimStatus], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimStatusFindMany(
-    @Args() claimStatusFindManyArgs: FindManyClaimStatusArgs,
-    @Relations() relations: ClaimStatusSelect,
-  ) {
-    return this.claimStatusController.findMany({
-      ...claimStatusFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [ClaimStatus], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimStatusFindMany(
+  //   @Args() claimStatusFindManyArgs: FindManyClaimStatusArgs,
+  //   @Relations() relations: ClaimStatusSelect,
+  // ) {
+  //   return this.claimStatusController.findMany({
+  //     ...claimStatusFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => ClaimStatus, {
   //   nullable: true,
@@ -159,7 +158,7 @@ export class ClaimStatusResolver {
   //   return this.claimStatusController.count(claimStatusCountAggregateInput);
   // }
 
-  // ClaimStatusTypeFindMany
+  // ? CLAIM LIST SCREEN
   @Query(() => [String], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',

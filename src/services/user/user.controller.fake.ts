@@ -84,4 +84,8 @@ export class FakeUserController implements UserController {
   async count(userCountArgs: Prisma.UserCountArgs): Promise<number> {
     return this.users.length;
   }
+
+  async findManyNotParticipant(): Promise<User[]> {
+    return this.users.slice(0, 7);
+  }
 }

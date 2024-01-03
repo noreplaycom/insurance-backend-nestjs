@@ -15,6 +15,7 @@ import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from 
 import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/guard/auth.guard';
 
@@ -150,23 +151,66 @@ export class ClaimResolver {
     return this.claimController.countQuantityByStatus();
   }
 
+  // ! USED IN CLAIM LIST SCREEN AND EXPOSED QUERY
   @Query(() => [Claim], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
   claimFindMany(
+    @Args() claimFindManyArgs: FindManyClaimArgs,
     @Relations() relations: ClaimSelect,
   ) {
     return this.claimController.findMany({
+      ...claimFindManyArgs,
       select: relations.select,
     });
   }
   
-  // @Query(() => [String], {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimChannelFindMany() {
-  //   return this.claimController.getClaimChannels();
-  // }
+  // ? CLAIM LIST SCREEN
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimChannelFindMany() {
+    return this.claimController.getClaimChannels();
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: true,
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async claimImport(
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+  ) {
+    const { createReadStream } = file;
+    const stream = createReadStream();
+    const chunks = [];
+    await new Promise<Buffer>((resolve, reject) => {
+      let buffer: Buffer;
+      stream.on('data', function (chunk: any) {
+        chunks.push(chunk);
+      });
+      stream.on('end', function () {
+        buffer = Buffer.concat(chunks);
+        resolve(buffer);
+      });
+      stream.on('error', reject);
+    });
+    const result = Buffer.concat(chunks);
+    const workbook = (read(result))
+    console.log(workbook.SheetNames)
+    const sheet = workbook.Sheets['Sheet 1']
+    console.log(utils.sheet_to_json(sheet))
+    return true
+  }
+
+  @Query(() => String, {
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async claimExport() {
+    return 'https://dsaagroup.com/uploaded_file/claim.xlsx'
+  }
 }

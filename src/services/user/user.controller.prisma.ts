@@ -51,4 +51,8 @@ export class PrismaUserController implements UserController {
   async count(userCountArgs: Prisma.UserCountArgs): Promise<number> {
     return await this.userService.count(userCountArgs);
   }
+
+  async findManyNotParticipant(): Promise<User[]> {
+    return [];
+  }
 }

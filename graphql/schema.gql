@@ -1855,7 +1855,30 @@ type Query {
   claimCountQuantityByStatus: [ClaimCountQuantityByStatusQuery!]
 
   """Deskripsinya ada disini loh"""
-  claimFindMany: [Claim!]
+  claimFindMany(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): [Claim!]
+
+  """Deskripsinya ada disini loh"""
+  claimChannelFindMany: [String!]
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  claimExport: String!
+
+  """Deskripsinya ada disini loh"""
+  claimStatusTypeFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
+  applicationTypeFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
+  roleFindOne(roleFindOneByUserArgs: RoleFindOneByUserArgs!): Role
+
+  """Deskripsinya ada disini loh"""
+  tagFindMany: [Tag!]
+
+  """Deskripsinya ada disini loh"""
+  userFindMany: [User!]
 
   """Deskripsinya ada disini loh"""
   notificationFindMany: [Notification!]
@@ -1885,13 +1908,1426 @@ input ClaimCountTotalByCustomRangeAndPeriodArgs {
   period: Period!
 }
 
+input ClaimWhereInput {
+  AND: [ClaimWhereInput!]
+  OR: [ClaimWhereInput!]
+  NOT: [ClaimWhereInput!]
+  id: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
+  channel: EnumClaimChannelFilter
+  admedicaStatus: EnumAdmedicaStatusFilter
+  companyId: IntFilter
+  participantId: StringFilter
+  claimFinancialId: IntFilter
+  claimProcessId: IntFilter
+  diseaseId: IntNullableFilter
+  clinicId: IntFilter
+  inputedById: StringNullableFilter
+  claimTypeId: IntFilter
+  company: CompanyRelationFilter
+  participant: ParticipantRelationFilter
+  claimFinancials: ClaimFinancialRelationFilter
+  claimProcesses: ClaimProcessRelationFilter
+  disease: DiseaseNullableRelationFilter
+  clinics: ClinicRelationFilter
+  inputedBy: UserNullableRelationFilter
+  claimTypes: ClaimTypeRelationFilter
+  tags: TagListRelationFilter
+  claimStatuses: ClaimStatusListRelationFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeNullableFilter
+}
+
+input NestedDateTimeNullableFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeNullableFilter
+}
+
+input EnumClaimChannelFilter {
+  equals: ClaimChannel
+  in: [ClaimChannel!]
+  notIn: [ClaimChannel!]
+  not: NestedEnumClaimChannelFilter
+}
+
+input NestedEnumClaimChannelFilter {
+  equals: ClaimChannel
+  in: [ClaimChannel!]
+  notIn: [ClaimChannel!]
+  not: NestedEnumClaimChannelFilter
+}
+
+input EnumAdmedicaStatusFilter {
+  equals: AdmedicaStatus
+  in: [AdmedicaStatus!]
+  notIn: [AdmedicaStatus!]
+  not: NestedEnumAdmedicaStatusFilter
+}
+
+input NestedEnumAdmedicaStatusFilter {
+  equals: AdmedicaStatus
+  in: [AdmedicaStatus!]
+  notIn: [AdmedicaStatus!]
+  not: NestedEnumAdmedicaStatusFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input CompanyRelationFilter {
+  is: CompanyWhereInput
+  isNot: CompanyWhereInput
+}
+
+input CompanyWhereInput {
+  AND: [CompanyWhereInput!]
+  OR: [CompanyWhereInput!]
+  NOT: [CompanyWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claims: ClaimListRelationFilter
+}
+
+input ClaimListRelationFilter {
+  every: ClaimWhereInput
+  some: ClaimWhereInput
+  none: ClaimWhereInput
+}
+
+input ParticipantRelationFilter {
+  is: ParticipantWhereInput
+  isNot: ParticipantWhereInput
+}
+
+input ParticipantWhereInput {
+  AND: [ParticipantWhereInput!]
+  OR: [ParticipantWhereInput!]
+  NOT: [ParticipantWhereInput!]
+  gender: EnumGenderFilter
+  birthDate: DateTimeFilter
+  isActive: BoolFilter
+  status: EnumParticipantStatusFilter
+  userId: StringFilter
+  relationId: StringNullableFilter
+  bankAccountId: IntFilter
+  user: UserRelationFilter
+  relation: ParticipantNullableRelationFilter
+  bankAccount: BankAccountNullableRelationFilter
+  claims: ClaimListRelationFilter
+  employments: EmploymentListRelationFilter
+  contactInfos: ContactInfoListRelationFilter
+  programParticipations: ProgramParticipationListRelationFilter
+  balances: AccountListRelationFilter
+  Participant: ParticipantListRelationFilter
+}
+
+input EnumGenderFilter {
+  equals: Gender
+  in: [Gender!]
+  notIn: [Gender!]
+  not: NestedEnumGenderFilter
+}
+
+input NestedEnumGenderFilter {
+  equals: Gender
+  in: [Gender!]
+  notIn: [Gender!]
+  not: NestedEnumGenderFilter
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input EnumParticipantStatusFilter {
+  equals: ParticipantStatus
+  in: [ParticipantStatus!]
+  notIn: [ParticipantStatus!]
+  not: NestedEnumParticipantStatusFilter
+}
+
+input NestedEnumParticipantStatusFilter {
+  equals: ParticipantStatus
+  in: [ParticipantStatus!]
+  notIn: [ParticipantStatus!]
+  not: NestedEnumParticipantStatusFilter
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  id: StringFilter
+  fullName: StringFilter
+  email: StringFilter
+  emailVerifiedAt: DateTimeNullableFilter
+  password: StringFilter
+  profilePictureUrl: StringNullableFilter
+  deletedAt: DateTimeNullableFilter
+  roleId: IntFilter
+  participantId: IntNullableFilter
+  role: RoleRelationFilter
+  participant: ParticipantNullableRelationFilter
+  claimsInput: ClaimListRelationFilter
+  claimActions: ClaimStatusListRelationFilter
+  announcementCreated: AnnouncementListRelationFilter
+  notification: NotificationListRelationFilter
+}
+
+input RoleRelationFilter {
+  is: RoleWhereInput
+  isNot: RoleWhereInput
+}
+
+input RoleWhereInput {
+  AND: [RoleWhereInput!]
+  OR: [RoleWhereInput!]
+  NOT: [RoleWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  description: StringNullableFilter
+  order: IntFilter
+  higherLevelThanId: IntNullableFilter
+  higherLevelThan: RoleNullableRelationFilter
+  rolePermissions: RolePermissionListRelationFilter
+  users: UserListRelationFilter
+  lowerLevelThan: RoleListRelationFilter
+}
+
+input RoleNullableRelationFilter {
+  is: RoleWhereInput
+  isNot: RoleWhereInput
+}
+
+input RolePermissionListRelationFilter {
+  every: RolePermissionWhereInput
+  some: RolePermissionWhereInput
+  none: RolePermissionWhereInput
+}
+
+input RolePermissionWhereInput {
+  AND: [RolePermissionWhereInput!]
+  OR: [RolePermissionWhereInput!]
+  NOT: [RolePermissionWhereInput!]
+  roleId: IntFilter
+  permission: EnumPermissionFilter
+  role: RoleRelationFilter
+}
+
+input EnumPermissionFilter {
+  equals: Permission
+  in: [Permission!]
+  notIn: [Permission!]
+  not: NestedEnumPermissionFilter
+}
+
+input NestedEnumPermissionFilter {
+  equals: Permission
+  in: [Permission!]
+  notIn: [Permission!]
+  not: NestedEnumPermissionFilter
+}
+
+input UserListRelationFilter {
+  every: UserWhereInput
+  some: UserWhereInput
+  none: UserWhereInput
+}
+
+input RoleListRelationFilter {
+  every: RoleWhereInput
+  some: RoleWhereInput
+  none: RoleWhereInput
+}
+
+input ParticipantNullableRelationFilter {
+  is: ParticipantWhereInput
+  isNot: ParticipantWhereInput
+}
+
+input ClaimStatusListRelationFilter {
+  every: ClaimStatusWhereInput
+  some: ClaimStatusWhereInput
+  none: ClaimStatusWhereInput
+}
+
+input ClaimStatusWhereInput {
+  AND: [ClaimStatusWhereInput!]
+  OR: [ClaimStatusWhereInput!]
+  NOT: [ClaimStatusWhereInput!]
+  id: IntFilter
+  description: StringNullableFilter
+  rejectionReason: StringNullableFilter
+  createdAt: DateTimeFilter
+  status: EnumClaimStatusTypeFilter
+  createById: StringFilter
+  claimId: StringFilter
+  rejectionLetterId: StringNullableFilter
+  guaranteeLetterId: StringNullableFilter
+  transactionLetterId: StringNullableFilter
+  bookKeepingOrderId: StringNullableFilter
+  createBy: UserRelationFilter
+  claim: ClaimRelationFilter
+  rejectionLetter: DocumentNullableRelationFilter
+  guaranteeLetter: DocumentNullableRelationFilter
+  transactionLetter: DocumentNullableRelationFilter
+  bookKeepingOrder: DocumentNullableRelationFilter
+  claimFinancial: ClaimFinancialNullableRelationFilter
+}
+
+input EnumClaimStatusTypeFilter {
+  equals: ClaimStatusType
+  in: [ClaimStatusType!]
+  notIn: [ClaimStatusType!]
+  not: NestedEnumClaimStatusTypeFilter
+}
+
+input NestedEnumClaimStatusTypeFilter {
+  equals: ClaimStatusType
+  in: [ClaimStatusType!]
+  notIn: [ClaimStatusType!]
+  not: NestedEnumClaimStatusTypeFilter
+}
+
+input ClaimRelationFilter {
+  is: ClaimWhereInput
+  isNot: ClaimWhereInput
+}
+
+input DocumentNullableRelationFilter {
+  is: DocumentWhereInput
+  isNot: DocumentWhereInput
+}
+
+input DocumentWhereInput {
+  AND: [DocumentWhereInput!]
+  OR: [DocumentWhereInput!]
+  NOT: [DocumentWhereInput!]
+  id: StringFilter
+  name: StringFilter
+  path: StringFilter
+  size: IntFilter
+  printCount: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  source: EnumDocumentSourceFilter
+  type: EnumDocumentTypeFilter
+  claimProcessId: IntNullableFilter
+  rejectionLetterOf: ClaimStatusNullableRelationFilter
+  guaranteeLetterOf: ClaimStatusNullableRelationFilter
+  transactionLetterOf: ClaimStatusNullableRelationFilter
+  bookKeepingOrderOf: ClaimStatusNullableRelationFilter
+  claimProcess: ClaimProcessNullableRelationFilter
+}
+
+input EnumDocumentSourceFilter {
+  equals: DocumentSource
+  in: [DocumentSource!]
+  notIn: [DocumentSource!]
+  not: NestedEnumDocumentSourceFilter
+}
+
+input NestedEnumDocumentSourceFilter {
+  equals: DocumentSource
+  in: [DocumentSource!]
+  notIn: [DocumentSource!]
+  not: NestedEnumDocumentSourceFilter
+}
+
+input EnumDocumentTypeFilter {
+  equals: DocumentType
+  in: [DocumentType!]
+  notIn: [DocumentType!]
+  not: NestedEnumDocumentTypeFilter
+}
+
+input NestedEnumDocumentTypeFilter {
+  equals: DocumentType
+  in: [DocumentType!]
+  notIn: [DocumentType!]
+  not: NestedEnumDocumentTypeFilter
+}
+
+input ClaimStatusNullableRelationFilter {
+  is: ClaimStatusWhereInput
+  isNot: ClaimStatusWhereInput
+}
+
+input ClaimProcessNullableRelationFilter {
+  is: ClaimProcessWhereInput
+  isNot: ClaimProcessWhereInput
+}
+
+input ClaimProcessWhereInput {
+  AND: [ClaimProcessWhereInput!]
+  OR: [ClaimProcessWhereInput!]
+  NOT: [ClaimProcessWhereInput!]
+  id: IntFilter
+  startTreatment: DateTimeNullableFilter
+  endTreatment: DateTimeNullableFilter
+  expeditionDate: DateTimeNullableFilter
+  reclaim: StringNullableFilter
+  processDate: DateTimeNullableFilter
+  submissionNote: StringFilter
+  description: StringFilter
+  additionalNote: StringFilter
+  claimId: StringFilter
+  claim: ClaimNullableRelationFilter
+  documents: DocumentListRelationFilter
+}
+
+input ClaimNullableRelationFilter {
+  is: ClaimWhereInput
+  isNot: ClaimWhereInput
+}
+
+input DocumentListRelationFilter {
+  every: DocumentWhereInput
+  some: DocumentWhereInput
+  none: DocumentWhereInput
+}
+
+input ClaimFinancialNullableRelationFilter {
+  is: ClaimFinancialWhereInput
+  isNot: ClaimFinancialWhereInput
+}
+
+input ClaimFinancialWhereInput {
+  AND: [ClaimFinancialWhereInput!]
+  OR: [ClaimFinancialWhereInput!]
+  NOT: [ClaimFinancialWhereInput!]
+  id: IntFilter
+  requestedAmount: FloatFilter
+  paidAmount: FloatNullableFilter
+  rejectedAmount: FloatNullableFilter
+  transactionProcessDate: DateTimeNullableFilter
+  transferDate: DateTimeNullableFilter
+  claimId: StringFilter
+  branchId: IntFilter
+  claimStatusId: IntFilter
+  branchPayee: BranchRelationFilter
+  claim: ClaimNullableRelationFilter
+  claimStatus: ClaimStatusRelationFilter
+}
+
+input FloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input NestedFloatFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatFilter
+}
+
+input FloatNullableFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatNullableFilter
+}
+
+input NestedFloatNullableFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatNullableFilter
+}
+
+input BranchRelationFilter {
+  is: BranchWhereInput
+  isNot: BranchWhereInput
+}
+
+input BranchWhereInput {
+  AND: [BranchWhereInput!]
+  OR: [BranchWhereInput!]
+  NOT: [BranchWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+  claimFinancial: ClaimFinancialListRelationFilter
+}
+
+input EmploymentListRelationFilter {
+  every: EmploymentWhereInput
+  some: EmploymentWhereInput
+  none: EmploymentWhereInput
+}
+
+input EmploymentWhereInput {
+  AND: [EmploymentWhereInput!]
+  OR: [EmploymentWhereInput!]
+  NOT: [EmploymentWhereInput!]
+  id: IntFilter
+  employmentPosition: EnumPositionFilter
+  participantId: StringFilter
+  branchId: IntFilter
+  groupId: IntFilter
+  regionId: IntFilter
+  participant: ParticipantRelationFilter
+  branch: BranchRelationFilter
+  group: GroupNullableRelationFilter
+  region: RegionNullableRelationFilter
+}
+
+input EnumPositionFilter {
+  equals: Position
+  in: [Position!]
+  notIn: [Position!]
+  not: NestedEnumPositionFilter
+}
+
+input NestedEnumPositionFilter {
+  equals: Position
+  in: [Position!]
+  notIn: [Position!]
+  not: NestedEnumPositionFilter
+}
+
+input GroupNullableRelationFilter {
+  is: GroupWhereInput
+  isNot: GroupWhereInput
+}
+
+input GroupWhereInput {
+  AND: [GroupWhereInput!]
+  OR: [GroupWhereInput!]
+  NOT: [GroupWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+}
+
+input RegionNullableRelationFilter {
+  is: RegionWhereInput
+  isNot: RegionWhereInput
+}
+
+input RegionWhereInput {
+  AND: [RegionWhereInput!]
+  OR: [RegionWhereInput!]
+  NOT: [RegionWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+}
+
+input ClaimFinancialListRelationFilter {
+  every: ClaimFinancialWhereInput
+  some: ClaimFinancialWhereInput
+  none: ClaimFinancialWhereInput
+}
+
+input ClaimStatusRelationFilter {
+  is: ClaimStatusWhereInput
+  isNot: ClaimStatusWhereInput
+}
+
+input AnnouncementListRelationFilter {
+  every: AnnouncementWhereInput
+  some: AnnouncementWhereInput
+  none: AnnouncementWhereInput
+}
+
+input AnnouncementWhereInput {
+  AND: [AnnouncementWhereInput!]
+  OR: [AnnouncementWhereInput!]
+  NOT: [AnnouncementWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  content: StringFilter
+  imageUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  createdById: StringFilter
+  createdBy: UserRelationFilter
+}
+
+input NotificationListRelationFilter {
+  every: NotificationWhereInput
+  some: NotificationWhereInput
+  none: NotificationWhereInput
+}
+
+input NotificationWhereInput {
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  subtitle: StringFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  isRead: BoolFilter
+  isCleared: BoolFilter
+  deepLink: StringNullableFilter
+  fcmToken: StringNullableFilter
+  userId: StringFilter
+  user: UserRelationFilter
+}
+
+input BankAccountNullableRelationFilter {
+  is: BankAccountWhereInput
+  isNot: BankAccountWhereInput
+}
+
+input BankAccountWhereInput {
+  AND: [BankAccountWhereInput!]
+  OR: [BankAccountWhereInput!]
+  NOT: [BankAccountWhereInput!]
+  id: IntFilter
+  accountNumber: FloatFilter
+  accountName: StringFilter
+  participantId: StringFilter
+  participant: ParticipantRelationFilter
+}
+
+input ContactInfoListRelationFilter {
+  every: ContactInfoWhereInput
+  some: ContactInfoWhereInput
+  none: ContactInfoWhereInput
+}
+
+input ContactInfoWhereInput {
+  AND: [ContactInfoWhereInput!]
+  OR: [ContactInfoWhereInput!]
+  NOT: [ContactInfoWhereInput!]
+  id: IntFilter
+  telp: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
+  participantId: StringFilter
+  addressId: IntFilter
+  participant: ParticipantRelationFilter
+  address: AddressRelationFilter
+}
+
+input AddressRelationFilter {
+  is: AddressWhereInput
+  isNot: AddressWhereInput
+}
+
+input AddressWhereInput {
+  AND: [AddressWhereInput!]
+  OR: [AddressWhereInput!]
+  NOT: [AddressWhereInput!]
+  id: IntFilter
+  address: StringFilter
+  cityId: IntFilter
+  postalCode: StringFilter
+  city: CityRelationFilter
+  ContactInfo: ContactInfoListRelationFilter
+}
+
+input CityRelationFilter {
+  is: CityWhereInput
+  isNot: CityWhereInput
+}
+
+input CityWhereInput {
+  AND: [CityWhereInput!]
+  OR: [CityWhereInput!]
+  NOT: [CityWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  address: AddressListRelationFilter
+}
+
+input AddressListRelationFilter {
+  every: AddressWhereInput
+  some: AddressWhereInput
+  none: AddressWhereInput
+}
+
+input ProgramParticipationListRelationFilter {
+  every: ProgramParticipationWhereInput
+  some: ProgramParticipationWhereInput
+  none: ProgramParticipationWhereInput
+}
+
+input ProgramParticipationWhereInput {
+  AND: [ProgramParticipationWhereInput!]
+  OR: [ProgramParticipationWhereInput!]
+  NOT: [ProgramParticipationWhereInput!]
+  id: IntFilter
+  bpjsNumber: StringNullableFilter
+  nonActiveReason: StringNullableFilter
+  effectiveDate: DateTimeFilter
+  nonActiveDate: DateTimeNullableFilter
+  participantId: StringFilter
+  fundingId: IntFilter
+  programId: IntNullableFilter
+  participant: ParticipantRelationFilter
+  funding: AccountRelationFilter
+  Program: ProgramNullableRelationFilter
+}
+
+input AccountRelationFilter {
+  is: AccountWhereInput
+  isNot: AccountWhereInput
+}
+
+input AccountWhereInput {
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  id: IntFilter
+  currentBalance: FloatFilter
+  currentBalanceLastUpdate: DateTimeNullableFilter
+  participantId: StringFilter
+  participant: ParticipantRelationFilter
+  transactions: TransactionListRelationFilter
+  programParticipation: ProgramParticipationListRelationFilter
+}
+
+input TransactionListRelationFilter {
+  every: TransactionWhereInput
+  some: TransactionWhereInput
+  none: TransactionWhereInput
+}
+
+input TransactionWhereInput {
+  AND: [TransactionWhereInput!]
+  OR: [TransactionWhereInput!]
+  NOT: [TransactionWhereInput!]
+  id: IntFilter
+  amount: FloatFilter
+  transactionType: EnumTransactionTypeFilter
+  description: StringNullableFilter
+  createdAt: DateTimeFilter
+  accountId: IntFilter
+  account: AccountRelationFilter
+}
+
+input EnumTransactionTypeFilter {
+  equals: TransactionType
+  in: [TransactionType!]
+  notIn: [TransactionType!]
+  not: NestedEnumTransactionTypeFilter
+}
+
+input NestedEnumTransactionTypeFilter {
+  equals: TransactionType
+  in: [TransactionType!]
+  notIn: [TransactionType!]
+  not: NestedEnumTransactionTypeFilter
+}
+
+input ProgramNullableRelationFilter {
+  is: ProgramWhereInput
+  isNot: ProgramWhereInput
+}
+
+input ProgramWhereInput {
+  AND: [ProgramWhereInput!]
+  OR: [ProgramWhereInput!]
+  NOT: [ProgramWhereInput!]
+  id: IntFilter
+  plan: EnumApplicationTypeFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
+  allowanceCeiling: FloatFilter
+  class: EnumClassFilter
+  maxAllowance: FloatFilter
+  programParticipations: ProgramParticipationListRelationFilter
+  claimType: ClaimTypeListRelationFilter
+}
+
+input EnumApplicationTypeFilter {
+  equals: ApplicationType
+  in: [ApplicationType!]
+  notIn: [ApplicationType!]
+  not: NestedEnumApplicationTypeFilter
+}
+
+input NestedEnumApplicationTypeFilter {
+  equals: ApplicationType
+  in: [ApplicationType!]
+  notIn: [ApplicationType!]
+  not: NestedEnumApplicationTypeFilter
+}
+
+input EnumClassFilter {
+  equals: Class
+  in: [Class!]
+  notIn: [Class!]
+  not: NestedEnumClassFilter
+}
+
+input NestedEnumClassFilter {
+  equals: Class
+  in: [Class!]
+  notIn: [Class!]
+  not: NestedEnumClassFilter
+}
+
+input ClaimTypeListRelationFilter {
+  every: ClaimTypeWhereInput
+  some: ClaimTypeWhereInput
+  none: ClaimTypeWhereInput
+}
+
+input ClaimTypeWhereInput {
+  AND: [ClaimTypeWhereInput!]
+  OR: [ClaimTypeWhereInput!]
+  NOT: [ClaimTypeWhereInput!]
+  id: IntFilter
+  jenis: StringFilter
+  jenisRI: StringFilter
+  plan: StringFilter
+  programId: IntFilter
+  claimId: IntFilter
+  program: ProgramRelationFilter
+  claims: ClaimNullableRelationFilter
+}
+
+input ProgramRelationFilter {
+  is: ProgramWhereInput
+  isNot: ProgramWhereInput
+}
+
+input AccountListRelationFilter {
+  every: AccountWhereInput
+  some: AccountWhereInput
+  none: AccountWhereInput
+}
+
+input ParticipantListRelationFilter {
+  every: ParticipantWhereInput
+  some: ParticipantWhereInput
+  none: ParticipantWhereInput
+}
+
+input ClaimFinancialRelationFilter {
+  is: ClaimFinancialWhereInput
+  isNot: ClaimFinancialWhereInput
+}
+
+input ClaimProcessRelationFilter {
+  is: ClaimProcessWhereInput
+  isNot: ClaimProcessWhereInput
+}
+
+input DiseaseNullableRelationFilter {
+  is: DiseaseWhereInput
+  isNot: DiseaseWhereInput
+}
+
+input DiseaseWhereInput {
+  AND: [DiseaseWhereInput!]
+  OR: [DiseaseWhereInput!]
+  NOT: [DiseaseWhereInput!]
+  id: IntFilter
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claims: ClaimListRelationFilter
+}
+
+input ClinicRelationFilter {
+  is: ClinicWhereInput
+  isNot: ClinicWhereInput
+}
+
+input ClinicWhereInput {
+  AND: [ClinicWhereInput!]
+  OR: [ClinicWhereInput!]
+  NOT: [ClinicWhereInput!]
+  id: IntFilter
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claims: ClaimListRelationFilter
+}
+
+input UserNullableRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input ClaimTypeRelationFilter {
+  is: ClaimTypeWhereInput
+  isNot: ClaimTypeWhereInput
+}
+
+input TagListRelationFilter {
+  every: TagWhereInput
+  some: TagWhereInput
+  none: TagWhereInput
+}
+
+input TagWhereInput {
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  NOT: [TagWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  color: EnumColorFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  Claims: ClaimListRelationFilter
+}
+
+input EnumColorFilter {
+  equals: Color
+  in: [Color!]
+  notIn: [Color!]
+  not: NestedEnumColorFilter
+}
+
+input NestedEnumColorFilter {
+  equals: Color
+  in: [Color!]
+  notIn: [Color!]
+  not: NestedEnumColorFilter
+}
+
+input ClaimOrderByWithRelationInput {
+  id: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  deletedAt: SortOrderInput
+  channel: SortOrder
+  admedicaStatus: SortOrder
+  companyId: SortOrder
+  participantId: SortOrder
+  claimFinancialId: SortOrder
+  claimProcessId: SortOrder
+  diseaseId: SortOrderInput
+  clinicId: SortOrder
+  inputedById: SortOrderInput
+  claimTypeId: SortOrder
+  company: CompanyOrderByWithRelationInput
+  participant: ParticipantOrderByWithRelationInput
+  claimFinancials: ClaimFinancialOrderByWithRelationInput
+  claimProcesses: ClaimProcessOrderByWithRelationInput
+  disease: DiseaseOrderByWithRelationInput
+  clinics: ClinicOrderByWithRelationInput
+  inputedBy: UserOrderByWithRelationInput
+  claimTypes: ClaimTypeOrderByWithRelationInput
+  tags: TagOrderByRelationAggregateInput
+  claimStatuses: ClaimStatusOrderByRelationAggregateInput
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input SortOrderInput {
+  sort: SortOrder!
+  nulls: NullsOrder
+}
+
+enum NullsOrder {
+  first
+  last
+}
+
+input CompanyOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  claims: ClaimOrderByRelationAggregateInput
+}
+
+input ClaimOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ParticipantOrderByWithRelationInput {
+  gender: SortOrder
+  birthDate: SortOrder
+  isActive: SortOrder
+  status: SortOrder
+  userId: SortOrder
+  relationId: SortOrderInput
+  bankAccountId: SortOrder
+  user: UserOrderByWithRelationInput
+  relation: ParticipantOrderByWithRelationInput
+  bankAccount: BankAccountOrderByWithRelationInput
+  claims: ClaimOrderByRelationAggregateInput
+  employments: EmploymentOrderByRelationAggregateInput
+  contactInfos: ContactInfoOrderByRelationAggregateInput
+  programParticipations: ProgramParticipationOrderByRelationAggregateInput
+  balances: AccountOrderByRelationAggregateInput
+  Participant: ParticipantOrderByRelationAggregateInput
+}
+
+input UserOrderByWithRelationInput {
+  id: SortOrder
+  fullName: SortOrder
+  email: SortOrder
+  emailVerifiedAt: SortOrderInput
+  password: SortOrder
+  profilePictureUrl: SortOrderInput
+  deletedAt: SortOrderInput
+  roleId: SortOrder
+  participantId: SortOrderInput
+  role: RoleOrderByWithRelationInput
+  participant: ParticipantOrderByWithRelationInput
+  claimsInput: ClaimOrderByRelationAggregateInput
+  claimActions: ClaimStatusOrderByRelationAggregateInput
+  announcementCreated: AnnouncementOrderByRelationAggregateInput
+  notification: NotificationOrderByRelationAggregateInput
+}
+
+input RoleOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  description: SortOrderInput
+  order: SortOrder
+  higherLevelThanId: SortOrderInput
+  higherLevelThan: RoleOrderByWithRelationInput
+  rolePermissions: RolePermissionOrderByRelationAggregateInput
+  users: UserOrderByRelationAggregateInput
+  lowerLevelThan: RoleOrderByRelationAggregateInput
+}
+
+input RolePermissionOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input UserOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input RoleOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ClaimStatusOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AnnouncementOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input NotificationOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input BankAccountOrderByWithRelationInput {
+  id: SortOrder
+  accountNumber: SortOrder
+  accountName: SortOrder
+  participantId: SortOrder
+  participant: ParticipantOrderByWithRelationInput
+}
+
+input EmploymentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ContactInfoOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ProgramParticipationOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AccountOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ParticipantOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ClaimFinancialOrderByWithRelationInput {
+  id: SortOrder
+  requestedAmount: SortOrder
+  paidAmount: SortOrderInput
+  rejectedAmount: SortOrderInput
+  transactionProcessDate: SortOrderInput
+  transferDate: SortOrderInput
+  claimId: SortOrder
+  branchId: SortOrder
+  claimStatusId: SortOrder
+  branchPayee: BranchOrderByWithRelationInput
+  claim: ClaimOrderByWithRelationInput
+  claimStatus: ClaimStatusOrderByWithRelationInput
+}
+
+input BranchOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  employment: EmploymentOrderByRelationAggregateInput
+  claimFinancial: ClaimFinancialOrderByRelationAggregateInput
+}
+
+input ClaimFinancialOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ClaimStatusOrderByWithRelationInput {
+  id: SortOrder
+  description: SortOrderInput
+  rejectionReason: SortOrderInput
+  createdAt: SortOrder
+  status: SortOrder
+  createById: SortOrder
+  claimId: SortOrder
+  rejectionLetterId: SortOrderInput
+  guaranteeLetterId: SortOrderInput
+  transactionLetterId: SortOrderInput
+  bookKeepingOrderId: SortOrderInput
+  createBy: UserOrderByWithRelationInput
+  claim: ClaimOrderByWithRelationInput
+  rejectionLetter: DocumentOrderByWithRelationInput
+  guaranteeLetter: DocumentOrderByWithRelationInput
+  transactionLetter: DocumentOrderByWithRelationInput
+  bookKeepingOrder: DocumentOrderByWithRelationInput
+  claimFinancial: ClaimFinancialOrderByWithRelationInput
+}
+
+input DocumentOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  path: SortOrder
+  size: SortOrder
+  printCount: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  source: SortOrder
+  type: SortOrder
+  claimProcessId: SortOrderInput
+  rejectionLetterOf: ClaimStatusOrderByWithRelationInput
+  guaranteeLetterOf: ClaimStatusOrderByWithRelationInput
+  transactionLetterOf: ClaimStatusOrderByWithRelationInput
+  bookKeepingOrderOf: ClaimStatusOrderByWithRelationInput
+  claimProcess: ClaimProcessOrderByWithRelationInput
+}
+
+input ClaimProcessOrderByWithRelationInput {
+  id: SortOrder
+  startTreatment: SortOrderInput
+  endTreatment: SortOrderInput
+  expeditionDate: SortOrderInput
+  reclaim: SortOrderInput
+  processDate: SortOrderInput
+  submissionNote: SortOrder
+  description: SortOrder
+  additionalNote: SortOrder
+  claimId: SortOrder
+  claim: ClaimOrderByWithRelationInput
+  documents: DocumentOrderByRelationAggregateInput
+}
+
+input DocumentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input DiseaseOrderByWithRelationInput {
+  id: SortOrder
+  code: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  claims: ClaimOrderByRelationAggregateInput
+}
+
+input ClinicOrderByWithRelationInput {
+  id: SortOrder
+  code: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  claims: ClaimOrderByRelationAggregateInput
+}
+
+input ClaimTypeOrderByWithRelationInput {
+  id: SortOrder
+  jenis: SortOrder
+  jenisRI: SortOrder
+  plan: SortOrder
+  programId: SortOrder
+  claimId: SortOrder
+  program: ProgramOrderByWithRelationInput
+  claims: ClaimOrderByWithRelationInput
+}
+
+input ProgramOrderByWithRelationInput {
+  id: SortOrder
+  plan: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  deletedAt: SortOrderInput
+  allowanceCeiling: SortOrder
+  class: SortOrder
+  maxAllowance: SortOrder
+  programParticipations: ProgramParticipationOrderByRelationAggregateInput
+  claimType: ClaimTypeOrderByRelationAggregateInput
+}
+
+input ClaimTypeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TagOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ClaimWhereUniqueInput {
+  id: String
+  claimFinancialId: Int
+  claimProcessId: Int
+  claimTypeId: Int
+  AND: [ClaimWhereInput!]
+  OR: [ClaimWhereInput!]
+  NOT: [ClaimWhereInput!]
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
+  channel: EnumClaimChannelFilter
+  admedicaStatus: EnumAdmedicaStatusFilter
+  companyId: IntFilter
+  participantId: StringFilter
+  diseaseId: IntNullableFilter
+  clinicId: IntFilter
+  inputedById: StringNullableFilter
+  company: CompanyRelationFilter
+  participant: ParticipantRelationFilter
+  claimFinancials: ClaimFinancialRelationFilter
+  claimProcesses: ClaimProcessRelationFilter
+  disease: DiseaseNullableRelationFilter
+  clinics: ClinicRelationFilter
+  inputedBy: UserNullableRelationFilter
+  claimTypes: ClaimTypeRelationFilter
+  tags: TagListRelationFilter
+  claimStatuses: ClaimStatusListRelationFilter
+}
+
+enum ClaimScalarFieldEnum {
+  id
+  createdAt
+  updatedAt
+  deletedAt
+  channel
+  admedicaStatus
+  companyId
+  participantId
+  claimFinancialId
+  claimProcessId
+  diseaseId
+  clinicId
+  inputedById
+  claimTypeId
+}
+
+input RoleFindOneByUserArgs {
+  userId: String
+}
+
 type Mutation {
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  claimImport(file: Upload): Boolean
+
   """Deskripsinya ada disini loh"""
   notificationUpdateOne(notificationUpdateOneIsReadAndIsClearedArgs: NotificationUpdateOneIsReadAndIsClearedArgs!): Notification
 
   """Deskripsinya ada disini loh"""
   notificationUpdateMany: Boolean
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 input NotificationUpdateOneIsReadAndIsClearedArgs {
   id: Int!

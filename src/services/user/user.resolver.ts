@@ -28,21 +28,20 @@ interface UserSelect {
 export class UserResolver {
   constructor(private readonly userController: UserController) {}
 
-  // UserCreateOne
-  @Mutation(() => User, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async userCreateOne(
-    @Args()
-    userCreateArgs: CreateOneUserArgs,
-    @Relations() relations: UserSelect,
-  ): Promise<User | void> {
-    return await this.userController.createOne({
-      ...userCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => User, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async userCreateOne(
+  //   @Args()
+  //   userCreateArgs: CreateOneUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ): Promise<User | void> {
+  //   return await this.userController.createOne({
+  //     ...userCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,
@@ -55,36 +54,34 @@ export class UserResolver {
   //   return await this.userController.createMany(createManyUserArgs);
   // }
 
-  // UserFindOne
-  @Query(() => User, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  userFindOne(
-    @Args()
-    userFindUniqueArgs: FindUniqueUserArgs,
-    @Relations() relations: UserSelect,
-  ): Promise<User | void> {
-    return this.userController.findOne({
-      ...userFindUniqueArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => User, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // userFindOne(
+  //   @Args()
+  //   userFindUniqueArgs: FindUniqueUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ): Promise<User | void> {
+  //   return this.userController.findOne({
+  //     ...userFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  // UserFindMany
-  @Query(() => [User], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  userFindMany(
-    @Args() userFindManyArgs: FindManyUserArgs,
-    @Relations() relations: UserSelect,
-  ) {
-    return this.userController.findMany({
-      ...userFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [User], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // userFindMany(
+  //   @Args() userFindManyArgs: FindManyUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ) {
+  //   return this.userController.findMany({
+  //     ...userFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => User, {
   //   nullable: true,
@@ -101,20 +98,19 @@ export class UserResolver {
   //   });
   // }
 
-  // UserUpdateOne
-  @Mutation(() => User, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async userUpdateOne(
-    @Args() userUpdateOneArgs: UpdateOneUserArgs,
-    @Relations() relations: UserSelect,
-  ) {
-    return this.userController.updateOne({
-      ...replaceNullWithUndefined(userUpdateOneArgs),
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => User, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async userUpdateOne(
+  //   @Args() userUpdateOneArgs: UpdateOneUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ) {
+  //   return this.userController.updateOne({
+  //     ...replaceNullWithUndefined(userUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Mutation(() => User, {
   //   nullable: true,
@@ -124,20 +120,19 @@ export class UserResolver {
   //   return this.userController.updateMany(updateManyUserArgs);
   // }
 
-  // UserDeleteOne
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async userDeleteOne(
-    @Args() deleteOneUserArgs: DeleteOneUserArgs,
-    @Relations() relations: UserSelect,
-  ) {
-    return this.userController.delete({
-      ...deleteOneUserArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async userDeleteOne(
+  //   @Args() deleteOneUserArgs: DeleteOneUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ) {
+  //   return this.userController.delete({
+  //     ...deleteOneUserArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Mutation(() => Boolean, {
   //   nullable: false,
@@ -162,4 +157,17 @@ export class UserResolver {
   // userCount(@Args() userCountAggregateInput: FindManyUserArgs) {
   //   return this.userController.count(userCountAggregateInput);
   // }
+
+  // ? CLAIM LIST SCREEN
+  @Query(() => [User], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  userFindMany(
+    @Relations() relations: UserSelect,
+  ) {
+    return this.userController.findManyNotParticipant({
+      select: relations.select,
+    });
+  }
 }
