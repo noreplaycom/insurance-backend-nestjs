@@ -12,6 +12,8 @@ import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.fun
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
 import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
+import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
+import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 
 @Injectable()
 export class FakeClaimController implements ClaimController {
@@ -180,5 +182,13 @@ export class FakeClaimController implements ClaimController {
   
   async updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim> {
     return this.claims.find(v => v);
+  }
+
+  async createOneForm(claimFormCreateOneArgs: ClaimFormCreateOneArgs): Promise<Claim> {
+    return fakeClaimComplete();
+  }
+
+  async countWhere(claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs): Promise<number> {
+    return this.claims.length;
   }
 }

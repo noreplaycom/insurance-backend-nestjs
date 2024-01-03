@@ -1869,6 +1869,9 @@ type Query {
   claimFindOne(claimFindOneByIdArgs: ClaimFindOneByIdArgs!): Claim
 
   """Deskripsinya ada disini loh"""
+  claimCount(claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs!): Int
+
+  """Deskripsinya ada disini loh"""
   claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
@@ -3319,6 +3322,10 @@ input ClaimFindOneByIdArgs {
   id: String!
 }
 
+input ClaimCountQuantityWhereArgs {
+  where: ClaimWhereInput!
+}
+
 input ClaimStatusFindManyByClaimIdArgs {
   claimId: String!
 }
@@ -3342,6 +3349,9 @@ type Mutation {
   claimFileUpload(file: Upload): String
 
   """Deskripsinya ada disini loh"""
+  claimCreateOne(claimFormCreateOneArgs: ClaimFormCreateOneArgs!): Claim
+
+  """Deskripsinya ada disini loh"""
   notificationUpdateOne(notificationUpdateOneIsReadAndIsClearedArgs: NotificationUpdateOneIsReadAndIsClearedArgs!): Notification
 
   """Deskripsinya ada disini loh"""
@@ -3354,6 +3364,21 @@ scalar Upload
 input ClaimUpdateOneOfStatusArgs {
   id: String!
   status: ClaimStatusType!
+}
+
+input ClaimFormCreateOneArgs {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  companyId: Int!
+  participantId: String!
+  claimFinancialsId: [Int!]!
+  claimProcessesId: [Int!]!
+  diseaseId: Int
+  clinicsId: [Int!]!
+  inputedBy: Int
+  claimTypes: [Int!]!
+  tags: [Int!]
+  claimStatuses: [Int!]
 }
 
 input NotificationUpdateOneIsReadAndIsClearedArgs {

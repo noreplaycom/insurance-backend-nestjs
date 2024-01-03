@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Resolver, Query, Mutation, Args, Float, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Float, ResolveField, Parent, Int } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Relations } from 'src/utils/relations.decorator';
 import {
@@ -20,6 +20,8 @@ import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/guard/auth.guard';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
 import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
+import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
+import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 
 interface ClaimSelect {
   select: Prisma.ClaimSelect;
@@ -263,5 +265,25 @@ export class ClaimResolver {
       stream.on('error', reject);
     });
     return `https://dsaagroup.com/uploaded_file/${file.filename}`
+  }
+
+  // ? CLAIM FORM SCREEN
+  @Mutation(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimCreateOne(
+    @Args('claimFormCreateOneArgs') claimFormCreateOneArgs: ClaimFormCreateOneArgs,
+    // @Relations() relations: ClaimSelect,
+  ): Promise<Claim | void> {
+    return await this.claimController.createOneForm(claimFormCreateOneArgs);
+  }
+
+  @Query(() => Int, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimCount(@Args('claimCountQuantityWhereArgs') claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs) {
+    return this.claimController.countWhere(claimCountQuantityWhereArgs);
   }
 }

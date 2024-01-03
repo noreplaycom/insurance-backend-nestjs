@@ -7,13 +7,15 @@ import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRange
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
 import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
+import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
+import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 
 @Injectable()
 export abstract class ClaimController {
   abstract createOne(claimCreateArgs: Prisma.ClaimCreateArgs): Promise<Claim>;
-
+  
   abstract createMany(claimCreateManyArgs: Prisma.ClaimCreateManyArgs): Promise<Prisma.BatchPayload>;
-
+  
   abstract findOne(claimFindUniqueArgs: Prisma.ClaimFindUniqueArgs): Promise<Claim>;
   
   abstract findMany(claimFindManyArgs: Prisma.ClaimFindManyArgs): Promise<Claim[]>;
@@ -45,4 +47,8 @@ export abstract class ClaimController {
   abstract findOneById(claimFindOneByIdArgs: ClaimFindOneByIdArgs): Promise<Claim>;
   
   abstract updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim>;
+  
+  abstract createOneForm(claimFormCreateOneArgs: ClaimFormCreateOneArgs): Promise<Claim>;
+  
+  abstract countWhere(claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs): Promise<number>;
 }

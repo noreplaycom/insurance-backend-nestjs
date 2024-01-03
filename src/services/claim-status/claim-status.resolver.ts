@@ -168,6 +168,7 @@ export class ClaimStatusResolver {
     return this.claimStatusController.getClaimStatusTypes();
   }
 
+  // ? CLAIM STATUS TRACKING SCREEN
   @Query(() => [ClaimStatus], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',

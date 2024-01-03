@@ -11,6 +11,8 @@ import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageV
 import { Period } from 'src/model/period.enum';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
 import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
+import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
+import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 
 @Injectable()
 export class PrismaClaimController implements ClaimController {
@@ -95,5 +97,13 @@ export class PrismaClaimController implements ClaimController {
 
   async updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim> {
     return await this.claimService.findFirst({});
+  }
+
+  async createOneForm(claimFormCreateOneArgs: ClaimFormCreateOneArgs): Promise<Claim> {
+    return await this.claimService.findFirst({});
+  }
+
+  async countWhere(claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs): Promise<number> {
+    return 10;
   }
 }
