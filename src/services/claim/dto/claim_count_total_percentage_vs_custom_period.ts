@@ -1,13 +1,16 @@
-import { ObjectType, Field, Float, InputType } from '@nestjs/graphql';
+import { ObjectType, Field, Float, InputType, Int } from '@nestjs/graphql';
 import { Period } from 'src/model/period.enum';
 
 @ObjectType()
 export class ClaimCountTotalPercentageVsCustomPeriodQuery {
-  @Field(() => Period)
-  period: Period;
+  @Field(() => String)
+  versus: string;
 
   @Field(() => Float)
   percentage: number;
+
+  @Field(() => Float)
+  amount: number;
 }
 
 @InputType()

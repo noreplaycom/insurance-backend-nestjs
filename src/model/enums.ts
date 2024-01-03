@@ -2,6 +2,7 @@ export enum Period {
   WEEKLY = 'WEEKLY',
   MONTHLY = 'MONTHLY',
   YEARLY = 'YEARLY',
+  ALLTIME = 'ALLTIME',
 }
 export enum FileType {
   JPG = 'JPG',

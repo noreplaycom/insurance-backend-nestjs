@@ -4,6 +4,7 @@ export enum Period {
   WEEKLY = 'weekly',
   MONTHLY = 'monthly',
   YEARLY = 'yearly',
+  ALLTIME = 'alltime',
 }
 
 registerEnumType(Period, {
