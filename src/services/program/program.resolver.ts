@@ -166,11 +166,21 @@ export class ProgramResolver {
     return this.programController.getClassesProgram();
   }
   
+  // ApplicationTypeFindMany
   @Query(() => [String], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  getApplicationTypesProgram() {
+  applicationTypeFindMany() {
+    return this.programController.getApplicationTypesProgram();
+  }
+  
+  // PlanFindMany
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  planFindMany() {
     return this.programController.getApplicationTypesProgram();
   }
 }

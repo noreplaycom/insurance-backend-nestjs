@@ -111,6 +111,56 @@ type Address {
   _count: AddressCount!
 }
 
+type AnnouncementAvgAggregate {
+  id: Float
+}
+
+type AnnouncementCountAggregate {
+  id: Int!
+  title: Int!
+  content: Int!
+  imageUrl: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  createdById: Int!
+  _all: Int!
+}
+
+type AnnouncementMaxAggregate {
+  id: Int
+  title: String
+  content: String
+  imageUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdById: String
+}
+
+type AnnouncementMinAggregate {
+  id: Int
+  title: String
+  content: String
+  imageUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdById: String
+}
+
+type AnnouncementSumAggregate {
+  id: Int
+}
+
+type Announcement {
+  id: Int!
+  title: String!
+  content: String!
+  imageUrl: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdById: String!
+  createdBy: User!
+}
+
 type BankAccountAvgAggregate {
   id: Float
   accountNumber: Float
@@ -1105,6 +1155,68 @@ type Group {
   _count: GroupCount!
 }
 
+type NotificationAvgAggregate {
+  id: Float
+}
+
+type NotificationCountAggregate {
+  id: Int!
+  title: Int!
+  subtitle: Int!
+  content: Int!
+  createdAt: Int!
+  isRead: Int!
+  isCleared: Int!
+  deepLink: Int!
+  fcmToken: Int!
+  userId: Int!
+  _all: Int!
+}
+
+type NotificationMaxAggregate {
+  id: Int
+  title: String
+  subtitle: String
+  content: String
+  createdAt: DateTime
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: String
+  fcmToken: String
+  userId: String
+}
+
+type NotificationMinAggregate {
+  id: Int
+  title: String
+  subtitle: String
+  content: String
+  createdAt: DateTime
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: String
+  fcmToken: String
+  userId: String
+}
+
+type NotificationSumAggregate {
+  id: Int
+}
+
+type Notification {
+  id: Int!
+  title: String!
+  subtitle: String!
+  content: String!
+  createdAt: DateTime!
+  isRead: Boolean!
+  isCleared: Boolean!
+  deepLink: String
+  fcmToken: String
+  userId: String!
+  user: User!
+}
+
 type ParticipantAvgAggregate {
   bankAccountId: Float
 }
@@ -1634,6 +1746,7 @@ type UserCountAggregate {
   email: Int!
   emailVerifiedAt: Int!
   password: Int!
+  profilePictureUrl: Int!
   createdAt: Int!
   updatedAt: Int!
   deletedAt: Int!
@@ -1645,6 +1758,8 @@ type UserCountAggregate {
 type UserCount {
   claimsInput: Int!
   claimActions: Int!
+  announcementCreated: Int!
+  notification: Int!
 }
 
 type UserMaxAggregate {
@@ -1653,6 +1768,7 @@ type UserMaxAggregate {
   email: String
   emailVerifiedAt: DateTime
   password: String
+  profilePictureUrl: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -1666,6 +1782,7 @@ type UserMinAggregate {
   email: String
   emailVerifiedAt: DateTime
   password: String
+  profilePictureUrl: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -1686,6 +1803,7 @@ type User {
   email: String!
   emailVerifiedAt: DateTime
   password: String!
+  profilePictureUrl: String
 
   """Tgl.Masuk Peserta"""
   createdAt: DateTime!
@@ -1697,6 +1815,8 @@ type User {
   participant: Participant
   claimsInput: [Claim!]
   claimActions: [ClaimStatus!]
+  announcementCreated: [Announcement!]
+  notification: [Notification!]
   _count: UserCount!
 }
 
@@ -1740,10 +1860,10 @@ type Query {
   claimFindMany(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): [Claim!]
 
   """Deskripsinya ada disini loh"""
-  claimCount(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): Float
+  claimCountQuantity(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
-  claimCountQuantityByCustomRangeAndPeriod(claimCountQuantityByCustomRangeAndPeriodArgs: ClaimCountQuantityByCustomRangeAndPeriodArgs!): [ClaimCountQuantityByCustomRangeAndPeriodQuery!]
+  claimCountQuantityByCustomRange(claimCountQuantityByCustomRangeAndPeriodArgs: ClaimCountQuantityByCustomRangeAndPeriodArgs!): [ClaimCountQuantityByCustomRangeAndPeriodQuery!]
 
   """Deskripsinya ada disini loh"""
   claimCountQuantityByStatus(claimCountQuantityByStatusArgs: ClaimCountQuantityByStatusArgs!): ClaimCountQuantityByStatusQuery
@@ -1755,13 +1875,13 @@ type Query {
   claimCountTotalPercentageVsCustomPeriod(claimCountTotalPercentageVsCustomPeriodArgs: ClaimCountTotalPercentageVsCustomPeriodArgs!): ClaimCountTotalPercentageVsCustomPeriodQuery
 
   """Deskripsinya ada disini loh"""
-  getClaimChannels: [String!]
+  claimChannelFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
   claimStatusFindMany(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): [ClaimStatus!]
 
   """Deskripsinya ada disini loh"""
-  getClaimStatusTypes: [String!]
+  claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
   getEmploymentPosition: [String!]
@@ -1776,7 +1896,10 @@ type Query {
   getClassesProgram: [String!]
 
   """Deskripsinya ada disini loh"""
-  getApplicationTypesProgram: [String!]
+  applicationTypeFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
+  planFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
   regionFindMany(where: RegionWhereInput, orderBy: [RegionOrderByWithRelationInput!], cursor: RegionWhereUniqueInput, take: Int, skip: Int, distinct: [RegionScalarFieldEnum!]): [Region!]
@@ -1785,7 +1908,10 @@ type Query {
   roleFindOne(where: RoleWhereUniqueInput!): Role
 
   """Deskripsinya ada disini loh"""
-  rolePermissionFindOne(where: RolePermissionWhereUniqueInput!): RolePermission
+  roleFindMany(where: RoleWhereInput, orderBy: [RoleOrderByWithRelationInput!], cursor: RoleWhereUniqueInput, take: Int, skip: Int, distinct: [RoleScalarFieldEnum!]): [Role!]
+
+  """Deskripsinya ada disini loh"""
+  permissionFindOne(where: RolePermissionWhereUniqueInput!): RolePermission
 
   """Deskripsinya ada disini loh"""
   rolePermissionFindMany(where: RolePermissionWhereInput, orderBy: [RolePermissionOrderByWithRelationInput!], cursor: RolePermissionWhereUniqueInput, take: Int, skip: Int, distinct: [RolePermissionScalarFieldEnum!]): [RolePermission!]
@@ -1794,7 +1920,13 @@ type Query {
   tagFindMany(where: TagWhereInput, orderBy: [TagOrderByWithRelationInput!], cursor: TagWhereUniqueInput, take: Int, skip: Int, distinct: [TagScalarFieldEnum!]): [Tag!]
 
   """Deskripsinya ada disini loh"""
+  userFindOne(where: UserWhereUniqueInput!): User
+
+  """Deskripsinya ada disini loh"""
   userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
+
+  """Deskripsinya ada disini loh"""
+  notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
 }
 
 input ClaimWhereUniqueInput {
@@ -2137,6 +2269,7 @@ input UserWhereInput {
   email: StringFilter
   emailVerifiedAt: DateTimeNullableFilter
   password: StringFilter
+  profilePictureUrl: StringNullableFilter
   deletedAt: DateTimeNullableFilter
   roleId: IntFilter
   participantId: IntNullableFilter
@@ -2144,6 +2277,8 @@ input UserWhereInput {
   participant: ParticipantNullableRelationFilter
   claimsInput: ClaimListRelationFilter
   claimActions: ClaimStatusListRelationFilter
+  announcementCreated: AnnouncementListRelationFilter
+  notification: NotificationListRelationFilter
 }
 
 input RoleRelationFilter {
@@ -2520,6 +2655,49 @@ input ClaimFinancialListRelationFilter {
 input ClaimStatusRelationFilter {
   is: ClaimStatusWhereInput
   isNot: ClaimStatusWhereInput
+}
+
+input AnnouncementListRelationFilter {
+  every: AnnouncementWhereInput
+  some: AnnouncementWhereInput
+  none: AnnouncementWhereInput
+}
+
+input AnnouncementWhereInput {
+  AND: [AnnouncementWhereInput!]
+  OR: [AnnouncementWhereInput!]
+  NOT: [AnnouncementWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  content: StringFilter
+  imageUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  createdById: StringFilter
+  createdBy: UserRelationFilter
+}
+
+input NotificationListRelationFilter {
+  every: NotificationWhereInput
+  some: NotificationWhereInput
+  none: NotificationWhereInput
+}
+
+input NotificationWhereInput {
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  subtitle: StringFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  isRead: BoolFilter
+  isCleared: BoolFilter
+  deepLink: StringNullableFilter
+  fcmToken: StringNullableFilter
+  userId: StringFilter
+  user: UserRelationFilter
 }
 
 input BankAccountNullableRelationFilter {
@@ -2923,6 +3101,7 @@ input UserOrderByWithRelationInput {
   email: SortOrder
   emailVerifiedAt: SortOrderInput
   password: SortOrder
+  profilePictureUrl: SortOrderInput
   deletedAt: SortOrderInput
   roleId: SortOrder
   participantId: SortOrderInput
@@ -2930,6 +3109,8 @@ input UserOrderByWithRelationInput {
   participant: ParticipantOrderByWithRelationInput
   claimsInput: ClaimOrderByRelationAggregateInput
   claimActions: ClaimStatusOrderByRelationAggregateInput
+  announcementCreated: AnnouncementOrderByRelationAggregateInput
+  notification: NotificationOrderByRelationAggregateInput
 }
 
 input RoleOrderByWithRelationInput {
@@ -2957,6 +3138,14 @@ input RoleOrderByRelationAggregateInput {
 }
 
 input ClaimStatusOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AnnouncementOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input NotificationOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -3277,6 +3466,14 @@ input RoleWhereUniqueInput {
   lowerLevelThan: RoleListRelationFilter
 }
 
+enum RoleScalarFieldEnum {
+  id
+  name
+  description
+  order
+  higherLevelThanId
+}
+
 input RolePermissionWhereUniqueInput {
   roleId_permission: RolePermissionRoleIdPermissionCompoundUniqueInput
   AND: [RolePermissionWhereInput!]
@@ -3341,6 +3538,7 @@ input UserWhereUniqueInput {
   fullName: StringFilter
   emailVerifiedAt: DateTimeNullableFilter
   password: StringFilter
+  profilePictureUrl: StringNullableFilter
   deletedAt: DateTimeNullableFilter
   roleId: IntFilter
   participantId: IntNullableFilter
@@ -3348,6 +3546,8 @@ input UserWhereUniqueInput {
   participant: ParticipantNullableRelationFilter
   claimsInput: ClaimListRelationFilter
   claimActions: ClaimStatusListRelationFilter
+  announcementCreated: AnnouncementListRelationFilter
+  notification: NotificationListRelationFilter
 }
 
 enum UserScalarFieldEnum {
@@ -3356,6 +3556,7 @@ enum UserScalarFieldEnum {
   email
   emailVerifiedAt
   password
+  profilePictureUrl
   createdAt
   updatedAt
   deletedAt
@@ -3363,18 +3564,71 @@ enum UserScalarFieldEnum {
   participantId
 }
 
+input NotificationOrderByWithRelationInput {
+  id: SortOrder
+  title: SortOrder
+  subtitle: SortOrder
+  content: SortOrder
+  createdAt: SortOrder
+  isRead: SortOrder
+  isCleared: SortOrder
+  deepLink: SortOrderInput
+  fcmToken: SortOrderInput
+  userId: SortOrder
+  user: UserOrderByWithRelationInput
+}
+
+input NotificationWhereUniqueInput {
+  id: Int
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  title: StringFilter
+  subtitle: StringFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  isRead: BoolFilter
+  isCleared: BoolFilter
+  deepLink: StringNullableFilter
+  fcmToken: StringNullableFilter
+  userId: StringFilter
+  user: UserRelationFilter
+}
+
+enum NotificationScalarFieldEnum {
+  id
+  title
+  subtitle
+  content
+  createdAt
+  isRead
+  isCleared
+  deepLink
+  fcmToken
+  userId
+}
+
 type Mutation {
   """Deskripsinya ada disini loh"""
   claimCreateOne(data: ClaimCreateInput!): Claim
 
   """Deskripsinya ada disini loh"""
-  claimUpdateOne(data: ClaimUpdateInput!, where: ClaimWhereUniqueInput!): Claim
+  claimUpdateOneOfStatus(data: ClaimUpdateInput!, where: ClaimWhereUniqueInput!): Claim
 
   """Deskripsinya ada disini loh"""
   userCreateOne(data: UserCreateInput!): User
 
   """Deskripsinya ada disini loh"""
+  userUpdateOne(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+
+  """Deskripsinya ada disini loh"""
   userDeleteOne(where: UserWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  notificationUpdateOne(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+
+  """Deskripsinya ada disini loh"""
+  notificationUpdateMany(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): Notification
 
   """
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
@@ -3463,11 +3717,14 @@ input UserCreateWithoutParticipantInput {
   email: String!
   emailVerifiedAt: DateTime
   password: String!
+  profilePictureUrl: String
   deletedAt: DateTime
   participantId: Int
   role: RoleCreateNestedOneWithoutUsersInput!
   claimsInput: ClaimCreateNestedManyWithoutInputedByInput
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
 }
 
 input RoleCreateNestedOneWithoutUsersInput {
@@ -3538,11 +3795,14 @@ input UserCreateWithoutRoleInput {
   email: String!
   emailVerifiedAt: DateTime
   password: String!
+  profilePictureUrl: String
   deletedAt: DateTime
   participantId: Int
   participant: ParticipantCreateNestedOneWithoutUserInput
   claimsInput: ClaimCreateNestedManyWithoutInputedByInput
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
 }
 
 input ParticipantCreateNestedOneWithoutUserInput {
@@ -4006,11 +4266,14 @@ input UserCreateWithoutClaimActionsInput {
   email: String!
   emailVerifiedAt: DateTime
   password: String!
+  profilePictureUrl: String
   deletedAt: DateTime
   participantId: Int
   role: RoleCreateNestedOneWithoutUsersInput!
   participant: ParticipantCreateNestedOneWithoutUserInput
   claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
 }
 
 input ClaimCreateNestedManyWithoutInputedByInput {
@@ -4310,11 +4573,14 @@ input UserCreateWithoutClaimsInputInput {
   email: String!
   emailVerifiedAt: DateTime
   password: String!
+  profilePictureUrl: String
   deletedAt: DateTime
   participantId: Int
   role: RoleCreateNestedOneWithoutUsersInput!
   participant: ParticipantCreateNestedOneWithoutUserInput
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
 }
 
 input ClaimStatusCreateNestedManyWithoutCreateByInput {
@@ -4760,6 +5026,94 @@ input ClaimStatusCreateManyCreateByInput {
   guaranteeLetterId: String
   transactionLetterId: String
   bookKeepingOrderId: String
+}
+
+input AnnouncementCreateNestedManyWithoutCreatedByInput {
+  create: [AnnouncementCreateWithoutCreatedByInput!]
+  connectOrCreate: [AnnouncementCreateOrConnectWithoutCreatedByInput!]
+  createMany: AnnouncementCreateManyCreatedByInputEnvelope
+  connect: [AnnouncementWhereUniqueInput!]
+}
+
+input AnnouncementCreateWithoutCreatedByInput {
+  title: String!
+  content: String!
+  imageUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input AnnouncementCreateOrConnectWithoutCreatedByInput {
+  where: AnnouncementWhereUniqueInput!
+  create: AnnouncementCreateWithoutCreatedByInput!
+}
+
+input AnnouncementWhereUniqueInput {
+  id: Int
+  AND: [AnnouncementWhereInput!]
+  OR: [AnnouncementWhereInput!]
+  NOT: [AnnouncementWhereInput!]
+  title: StringFilter
+  content: StringFilter
+  imageUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  createdById: StringFilter
+  createdBy: UserRelationFilter
+}
+
+input AnnouncementCreateManyCreatedByInputEnvelope {
+  data: [AnnouncementCreateManyCreatedByInput!]!
+  skipDuplicates: Boolean
+}
+
+input AnnouncementCreateManyCreatedByInput {
+  id: Int
+  title: String!
+  content: String!
+  imageUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input NotificationCreateNestedManyWithoutUserInput {
+  create: [NotificationCreateWithoutUserInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
+  createMany: NotificationCreateManyUserInputEnvelope
+  connect: [NotificationWhereUniqueInput!]
+}
+
+input NotificationCreateWithoutUserInput {
+  title: String!
+  subtitle: String!
+  content: String!
+  createdAt: DateTime
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: String
+  fcmToken: String
+}
+
+input NotificationCreateOrConnectWithoutUserInput {
+  where: NotificationWhereUniqueInput!
+  create: NotificationCreateWithoutUserInput!
+}
+
+input NotificationCreateManyUserInputEnvelope {
+  data: [NotificationCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input NotificationCreateManyUserInput {
+  id: Int
+  title: String!
+  subtitle: String!
+  content: String!
+  createdAt: DateTime
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: String
+  fcmToken: String
 }
 
 input UserCreateOrConnectWithoutClaimsInputInput {
@@ -5292,6 +5646,7 @@ input UserCreateManyRoleInput {
   email: String!
   emailVerifiedAt: DateTime
   password: String!
+  profilePictureUrl: String
   deletedAt: DateTime
   participantId: Int
 }
@@ -5483,11 +5838,18 @@ input UserUpdateWithoutParticipantInput {
   email: StringFieldUpdateOperationsInput
   emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   participantId: NullableIntFieldUpdateOperationsInput
   role: RoleUpdateOneRequiredWithoutUsersNestedInput
   claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
   claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
 }
 
 input NullableIntFieldUpdateOperationsInput {
@@ -5519,10 +5881,6 @@ input RoleUpdateWithoutUsersInput {
   higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
   lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
-}
-
-input NullableStringFieldUpdateOperationsInput {
-  set: String
 }
 
 input RoleUpdateOneWithoutLowerLevelThanNestedInput {
@@ -5626,11 +5984,14 @@ input UserUpdateWithoutRoleInput {
   email: StringFieldUpdateOperationsInput
   emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   participantId: NullableIntFieldUpdateOperationsInput
   participant: ParticipantUpdateOneWithoutUserNestedInput
   claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
   claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
 }
 
 input ParticipantUpdateOneWithoutUserNestedInput {
@@ -6309,11 +6670,14 @@ input UserUpdateWithoutClaimActionsInput {
   email: StringFieldUpdateOperationsInput
   emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   participantId: NullableIntFieldUpdateOperationsInput
   role: RoleUpdateOneRequiredWithoutUsersNestedInput
   participant: ParticipantUpdateOneWithoutUserNestedInput
   claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
 }
 
 input ClaimUpdateManyWithoutInputedByNestedInput {
@@ -6749,11 +7113,14 @@ input UserUpdateWithoutClaimsInputInput {
   email: StringFieldUpdateOperationsInput
   emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   participantId: NullableIntFieldUpdateOperationsInput
   role: RoleUpdateOneRequiredWithoutUsersNestedInput
   participant: ParticipantUpdateOneWithoutUserNestedInput
   claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
 }
 
 input ClaimStatusUpdateManyWithoutCreateByNestedInput {
@@ -7316,6 +7683,133 @@ input ClaimStatusUpdateManyWithWhereWithoutCreateByInput {
   data: ClaimStatusUpdateManyMutationInput!
 }
 
+input AnnouncementUpdateManyWithoutCreatedByNestedInput {
+  create: [AnnouncementCreateWithoutCreatedByInput!]
+  connectOrCreate: [AnnouncementCreateOrConnectWithoutCreatedByInput!]
+  upsert: [AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput!]
+  createMany: AnnouncementCreateManyCreatedByInputEnvelope
+  set: [AnnouncementWhereUniqueInput!]
+  disconnect: [AnnouncementWhereUniqueInput!]
+  delete: [AnnouncementWhereUniqueInput!]
+  connect: [AnnouncementWhereUniqueInput!]
+  update: [AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput!]
+  updateMany: [AnnouncementUpdateManyWithWhereWithoutCreatedByInput!]
+  deleteMany: [AnnouncementScalarWhereInput!]
+}
+
+input AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput {
+  where: AnnouncementWhereUniqueInput!
+  update: AnnouncementUpdateWithoutCreatedByInput!
+  create: AnnouncementCreateWithoutCreatedByInput!
+}
+
+input AnnouncementUpdateWithoutCreatedByInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  imageUrl: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput {
+  where: AnnouncementWhereUniqueInput!
+  data: AnnouncementUpdateWithoutCreatedByInput!
+}
+
+input AnnouncementUpdateManyWithWhereWithoutCreatedByInput {
+  where: AnnouncementScalarWhereInput!
+  data: AnnouncementUpdateManyMutationInput!
+}
+
+input AnnouncementScalarWhereInput {
+  AND: [AnnouncementScalarWhereInput!]
+  OR: [AnnouncementScalarWhereInput!]
+  NOT: [AnnouncementScalarWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  content: StringFilter
+  imageUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  createdById: StringFilter
+}
+
+input AnnouncementUpdateManyMutationInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  imageUrl: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input NotificationUpdateManyWithoutUserNestedInput {
+  create: [NotificationCreateWithoutUserInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
+  upsert: [NotificationUpsertWithWhereUniqueWithoutUserInput!]
+  createMany: NotificationCreateManyUserInputEnvelope
+  set: [NotificationWhereUniqueInput!]
+  disconnect: [NotificationWhereUniqueInput!]
+  delete: [NotificationWhereUniqueInput!]
+  connect: [NotificationWhereUniqueInput!]
+  update: [NotificationUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [NotificationUpdateManyWithWhereWithoutUserInput!]
+  deleteMany: [NotificationScalarWhereInput!]
+}
+
+input NotificationUpsertWithWhereUniqueWithoutUserInput {
+  where: NotificationWhereUniqueInput!
+  update: NotificationUpdateWithoutUserInput!
+  create: NotificationCreateWithoutUserInput!
+}
+
+input NotificationUpdateWithoutUserInput {
+  title: StringFieldUpdateOperationsInput
+  subtitle: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  isRead: BoolFieldUpdateOperationsInput
+  isCleared: BoolFieldUpdateOperationsInput
+  deepLink: NullableStringFieldUpdateOperationsInput
+  fcmToken: NullableStringFieldUpdateOperationsInput
+}
+
+input NotificationUpdateWithWhereUniqueWithoutUserInput {
+  where: NotificationWhereUniqueInput!
+  data: NotificationUpdateWithoutUserInput!
+}
+
+input NotificationUpdateManyWithWhereWithoutUserInput {
+  where: NotificationScalarWhereInput!
+  data: NotificationUpdateManyMutationInput!
+}
+
+input NotificationScalarWhereInput {
+  AND: [NotificationScalarWhereInput!]
+  OR: [NotificationScalarWhereInput!]
+  NOT: [NotificationScalarWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  subtitle: StringFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  isRead: BoolFilter
+  isCleared: BoolFilter
+  deepLink: StringNullableFilter
+  fcmToken: StringNullableFilter
+  userId: StringFilter
+}
+
+input NotificationUpdateManyMutationInput {
+  title: StringFieldUpdateOperationsInput
+  subtitle: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  isRead: BoolFieldUpdateOperationsInput
+  isCleared: BoolFieldUpdateOperationsInput
+  deepLink: NullableStringFieldUpdateOperationsInput
+  fcmToken: NullableStringFieldUpdateOperationsInput
+}
+
 input UserUpdateToOneWithWhereWithoutClaimsInputInput {
   where: UserWhereInput
   data: UserUpdateWithoutClaimsInputInput!
@@ -7840,6 +8334,7 @@ input UserScalarWhereInput {
   email: StringFilter
   emailVerifiedAt: DateTimeNullableFilter
   password: StringFilter
+  profilePictureUrl: StringNullableFilter
   deletedAt: DateTimeNullableFilter
   roleId: IntFilter
   participantId: IntNullableFilter
@@ -7851,6 +8346,7 @@ input UserUpdateManyMutationInput {
   email: StringFieldUpdateOperationsInput
   emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   participantId: NullableIntFieldUpdateOperationsInput
 }
@@ -7937,12 +8433,100 @@ input UserCreateInput {
   email: String!
   emailVerifiedAt: DateTime
   password: String!
+  profilePictureUrl: String
   deletedAt: DateTime
   participantId: Int
   role: RoleCreateNestedOneWithoutUsersInput!
   participant: ParticipantCreateNestedOneWithoutUserInput
   claimsInput: ClaimCreateNestedManyWithoutInputedByInput
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
+}
+
+input UserUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
+  role: RoleUpdateOneRequiredWithoutUsersNestedInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
+}
+
+input NotificationUpdateInput {
+  title: StringFieldUpdateOperationsInput
+  subtitle: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  isRead: BoolFieldUpdateOperationsInput
+  isCleared: BoolFieldUpdateOperationsInput
+  deepLink: NullableStringFieldUpdateOperationsInput
+  fcmToken: NullableStringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutNotificationNestedInput
+}
+
+input UserUpdateOneRequiredWithoutNotificationNestedInput {
+  create: UserCreateWithoutNotificationInput
+  connectOrCreate: UserCreateOrConnectWithoutNotificationInput
+  upsert: UserUpsertWithoutNotificationInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateToOneWithWhereWithoutNotificationInput
+}
+
+input UserCreateWithoutNotificationInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput!
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+}
+
+input UserCreateOrConnectWithoutNotificationInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutNotificationInput!
+}
+
+input UserUpsertWithoutNotificationInput {
+  update: UserUpdateWithoutNotificationInput!
+  create: UserCreateWithoutNotificationInput!
+  where: UserWhereInput
+}
+
+input UserUpdateWithoutNotificationInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
+  role: RoleUpdateOneRequiredWithoutUsersNestedInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+}
+
+input UserUpdateToOneWithWhereWithoutNotificationInput {
+  where: UserWhereInput
+  data: UserUpdateWithoutNotificationInput!
 }
 
 """The `Upload` scalar type represents a file upload."""

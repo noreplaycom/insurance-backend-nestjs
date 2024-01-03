@@ -28,6 +28,7 @@ interface UserSelect {
 export class UserResolver {
   constructor(private readonly userController: UserController) {}
 
+  // UserCreateOne
   @Mutation(() => User, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -54,21 +55,23 @@ export class UserResolver {
   //   return await this.userController.createMany(createManyUserArgs);
   // }
 
-  // @Query(() => User, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // userFindOne(
-  //   @Args()
-  //   userFindUniqueArgs: FindUniqueUserArgs,
-  //   @Relations() relations: UserSelect,
-  // ): Promise<User | void> {
-  //   return this.userController.findOne({
-  //     ...userFindUniqueArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  // UserFindOne
+  @Query(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  userFindOne(
+    @Args()
+    userFindUniqueArgs: FindUniqueUserArgs,
+    @Relations() relations: UserSelect,
+  ): Promise<User | void> {
+    return this.userController.findOne({
+      ...userFindUniqueArgs,
+      select: relations.select,
+    });
+  }
 
+  // UserFindMany
   @Query(() => [User], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -98,19 +101,20 @@ export class UserResolver {
   //   });
   // }
 
-  // @Mutation(() => User, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async userUpdateOne(
-  //   @Args() userUpdateOneArgs: UpdateOneUserArgs,
-  //   @Relations() relations: UserSelect,
-  // ) {
-  //   return this.userController.updateOne({
-  //     ...replaceNullWithUndefined(userUpdateOneArgs),
-  //     select: relations.select,
-  //   });
-  // }
+  // UserUpdateOne
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userUpdateOne(
+    @Args() userUpdateOneArgs: UpdateOneUserArgs,
+    @Relations() relations: UserSelect,
+  ) {
+    return this.userController.updateOne({
+      ...replaceNullWithUndefined(userUpdateOneArgs),
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => User, {
   //   nullable: true,
@@ -120,6 +124,7 @@ export class UserResolver {
   //   return this.userController.updateMany(updateManyUserArgs);
   // }
 
+  // UserDeleteOne
   @Mutation(() => Boolean, {
     nullable: false,
     description: 'Deskripsinya ada disini loh',

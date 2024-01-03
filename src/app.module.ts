@@ -34,6 +34,7 @@ import { RolePermissionModule } from './services/role-permission/role-permission
 import { TagModule } from './services/tag/tag.module';
 import { JwtModule } from '@nestjs/jwt';
 import { UploaderModule } from './services/uploader/uploader.module';
+import { NotificationModule } from './services/notification/notification.module';
 // import { DashboardModule } from './services/Dashboard/dashboard.module';
 // import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
 // import { UploaderModule } from './services/uploader/uploader.module';
@@ -125,6 +126,7 @@ import { UploaderModule } from './services/uploader/uploader.module';
     UserModule,
     // DashboardModule,
     // ClaimManagementModule,
+    NotificationModule,
     UploaderModule,
   ],
   controllers: [],

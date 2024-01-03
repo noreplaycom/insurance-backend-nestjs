@@ -69,6 +69,7 @@ export class ParticipantResolver {
   //   });
   // }
 
+  // ParticipantFindMany
   @Query(() => [Participant], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',

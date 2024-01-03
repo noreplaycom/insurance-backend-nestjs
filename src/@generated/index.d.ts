@@ -5,6 +5,7 @@ export declare enum UserScalarFieldEnum {
     email = "email",
     emailVerifiedAt = "emailVerifiedAt",
     password = "password",
+    profilePictureUrl = "profilePictureUrl",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     deletedAt = "deletedAt",
@@ -185,6 +186,18 @@ export declare enum ParticipantScalarFieldEnum {
     relationId = "relationId",
     bankAccountId = "bankAccountId"
 }
+export declare enum NotificationScalarFieldEnum {
+    id = "id",
+    title = "title",
+    subtitle = "subtitle",
+    content = "content",
+    createdAt = "createdAt",
+    isRead = "isRead",
+    isCleared = "isCleared",
+    deepLink = "deepLink",
+    fcmToken = "fcmToken",
+    userId = "userId"
+}
 export declare enum GroupScalarFieldEnum {
     id = "id",
     name = "name",
@@ -317,6 +330,15 @@ export declare enum BankAccountScalarFieldEnum {
     accountNumber = "accountNumber",
     accountName = "accountName",
     participantId = "participantId"
+}
+export declare enum AnnouncementScalarFieldEnum {
+    id = "id",
+    title = "title",
+    content = "content",
+    imageUrl = "imageUrl",
+    createdAt = "createdAt",
+    updatedAt = "updatedAt",
+    createdById = "createdById"
 }
 export declare enum AddressScalarFieldEnum {
     id = "id",
@@ -1281,6 +1303,465 @@ export declare class UpsertOneAddressArgs {
     where: Prisma.AtLeast<AddressWhereUniqueInput, 'id'>;
     create: InstanceType<typeof AddressCreateInput>;
     update: InstanceType<typeof AddressUpdateInput>;
+}
+export declare class AggregateAnnouncement {
+    _count?: InstanceType<typeof AnnouncementCountAggregate>;
+    _avg?: InstanceType<typeof AnnouncementAvgAggregate>;
+    _sum?: InstanceType<typeof AnnouncementSumAggregate>;
+    _min?: InstanceType<typeof AnnouncementMinAggregate>;
+    _max?: InstanceType<typeof AnnouncementMaxAggregate>;
+}
+export declare class AnnouncementAggregateArgs {
+    where?: InstanceType<typeof AnnouncementWhereInput>;
+    orderBy?: Array<AnnouncementOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof AnnouncementCountAggregateInput>;
+    _avg?: InstanceType<typeof AnnouncementAvgAggregateInput>;
+    _sum?: InstanceType<typeof AnnouncementSumAggregateInput>;
+    _min?: InstanceType<typeof AnnouncementMinAggregateInput>;
+    _max?: InstanceType<typeof AnnouncementMaxAggregateInput>;
+}
+export declare class AnnouncementAvgAggregateInput {
+    id?: true;
+}
+export declare class AnnouncementAvgAggregate {
+    id?: number;
+}
+export declare class AnnouncementAvgOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class AnnouncementCountAggregateInput {
+    id?: true;
+    title?: true;
+    content?: true;
+    imageUrl?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    createdById?: true;
+    _all?: true;
+}
+export declare class AnnouncementCountAggregate {
+    id: number;
+    title: number;
+    content: number;
+    imageUrl: number;
+    createdAt: number;
+    updatedAt: number;
+    createdById: number;
+    _all: number;
+}
+export declare class AnnouncementCountOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    imageUrl?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
+    createdById?: keyof typeof SortOrder;
+}
+export declare class AnnouncementCreateManyCreatedByInputEnvelope {
+    data: Array<AnnouncementCreateManyCreatedByInput>;
+    skipDuplicates?: boolean;
+}
+export declare class AnnouncementCreateManyCreatedByInput {
+    id?: number;
+    title: string;
+    content: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+}
+export declare class AnnouncementCreateManyInput {
+    id?: number;
+    title: string;
+    content: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    createdById: string;
+}
+export declare class AnnouncementCreateNestedManyWithoutCreatedByInput {
+    create?: Array<AnnouncementCreateWithoutCreatedByInput>;
+    connectOrCreate?: Array<AnnouncementCreateOrConnectWithoutCreatedByInput>;
+    createMany?: InstanceType<typeof AnnouncementCreateManyCreatedByInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+}
+export declare class AnnouncementCreateOrConnectWithoutCreatedByInput {
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof AnnouncementCreateWithoutCreatedByInput>;
+}
+export declare class AnnouncementCreateWithoutCreatedByInput {
+    title: string;
+    content: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+}
+export declare class AnnouncementCreateInput {
+    title: string;
+    content: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    createdBy: InstanceType<typeof UserCreateNestedOneWithoutAnnouncementCreatedInput>;
+}
+export declare class AnnouncementGroupByArgs {
+    where?: InstanceType<typeof AnnouncementWhereInput>;
+    orderBy?: Array<AnnouncementOrderByWithAggregationInput>;
+    by: Array<keyof typeof AnnouncementScalarFieldEnum>;
+    having?: InstanceType<typeof AnnouncementScalarWhereWithAggregatesInput>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof AnnouncementCountAggregateInput>;
+    _avg?: InstanceType<typeof AnnouncementAvgAggregateInput>;
+    _sum?: InstanceType<typeof AnnouncementSumAggregateInput>;
+    _min?: InstanceType<typeof AnnouncementMinAggregateInput>;
+    _max?: InstanceType<typeof AnnouncementMaxAggregateInput>;
+}
+export declare class AnnouncementGroupBy {
+    id: number;
+    title: string;
+    content: string;
+    imageUrl?: string;
+    createdAt: Date | string;
+    updatedAt: Date | string;
+    createdById: string;
+    _count?: InstanceType<typeof AnnouncementCountAggregate>;
+    _avg?: InstanceType<typeof AnnouncementAvgAggregate>;
+    _sum?: InstanceType<typeof AnnouncementSumAggregate>;
+    _min?: InstanceType<typeof AnnouncementMinAggregate>;
+    _max?: InstanceType<typeof AnnouncementMaxAggregate>;
+}
+export declare class AnnouncementListRelationFilter {
+    every?: InstanceType<typeof AnnouncementWhereInput>;
+    some?: InstanceType<typeof AnnouncementWhereInput>;
+    none?: InstanceType<typeof AnnouncementWhereInput>;
+}
+export declare class AnnouncementMaxAggregateInput {
+    id?: true;
+    title?: true;
+    content?: true;
+    imageUrl?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    createdById?: true;
+}
+export declare class AnnouncementMaxAggregate {
+    id?: number;
+    title?: string;
+    content?: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    createdById?: string;
+}
+export declare class AnnouncementMaxOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    imageUrl?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
+    createdById?: keyof typeof SortOrder;
+}
+export declare class AnnouncementMinAggregateInput {
+    id?: true;
+    title?: true;
+    content?: true;
+    imageUrl?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    createdById?: true;
+}
+export declare class AnnouncementMinAggregate {
+    id?: number;
+    title?: string;
+    content?: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    createdById?: string;
+}
+export declare class AnnouncementMinOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    imageUrl?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
+    createdById?: keyof typeof SortOrder;
+}
+export declare class AnnouncementOrderByRelationAggregateInput {
+    _count?: keyof typeof SortOrder;
+}
+export declare class AnnouncementOrderByWithAggregationInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    imageUrl?: InstanceType<typeof SortOrderInput>;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
+    createdById?: keyof typeof SortOrder;
+    _count?: InstanceType<typeof AnnouncementCountOrderByAggregateInput>;
+    _avg?: InstanceType<typeof AnnouncementAvgOrderByAggregateInput>;
+    _max?: InstanceType<typeof AnnouncementMaxOrderByAggregateInput>;
+    _min?: InstanceType<typeof AnnouncementMinOrderByAggregateInput>;
+    _sum?: InstanceType<typeof AnnouncementSumOrderByAggregateInput>;
+}
+export declare class AnnouncementOrderByWithRelationInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    imageUrl?: InstanceType<typeof SortOrderInput>;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
+    createdById?: keyof typeof SortOrder;
+    createdBy?: InstanceType<typeof UserOrderByWithRelationInput>;
+}
+export declare class AnnouncementScalarWhereWithAggregatesInput {
+    AND?: Array<AnnouncementScalarWhereWithAggregatesInput>;
+    OR?: Array<AnnouncementScalarWhereWithAggregatesInput>;
+    NOT?: Array<AnnouncementScalarWhereWithAggregatesInput>;
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    title?: InstanceType<typeof StringWithAggregatesFilter>;
+    content?: InstanceType<typeof StringWithAggregatesFilter>;
+    imageUrl?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    createdById?: InstanceType<typeof StringWithAggregatesFilter>;
+}
+export declare class AnnouncementScalarWhereInput {
+    AND?: Array<AnnouncementScalarWhereInput>;
+    OR?: Array<AnnouncementScalarWhereInput>;
+    NOT?: Array<AnnouncementScalarWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    title?: InstanceType<typeof StringFilter>;
+    content?: InstanceType<typeof StringFilter>;
+    imageUrl?: InstanceType<typeof StringNullableFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
+    createdById?: InstanceType<typeof StringFilter>;
+}
+export declare class AnnouncementSumAggregateInput {
+    id?: true;
+}
+export declare class AnnouncementSumAggregate {
+    id?: number;
+}
+export declare class AnnouncementSumOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput {
+    create?: Array<AnnouncementCreateWithoutCreatedByInput>;
+    connectOrCreate?: Array<AnnouncementCreateOrConnectWithoutCreatedByInput>;
+    createMany?: InstanceType<typeof AnnouncementCreateManyCreatedByInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+}
+export declare class AnnouncementUncheckedCreateWithoutCreatedByInput {
+    id?: number;
+    title: string;
+    content: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+}
+export declare class AnnouncementUncheckedCreateInput {
+    id?: number;
+    title: string;
+    content: string;
+    imageUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    createdById: string;
+}
+export declare class AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput {
+    create?: Array<AnnouncementCreateWithoutCreatedByInput>;
+    connectOrCreate?: Array<AnnouncementCreateOrConnectWithoutCreatedByInput>;
+    upsert?: Array<AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput>;
+    createMany?: InstanceType<typeof AnnouncementCreateManyCreatedByInputEnvelope>;
+    set?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    update?: Array<AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput>;
+    updateMany?: Array<AnnouncementUpdateManyWithWhereWithoutCreatedByInput>;
+    deleteMany?: Array<AnnouncementScalarWhereInput>;
+}
+export declare class AnnouncementUncheckedUpdateManyWithoutCreatedByInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    imageUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class AnnouncementUncheckedUpdateManyInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    imageUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    createdById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+}
+export declare class AnnouncementUncheckedUpdateWithoutCreatedByInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    imageUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class AnnouncementUncheckedUpdateInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    imageUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    createdById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+}
+export declare class AnnouncementUpdateManyMutationInput {
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    imageUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class AnnouncementUpdateManyWithWhereWithoutCreatedByInput {
+    where: InstanceType<typeof AnnouncementScalarWhereInput>;
+    data: InstanceType<typeof AnnouncementUpdateManyMutationInput>;
+}
+export declare class AnnouncementUpdateManyWithoutCreatedByNestedInput {
+    create?: Array<AnnouncementCreateWithoutCreatedByInput>;
+    connectOrCreate?: Array<AnnouncementCreateOrConnectWithoutCreatedByInput>;
+    upsert?: Array<AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput>;
+    createMany?: InstanceType<typeof AnnouncementCreateManyCreatedByInputEnvelope>;
+    set?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>>;
+    update?: Array<AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput>;
+    updateMany?: Array<AnnouncementUpdateManyWithWhereWithoutCreatedByInput>;
+    deleteMany?: Array<AnnouncementScalarWhereInput>;
+}
+export declare class AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput {
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    data: InstanceType<typeof AnnouncementUpdateWithoutCreatedByInput>;
+}
+export declare class AnnouncementUpdateWithoutCreatedByInput {
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    imageUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class AnnouncementUpdateInput {
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    imageUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    createdBy?: InstanceType<typeof UserUpdateOneRequiredWithoutAnnouncementCreatedNestedInput>;
+}
+export declare class AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput {
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    update: InstanceType<typeof AnnouncementUpdateWithoutCreatedByInput>;
+    create: InstanceType<typeof AnnouncementCreateWithoutCreatedByInput>;
+}
+export declare class AnnouncementWhereUniqueInput {
+    id?: number;
+    AND?: Array<AnnouncementWhereInput>;
+    OR?: Array<AnnouncementWhereInput>;
+    NOT?: Array<AnnouncementWhereInput>;
+    title?: InstanceType<typeof StringFilter>;
+    content?: InstanceType<typeof StringFilter>;
+    imageUrl?: InstanceType<typeof StringNullableFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
+    createdById?: InstanceType<typeof StringFilter>;
+    createdBy?: InstanceType<typeof UserRelationFilter>;
+}
+export declare class AnnouncementWhereInput {
+    AND?: Array<AnnouncementWhereInput>;
+    OR?: Array<AnnouncementWhereInput>;
+    NOT?: Array<AnnouncementWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    title?: InstanceType<typeof StringFilter>;
+    content?: InstanceType<typeof StringFilter>;
+    imageUrl?: InstanceType<typeof StringNullableFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
+    createdById?: InstanceType<typeof StringFilter>;
+    createdBy?: InstanceType<typeof UserRelationFilter>;
+}
+export declare class Announcement {
+    id: number;
+    title: string;
+    content: string;
+    imageUrl: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    createdById: string;
+    createdBy?: InstanceType<typeof User>;
+}
+export declare class CreateManyAnnouncementArgs {
+    data: Array<AnnouncementCreateManyInput>;
+    skipDuplicates?: boolean;
+}
+export declare class CreateOneAnnouncementArgs {
+    data: InstanceType<typeof AnnouncementCreateInput>;
+}
+export declare class DeleteManyAnnouncementArgs {
+    where?: InstanceType<typeof AnnouncementWhereInput>;
+}
+export declare class DeleteOneAnnouncementArgs {
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+}
+export declare class FindFirstAnnouncementOrThrowArgs {
+    where?: InstanceType<typeof AnnouncementWhereInput>;
+    orderBy?: Array<AnnouncementOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof AnnouncementScalarFieldEnum>;
+}
+export declare class FindFirstAnnouncementArgs {
+    where?: InstanceType<typeof AnnouncementWhereInput>;
+    orderBy?: Array<AnnouncementOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof AnnouncementScalarFieldEnum>;
+}
+export declare class FindManyAnnouncementArgs {
+    where?: InstanceType<typeof AnnouncementWhereInput>;
+    orderBy?: Array<AnnouncementOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof AnnouncementScalarFieldEnum>;
+}
+export declare class FindUniqueAnnouncementOrThrowArgs {
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+}
+export declare class FindUniqueAnnouncementArgs {
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+}
+export declare class UpdateManyAnnouncementArgs {
+    data: InstanceType<typeof AnnouncementUpdateManyMutationInput>;
+    where?: InstanceType<typeof AnnouncementWhereInput>;
+}
+export declare class UpdateOneAnnouncementArgs {
+    data: InstanceType<typeof AnnouncementUpdateInput>;
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+}
+export declare class UpsertOneAnnouncementArgs {
+    where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof AnnouncementCreateInput>;
+    update: InstanceType<typeof AnnouncementUpdateInput>;
 }
 export declare class AggregateBankAccount {
     _count?: InstanceType<typeof BankAccountCountAggregate>;
@@ -10925,6 +11406,555 @@ export declare class UpsertOneGroupArgs {
     create: InstanceType<typeof GroupCreateInput>;
     update: InstanceType<typeof GroupUpdateInput>;
 }
+export declare class AggregateNotification {
+    _count?: InstanceType<typeof NotificationCountAggregate>;
+    _avg?: InstanceType<typeof NotificationAvgAggregate>;
+    _sum?: InstanceType<typeof NotificationSumAggregate>;
+    _min?: InstanceType<typeof NotificationMinAggregate>;
+    _max?: InstanceType<typeof NotificationMaxAggregate>;
+}
+export declare class CreateManyNotificationArgs {
+    data: Array<NotificationCreateManyInput>;
+    skipDuplicates?: boolean;
+}
+export declare class CreateOneNotificationArgs {
+    data: InstanceType<typeof NotificationCreateInput>;
+}
+export declare class DeleteManyNotificationArgs {
+    where?: InstanceType<typeof NotificationWhereInput>;
+}
+export declare class DeleteOneNotificationArgs {
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+}
+export declare class FindFirstNotificationOrThrowArgs {
+    where?: InstanceType<typeof NotificationWhereInput>;
+    orderBy?: Array<NotificationOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof NotificationScalarFieldEnum>;
+}
+export declare class FindFirstNotificationArgs {
+    where?: InstanceType<typeof NotificationWhereInput>;
+    orderBy?: Array<NotificationOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof NotificationScalarFieldEnum>;
+}
+export declare class FindManyNotificationArgs {
+    where?: InstanceType<typeof NotificationWhereInput>;
+    orderBy?: Array<NotificationOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof NotificationScalarFieldEnum>;
+}
+export declare class FindUniqueNotificationOrThrowArgs {
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+}
+export declare class FindUniqueNotificationArgs {
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+}
+export declare class NotificationAggregateArgs {
+    where?: InstanceType<typeof NotificationWhereInput>;
+    orderBy?: Array<NotificationOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof NotificationCountAggregateInput>;
+    _avg?: InstanceType<typeof NotificationAvgAggregateInput>;
+    _sum?: InstanceType<typeof NotificationSumAggregateInput>;
+    _min?: InstanceType<typeof NotificationMinAggregateInput>;
+    _max?: InstanceType<typeof NotificationMaxAggregateInput>;
+}
+export declare class NotificationAvgAggregateInput {
+    id?: true;
+}
+export declare class NotificationAvgAggregate {
+    id?: number;
+}
+export declare class NotificationAvgOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class NotificationCountAggregateInput {
+    id?: true;
+    title?: true;
+    subtitle?: true;
+    content?: true;
+    createdAt?: true;
+    isRead?: true;
+    isCleared?: true;
+    deepLink?: true;
+    fcmToken?: true;
+    userId?: true;
+    _all?: true;
+}
+export declare class NotificationCountAggregate {
+    id: number;
+    title: number;
+    subtitle: number;
+    content: number;
+    createdAt: number;
+    isRead: number;
+    isCleared: number;
+    deepLink: number;
+    fcmToken: number;
+    userId: number;
+    _all: number;
+}
+export declare class NotificationCountOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    subtitle?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    isRead?: keyof typeof SortOrder;
+    isCleared?: keyof typeof SortOrder;
+    deepLink?: keyof typeof SortOrder;
+    fcmToken?: keyof typeof SortOrder;
+    userId?: keyof typeof SortOrder;
+}
+export declare class NotificationCreateManyUserInputEnvelope {
+    data: Array<NotificationCreateManyUserInput>;
+    skipDuplicates?: boolean;
+}
+export declare class NotificationCreateManyUserInput {
+    id?: number;
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+}
+export declare class NotificationCreateManyInput {
+    id?: number;
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+    userId: string;
+}
+export declare class NotificationCreateNestedManyWithoutUserInput {
+    create?: Array<NotificationCreateWithoutUserInput>;
+    connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
+    createMany?: InstanceType<typeof NotificationCreateManyUserInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+}
+export declare class NotificationCreateOrConnectWithoutUserInput {
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof NotificationCreateWithoutUserInput>;
+}
+export declare class NotificationCreateWithoutUserInput {
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+}
+export declare class NotificationCreateInput {
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+    user: InstanceType<typeof UserCreateNestedOneWithoutNotificationInput>;
+}
+export declare class NotificationGroupByArgs {
+    where?: InstanceType<typeof NotificationWhereInput>;
+    orderBy?: Array<NotificationOrderByWithAggregationInput>;
+    by: Array<keyof typeof NotificationScalarFieldEnum>;
+    having?: InstanceType<typeof NotificationScalarWhereWithAggregatesInput>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof NotificationCountAggregateInput>;
+    _avg?: InstanceType<typeof NotificationAvgAggregateInput>;
+    _sum?: InstanceType<typeof NotificationSumAggregateInput>;
+    _min?: InstanceType<typeof NotificationMinAggregateInput>;
+    _max?: InstanceType<typeof NotificationMaxAggregateInput>;
+}
+export declare class NotificationGroupBy {
+    id: number;
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt: Date | string;
+    isRead: boolean;
+    isCleared: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+    userId: string;
+    _count?: InstanceType<typeof NotificationCountAggregate>;
+    _avg?: InstanceType<typeof NotificationAvgAggregate>;
+    _sum?: InstanceType<typeof NotificationSumAggregate>;
+    _min?: InstanceType<typeof NotificationMinAggregate>;
+    _max?: InstanceType<typeof NotificationMaxAggregate>;
+}
+export declare class NotificationListRelationFilter {
+    every?: InstanceType<typeof NotificationWhereInput>;
+    some?: InstanceType<typeof NotificationWhereInput>;
+    none?: InstanceType<typeof NotificationWhereInput>;
+}
+export declare class NotificationMaxAggregateInput {
+    id?: true;
+    title?: true;
+    subtitle?: true;
+    content?: true;
+    createdAt?: true;
+    isRead?: true;
+    isCleared?: true;
+    deepLink?: true;
+    fcmToken?: true;
+    userId?: true;
+}
+export declare class NotificationMaxAggregate {
+    id?: number;
+    title?: string;
+    subtitle?: string;
+    content?: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+    userId?: string;
+}
+export declare class NotificationMaxOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    subtitle?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    isRead?: keyof typeof SortOrder;
+    isCleared?: keyof typeof SortOrder;
+    deepLink?: keyof typeof SortOrder;
+    fcmToken?: keyof typeof SortOrder;
+    userId?: keyof typeof SortOrder;
+}
+export declare class NotificationMinAggregateInput {
+    id?: true;
+    title?: true;
+    subtitle?: true;
+    content?: true;
+    createdAt?: true;
+    isRead?: true;
+    isCleared?: true;
+    deepLink?: true;
+    fcmToken?: true;
+    userId?: true;
+}
+export declare class NotificationMinAggregate {
+    id?: number;
+    title?: string;
+    subtitle?: string;
+    content?: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+    userId?: string;
+}
+export declare class NotificationMinOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    subtitle?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    isRead?: keyof typeof SortOrder;
+    isCleared?: keyof typeof SortOrder;
+    deepLink?: keyof typeof SortOrder;
+    fcmToken?: keyof typeof SortOrder;
+    userId?: keyof typeof SortOrder;
+}
+export declare class NotificationOrderByRelationAggregateInput {
+    _count?: keyof typeof SortOrder;
+}
+export declare class NotificationOrderByWithAggregationInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    subtitle?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    isRead?: keyof typeof SortOrder;
+    isCleared?: keyof typeof SortOrder;
+    deepLink?: InstanceType<typeof SortOrderInput>;
+    fcmToken?: InstanceType<typeof SortOrderInput>;
+    userId?: keyof typeof SortOrder;
+    _count?: InstanceType<typeof NotificationCountOrderByAggregateInput>;
+    _avg?: InstanceType<typeof NotificationAvgOrderByAggregateInput>;
+    _max?: InstanceType<typeof NotificationMaxOrderByAggregateInput>;
+    _min?: InstanceType<typeof NotificationMinOrderByAggregateInput>;
+    _sum?: InstanceType<typeof NotificationSumOrderByAggregateInput>;
+}
+export declare class NotificationOrderByWithRelationInput {
+    id?: keyof typeof SortOrder;
+    title?: keyof typeof SortOrder;
+    subtitle?: keyof typeof SortOrder;
+    content?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    isRead?: keyof typeof SortOrder;
+    isCleared?: keyof typeof SortOrder;
+    deepLink?: InstanceType<typeof SortOrderInput>;
+    fcmToken?: InstanceType<typeof SortOrderInput>;
+    userId?: keyof typeof SortOrder;
+    user?: InstanceType<typeof UserOrderByWithRelationInput>;
+}
+export declare class NotificationScalarWhereWithAggregatesInput {
+    AND?: Array<NotificationScalarWhereWithAggregatesInput>;
+    OR?: Array<NotificationScalarWhereWithAggregatesInput>;
+    NOT?: Array<NotificationScalarWhereWithAggregatesInput>;
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    title?: InstanceType<typeof StringWithAggregatesFilter>;
+    subtitle?: InstanceType<typeof StringWithAggregatesFilter>;
+    content?: InstanceType<typeof StringWithAggregatesFilter>;
+    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    isRead?: InstanceType<typeof BoolWithAggregatesFilter>;
+    isCleared?: InstanceType<typeof BoolWithAggregatesFilter>;
+    deepLink?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    fcmToken?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    userId?: InstanceType<typeof StringWithAggregatesFilter>;
+}
+export declare class NotificationScalarWhereInput {
+    AND?: Array<NotificationScalarWhereInput>;
+    OR?: Array<NotificationScalarWhereInput>;
+    NOT?: Array<NotificationScalarWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    title?: InstanceType<typeof StringFilter>;
+    subtitle?: InstanceType<typeof StringFilter>;
+    content?: InstanceType<typeof StringFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    isRead?: InstanceType<typeof BoolFilter>;
+    isCleared?: InstanceType<typeof BoolFilter>;
+    deepLink?: InstanceType<typeof StringNullableFilter>;
+    fcmToken?: InstanceType<typeof StringNullableFilter>;
+    userId?: InstanceType<typeof StringFilter>;
+}
+export declare class NotificationSumAggregateInput {
+    id?: true;
+}
+export declare class NotificationSumAggregate {
+    id?: number;
+}
+export declare class NotificationSumOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class NotificationUncheckedCreateNestedManyWithoutUserInput {
+    create?: Array<NotificationCreateWithoutUserInput>;
+    connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
+    createMany?: InstanceType<typeof NotificationCreateManyUserInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+}
+export declare class NotificationUncheckedCreateWithoutUserInput {
+    id?: number;
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+}
+export declare class NotificationUncheckedCreateInput {
+    id?: number;
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt?: Date | string;
+    isRead?: boolean;
+    isCleared?: boolean;
+    deepLink?: string;
+    fcmToken?: string;
+    userId: string;
+}
+export declare class NotificationUncheckedUpdateManyWithoutUserNestedInput {
+    create?: Array<NotificationCreateWithoutUserInput>;
+    connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
+    upsert?: Array<NotificationUpsertWithWhereUniqueWithoutUserInput>;
+    createMany?: InstanceType<typeof NotificationCreateManyUserInputEnvelope>;
+    set?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    update?: Array<NotificationUpdateWithWhereUniqueWithoutUserInput>;
+    updateMany?: Array<NotificationUpdateManyWithWhereWithoutUserInput>;
+    deleteMany?: Array<NotificationScalarWhereInput>;
+}
+export declare class NotificationUncheckedUpdateManyWithoutUserInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+}
+export declare class NotificationUncheckedUpdateManyInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+}
+export declare class NotificationUncheckedUpdateWithoutUserInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+}
+export declare class NotificationUncheckedUpdateInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+}
+export declare class NotificationUpdateManyMutationInput {
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+}
+export declare class NotificationUpdateManyWithWhereWithoutUserInput {
+    where: InstanceType<typeof NotificationScalarWhereInput>;
+    data: InstanceType<typeof NotificationUpdateManyMutationInput>;
+}
+export declare class NotificationUpdateManyWithoutUserNestedInput {
+    create?: Array<NotificationCreateWithoutUserInput>;
+    connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
+    upsert?: Array<NotificationUpsertWithWhereUniqueWithoutUserInput>;
+    createMany?: InstanceType<typeof NotificationCreateManyUserInputEnvelope>;
+    set?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    update?: Array<NotificationUpdateWithWhereUniqueWithoutUserInput>;
+    updateMany?: Array<NotificationUpdateManyWithWhereWithoutUserInput>;
+    deleteMany?: Array<NotificationScalarWhereInput>;
+}
+export declare class NotificationUpdateWithWhereUniqueWithoutUserInput {
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    data: InstanceType<typeof NotificationUpdateWithoutUserInput>;
+}
+export declare class NotificationUpdateWithoutUserInput {
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+}
+export declare class NotificationUpdateInput {
+    title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    user?: InstanceType<typeof UserUpdateOneRequiredWithoutNotificationNestedInput>;
+}
+export declare class NotificationUpsertWithWhereUniqueWithoutUserInput {
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    update: InstanceType<typeof NotificationUpdateWithoutUserInput>;
+    create: InstanceType<typeof NotificationCreateWithoutUserInput>;
+}
+export declare class NotificationWhereUniqueInput {
+    id?: number;
+    AND?: Array<NotificationWhereInput>;
+    OR?: Array<NotificationWhereInput>;
+    NOT?: Array<NotificationWhereInput>;
+    title?: InstanceType<typeof StringFilter>;
+    subtitle?: InstanceType<typeof StringFilter>;
+    content?: InstanceType<typeof StringFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    isRead?: InstanceType<typeof BoolFilter>;
+    isCleared?: InstanceType<typeof BoolFilter>;
+    deepLink?: InstanceType<typeof StringNullableFilter>;
+    fcmToken?: InstanceType<typeof StringNullableFilter>;
+    userId?: InstanceType<typeof StringFilter>;
+    user?: InstanceType<typeof UserRelationFilter>;
+}
+export declare class NotificationWhereInput {
+    AND?: Array<NotificationWhereInput>;
+    OR?: Array<NotificationWhereInput>;
+    NOT?: Array<NotificationWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    title?: InstanceType<typeof StringFilter>;
+    subtitle?: InstanceType<typeof StringFilter>;
+    content?: InstanceType<typeof StringFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    isRead?: InstanceType<typeof BoolFilter>;
+    isCleared?: InstanceType<typeof BoolFilter>;
+    deepLink?: InstanceType<typeof StringNullableFilter>;
+    fcmToken?: InstanceType<typeof StringNullableFilter>;
+    userId?: InstanceType<typeof StringFilter>;
+    user?: InstanceType<typeof UserRelationFilter>;
+}
+export declare class Notification {
+    id: number;
+    title: string;
+    subtitle: string;
+    content: string;
+    createdAt: Date;
+    isRead: boolean;
+    isCleared: boolean;
+    deepLink: string | null;
+    fcmToken: string | null;
+    userId: string;
+    user?: InstanceType<typeof User>;
+}
+export declare class UpdateManyNotificationArgs {
+    data: InstanceType<typeof NotificationUpdateManyMutationInput>;
+    where?: InstanceType<typeof NotificationWhereInput>;
+}
+export declare class UpdateOneNotificationArgs {
+    data: InstanceType<typeof NotificationUpdateInput>;
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+}
+export declare class UpsertOneNotificationArgs {
+    where: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof NotificationCreateInput>;
+    update: InstanceType<typeof NotificationUpdateInput>;
+}
 export declare class AggregateParticipant {
     _count?: InstanceType<typeof ParticipantCountAggregate>;
     _avg?: InstanceType<typeof ParticipantAvgAggregate>;
@@ -16583,6 +17613,7 @@ export declare class UserCountAggregateInput {
     email?: true;
     emailVerifiedAt?: true;
     password?: true;
+    profilePictureUrl?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
@@ -16596,6 +17627,7 @@ export declare class UserCountAggregate {
     email: number;
     emailVerifiedAt: number;
     password: number;
+    profilePictureUrl: number;
     createdAt: number;
     updatedAt: number;
     deletedAt: number;
@@ -16609,6 +17641,7 @@ export declare class UserCountOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     emailVerifiedAt?: keyof typeof SortOrder;
     password?: keyof typeof SortOrder;
+    profilePictureUrl?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
@@ -16618,6 +17651,8 @@ export declare class UserCountOrderByAggregateInput {
 export declare class UserCount {
     claimsInput?: number;
     claimActions?: number;
+    announcementCreated?: number;
+    notification?: number;
 }
 export declare class UserCreateManyRoleInputEnvelope {
     data: Array<UserCreateManyRoleInput>;
@@ -16629,6 +17664,7 @@ export declare class UserCreateManyRoleInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16640,6 +17676,7 @@ export declare class UserCreateManyInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16652,6 +17689,11 @@ export declare class UserCreateNestedManyWithoutRoleInput {
     createMany?: InstanceType<typeof UserCreateManyRoleInputEnvelope>;
     connect?: Array<Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>>;
 }
+export declare class UserCreateNestedOneWithoutAnnouncementCreatedInput {
+    create?: InstanceType<typeof UserCreateWithoutAnnouncementCreatedInput>;
+    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutAnnouncementCreatedInput>;
+    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
+}
 export declare class UserCreateNestedOneWithoutClaimActionsInput {
     create?: InstanceType<typeof UserCreateWithoutClaimActionsInput>;
     connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutClaimActionsInput>;
@@ -16662,10 +17704,19 @@ export declare class UserCreateNestedOneWithoutClaimsInputInput {
     connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutClaimsInputInput>;
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
 }
+export declare class UserCreateNestedOneWithoutNotificationInput {
+    create?: InstanceType<typeof UserCreateWithoutNotificationInput>;
+    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutNotificationInput>;
+    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
+}
 export declare class UserCreateNestedOneWithoutParticipantInput {
     create?: InstanceType<typeof UserCreateWithoutParticipantInput>;
     connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutParticipantInput>;
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
+}
+export declare class UserCreateOrConnectWithoutAnnouncementCreatedInput {
+    where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
+    create: InstanceType<typeof UserCreateWithoutAnnouncementCreatedInput>;
 }
 export declare class UserCreateOrConnectWithoutClaimActionsInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
@@ -16675,6 +17726,10 @@ export declare class UserCreateOrConnectWithoutClaimsInputInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
     create: InstanceType<typeof UserCreateWithoutClaimsInputInput>;
 }
+export declare class UserCreateOrConnectWithoutNotificationInput {
+    where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
+    create: InstanceType<typeof UserCreateWithoutNotificationInput>;
+}
 export declare class UserCreateOrConnectWithoutParticipantInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
     create: InstanceType<typeof UserCreateWithoutParticipantInput>;
@@ -16683,12 +17738,13 @@ export declare class UserCreateOrConnectWithoutRoleInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
     create: InstanceType<typeof UserCreateWithoutRoleInput>;
 }
-export declare class UserCreateWithoutClaimActionsInput {
+export declare class UserCreateWithoutAnnouncementCreatedInput {
     id?: string;
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16696,6 +17752,25 @@ export declare class UserCreateWithoutClaimActionsInput {
     role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
+}
+export declare class UserCreateWithoutClaimActionsInput {
+    id?: string;
+    fullName: string;
+    email: string;
+    emailVerifiedAt?: Date | string;
+    password: string;
+    profilePictureUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    participantId?: number;
+    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
+    claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
 }
 export declare class UserCreateWithoutClaimsInputInput {
     id?: string;
@@ -16703,6 +17778,7 @@ export declare class UserCreateWithoutClaimsInputInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16710,6 +17786,25 @@ export declare class UserCreateWithoutClaimsInputInput {
     role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
+}
+export declare class UserCreateWithoutNotificationInput {
+    id?: string;
+    fullName: string;
+    email: string;
+    emailVerifiedAt?: Date | string;
+    password: string;
+    profilePictureUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    participantId?: number;
+    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
+    claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
 }
 export declare class UserCreateWithoutParticipantInput {
     id?: string;
@@ -16717,6 +17812,7 @@ export declare class UserCreateWithoutParticipantInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16724,6 +17820,8 @@ export declare class UserCreateWithoutParticipantInput {
     role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
 }
 export declare class UserCreateWithoutRoleInput {
     id?: string;
@@ -16731,6 +17829,7 @@ export declare class UserCreateWithoutRoleInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16738,6 +17837,8 @@ export declare class UserCreateWithoutRoleInput {
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
 }
 export declare class UserCreateInput {
     id?: string;
@@ -16745,6 +17846,7 @@ export declare class UserCreateInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16753,6 +17855,8 @@ export declare class UserCreateInput {
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
 }
 export declare class UserGroupByArgs {
     where?: InstanceType<typeof UserWhereInput>;
@@ -16773,6 +17877,7 @@ export declare class UserGroupBy {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt: Date | string;
     updatedAt: Date | string;
     deletedAt?: Date | string;
@@ -16795,6 +17900,7 @@ export declare class UserMaxAggregateInput {
     email?: true;
     emailVerifiedAt?: true;
     password?: true;
+    profilePictureUrl?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
@@ -16807,6 +17913,7 @@ export declare class UserMaxAggregate {
     email?: string;
     emailVerifiedAt?: Date | string;
     password?: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16819,6 +17926,7 @@ export declare class UserMaxOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     emailVerifiedAt?: keyof typeof SortOrder;
     password?: keyof typeof SortOrder;
+    profilePictureUrl?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
@@ -16831,6 +17939,7 @@ export declare class UserMinAggregateInput {
     email?: true;
     emailVerifiedAt?: true;
     password?: true;
+    profilePictureUrl?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
@@ -16843,6 +17952,7 @@ export declare class UserMinAggregate {
     email?: string;
     emailVerifiedAt?: Date | string;
     password?: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16855,6 +17965,7 @@ export declare class UserMinOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     emailVerifiedAt?: keyof typeof SortOrder;
     password?: keyof typeof SortOrder;
+    profilePictureUrl?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
@@ -16874,6 +17985,7 @@ export declare class UserOrderByWithAggregationInput {
     email?: keyof typeof SortOrder;
     emailVerifiedAt?: InstanceType<typeof SortOrderInput>;
     password?: keyof typeof SortOrder;
+    profilePictureUrl?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
@@ -16891,6 +18003,7 @@ export declare class UserOrderByWithRelationInput {
     email?: keyof typeof SortOrder;
     emailVerifiedAt?: InstanceType<typeof SortOrderInput>;
     password?: keyof typeof SortOrder;
+    profilePictureUrl?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
@@ -16900,6 +18013,8 @@ export declare class UserOrderByWithRelationInput {
     participant?: InstanceType<typeof ParticipantOrderByWithRelationInput>;
     claimsInput?: InstanceType<typeof ClaimOrderByRelationAggregateInput>;
     claimActions?: InstanceType<typeof ClaimStatusOrderByRelationAggregateInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementOrderByRelationAggregateInput>;
+    notification?: InstanceType<typeof NotificationOrderByRelationAggregateInput>;
 }
 export declare class UserRelationFilter {
     is?: InstanceType<typeof UserWhereInput>;
@@ -16914,6 +18029,7 @@ export declare class UserScalarWhereWithAggregatesInput {
     email?: InstanceType<typeof StringWithAggregatesFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     password?: InstanceType<typeof StringWithAggregatesFilter>;
+    profilePictureUrl?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
@@ -16929,6 +18045,7 @@ export declare class UserScalarWhereInput {
     email?: InstanceType<typeof StringFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableFilter>;
     password?: InstanceType<typeof StringFilter>;
+    profilePictureUrl?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -16953,12 +18070,13 @@ export declare class UserUncheckedCreateNestedManyWithoutRoleInput {
     createMany?: InstanceType<typeof UserCreateManyRoleInputEnvelope>;
     connect?: Array<Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>>;
 }
-export declare class UserUncheckedCreateWithoutClaimActionsInput {
+export declare class UserUncheckedCreateWithoutAnnouncementCreatedInput {
     id?: string;
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16966,6 +18084,25 @@ export declare class UserUncheckedCreateWithoutClaimActionsInput {
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
+}
+export declare class UserUncheckedCreateWithoutClaimActionsInput {
+    id?: string;
+    fullName: string;
+    email: string;
+    emailVerifiedAt?: Date | string;
+    password: string;
+    profilePictureUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    roleId: number;
+    participantId?: number;
+    participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
+    claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
 }
 export declare class UserUncheckedCreateWithoutClaimsInputInput {
     id?: string;
@@ -16973,6 +18110,7 @@ export declare class UserUncheckedCreateWithoutClaimsInputInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16980,6 +18118,25 @@ export declare class UserUncheckedCreateWithoutClaimsInputInput {
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
+}
+export declare class UserUncheckedCreateWithoutNotificationInput {
+    id?: string;
+    fullName: string;
+    email: string;
+    emailVerifiedAt?: Date | string;
+    password: string;
+    profilePictureUrl?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    roleId: number;
+    participantId?: number;
+    participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
+    claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
 }
 export declare class UserUncheckedCreateWithoutParticipantInput {
     id?: string;
@@ -16987,6 +18144,7 @@ export declare class UserUncheckedCreateWithoutParticipantInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -16994,6 +18152,8 @@ export declare class UserUncheckedCreateWithoutParticipantInput {
     participantId?: number;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
 }
 export declare class UserUncheckedCreateWithoutRoleInput {
     id?: string;
@@ -17001,6 +18161,7 @@ export declare class UserUncheckedCreateWithoutRoleInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -17008,6 +18169,8 @@ export declare class UserUncheckedCreateWithoutRoleInput {
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
 }
 export declare class UserUncheckedCreateInput {
     id?: string;
@@ -17015,6 +18178,7 @@ export declare class UserUncheckedCreateInput {
     email: string;
     emailVerifiedAt?: Date | string;
     password: string;
+    profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -17023,6 +18187,8 @@ export declare class UserUncheckedCreateInput {
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
+    notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
 }
 export declare class UserUncheckedUpdateManyWithoutRoleNestedInput {
     create?: Array<UserCreateWithoutRoleInput>;
@@ -17043,6 +18209,7 @@ export declare class UserUncheckedUpdateManyWithoutRoleInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17054,11 +18221,29 @@ export declare class UserUncheckedUpdateManyInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+}
+export declare class UserUncheckedUpdateWithoutAnnouncementCreatedInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
+    claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUncheckedUpdateWithoutClaimActionsInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17066,6 +18251,7 @@ export declare class UserUncheckedUpdateWithoutClaimActionsInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17073,6 +18259,8 @@ export declare class UserUncheckedUpdateWithoutClaimActionsInput {
     participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUncheckedUpdateWithoutClaimsInputInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17080,6 +18268,7 @@ export declare class UserUncheckedUpdateWithoutClaimsInputInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17087,6 +18276,25 @@ export declare class UserUncheckedUpdateWithoutClaimsInputInput {
     participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
+}
+export declare class UserUncheckedUpdateWithoutNotificationInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
+    claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
 }
 export declare class UserUncheckedUpdateWithoutParticipantInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17094,6 +18302,7 @@ export declare class UserUncheckedUpdateWithoutParticipantInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17101,6 +18310,8 @@ export declare class UserUncheckedUpdateWithoutParticipantInput {
     participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUncheckedUpdateWithoutRoleInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17108,6 +18319,7 @@ export declare class UserUncheckedUpdateWithoutRoleInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17115,6 +18327,8 @@ export declare class UserUncheckedUpdateWithoutRoleInput {
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUncheckedUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17122,6 +18336,7 @@ export declare class UserUncheckedUpdateInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17130,6 +18345,8 @@ export declare class UserUncheckedUpdateInput {
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUpdateManyMutationInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17137,6 +18354,7 @@ export declare class UserUpdateManyMutationInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17159,12 +18377,26 @@ export declare class UserUpdateManyWithoutRoleNestedInput {
     updateMany?: Array<UserUpdateManyWithWhereWithoutRoleInput>;
     deleteMany?: Array<UserScalarWhereInput>;
 }
+export declare class UserUpdateOneRequiredWithoutAnnouncementCreatedNestedInput {
+    create?: InstanceType<typeof UserCreateWithoutAnnouncementCreatedInput>;
+    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutAnnouncementCreatedInput>;
+    upsert?: InstanceType<typeof UserUpsertWithoutAnnouncementCreatedInput>;
+    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
+    update?: InstanceType<typeof UserUpdateToOneWithWhereWithoutAnnouncementCreatedInput>;
+}
 export declare class UserUpdateOneRequiredWithoutClaimActionsNestedInput {
     create?: InstanceType<typeof UserCreateWithoutClaimActionsInput>;
     connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutClaimActionsInput>;
     upsert?: InstanceType<typeof UserUpsertWithoutClaimActionsInput>;
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
     update?: InstanceType<typeof UserUpdateToOneWithWhereWithoutClaimActionsInput>;
+}
+export declare class UserUpdateOneRequiredWithoutNotificationNestedInput {
+    create?: InstanceType<typeof UserCreateWithoutNotificationInput>;
+    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutNotificationInput>;
+    upsert?: InstanceType<typeof UserUpsertWithoutNotificationInput>;
+    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
+    update?: InstanceType<typeof UserUpdateToOneWithWhereWithoutNotificationInput>;
 }
 export declare class UserUpdateOneRequiredWithoutParticipantNestedInput {
     create?: InstanceType<typeof UserCreateWithoutParticipantInput>;
@@ -17182,6 +18414,10 @@ export declare class UserUpdateOneWithoutClaimsInputNestedInput {
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
     update?: InstanceType<typeof UserUpdateToOneWithWhereWithoutClaimsInputInput>;
 }
+export declare class UserUpdateToOneWithWhereWithoutAnnouncementCreatedInput {
+    where?: InstanceType<typeof UserWhereInput>;
+    data: InstanceType<typeof UserUpdateWithoutAnnouncementCreatedInput>;
+}
 export declare class UserUpdateToOneWithWhereWithoutClaimActionsInput {
     where?: InstanceType<typeof UserWhereInput>;
     data: InstanceType<typeof UserUpdateWithoutClaimActionsInput>;
@@ -17189,6 +18425,10 @@ export declare class UserUpdateToOneWithWhereWithoutClaimActionsInput {
 export declare class UserUpdateToOneWithWhereWithoutClaimsInputInput {
     where?: InstanceType<typeof UserWhereInput>;
     data: InstanceType<typeof UserUpdateWithoutClaimsInputInput>;
+}
+export declare class UserUpdateToOneWithWhereWithoutNotificationInput {
+    where?: InstanceType<typeof UserWhereInput>;
+    data: InstanceType<typeof UserUpdateWithoutNotificationInput>;
 }
 export declare class UserUpdateToOneWithWhereWithoutParticipantInput {
     where?: InstanceType<typeof UserWhereInput>;
@@ -17198,12 +18438,13 @@ export declare class UserUpdateWithWhereUniqueWithoutRoleInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
     data: InstanceType<typeof UserUpdateWithoutRoleInput>;
 }
-export declare class UserUpdateWithoutClaimActionsInput {
+export declare class UserUpdateWithoutAnnouncementCreatedInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17211,6 +18452,25 @@ export declare class UserUpdateWithoutClaimActionsInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
+}
+export declare class UserUpdateWithoutClaimActionsInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
+    participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
+    claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUpdateWithoutClaimsInputInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17218,6 +18478,7 @@ export declare class UserUpdateWithoutClaimsInputInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17225,6 +18486,25 @@ export declare class UserUpdateWithoutClaimsInputInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
+}
+export declare class UserUpdateWithoutNotificationInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    participantId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
+    participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
+    claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
 }
 export declare class UserUpdateWithoutParticipantInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17232,6 +18512,7 @@ export declare class UserUpdateWithoutParticipantInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17239,6 +18520,8 @@ export declare class UserUpdateWithoutParticipantInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUpdateWithoutRoleInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17246,6 +18529,7 @@ export declare class UserUpdateWithoutRoleInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17253,6 +18537,8 @@ export declare class UserUpdateWithoutRoleInput {
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -17260,6 +18546,7 @@ export declare class UserUpdateInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -17268,11 +18555,18 @@ export declare class UserUpdateInput {
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
     claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
+    notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
 }
 export declare class UserUpsertWithWhereUniqueWithoutRoleInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email'>;
     update: InstanceType<typeof UserUpdateWithoutRoleInput>;
     create: InstanceType<typeof UserCreateWithoutRoleInput>;
+}
+export declare class UserUpsertWithoutAnnouncementCreatedInput {
+    update: InstanceType<typeof UserUpdateWithoutAnnouncementCreatedInput>;
+    create: InstanceType<typeof UserCreateWithoutAnnouncementCreatedInput>;
+    where?: InstanceType<typeof UserWhereInput>;
 }
 export declare class UserUpsertWithoutClaimActionsInput {
     update: InstanceType<typeof UserUpdateWithoutClaimActionsInput>;
@@ -17282,6 +18576,11 @@ export declare class UserUpsertWithoutClaimActionsInput {
 export declare class UserUpsertWithoutClaimsInputInput {
     update: InstanceType<typeof UserUpdateWithoutClaimsInputInput>;
     create: InstanceType<typeof UserCreateWithoutClaimsInputInput>;
+    where?: InstanceType<typeof UserWhereInput>;
+}
+export declare class UserUpsertWithoutNotificationInput {
+    update: InstanceType<typeof UserUpdateWithoutNotificationInput>;
+    create: InstanceType<typeof UserCreateWithoutNotificationInput>;
     where?: InstanceType<typeof UserWhereInput>;
 }
 export declare class UserUpsertWithoutParticipantInput {
@@ -17298,6 +18597,7 @@ export declare class UserWhereUniqueInput {
     fullName?: InstanceType<typeof StringFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableFilter>;
     password?: InstanceType<typeof StringFilter>;
+    profilePictureUrl?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -17307,6 +18607,8 @@ export declare class UserWhereUniqueInput {
     participant?: InstanceType<typeof ParticipantNullableRelationFilter>;
     claimsInput?: InstanceType<typeof ClaimListRelationFilter>;
     claimActions?: InstanceType<typeof ClaimStatusListRelationFilter>;
+    announcementCreated?: InstanceType<typeof AnnouncementListRelationFilter>;
+    notification?: InstanceType<typeof NotificationListRelationFilter>;
 }
 export declare class UserWhereInput {
     AND?: Array<UserWhereInput>;
@@ -17317,6 +18619,7 @@ export declare class UserWhereInput {
     email?: InstanceType<typeof StringFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableFilter>;
     password?: InstanceType<typeof StringFilter>;
+    profilePictureUrl?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -17326,6 +18629,8 @@ export declare class UserWhereInput {
     participant?: InstanceType<typeof ParticipantNullableRelationFilter>;
     claimsInput?: InstanceType<typeof ClaimListRelationFilter>;
     claimActions?: InstanceType<typeof ClaimStatusListRelationFilter>;
+    announcementCreated?: InstanceType<typeof AnnouncementListRelationFilter>;
+    notification?: InstanceType<typeof NotificationListRelationFilter>;
 }
 export declare class User {
     id: string;
@@ -17333,6 +18638,7 @@ export declare class User {
     email: string;
     emailVerifiedAt: Date | null;
     password: string;
+    profilePictureUrl: string | null;
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
@@ -17342,5 +18648,7 @@ export declare class User {
     participant?: InstanceType<typeof Participant> | null;
     claimsInput?: Array<Claim>;
     claimActions?: Array<ClaimStatus>;
+    announcementCreated?: Array<Announcement>;
+    notification?: Array<Notification>;
     _count?: InstanceType<typeof UserCount>;
 }

@@ -54,6 +54,7 @@ export class RoleResolver {
   //   return await this.roleController.createMany(createManyRoleArgs);
   // }
 
+  // RoleFindOne
   @Query(() => Role, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -69,19 +70,20 @@ export class RoleResolver {
     });
   }
 
-  // @Query(() => [Role], {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // roleFindMany(
-  //   @Args() roleFindManyArgs: FindManyRoleArgs,
-  //   @Relations() relations: RoleSelect,
-  // ) {
-  //   return this.roleController.findMany({
-  //     ...roleFindManyArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  // RoleFindMany
+  @Query(() => [Role], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  roleFindMany(
+    @Args() roleFindManyArgs: FindManyRoleArgs,
+    @Relations() relations: RoleSelect,
+  ) {
+    return this.roleController.findMany({
+      ...roleFindManyArgs,
+      select: relations.select,
+    });
+  }
 
   // @Query(() => Role, {
   //   nullable: true,

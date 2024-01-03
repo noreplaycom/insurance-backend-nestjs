@@ -54,11 +54,27 @@ export class RolePermissionResolver {
   //   return await this.rolePermissionController.createMany(createManyRolePermissionArgs);
   // }
 
+  // @Query(() => RolePermission, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // rolePermissionFindOne(
+  //   @Args()
+  //   rolePermissionFindUniqueArgs: FindUniqueRolePermissionArgs,
+  //   @Relations() relations: RolePermissionSelect,
+  // ): Promise<RolePermission | void> {
+  //   return this.rolePermissionController.findOne({
+  //     ...rolePermissionFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
+
+  // PermissionFindOne
   @Query(() => RolePermission, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  rolePermissionFindOne(
+  permissionFindOne(
     @Args()
     rolePermissionFindUniqueArgs: FindUniqueRolePermissionArgs,
     @Relations() relations: RolePermissionSelect,
