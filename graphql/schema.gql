@@ -1887,6 +1887,12 @@ type Query {
   roleFindOne(roleFindOneByUserArgs: RoleFindOneByUserArgs!): Role
 
   """Deskripsinya ada disini loh"""
+  roleFindMany: [Role!]
+
+  """Deskripsinya ada disini loh"""
+  roleFindOneById(roleFindOneByIdArgs: RoleFindOneByIdArgs!): Role
+
+  """Deskripsinya ada disini loh"""
   permissionFindOne(permissionFindOneByUserIdArgs: PermissionFindOneByUserIdArgs!): RolePermission
 
   """
@@ -3350,7 +3356,11 @@ input ClaimStatusFindManyByClaimIdArgs {
 }
 
 input RoleFindOneByUserArgs {
-  userId: String
+  userId: String!
+}
+
+input RoleFindOneByIdArgs {
+  id: Int!
 }
 
 input PermissionFindOneByUserIdArgs {

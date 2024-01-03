@@ -4,7 +4,7 @@ import { ClaimWhereInput } from 'src/@generated';
 import { Period } from 'src/model/period.enum';
 
 @InputType()
-export class RoleFindOneByUserArgs {
-  @Field(() => String)
-  userId: string;
+export class RoleFindOneByIdArgs {
+  @Field(() => Int)
+  id: number;
 }

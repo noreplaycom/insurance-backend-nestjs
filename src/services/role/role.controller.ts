@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { Role } from 'src/@generated';
 import { RoleFindOneByUserArgs } from './dto/role_find_one_by_user';
+import { RoleFindOneByIdArgs } from './dto/role_find_one_by_id';
 
 @Injectable()
 export abstract class RoleController {
@@ -28,4 +29,6 @@ export abstract class RoleController {
   abstract count(roleCountArgs: Prisma.RoleCountArgs): Promise<number>;
 
   abstract findOneByUser(roleFindOneByUserArgs: RoleFindOneByUserArgs): Promise<Role>;
+  
+  abstract findOneById(roleFindOneByIdArgs: RoleFindOneByIdArgs): Promise<Role>;
 }
