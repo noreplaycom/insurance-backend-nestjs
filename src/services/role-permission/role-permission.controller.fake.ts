@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client';
 import { RolePermissionController } from './role-permission.controller';
 import { RolePermission } from 'src/@generated';
 import { fakeRolePermissionComplete } from '../../../prisma/fake-data';
+import { PermissionFindOneByUserIdArgs } from './dto/permission_find_one';
 
 @Injectable()
 export class FakeRolePermissionController implements RolePermissionController {
@@ -81,5 +82,9 @@ export class FakeRolePermissionController implements RolePermissionController {
 
   async count(rolePermissionCountArgs: Prisma.RolePermissionCountArgs): Promise<number> {
     return this.rolePermissions.length;
+  }
+
+  async findOneByUserId(permissionFindOneByUserIdArgs: PermissionFindOneByUserIdArgs): Promise<RolePermission> {
+    return this.rolePermissions.find(v => v);
   }
 }

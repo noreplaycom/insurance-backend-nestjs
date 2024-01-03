@@ -8,8 +8,8 @@ export class ClaimCountQuantityByCustomRangeAndPeriodQuery {
   @Field(() => String, { nullable: true })
   period: string;
 
-  @Field(() => Float, { nullable: true })
-  totalClaim: number;
+  @Field(() => Int, { nullable: true })
+  quantityClaims: number;
 }
 
 @InputType()
@@ -22,8 +22,4 @@ export class ClaimCountQuantityByCustomRangeAndPeriodArgs {
 
   @Field(() => Period)
   period: Period;
-
-  @Field(() => ClaimWhereInput, { nullable: true })
-  @Type(() => ClaimWhereInput)
-  where?: ClaimWhereInput;
 }

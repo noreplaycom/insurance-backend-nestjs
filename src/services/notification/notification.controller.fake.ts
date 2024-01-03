@@ -9,7 +9,7 @@ export class FakeNotificationController implements NotificationController {
   private notifications: Notification[] = [];
 
   constructor() {
-    const initial = 100;
+    const initial = 4;
     for (let i = 0; i < initial; i++) {
       this.notifications.push(fakeNotificationComplete());
     }
@@ -48,15 +48,7 @@ export class FakeNotificationController implements NotificationController {
   }
 
   async updateOne(notificationUpdateOneArgs: Prisma.NotificationUpdateArgs): Promise<Notification> {
-    const idx = this.notifications.findIndex(notification => notification.id === notificationUpdateOneArgs.where.id);
-    this.notifications[idx] = {
-      ...fakeNotificationComplete(),
-      id: notificationUpdateOneArgs.where.id
-    }
-    return {
-      ...fakeNotificationComplete(),
-      id: notificationUpdateOneArgs.where.id
-    }
+    return this.notifications.find(v => v);
   }
 
   async updateMany(notificationUpdateManyArgs: Prisma.NotificationUpdateManyArgs): Promise<Prisma.BatchPayload> {
@@ -83,5 +75,9 @@ export class FakeNotificationController implements NotificationController {
 
   async count(notificationCountArgs: Prisma.NotificationCountArgs): Promise<number> {
     return this.notifications.length;
+  }
+
+  async updateManyIsCleared(): Promise<boolean> {
+    return true;
   }
 }

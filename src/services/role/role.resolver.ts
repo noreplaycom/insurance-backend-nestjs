@@ -19,6 +19,8 @@ import {
 import { RoleController } from './role.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
+import { RoleFindOneByUserArgs } from './dto/role_find_one_by_user';
+import { RoleFindOneByIdArgs } from './dto/role_find_one_by_id';
 
 interface RoleSelect {
   select: Prisma.RoleSelect;
@@ -54,36 +56,34 @@ export class RoleResolver {
   //   return await this.roleController.createMany(createManyRoleArgs);
   // }
 
-  // RoleFindOne
-  @Query(() => Role, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  roleFindOne(
-    @Args()
-    roleFindUniqueArgs: FindUniqueRoleArgs,
-    @Relations() relations: RoleSelect,
-  ): Promise<Role | void> {
-    return this.roleController.findOne({
-      ...roleFindUniqueArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => Role, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // roleFindOne(
+  //   @Args()
+  //   roleFindUniqueArgs: FindUniqueRoleArgs,
+  //   @Relations() relations: RoleSelect,
+  // ): Promise<Role | void> {
+  //   return this.roleController.findOne({
+  //     ...roleFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  // RoleFindMany
-  @Query(() => [Role], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  roleFindMany(
-    @Args() roleFindManyArgs: FindManyRoleArgs,
-    @Relations() relations: RoleSelect,
-  ) {
-    return this.roleController.findMany({
-      ...roleFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [Role], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // roleFindMany(
+  //   @Args() roleFindManyArgs: FindManyRoleArgs,
+  //   @Relations() relations: RoleSelect,
+  // ) {
+  //   return this.roleController.findMany({
+  //     ...roleFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => Role, {
   //   nullable: true,
@@ -159,4 +159,42 @@ export class RoleResolver {
   // roleCount(@Args() roleCountAggregateInput: FindManyRoleArgs) {
   //   return this.roleController.count(roleCountAggregateInput);
   // }
+
+  // ? CLAIM LIST SCREEN
+  @Query(() => Role, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  roleFindOne(
+    @Args('roleFindOneByUserArgs') roleFindOneByUserArgs: RoleFindOneByUserArgs,
+    // @Relations() relations: RoleSelect,
+  ): Promise<Role | void> {
+    return this.roleController.findOneByUser(roleFindOneByUserArgs);
+  }
+
+  // ? USER FORM SCREEN
+  @Query(() => [Role], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  roleFindMany(
+    // @Args() roleFindManyArgs: FindManyRoleArgs,
+    // @Relations() relations: RoleSelect,
+  ) {
+    return this.roleController.findMany({
+      // ...roleFindManyArgs,
+      // select: relations.select,
+    });
+  }
+
+  @Query(() => Role, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  roleFindOneById(
+    @Args('roleFindOneByIdArgs') roleFindOneByIdArgs: RoleFindOneByIdArgs,
+    // @Relations() relations: RoleSelect,
+  ): Promise<Role | void> {
+    return this.roleController.findOneById(roleFindOneByIdArgs);
+  }
 }

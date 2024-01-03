@@ -19,6 +19,7 @@ import {
 import { ClaimStatusController } from './claim-status.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
+import { ClaimStatusFindManyByClaimIdArgs } from './dto/claim_status_find_many_by_claim_id';
 
 interface ClaimStatusSelect {
   select: Prisma.ClaimStatusSelect;
@@ -69,20 +70,19 @@ export class ClaimStatusResolver {
   //   });
   // }
 
-  // ClaimStatusFindMany
-  @Query(() => [ClaimStatus], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimStatusFindMany(
-    @Args() claimStatusFindManyArgs: FindManyClaimStatusArgs,
-    @Relations() relations: ClaimStatusSelect,
-  ) {
-    return this.claimStatusController.findMany({
-      ...claimStatusFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [ClaimStatus], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimStatusFindMany(
+  //   @Args() claimStatusFindManyArgs: FindManyClaimStatusArgs,
+  //   @Relations() relations: ClaimStatusSelect,
+  // ) {
+  //   return this.claimStatusController.findMany({
+  //     ...claimStatusFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => ClaimStatus, {
   //   nullable: true,
@@ -159,12 +159,24 @@ export class ClaimStatusResolver {
   //   return this.claimStatusController.count(claimStatusCountAggregateInput);
   // }
 
-  // ClaimStatusTypeFindMany
+  // ? CLAIM LIST SCREEN
   @Query(() => [String], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
   claimStatusTypeFindMany() {
     return this.claimStatusController.getClaimStatusTypes();
+  }
+
+  // ? CLAIM STATUS TRACKING SCREEN
+  @Query(() => [ClaimStatus], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimStatusFindMany(
+    @Args('claimStatusFindManyByClaimIdArgs') claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs,
+    // @Relations() relations: ClaimStatusSelect,
+  ) {
+    return this.claimStatusController.findManyByClaimId(claimStatusFindManyByClaimIdArgs);
   }
 }

@@ -3,13 +3,15 @@ import { Prisma } from '@prisma/client';
 import { RoleController } from './role.controller';
 import { Role } from 'src/@generated';
 import { fakeRoleComplete } from '../../../prisma/fake-data';
+import { RoleFindOneByUserArgs } from './dto/role_find_one_by_user';
+import { RoleFindOneByIdArgs } from './dto/role_find_one_by_id';
 
 @Injectable()
 export class FakeRoleController implements RoleController {
   private roles: Role[] = [];
 
   constructor() {
-    const initial = 100;
+    const initial = 5;
     for (let i = 0; i < initial; i++) {
       this.roles.push(fakeRoleComplete());
     }
@@ -83,5 +85,13 @@ export class FakeRoleController implements RoleController {
 
   async count(roleCountArgs: Prisma.RoleCountArgs): Promise<number> {
     return this.roles.length;
+  }
+
+  async findOneByUser(roleFindOneByUserArgs: RoleFindOneByUserArgs): Promise<Role> {
+    return fakeRoleComplete();
+  }
+
+  async findOneById(roleFindOneByIdArgs: RoleFindOneByIdArgs): Promise<Role> {
+    return fakeRoleComplete();
   }
 }

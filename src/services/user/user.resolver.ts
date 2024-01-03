@@ -16,9 +16,14 @@ import {
   UpdateManyUserArgs,
   UpdateOneUserArgs,
 } from 'src/@generated';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { UserController } from './user.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
+import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
+import { UserFindOneByIdArgs } from './dto/user_find_one';
+import { UserUpdateOneByIdArgs } from './dto/user_update_one';
+import { UserDeleteOneByIdArgs } from './dto/user_delete_one';
 
 interface UserSelect {
   select: Prisma.UserSelect;
@@ -28,21 +33,20 @@ interface UserSelect {
 export class UserResolver {
   constructor(private readonly userController: UserController) {}
 
-  // UserCreateOne
-  @Mutation(() => User, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async userCreateOne(
-    @Args()
-    userCreateArgs: CreateOneUserArgs,
-    @Relations() relations: UserSelect,
-  ): Promise<User | void> {
-    return await this.userController.createOne({
-      ...userCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => User, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async userCreateOne(
+  //   @Args()
+  //   userCreateArgs: CreateOneUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ): Promise<User | void> {
+  //   return await this.userController.createOne({
+  //     ...userCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,
@@ -55,36 +59,34 @@ export class UserResolver {
   //   return await this.userController.createMany(createManyUserArgs);
   // }
 
-  // UserFindOne
-  @Query(() => User, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  userFindOne(
-    @Args()
-    userFindUniqueArgs: FindUniqueUserArgs,
-    @Relations() relations: UserSelect,
-  ): Promise<User | void> {
-    return this.userController.findOne({
-      ...userFindUniqueArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => User, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // userFindOne(
+  //   @Args()
+  //   userFindUniqueArgs: FindUniqueUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ): Promise<User | void> {
+  //   return this.userController.findOne({
+  //     ...userFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  // UserFindMany
-  @Query(() => [User], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  userFindMany(
-    @Args() userFindManyArgs: FindManyUserArgs,
-    @Relations() relations: UserSelect,
-  ) {
-    return this.userController.findMany({
-      ...userFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [User], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // userFindMany(
+  //   @Args() userFindManyArgs: FindManyUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ) {
+  //   return this.userController.findMany({
+  //     ...userFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => User, {
   //   nullable: true,
@@ -101,20 +103,19 @@ export class UserResolver {
   //   });
   // }
 
-  // UserUpdateOne
-  @Mutation(() => User, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async userUpdateOne(
-    @Args() userUpdateOneArgs: UpdateOneUserArgs,
-    @Relations() relations: UserSelect,
-  ) {
-    return this.userController.updateOne({
-      ...replaceNullWithUndefined(userUpdateOneArgs),
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => User, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async userUpdateOne(
+  //   @Args() userUpdateOneArgs: UpdateOneUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ) {
+  //   return this.userController.updateOne({
+  //     ...replaceNullWithUndefined(userUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Mutation(() => User, {
   //   nullable: true,
@@ -124,20 +125,19 @@ export class UserResolver {
   //   return this.userController.updateMany(updateManyUserArgs);
   // }
 
-  // UserDeleteOne
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async userDeleteOne(
-    @Args() deleteOneUserArgs: DeleteOneUserArgs,
-    @Relations() relations: UserSelect,
-  ) {
-    return this.userController.delete({
-      ...deleteOneUserArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async userDeleteOne(
+  //   @Args() deleteOneUserArgs: DeleteOneUserArgs,
+  //   @Relations() relations: UserSelect,
+  // ) {
+  //   return this.userController.delete({
+  //     ...deleteOneUserArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Mutation(() => Boolean, {
   //   nullable: false,
@@ -162,4 +162,102 @@ export class UserResolver {
   // userCount(@Args() userCountAggregateInput: FindManyUserArgs) {
   //   return this.userController.count(userCountAggregateInput);
   // }
+
+  // ? CLAIM LIST SCREEN
+  @Query(() => [User], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  userFindMany(
+    @Relations() relations: UserSelect,
+  ) {
+    return this.userController.findManyNotParticipant({
+      select: relations.select,
+    });
+  }
+
+  // ? PARTICIPANT FORM SCREEN
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userCreateOne(
+    @Args('userCreateOneAsParticipantArgs') userCreateOneAsParticipantArgs: UserCreateOneAsParticipantArgs,
+    // @Relations() relations: UserSelect,
+  ): Promise<User | void> {
+    return await this.userController.createOneAsParticipant(userCreateOneAsParticipantArgs);
+  }
+
+  @Query(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  userFindOne(
+    @Args('userFindOneByIdArgs') userFindOneByIdArgs: UserFindOneByIdArgs,
+    // @Relations() relations: UserSelect,
+  ): Promise<User | void> {
+    return this.userController.findOneById(userFindOneByIdArgs);
+  }
+
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userUpdateOne(
+    @Args('userUpdateOneByIdArgs') userUpdateOneByIdArgs: UserUpdateOneByIdArgs,
+    // @Relations() relations: UserSelect,
+  ) {
+    return this.userController.updateOneById(userUpdateOneByIdArgs);
+  }
+
+  // ? USER LIST SCREEN
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userDeleteOne(
+    @Args('userDeleteOneByIdArgs') userDeleteOneByIdArgs: UserDeleteOneByIdArgs,
+    // @Relations() relations: UserSelect,
+  ) {
+    return this.userController.delete(userDeleteOneByIdArgs);
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: true,
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async userImport(
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+  ) {
+    const { createReadStream } = file;
+    const stream = createReadStream();
+    const chunks = [];
+    await new Promise<Buffer>((resolve, reject) => {
+      let buffer: Buffer;
+      stream.on('data', function (chunk: any) {
+        chunks.push(chunk);
+      });
+      stream.on('end', function () {
+        buffer = Buffer.concat(chunks);
+        resolve(buffer);
+      });
+      stream.on('error', reject);
+    });
+    const result = Buffer.concat(chunks);
+    // const workbook = (read(result))
+    // console.log(workbook.SheetNames)
+    // const sheet = workbook.Sheets['Sheet 1']
+    // console.log(utils.sheet_to_json(sheet))
+    return true
+  }
+
+  @Query(() => String, {
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async userExport() {
+    return 'https://dsaagroup.com/uploaded_file/user.xlsx'
+  }
 }

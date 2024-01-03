@@ -4,13 +4,14 @@ import { ClaimStatusController } from './claim-status.controller';
 import { ClaimStatus } from 'src/@generated';
 import { fakeClaimStatusComplete } from '../../../prisma/fake-data';
 import { DefaultArgs } from '@prisma/client/runtime/library';
+import { ClaimStatusFindManyByClaimIdArgs } from './dto/claim_status_find_many_by_claim_id';
 
 @Injectable()
 export class FakeClaimStatusController implements ClaimStatusController {
   private claimStatuss: ClaimStatus[] = [];
 
   constructor() {
-    const initial = 100;
+    const initial = 20;
     for (let i = 0; i < initial; i++) {
       this.claimStatuss.push(fakeClaimStatusComplete());
     }
@@ -88,5 +89,9 @@ export class FakeClaimStatusController implements ClaimStatusController {
 
   async getClaimStatusTypes(claimStatusCountArgs: Prisma.ClaimStatusCountArgs<DefaultArgs>): Promise<string[]> {
     return Object.keys(ClaimStatusType)
+  }
+
+  async findManyByClaimId(claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs): Promise<ClaimStatus[]> {
+    return this.claimStatuss.filter(claim => claim);
   }
 }

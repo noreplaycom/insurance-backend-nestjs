@@ -4,11 +4,15 @@ import { ClaimService } from './claim.service';
 import { ClaimController } from './claim.controller';
 import { Claim, ClaimChannel } from 'src/@generated';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
-import { ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
-import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import { ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
+import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
 import { Period } from 'src/model/period.enum';
+import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
+import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
+import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
+import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 
 @Injectable()
 export class PrismaClaimController implements ClaimController {
@@ -62,28 +66,44 @@ export class PrismaClaimController implements ClaimController {
     return [];
   }
 
-  async countQuantityByStatus(args: ClaimCountQuantityByStatusArgs): Promise<ClaimCountQuantityByStatusQuery> {
-    return {
-      claims: [],
-      period: args.period
-    }
+  async countQuantityByStatus(): Promise<ClaimCountQuantityByStatusQuery[]> {
+    return []
   }
 
-  async countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodQuery): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery> {
-    return {
-      amount: generateRandomRupiah(),
-      period: args.period,
-    }
+  async countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodArgs): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery[]> {
+    return [
+      {
+        period: "",
+        totalClaims: 0
+      }
+    ]
   }
 
   async countTotalPercentageVsCustomPeriod(args: ClaimCountTotalPercentageVsCustomPeriodArgs): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery> {
     return {
-      period: args.period,
-      percentage: Math.random() * 20
+      versus: args.period,
+      percentage: Math.random() * 20,
+      amount: 0,
     };
   }
 
   async getClaimChannels(): Promise<string[]> {
     return Object.keys(ClaimChannel);
+  }
+
+  async findOneById(claimFindOneByIdArgs: ClaimFindOneByIdArgs): Promise<Claim> {
+    return await this.claimService.findFirst({});
+  }
+
+  async updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim> {
+    return await this.claimService.findFirst({});
+  }
+
+  async createOneForm(claimFormCreateOneArgs: ClaimFormCreateOneArgs): Promise<Claim> {
+    return await this.claimService.findFirst({});
+  }
+
+  async countWhere(claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs): Promise<number> {
+    return 10;
   }
 }

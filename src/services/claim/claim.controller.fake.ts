@@ -6,10 +6,14 @@ import { fakeClaimComplete } from '../../../prisma/fake-data';
 import { Period } from 'src/model/period.enum';
 import { getNextPeriodDate } from 'src/utils/get-next-period.function';
 import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
-import { ClaimByStatus, ClaimCountQuantityByStatusArgs, ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
-import { ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import { ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
+import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
 import { generateRandomRupiah } from 'src/utils/generate-random-rupiah-value.function';
 import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
+import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
+import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
+import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
+import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 
 @Injectable()
 export class FakeClaimController implements ClaimController {
@@ -57,15 +61,7 @@ export class FakeClaimController implements ClaimController {
   }
 
   async updateOne(claimUpdateOneArgs: Prisma.ClaimUpdateArgs): Promise<Claim> {
-    const idx = this.claims.findIndex(claim => claim.id === claimUpdateOneArgs.where.id);
-    this.claims[idx] = {
-      ...fakeClaimComplete(),
-      id: claimUpdateOneArgs.where.id
-    }
-    return {
-      ...fakeClaimComplete(),
-      id: claimUpdateOneArgs.where.id
-    }
+    return this.claims.find(claim => claim)
   }
 
   async updateMany(claimUpdateManyArgs: Prisma.ClaimUpdateManyArgs): Promise<Prisma.BatchPayload> {
@@ -95,81 +91,104 @@ export class FakeClaimController implements ClaimController {
   }
 
   async countQuantityByCustomRangeAndPeriod(args: ClaimCountQuantityByCustomRangeAndPeriodArgs): Promise<ClaimCountQuantityByCustomRangeAndPeriodQuery[]> {
-    const { start, end, period, where } = args;
-    const claims = await this.findMany({
-      orderBy: { createdAt: 'asc' },
-      where,
-    });
+    const { period, end, start } = args;
 
     const claimCounts: ClaimCountQuantityByCustomRangeAndPeriodQuery[] = [];
 
-    let currentDate = new Date(start);
-
-    while (currentDate <= end) {
-      const claimCount = await this.calculateClaimCount(claims, currentDate, period);
-
+    if (period === Period.ALLTIME) {
       claimCounts.push({
-        period: currentDate.toISOString(), // Convert date to string for consistent grouping
-        totalClaim: claimCount,
-      });
-
-      currentDate = getNextPeriodDate(currentDate, period);
+        period: new Date().toISOString(), // Convert date to string for consistent grouping
+        quantityClaims: Math.floor(Math.random() * 200),
+      })
+    } else {
+      let currentDate = new Date(start);
+  
+      while (currentDate <= end) {
+        claimCounts.push({
+          period: currentDate.toISOString(), // Convert date to string for consistent grouping
+          quantityClaims: Math.floor(Math.random() * 200),
+        });
+  
+        currentDate = getNextPeriodDate(currentDate, period);
+      }
     }
 
     return claimCounts;
   }
 
-  private async calculateClaimCount(claims: Claim[], currentDate: Date, period: Period): Promise<number> {
-    const filteredClaims = claims.filter((claim) => {
-      const claimCreatedAt = new Date(claim.createdAt);
-
-      if (period === Period.WEEKLY) {
-        const nextWeekDate = getNextPeriodDate(currentDate, period);
-        return claimCreatedAt >= currentDate && claimCreatedAt < nextWeekDate;
-      } else if (period === Period.MONTHLY) {
-        const nextMonthDate = getNextPeriodDate(currentDate, period);
-        return claimCreatedAt >= currentDate && claimCreatedAt < nextMonthDate;
-      } else if (period === Period.YEARLY) {
-        const nextYearDate = getNextPeriodDate(currentDate, period);
-        return claimCreatedAt >= currentDate && claimCreatedAt < nextYearDate;
-      }
-
-      return false;
-    });
-
-    return filteredClaims.length;
-  }
-
   async countTotalPercentageVsCustomPeriod(args: ClaimCountTotalPercentageVsCustomPeriodArgs): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery> {
+    const periodValue = () => {
+      switch (args.period) {
+        case Period.MONTHLY:
+          return 'last month';
+        case Period.WEEKLY:
+          return 'last week';
+        case Period.YEARLY:
+          return 'last year';
+      }
+    }
     return {
-      period: args.period as Period,
-      percentage: +(Math.random() * 20).toFixed(2)
+      versus: periodValue(),
+      percentage: Math.random() * 20,
+      amount: generateRandomRupiah(),
     };
   }
 
-  async countQuantityByStatus(args: ClaimCountQuantityByStatusArgs): Promise<ClaimCountQuantityByStatusQuery> {
+  async countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodArgs): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery[]> {
+    const { period, end, start } = args;
+
+    const claimCounts: ClaimCountTotalByCustomRangeAndPeriodQuery[] = [];
+
+    if (period === Period.ALLTIME) {
+      claimCounts.push({
+        period: new Date().toISOString(), // Convert date to string for consistent grouping
+        totalClaims: generateRandomRupiah(),
+      })
+    } else {
+      let currentDate = new Date(start);
+  
+      while (currentDate <= end) {
+        claimCounts.push({
+          period: currentDate.toISOString(), // Convert date to string for consistent grouping
+          totalClaims: generateRandomRupiah(),
+        });
+  
+        currentDate = getNextPeriodDate(currentDate, period);
+      }
+    }
+
+    return claimCounts;
+  }
+
+  async countQuantityByStatus(): Promise<ClaimCountQuantityByStatusQuery[]> {
     const statuses = Object.keys(ClaimStatusType);
-    const claims: ClaimByStatus[] = [];
+    const claims: ClaimCountQuantityByStatusQuery[] = [];
     statuses.forEach(status => {
       claims.push({
         status: status as ClaimStatusType,
         total: Math.floor(Math.random() * 500),
       })
     })
-    return {
-      period: args.period,
-      claims,
-    }
-  }
-
-  async countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodQuery): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery> {
-    return {
-      amount: generateRandomRupiah(),
-      period: args.period,
-    }
+    return claims;
   }
 
   async getClaimChannels(): Promise<string[]> {
     return Object.keys(ClaimChannel);
+  }
+
+  async findOneById(claimFindOneByIdArgs: ClaimFindOneByIdArgs): Promise<Claim> {
+    return this.claims.find(v => v);
+  }
+  
+  async updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim> {
+    return this.claims.find(v => v);
+  }
+
+  async createOneForm(claimFormCreateOneArgs: ClaimFormCreateOneArgs): Promise<Claim> {
+    return fakeClaimComplete();
+  }
+
+  async countWhere(claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs): Promise<number> {
+    return this.claims.length;
   }
 }

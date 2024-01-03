@@ -25,4 +25,6 @@ export abstract class NotificationController {
   abstract aggregate(notificationAggregateArgs: Prisma.NotificationAggregateArgs): Promise<Prisma.GetNotificationAggregateType<Prisma.NotificationAggregateArgs>>;
 
   abstract count(notificationCountArgs: Prisma.NotificationCountArgs): Promise<number>;
+
+  abstract updateManyIsCleared(): Promise<boolean>;
 }

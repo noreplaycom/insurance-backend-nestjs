@@ -16,9 +16,11 @@ import {
   UpdateManyRolePermissionArgs,
   UpdateOneRolePermissionArgs,
 } from 'src/@generated';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { RolePermissionController } from './role-permission.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
+import { PermissionFindOneByUserIdArgs } from './dto/permission_find_one';
 
 interface RolePermissionSelect {
   select: Prisma.RolePermissionSelect;
@@ -69,35 +71,34 @@ export class RolePermissionResolver {
   //   });
   // }
 
-  // PermissionFindOne
-  @Query(() => RolePermission, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  permissionFindOne(
-    @Args()
-    rolePermissionFindUniqueArgs: FindUniqueRolePermissionArgs,
-    @Relations() relations: RolePermissionSelect,
-  ): Promise<RolePermission | void> {
-    return this.rolePermissionController.findOne({
-      ...rolePermissionFindUniqueArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => RolePermission, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // permissionFindOne(
+  //   @Args()
+  //   rolePermissionFindUniqueArgs: FindUniqueRolePermissionArgs,
+  //   @Relations() relations: RolePermissionSelect,
+  // ): Promise<RolePermission | void> {
+  //   return this.rolePermissionController.findOne({
+  //     ...rolePermissionFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Query(() => [RolePermission], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  rolePermissionFindMany(
-    @Args() rolePermissionFindManyArgs: FindManyRolePermissionArgs,
-    @Relations() relations: RolePermissionSelect,
-  ) {
-    return this.rolePermissionController.findMany({
-      ...rolePermissionFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [RolePermission], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // rolePermissionFindMany(
+  //   @Args() rolePermissionFindManyArgs: FindManyRolePermissionArgs,
+  //   @Relations() relations: RolePermissionSelect,
+  // ) {
+  //   return this.rolePermissionController.findMany({
+  //     ...rolePermissionFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => RolePermission, {
   //   nullable: true,
@@ -173,4 +174,55 @@ export class RolePermissionResolver {
   // rolePermissionCount(@Args() rolePermissionCountAggregateInput: FindManyRolePermissionArgs) {
   //   return this.rolePermissionController.count(rolePermissionCountAggregateInput);
   // }
+
+  // ? PARTICIPANT LIST SCREEN
+  @Query(() => RolePermission, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  permissionFindOne(
+    @Args('permissionFindOneByUserIdArgs') permissionFindOneByUserIdArgs: PermissionFindOneByUserIdArgs,
+    // @Relations() relations: RolePermissionSelect,
+  ): Promise<RolePermission | void> {
+    return this.rolePermissionController.findOneByUserId(permissionFindOneByUserIdArgs);
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: true,
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async participantImport(
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+  ) {
+    const { createReadStream } = file;
+    const stream = createReadStream();
+    const chunks = [];
+    await new Promise<Buffer>((resolve, reject) => {
+      let buffer: Buffer;
+      stream.on('data', function (chunk: any) {
+        chunks.push(chunk);
+      });
+      stream.on('end', function () {
+        buffer = Buffer.concat(chunks);
+        resolve(buffer);
+      });
+      stream.on('error', reject);
+    });
+    const result = Buffer.concat(chunks);
+    const workbook = (read(result))
+    console.log(workbook.SheetNames)
+    const sheet = workbook.Sheets['Sheet 1']
+    console.log(utils.sheet_to_json(sheet))
+    return true
+  }
+
+  @Query(() => String, {
+    description:
+      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  })
+  async participantExport() {
+    return 'https://dsaagroup.com/uploaded_file/participant.xlsx'
+  }
 }

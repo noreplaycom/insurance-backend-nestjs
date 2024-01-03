@@ -3,11 +3,9 @@ import { Type } from 'class-transformer';
 import { ClaimWhereInput, ClaimStatusType } from 'src/@generated';
 import { Period } from 'src/model/period.enum';
 
-@ObjectType()
-export class ClaimCountQuantityByStatusQuery {
-  @Field(() => ClaimStatusType)
-  status: ClaimStatusType
-
-  @Field(() => Int)
-  total: number;
+@InputType()
+export class ClaimCountQuantityWhereArgs {
+  @Field(() => ClaimWhereInput)
+  @Type(() => ClaimWhereInput)
+  where: ClaimWhereInput;
 }

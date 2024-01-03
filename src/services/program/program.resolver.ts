@@ -158,15 +158,15 @@ export class ProgramResolver {
   //   return this.programController.count(programCountAggregateInput);
   // }
   
-  @Query(() => [String], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  getClassesProgram() {
-    return this.programController.getClassesProgram();
-  }
+  // @Query(() => [String], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // getClassesProgram() {
+  //   return this.programController.getClassesProgram();
+  // }
   
-  // ApplicationTypeFindMany
+  // ? CLAIM LIST SCREEN
   @Query(() => [String], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -175,12 +175,11 @@ export class ProgramResolver {
     return this.programController.getApplicationTypesProgram();
   }
   
-  // PlanFindMany
-  @Query(() => [String], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  planFindMany() {
-    return this.programController.getApplicationTypesProgram();
-  }
+  // @Query(() => [String], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // planFindMany() {
+  //   return this.programController.getApplicationTypesProgram();
+  // }
 }

@@ -69,20 +69,19 @@ export class ParticipantResolver {
   //   });
   // }
 
-  // ParticipantFindMany
-  @Query(() => [Participant], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  participantFindMany(
-    @Args() participantFindManyArgs: FindManyParticipantArgs,
-    @Relations() relations: ParticipantSelect,
-  ) {
-    return this.participantController.findMany({
-      ...participantFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [Participant], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // participantFindMany(
+  //   @Args() participantFindManyArgs: FindManyParticipantArgs,
+  //   @Relations() relations: ParticipantSelect,
+  // ) {
+  //   return this.participantController.findMany({
+  //     ...participantFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => Participant, {
   //   nullable: true,
@@ -159,11 +158,26 @@ export class ParticipantResolver {
   //   return this.participantController.count(participantCountAggregateInput);
   // }
   
-  @Query(() => [String], {
+  // @Query(() => [String], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // getParticipantStatuses() {
+  //   return this.participantController.getParticipantStatuses();
+  // }
+
+  // ? PARTICIPANT FORM SCREEN
+  @Query(() => [Participant], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  getParticipantStatuses() {
-    return this.participantController.getParticipantStatuses();
+  participantFindMany(
+    // @Args() participantFindManyArgs: FindManyParticipantArgs,
+    // @Relations() relations: ParticipantSelect,
+  ) {
+    return this.participantController.findMany({
+      // ...participantFindManyArgs,
+      // select: relations.select,
+    });
   }
 }

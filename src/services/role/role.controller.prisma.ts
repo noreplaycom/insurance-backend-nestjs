@@ -3,6 +3,8 @@ import { Prisma } from '@prisma/client';
 import { RoleService } from './role.service';
 import { RoleController } from './role.controller';
 import { Role } from 'src/@generated';
+import { RoleFindOneByUserArgs } from './dto/role_find_one_by_user';
+import { RoleFindOneByIdArgs } from './dto/role_find_one_by_id';
 
 @Injectable()
 export class PrismaRoleController implements RoleController {
@@ -50,5 +52,13 @@ export class PrismaRoleController implements RoleController {
 
   async count(roleCountArgs: Prisma.RoleCountArgs): Promise<number> {
     return await this.roleService.count(roleCountArgs);
+  }
+
+  async findOneByUser(roleFindOneByUserArgs: RoleFindOneByUserArgs): Promise<Role> {
+    return await this.roleService.findFirst({});
+  }
+
+  async findOneById(roleFindOneByIdArgs: RoleFindOneByIdArgs): Promise<Role> {
+    return await this.roleService.findFirst({})
   }
 }

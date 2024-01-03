@@ -69,20 +69,19 @@ export class TagResolver {
   //   });
   // }
 
-  // TagFindMany
-  @Query(() => [Tag], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  tagFindMany(
-    @Args() tagFindManyArgs: FindManyTagArgs,
-    @Relations() relations: TagSelect,
-  ) {
-    return this.tagController.findMany({
-      ...tagFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [Tag], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // tagFindMany(
+  //   @Args() tagFindManyArgs: FindManyTagArgs,
+  //   @Relations() relations: TagSelect,
+  // ) {
+  //   return this.tagController.findMany({
+  //     ...tagFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   // @Query(() => Tag, {
   //   nullable: true,
@@ -158,4 +157,17 @@ export class TagResolver {
   // tagCount(@Args() tagCountAggregateInput: FindManyTagArgs) {
   //   return this.tagController.count(tagCountAggregateInput);
   // }
+
+  // ? CLAIM LIST SCREEN
+  @Query(() => [Tag], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  tagFindMany(
+    @Relations() relations: TagSelect,
+  ) {
+    return this.tagController.findMany({
+      select: relations.select,
+    });
+  }
 }
