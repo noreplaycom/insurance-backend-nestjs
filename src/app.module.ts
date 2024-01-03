@@ -115,7 +115,7 @@ import { NotificationModule } from './services/notification/notification.module'
     // DocumentModule,
     // EmploymentModule,
     // GroupModule,
-    // ParticipantModule,
+    ParticipantModule,
     ProgramModule,
     // ProgramParticipationModule,
     // RegionModule,

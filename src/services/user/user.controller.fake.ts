@@ -3,6 +3,9 @@ import { Prisma } from '@prisma/client';
 import { UserController } from './user.controller';
 import { User } from 'src/@generated';
 import { fakeUserComplete } from '../../../prisma/fake-data';
+import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
+import { UserFindOneByIdArgs } from './dto/user_find_one';
+import { UserUpdateOneByIdArgs } from './dto/user_update_one';
 
 @Injectable()
 export class FakeUserController implements UserController {
@@ -87,5 +90,17 @@ export class FakeUserController implements UserController {
 
   async findManyNotParticipant(): Promise<User[]> {
     return this.users.slice(0, 7);
+  }
+
+  async createOneAsParticipant(userCreateOneAsParticipantArgs: UserCreateOneAsParticipantArgs): Promise<User> {
+    return fakeUserComplete();
+  }
+
+  async findOneById(userFindOneByIdArgs: UserFindOneByIdArgs): Promise<User> {
+    return fakeUserComplete();
+  }
+  
+  async updateOneById(userUpdateOneByIdArgs: UserUpdateOneByIdArgs): Promise<User> {
+    return fakeUserComplete();
   }
 }

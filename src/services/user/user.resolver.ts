@@ -19,6 +19,9 @@ import {
 import { UserController } from './user.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
+import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
+import { UserFindOneByIdArgs } from './dto/user_find_one';
+import { UserUpdateOneByIdArgs } from './dto/user_update_one';
 
 interface UserSelect {
   select: Prisma.UserSelect;
@@ -169,5 +172,39 @@ export class UserResolver {
     return this.userController.findManyNotParticipant({
       select: relations.select,
     });
+  }
+
+  // ? PARTICIPANT FORM SCREEN
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userCreateOne(
+    @Args('userCreateOneAsParticipantArgs') userCreateOneAsParticipantArgs: UserCreateOneAsParticipantArgs,
+    // @Relations() relations: UserSelect,
+  ): Promise<User | void> {
+    return await this.userController.createOneAsParticipant(userCreateOneAsParticipantArgs);
+  }
+
+  @Query(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  userFindOne(
+    @Args('userFindOneByIdArgs') userFindOneByIdArgs: UserFindOneByIdArgs,
+    // @Relations() relations: UserSelect,
+  ): Promise<User | void> {
+    return this.userController.findOneById(userFindOneByIdArgs);
+  }
+
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userUpdateOne(
+    @Args('userUpdateOneByIdArgs') userUpdateOneByIdArgs: UserUpdateOneByIdArgs,
+    // @Relations() relations: UserSelect,
+  ) {
+    return this.userController.updateOneById(userUpdateOneByIdArgs);
   }
 }

@@ -3,6 +3,9 @@ import { Prisma } from '@prisma/client';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { User } from 'src/@generated';
+import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
+import { UserFindOneByIdArgs } from './dto/user_find_one';
+import { UserUpdateOneByIdArgs } from './dto/user_update_one';
 
 @Injectable()
 export class PrismaUserController implements UserController {
@@ -54,5 +57,17 @@ export class PrismaUserController implements UserController {
 
   async findManyNotParticipant(): Promise<User[]> {
     return [];
+  }
+
+  async createOneAsParticipant(userCreateOneAsParticipantArgs: UserCreateOneAsParticipantArgs): Promise<User> {
+    return await this.userService.findFirst({});
+  }
+
+  async findOneById(userFindOneByIdArgs: UserFindOneByIdArgs): Promise<User> {
+    return await this.userService.findFirst({});
+  }
+
+  async updateOneById(userUpdateOneByIdArgs: UserUpdateOneByIdArgs): Promise<User> {
+    return await this.userService.findFirst({});
   }
 }
