@@ -1872,6 +1872,9 @@ type Query {
   claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
+  claimStatusFindMany(claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs!): [ClaimStatus!]
+
+  """Deskripsinya ada disini loh"""
   applicationTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
@@ -3314,6 +3317,10 @@ enum ClaimScalarFieldEnum {
 
 input ClaimFindOneByIdArgs {
   id: String!
+}
+
+input ClaimStatusFindManyByClaimIdArgs {
+  claimId: String!
 }
 
 input RoleFindOneByUserArgs {

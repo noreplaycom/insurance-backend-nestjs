@@ -4,6 +4,7 @@ import { ClaimStatusService } from './claim-status.service';
 import { ClaimStatusController } from './claim-status.controller';
 import { ClaimStatus, ClaimStatusType } from 'src/@generated';
 import { DefaultArgs } from '@prisma/client/runtime/library';
+import { ClaimStatusFindManyByClaimIdArgs } from './dto/claim_status_find_many_by_claim_id';
 
 @Injectable()
 export class PrismaClaimStatusController implements ClaimStatusController {
@@ -55,5 +56,9 @@ export class PrismaClaimStatusController implements ClaimStatusController {
 
   async getClaimStatusTypes(claimStatusCountArgs: Prisma.ClaimStatusCountArgs<DefaultArgs>): Promise<string[]> {
     return Object.keys(ClaimStatusType);
+  }
+
+  async findManyByClaimId(claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs): Promise<ClaimStatus[]> {
+    return await this.claimStatusService.findMany({})
   }
 }

@@ -19,6 +19,7 @@ import {
 import { ClaimStatusController } from './claim-status.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
+import { ClaimStatusFindManyByClaimIdArgs } from './dto/claim_status_find_many_by_claim_id';
 
 interface ClaimStatusSelect {
   select: Prisma.ClaimStatusSelect;
@@ -165,5 +166,16 @@ export class ClaimStatusResolver {
   })
   claimStatusTypeFindMany() {
     return this.claimStatusController.getClaimStatusTypes();
+  }
+
+  @Query(() => [ClaimStatus], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimStatusFindMany(
+    @Args('claimStatusFindManyByClaimIdArgs') claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs,
+    // @Relations() relations: ClaimStatusSelect,
+  ) {
+    return this.claimStatusController.findManyByClaimId(claimStatusFindManyByClaimIdArgs);
   }
 }
