@@ -57,15 +57,7 @@ export class FakeClaimController implements ClaimController {
   }
 
   async updateOne(claimUpdateOneArgs: Prisma.ClaimUpdateArgs): Promise<Claim> {
-    const idx = this.claims.findIndex(claim => claim.id === claimUpdateOneArgs.where.id);
-    this.claims[idx] = {
-      ...fakeClaimComplete(),
-      id: claimUpdateOneArgs.where.id
-    }
-    return {
-      ...fakeClaimComplete(),
-      id: claimUpdateOneArgs.where.id
-    }
+    return this.claims.find(claim => claim)
   }
 
   async updateMany(claimUpdateManyArgs: Prisma.ClaimUpdateManyArgs): Promise<Prisma.BatchPayload> {

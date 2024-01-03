@@ -155,11 +155,9 @@ export class ClaimResolver {
     description: 'Deskripsinya ada disini loh',
   })
   claimFindMany(
-    @Args() claimFindManyArgs: FindManyClaimArgs,
     @Relations() relations: ClaimSelect,
   ) {
     return this.claimController.findMany({
-      ...claimFindManyArgs,
       select: relations.select,
     });
   }

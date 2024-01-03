@@ -51,4 +51,8 @@ export class PrismaNotificationController implements NotificationController {
   async count(notificationCountArgs: Prisma.NotificationCountArgs): Promise<number> {
     return await this.notificationService.count(notificationCountArgs);
   }
+
+  async updateManyIsCleared(): Promise<boolean> {
+    return true;
+  }
 }

@@ -126,7 +126,7 @@ import { NotificationModule } from './services/notification/notification.module'
     // UserModule,
     // DashboardModule,
     // ClaimManagementModule,
-    // NotificationModule,
+    NotificationModule,
     // UploaderModule,
   ],
   controllers: [],
