@@ -731,8 +731,6 @@ model ClaimFinancial {
 
     claim Claim?
 
-    claimId String @unique
-
     ///Cabang: Cabang Pembayar Pensiun
     branchId Int
 
