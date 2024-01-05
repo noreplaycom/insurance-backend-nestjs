@@ -18,9 +18,12 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
   },
-  "include": ["src", "prisma"],
+  "include": [
+    "src",
+    // "prisma"
+  ],
   "exclude": [
-    // "prisma/template/**",
+    "./prisma/template/**",
     // "prisma/fake-data.ts",
   ]
 }
