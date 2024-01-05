@@ -6,8 +6,10 @@ import { ClaimController } from './claim.controller';
 import { FakeClaimController } from './claim.controller.fake';
 import { PrismaClaimController } from './claim.controller.prisma';
 import { ConfigService, ConfigModule } from '@nestjs/config';
+import { ClaimFinancialModule } from '../claim-financial/claim-financial.module';
 
 @Module({
+  imports: [ClaimFinancialModule],
   providers: [
     ConfigModule,
     PrismaService,
