@@ -371,7 +371,6 @@ export function fakeClaimFinancial() {
     rejectedAmount: undefined,
     transactionProcessDate: undefined,
     transferDate: undefined,
-    claimId: faker.lorem.words(5),
   };
 }
 export function fakeClaimFinancialComplete() {
@@ -382,7 +381,6 @@ export function fakeClaimFinancialComplete() {
     rejectedAmount: undefined,
     transactionProcessDate: undefined,
     transferDate: undefined,
-    claimId: faker.lorem.words(5),
     branchId: faker.datatype.number(),
     claimStatusId: faker.datatype.number(),
   };

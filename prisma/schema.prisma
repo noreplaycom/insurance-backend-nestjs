@@ -727,14 +727,14 @@ model ClaimFinancial {
     //-------------------------- 1 relations --------------------------------
 
     ///Cabang: Cabang Pembayar Pensiun
-    branchPayee Branch @relation(fields: [branchId], references: [id])
+    branchPayee Branch? @relation(fields: [branchId], references: [id])
 
     claim Claim?
 
     ///Cabang: Cabang Pembayar Pensiun
     branchId Int
 
-    claimStatus ClaimStatus @relation(fields: [claimStatusId], references: [id])
+    claimStatus ClaimStatus? @relation(fields: [claimStatusId], references: [id])
 
     claimStatusId Int @unique
 }
@@ -759,13 +759,13 @@ model ClaimProcess {
     processDate DateTime?
 
     ///Ket.Pengajuan:	Keterangan konfirmasi
-    submissionNote String
+    submissionNote String?
 
     ///Keterangan:	isi keterangan 
-    description String
+    description String?
 
     ///Ket.Tambahan	keterangan tambahan
-    additionalNote String
+    additionalNote String?
 
     //-------------------------- 1 relations --------------------------------
     claim Claim?
@@ -823,6 +823,7 @@ model ClaimStatus {
 
     bookKeepingOrderId String? @unique
 
+    ///apabila status paid maka berelasi ke bukti pembayaran di claimFinancial
     claimFinancial ClaimFinancial?
 }
 

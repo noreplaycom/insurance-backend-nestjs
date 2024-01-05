@@ -287,7 +287,6 @@ export declare enum ClaimFinancialScalarFieldEnum {
     rejectedAmount = "rejectedAmount",
     transactionProcessDate = "transactionProcessDate",
     transferDate = "transferDate",
-    claimId = "claimId",
     branchId = "branchId",
     claimStatusId = "claimStatusId"
 }
@@ -2246,6 +2245,10 @@ export declare class BranchMinOrderByAggregateInput {
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
 }
+export declare class BranchNullableRelationFilter {
+    is?: InstanceType<typeof BranchWhereInput>;
+    isNot?: InstanceType<typeof BranchWhereInput>;
+}
 export declare class BranchOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
@@ -2342,19 +2345,21 @@ export declare class BranchUpdateManyMutationInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
-export declare class BranchUpdateOneRequiredWithoutClaimFinancialNestedInput {
-    create?: InstanceType<typeof BranchCreateWithoutClaimFinancialInput>;
-    connectOrCreate?: InstanceType<typeof BranchCreateOrConnectWithoutClaimFinancialInput>;
-    upsert?: InstanceType<typeof BranchUpsertWithoutClaimFinancialInput>;
-    connect?: Prisma.AtLeast<BranchWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof BranchUpdateToOneWithWhereWithoutClaimFinancialInput>;
-}
 export declare class BranchUpdateOneRequiredWithoutEmploymentNestedInput {
     create?: InstanceType<typeof BranchCreateWithoutEmploymentInput>;
     connectOrCreate?: InstanceType<typeof BranchCreateOrConnectWithoutEmploymentInput>;
     upsert?: InstanceType<typeof BranchUpsertWithoutEmploymentInput>;
     connect?: Prisma.AtLeast<BranchWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof BranchUpdateToOneWithWhereWithoutEmploymentInput>;
+}
+export declare class BranchUpdateOneWithoutClaimFinancialNestedInput {
+    create?: InstanceType<typeof BranchCreateWithoutClaimFinancialInput>;
+    connectOrCreate?: InstanceType<typeof BranchCreateOrConnectWithoutClaimFinancialInput>;
+    upsert?: InstanceType<typeof BranchUpsertWithoutClaimFinancialInput>;
+    disconnect?: InstanceType<typeof BranchWhereInput>;
+    delete?: InstanceType<typeof BranchWhereInput>;
+    connect?: Prisma.AtLeast<BranchWhereUniqueInput, 'id'>;
+    update?: InstanceType<typeof BranchUpdateToOneWithWhereWithoutClaimFinancialInput>;
 }
 export declare class BranchUpdateToOneWithWhereWithoutClaimFinancialInput {
     where?: InstanceType<typeof BranchWhereInput>;
@@ -4594,7 +4599,7 @@ export declare class AggregateClaimFinancial {
 export declare class ClaimFinancialAggregateArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ClaimFinancialCountAggregateInput>;
@@ -4634,7 +4639,6 @@ export declare class ClaimFinancialCountAggregateInput {
     rejectedAmount?: true;
     transactionProcessDate?: true;
     transferDate?: true;
-    claimId?: true;
     branchId?: true;
     claimStatusId?: true;
     _all?: true;
@@ -4646,7 +4650,6 @@ export declare class ClaimFinancialCountAggregate {
     rejectedAmount: number;
     transactionProcessDate: number;
     transferDate: number;
-    claimId: number;
     branchId: number;
     claimStatusId: number;
     _all: number;
@@ -4658,7 +4661,6 @@ export declare class ClaimFinancialCountOrderByAggregateInput {
     rejectedAmount?: keyof typeof SortOrder;
     transactionProcessDate?: keyof typeof SortOrder;
     transferDate?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
 }
@@ -4673,7 +4675,6 @@ export declare class ClaimFinancialCreateManyBranchPayeeInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     claimStatusId: number;
 }
 export declare class ClaimFinancialCreateManyInput {
@@ -4683,7 +4684,6 @@ export declare class ClaimFinancialCreateManyInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     branchId: number;
     claimStatusId: number;
 }
@@ -4691,28 +4691,28 @@ export declare class ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
     create?: Array<ClaimFinancialCreateWithoutBranchPayeeInput>;
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
 }
 export declare class ClaimFinancialCreateNestedOneWithoutClaimStatusInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimStatusInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
 }
 export declare class ClaimFinancialCreateNestedOneWithoutClaimInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
 }
 export declare class ClaimFinancialCreateOrConnectWithoutBranchPayeeInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutBranchPayeeInput>;
 }
 export declare class ClaimFinancialCreateOrConnectWithoutClaimStatusInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
 }
 export declare class ClaimFinancialCreateOrConnectWithoutClaimInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
 }
 export declare class ClaimFinancialCreateWithoutBranchPayeeInput {
@@ -4721,9 +4721,8 @@ export declare class ClaimFinancialCreateWithoutBranchPayeeInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
-    claimStatus: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialCreateWithoutClaimStatusInput {
     requestedAmount: number;
@@ -4731,8 +4730,7 @@ export declare class ClaimFinancialCreateWithoutClaimStatusInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
-    branchPayee: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
+    branchPayee?: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialCreateWithoutClaimInput {
@@ -4741,9 +4739,8 @@ export declare class ClaimFinancialCreateWithoutClaimInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
-    branchPayee: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
-    claimStatus: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
+    branchPayee?: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialCreateInput {
     requestedAmount: number;
@@ -4751,10 +4748,9 @@ export declare class ClaimFinancialCreateInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
-    branchPayee: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
+    branchPayee?: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
-    claimStatus: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialGroupByArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
@@ -4776,7 +4772,6 @@ export declare class ClaimFinancialGroupBy {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     branchId: number;
     claimStatusId: number;
     _count?: InstanceType<typeof ClaimFinancialCountAggregate>;
@@ -4797,7 +4792,6 @@ export declare class ClaimFinancialMaxAggregateInput {
     rejectedAmount?: true;
     transactionProcessDate?: true;
     transferDate?: true;
-    claimId?: true;
     branchId?: true;
     claimStatusId?: true;
 }
@@ -4808,7 +4802,6 @@ export declare class ClaimFinancialMaxAggregate {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId?: string;
     branchId?: number;
     claimStatusId?: number;
 }
@@ -4819,7 +4812,6 @@ export declare class ClaimFinancialMaxOrderByAggregateInput {
     rejectedAmount?: keyof typeof SortOrder;
     transactionProcessDate?: keyof typeof SortOrder;
     transferDate?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
 }
@@ -4830,7 +4822,6 @@ export declare class ClaimFinancialMinAggregateInput {
     rejectedAmount?: true;
     transactionProcessDate?: true;
     transferDate?: true;
-    claimId?: true;
     branchId?: true;
     claimStatusId?: true;
 }
@@ -4841,7 +4832,6 @@ export declare class ClaimFinancialMinAggregate {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId?: string;
     branchId?: number;
     claimStatusId?: number;
 }
@@ -4852,7 +4842,6 @@ export declare class ClaimFinancialMinOrderByAggregateInput {
     rejectedAmount?: keyof typeof SortOrder;
     transactionProcessDate?: keyof typeof SortOrder;
     transferDate?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
 }
@@ -4870,7 +4859,6 @@ export declare class ClaimFinancialOrderByWithAggregationInput {
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
     transactionProcessDate?: InstanceType<typeof SortOrderInput>;
     transferDate?: InstanceType<typeof SortOrderInput>;
-    claimId?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ClaimFinancialCountOrderByAggregateInput>;
@@ -4886,7 +4874,6 @@ export declare class ClaimFinancialOrderByWithRelationInput {
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
     transactionProcessDate?: InstanceType<typeof SortOrderInput>;
     transferDate?: InstanceType<typeof SortOrderInput>;
-    claimId?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
     branchPayee?: InstanceType<typeof BranchOrderByWithRelationInput>;
@@ -4907,7 +4894,6 @@ export declare class ClaimFinancialScalarWhereWithAggregatesInput {
     rejectedAmount?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
     transactionProcessDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    claimId?: InstanceType<typeof StringWithAggregatesFilter>;
     branchId?: InstanceType<typeof IntWithAggregatesFilter>;
     claimStatusId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
@@ -4921,7 +4907,6 @@ export declare class ClaimFinancialScalarWhereInput {
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
-    claimId?: InstanceType<typeof StringFilter>;
     branchId?: InstanceType<typeof IntFilter>;
     claimStatusId?: InstanceType<typeof IntFilter>;
 }
@@ -4953,12 +4938,12 @@ export declare class ClaimFinancialUncheckedCreateNestedManyWithoutBranchPayeeIn
     create?: Array<ClaimFinancialCreateWithoutBranchPayeeInput>;
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
 }
 export declare class ClaimFinancialUncheckedCreateNestedOneWithoutClaimStatusInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimStatusInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
 }
 export declare class ClaimFinancialUncheckedCreateWithoutBranchPayeeInput {
     id?: number;
@@ -4967,7 +4952,6 @@ export declare class ClaimFinancialUncheckedCreateWithoutBranchPayeeInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     claimStatusId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
@@ -4978,7 +4962,6 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimStatusInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     branchId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
@@ -4989,7 +4972,6 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     branchId: number;
     claimStatusId: number;
 }
@@ -5000,7 +4982,6 @@ export declare class ClaimFinancialUncheckedCreateInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimId: string;
     branchId: number;
     claimStatusId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
@@ -5010,10 +4991,10 @@ export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeNestedIn
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     upsert?: Array<ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
+    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
     update?: Array<ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput>;
     updateMany?: Array<ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput>;
     deleteMany?: Array<ClaimFinancialScalarWhereInput>;
@@ -5025,7 +5006,6 @@ export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateManyInput {
@@ -5035,7 +5015,6 @@ export declare class ClaimFinancialUncheckedUpdateManyInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -5045,7 +5024,7 @@ export declare class ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInp
     upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutClaimStatusInput>;
     disconnect?: InstanceType<typeof ClaimFinancialWhereInput>;
     delete?: InstanceType<typeof ClaimFinancialWhereInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutClaimStatusInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput {
@@ -5055,7 +5034,6 @@ export declare class ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
@@ -5066,7 +5044,6 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimStatusInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
@@ -5077,7 +5054,6 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -5088,7 +5064,6 @@ export declare class ClaimFinancialUncheckedUpdateInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
@@ -5099,7 +5074,6 @@ export declare class ClaimFinancialUpdateManyMutationInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput {
     where: InstanceType<typeof ClaimFinancialScalarWhereInput>;
@@ -5110,10 +5084,10 @@ export declare class ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput {
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     upsert?: Array<ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>>;
+    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
     update?: Array<ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput>;
     updateMany?: Array<ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput>;
     deleteMany?: Array<ClaimFinancialScalarWhereInput>;
@@ -5122,7 +5096,7 @@ export declare class ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimInput>;
     upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutClaimInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutClaimInput>;
 }
 export declare class ClaimFinancialUpdateOneWithoutClaimStatusNestedInput {
@@ -5131,7 +5105,7 @@ export declare class ClaimFinancialUpdateOneWithoutClaimStatusNestedInput {
     upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutClaimStatusInput>;
     disconnect?: InstanceType<typeof ClaimFinancialWhereInput>;
     delete?: InstanceType<typeof ClaimFinancialWhereInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutClaimStatusInput>;
 }
 export declare class ClaimFinancialUpdateToOneWithWhereWithoutClaimStatusInput {
@@ -5143,7 +5117,7 @@ export declare class ClaimFinancialUpdateToOneWithWhereWithoutClaimInput {
     data: InstanceType<typeof ClaimFinancialUpdateWithoutClaimInput>;
 }
 export declare class ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     data: InstanceType<typeof ClaimFinancialUpdateWithoutBranchPayeeInput>;
 }
 export declare class ClaimFinancialUpdateWithoutBranchPayeeInput {
@@ -5152,9 +5126,8 @@ export declare class ClaimFinancialUpdateWithoutBranchPayeeInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
-    claimStatus?: InstanceType<typeof ClaimStatusUpdateOneRequiredWithoutClaimFinancialNestedInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpdateWithoutClaimStatusInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
@@ -5162,8 +5135,7 @@ export declare class ClaimFinancialUpdateWithoutClaimStatusInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    branchPayee?: InstanceType<typeof BranchUpdateOneRequiredWithoutClaimFinancialNestedInput>;
+    branchPayee?: InstanceType<typeof BranchUpdateOneWithoutClaimFinancialNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUpdateWithoutClaimInput {
@@ -5172,9 +5144,8 @@ export declare class ClaimFinancialUpdateWithoutClaimInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    branchPayee?: InstanceType<typeof BranchUpdateOneRequiredWithoutClaimFinancialNestedInput>;
-    claimStatus?: InstanceType<typeof ClaimStatusUpdateOneRequiredWithoutClaimFinancialNestedInput>;
+    branchPayee?: InstanceType<typeof BranchUpdateOneWithoutClaimFinancialNestedInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpdateInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
@@ -5182,13 +5153,12 @@ export declare class ClaimFinancialUpdateInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    branchPayee?: InstanceType<typeof BranchUpdateOneRequiredWithoutClaimFinancialNestedInput>;
+    branchPayee?: InstanceType<typeof BranchUpdateOneWithoutClaimFinancialNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
-    claimStatus?: InstanceType<typeof ClaimStatusUpdateOneRequiredWithoutClaimFinancialNestedInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     update: InstanceType<typeof ClaimFinancialUpdateWithoutBranchPayeeInput>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutBranchPayeeInput>;
 }
@@ -5204,7 +5174,6 @@ export declare class ClaimFinancialUpsertWithoutClaimInput {
 }
 export declare class ClaimFinancialWhereUniqueInput {
     id?: number;
-    claimId?: string;
     claimStatusId?: number;
     AND?: Array<ClaimFinancialWhereInput>;
     OR?: Array<ClaimFinancialWhereInput>;
@@ -5215,9 +5184,9 @@ export declare class ClaimFinancialWhereUniqueInput {
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
     branchId?: InstanceType<typeof IntFilter>;
-    branchPayee?: InstanceType<typeof BranchRelationFilter>;
+    branchPayee?: InstanceType<typeof BranchNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
-    claimStatus?: InstanceType<typeof ClaimStatusRelationFilter>;
+    claimStatus?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
 }
 export declare class ClaimFinancialWhereInput {
     AND?: Array<ClaimFinancialWhereInput>;
@@ -5229,12 +5198,11 @@ export declare class ClaimFinancialWhereInput {
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
-    claimId?: InstanceType<typeof StringFilter>;
     branchId?: InstanceType<typeof IntFilter>;
     claimStatusId?: InstanceType<typeof IntFilter>;
-    branchPayee?: InstanceType<typeof BranchRelationFilter>;
+    branchPayee?: InstanceType<typeof BranchNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
-    claimStatus?: InstanceType<typeof ClaimStatusRelationFilter>;
+    claimStatus?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
 }
 export declare class ClaimFinancial {
     id: number;
@@ -5243,12 +5211,11 @@ export declare class ClaimFinancial {
     rejectedAmount: number | null;
     transactionProcessDate: Date | null;
     transferDate: Date | null;
-    claimId: string;
     branchId: number;
     claimStatusId: number;
-    branchPayee?: InstanceType<typeof Branch>;
+    branchPayee?: InstanceType<typeof Branch> | null;
     claim?: InstanceType<typeof Claim> | null;
-    claimStatus?: InstanceType<typeof ClaimStatus>;
+    claimStatus?: InstanceType<typeof ClaimStatus> | null;
 }
 export declare class CreateManyClaimFinancialArgs {
     data: Array<ClaimFinancialCreateManyInput>;
@@ -5261,12 +5228,12 @@ export declare class DeleteManyClaimFinancialArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
 }
 export declare class DeleteOneClaimFinancialArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
 }
 export declare class FindFirstClaimFinancialOrThrowArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimFinancialScalarFieldEnum>;
@@ -5274,7 +5241,7 @@ export declare class FindFirstClaimFinancialOrThrowArgs {
 export declare class FindFirstClaimFinancialArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimFinancialScalarFieldEnum>;
@@ -5282,16 +5249,16 @@ export declare class FindFirstClaimFinancialArgs {
 export declare class FindManyClaimFinancialArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimFinancialScalarFieldEnum>;
 }
 export declare class FindUniqueClaimFinancialOrThrowArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
 }
 export declare class FindUniqueClaimFinancialArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
 }
 export declare class UpdateManyClaimFinancialArgs {
     data: InstanceType<typeof ClaimFinancialUpdateManyMutationInput>;
@@ -5299,10 +5266,10 @@ export declare class UpdateManyClaimFinancialArgs {
 }
 export declare class UpdateOneClaimFinancialArgs {
     data: InstanceType<typeof ClaimFinancialUpdateInput>;
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
 }
 export declare class UpsertOneClaimFinancialArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimId' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
     create: InstanceType<typeof ClaimFinancialCreateInput>;
     update: InstanceType<typeof ClaimFinancialUpdateInput>;
 }
@@ -6321,10 +6288,6 @@ export declare class ClaimStatusOrderByWithRelationInput {
     bookKeepingOrder?: InstanceType<typeof DocumentOrderByWithRelationInput>;
     claimFinancial?: InstanceType<typeof ClaimFinancialOrderByWithRelationInput>;
 }
-export declare class ClaimStatusRelationFilter {
-    is?: InstanceType<typeof ClaimStatusWhereInput>;
-    isNot?: InstanceType<typeof ClaimStatusWhereInput>;
-}
 export declare class ClaimStatusScalarWhereWithAggregatesInput {
     AND?: Array<ClaimStatusScalarWhereWithAggregatesInput>;
     OR?: Array<ClaimStatusScalarWhereWithAggregatesInput>;
@@ -6747,13 +6710,6 @@ export declare class ClaimStatusUpdateManyWithoutCreateByNestedInput {
     updateMany?: Array<ClaimStatusUpdateManyWithWhereWithoutCreateByInput>;
     deleteMany?: Array<ClaimStatusScalarWhereInput>;
 }
-export declare class ClaimStatusUpdateOneRequiredWithoutClaimFinancialNestedInput {
-    create?: InstanceType<typeof ClaimStatusCreateWithoutClaimFinancialInput>;
-    connectOrCreate?: InstanceType<typeof ClaimStatusCreateOrConnectWithoutClaimFinancialInput>;
-    upsert?: InstanceType<typeof ClaimStatusUpsertWithoutClaimFinancialInput>;
-    connect?: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
-    update?: InstanceType<typeof ClaimStatusUpdateToOneWithWhereWithoutClaimFinancialInput>;
-}
 export declare class ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput {
     create?: InstanceType<typeof ClaimStatusCreateWithoutBookKeepingOrderInput>;
     connectOrCreate?: InstanceType<typeof ClaimStatusCreateOrConnectWithoutBookKeepingOrderInput>;
@@ -6762,6 +6718,15 @@ export declare class ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput {
     delete?: InstanceType<typeof ClaimStatusWhereInput>;
     connect?: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
     update?: InstanceType<typeof ClaimStatusUpdateToOneWithWhereWithoutBookKeepingOrderInput>;
+}
+export declare class ClaimStatusUpdateOneWithoutClaimFinancialNestedInput {
+    create?: InstanceType<typeof ClaimStatusCreateWithoutClaimFinancialInput>;
+    connectOrCreate?: InstanceType<typeof ClaimStatusCreateOrConnectWithoutClaimFinancialInput>;
+    upsert?: InstanceType<typeof ClaimStatusUpsertWithoutClaimFinancialInput>;
+    disconnect?: InstanceType<typeof ClaimStatusWhereInput>;
+    delete?: InstanceType<typeof ClaimStatusWhereInput>;
+    connect?: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
+    update?: InstanceType<typeof ClaimStatusUpdateToOneWithWhereWithoutClaimFinancialInput>;
 }
 export declare class ClaimStatusUpdateOneWithoutGuaranteeLetterNestedInput {
     create?: InstanceType<typeof ClaimStatusCreateWithoutGuaranteeLetterInput>;
