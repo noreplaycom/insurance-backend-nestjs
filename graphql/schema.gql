@@ -298,7 +298,6 @@ type City {
 }
 
 type ClaimAvgAggregate {
-  companyId: Float
   claimFinancialId: Float
   claimProcessId: Float
   diseaseId: Float
@@ -313,7 +312,7 @@ type ClaimCountAggregate {
   deletedAt: Int!
   channel: Int!
   admedicaStatus: Int!
-  companyId: Int!
+  company: Int!
   participantId: Int!
   claimFinancialId: Int!
   claimProcessId: Int!
@@ -336,7 +335,7 @@ type ClaimMaxAggregate {
   deletedAt: DateTime
   channel: ClaimChannel
   admedicaStatus: AdmedicaStatus
-  companyId: Int
+  company: String
   participantId: String
   claimFinancialId: Int
   claimProcessId: Int
@@ -364,7 +363,7 @@ type ClaimMinAggregate {
   deletedAt: DateTime
   channel: ClaimChannel
   admedicaStatus: AdmedicaStatus
-  companyId: Int
+  company: String
   participantId: String
   claimFinancialId: Int
   claimProcessId: Int
@@ -375,7 +374,6 @@ type ClaimMinAggregate {
 }
 
 type ClaimSumAggregate {
-  companyId: Int
   claimFinancialId: Int
   claimProcessId: Int
   diseaseId: Int
@@ -402,7 +400,7 @@ type Claim {
   admedicaStatus: AdmedicaStatus!
 
   """Prsh:	Perusahaan"""
-  companyId: Int!
+  company: String!
   participantId: String!
   claimFinancialId: Int!
   claimProcessId: Int!
@@ -410,9 +408,6 @@ type Claim {
   clinicId: Int!
   inputedById: String
   claimTypeId: Int!
-
-  """Prsh:	Perusahaan"""
-  company: Company!
   participant: Participant!
   claimFinancials: ClaimFinancial!
   claimProcesses: ClaimProcess!
@@ -795,49 +790,6 @@ type Clinic {
   updatedAt: DateTime!
   claims: [Claim!]
   _count: ClinicCount!
-}
-
-type CompanyAvgAggregate {
-  id: Float
-}
-
-type CompanyCountAggregate {
-  id: Int!
-  name: Int!
-  createdAt: Int!
-  updatedAt: Int!
-  _all: Int!
-}
-
-type CompanyCount {
-  claims: Int!
-}
-
-type CompanyMaxAggregate {
-  id: Int
-  name: String
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type CompanyMinAggregate {
-  id: Int
-  name: String
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-type CompanySumAggregate {
-  id: Int
-}
-
-type Company {
-  id: Int!
-  name: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  claims: [Claim!]
-  _count: CompanyCount!
 }
 
 type ContactInfoAvgAggregate {
@@ -1952,7 +1904,7 @@ input ClaimWhereInput {
   deletedAt: DateTimeNullableFilter
   channel: EnumClaimChannelFilter
   admedicaStatus: EnumAdmedicaStatusFilter
-  companyId: IntFilter
+  company: StringFilter
   participantId: StringFilter
   claimFinancialId: IntFilter
   claimProcessId: IntFilter
@@ -1960,7 +1912,6 @@ input ClaimWhereInput {
   clinicId: IntFilter
   inputedById: StringNullableFilter
   claimTypeId: IntFilter
-  company: CompanyRelationFilter
   participant: ParticipantRelationFilter
   claimFinancials: ClaimFinancialRelationFilter
   claimProcesses: ClaimProcessRelationFilter
@@ -2151,28 +2102,6 @@ input NestedStringNullableFilter {
   not: NestedStringNullableFilter
 }
 
-input CompanyRelationFilter {
-  is: CompanyWhereInput
-  isNot: CompanyWhereInput
-}
-
-input CompanyWhereInput {
-  AND: [CompanyWhereInput!]
-  OR: [CompanyWhereInput!]
-  NOT: [CompanyWhereInput!]
-  id: IntFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claims: ClaimListRelationFilter
-}
-
-input ClaimListRelationFilter {
-  every: ClaimWhereInput
-  some: ClaimWhereInput
-  none: ClaimWhereInput
-}
-
 input ParticipantRelationFilter {
   is: ParticipantWhereInput
   isNot: ParticipantWhereInput
@@ -2333,6 +2262,12 @@ input RoleListRelationFilter {
 input ParticipantNullableRelationFilter {
   is: ParticipantWhereInput
   isNot: ParticipantWhereInput
+}
+
+input ClaimListRelationFilter {
+  every: ClaimWhereInput
+  some: ClaimWhereInput
+  none: ClaimWhereInput
 }
 
 input ClaimStatusListRelationFilter {
@@ -3012,7 +2947,7 @@ input ClaimOrderByWithRelationInput {
   deletedAt: SortOrderInput
   channel: SortOrder
   admedicaStatus: SortOrder
-  companyId: SortOrder
+  company: SortOrder
   participantId: SortOrder
   claimFinancialId: SortOrder
   claimProcessId: SortOrder
@@ -3020,7 +2955,6 @@ input ClaimOrderByWithRelationInput {
   clinicId: SortOrder
   inputedById: SortOrderInput
   claimTypeId: SortOrder
-  company: CompanyOrderByWithRelationInput
   participant: ParticipantOrderByWithRelationInput
   claimFinancials: ClaimFinancialOrderByWithRelationInput
   claimProcesses: ClaimProcessOrderByWithRelationInput
@@ -3045,18 +2979,6 @@ input SortOrderInput {
 enum NullsOrder {
   first
   last
-}
-
-input CompanyOrderByWithRelationInput {
-  id: SortOrder
-  name: SortOrder
-  createdAt: SortOrder
-  updatedAt: SortOrder
-  claims: ClaimOrderByRelationAggregateInput
-}
-
-input ClaimOrderByRelationAggregateInput {
-  _count: SortOrder
 }
 
 input ParticipantOrderByWithRelationInput {
@@ -3117,6 +3039,10 @@ input UserOrderByRelationAggregateInput {
 }
 
 input RoleOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ClaimOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -3309,12 +3235,11 @@ input ClaimWhereUniqueInput {
   deletedAt: DateTimeNullableFilter
   channel: EnumClaimChannelFilter
   admedicaStatus: EnumAdmedicaStatusFilter
-  companyId: IntFilter
+  company: StringFilter
   participantId: StringFilter
   diseaseId: IntNullableFilter
   clinicId: IntFilter
   inputedById: StringNullableFilter
-  company: CompanyRelationFilter
   participant: ParticipantRelationFilter
   claimFinancials: ClaimFinancialRelationFilter
   claimProcesses: ClaimProcessRelationFilter
@@ -3333,7 +3258,7 @@ enum ClaimScalarFieldEnum {
   deletedAt
   channel
   admedicaStatus
-  companyId
+  company
   participantId
   claimFinancialId
   claimProcessId

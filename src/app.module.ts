@@ -19,7 +19,7 @@ import { ClaimProcessModule } from './services/claim-process/claim-process.modul
 import { ClaimStatusModule } from './services/claim-status/claim-status.module';
 import { ClaimTypeModule } from './services/claim-type/claim-type.module';
 import { ClinicModule } from './services/clinic/clinic.module';
-import { CompanyModule } from './services/company/company.module';
+//import { CompanyModule } from './services/company/company.module';
 import { ContactInfoModule } from './services/contact-info/contact-info.module';
 import { DiseaseModule } from './services/disease/disease.module';
 import { DocumentModule } from './services/document/document.module';

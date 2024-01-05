@@ -240,12 +240,6 @@ export declare enum ContactInfoScalarFieldEnum {
     participantId = "participantId",
     addressId = "addressId"
 }
-export declare enum CompanyScalarFieldEnum {
-    id = "id",
-    name = "name",
-    createdAt = "createdAt",
-    updatedAt = "updatedAt"
-}
 export declare enum ClinicScalarFieldEnum {
     id = "id",
     code = "code",
@@ -304,7 +298,7 @@ export declare enum ClaimScalarFieldEnum {
     deletedAt = "deletedAt",
     channel = "channel",
     admedicaStatus = "admedicaStatus",
-    companyId = "companyId",
+    company = "company",
     participantId = "participantId",
     claimFinancialId = "claimFinancialId",
     claimProcessId = "claimProcessId",
@@ -2831,7 +2825,6 @@ export declare class ClaimAggregateArgs {
     _max?: InstanceType<typeof ClaimMaxAggregateInput>;
 }
 export declare class ClaimAvgAggregateInput {
-    companyId?: true;
     claimFinancialId?: true;
     claimProcessId?: true;
     diseaseId?: true;
@@ -2839,7 +2832,6 @@ export declare class ClaimAvgAggregateInput {
     claimTypeId?: true;
 }
 export declare class ClaimAvgAggregate {
-    companyId?: number;
     claimFinancialId?: number;
     claimProcessId?: number;
     diseaseId?: number;
@@ -2847,7 +2839,6 @@ export declare class ClaimAvgAggregate {
     claimTypeId?: number;
 }
 export declare class ClaimAvgOrderByAggregateInput {
-    companyId?: keyof typeof SortOrder;
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
@@ -2861,7 +2852,7 @@ export declare class ClaimCountAggregateInput {
     deletedAt?: true;
     channel?: true;
     admedicaStatus?: true;
-    companyId?: true;
+    company?: true;
     participantId?: true;
     claimFinancialId?: true;
     claimProcessId?: true;
@@ -2878,7 +2869,7 @@ export declare class ClaimCountAggregate {
     deletedAt: number;
     channel: number;
     admedicaStatus: number;
-    companyId: number;
+    company: number;
     participantId: number;
     claimFinancialId: number;
     claimProcessId: number;
@@ -2895,7 +2886,7 @@ export declare class ClaimCountOrderByAggregateInput {
     deletedAt?: keyof typeof SortOrder;
     channel?: keyof typeof SortOrder;
     admedicaStatus?: keyof typeof SortOrder;
-    companyId?: keyof typeof SortOrder;
+    company?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
@@ -2919,30 +2910,11 @@ export declare class ClaimCreateManyClinicsInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
     diseaseId?: number;
-    inputedById?: string;
-    claimTypeId: number;
-}
-export declare class ClaimCreateManyCompanyInputEnvelope {
-    data: Array<ClaimCreateManyCompanyInput>;
-    skipDuplicates?: boolean;
-}
-export declare class ClaimCreateManyCompanyInput {
-    id?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
-    channel: keyof typeof ClaimChannel;
-    admedicaStatus: keyof typeof AdmedicaStatus;
-    participantId: string;
-    claimFinancialId: number;
-    claimProcessId: number;
-    diseaseId?: number;
-    clinicId: number;
     inputedById?: string;
     claimTypeId: number;
 }
@@ -2957,7 +2929,7 @@ export declare class ClaimCreateManyDiseaseInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -2976,7 +2948,7 @@ export declare class ClaimCreateManyInputedByInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -2995,7 +2967,7 @@ export declare class ClaimCreateManyParticipantInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     claimFinancialId: number;
     claimProcessId: number;
     diseaseId?: number;
@@ -3010,7 +2982,7 @@ export declare class ClaimCreateManyInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3023,12 +2995,6 @@ export declare class ClaimCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimCreateWithoutClinicsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-}
-export declare class ClaimCreateNestedManyWithoutCompanyInput {
-    create?: Array<ClaimCreateWithoutCompanyInput>;
-    connectOrCreate?: Array<ClaimCreateOrConnectWithoutCompanyInput>;
-    createMany?: InstanceType<typeof ClaimCreateManyCompanyInputEnvelope>;
     connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutDiseaseInput {
@@ -3094,10 +3060,6 @@ export declare class ClaimCreateOrConnectWithoutClinicsInput {
     where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
     create: InstanceType<typeof ClaimCreateWithoutClinicsInput>;
 }
-export declare class ClaimCreateOrConnectWithoutCompanyInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-    create: InstanceType<typeof ClaimCreateWithoutCompanyInput>;
-}
 export declare class ClaimCreateOrConnectWithoutDiseaseInput {
     where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
     create: InstanceType<typeof ClaimCreateWithoutDiseaseInput>;
@@ -3121,7 +3083,7 @@ export declare class ClaimCreateWithoutClaimFinancialsInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
@@ -3138,7 +3100,7 @@ export declare class ClaimCreateWithoutClaimProcessesInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
@@ -3155,7 +3117,7 @@ export declare class ClaimCreateWithoutClaimStatusesInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
@@ -3172,7 +3134,7 @@ export declare class ClaimCreateWithoutClaimTypesInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
@@ -3189,28 +3151,11 @@ export declare class ClaimCreateWithoutClinicsInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
-    inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
-    tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
-}
-export declare class ClaimCreateWithoutCompanyInput {
-    id?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
-    channel: keyof typeof ClaimChannel;
-    admedicaStatus: keyof typeof AdmedicaStatus;
-    participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
-    claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
-    claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
-    disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
     claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
@@ -3223,7 +3168,7 @@ export declare class ClaimCreateWithoutDiseaseInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
@@ -3240,7 +3185,7 @@ export declare class ClaimCreateWithoutInputedByInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
@@ -3257,7 +3202,7 @@ export declare class ClaimCreateWithoutParticipantInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
@@ -3274,7 +3219,7 @@ export declare class ClaimCreateWithoutTagsInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
@@ -3291,7 +3236,7 @@ export declare class ClaimCreateInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    company: InstanceType<typeof CompanyCreateNestedOneWithoutClaimsInput>;
+    company: string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
     claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
@@ -3322,7 +3267,7 @@ export declare class ClaimGroupBy {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3348,7 +3293,7 @@ export declare class ClaimMaxAggregateInput {
     deletedAt?: true;
     channel?: true;
     admedicaStatus?: true;
-    companyId?: true;
+    company?: true;
     participantId?: true;
     claimFinancialId?: true;
     claimProcessId?: true;
@@ -3364,7 +3309,7 @@ export declare class ClaimMaxAggregate {
     deletedAt?: Date | string;
     channel?: keyof typeof ClaimChannel;
     admedicaStatus?: keyof typeof AdmedicaStatus;
-    companyId?: number;
+    company?: string;
     participantId?: string;
     claimFinancialId?: number;
     claimProcessId?: number;
@@ -3380,7 +3325,7 @@ export declare class ClaimMaxOrderByAggregateInput {
     deletedAt?: keyof typeof SortOrder;
     channel?: keyof typeof SortOrder;
     admedicaStatus?: keyof typeof SortOrder;
-    companyId?: keyof typeof SortOrder;
+    company?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
@@ -3396,7 +3341,7 @@ export declare class ClaimMinAggregateInput {
     deletedAt?: true;
     channel?: true;
     admedicaStatus?: true;
-    companyId?: true;
+    company?: true;
     participantId?: true;
     claimFinancialId?: true;
     claimProcessId?: true;
@@ -3412,7 +3357,7 @@ export declare class ClaimMinAggregate {
     deletedAt?: Date | string;
     channel?: keyof typeof ClaimChannel;
     admedicaStatus?: keyof typeof AdmedicaStatus;
-    companyId?: number;
+    company?: string;
     participantId?: string;
     claimFinancialId?: number;
     claimProcessId?: number;
@@ -3428,7 +3373,7 @@ export declare class ClaimMinOrderByAggregateInput {
     deletedAt?: keyof typeof SortOrder;
     channel?: keyof typeof SortOrder;
     admedicaStatus?: keyof typeof SortOrder;
-    companyId?: keyof typeof SortOrder;
+    company?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
@@ -3451,7 +3396,7 @@ export declare class ClaimOrderByWithAggregationInput {
     deletedAt?: InstanceType<typeof SortOrderInput>;
     channel?: keyof typeof SortOrder;
     admedicaStatus?: keyof typeof SortOrder;
-    companyId?: keyof typeof SortOrder;
+    company?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
@@ -3472,7 +3417,7 @@ export declare class ClaimOrderByWithRelationInput {
     deletedAt?: InstanceType<typeof SortOrderInput>;
     channel?: keyof typeof SortOrder;
     admedicaStatus?: keyof typeof SortOrder;
-    companyId?: keyof typeof SortOrder;
+    company?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
@@ -3480,7 +3425,6 @@ export declare class ClaimOrderByWithRelationInput {
     clinicId?: keyof typeof SortOrder;
     inputedById?: InstanceType<typeof SortOrderInput>;
     claimTypeId?: keyof typeof SortOrder;
-    company?: InstanceType<typeof CompanyOrderByWithRelationInput>;
     participant?: InstanceType<typeof ParticipantOrderByWithRelationInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialOrderByWithRelationInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessOrderByWithRelationInput>;
@@ -3505,7 +3449,7 @@ export declare class ClaimScalarWhereWithAggregatesInput {
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     channel?: InstanceType<typeof EnumClaimChannelWithAggregatesFilter>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusWithAggregatesFilter>;
-    companyId?: InstanceType<typeof IntWithAggregatesFilter>;
+    company?: InstanceType<typeof StringWithAggregatesFilter>;
     participantId?: InstanceType<typeof StringWithAggregatesFilter>;
     claimFinancialId?: InstanceType<typeof IntWithAggregatesFilter>;
     claimProcessId?: InstanceType<typeof IntWithAggregatesFilter>;
@@ -3524,7 +3468,7 @@ export declare class ClaimScalarWhereInput {
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     channel?: InstanceType<typeof EnumClaimChannelFilter>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFilter>;
-    companyId?: InstanceType<typeof IntFilter>;
+    company?: InstanceType<typeof StringFilter>;
     participantId?: InstanceType<typeof StringFilter>;
     claimFinancialId?: InstanceType<typeof IntFilter>;
     claimProcessId?: InstanceType<typeof IntFilter>;
@@ -3534,7 +3478,6 @@ export declare class ClaimScalarWhereInput {
     claimTypeId?: InstanceType<typeof IntFilter>;
 }
 export declare class ClaimSumAggregateInput {
-    companyId?: true;
     claimFinancialId?: true;
     claimProcessId?: true;
     diseaseId?: true;
@@ -3542,7 +3485,6 @@ export declare class ClaimSumAggregateInput {
     claimTypeId?: true;
 }
 export declare class ClaimSumAggregate {
-    companyId?: number;
     claimFinancialId?: number;
     claimProcessId?: number;
     diseaseId?: number;
@@ -3550,7 +3492,6 @@ export declare class ClaimSumAggregate {
     claimTypeId?: number;
 }
 export declare class ClaimSumOrderByAggregateInput {
-    companyId?: keyof typeof SortOrder;
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
@@ -3561,12 +3502,6 @@ export declare class ClaimUncheckedCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimCreateWithoutClinicsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-}
-export declare class ClaimUncheckedCreateNestedManyWithoutCompanyInput {
-    create?: Array<ClaimCreateWithoutCompanyInput>;
-    connectOrCreate?: Array<ClaimCreateOrConnectWithoutCompanyInput>;
-    createMany?: InstanceType<typeof ClaimCreateManyCompanyInputEnvelope>;
     connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutDiseaseInput {
@@ -3614,7 +3549,7 @@ export declare class ClaimUncheckedCreateWithoutClaimFinancialsInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimProcessId: number;
     diseaseId?: number;
@@ -3631,7 +3566,7 @@ export declare class ClaimUncheckedCreateWithoutClaimProcessesInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     diseaseId?: number;
@@ -3648,7 +3583,7 @@ export declare class ClaimUncheckedCreateWithoutClaimStatusesInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3665,7 +3600,7 @@ export declare class ClaimUncheckedCreateWithoutClaimTypesInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3682,28 +3617,11 @@ export declare class ClaimUncheckedCreateWithoutClinicsInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
     diseaseId?: number;
-    inputedById?: string;
-    claimTypeId: number;
-    tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
-}
-export declare class ClaimUncheckedCreateWithoutCompanyInput {
-    id?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
-    channel: keyof typeof ClaimChannel;
-    admedicaStatus: keyof typeof AdmedicaStatus;
-    participantId: string;
-    claimFinancialId: number;
-    claimProcessId: number;
-    diseaseId?: number;
-    clinicId: number;
     inputedById?: string;
     claimTypeId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
@@ -3716,7 +3634,7 @@ export declare class ClaimUncheckedCreateWithoutDiseaseInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3733,7 +3651,7 @@ export declare class ClaimUncheckedCreateWithoutInputedByInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3750,7 +3668,7 @@ export declare class ClaimUncheckedCreateWithoutParticipantInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     claimFinancialId: number;
     claimProcessId: number;
     diseaseId?: number;
@@ -3767,7 +3685,7 @@ export declare class ClaimUncheckedCreateWithoutTagsInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3784,7 +3702,7 @@ export declare class ClaimUncheckedCreateInput {
     deletedAt?: Date | string;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -3815,39 +3733,11 @@ export declare class ClaimUncheckedUpdateManyWithoutClinicsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-}
-export declare class ClaimUncheckedUpdateManyWithoutCompanyNestedInput {
-    create?: Array<ClaimCreateWithoutCompanyInput>;
-    connectOrCreate?: Array<ClaimCreateOrConnectWithoutCompanyInput>;
-    upsert?: Array<ClaimUpsertWithWhereUniqueWithoutCompanyInput>;
-    createMany?: InstanceType<typeof ClaimCreateManyCompanyInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    update?: Array<ClaimUpdateWithWhereUniqueWithoutCompanyInput>;
-    updateMany?: Array<ClaimUpdateManyWithWhereWithoutCompanyInput>;
-    deleteMany?: Array<ClaimScalarWhereInput>;
-}
-export declare class ClaimUncheckedUpdateManyWithoutCompanyInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
-    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -3871,7 +3761,7 @@ export declare class ClaimUncheckedUpdateManyWithoutDiseaseInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -3899,7 +3789,7 @@ export declare class ClaimUncheckedUpdateManyWithoutInputedByInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -3927,7 +3817,7 @@ export declare class ClaimUncheckedUpdateManyWithoutParticipantInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
@@ -3954,7 +3844,7 @@ export declare class ClaimUncheckedUpdateManyWithoutTagsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -3970,7 +3860,7 @@ export declare class ClaimUncheckedUpdateManyInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4013,7 +3903,7 @@ export declare class ClaimUncheckedUpdateWithoutClaimFinancialsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
@@ -4030,7 +3920,7 @@ export declare class ClaimUncheckedUpdateWithoutClaimProcessesInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
@@ -4047,7 +3937,7 @@ export declare class ClaimUncheckedUpdateWithoutClaimStatusesInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4064,7 +3954,7 @@ export declare class ClaimUncheckedUpdateWithoutClaimTypesInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4081,28 +3971,11 @@ export declare class ClaimUncheckedUpdateWithoutClinicsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
-}
-export declare class ClaimUncheckedUpdateWithoutCompanyInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
-    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
@@ -4115,7 +3988,7 @@ export declare class ClaimUncheckedUpdateWithoutDiseaseInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4132,7 +4005,7 @@ export declare class ClaimUncheckedUpdateWithoutInputedByInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4149,7 +4022,7 @@ export declare class ClaimUncheckedUpdateWithoutParticipantInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
@@ -4166,7 +4039,7 @@ export declare class ClaimUncheckedUpdateWithoutTagsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4183,7 +4056,7 @@ export declare class ClaimUncheckedUpdateInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    companyId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4201,12 +4074,9 @@ export declare class ClaimUpdateManyMutationInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class ClaimUpdateManyWithWhereWithoutClinicsInput {
-    where: InstanceType<typeof ClaimScalarWhereInput>;
-    data: InstanceType<typeof ClaimUpdateManyMutationInput>;
-}
-export declare class ClaimUpdateManyWithWhereWithoutCompanyInput {
     where: InstanceType<typeof ClaimScalarWhereInput>;
     data: InstanceType<typeof ClaimUpdateManyMutationInput>;
 }
@@ -4237,19 +4107,6 @@ export declare class ClaimUpdateManyWithoutClinicsNestedInput {
     connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutClinicsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutClinicsInput>;
-    deleteMany?: Array<ClaimScalarWhereInput>;
-}
-export declare class ClaimUpdateManyWithoutCompanyNestedInput {
-    create?: Array<ClaimCreateWithoutCompanyInput>;
-    connectOrCreate?: Array<ClaimCreateOrConnectWithoutCompanyInput>;
-    upsert?: Array<ClaimUpsertWithWhereUniqueWithoutCompanyInput>;
-    createMany?: InstanceType<typeof ClaimCreateManyCompanyInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    update?: Array<ClaimUpdateWithWhereUniqueWithoutCompanyInput>;
-    updateMany?: Array<ClaimUpdateManyWithWhereWithoutCompanyInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
 }
 export declare class ClaimUpdateManyWithoutDiseaseNestedInput {
@@ -4357,10 +4214,6 @@ export declare class ClaimUpdateWithWhereUniqueWithoutClinicsInput {
     where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
     data: InstanceType<typeof ClaimUpdateWithoutClinicsInput>;
 }
-export declare class ClaimUpdateWithWhereUniqueWithoutCompanyInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-    data: InstanceType<typeof ClaimUpdateWithoutCompanyInput>;
-}
 export declare class ClaimUpdateWithWhereUniqueWithoutDiseaseInput {
     where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
     data: InstanceType<typeof ClaimUpdateWithoutDiseaseInput>;
@@ -4384,7 +4237,7 @@ export declare class ClaimUpdateWithoutClaimFinancialsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
@@ -4401,7 +4254,7 @@ export declare class ClaimUpdateWithoutClaimProcessesInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
@@ -4418,7 +4271,7 @@ export declare class ClaimUpdateWithoutClaimStatusesInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
@@ -4435,7 +4288,7 @@ export declare class ClaimUpdateWithoutClaimTypesInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
@@ -4452,28 +4305,11 @@ export declare class ClaimUpdateWithoutClinicsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
-    inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
-    tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
-}
-export declare class ClaimUpdateWithoutCompanyInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
-    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
-    claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
-    claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
-    disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
     claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
@@ -4486,7 +4322,7 @@ export declare class ClaimUpdateWithoutDiseaseInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
@@ -4503,7 +4339,7 @@ export declare class ClaimUpdateWithoutInputedByInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
@@ -4520,7 +4356,7 @@ export declare class ClaimUpdateWithoutParticipantInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
@@ -4537,7 +4373,7 @@ export declare class ClaimUpdateWithoutTagsInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
@@ -4554,7 +4390,7 @@ export declare class ClaimUpdateInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof CompanyUpdateOneRequiredWithoutClaimsNestedInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
@@ -4569,11 +4405,6 @@ export declare class ClaimUpsertWithWhereUniqueWithoutClinicsInput {
     where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
     update: InstanceType<typeof ClaimUpdateWithoutClinicsInput>;
     create: InstanceType<typeof ClaimCreateWithoutClinicsInput>;
-}
-export declare class ClaimUpsertWithWhereUniqueWithoutCompanyInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-    update: InstanceType<typeof ClaimUpdateWithoutCompanyInput>;
-    create: InstanceType<typeof ClaimCreateWithoutCompanyInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutDiseaseInput {
     where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
@@ -4628,12 +4459,11 @@ export declare class ClaimWhereUniqueInput {
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     channel?: InstanceType<typeof EnumClaimChannelFilter>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFilter>;
-    companyId?: InstanceType<typeof IntFilter>;
+    company?: InstanceType<typeof StringFilter>;
     participantId?: InstanceType<typeof StringFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntFilter>;
     inputedById?: InstanceType<typeof StringNullableFilter>;
-    company?: InstanceType<typeof CompanyRelationFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
     claimFinancials?: InstanceType<typeof ClaimFinancialRelationFilter>;
     claimProcesses?: InstanceType<typeof ClaimProcessRelationFilter>;
@@ -4654,7 +4484,7 @@ export declare class ClaimWhereInput {
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     channel?: InstanceType<typeof EnumClaimChannelFilter>;
     admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFilter>;
-    companyId?: InstanceType<typeof IntFilter>;
+    company?: InstanceType<typeof StringFilter>;
     participantId?: InstanceType<typeof StringFilter>;
     claimFinancialId?: InstanceType<typeof IntFilter>;
     claimProcessId?: InstanceType<typeof IntFilter>;
@@ -4662,7 +4492,6 @@ export declare class ClaimWhereInput {
     clinicId?: InstanceType<typeof IntFilter>;
     inputedById?: InstanceType<typeof StringNullableFilter>;
     claimTypeId?: InstanceType<typeof IntFilter>;
-    company?: InstanceType<typeof CompanyRelationFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
     claimFinancials?: InstanceType<typeof ClaimFinancialRelationFilter>;
     claimProcesses?: InstanceType<typeof ClaimProcessRelationFilter>;
@@ -4680,7 +4509,7 @@ export declare class Claim {
     deletedAt: Date | null;
     channel: keyof typeof ClaimChannel;
     admedicaStatus: keyof typeof AdmedicaStatus;
-    companyId: number;
+    company: string;
     participantId: string;
     claimFinancialId: number;
     claimProcessId: number;
@@ -4688,7 +4517,6 @@ export declare class Claim {
     clinicId: number;
     inputedById: string | null;
     claimTypeId: number;
-    company?: InstanceType<typeof Company>;
     participant?: InstanceType<typeof Participant>;
     claimFinancials?: InstanceType<typeof ClaimFinancial>;
     claimProcesses?: InstanceType<typeof ClaimProcess>;
@@ -8107,331 +7935,6 @@ export declare class UpsertOneClinicArgs {
     where: Prisma.AtLeast<ClinicWhereUniqueInput, 'id'>;
     create: InstanceType<typeof ClinicCreateInput>;
     update: InstanceType<typeof ClinicUpdateInput>;
-}
-export declare class AggregateCompany {
-    _count?: InstanceType<typeof CompanyCountAggregate>;
-    _avg?: InstanceType<typeof CompanyAvgAggregate>;
-    _sum?: InstanceType<typeof CompanySumAggregate>;
-    _min?: InstanceType<typeof CompanyMinAggregate>;
-    _max?: InstanceType<typeof CompanyMaxAggregate>;
-}
-export declare class CompanyAggregateArgs {
-    where?: InstanceType<typeof CompanyWhereInput>;
-    orderBy?: Array<CompanyOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    _count?: InstanceType<typeof CompanyCountAggregateInput>;
-    _avg?: InstanceType<typeof CompanyAvgAggregateInput>;
-    _sum?: InstanceType<typeof CompanySumAggregateInput>;
-    _min?: InstanceType<typeof CompanyMinAggregateInput>;
-    _max?: InstanceType<typeof CompanyMaxAggregateInput>;
-}
-export declare class CompanyAvgAggregateInput {
-    id?: true;
-}
-export declare class CompanyAvgAggregate {
-    id?: number;
-}
-export declare class CompanyAvgOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-}
-export declare class CompanyCountAggregateInput {
-    id?: true;
-    name?: true;
-    createdAt?: true;
-    updatedAt?: true;
-    _all?: true;
-}
-export declare class CompanyCountAggregate {
-    id: number;
-    name: number;
-    createdAt: number;
-    updatedAt: number;
-    _all: number;
-}
-export declare class CompanyCountOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    updatedAt?: keyof typeof SortOrder;
-}
-export declare class CompanyCount {
-    claims?: number;
-}
-export declare class CompanyCreateManyInput {
-    id?: number;
-    name: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-}
-export declare class CompanyCreateNestedOneWithoutClaimsInput {
-    create?: InstanceType<typeof CompanyCreateWithoutClaimsInput>;
-    connectOrCreate?: InstanceType<typeof CompanyCreateOrConnectWithoutClaimsInput>;
-    connect?: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-}
-export declare class CompanyCreateOrConnectWithoutClaimsInput {
-    where: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof CompanyCreateWithoutClaimsInput>;
-}
-export declare class CompanyCreateWithoutClaimsInput {
-    name: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-}
-export declare class CompanyCreateInput {
-    name: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    claims?: InstanceType<typeof ClaimCreateNestedManyWithoutCompanyInput>;
-}
-export declare class CompanyGroupByArgs {
-    where?: InstanceType<typeof CompanyWhereInput>;
-    orderBy?: Array<CompanyOrderByWithAggregationInput>;
-    by: Array<keyof typeof CompanyScalarFieldEnum>;
-    having?: InstanceType<typeof CompanyScalarWhereWithAggregatesInput>;
-    take?: number;
-    skip?: number;
-    _count?: InstanceType<typeof CompanyCountAggregateInput>;
-    _avg?: InstanceType<typeof CompanyAvgAggregateInput>;
-    _sum?: InstanceType<typeof CompanySumAggregateInput>;
-    _min?: InstanceType<typeof CompanyMinAggregateInput>;
-    _max?: InstanceType<typeof CompanyMaxAggregateInput>;
-}
-export declare class CompanyGroupBy {
-    id: number;
-    name: string;
-    createdAt: Date | string;
-    updatedAt: Date | string;
-    _count?: InstanceType<typeof CompanyCountAggregate>;
-    _avg?: InstanceType<typeof CompanyAvgAggregate>;
-    _sum?: InstanceType<typeof CompanySumAggregate>;
-    _min?: InstanceType<typeof CompanyMinAggregate>;
-    _max?: InstanceType<typeof CompanyMaxAggregate>;
-}
-export declare class CompanyMaxAggregateInput {
-    id?: true;
-    name?: true;
-    createdAt?: true;
-    updatedAt?: true;
-}
-export declare class CompanyMaxAggregate {
-    id?: number;
-    name?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-}
-export declare class CompanyMaxOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    updatedAt?: keyof typeof SortOrder;
-}
-export declare class CompanyMinAggregateInput {
-    id?: true;
-    name?: true;
-    createdAt?: true;
-    updatedAt?: true;
-}
-export declare class CompanyMinAggregate {
-    id?: number;
-    name?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-}
-export declare class CompanyMinOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    updatedAt?: keyof typeof SortOrder;
-}
-export declare class CompanyOrderByWithAggregationInput {
-    id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    updatedAt?: keyof typeof SortOrder;
-    _count?: InstanceType<typeof CompanyCountOrderByAggregateInput>;
-    _avg?: InstanceType<typeof CompanyAvgOrderByAggregateInput>;
-    _max?: InstanceType<typeof CompanyMaxOrderByAggregateInput>;
-    _min?: InstanceType<typeof CompanyMinOrderByAggregateInput>;
-    _sum?: InstanceType<typeof CompanySumOrderByAggregateInput>;
-}
-export declare class CompanyOrderByWithRelationInput {
-    id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    updatedAt?: keyof typeof SortOrder;
-    claims?: InstanceType<typeof ClaimOrderByRelationAggregateInput>;
-}
-export declare class CompanyRelationFilter {
-    is?: InstanceType<typeof CompanyWhereInput>;
-    isNot?: InstanceType<typeof CompanyWhereInput>;
-}
-export declare class CompanyScalarWhereWithAggregatesInput {
-    AND?: Array<CompanyScalarWhereWithAggregatesInput>;
-    OR?: Array<CompanyScalarWhereWithAggregatesInput>;
-    NOT?: Array<CompanyScalarWhereWithAggregatesInput>;
-    id?: InstanceType<typeof IntWithAggregatesFilter>;
-    name?: InstanceType<typeof StringWithAggregatesFilter>;
-    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-}
-export declare class CompanySumAggregateInput {
-    id?: true;
-}
-export declare class CompanySumAggregate {
-    id?: number;
-}
-export declare class CompanySumOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-}
-export declare class CompanyUncheckedCreateWithoutClaimsInput {
-    id?: number;
-    name: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-}
-export declare class CompanyUncheckedCreateInput {
-    id?: number;
-    name: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutCompanyInput>;
-}
-export declare class CompanyUncheckedUpdateManyInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-export declare class CompanyUncheckedUpdateWithoutClaimsInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-export declare class CompanyUncheckedUpdateInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutCompanyNestedInput>;
-}
-export declare class CompanyUpdateManyMutationInput {
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-export declare class CompanyUpdateOneRequiredWithoutClaimsNestedInput {
-    create?: InstanceType<typeof CompanyCreateWithoutClaimsInput>;
-    connectOrCreate?: InstanceType<typeof CompanyCreateOrConnectWithoutClaimsInput>;
-    upsert?: InstanceType<typeof CompanyUpsertWithoutClaimsInput>;
-    connect?: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof CompanyUpdateToOneWithWhereWithoutClaimsInput>;
-}
-export declare class CompanyUpdateToOneWithWhereWithoutClaimsInput {
-    where?: InstanceType<typeof CompanyWhereInput>;
-    data: InstanceType<typeof CompanyUpdateWithoutClaimsInput>;
-}
-export declare class CompanyUpdateWithoutClaimsInput {
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-}
-export declare class CompanyUpdateInput {
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    claims?: InstanceType<typeof ClaimUpdateManyWithoutCompanyNestedInput>;
-}
-export declare class CompanyUpsertWithoutClaimsInput {
-    update: InstanceType<typeof CompanyUpdateWithoutClaimsInput>;
-    create: InstanceType<typeof CompanyCreateWithoutClaimsInput>;
-    where?: InstanceType<typeof CompanyWhereInput>;
-}
-export declare class CompanyWhereUniqueInput {
-    id?: number;
-    AND?: Array<CompanyWhereInput>;
-    OR?: Array<CompanyWhereInput>;
-    NOT?: Array<CompanyWhereInput>;
-    name?: InstanceType<typeof StringFilter>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
-    updatedAt?: InstanceType<typeof DateTimeFilter>;
-    claims?: InstanceType<typeof ClaimListRelationFilter>;
-}
-export declare class CompanyWhereInput {
-    AND?: Array<CompanyWhereInput>;
-    OR?: Array<CompanyWhereInput>;
-    NOT?: Array<CompanyWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
-    name?: InstanceType<typeof StringFilter>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
-    updatedAt?: InstanceType<typeof DateTimeFilter>;
-    claims?: InstanceType<typeof ClaimListRelationFilter>;
-}
-export declare class Company {
-    id: number;
-    name: string;
-    createdAt: Date;
-    updatedAt: Date;
-    claims?: Array<Claim>;
-    _count?: InstanceType<typeof CompanyCount>;
-}
-export declare class CreateManyCompanyArgs {
-    data: Array<CompanyCreateManyInput>;
-    skipDuplicates?: boolean;
-}
-export declare class CreateOneCompanyArgs {
-    data: InstanceType<typeof CompanyCreateInput>;
-}
-export declare class DeleteManyCompanyArgs {
-    where?: InstanceType<typeof CompanyWhereInput>;
-}
-export declare class DeleteOneCompanyArgs {
-    where: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-}
-export declare class FindFirstCompanyOrThrowArgs {
-    where?: InstanceType<typeof CompanyWhereInput>;
-    orderBy?: Array<CompanyOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof CompanyScalarFieldEnum>;
-}
-export declare class FindFirstCompanyArgs {
-    where?: InstanceType<typeof CompanyWhereInput>;
-    orderBy?: Array<CompanyOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof CompanyScalarFieldEnum>;
-}
-export declare class FindManyCompanyArgs {
-    where?: InstanceType<typeof CompanyWhereInput>;
-    orderBy?: Array<CompanyOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof CompanyScalarFieldEnum>;
-}
-export declare class FindUniqueCompanyOrThrowArgs {
-    where: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-}
-export declare class FindUniqueCompanyArgs {
-    where: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-}
-export declare class UpdateManyCompanyArgs {
-    data: InstanceType<typeof CompanyUpdateManyMutationInput>;
-    where?: InstanceType<typeof CompanyWhereInput>;
-}
-export declare class UpdateOneCompanyArgs {
-    data: InstanceType<typeof CompanyUpdateInput>;
-    where: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-}
-export declare class UpsertOneCompanyArgs {
-    where: Prisma.AtLeast<CompanyWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof CompanyCreateInput>;
-    update: InstanceType<typeof CompanyUpdateInput>;
 }
 export declare class AggregateContactInfo {
     _count?: InstanceType<typeof ContactInfoCountAggregate>;

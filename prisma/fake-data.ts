@@ -284,6 +284,7 @@ export function fakeClaim() {
     deletedAt: undefined,
     channel: faker.helpers.arrayElement([ClaimChannel.REGULER, ClaimChannel.WA, ClaimChannel.EMAIL] as const),
     admedicaStatus: faker.helpers.arrayElement([AdmedicaStatus.NON_ADMEDICA, AdmedicaStatus.ADMEDICA] as const),
+    company: faker.lorem.words(5),
   };
 }
 export function fakeClaimComplete() {
@@ -294,7 +295,7 @@ export function fakeClaimComplete() {
     deletedAt: undefined,
     channel: faker.helpers.arrayElement([ClaimChannel.REGULER, ClaimChannel.WA, ClaimChannel.EMAIL] as const),
     admedicaStatus: faker.helpers.arrayElement([AdmedicaStatus.NON_ADMEDICA, AdmedicaStatus.ADMEDICA] as const),
-    companyId: faker.datatype.number(),
+    company: faker.lorem.words(5),
     participantId: faker.datatype.uuid(),
     claimFinancialId: faker.datatype.number(),
     claimProcessId: faker.datatype.number(),
@@ -341,20 +342,6 @@ export function fakeTagComplete() {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
     color: faker.helpers.arrayElement([Color.WHITE, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN] as const),
-    createdAt: new Date(),
-    updatedAt: faker.datatype.datetime(),
-  };
-}
-export function fakeCompany() {
-  return {
-    name: faker.name.fullName(),
-    updatedAt: faker.datatype.datetime(),
-  };
-}
-export function fakeCompanyComplete() {
-  return {
-    id: faker.datatype.number(),
-    name: faker.name.fullName(),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };

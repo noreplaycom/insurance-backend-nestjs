@@ -519,10 +519,10 @@ model Claim {
     admedicaStatus AdmedicaStatus
 
     ///Prsh:	Perusahaan
-    company Company @relation(fields: [companyId], references: [id])
+    company String
 
-    ///Prsh:	Perusahaan
-    companyId Int
+    // ///Prsh:	Perusahaan
+    // companyId Int
 
     participant Participant @relation(fields: [participantId], references: [userId])
 
@@ -648,21 +648,21 @@ enum Color {
     GREEN
 }
 
-model Company {
-    //-------------------------- scalars --------------------------------
+// model Company {
+//     //-------------------------- scalars --------------------------------
 
-    id Int @id @default(autoincrement())
+//     id Int @id @default(autoincrement())
 
-    name String
+//     name String
 
-    //-------------------------- m relations --------------------------------
+//     //-------------------------- m relations --------------------------------
 
-    claims Claim[]
+//     claims Claim[]
 
-    createdAt DateTime @default(now())
+//     createdAt DateTime @default(now())
 
-    updatedAt DateTime @updatedAt
-}
+//     updatedAt DateTime @updatedAt
+// }
 
 model ClaimType {
     //-------------------------- scalars --------------------------------
