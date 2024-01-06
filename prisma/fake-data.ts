@@ -1,4 +1,4 @@
-import { Permission, ParticipantStatus, Position, Class, ClaimChannel, DocumentSource, DocumentType, Color, ApplicationType, AdmedicaStatus, Gender, ClaimStatusType, TransactionType } from '@prisma/client';
+import { Permission, ParticipantStatus, Position, Class, ClaimChannel, DocumentSource, DocumentType, Color, ApplicationType, AdmedicaStatus, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 
@@ -512,5 +512,23 @@ export function fakeTransactionComplete() {
     description: undefined,
     createdAt: new Date(),
     accountId: faker.datatype.number(),
+  };
+}
+export function fakeBackup() {
+  return {
+    name: faker.name.fullName(),
+    path: undefined,
+    isSuccessful: faker.datatype.boolean(),
+    type: faker.helpers.arrayElement([BackupType.MANUAL, BackupType.AUTO] as const),
+  };
+}
+export function fakeBackupComplete() {
+  return {
+    id: faker.datatype.number(),
+    name: faker.name.fullName(),
+    path: undefined,
+    isSuccessful: faker.datatype.boolean(),
+    type: faker.helpers.arrayElement([BackupType.MANUAL, BackupType.AUTO] as const),
+    createdAt: new Date(),
   };
 }

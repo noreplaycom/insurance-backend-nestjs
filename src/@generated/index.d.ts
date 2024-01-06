@@ -178,6 +178,10 @@ export declare enum ClaimChannel {
     WA = "WA",
     EMAIL = "EMAIL"
 }
+export declare enum BackupType {
+    MANUAL = "MANUAL",
+    AUTO = "AUTO"
+}
 export declare enum ApplicationType {
     SANTUNAN_HARIAN_RAWAT_INAP = "SANTUNAN_HARIAN_RAWAT_INAP",
     BANTUAN_BIAYA_CUCI_DARAH = "BANTUAN_BIAYA_CUCI_DARAH",
@@ -330,6 +334,14 @@ export declare enum BankAccountScalarFieldEnum {
     accountNumber = "accountNumber",
     accountName = "accountName",
     participantId = "participantId"
+}
+export declare enum BackupScalarFieldEnum {
+    id = "id",
+    name = "name",
+    path = "path",
+    isSuccessful = "isSuccessful",
+    type = "type",
+    createdAt = "createdAt"
 }
 export declare enum AnnouncementScalarFieldEnum {
     id = "id",
@@ -1727,6 +1739,314 @@ export declare class UpsertOneAnnouncementArgs {
     where: Prisma.AtLeast<AnnouncementWhereUniqueInput, 'id'>;
     create: InstanceType<typeof AnnouncementCreateInput>;
     update: InstanceType<typeof AnnouncementUpdateInput>;
+}
+export declare class AggregateBackup {
+    _count?: InstanceType<typeof BackupCountAggregate>;
+    _avg?: InstanceType<typeof BackupAvgAggregate>;
+    _sum?: InstanceType<typeof BackupSumAggregate>;
+    _min?: InstanceType<typeof BackupMinAggregate>;
+    _max?: InstanceType<typeof BackupMaxAggregate>;
+}
+export declare class BackupAggregateArgs {
+    where?: InstanceType<typeof BackupWhereInput>;
+    orderBy?: Array<BackupOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof BackupCountAggregateInput>;
+    _avg?: InstanceType<typeof BackupAvgAggregateInput>;
+    _sum?: InstanceType<typeof BackupSumAggregateInput>;
+    _min?: InstanceType<typeof BackupMinAggregateInput>;
+    _max?: InstanceType<typeof BackupMaxAggregateInput>;
+}
+export declare class BackupAvgAggregateInput {
+    id?: true;
+}
+export declare class BackupAvgAggregate {
+    id?: number;
+}
+export declare class BackupAvgOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class BackupCountAggregateInput {
+    id?: true;
+    name?: true;
+    path?: true;
+    isSuccessful?: true;
+    type?: true;
+    createdAt?: true;
+    _all?: true;
+}
+export declare class BackupCountAggregate {
+    id: number;
+    name: number;
+    path: number;
+    isSuccessful: number;
+    type: number;
+    createdAt: number;
+    _all: number;
+}
+export declare class BackupCountOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    name?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    isSuccessful?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+}
+export declare class BackupCreateManyInput {
+    id?: number;
+    name: string;
+    path?: string;
+    isSuccessful: boolean;
+    type: keyof typeof BackupType;
+    createdAt?: Date | string;
+}
+export declare class BackupCreateInput {
+    name: string;
+    path?: string;
+    isSuccessful: boolean;
+    type: keyof typeof BackupType;
+    createdAt?: Date | string;
+}
+export declare class BackupGroupByArgs {
+    where?: InstanceType<typeof BackupWhereInput>;
+    orderBy?: Array<BackupOrderByWithAggregationInput>;
+    by: Array<keyof typeof BackupScalarFieldEnum>;
+    having?: InstanceType<typeof BackupScalarWhereWithAggregatesInput>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof BackupCountAggregateInput>;
+    _avg?: InstanceType<typeof BackupAvgAggregateInput>;
+    _sum?: InstanceType<typeof BackupSumAggregateInput>;
+    _min?: InstanceType<typeof BackupMinAggregateInput>;
+    _max?: InstanceType<typeof BackupMaxAggregateInput>;
+}
+export declare class BackupGroupBy {
+    id: number;
+    name: string;
+    path?: string;
+    isSuccessful: boolean;
+    type: keyof typeof BackupType;
+    createdAt: Date | string;
+    _count?: InstanceType<typeof BackupCountAggregate>;
+    _avg?: InstanceType<typeof BackupAvgAggregate>;
+    _sum?: InstanceType<typeof BackupSumAggregate>;
+    _min?: InstanceType<typeof BackupMinAggregate>;
+    _max?: InstanceType<typeof BackupMaxAggregate>;
+}
+export declare class BackupMaxAggregateInput {
+    id?: true;
+    name?: true;
+    path?: true;
+    isSuccessful?: true;
+    type?: true;
+    createdAt?: true;
+}
+export declare class BackupMaxAggregate {
+    id?: number;
+    name?: string;
+    path?: string;
+    isSuccessful?: boolean;
+    type?: keyof typeof BackupType;
+    createdAt?: Date | string;
+}
+export declare class BackupMaxOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    name?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    isSuccessful?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+}
+export declare class BackupMinAggregateInput {
+    id?: true;
+    name?: true;
+    path?: true;
+    isSuccessful?: true;
+    type?: true;
+    createdAt?: true;
+}
+export declare class BackupMinAggregate {
+    id?: number;
+    name?: string;
+    path?: string;
+    isSuccessful?: boolean;
+    type?: keyof typeof BackupType;
+    createdAt?: Date | string;
+}
+export declare class BackupMinOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    name?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    isSuccessful?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+}
+export declare class BackupOrderByWithAggregationInput {
+    id?: keyof typeof SortOrder;
+    name?: keyof typeof SortOrder;
+    path?: InstanceType<typeof SortOrderInput>;
+    isSuccessful?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    _count?: InstanceType<typeof BackupCountOrderByAggregateInput>;
+    _avg?: InstanceType<typeof BackupAvgOrderByAggregateInput>;
+    _max?: InstanceType<typeof BackupMaxOrderByAggregateInput>;
+    _min?: InstanceType<typeof BackupMinOrderByAggregateInput>;
+    _sum?: InstanceType<typeof BackupSumOrderByAggregateInput>;
+}
+export declare class BackupOrderByWithRelationInput {
+    id?: keyof typeof SortOrder;
+    name?: keyof typeof SortOrder;
+    path?: InstanceType<typeof SortOrderInput>;
+    isSuccessful?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+}
+export declare class BackupScalarWhereWithAggregatesInput {
+    AND?: Array<BackupScalarWhereWithAggregatesInput>;
+    OR?: Array<BackupScalarWhereWithAggregatesInput>;
+    NOT?: Array<BackupScalarWhereWithAggregatesInput>;
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    name?: InstanceType<typeof StringWithAggregatesFilter>;
+    path?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    isSuccessful?: InstanceType<typeof BoolWithAggregatesFilter>;
+    type?: InstanceType<typeof EnumBackupTypeWithAggregatesFilter>;
+    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+}
+export declare class BackupSumAggregateInput {
+    id?: true;
+}
+export declare class BackupSumAggregate {
+    id?: number;
+}
+export declare class BackupSumOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class BackupUncheckedCreateInput {
+    id?: number;
+    name: string;
+    path?: string;
+    isSuccessful: boolean;
+    type: keyof typeof BackupType;
+    createdAt?: Date | string;
+}
+export declare class BackupUncheckedUpdateManyInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isSuccessful?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumBackupTypeFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class BackupUncheckedUpdateInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isSuccessful?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumBackupTypeFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class BackupUpdateManyMutationInput {
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isSuccessful?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumBackupTypeFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class BackupUpdateInput {
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isSuccessful?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumBackupTypeFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class BackupWhereUniqueInput {
+    id?: number;
+    AND?: Array<BackupWhereInput>;
+    OR?: Array<BackupWhereInput>;
+    NOT?: Array<BackupWhereInput>;
+    name?: InstanceType<typeof StringFilter>;
+    path?: InstanceType<typeof StringNullableFilter>;
+    isSuccessful?: InstanceType<typeof BoolFilter>;
+    type?: InstanceType<typeof EnumBackupTypeFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+}
+export declare class BackupWhereInput {
+    AND?: Array<BackupWhereInput>;
+    OR?: Array<BackupWhereInput>;
+    NOT?: Array<BackupWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    name?: InstanceType<typeof StringFilter>;
+    path?: InstanceType<typeof StringNullableFilter>;
+    isSuccessful?: InstanceType<typeof BoolFilter>;
+    type?: InstanceType<typeof EnumBackupTypeFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+}
+export declare class Backup {
+    id: number;
+    name: string;
+    path: string | null;
+    isSuccessful: boolean;
+    type: keyof typeof BackupType;
+    createdAt: Date;
+}
+export declare class CreateManyBackupArgs {
+    data: Array<BackupCreateManyInput>;
+    skipDuplicates?: boolean;
+}
+export declare class CreateOneBackupArgs {
+    data: InstanceType<typeof BackupCreateInput>;
+}
+export declare class DeleteManyBackupArgs {
+    where?: InstanceType<typeof BackupWhereInput>;
+}
+export declare class DeleteOneBackupArgs {
+    where: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+}
+export declare class FindFirstBackupOrThrowArgs {
+    where?: InstanceType<typeof BackupWhereInput>;
+    orderBy?: Array<BackupOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof BackupScalarFieldEnum>;
+}
+export declare class FindFirstBackupArgs {
+    where?: InstanceType<typeof BackupWhereInput>;
+    orderBy?: Array<BackupOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof BackupScalarFieldEnum>;
+}
+export declare class FindManyBackupArgs {
+    where?: InstanceType<typeof BackupWhereInput>;
+    orderBy?: Array<BackupOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof BackupScalarFieldEnum>;
+}
+export declare class FindUniqueBackupOrThrowArgs {
+    where: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+}
+export declare class FindUniqueBackupArgs {
+    where: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+}
+export declare class UpdateManyBackupArgs {
+    data: InstanceType<typeof BackupUpdateManyMutationInput>;
+    where?: InstanceType<typeof BackupWhereInput>;
+}
+export declare class UpdateOneBackupArgs {
+    data: InstanceType<typeof BackupUpdateInput>;
+    where: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+}
+export declare class UpsertOneBackupArgs {
+    where: Prisma.AtLeast<BackupWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof BackupCreateInput>;
+    update: InstanceType<typeof BackupUpdateInput>;
 }
 export declare class AggregateBankAccount {
     _count?: InstanceType<typeof BankAccountCountAggregate>;
@@ -12669,6 +12989,24 @@ export declare class EnumApplicationTypeWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumApplicationTypeFilter>;
     _max?: InstanceType<typeof NestedEnumApplicationTypeFilter>;
 }
+export declare class EnumBackupTypeFieldUpdateOperationsInput {
+    set?: keyof typeof BackupType;
+}
+export declare class EnumBackupTypeFilter {
+    equals?: keyof typeof BackupType;
+    in?: Array<keyof typeof BackupType>;
+    notIn?: Array<keyof typeof BackupType>;
+    not?: InstanceType<typeof NestedEnumBackupTypeFilter>;
+}
+export declare class EnumBackupTypeWithAggregatesFilter {
+    equals?: keyof typeof BackupType;
+    in?: Array<keyof typeof BackupType>;
+    notIn?: Array<keyof typeof BackupType>;
+    not?: InstanceType<typeof NestedEnumBackupTypeWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntFilter>;
+    _min?: InstanceType<typeof NestedEnumBackupTypeFilter>;
+    _max?: InstanceType<typeof NestedEnumBackupTypeFilter>;
+}
 export declare class EnumClaimChannelFieldUpdateOperationsInput {
     set?: keyof typeof ClaimChannel;
 }
@@ -13067,6 +13405,21 @@ export declare class NestedEnumApplicationTypeWithAggregatesFilter {
     _count?: InstanceType<typeof NestedIntFilter>;
     _min?: InstanceType<typeof NestedEnumApplicationTypeFilter>;
     _max?: InstanceType<typeof NestedEnumApplicationTypeFilter>;
+}
+export declare class NestedEnumBackupTypeFilter {
+    equals?: keyof typeof BackupType;
+    in?: Array<keyof typeof BackupType>;
+    notIn?: Array<keyof typeof BackupType>;
+    not?: InstanceType<typeof NestedEnumBackupTypeFilter>;
+}
+export declare class NestedEnumBackupTypeWithAggregatesFilter {
+    equals?: keyof typeof BackupType;
+    in?: Array<keyof typeof BackupType>;
+    notIn?: Array<keyof typeof BackupType>;
+    not?: InstanceType<typeof NestedEnumBackupTypeWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntFilter>;
+    _min?: InstanceType<typeof NestedEnumBackupTypeFilter>;
+    _max?: InstanceType<typeof NestedEnumBackupTypeFilter>;
 }
 export declare class NestedEnumClaimChannelFilter {
     equals?: keyof typeof ClaimChannel;

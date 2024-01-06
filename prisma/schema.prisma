@@ -932,3 +932,23 @@ enum TransactionType {
     CREDIT
     DEBIT
 }
+
+model Backup {
+    //-------------------------- scalars --------------------------------
+    id Int @id @default(autoincrement())
+
+    name String
+
+    path String?
+
+    isSuccessful Boolean
+
+    type BackupType
+
+    createdAt DateTime @default(now())
+}
+
+enum BackupType {
+    MANUAL
+    AUTO
+}
