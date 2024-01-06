@@ -238,6 +238,9 @@ export async function claimSeed() {
     await prisma.claim.create({
       data: claimCreateInput,
     });
+
+    //counter
+    console.log(`Claim ${i + 1} created.`);
   }
 
   console.log('Claims seeded with its relations completed.');

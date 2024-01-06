@@ -2875,7 +2875,7 @@ export declare class AggregateClaim {
 export declare class ClaimAggregateArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ClaimCountAggregateInput>;
@@ -3074,86 +3074,86 @@ export declare class ClaimCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimCreateWithoutClinicsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutDiseaseInput {
     create?: Array<ClaimCreateWithoutDiseaseInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutInputedByInput {
     create?: Array<ClaimCreateWithoutInputedByInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutParticipantInput {
     create?: Array<ClaimCreateWithoutParticipantInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutProgramInput {
     create?: Array<ClaimCreateWithoutProgramInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
     createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutTagsInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimCreateNestedOneWithoutClaimFinancialsInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimFinancialsInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimFinancialsInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class ClaimCreateNestedOneWithoutClaimProcessesInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimProcessesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimProcessesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class ClaimCreateNestedOneWithoutClaimStatusesInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimStatusesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimStatusesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class ClaimCreateOrConnectWithoutClaimFinancialsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutClaimFinancialsInput>;
 }
 export declare class ClaimCreateOrConnectWithoutClaimProcessesInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutClaimProcessesInput>;
 }
 export declare class ClaimCreateOrConnectWithoutClaimStatusesInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutClaimStatusesInput>;
 }
 export declare class ClaimCreateOrConnectWithoutClinicsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutClinicsInput>;
 }
 export declare class ClaimCreateOrConnectWithoutDiseaseInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutDiseaseInput>;
 }
 export declare class ClaimCreateOrConnectWithoutInputedByInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutInputedByInput>;
 }
 export declare class ClaimCreateOrConnectWithoutParticipantInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutParticipantInput>;
 }
 export declare class ClaimCreateOrConnectWithoutProgramInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutProgramInput>;
 }
 export declare class ClaimCreateOrConnectWithoutTagsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateWithoutTagsInput>;
 }
 export declare class ClaimCreateWithoutClaimFinancialsInput {
@@ -3582,46 +3582,46 @@ export declare class ClaimUncheckedCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimCreateWithoutClinicsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutDiseaseInput {
     create?: Array<ClaimCreateWithoutDiseaseInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutInputedByInput {
     create?: Array<ClaimCreateWithoutInputedByInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutParticipantInput {
     create?: Array<ClaimCreateWithoutParticipantInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutProgramInput {
     create?: Array<ClaimCreateWithoutProgramInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
     createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutTagsInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
 }
 export declare class ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimFinancialsInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimFinancialsInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class ClaimUncheckedCreateNestedOneWithoutClaimProcessesInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimProcessesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimProcessesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class ClaimUncheckedCreateWithoutClaimFinancialsInput {
     id?: string;
@@ -3799,10 +3799,10 @@ export declare class ClaimUncheckedUpdateManyWithoutClinicsNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutClinicsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutClinicsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3827,10 +3827,10 @@ export declare class ClaimUncheckedUpdateManyWithoutDiseaseNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutDiseaseInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutDiseaseInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3855,10 +3855,10 @@ export declare class ClaimUncheckedUpdateManyWithoutInputedByNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutInputedByInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutInputedByInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3883,10 +3883,10 @@ export declare class ClaimUncheckedUpdateManyWithoutParticipantNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutParticipantInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutParticipantInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3911,10 +3911,10 @@ export declare class ClaimUncheckedUpdateManyWithoutProgramNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutProgramInput>;
     createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutProgramInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutProgramInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3938,10 +3938,10 @@ export declare class ClaimUncheckedUpdateManyWithoutTagsNestedInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutTagsInput>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutTagsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutTagsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3984,7 +3984,7 @@ export declare class ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimFinancialsInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput>;
 }
 export declare class ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput {
@@ -3993,7 +3993,7 @@ export declare class ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimProcessesInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimProcessesInput>;
 }
 export declare class ClaimUncheckedUpdateWithoutClaimFinancialsInput {
@@ -4205,10 +4205,10 @@ export declare class ClaimUpdateManyWithoutClinicsNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutClinicsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutClinicsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4218,10 +4218,10 @@ export declare class ClaimUpdateManyWithoutDiseaseNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutDiseaseInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutDiseaseInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4231,10 +4231,10 @@ export declare class ClaimUpdateManyWithoutInputedByNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutInputedByInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutInputedByInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4244,10 +4244,10 @@ export declare class ClaimUpdateManyWithoutParticipantNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutParticipantInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutParticipantInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4257,10 +4257,10 @@ export declare class ClaimUpdateManyWithoutProgramNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutProgramInput>;
     createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutProgramInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutProgramInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4269,10 +4269,10 @@ export declare class ClaimUpdateManyWithoutTagsNestedInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutTagsInput>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutTagsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutTagsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4281,7 +4281,7 @@ export declare class ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimStatusesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimStatusesInput>;
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimStatusesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimStatusesInput>;
 }
 export declare class ClaimUpdateOneWithoutClaimFinancialsNestedInput {
@@ -4290,7 +4290,7 @@ export declare class ClaimUpdateOneWithoutClaimFinancialsNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimFinancialsInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput>;
 }
 export declare class ClaimUpdateOneWithoutClaimProcessesNestedInput {
@@ -4299,7 +4299,7 @@ export declare class ClaimUpdateOneWithoutClaimProcessesNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimProcessesInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimProcessesInput>;
 }
 export declare class ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput {
@@ -4315,27 +4315,27 @@ export declare class ClaimUpdateToOneWithWhereWithoutClaimStatusesInput {
     data: InstanceType<typeof ClaimUpdateWithoutClaimStatusesInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutClinicsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     data: InstanceType<typeof ClaimUpdateWithoutClinicsInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutDiseaseInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     data: InstanceType<typeof ClaimUpdateWithoutDiseaseInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutInputedByInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     data: InstanceType<typeof ClaimUpdateWithoutInputedByInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutParticipantInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     data: InstanceType<typeof ClaimUpdateWithoutParticipantInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutProgramInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     data: InstanceType<typeof ClaimUpdateWithoutProgramInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutTagsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     data: InstanceType<typeof ClaimUpdateWithoutTagsInput>;
 }
 export declare class ClaimUpdateWithoutClaimFinancialsInput {
@@ -4510,32 +4510,32 @@ export declare class ClaimUpdateInput {
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutClinicsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update: InstanceType<typeof ClaimUpdateWithoutClinicsInput>;
     create: InstanceType<typeof ClaimCreateWithoutClinicsInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutDiseaseInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update: InstanceType<typeof ClaimUpdateWithoutDiseaseInput>;
     create: InstanceType<typeof ClaimCreateWithoutDiseaseInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutInputedByInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update: InstanceType<typeof ClaimUpdateWithoutInputedByInput>;
     create: InstanceType<typeof ClaimCreateWithoutInputedByInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutParticipantInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update: InstanceType<typeof ClaimUpdateWithoutParticipantInput>;
     create: InstanceType<typeof ClaimCreateWithoutParticipantInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutProgramInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update: InstanceType<typeof ClaimUpdateWithoutProgramInput>;
     create: InstanceType<typeof ClaimCreateWithoutProgramInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutTagsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     update: InstanceType<typeof ClaimUpdateWithoutTagsInput>;
     create: InstanceType<typeof ClaimCreateWithoutTagsInput>;
 }
@@ -4558,7 +4558,6 @@ export declare class ClaimWhereUniqueInput {
     id?: string;
     claimFinancialId?: number;
     claimProcessId?: number;
-    programId?: number;
     AND?: Array<ClaimWhereInput>;
     OR?: Array<ClaimWhereInput>;
     NOT?: Array<ClaimWhereInput>;
@@ -4572,6 +4571,7 @@ export declare class ClaimWhereUniqueInput {
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntFilter>;
     inputedById?: InstanceType<typeof StringNullableFilter>;
+    programId?: InstanceType<typeof IntFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
     claimFinancials?: InstanceType<typeof ClaimFinancialRelationFilter>;
     claimProcesses?: InstanceType<typeof ClaimProcessRelationFilter>;
@@ -4647,12 +4647,12 @@ export declare class DeleteManyClaimArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
 }
 export declare class DeleteOneClaimArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class FindFirstClaimOrThrowArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimScalarFieldEnum>;
@@ -4660,7 +4660,7 @@ export declare class FindFirstClaimOrThrowArgs {
 export declare class FindFirstClaimArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimScalarFieldEnum>;
@@ -4668,16 +4668,16 @@ export declare class FindFirstClaimArgs {
 export declare class FindManyClaimArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimScalarFieldEnum>;
 }
 export declare class FindUniqueClaimOrThrowArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class FindUniqueClaimArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class UpdateManyClaimArgs {
     data: InstanceType<typeof ClaimUpdateManyMutationInput>;
@@ -4685,10 +4685,10 @@ export declare class UpdateManyClaimArgs {
 }
 export declare class UpdateOneClaimArgs {
     data: InstanceType<typeof ClaimUpdateInput>;
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
 }
 export declare class UpsertOneClaimArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId'>;
     create: InstanceType<typeof ClaimCreateInput>;
     update: InstanceType<typeof ClaimUpdateInput>;
 }

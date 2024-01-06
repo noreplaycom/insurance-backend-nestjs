@@ -13840,9 +13840,6 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimWhereUniqueInput.prototype, "claimProcessId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
-], ClaimWhereUniqueInput.prototype, "programId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => [ClaimWhereInput], { nullable: true })
 ], ClaimWhereUniqueInput.prototype, "AND", void 0);
 __decorate([
@@ -13881,6 +13878,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimWhereUniqueInput.prototype, "inputedById", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+], ClaimWhereUniqueInput.prototype, "programId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantRelationFilter, { nullable: true })
 ], ClaimWhereUniqueInput.prototype, "participant", void 0);
