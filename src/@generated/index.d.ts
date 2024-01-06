@@ -277,8 +277,7 @@ export declare enum ClaimProcessScalarFieldEnum {
     processDate = "processDate",
     submissionNote = "submissionNote",
     description = "description",
-    additionalNote = "additionalNote",
-    claimId = "claimId"
+    additionalNote = "additionalNote"
 }
 export declare enum ClaimFinancialScalarFieldEnum {
     id = "id",
@@ -5283,7 +5282,7 @@ export declare class AggregateClaimProcess {
 export declare class ClaimProcessAggregateArgs {
     where?: InstanceType<typeof ClaimProcessWhereInput>;
     orderBy?: Array<ClaimProcessOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ClaimProcessCountAggregateInput>;
@@ -5311,7 +5310,6 @@ export declare class ClaimProcessCountAggregateInput {
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
-    claimId?: true;
     _all?: true;
 }
 export declare class ClaimProcessCountAggregate {
@@ -5324,7 +5322,6 @@ export declare class ClaimProcessCountAggregate {
     submissionNote: number;
     description: number;
     additionalNote: number;
-    claimId: number;
     _all: number;
 }
 export declare class ClaimProcessCountOrderByAggregateInput {
@@ -5337,7 +5334,6 @@ export declare class ClaimProcessCountOrderByAggregateInput {
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
 }
 export declare class ClaimProcessCount {
     documents?: number;
@@ -5349,27 +5345,26 @@ export declare class ClaimProcessCreateManyInput {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
 }
 export declare class ClaimProcessCreateNestedOneWithoutClaimInput {
     create?: InstanceType<typeof ClaimProcessCreateWithoutClaimInput>;
     connectOrCreate?: InstanceType<typeof ClaimProcessCreateOrConnectWithoutClaimInput>;
-    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
 }
 export declare class ClaimProcessCreateNestedOneWithoutDocumentsInput {
     create?: InstanceType<typeof ClaimProcessCreateWithoutDocumentsInput>;
     connectOrCreate?: InstanceType<typeof ClaimProcessCreateOrConnectWithoutDocumentsInput>;
-    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
 }
 export declare class ClaimProcessCreateOrConnectWithoutClaimInput {
-    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     create: InstanceType<typeof ClaimProcessCreateWithoutClaimInput>;
 }
 export declare class ClaimProcessCreateOrConnectWithoutDocumentsInput {
-    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     create: InstanceType<typeof ClaimProcessCreateWithoutDocumentsInput>;
 }
 export declare class ClaimProcessCreateWithoutClaimInput {
@@ -5378,10 +5373,9 @@ export declare class ClaimProcessCreateWithoutClaimInput {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProcessInput>;
 }
 export declare class ClaimProcessCreateWithoutDocumentsInput {
@@ -5390,10 +5384,9 @@ export declare class ClaimProcessCreateWithoutDocumentsInput {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProcessesInput>;
 }
 export declare class ClaimProcessCreateInput {
@@ -5402,10 +5395,9 @@ export declare class ClaimProcessCreateInput {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProcessesInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProcessInput>;
 }
@@ -5429,10 +5421,9 @@ export declare class ClaimProcessGroupBy {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
     _count?: InstanceType<typeof ClaimProcessCountAggregate>;
     _avg?: InstanceType<typeof ClaimProcessAvgAggregate>;
     _sum?: InstanceType<typeof ClaimProcessSumAggregate>;
@@ -5449,7 +5440,6 @@ export declare class ClaimProcessMaxAggregateInput {
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
-    claimId?: true;
 }
 export declare class ClaimProcessMaxAggregate {
     id?: number;
@@ -5461,7 +5451,6 @@ export declare class ClaimProcessMaxAggregate {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    claimId?: string;
 }
 export declare class ClaimProcessMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -5473,7 +5462,6 @@ export declare class ClaimProcessMaxOrderByAggregateInput {
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
 }
 export declare class ClaimProcessMinAggregateInput {
     id?: true;
@@ -5485,7 +5473,6 @@ export declare class ClaimProcessMinAggregateInput {
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
-    claimId?: true;
 }
 export declare class ClaimProcessMinAggregate {
     id?: number;
@@ -5497,7 +5484,6 @@ export declare class ClaimProcessMinAggregate {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    claimId?: string;
 }
 export declare class ClaimProcessMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -5509,7 +5495,6 @@ export declare class ClaimProcessMinOrderByAggregateInput {
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
 }
 export declare class ClaimProcessNullableRelationFilter {
     is?: InstanceType<typeof ClaimProcessWhereInput>;
@@ -5522,10 +5507,9 @@ export declare class ClaimProcessOrderByWithAggregationInput {
     expeditionDate?: InstanceType<typeof SortOrderInput>;
     reclaim?: InstanceType<typeof SortOrderInput>;
     processDate?: InstanceType<typeof SortOrderInput>;
-    submissionNote?: keyof typeof SortOrder;
-    description?: keyof typeof SortOrder;
-    additionalNote?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
+    submissionNote?: InstanceType<typeof SortOrderInput>;
+    description?: InstanceType<typeof SortOrderInput>;
+    additionalNote?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof ClaimProcessCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ClaimProcessAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ClaimProcessMaxOrderByAggregateInput>;
@@ -5539,10 +5523,9 @@ export declare class ClaimProcessOrderByWithRelationInput {
     expeditionDate?: InstanceType<typeof SortOrderInput>;
     reclaim?: InstanceType<typeof SortOrderInput>;
     processDate?: InstanceType<typeof SortOrderInput>;
-    submissionNote?: keyof typeof SortOrder;
-    description?: keyof typeof SortOrder;
-    additionalNote?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
+    submissionNote?: InstanceType<typeof SortOrderInput>;
+    description?: InstanceType<typeof SortOrderInput>;
+    additionalNote?: InstanceType<typeof SortOrderInput>;
     claim?: InstanceType<typeof ClaimOrderByWithRelationInput>;
     documents?: InstanceType<typeof DocumentOrderByRelationAggregateInput>;
 }
@@ -5560,10 +5543,9 @@ export declare class ClaimProcessScalarWhereWithAggregatesInput {
     expeditionDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     reclaim?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     processDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    submissionNote?: InstanceType<typeof StringWithAggregatesFilter>;
-    description?: InstanceType<typeof StringWithAggregatesFilter>;
-    additionalNote?: InstanceType<typeof StringWithAggregatesFilter>;
-    claimId?: InstanceType<typeof StringWithAggregatesFilter>;
+    submissionNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    additionalNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
 }
 export declare class ClaimProcessSumAggregateInput {
     id?: true;
@@ -5581,10 +5563,9 @@ export declare class ClaimProcessUncheckedCreateWithoutClaimInput {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProcessInput>;
 }
 export declare class ClaimProcessUncheckedCreateWithoutDocumentsInput {
@@ -5594,10 +5575,9 @@ export declare class ClaimProcessUncheckedCreateWithoutDocumentsInput {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProcessesInput>;
 }
 export declare class ClaimProcessUncheckedCreateInput {
@@ -5607,10 +5587,9 @@ export declare class ClaimProcessUncheckedCreateInput {
     expeditionDate?: Date | string;
     reclaim?: string;
     processDate?: Date | string;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProcessesInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProcessInput>;
 }
@@ -5621,10 +5600,9 @@ export declare class ClaimProcessUncheckedUpdateManyInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class ClaimProcessUncheckedUpdateWithoutClaimInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5633,10 +5611,9 @@ export declare class ClaimProcessUncheckedUpdateWithoutClaimInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProcessNestedInput>;
 }
 export declare class ClaimProcessUncheckedUpdateWithoutDocumentsInput {
@@ -5646,10 +5623,9 @@ export declare class ClaimProcessUncheckedUpdateWithoutDocumentsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput>;
 }
 export declare class ClaimProcessUncheckedUpdateInput {
@@ -5659,10 +5635,9 @@ export declare class ClaimProcessUncheckedUpdateInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProcessNestedInput>;
 }
@@ -5672,16 +5647,15 @@ export declare class ClaimProcessUpdateManyMutationInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class ClaimProcessUpdateOneRequiredWithoutClaimNestedInput {
     create?: InstanceType<typeof ClaimProcessCreateWithoutClaimInput>;
     connectOrCreate?: InstanceType<typeof ClaimProcessCreateOrConnectWithoutClaimInput>;
     upsert?: InstanceType<typeof ClaimProcessUpsertWithoutClaimInput>;
-    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof ClaimProcessUpdateToOneWithWhereWithoutClaimInput>;
 }
 export declare class ClaimProcessUpdateOneWithoutDocumentsNestedInput {
@@ -5690,7 +5664,7 @@ export declare class ClaimProcessUpdateOneWithoutDocumentsNestedInput {
     upsert?: InstanceType<typeof ClaimProcessUpsertWithoutDocumentsInput>;
     disconnect?: InstanceType<typeof ClaimProcessWhereInput>;
     delete?: InstanceType<typeof ClaimProcessWhereInput>;
-    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    connect?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof ClaimProcessUpdateToOneWithWhereWithoutDocumentsInput>;
 }
 export declare class ClaimProcessUpdateToOneWithWhereWithoutClaimInput {
@@ -5707,10 +5681,9 @@ export declare class ClaimProcessUpdateWithoutClaimInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProcessNestedInput>;
 }
 export declare class ClaimProcessUpdateWithoutDocumentsInput {
@@ -5719,10 +5692,9 @@ export declare class ClaimProcessUpdateWithoutDocumentsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProcessesNestedInput>;
 }
 export declare class ClaimProcessUpdateInput {
@@ -5731,10 +5703,9 @@ export declare class ClaimProcessUpdateInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     processDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    submissionNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    additionalNote?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProcessesNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProcessNestedInput>;
 }
@@ -5750,7 +5721,6 @@ export declare class ClaimProcessUpsertWithoutDocumentsInput {
 }
 export declare class ClaimProcessWhereUniqueInput {
     id?: number;
-    claimId?: string;
     AND?: Array<ClaimProcessWhereInput>;
     OR?: Array<ClaimProcessWhereInput>;
     NOT?: Array<ClaimProcessWhereInput>;
@@ -5759,9 +5729,9 @@ export declare class ClaimProcessWhereUniqueInput {
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
     reclaim?: InstanceType<typeof StringNullableFilter>;
     processDate?: InstanceType<typeof DateTimeNullableFilter>;
-    submissionNote?: InstanceType<typeof StringFilter>;
-    description?: InstanceType<typeof StringFilter>;
-    additionalNote?: InstanceType<typeof StringFilter>;
+    submissionNote?: InstanceType<typeof StringNullableFilter>;
+    description?: InstanceType<typeof StringNullableFilter>;
+    additionalNote?: InstanceType<typeof StringNullableFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     documents?: InstanceType<typeof DocumentListRelationFilter>;
 }
@@ -5775,10 +5745,9 @@ export declare class ClaimProcessWhereInput {
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
     reclaim?: InstanceType<typeof StringNullableFilter>;
     processDate?: InstanceType<typeof DateTimeNullableFilter>;
-    submissionNote?: InstanceType<typeof StringFilter>;
-    description?: InstanceType<typeof StringFilter>;
-    additionalNote?: InstanceType<typeof StringFilter>;
-    claimId?: InstanceType<typeof StringFilter>;
+    submissionNote?: InstanceType<typeof StringNullableFilter>;
+    description?: InstanceType<typeof StringNullableFilter>;
+    additionalNote?: InstanceType<typeof StringNullableFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     documents?: InstanceType<typeof DocumentListRelationFilter>;
 }
@@ -5789,10 +5758,9 @@ export declare class ClaimProcess {
     expeditionDate: Date | null;
     reclaim: string | null;
     processDate: Date | null;
-    submissionNote: string;
-    description: string;
-    additionalNote: string;
-    claimId: string;
+    submissionNote: string | null;
+    description: string | null;
+    additionalNote: string | null;
     claim?: InstanceType<typeof Claim> | null;
     documents?: Array<Document>;
     _count?: InstanceType<typeof ClaimProcessCount>;
@@ -5802,18 +5770,18 @@ export declare class CreateManyClaimProcessArgs {
     skipDuplicates?: boolean;
 }
 export declare class CreateOneClaimProcessArgs {
-    data: InstanceType<typeof ClaimProcessCreateInput>;
+    data?: InstanceType<typeof ClaimProcessCreateInput>;
 }
 export declare class DeleteManyClaimProcessArgs {
     where?: InstanceType<typeof ClaimProcessWhereInput>;
 }
 export declare class DeleteOneClaimProcessArgs {
-    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
 }
 export declare class FindFirstClaimProcessOrThrowArgs {
     where?: InstanceType<typeof ClaimProcessWhereInput>;
     orderBy?: Array<ClaimProcessOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimProcessScalarFieldEnum>;
@@ -5821,7 +5789,7 @@ export declare class FindFirstClaimProcessOrThrowArgs {
 export declare class FindFirstClaimProcessArgs {
     where?: InstanceType<typeof ClaimProcessWhereInput>;
     orderBy?: Array<ClaimProcessOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimProcessScalarFieldEnum>;
@@ -5829,16 +5797,16 @@ export declare class FindFirstClaimProcessArgs {
 export declare class FindManyClaimProcessArgs {
     where?: InstanceType<typeof ClaimProcessWhereInput>;
     orderBy?: Array<ClaimProcessOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    cursor?: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimProcessScalarFieldEnum>;
 }
 export declare class FindUniqueClaimProcessOrThrowArgs {
-    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
 }
 export declare class FindUniqueClaimProcessArgs {
-    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
 }
 export declare class UpdateManyClaimProcessArgs {
     data: InstanceType<typeof ClaimProcessUpdateManyMutationInput>;
@@ -5846,10 +5814,10 @@ export declare class UpdateManyClaimProcessArgs {
 }
 export declare class UpdateOneClaimProcessArgs {
     data: InstanceType<typeof ClaimProcessUpdateInput>;
-    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
 }
 export declare class UpsertOneClaimProcessArgs {
-    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id' | 'claimId'>;
+    where: Prisma.AtLeast<ClaimProcessWhereUniqueInput, 'id'>;
     create: InstanceType<typeof ClaimProcessCreateInput>;
     update: InstanceType<typeof ClaimProcessUpdateInput>;
 }

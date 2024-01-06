@@ -392,10 +392,9 @@ export function fakeClaimProcess() {
     expeditionDate: undefined,
     reclaim: undefined,
     processDate: undefined,
-    submissionNote: faker.lorem.words(5),
-    description: faker.lorem.words(5),
-    additionalNote: faker.lorem.words(5),
-    claimId: faker.lorem.words(5),
+    submissionNote: undefined,
+    description: undefined,
+    additionalNote: undefined,
   };
 }
 export function fakeClaimProcessComplete() {
@@ -406,10 +405,9 @@ export function fakeClaimProcessComplete() {
     expeditionDate: undefined,
     reclaim: undefined,
     processDate: undefined,
-    submissionNote: faker.lorem.words(5),
-    description: faker.lorem.words(5),
-    additionalNote: faker.lorem.words(5),
-    claimId: faker.lorem.words(5),
+    submissionNote: undefined,
+    description: undefined,
+    additionalNote: undefined,
   };
 }
 export function fakeClaimStatus() {

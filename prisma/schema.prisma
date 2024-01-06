@@ -454,6 +454,7 @@ model ProgramParticipation {
     programId Int?
 }
 
+///Reference Document: https://rebrand.ly/d6i9uem
 model Program {
     //-------------------------- scalars --------------------------------
 
@@ -463,28 +464,43 @@ model Program {
     ///Plan	PlanType = jenis Rawat inap atau disingkat RI
     plan ApplicationType
 
+    // ///Jenis:	Jenis Produk Bantuan
+    // jenis String
+
+    // ///Jenis RI:	Hospital Cash Plan
+    // jenisRI String
+
+    ///misal 50% dari biaya UGD/IGD, Plafon per pasangan maksimal Rp. 1.500.000 /tahun 
+    maxAllowancePercentage Int?
+
+    ///Plafon Santunan:	Plafon Santnan Harian Rawat Inap
+    allowanceCeiling Float?
+
+    ///Maksimal santunan [60] hari rawat inap/tahun/orang
+    maxAllowancePerYear Float?
+
+    ///Masa klaim [60] hari sejak keluar rumah sakit/tanggal kuitansi
+    claimPeriodMax Int?
+
+    ///Klaim ulang maksimal [60] hari sejak tanggal pemberitahuan
+    reclaimPeriodMax Int?
+
     createdAt DateTime @default(now())
 
     updatedAt DateTime @updatedAt
 
     deletedAt DateTime?
 
-    ///Plafon Santunan:	Plafon Santnan Harian Rawat Inap
-    allowanceCeiling Float
-
     //-------------------------- 1 relations --------------------------------
 
     ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
     class Class
 
-    ///Maksimal biaya perawatan 
-    maxAllowance Float
-
     //-------------------------- m relations --------------------------------
 
     programParticipations ProgramParticipation[]
 
-    claimType ClaimType[]
+    claims Claim[]
 }
 
 ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
@@ -548,9 +564,9 @@ model Claim {
 
     inputedById String?
 
-    claimTypes ClaimType @relation(fields: [claimTypeId], references: [id])
+    program Program @relation(fields: [programId], references: [id])
 
-    claimTypeId Int @unique
+    programId Int @unique
 
     //-------------------------- m relations --------------------------------
 
@@ -664,32 +680,6 @@ enum Color {
 //     updatedAt DateTime @updatedAt
 // }
 
-model ClaimType {
-    //-------------------------- scalars --------------------------------
-    id Int @id @default(autoincrement())
-
-    ///Jenis:	Jenis Produk Bantuan
-    jenis String
-
-    ///Jenis RI:	Hospital Cash Plan
-    jenisRI String
-
-    ///Plan	Plan = jenis Rawat inap atau disingkat RI
-    plan String
-
-    //-------------------------- 1 relations --------------------------------
-
-    program Program @relation(fields: [programId], references: [id])
-
-    programId Int
-
-    //-------------------------- m relations --------------------------------
-
-    claims Claim?
-
-    claimId Int @unique
-}
-
 enum ApplicationType {
     SANTUNAN_HARIAN_RAWAT_INAP
     BANTUAN_BIAYA_CUCI_DARAH
@@ -769,8 +759,6 @@ model ClaimProcess {
 
     //-------------------------- 1 relations --------------------------------
     claim Claim?
-
-    claimId String @unique
 
     ///Kwitansi, data, dll: Bukti Pembayaran/Invoice Rumah Sakit oleh Peserta
     documents Document[]

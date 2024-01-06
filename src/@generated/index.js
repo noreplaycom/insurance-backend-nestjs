@@ -379,7 +379,6 @@ var ClaimProcessScalarFieldEnum;
     ClaimProcessScalarFieldEnum["submissionNote"] = "submissionNote";
     ClaimProcessScalarFieldEnum["description"] = "description";
     ClaimProcessScalarFieldEnum["additionalNote"] = "additionalNote";
-    ClaimProcessScalarFieldEnum["claimId"] = "claimId";
 })(ClaimProcessScalarFieldEnum = exports.ClaimProcessScalarFieldEnum || (exports.ClaimProcessScalarFieldEnum = {}));
 var ClaimFinancialScalarFieldEnum;
 (function (ClaimFinancialScalarFieldEnum) {
@@ -16154,9 +16153,6 @@ __decorate([
 ], ClaimProcessCountAggregateInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProcessCountAggregateInput.prototype, "claimId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProcessCountAggregateInput.prototype, "_all", void 0);
 ClaimProcessCountAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -16193,9 +16189,6 @@ __decorate([
 ], ClaimProcessCountAggregate.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ClaimProcessCountAggregate.prototype, "claimId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ClaimProcessCountAggregate.prototype, "_all", void 0);
 ClaimProcessCountAggregate = __decorate([
     (0, graphql_5.ObjectType)()
@@ -16230,9 +16223,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProcessCountOrderByAggregateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProcessCountOrderByAggregateInput.prototype, "claimId", void 0);
 ClaimProcessCountOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessCountOrderByAggregateInput);
@@ -16267,17 +16257,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessCreateManyInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateManyInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateManyInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateManyInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessCreateManyInput.prototype, "claimId", void 0);
 ClaimProcessCreateManyInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessCreateManyInput);
@@ -16364,17 +16351,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessCreateWithoutClaimInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateWithoutClaimInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateWithoutClaimInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateWithoutClaimInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessCreateWithoutClaimInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedManyWithoutClaimProcessInput, { nullable: true })
 ], ClaimProcessCreateWithoutClaimInput.prototype, "documents", void 0);
@@ -16400,17 +16384,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessCreateWithoutDocumentsInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateWithoutDocumentsInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateWithoutDocumentsInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateWithoutDocumentsInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessCreateWithoutDocumentsInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimProcessesInput, { nullable: true })
 ], ClaimProcessCreateWithoutDocumentsInput.prototype, "claim", void 0);
@@ -16436,17 +16417,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessCreateInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessCreateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessCreateInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimProcessesInput, { nullable: true })
 ], ClaimProcessCreateInput.prototype, "claim", void 0);
@@ -16518,17 +16496,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessGroupBy.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessGroupBy.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessGroupBy.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessGroupBy.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessGroupBy.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProcessCountAggregate, { nullable: true })
 ], ClaimProcessGroupBy.prototype, "_count", void 0);
@@ -16577,9 +16552,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProcessMaxAggregateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProcessMaxAggregateInput.prototype, "claimId", void 0);
 ClaimProcessMaxAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessMaxAggregateInput);
@@ -16613,9 +16585,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessMaxAggregate.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProcessMaxAggregate.prototype, "claimId", void 0);
 ClaimProcessMaxAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], ClaimProcessMaxAggregate);
@@ -16649,9 +16618,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProcessMaxOrderByAggregateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProcessMaxOrderByAggregateInput.prototype, "claimId", void 0);
 ClaimProcessMaxOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessMaxOrderByAggregateInput);
@@ -16685,9 +16651,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProcessMinAggregateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProcessMinAggregateInput.prototype, "claimId", void 0);
 ClaimProcessMinAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessMinAggregateInput);
@@ -16721,9 +16684,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessMinAggregate.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProcessMinAggregate.prototype, "claimId", void 0);
 ClaimProcessMinAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], ClaimProcessMinAggregate);
@@ -16757,9 +16717,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProcessMinOrderByAggregateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProcessMinOrderByAggregateInput.prototype, "claimId", void 0);
 ClaimProcessMinOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessMinOrderByAggregateInput);
@@ -16797,17 +16754,14 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithAggregationInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithAggregationInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithAggregationInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithAggregationInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProcessOrderByWithAggregationInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProcessCountOrderByAggregateInput, { nullable: true })
 ], ClaimProcessOrderByWithAggregationInput.prototype, "_count", void 0);
@@ -16848,17 +16802,14 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithRelationInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithRelationInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithRelationInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProcessOrderByWithRelationInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProcessOrderByWithRelationInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimOrderByWithRelationInput, { nullable: true })
 ], ClaimProcessOrderByWithRelationInput.prototype, "claim", void 0);
@@ -16911,17 +16862,14 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProcessScalarWhereWithAggregatesInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProcessScalarWhereWithAggregatesInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProcessScalarWhereWithAggregatesInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProcessScalarWhereWithAggregatesInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
-], ClaimProcessScalarWhereWithAggregatesInput.prototype, "claimId", void 0);
 ClaimProcessScalarWhereWithAggregatesInput = ClaimProcessScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessScalarWhereWithAggregatesInput);
@@ -16974,17 +16922,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutClaimInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutClaimInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutClaimInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutClaimInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessUncheckedCreateWithoutClaimInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentUncheckedCreateNestedManyWithoutClaimProcessInput, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutClaimInput.prototype, "documents", void 0);
@@ -17013,17 +16958,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutDocumentsInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutDocumentsInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutDocumentsInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutDocumentsInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessUncheckedCreateWithoutDocumentsInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedCreateNestedOneWithoutClaimProcessesInput, { nullable: true })
 ], ClaimProcessUncheckedCreateWithoutDocumentsInput.prototype, "claim", void 0);
@@ -17052,17 +16994,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProcessUncheckedCreateInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProcessUncheckedCreateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcessUncheckedCreateInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedCreateNestedOneWithoutClaimProcessesInput, { nullable: true })
 ], ClaimProcessUncheckedCreateInput.prototype, "claim", void 0);
@@ -17094,17 +17033,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateManyInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateManyInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateManyInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateManyInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUncheckedUpdateManyInput.prototype, "claimId", void 0);
 ClaimProcessUncheckedUpdateManyInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessUncheckedUpdateManyInput);
@@ -17130,17 +17066,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutClaimInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutClaimInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutClaimInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutClaimInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUncheckedUpdateWithoutClaimInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentUncheckedUpdateManyWithoutClaimProcessNestedInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutClaimInput.prototype, "documents", void 0);
@@ -17169,17 +17102,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutDocumentsInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutDocumentsInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutDocumentsInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutDocumentsInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUncheckedUpdateWithoutDocumentsInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateWithoutDocumentsInput.prototype, "claim", void 0);
@@ -17208,17 +17138,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUncheckedUpdateInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput, { nullable: true })
 ], ClaimProcessUncheckedUpdateInput.prototype, "claim", void 0);
@@ -17247,17 +17174,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateManyMutationInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateManyMutationInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateManyMutationInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateManyMutationInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUpdateManyMutationInput.prototype, "claimId", void 0);
 ClaimProcessUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProcessUpdateManyMutationInput);
@@ -17368,17 +17292,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutClaimInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutClaimInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutClaimInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutClaimInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUpdateWithoutClaimInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentUpdateManyWithoutClaimProcessNestedInput, { nullable: true })
 ], ClaimProcessUpdateWithoutClaimInput.prototype, "documents", void 0);
@@ -17404,17 +17325,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutDocumentsInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutDocumentsInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutDocumentsInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateWithoutDocumentsInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUpdateWithoutDocumentsInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUpdateOneWithoutClaimProcessesNestedInput, { nullable: true })
 ], ClaimProcessUpdateWithoutDocumentsInput.prototype, "claim", void 0);
@@ -17440,17 +17358,14 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProcessUpdateInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProcessUpdateInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUpdateOneWithoutClaimProcessesNestedInput, { nullable: true })
 ], ClaimProcessUpdateInput.prototype, "claim", void 0);
@@ -17503,9 +17418,6 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProcessWhereUniqueInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProcessWhereUniqueInput.prototype, "claimId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => [ClaimProcessWhereInput], { nullable: true })
 ], ClaimProcessWhereUniqueInput.prototype, "AND", void 0);
 __decorate([
@@ -17530,13 +17442,13 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], ClaimProcessWhereUniqueInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProcessWhereUniqueInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProcessWhereUniqueInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProcessWhereUniqueInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimNullableRelationFilter, { nullable: true })
@@ -17578,17 +17490,14 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], ClaimProcessWhereInput.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProcessWhereInput.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProcessWhereInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProcessWhereInput.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
-], ClaimProcessWhereInput.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimNullableRelationFilter, { nullable: true })
 ], ClaimProcessWhereInput.prototype, "claim", void 0);
@@ -17620,17 +17529,14 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true, description: 'TProses Pengajuan:\tTanggal Proses pengajuan' })
 ], ClaimProcess.prototype, "processDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false, description: 'Ket.Pengajuan:\tKeterangan konfirmasi' })
+    (0, graphql_1.Field)(() => String, { nullable: true, description: 'Ket.Pengajuan:\tKeterangan konfirmasi' })
 ], ClaimProcess.prototype, "submissionNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false, description: 'Keterangan:\tisi keterangan ' })
+    (0, graphql_1.Field)(() => String, { nullable: true, description: 'Keterangan:\tisi keterangan ' })
 ], ClaimProcess.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false, description: 'Ket.Tambahan\tketerangan tambahan' })
+    (0, graphql_1.Field)(() => String, { nullable: true, description: 'Ket.Tambahan\tketerangan tambahan' })
 ], ClaimProcess.prototype, "additionalNote", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ClaimProcess.prototype, "claimId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Claim, { nullable: true })
 ], ClaimProcess.prototype, "claim", void 0);
@@ -17660,7 +17566,7 @@ exports.CreateManyClaimProcessArgs = CreateManyClaimProcessArgs;
 let CreateOneClaimProcessArgs = class CreateOneClaimProcessArgs {
 };
 __decorate([
-    (0, graphql_1.Field)(() => ClaimProcessCreateInput, { nullable: false }),
+    (0, graphql_1.Field)(() => ClaimProcessCreateInput, { nullable: true }),
     (0, class_transformer_1.Type)(() => ClaimProcessCreateInput)
 ], CreateOneClaimProcessArgs.prototype, "data", void 0);
 CreateOneClaimProcessArgs = __decorate([
