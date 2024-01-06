@@ -43,7 +43,6 @@ export function fakeRoleComplete() {
     name: faker.name.fullName(),
     description: undefined,
     order: faker.datatype.number(),
-    higherLevelThanId: undefined,
   };
 }
 export function fakeRolePermission() {

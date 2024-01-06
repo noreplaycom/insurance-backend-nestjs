@@ -35,8 +35,7 @@ export declare enum RoleScalarFieldEnum {
     id = "id",
     name = "name",
     description = "description",
-    order = "order",
-    higherLevelThanId = "higherLevelThanId"
+    order = "order"
 }
 export declare enum RegionScalarFieldEnum {
     id = "id",
@@ -14864,24 +14863,20 @@ export declare class RoleAggregateArgs {
 export declare class RoleAvgAggregateInput {
     id?: true;
     order?: true;
-    higherLevelThanId?: true;
 }
 export declare class RoleAvgAggregate {
     id?: number;
     order?: number;
-    higherLevelThanId?: number;
 }
 export declare class RoleAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     order?: keyof typeof SortOrder;
-    higherLevelThanId?: keyof typeof SortOrder;
 }
 export declare class RoleCountAggregateInput {
     id?: true;
     name?: true;
     description?: true;
     order?: true;
-    higherLevelThanId?: true;
     _all?: true;
 }
 export declare class RoleCountAggregate {
@@ -14889,7 +14884,6 @@ export declare class RoleCountAggregate {
     name: number;
     description: number;
     order: number;
-    higherLevelThanId: number;
     _all: number;
 }
 export declare class RoleCountOrderByAggregateInput {
@@ -14897,40 +14891,16 @@ export declare class RoleCountOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     order?: keyof typeof SortOrder;
-    higherLevelThanId?: keyof typeof SortOrder;
 }
 export declare class RoleCount {
     rolePermissions?: number;
     users?: number;
-    lowerLevelThan?: number;
-}
-export declare class RoleCreateManyHigherLevelThanInputEnvelope {
-    data: Array<RoleCreateManyHigherLevelThanInput>;
-    skipDuplicates?: boolean;
-}
-export declare class RoleCreateManyHigherLevelThanInput {
-    id?: number;
-    name: string;
-    description?: string;
-    order: number;
 }
 export declare class RoleCreateManyInput {
     id?: number;
     name: string;
     description?: string;
     order: number;
-    higherLevelThanId?: number;
-}
-export declare class RoleCreateNestedManyWithoutHigherLevelThanInput {
-    create?: Array<RoleCreateWithoutHigherLevelThanInput>;
-    connectOrCreate?: Array<RoleCreateOrConnectWithoutHigherLevelThanInput>;
-    createMany?: InstanceType<typeof RoleCreateManyHigherLevelThanInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-}
-export declare class RoleCreateNestedOneWithoutLowerLevelThanInput {
-    create?: InstanceType<typeof RoleCreateWithoutLowerLevelThanInput>;
-    connectOrCreate?: InstanceType<typeof RoleCreateOrConnectWithoutLowerLevelThanInput>;
-    connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
 }
 export declare class RoleCreateNestedOneWithoutRolePermissionsInput {
     create?: InstanceType<typeof RoleCreateWithoutRolePermissionsInput>;
@@ -14942,14 +14912,6 @@ export declare class RoleCreateNestedOneWithoutUsersInput {
     connectOrCreate?: InstanceType<typeof RoleCreateOrConnectWithoutUsersInput>;
     connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
 }
-export declare class RoleCreateOrConnectWithoutHigherLevelThanInput {
-    where: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof RoleCreateWithoutHigherLevelThanInput>;
-}
-export declare class RoleCreateOrConnectWithoutLowerLevelThanInput {
-    where: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof RoleCreateWithoutLowerLevelThanInput>;
-}
 export declare class RoleCreateOrConnectWithoutRolePermissionsInput {
     where: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
     create: InstanceType<typeof RoleCreateWithoutRolePermissionsInput>;
@@ -14958,46 +14920,24 @@ export declare class RoleCreateOrConnectWithoutUsersInput {
     where: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
     create: InstanceType<typeof RoleCreateWithoutUsersInput>;
 }
-export declare class RoleCreateWithoutHigherLevelThanInput {
-    name: string;
-    description?: string;
-    order: number;
-    rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
-    users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleCreateNestedManyWithoutHigherLevelThanInput>;
-}
-export declare class RoleCreateWithoutLowerLevelThanInput {
-    name: string;
-    description?: string;
-    order: number;
-    higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
-    rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
-    users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
-}
 export declare class RoleCreateWithoutRolePermissionsInput {
     name: string;
     description?: string;
     order: number;
-    higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
     users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleCreateNestedManyWithoutHigherLevelThanInput>;
 }
 export declare class RoleCreateWithoutUsersInput {
     name: string;
     description?: string;
     order: number;
-    higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
     rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleCreateNestedManyWithoutHigherLevelThanInput>;
 }
 export declare class RoleCreateInput {
     name: string;
     description?: string;
     order: number;
-    higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
     rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleCreateNestedManyWithoutHigherLevelThanInput>;
 }
 export declare class RoleGroupByArgs {
     where?: InstanceType<typeof RoleWhereInput>;
@@ -15017,73 +14957,53 @@ export declare class RoleGroupBy {
     name: string;
     description?: string;
     order: number;
-    higherLevelThanId?: number;
     _count?: InstanceType<typeof RoleCountAggregate>;
     _avg?: InstanceType<typeof RoleAvgAggregate>;
     _sum?: InstanceType<typeof RoleSumAggregate>;
     _min?: InstanceType<typeof RoleMinAggregate>;
     _max?: InstanceType<typeof RoleMaxAggregate>;
 }
-export declare class RoleListRelationFilter {
-    every?: InstanceType<typeof RoleWhereInput>;
-    some?: InstanceType<typeof RoleWhereInput>;
-    none?: InstanceType<typeof RoleWhereInput>;
-}
 export declare class RoleMaxAggregateInput {
     id?: true;
     name?: true;
     description?: true;
     order?: true;
-    higherLevelThanId?: true;
 }
 export declare class RoleMaxAggregate {
     id?: number;
     name?: string;
     description?: string;
     order?: number;
-    higherLevelThanId?: number;
 }
 export declare class RoleMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     order?: keyof typeof SortOrder;
-    higherLevelThanId?: keyof typeof SortOrder;
 }
 export declare class RoleMinAggregateInput {
     id?: true;
     name?: true;
     description?: true;
     order?: true;
-    higherLevelThanId?: true;
 }
 export declare class RoleMinAggregate {
     id?: number;
     name?: string;
     description?: string;
     order?: number;
-    higherLevelThanId?: number;
 }
 export declare class RoleMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     order?: keyof typeof SortOrder;
-    higherLevelThanId?: keyof typeof SortOrder;
-}
-export declare class RoleNullableRelationFilter {
-    is?: InstanceType<typeof RoleWhereInput>;
-    isNot?: InstanceType<typeof RoleWhereInput>;
-}
-export declare class RoleOrderByRelationAggregateInput {
-    _count?: keyof typeof SortOrder;
 }
 export declare class RoleOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     description?: InstanceType<typeof SortOrderInput>;
     order?: keyof typeof SortOrder;
-    higherLevelThanId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof RoleCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof RoleAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof RoleMaxOrderByAggregateInput>;
@@ -15095,11 +15015,8 @@ export declare class RoleOrderByWithRelationInput {
     name?: keyof typeof SortOrder;
     description?: InstanceType<typeof SortOrderInput>;
     order?: keyof typeof SortOrder;
-    higherLevelThanId?: InstanceType<typeof SortOrderInput>;
-    higherLevelThan?: InstanceType<typeof RoleOrderByWithRelationInput>;
     rolePermissions?: InstanceType<typeof RolePermissionOrderByRelationAggregateInput>;
     users?: InstanceType<typeof UserOrderByRelationAggregateInput>;
-    lowerLevelThan?: InstanceType<typeof RoleOrderByRelationAggregateInput>;
 }
 export declare class RoleRelationFilter {
     is?: InstanceType<typeof RoleWhereInput>;
@@ -15113,178 +15030,73 @@ export declare class RoleScalarWhereWithAggregatesInput {
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     order?: InstanceType<typeof IntWithAggregatesFilter>;
-    higherLevelThanId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
-}
-export declare class RoleScalarWhereInput {
-    AND?: Array<RoleScalarWhereInput>;
-    OR?: Array<RoleScalarWhereInput>;
-    NOT?: Array<RoleScalarWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
-    name?: InstanceType<typeof StringFilter>;
-    description?: InstanceType<typeof StringNullableFilter>;
-    order?: InstanceType<typeof IntFilter>;
-    higherLevelThanId?: InstanceType<typeof IntNullableFilter>;
 }
 export declare class RoleSumAggregateInput {
     id?: true;
     order?: true;
-    higherLevelThanId?: true;
 }
 export declare class RoleSumAggregate {
     id?: number;
     order?: number;
-    higherLevelThanId?: number;
 }
 export declare class RoleSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     order?: keyof typeof SortOrder;
-    higherLevelThanId?: keyof typeof SortOrder;
-}
-export declare class RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput {
-    create?: Array<RoleCreateWithoutHigherLevelThanInput>;
-    connectOrCreate?: Array<RoleCreateOrConnectWithoutHigherLevelThanInput>;
-    createMany?: InstanceType<typeof RoleCreateManyHigherLevelThanInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-}
-export declare class RoleUncheckedCreateWithoutHigherLevelThanInput {
-    id?: number;
-    name: string;
-    description?: string;
-    order: number;
-    rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
-    users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
-}
-export declare class RoleUncheckedCreateWithoutLowerLevelThanInput {
-    id?: number;
-    name: string;
-    description?: string;
-    order: number;
-    higherLevelThanId?: number;
-    rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
-    users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
 }
 export declare class RoleUncheckedCreateWithoutRolePermissionsInput {
     id?: number;
     name: string;
     description?: string;
     order: number;
-    higherLevelThanId?: number;
     users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
 }
 export declare class RoleUncheckedCreateWithoutUsersInput {
     id?: number;
     name: string;
     description?: string;
     order: number;
-    higherLevelThanId?: number;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
 }
 export declare class RoleUncheckedCreateInput {
     id?: number;
     name: string;
     description?: string;
     order: number;
-    higherLevelThanId?: number;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
-}
-export declare class RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput {
-    create?: Array<RoleCreateWithoutHigherLevelThanInput>;
-    connectOrCreate?: Array<RoleCreateOrConnectWithoutHigherLevelThanInput>;
-    upsert?: Array<RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput>;
-    createMany?: InstanceType<typeof RoleCreateManyHigherLevelThanInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    update?: Array<RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput>;
-    updateMany?: Array<RoleUpdateManyWithWhereWithoutHigherLevelThanInput>;
-    deleteMany?: Array<RoleScalarWhereInput>;
-}
-export declare class RoleUncheckedUpdateManyWithoutHigherLevelThanInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class RoleUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-}
-export declare class RoleUncheckedUpdateWithoutHigherLevelThanInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
-    users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
-}
-export declare class RoleUncheckedUpdateWithoutLowerLevelThanInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
-    users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
 }
 export declare class RoleUncheckedUpdateWithoutRolePermissionsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
 }
 export declare class RoleUncheckedUpdateWithoutUsersInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
 }
 export declare class RoleUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
 }
 export declare class RoleUpdateManyMutationInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-}
-export declare class RoleUpdateManyWithWhereWithoutHigherLevelThanInput {
-    where: InstanceType<typeof RoleScalarWhereInput>;
-    data: InstanceType<typeof RoleUpdateManyMutationInput>;
-}
-export declare class RoleUpdateManyWithoutHigherLevelThanNestedInput {
-    create?: Array<RoleCreateWithoutHigherLevelThanInput>;
-    connectOrCreate?: Array<RoleCreateOrConnectWithoutHigherLevelThanInput>;
-    upsert?: Array<RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput>;
-    createMany?: InstanceType<typeof RoleCreateManyHigherLevelThanInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<RoleWhereUniqueInput, 'id'>>;
-    update?: Array<RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput>;
-    updateMany?: Array<RoleUpdateManyWithWhereWithoutHigherLevelThanInput>;
-    deleteMany?: Array<RoleScalarWhereInput>;
 }
 export declare class RoleUpdateOneRequiredWithoutRolePermissionsNestedInput {
     create?: InstanceType<typeof RoleCreateWithoutRolePermissionsInput>;
@@ -15300,19 +15112,6 @@ export declare class RoleUpdateOneRequiredWithoutUsersNestedInput {
     connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof RoleUpdateToOneWithWhereWithoutUsersInput>;
 }
-export declare class RoleUpdateOneWithoutLowerLevelThanNestedInput {
-    create?: InstanceType<typeof RoleCreateWithoutLowerLevelThanInput>;
-    connectOrCreate?: InstanceType<typeof RoleCreateOrConnectWithoutLowerLevelThanInput>;
-    upsert?: InstanceType<typeof RoleUpsertWithoutLowerLevelThanInput>;
-    disconnect?: InstanceType<typeof RoleWhereInput>;
-    delete?: InstanceType<typeof RoleWhereInput>;
-    connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof RoleUpdateToOneWithWhereWithoutLowerLevelThanInput>;
-}
-export declare class RoleUpdateToOneWithWhereWithoutLowerLevelThanInput {
-    where?: InstanceType<typeof RoleWhereInput>;
-    data: InstanceType<typeof RoleUpdateWithoutLowerLevelThanInput>;
-}
 export declare class RoleUpdateToOneWithWhereWithoutRolePermissionsInput {
     where?: InstanceType<typeof RoleWhereInput>;
     data: InstanceType<typeof RoleUpdateWithoutRolePermissionsInput>;
@@ -15321,60 +15120,24 @@ export declare class RoleUpdateToOneWithWhereWithoutUsersInput {
     where?: InstanceType<typeof RoleWhereInput>;
     data: InstanceType<typeof RoleUpdateWithoutUsersInput>;
 }
-export declare class RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput {
-    where: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
-    data: InstanceType<typeof RoleUpdateWithoutHigherLevelThanInput>;
-}
-export declare class RoleUpdateWithoutHigherLevelThanInput {
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
-    users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUpdateManyWithoutHigherLevelThanNestedInput>;
-}
-export declare class RoleUpdateWithoutLowerLevelThanInput {
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
-    rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
-    users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
-}
 export declare class RoleUpdateWithoutRolePermissionsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
     users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUpdateManyWithoutHigherLevelThanNestedInput>;
 }
 export declare class RoleUpdateWithoutUsersInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUpdateManyWithoutHigherLevelThanNestedInput>;
 }
 export declare class RoleUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
-    lowerLevelThan?: InstanceType<typeof RoleUpdateManyWithoutHigherLevelThanNestedInput>;
-}
-export declare class RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput {
-    where: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
-    update: InstanceType<typeof RoleUpdateWithoutHigherLevelThanInput>;
-    create: InstanceType<typeof RoleCreateWithoutHigherLevelThanInput>;
-}
-export declare class RoleUpsertWithoutLowerLevelThanInput {
-    update: InstanceType<typeof RoleUpdateWithoutLowerLevelThanInput>;
-    create: InstanceType<typeof RoleCreateWithoutLowerLevelThanInput>;
-    where?: InstanceType<typeof RoleWhereInput>;
 }
 export declare class RoleUpsertWithoutRolePermissionsInput {
     update: InstanceType<typeof RoleUpdateWithoutRolePermissionsInput>;
@@ -15394,11 +15157,8 @@ export declare class RoleWhereUniqueInput {
     name?: InstanceType<typeof StringFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     order?: InstanceType<typeof IntFilter>;
-    higherLevelThanId?: InstanceType<typeof IntNullableFilter>;
-    higherLevelThan?: InstanceType<typeof RoleNullableRelationFilter>;
     rolePermissions?: InstanceType<typeof RolePermissionListRelationFilter>;
     users?: InstanceType<typeof UserListRelationFilter>;
-    lowerLevelThan?: InstanceType<typeof RoleListRelationFilter>;
 }
 export declare class RoleWhereInput {
     AND?: Array<RoleWhereInput>;
@@ -15408,22 +15168,16 @@ export declare class RoleWhereInput {
     name?: InstanceType<typeof StringFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     order?: InstanceType<typeof IntFilter>;
-    higherLevelThanId?: InstanceType<typeof IntNullableFilter>;
-    higherLevelThan?: InstanceType<typeof RoleNullableRelationFilter>;
     rolePermissions?: InstanceType<typeof RolePermissionListRelationFilter>;
     users?: InstanceType<typeof UserListRelationFilter>;
-    lowerLevelThan?: InstanceType<typeof RoleListRelationFilter>;
 }
 export declare class Role {
     id: number;
     name: string;
     description: string | null;
     order: number;
-    higherLevelThanId: number | null;
-    higherLevelThan?: InstanceType<typeof Role> | null;
     rolePermissions?: Array<RolePermission>;
     users?: Array<User>;
-    lowerLevelThan?: Array<Role>;
     _count?: InstanceType<typeof RoleCount>;
 }
 export declare class UpdateManyRoleArgs {

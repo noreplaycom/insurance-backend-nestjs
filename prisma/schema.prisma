@@ -109,7 +109,7 @@ model RolePermission {
     //-------------------------- 1 relations --------------------------------
     role Role @relation(fields: [roleId], references: [id])
 
-    permission Permission
+    permission Permission @unique
 
     @@id([roleId, permission])
 }
@@ -171,8 +171,6 @@ model Participant {
     relationId String?
 
     bankAccount BankAccount?
-
-    bankAccountId Int
 
     //-------------------------- m relations --------------------------------
 

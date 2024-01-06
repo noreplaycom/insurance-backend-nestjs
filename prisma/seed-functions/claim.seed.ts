@@ -22,12 +22,12 @@ export async function claimSeed() {
   //   return;
   // }
 
-  const programs = await prisma.program.findMany({
-    where: { claims: { none: {} } },
-  });
+  const programs = await prisma.program.findMany();
+
+  const participants = await prisma.participant.findMany();
 
   const roles = await prisma.role.findMany({
-    where: { users: { none: {} } },
+    include: { rolePermissions: true },
   });
 
   for (let i = 0; i < 100; i++) {
@@ -45,6 +45,9 @@ export async function claimSeed() {
     //   where: { claims: { none: {} } },
     // });
 
+    const RolePermissionCreateMany: Prisma.RolePermissionCreateManyRoleInput[] =
+      [];
+
     const userCreateOne: Prisma.UserCreateWithoutParticipantInput = {
       fullName: faker.name.firstName(),
       email: faker.internet.email(),
@@ -61,6 +64,7 @@ export async function claimSeed() {
             name: faker.name.jobTitle(),
             description: faker.lorem.paragraph(),
             order: faker.datatype.number(5),
+            rolePermissions: { createMany: { data: RolePermissionCreateMany } },
           },
         },
       },
@@ -78,7 +82,11 @@ export async function claimSeed() {
         company: faker.company.companyName(),
         participant: {
           connectOrCreate: {
-            where: undefined,
+            where: {
+              userId: faker.datatype.boolean()
+                ? faker.helpers.arrayElement(participants).userId
+                : undefined,
+            },
             create: {
               gender: faker.helpers.arrayElement(Object.values(Gender)),
               birthDate: faker.date.past(),
@@ -88,6 +96,20 @@ export async function claimSeed() {
               ),
               user: {
                 create: userCreateOne,
+              },
+              relation: {
+                connect: {
+                  userId: faker.helpers.arrayElement(participants).userId,
+                },
+              },
+              bankAccount: {
+                create: {
+                  accountName: faker.finance.creditCardIssuer(),
+                  accountNumber: faker.datatype.number({
+                    min: 300000,
+                    max: 500000,
+                  }),
+                },
               },
             },
           },
