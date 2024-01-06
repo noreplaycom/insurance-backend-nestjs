@@ -1129,14 +1129,6 @@ type Group {
   _count: GroupCount!
 }
 
-type AggregateNotification {
-  _count: NotificationCountAggregate
-  _avg: NotificationAvgAggregate
-  _sum: NotificationSumAggregate
-  _min: NotificationMinAggregate
-  _max: NotificationMaxAggregate
-}
-
 type NotificationAvgAggregate {
   id: Float
 }
@@ -1974,16 +1966,7 @@ type Query {
   claimStatusCount(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
-  notificationFindOne(where: NotificationWhereUniqueInput!): Notification
-
-  """Deskripsinya ada disini loh"""
   notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
-
-  """Deskripsinya ada disini loh"""
-  notificationFindFirst(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): Notification
-
-  """Deskripsinya ada disini loh"""
-  notificationAggregate(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, _count: NotificationCountAggregateInput, _avg: NotificationAvgAggregateInput, _sum: NotificationSumAggregateInput, _min: NotificationMinAggregateInput, _max: NotificationMaxAggregateInput): AggregateNotification
 
   """Deskripsinya ada disini loh"""
   notificationCount(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): Float
@@ -3467,6 +3450,13 @@ input ClaimStatusMaxAggregateInput {
   bookKeepingOrderId: Boolean
 }
 
+input NotificationOrderByWithRelationInput {
+  id: SortOrder
+  isRead: SortOrder
+  isCleared: SortOrder
+  user: UserOrderByWithRelationInput
+}
+
 input NotificationWhereUniqueInput {
   id: Int
   AND: [NotificationWhereInput!]
@@ -3475,13 +3465,6 @@ input NotificationWhereUniqueInput {
   isRead: BoolFilter
   isCleared: BoolFilter
   user: UserRelationFilter
-}
-
-input NotificationOrderByWithRelationInput {
-  id: SortOrder
-  isRead: SortOrder
-  isCleared: SortOrder
-  user: UserOrderByWithRelationInput
 }
 
 enum NotificationScalarFieldEnum {
@@ -3496,33 +3479,6 @@ enum NotificationScalarFieldEnum {
   createdAt
   updatedAt
   userId
-}
-
-input NotificationCountAggregateInput {
-  id: Boolean
-  isRead: Boolean
-  isCleared: Boolean
-  _all: Boolean
-}
-
-input NotificationAvgAggregateInput {
-  id: Boolean
-}
-
-input NotificationSumAggregateInput {
-  id: Boolean
-}
-
-input NotificationMinAggregateInput {
-  id: Boolean
-  isRead: Boolean
-  isCleared: Boolean
-}
-
-input NotificationMaxAggregateInput {
-  id: Boolean
-  isRead: Boolean
-  isCleared: Boolean
 }
 
 type Mutation {
@@ -3561,22 +3517,10 @@ type Mutation {
   claimStatusDeleteMany(where: ClaimStatusWhereInput): Boolean!
 
   """Deskripsinya ada disini loh"""
-  notificationCreateOne(data: NotificationCreateInput!): Notification
-
-  """Deskripsinya ada disini loh"""
-  notificationCreateMany(data: [NotificationCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
-
-  """Deskripsinya ada disini loh"""
   notificationUpdateOne(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
 
   """Deskripsinya ada disini loh"""
   notificationUpdateMany(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): Notification
-
-  """Deskripsinya ada disini loh"""
-  notificationDelete(where: NotificationWhereUniqueInput!): Boolean!
-
-  """Deskripsinya ada disini loh"""
-  notificationDeleteMany(where: NotificationWhereInput): Boolean!
 
   """
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
@@ -7997,17 +7941,6 @@ input ParticipantUpdateToOneWithWhereWithoutUserInput {
 input UserUpdateToOneWithWhereWithoutClaimActionsInput {
   where: UserWhereInput
   data: UserUpdateWithoutClaimActionsInput!
-}
-
-input NotificationCreateInput {
-  isRead: Boolean
-  isCleared: Boolean
-}
-
-input NotificationCreateManyInput {
-  id: Int
-  isRead: Boolean
-  isCleared: Boolean
 }
 
 input NotificationUpdateInput {
