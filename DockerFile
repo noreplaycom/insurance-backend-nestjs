@@ -1,7 +1,7 @@
 # Use the official Node.js LTS image as the base image
 FROM node:latest AS development
 
-RUN apt install postgresql-client postgresql-client-common libpq-dev
+RUN apt-get install libpq-dev
 
 RUN npm install -g @nestjs/cli
 
