@@ -5,6 +5,7 @@ import { IExceptionFilter } from './utils/exception/custom-exception-filter';
 import { ConfigService } from '@nestjs/config';
 // Ignore the import error
 import { graphqlUploadExpress } from 'graphql-upload';
+import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

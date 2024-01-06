@@ -242,26 +242,7 @@ export class ClaimResolver {
     @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
     file: FileUpload,
   ) {
-    const { createReadStream } = file;
-    const stream = createReadStream();
-    const chunks = [];
-    await new Promise<Buffer>((resolve, reject) => {
-      let buffer: Buffer;
-      stream.on('data', function (chunk: any) {
-        chunks.push(chunk);
-      });
-      stream.on('end', function () {
-        buffer = Buffer.concat(chunks);
-        resolve(buffer);
-      });
-      stream.on('error', reject);
-    });
-    const result = Buffer.concat(chunks);
-    const workbook = (read(result))
-    console.log(workbook.SheetNames)
-    const sheet = workbook.Sheets['Sheet 1']
-    console.log(utils.sheet_to_json(sheet))
-    return true
+    return await this.claimController.import(file);
   }
 
   @Query(() => String, {
@@ -269,7 +250,7 @@ export class ClaimResolver {
       'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
   })
   async claimExport() {
-    return 'https://dsaagroup.com/uploaded_file/claim.xlsx'
+    return this.claimController.export();
   }
 
   // ? CLAIM DETAIL SCREEN
