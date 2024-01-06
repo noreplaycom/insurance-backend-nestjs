@@ -429,8 +429,6 @@ model Notification {
     /// @Validator.IsNotEmpty()
     content String
 
-    createdAt DateTime @default(now())
-
     isRead Boolean @default(false)
 
     isCleared Boolean @default(false)
@@ -438,6 +436,10 @@ model Notification {
     deepLink String?
 
     fcmToken String?
+
+    createdAt DateTime @default(now())
+
+    updatedAt DateTime @updatedAt
 
     //-------------------------- 1 relations --------------------------------
 

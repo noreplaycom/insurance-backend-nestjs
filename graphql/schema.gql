@@ -151,6 +151,47 @@ type Announcement {
   createdBy: User!
 }
 
+type BackupAvgAggregate {
+  id: Float
+}
+
+type BackupCountAggregate {
+  id: Int!
+  name: Int!
+  path: Int!
+  isSuccessful: Int!
+  type: Int!
+  createdAt: Int!
+  _all: Int!
+}
+
+type BackupMaxAggregate {
+  id: Int
+  name: String
+  path: String
+  isSuccessful: Boolean
+  type: BackupType
+  createdAt: DateTime
+}
+
+enum BackupType {
+  MANUAL
+  AUTO
+}
+
+type BackupMinAggregate {
+  id: Int
+  name: String
+  path: String
+  isSuccessful: Boolean
+  type: BackupType
+  createdAt: DateTime
+}
+
+type BackupSumAggregate {
+  id: Int
+}
+
 type BankAccountAvgAggregate {
   id: Float
   accountNumber: Float
@@ -1088,6 +1129,14 @@ type Group {
   _count: GroupCount!
 }
 
+type AggregateNotification {
+  _count: NotificationCountAggregate
+  _avg: NotificationAvgAggregate
+  _sum: NotificationSumAggregate
+  _min: NotificationMinAggregate
+  _max: NotificationMaxAggregate
+}
+
 type NotificationAvgAggregate {
   id: Float
 }
@@ -1919,6 +1968,21 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   claimStatusCount(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
+  notificationFindOne(where: NotificationWhereUniqueInput!): Notification
+
+  """Deskripsinya ada disini loh"""
+  notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
+
+  """Deskripsinya ada disini loh"""
+  notificationFindFirst(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): Notification
+
+  """Deskripsinya ada disini loh"""
+  notificationAggregate(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, _count: NotificationCountAggregateInput, _avg: NotificationAvgAggregateInput, _sum: NotificationSumAggregateInput, _min: NotificationMinAggregateInput, _max: NotificationMaxAggregateInput): AggregateNotification
+
+  """Deskripsinya ada disini loh"""
+  notificationCount(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): Float
 }
 
 input ClaimWhereInput {
@@ -3406,6 +3470,98 @@ input ClaimStatusMaxAggregateInput {
   bookKeepingOrderId: Boolean
 }
 
+input NotificationWhereUniqueInput {
+  id: Int
+  AND: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  title: StringFilter
+  subtitle: StringFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  isRead: BoolFilter
+  isCleared: BoolFilter
+  deepLink: StringNullableFilter
+  fcmToken: StringNullableFilter
+  userId: StringFilter
+  user: UserRelationFilter
+}
+
+input NotificationOrderByWithRelationInput {
+  id: SortOrder
+  title: SortOrder
+  subtitle: SortOrder
+  content: SortOrder
+  createdAt: SortOrder
+  isRead: SortOrder
+  isCleared: SortOrder
+  deepLink: SortOrderInput
+  fcmToken: SortOrderInput
+  userId: SortOrder
+  user: UserOrderByWithRelationInput
+}
+
+enum NotificationScalarFieldEnum {
+  id
+  title
+  subtitle
+  content
+  createdAt
+  isRead
+  isCleared
+  deepLink
+  fcmToken
+  userId
+}
+
+input NotificationCountAggregateInput {
+  id: Boolean
+  title: Boolean
+  subtitle: Boolean
+  content: Boolean
+  createdAt: Boolean
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: Boolean
+  fcmToken: Boolean
+  userId: Boolean
+  _all: Boolean
+}
+
+input NotificationAvgAggregateInput {
+  id: Boolean
+}
+
+input NotificationSumAggregateInput {
+  id: Boolean
+}
+
+input NotificationMinAggregateInput {
+  id: Boolean
+  title: Boolean
+  subtitle: Boolean
+  content: Boolean
+  createdAt: Boolean
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: Boolean
+  fcmToken: Boolean
+  userId: Boolean
+}
+
+input NotificationMaxAggregateInput {
+  id: Boolean
+  title: Boolean
+  subtitle: Boolean
+  content: Boolean
+  createdAt: Boolean
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: Boolean
+  fcmToken: Boolean
+  userId: Boolean
+}
+
 type Mutation {
   """Deskripsinya ada disini loh"""
   claimCreateOne(data: ClaimCreateInput!): Claim
@@ -3440,6 +3596,29 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   claimStatusDeleteMany(where: ClaimStatusWhereInput): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  notificationCreateOne(data: NotificationCreateInput!): Notification
+
+  """Deskripsinya ada disini loh"""
+  notificationCreateMany(data: [NotificationCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
+
+  """Deskripsinya ada disini loh"""
+  notificationUpdateOne(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+
+  """Deskripsinya ada disini loh"""
+  notificationUpdateMany(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): Notification
+
+  """Deskripsinya ada disini loh"""
+  notificationDelete(where: NotificationWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  notificationDeleteMany(where: NotificationWhereInput): Boolean!
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  uploadSingleFile(file: Upload): String
 }
 
 input ClaimCreateInput {
@@ -5073,23 +5252,6 @@ input NotificationCreateWithoutUserInput {
 input NotificationCreateOrConnectWithoutUserInput {
   where: NotificationWhereUniqueInput!
   create: NotificationCreateWithoutUserInput!
-}
-
-input NotificationWhereUniqueInput {
-  id: Int
-  AND: [NotificationWhereInput!]
-  OR: [NotificationWhereInput!]
-  NOT: [NotificationWhereInput!]
-  title: StringFilter
-  subtitle: StringFilter
-  content: StringFilter
-  createdAt: DateTimeFilter
-  isRead: BoolFilter
-  isCleared: BoolFilter
-  deepLink: StringNullableFilter
-  fcmToken: StringNullableFilter
-  userId: StringFilter
-  user: UserRelationFilter
 }
 
 input NotificationCreateManyUserInputEnvelope {
@@ -7903,4 +8065,103 @@ input ParticipantUpdateToOneWithWhereWithoutUserInput {
 input UserUpdateToOneWithWhereWithoutClaimActionsInput {
   where: UserWhereInput
   data: UserUpdateWithoutClaimActionsInput!
+}
+
+input NotificationCreateInput {
+  title: String!
+  subtitle: String!
+  content: String!
+  createdAt: DateTime
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: String
+  fcmToken: String
+  user: UserCreateNestedOneWithoutNotificationInput!
+}
+
+input UserCreateNestedOneWithoutNotificationInput {
+  create: UserCreateWithoutNotificationInput
+  connectOrCreate: UserCreateOrConnectWithoutNotificationInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutNotificationInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput!
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+}
+
+input UserCreateOrConnectWithoutNotificationInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutNotificationInput!
+}
+
+input NotificationCreateManyInput {
+  id: Int
+  title: String!
+  subtitle: String!
+  content: String!
+  createdAt: DateTime
+  isRead: Boolean
+  isCleared: Boolean
+  deepLink: String
+  fcmToken: String
+  userId: String!
+}
+
+input NotificationUpdateInput {
+  title: StringFieldUpdateOperationsInput
+  subtitle: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  isRead: BoolFieldUpdateOperationsInput
+  isCleared: BoolFieldUpdateOperationsInput
+  deepLink: NullableStringFieldUpdateOperationsInput
+  fcmToken: NullableStringFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutNotificationNestedInput
+}
+
+input UserUpdateOneRequiredWithoutNotificationNestedInput {
+  create: UserCreateWithoutNotificationInput
+  connectOrCreate: UserCreateOrConnectWithoutNotificationInput
+  upsert: UserUpsertWithoutNotificationInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateToOneWithWhereWithoutNotificationInput
+}
+
+input UserUpsertWithoutNotificationInput {
+  update: UserUpdateWithoutNotificationInput!
+  create: UserCreateWithoutNotificationInput!
+  where: UserWhereInput
+}
+
+input UserUpdateWithoutNotificationInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
+  role: RoleUpdateOneRequiredWithoutUsersNestedInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+}
+
+input UserUpdateToOneWithWhereWithoutNotificationInput {
+  where: UserWhereInput
+  data: UserUpdateWithoutNotificationInput!
 }
