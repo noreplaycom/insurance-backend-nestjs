@@ -540,17 +540,21 @@ enum Class {
 model Claim {
     //-------------------------- scalars --------------------------------
 
+    /// @HideField({ output: false, input: true })
     ///Nok:	Nomer Register Klaim
     ///Nomor Sm	nomer register Surat masuk (Klaim melalui WA/Reguler/Exception/Email)
     id String @id @default(cuid())
 
     //orderNumber  String //tidak perlu nomor urut
 
+    /// @HideField({ output: false, input: true })
     ///Tklaim:	Tanggal Klaim
     createdAt DateTime @default(now())
 
+    /// @HideField({ output: false, input: true })
     updatedAt DateTime @updatedAt
 
+    /// @HideField({ output: false, input: true })
     deletedAt DateTime?
 
     //-------------------------- 1 relations --------------------------------
@@ -599,6 +603,7 @@ model Claim {
 
     tags Tag[]
 
+    /// @HideField({ output: true, input: true })
     claimStatuses ClaimStatus[]
 }
 
