@@ -151,6 +151,14 @@ type Announcement {
   createdBy: User!
 }
 
+type AggregateBackup {
+  _count: BackupCountAggregate
+  _avg: BackupAvgAggregate
+  _sum: BackupSumAggregate
+  _min: BackupMinAggregate
+  _max: BackupMaxAggregate
+}
+
 type BackupAvgAggregate {
   id: Float
 }
@@ -190,6 +198,15 @@ type BackupMinAggregate {
 
 type BackupSumAggregate {
   id: Int
+}
+
+type Backup {
+  id: Int!
+  name: String!
+  path: String
+  isSuccessful: Boolean!
+  type: BackupType!
+  createdAt: DateTime!
 }
 
 type BankAccountAvgAggregate {
@@ -1933,6 +1950,21 @@ type BatchPayload {
 
 type Query {
   """Deskripsinya ada disini loh"""
+  backupFindOne(where: BackupWhereUniqueInput!): Backup
+
+  """Deskripsinya ada disini loh"""
+  backupFindMany(where: BackupWhereInput, orderBy: [BackupOrderByWithRelationInput!], cursor: BackupWhereUniqueInput, take: Int, skip: Int, distinct: [BackupScalarFieldEnum!]): [Backup!]
+
+  """Deskripsinya ada disini loh"""
+  backupFindFirst(where: BackupWhereInput, orderBy: [BackupOrderByWithRelationInput!], cursor: BackupWhereUniqueInput, take: Int, skip: Int, distinct: [BackupScalarFieldEnum!]): Backup
+
+  """Deskripsinya ada disini loh"""
+  backupAggregate(where: BackupWhereInput, orderBy: [BackupOrderByWithRelationInput!], cursor: BackupWhereUniqueInput, take: Int, skip: Int, _count: BackupCountAggregateInput, _avg: BackupAvgAggregateInput, _sum: BackupSumAggregateInput, _min: BackupMinAggregateInput, _max: BackupMaxAggregateInput): AggregateBackup
+
+  """Deskripsinya ada disini loh"""
+  backupCount(where: BackupWhereInput, orderBy: [BackupOrderByWithRelationInput!], cursor: BackupWhereUniqueInput, take: Int, skip: Int, distinct: [BackupScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
   claimCount(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
@@ -1993,6 +2025,230 @@ type Query {
   notificationCount(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): Float
 }
 
+input BackupWhereUniqueInput {
+  id: Int
+  AND: [BackupWhereInput!]
+  OR: [BackupWhereInput!]
+  NOT: [BackupWhereInput!]
+  name: StringFilter
+  path: StringNullableFilter
+  isSuccessful: BoolFilter
+  type: EnumBackupTypeFilter
+  createdAt: DateTimeFilter
+}
+
+input BackupWhereInput {
+  AND: [BackupWhereInput!]
+  OR: [BackupWhereInput!]
+  NOT: [BackupWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  path: StringNullableFilter
+  isSuccessful: BoolFilter
+  type: EnumBackupTypeFilter
+  createdAt: DateTimeFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
+}
+
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+}
+
+input NestedStringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringNullableFilter
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input EnumBackupTypeFilter {
+  equals: BackupType
+  in: [BackupType!]
+  notIn: [BackupType!]
+  not: NestedEnumBackupTypeFilter
+}
+
+input NestedEnumBackupTypeFilter {
+  equals: BackupType
+  in: [BackupType!]
+  notIn: [BackupType!]
+  not: NestedEnumBackupTypeFilter
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: NestedDateTimeFilter
+}
+
+input BackupOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  path: SortOrderInput
+  isSuccessful: SortOrder
+  type: SortOrder
+  createdAt: SortOrder
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input SortOrderInput {
+  sort: SortOrder!
+  nulls: NullsOrder
+}
+
+enum NullsOrder {
+  first
+  last
+}
+
+enum BackupScalarFieldEnum {
+  id
+  name
+  path
+  isSuccessful
+  type
+  createdAt
+}
+
+input BackupCountAggregateInput {
+  id: Boolean
+  name: Boolean
+  path: Boolean
+  isSuccessful: Boolean
+  type: Boolean
+  createdAt: Boolean
+  _all: Boolean
+}
+
+input BackupAvgAggregateInput {
+  id: Boolean
+}
+
+input BackupSumAggregateInput {
+  id: Boolean
+}
+
+input BackupMinAggregateInput {
+  id: Boolean
+  name: Boolean
+  path: Boolean
+  isSuccessful: Boolean
+  type: Boolean
+  createdAt: Boolean
+}
+
+input BackupMaxAggregateInput {
+  id: Boolean
+  name: Boolean
+  path: Boolean
+  isSuccessful: Boolean
+  type: Boolean
+  createdAt: Boolean
+}
+
 input ClaimWhereInput {
   AND: [ClaimWhereInput!]
   OR: [ClaimWhereInput!]
@@ -2045,62 +2301,6 @@ input NestedEnumAdmedicaStatusFilter {
   not: NestedEnumAdmedicaStatusFilter
 }
 
-input StringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  mode: QueryMode
-  not: NestedStringFilter
-}
-
-enum QueryMode {
-  default
-  insensitive
-}
-
-input NestedStringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringFilter
-}
-
-input IntFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntFilter
-}
-
-input NestedIntFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntFilter
-}
-
 input IntNullableFilter {
   equals: Int
   in: [Int!]
@@ -2121,35 +2321,6 @@ input NestedIntNullableFilter {
   gt: Int
   gte: Int
   not: NestedIntNullableFilter
-}
-
-input StringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  mode: QueryMode
-  not: NestedStringNullableFilter
-}
-
-input NestedStringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
 }
 
 input ParticipantRelationFilter {
@@ -2190,38 +2361,6 @@ input NestedEnumGenderFilter {
   in: [Gender!]
   notIn: [Gender!]
   not: NestedEnumGenderFilter
-}
-
-input DateTimeFilter {
-  equals: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-  not: NestedDateTimeFilter
-}
-
-input NestedDateTimeFilter {
-  equals: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-  not: NestedDateTimeFilter
-}
-
-input BoolFilter {
-  equals: Boolean
-  not: NestedBoolFilter
-}
-
-input NestedBoolFilter {
-  equals: Boolean
-  not: NestedBoolFilter
 }
 
 input EnumParticipantStatusFilter {
@@ -3087,21 +3226,6 @@ input ClaimOrderByWithRelationInput {
   tags: TagOrderByRelationAggregateInput
 }
 
-enum SortOrder {
-  asc
-  desc
-}
-
-input SortOrderInput {
-  sort: SortOrder!
-  nulls: NullsOrder
-}
-
-enum NullsOrder {
-  first
-  last
-}
-
 input ParticipantOrderByWithRelationInput {
   gender: SortOrder
   birthDate: SortOrder
@@ -3571,6 +3695,24 @@ enum NotificationScalarFieldEnum {
 
 type Mutation {
   """Deskripsinya ada disini loh"""
+  backupCreateOne(data: BackupCreateInput!): Backup
+
+  """Deskripsinya ada disini loh"""
+  backupCreateMany(data: [BackupCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
+
+  """Deskripsinya ada disini loh"""
+  backupUpdateOne(data: BackupUpdateInput!, where: BackupWhereUniqueInput!): Backup
+
+  """Deskripsinya ada disini loh"""
+  backupUpdateMany(data: BackupUpdateManyMutationInput!, where: BackupWhereInput): Backup
+
+  """Deskripsinya ada disini loh"""
+  backupDelete(where: BackupWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  backupDeleteMany(where: BackupWhereInput): Boolean!
+
+  """Deskripsinya ada disini loh"""
   claimCreateOne(data: ClaimCreateInput!): Claim
 
   """
@@ -3623,6 +3765,59 @@ type Mutation {
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
   """
   uploadSingleFile(file: Upload): String
+}
+
+input BackupCreateInput {
+  name: String!
+  path: String
+  isSuccessful: Boolean!
+  type: BackupType!
+  createdAt: DateTime
+}
+
+input BackupCreateManyInput {
+  id: Int
+  name: String!
+  path: String
+  isSuccessful: Boolean!
+  type: BackupType!
+  createdAt: DateTime
+}
+
+input BackupUpdateInput {
+  name: StringFieldUpdateOperationsInput
+  path: NullableStringFieldUpdateOperationsInput
+  isSuccessful: BoolFieldUpdateOperationsInput
+  type: EnumBackupTypeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input EnumBackupTypeFieldUpdateOperationsInput {
+  set: BackupType
+}
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input BackupUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  path: NullableStringFieldUpdateOperationsInput
+  isSuccessful: BoolFieldUpdateOperationsInput
+  type: EnumBackupTypeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
 }
 
 input ClaimCreateInput {
@@ -5712,14 +5907,6 @@ input ClaimStatusUpdateInput {
   claimFinancial: ClaimFinancialUpdateOneWithoutClaimStatusNestedInput
 }
 
-input NullableStringFieldUpdateOperationsInput {
-  set: String
-}
-
-input DateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
-
 input EnumClaimStatusTypeFieldUpdateOperationsInput {
   set: ClaimStatusType
 }
@@ -5752,10 +5939,6 @@ input UserUpdateWithoutClaimActionsInput {
   claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
   announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
   notification: NotificationUpdateManyWithoutUserNestedInput
-}
-
-input StringFieldUpdateOperationsInput {
-  set: String
 }
 
 input NullableDateTimeFieldUpdateOperationsInput {
@@ -5936,10 +6119,6 @@ input ParticipantUpdateWithoutUserInput {
 
 input EnumGenderFieldUpdateOperationsInput {
   set: Gender
-}
-
-input BoolFieldUpdateOperationsInput {
-  set: Boolean
 }
 
 input EnumParticipantStatusFieldUpdateOperationsInput {

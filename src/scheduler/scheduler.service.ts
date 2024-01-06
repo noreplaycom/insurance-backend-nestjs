@@ -8,11 +8,21 @@ import { postgresBackup } from 'src/utils/database-import.function';
 @Injectable()
 export class SchedulerService {
   constructor(
+    // private readonly imagesController: ImagesController, // private readonly uploaderService: UploaderService,
     private readonly configService: ConfigService,
   ) {}
   private readonly logger = new Logger(SchedulerService.name);
 
   //TODO: Auto backup
+  @Cron(CronExpression.EVERY_WEEK)
+  async databaseLocalBackupForPostgres() {
+    try {
+      const postgresConnectionString = this.configService.get('DATABASE_URL');
+      await postgresBackup(postgresConnectionString);
+    } catch (error) {
+      this.logger.error('scheduler database backup for postgres failed');
+    }
+  }
 
   //TODO: Auto Delete temporary xlsx files
 
@@ -56,13 +66,13 @@ export class SchedulerService {
   //   }
   // }
 
-  @Cron(CronExpression.EVERY_WEEK)
-  async databaseLocalBackupForPostgres() {
-    try {
-      const postgresConnectionString = this.configService.get('DATABASE_URL');
-      await postgresBackup(postgresConnectionString);
-    } catch (error) {
-      this.logger.error('scheduler database backup for postgres failed');
-    }
-  }
+  // @Cron(CronExpression.EVERY_WEEK) // Schedule every Sunday at midnight
+  // async deleteOrphanedS3Objects() {
+  //   try {
+  //     await this.uploaderService.deleteOrphanedS3Objects();
+  //     this.logger.log('deleteOrphanedS3Objects scheduler: Success');
+  //   } catch (error) {
+  //     this.logger.error('deleteOrphanedS3Objects scheduler: Failed');
+  //   }
+  // }
 }
