@@ -11,20 +11,16 @@ import {
   PrismaClient,
 } from '@prisma/client';
 import { faker } from '@faker-js/faker';
+import { populateProvinceCityDistricSubdistric } from './address.seed';
 
 let prisma = new PrismaClient();
 
 export async function claimSeed() {
-  // Check if required entities exist
-  // if (
-  //   participants.length === 0 ||
-  //   diseases.length === 0 ||
-  //   clinics.length === 0 ||
-  //   users.length === 0
-  // ) {
-  //   console.log('Required related models are not seeded yet.');
-  //   return;
-  // }
+  const subdistricts = await prisma.subdistrict.findMany();
+
+  if (subdistricts.length <= 0) {
+    populateProvinceCityDistricSubdistric();
+  }
 
   const programs = await prisma.program.findMany();
 
@@ -39,8 +35,6 @@ export async function claimSeed() {
     }
   }
 
-  const city = await prisma.city.findMany();
-
   const participants = await prisma.participant.findMany();
 
   const roles = await prisma.role.findMany({
@@ -51,30 +45,21 @@ export async function claimSeed() {
   const branches = await prisma.branch.findMany();
 
   for (let i = 0; i < 100; i++) {
-    // Fetch or create necessary related records
-    // const participants = await prisma.participant.findFirst({
-    //   where: { claims: { none: {} } },
-    // });
-    // const diseases = await prisma.disease.findFirst({
-    //   where: { claims: { none: {} } },
-    // });
-    // const users = await prisma.user.findFirst({
-    //   where: { claimActions: { none: {} } },
-    // });
-    // const clinics = await prisma.clinic.findFirst({
-    //   where: { claims: { none: {} } },
-    // });
-
     const RolePermissionCreateMany: Prisma.RolePermissionCreateManyRoleInput[] =
       [];
 
     const availablePermissions = Object.values(Permission);
+
+    // Specify the desired number of random permissions
+    const numRandomPermissions = 5; // Adjust this as needed
+
+    // Create a set to store unique permissions
     const uniquePermissions = new Set();
 
-    while (uniquePermissions.size < availablePermissions.length) {
+    // Generate and add random permissions until the desired number is reached
+    while (uniquePermissions.size < numRandomPermissions) {
       const randomPermission = faker.helpers.arrayElement(availablePermissions);
       uniquePermissions.add(randomPermission);
-
       RolePermissionCreateMany.push({
         permission: randomPermission,
       });
@@ -170,8 +155,11 @@ export async function claimSeed() {
                 address: {
                   create: {
                     address: faker.address.streetAddress(),
-                    postalCode: faker.address.zipCode(),
-                    city: { connect: {} },
+                    subdistrict: {
+                      connect: {
+                        id: faker.helpers.arrayElement(subdistricts).id,
+                      },
+                    },
                   },
                 },
               },
@@ -238,5 +226,5 @@ export async function claimSeed() {
     });
   }
 
-  console.log('Claims seeding with its relations completed.');
+  console.log('Claims seeded with its relations completed.');
 }

@@ -6,6 +6,9 @@ const prisma = new PrismaClient();
 
 export async function populateProvinceCityDistricSubdistric() {
   try {
+    console.log(
+      'Start populating ProvinceCityDistricSubdistric into the database...',
+    );
     // Define the path to the JSON file within the Prisma folder
     const jsonFilePath = join(__dirname, 'kodepos.json');
     // Read the JSON file

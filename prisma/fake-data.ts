@@ -92,32 +92,65 @@ export function fakeContactInfoComplete() {
     addressId: faker.datatype.number(),
   };
 }
-export function fakeAddress() {
+export function fakeProvince() {
   return {
-    address: faker.lorem.words(5),
-    postalCode: faker.datatype.number(),
+    name: faker.name.fullName(),
   };
 }
-export function fakeAddressComplete() {
+export function fakeProvinceComplete() {
   return {
     id: faker.datatype.number(),
-    address: faker.lorem.words(5),
-    cityId: faker.datatype.number(),
-    postalCode: faker.datatype.number(),
+    name: faker.name.fullName(),
   };
 }
 export function fakeCity() {
   return {
     name: faker.name.fullName(),
-    updatedAt: faker.datatype.datetime(),
   };
 }
 export function fakeCityComplete() {
   return {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
-    createdAt: new Date(),
-    updatedAt: faker.datatype.datetime(),
+    provinceId: faker.datatype.number(),
+  };
+}
+export function fakeDistrict() {
+  return {
+    name: faker.name.fullName(),
+  };
+}
+export function fakeDistrictComplete() {
+  return {
+    id: faker.datatype.number(),
+    name: faker.name.fullName(),
+    cityId: faker.datatype.number(),
+  };
+}
+export function fakeSubdistrict() {
+  return {
+    name: faker.name.fullName(),
+    postalCode: faker.lorem.words(5),
+  };
+}
+export function fakeSubdistrictComplete() {
+  return {
+    id: faker.datatype.number(),
+    name: faker.name.fullName(),
+    districtId: faker.datatype.number(),
+    postalCode: faker.lorem.words(5),
+  };
+}
+export function fakeAddress() {
+  return {
+    address: faker.lorem.words(5),
+  };
+}
+export function fakeAddressComplete() {
+  return {
+    id: faker.datatype.number(),
+    address: faker.lorem.words(5),
+    subdistrictId: faker.datatype.number(),
   };
 }
 export function fakeBankAccount() {

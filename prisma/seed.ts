@@ -1,5 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client';
-
+import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
@@ -12,7 +11,6 @@ export enum Period {
 
 async function main() {
   console.log('Start seeding ...');
-  console.log(await prisma.user.findMany({ take: 2 }));
 
   // async function findGuestsSharingSameShowTime() {
   //   const guestsWithSharedSeats = await prisma.guest.findMany({
