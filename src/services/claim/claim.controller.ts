@@ -378,7 +378,7 @@ export class ClaimController {
 
   async export() {
     const claims = await this.claimService.findMany({});
-    const xlsxFilePath = createXLSX(claims, 'claim');
+    const xlsxFilePath = await createXLSX(claims, 'claim');
     return this.configService.get('APP_URL') + '/' + xlsxFilePath;
   }
 
