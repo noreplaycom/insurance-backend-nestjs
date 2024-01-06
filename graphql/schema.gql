@@ -1146,11 +1146,12 @@ type NotificationCountAggregate {
   title: Int!
   subtitle: Int!
   content: Int!
-  createdAt: Int!
   isRead: Int!
   isCleared: Int!
   deepLink: Int!
   fcmToken: Int!
+  createdAt: Int!
+  updatedAt: Int!
   userId: Int!
   _all: Int!
 }
@@ -1160,11 +1161,12 @@ type NotificationMaxAggregate {
   title: String
   subtitle: String
   content: String
-  createdAt: DateTime
   isRead: Boolean
   isCleared: Boolean
   deepLink: String
   fcmToken: String
+  createdAt: DateTime
+  updatedAt: DateTime
   userId: String
 }
 
@@ -1173,11 +1175,12 @@ type NotificationMinAggregate {
   title: String
   subtitle: String
   content: String
-  createdAt: DateTime
   isRead: Boolean
   isCleared: Boolean
   deepLink: String
   fcmToken: String
+  createdAt: DateTime
+  updatedAt: DateTime
   userId: String
 }
 
@@ -1190,11 +1193,12 @@ type Notification {
   title: String!
   subtitle: String!
   content: String!
-  createdAt: DateTime!
   isRead: Boolean!
   isCleared: Boolean!
   deepLink: String
   fcmToken: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
   userId: String!
   user: User!
 }
@@ -2684,11 +2688,12 @@ input NotificationWhereInput {
   title: StringFilter
   subtitle: StringFilter
   content: StringFilter
-  createdAt: DateTimeFilter
   isRead: BoolFilter
   isCleared: BoolFilter
   deepLink: StringNullableFilter
   fcmToken: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
   userId: StringFilter
   user: UserRelationFilter
 }
@@ -3478,11 +3483,12 @@ input NotificationWhereUniqueInput {
   title: StringFilter
   subtitle: StringFilter
   content: StringFilter
-  createdAt: DateTimeFilter
   isRead: BoolFilter
   isCleared: BoolFilter
   deepLink: StringNullableFilter
   fcmToken: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
   userId: StringFilter
   user: UserRelationFilter
 }
@@ -3492,11 +3498,12 @@ input NotificationOrderByWithRelationInput {
   title: SortOrder
   subtitle: SortOrder
   content: SortOrder
-  createdAt: SortOrder
   isRead: SortOrder
   isCleared: SortOrder
   deepLink: SortOrderInput
   fcmToken: SortOrderInput
+  createdAt: SortOrder
+  updatedAt: SortOrder
   userId: SortOrder
   user: UserOrderByWithRelationInput
 }
@@ -3506,11 +3513,12 @@ enum NotificationScalarFieldEnum {
   title
   subtitle
   content
-  createdAt
   isRead
   isCleared
   deepLink
   fcmToken
+  createdAt
+  updatedAt
   userId
 }
 
@@ -3519,11 +3527,12 @@ input NotificationCountAggregateInput {
   title: Boolean
   subtitle: Boolean
   content: Boolean
-  createdAt: Boolean
   isRead: Boolean
   isCleared: Boolean
   deepLink: Boolean
   fcmToken: Boolean
+  createdAt: Boolean
+  updatedAt: Boolean
   userId: Boolean
   _all: Boolean
 }
@@ -3541,11 +3550,12 @@ input NotificationMinAggregateInput {
   title: Boolean
   subtitle: Boolean
   content: Boolean
-  createdAt: Boolean
   isRead: Boolean
   isCleared: Boolean
   deepLink: Boolean
   fcmToken: Boolean
+  createdAt: Boolean
+  updatedAt: Boolean
   userId: Boolean
 }
 
@@ -3554,11 +3564,12 @@ input NotificationMaxAggregateInput {
   title: Boolean
   subtitle: Boolean
   content: Boolean
-  createdAt: Boolean
   isRead: Boolean
   isCleared: Boolean
   deepLink: Boolean
   fcmToken: Boolean
+  createdAt: Boolean
+  updatedAt: Boolean
   userId: Boolean
 }
 
@@ -5242,11 +5253,12 @@ input NotificationCreateWithoutUserInput {
   title: String!
   subtitle: String!
   content: String!
-  createdAt: DateTime
   isRead: Boolean
   isCleared: Boolean
   deepLink: String
   fcmToken: String
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 input NotificationCreateOrConnectWithoutUserInput {
@@ -5264,11 +5276,12 @@ input NotificationCreateManyUserInput {
   title: String!
   subtitle: String!
   content: String!
-  createdAt: DateTime
   isRead: Boolean
   isCleared: Boolean
   deepLink: String
   fcmToken: String
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 input UserCreateOrConnectWithoutClaimsInputInput {
@@ -7739,11 +7752,12 @@ input NotificationUpdateWithoutUserInput {
   title: StringFieldUpdateOperationsInput
   subtitle: StringFieldUpdateOperationsInput
   content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   isRead: BoolFieldUpdateOperationsInput
   isCleared: BoolFieldUpdateOperationsInput
   deepLink: NullableStringFieldUpdateOperationsInput
   fcmToken: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input NotificationUpdateWithWhereUniqueWithoutUserInput {
@@ -7764,11 +7778,12 @@ input NotificationScalarWhereInput {
   title: StringFilter
   subtitle: StringFilter
   content: StringFilter
-  createdAt: DateTimeFilter
   isRead: BoolFilter
   isCleared: BoolFilter
   deepLink: StringNullableFilter
   fcmToken: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
   userId: StringFilter
 }
 
@@ -7776,11 +7791,12 @@ input NotificationUpdateManyMutationInput {
   title: StringFieldUpdateOperationsInput
   subtitle: StringFieldUpdateOperationsInput
   content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   isRead: BoolFieldUpdateOperationsInput
   isCleared: BoolFieldUpdateOperationsInput
   deepLink: NullableStringFieldUpdateOperationsInput
   fcmToken: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpdateToOneWithWhereWithoutClaimsInputInput {
@@ -8071,11 +8087,12 @@ input NotificationCreateInput {
   title: String!
   subtitle: String!
   content: String!
-  createdAt: DateTime
   isRead: Boolean
   isCleared: Boolean
   deepLink: String
   fcmToken: String
+  createdAt: DateTime
+  updatedAt: DateTime
   user: UserCreateNestedOneWithoutNotificationInput!
 }
 
@@ -8111,11 +8128,12 @@ input NotificationCreateManyInput {
   title: String!
   subtitle: String!
   content: String!
-  createdAt: DateTime
   isRead: Boolean
   isCleared: Boolean
   deepLink: String
   fcmToken: String
+  createdAt: DateTime
+  updatedAt: DateTime
   userId: String!
 }
 
@@ -8123,11 +8141,12 @@ input NotificationUpdateInput {
   title: StringFieldUpdateOperationsInput
   subtitle: StringFieldUpdateOperationsInput
   content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
   isRead: BoolFieldUpdateOperationsInput
   isCleared: BoolFieldUpdateOperationsInput
   deepLink: NullableStringFieldUpdateOperationsInput
   fcmToken: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutNotificationNestedInput
 }
 

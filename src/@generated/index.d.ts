@@ -207,11 +207,12 @@ export declare enum NotificationScalarFieldEnum {
     title = "title",
     subtitle = "subtitle",
     content = "content",
-    createdAt = "createdAt",
     isRead = "isRead",
     isCleared = "isCleared",
     deepLink = "deepLink",
     fcmToken = "fcmToken",
+    createdAt = "createdAt",
+    updatedAt = "updatedAt",
     userId = "userId"
 }
 export declare enum GroupScalarFieldEnum {
@@ -11238,11 +11239,12 @@ export declare class NotificationCountAggregateInput {
     title?: true;
     subtitle?: true;
     content?: true;
-    createdAt?: true;
     isRead?: true;
     isCleared?: true;
     deepLink?: true;
     fcmToken?: true;
+    createdAt?: true;
+    updatedAt?: true;
     userId?: true;
     _all?: true;
 }
@@ -11251,11 +11253,12 @@ export declare class NotificationCountAggregate {
     title: number;
     subtitle: number;
     content: number;
-    createdAt: number;
     isRead: number;
     isCleared: number;
     deepLink: number;
     fcmToken: number;
+    createdAt: number;
+    updatedAt: number;
     userId: number;
     _all: number;
 }
@@ -11264,11 +11267,12 @@ export declare class NotificationCountOrderByAggregateInput {
     title?: keyof typeof SortOrder;
     subtitle?: keyof typeof SortOrder;
     content?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
     isRead?: keyof typeof SortOrder;
     isCleared?: keyof typeof SortOrder;
     deepLink?: keyof typeof SortOrder;
     fcmToken?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
 }
 export declare class NotificationCreateManyUserInputEnvelope {
@@ -11280,22 +11284,24 @@ export declare class NotificationCreateManyUserInput {
     title: string;
     subtitle: string;
     content: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
 }
 export declare class NotificationCreateManyInput {
     id?: number;
     title: string;
     subtitle: string;
     content: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
     userId: string;
 }
 export declare class NotificationCreateNestedManyWithoutUserInput {
@@ -11312,21 +11318,23 @@ export declare class NotificationCreateWithoutUserInput {
     title: string;
     subtitle: string;
     content: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
 }
 export declare class NotificationCreateInput {
     title: string;
     subtitle: string;
     content: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
     user: InstanceType<typeof UserCreateNestedOneWithoutNotificationInput>;
 }
 export declare class NotificationGroupByArgs {
@@ -11347,11 +11355,12 @@ export declare class NotificationGroupBy {
     title: string;
     subtitle: string;
     content: string;
-    createdAt: Date | string;
     isRead: boolean;
     isCleared: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt: Date | string;
+    updatedAt: Date | string;
     userId: string;
     _count?: InstanceType<typeof NotificationCountAggregate>;
     _avg?: InstanceType<typeof NotificationAvgAggregate>;
@@ -11369,11 +11378,12 @@ export declare class NotificationMaxAggregateInput {
     title?: true;
     subtitle?: true;
     content?: true;
-    createdAt?: true;
     isRead?: true;
     isCleared?: true;
     deepLink?: true;
     fcmToken?: true;
+    createdAt?: true;
+    updatedAt?: true;
     userId?: true;
 }
 export declare class NotificationMaxAggregate {
@@ -11381,11 +11391,12 @@ export declare class NotificationMaxAggregate {
     title?: string;
     subtitle?: string;
     content?: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
     userId?: string;
 }
 export declare class NotificationMaxOrderByAggregateInput {
@@ -11393,11 +11404,12 @@ export declare class NotificationMaxOrderByAggregateInput {
     title?: keyof typeof SortOrder;
     subtitle?: keyof typeof SortOrder;
     content?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
     isRead?: keyof typeof SortOrder;
     isCleared?: keyof typeof SortOrder;
     deepLink?: keyof typeof SortOrder;
     fcmToken?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
 }
 export declare class NotificationMinAggregateInput {
@@ -11405,11 +11417,12 @@ export declare class NotificationMinAggregateInput {
     title?: true;
     subtitle?: true;
     content?: true;
-    createdAt?: true;
     isRead?: true;
     isCleared?: true;
     deepLink?: true;
     fcmToken?: true;
+    createdAt?: true;
+    updatedAt?: true;
     userId?: true;
 }
 export declare class NotificationMinAggregate {
@@ -11417,11 +11430,12 @@ export declare class NotificationMinAggregate {
     title?: string;
     subtitle?: string;
     content?: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
     userId?: string;
 }
 export declare class NotificationMinOrderByAggregateInput {
@@ -11429,11 +11443,12 @@ export declare class NotificationMinOrderByAggregateInput {
     title?: keyof typeof SortOrder;
     subtitle?: keyof typeof SortOrder;
     content?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
     isRead?: keyof typeof SortOrder;
     isCleared?: keyof typeof SortOrder;
     deepLink?: keyof typeof SortOrder;
     fcmToken?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
 }
 export declare class NotificationOrderByRelationAggregateInput {
@@ -11444,11 +11459,12 @@ export declare class NotificationOrderByWithAggregationInput {
     title?: keyof typeof SortOrder;
     subtitle?: keyof typeof SortOrder;
     content?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
     isRead?: keyof typeof SortOrder;
     isCleared?: keyof typeof SortOrder;
     deepLink?: InstanceType<typeof SortOrderInput>;
     fcmToken?: InstanceType<typeof SortOrderInput>;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof NotificationCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof NotificationAvgOrderByAggregateInput>;
@@ -11461,11 +11477,12 @@ export declare class NotificationOrderByWithRelationInput {
     title?: keyof typeof SortOrder;
     subtitle?: keyof typeof SortOrder;
     content?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
     isRead?: keyof typeof SortOrder;
     isCleared?: keyof typeof SortOrder;
     deepLink?: InstanceType<typeof SortOrderInput>;
     fcmToken?: InstanceType<typeof SortOrderInput>;
+    createdAt?: keyof typeof SortOrder;
+    updatedAt?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
     user?: InstanceType<typeof UserOrderByWithRelationInput>;
 }
@@ -11477,11 +11494,12 @@ export declare class NotificationScalarWhereWithAggregatesInput {
     title?: InstanceType<typeof StringWithAggregatesFilter>;
     subtitle?: InstanceType<typeof StringWithAggregatesFilter>;
     content?: InstanceType<typeof StringWithAggregatesFilter>;
-    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     isRead?: InstanceType<typeof BoolWithAggregatesFilter>;
     isCleared?: InstanceType<typeof BoolWithAggregatesFilter>;
     deepLink?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     fcmToken?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     userId?: InstanceType<typeof StringWithAggregatesFilter>;
 }
 export declare class NotificationScalarWhereInput {
@@ -11492,11 +11510,12 @@ export declare class NotificationScalarWhereInput {
     title?: InstanceType<typeof StringFilter>;
     subtitle?: InstanceType<typeof StringFilter>;
     content?: InstanceType<typeof StringFilter>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
     isRead?: InstanceType<typeof BoolFilter>;
     isCleared?: InstanceType<typeof BoolFilter>;
     deepLink?: InstanceType<typeof StringNullableFilter>;
     fcmToken?: InstanceType<typeof StringNullableFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
     userId?: InstanceType<typeof StringFilter>;
 }
 export declare class NotificationSumAggregateInput {
@@ -11519,22 +11538,24 @@ export declare class NotificationUncheckedCreateWithoutUserInput {
     title: string;
     subtitle: string;
     content: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
 }
 export declare class NotificationUncheckedCreateInput {
     id?: number;
     title: string;
     subtitle: string;
     content: string;
-    createdAt?: Date | string;
     isRead?: boolean;
     isCleared?: boolean;
     deepLink?: string;
     fcmToken?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
     userId: string;
 }
 export declare class NotificationUncheckedUpdateManyWithoutUserNestedInput {
@@ -11555,22 +11576,24 @@ export declare class NotificationUncheckedUpdateManyWithoutUserInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class NotificationUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class NotificationUncheckedUpdateWithoutUserInput {
@@ -11578,33 +11601,36 @@ export declare class NotificationUncheckedUpdateWithoutUserInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class NotificationUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class NotificationUpdateManyMutationInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class NotificationUpdateManyWithWhereWithoutUserInput {
     where: InstanceType<typeof NotificationScalarWhereInput>;
@@ -11631,21 +11657,23 @@ export declare class NotificationUpdateWithoutUserInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class NotificationUpdateInput {
     title?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     subtitle?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     content?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isRead?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     isCleared?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     deepLink?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     fcmToken?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutNotificationNestedInput>;
 }
 export declare class NotificationUpsertWithWhereUniqueWithoutUserInput {
@@ -11661,11 +11689,12 @@ export declare class NotificationWhereUniqueInput {
     title?: InstanceType<typeof StringFilter>;
     subtitle?: InstanceType<typeof StringFilter>;
     content?: InstanceType<typeof StringFilter>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
     isRead?: InstanceType<typeof BoolFilter>;
     isCleared?: InstanceType<typeof BoolFilter>;
     deepLink?: InstanceType<typeof StringNullableFilter>;
     fcmToken?: InstanceType<typeof StringNullableFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
     userId?: InstanceType<typeof StringFilter>;
     user?: InstanceType<typeof UserRelationFilter>;
 }
@@ -11677,11 +11706,12 @@ export declare class NotificationWhereInput {
     title?: InstanceType<typeof StringFilter>;
     subtitle?: InstanceType<typeof StringFilter>;
     content?: InstanceType<typeof StringFilter>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
     isRead?: InstanceType<typeof BoolFilter>;
     isCleared?: InstanceType<typeof BoolFilter>;
     deepLink?: InstanceType<typeof StringNullableFilter>;
     fcmToken?: InstanceType<typeof StringNullableFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    updatedAt?: InstanceType<typeof DateTimeFilter>;
     userId?: InstanceType<typeof StringFilter>;
     user?: InstanceType<typeof UserRelationFilter>;
 }
@@ -11690,11 +11720,12 @@ export declare class Notification {
     title: string;
     subtitle: string;
     content: string;
-    createdAt: Date;
     isRead: boolean;
     isCleared: boolean;
     deepLink: string | null;
     fcmToken: string | null;
+    createdAt: Date;
+    updatedAt: Date;
     userId: string;
     user?: InstanceType<typeof User>;
 }

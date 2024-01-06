@@ -251,6 +251,7 @@ export function fakeNotification() {
     content: faker.lorem.words(5),
     deepLink: undefined,
     fcmToken: undefined,
+    updatedAt: faker.datatype.datetime(),
   };
 }
 export function fakeNotificationComplete() {
@@ -259,11 +260,12 @@ export function fakeNotificationComplete() {
     title: faker.lorem.words(5),
     subtitle: faker.lorem.words(5),
     content: faker.lorem.words(5),
-    createdAt: new Date(),
     isRead: false,
     isCleared: false,
     deepLink: undefined,
     fcmToken: undefined,
+    createdAt: new Date(),
+    updatedAt: faker.datatype.datetime(),
     userId: faker.datatype.uuid(),
   };
 }

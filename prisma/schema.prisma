@@ -421,11 +421,14 @@ model Notification {
 
     id Int @id @default(autoincrement())
 
+    /// @HideField({ output: false, input: true })
     /// @Validator.IsNotEmpty()
     title String
 
+    /// @HideField({ output: false, input: true })
     subtitle String
 
+    /// @HideField({ output: false, input: true })
     /// @Validator.IsNotEmpty()
     content String
 
@@ -433,18 +436,22 @@ model Notification {
 
     isCleared Boolean @default(false)
 
+    /// @HideField({ output: false, input: true })
     deepLink String?
 
+    /// @HideField({ output: false, input: true })
     fcmToken String?
 
+    /// @HideField({ output: false, input: true })
     createdAt DateTime @default(now())
 
+    /// @HideField({ output: false, input: true })
     updatedAt DateTime @updatedAt
 
     //-------------------------- 1 relations --------------------------------
-
-    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+    /// @HideField({ output: false, input: true })
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    /// @HideField({ output: false, input: true })
     userId String
 }
 

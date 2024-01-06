@@ -305,11 +305,12 @@ var NotificationScalarFieldEnum;
     NotificationScalarFieldEnum["title"] = "title";
     NotificationScalarFieldEnum["subtitle"] = "subtitle";
     NotificationScalarFieldEnum["content"] = "content";
-    NotificationScalarFieldEnum["createdAt"] = "createdAt";
     NotificationScalarFieldEnum["isRead"] = "isRead";
     NotificationScalarFieldEnum["isCleared"] = "isCleared";
     NotificationScalarFieldEnum["deepLink"] = "deepLink";
     NotificationScalarFieldEnum["fcmToken"] = "fcmToken";
+    NotificationScalarFieldEnum["createdAt"] = "createdAt";
+    NotificationScalarFieldEnum["updatedAt"] = "updatedAt";
     NotificationScalarFieldEnum["userId"] = "userId";
 })(NotificationScalarFieldEnum = exports.NotificationScalarFieldEnum || (exports.NotificationScalarFieldEnum = {}));
 var GroupScalarFieldEnum;
@@ -34863,17 +34864,14 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCountAggregateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountAggregateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountAggregateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountAggregateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], NotificationCountAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCountAggregateInput.prototype, "isRead", void 0);
@@ -34881,13 +34879,19 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCountAggregateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountAggregateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountAggregateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationCountAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCountAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationCountAggregateInput.prototype, "userId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -34912,9 +34916,6 @@ __decorate([
 ], NotificationCountAggregate.prototype, "content", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], NotificationCountAggregate.prototype, "createdAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], NotificationCountAggregate.prototype, "isRead", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
@@ -34925,6 +34926,12 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], NotificationCountAggregate.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], NotificationCountAggregate.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], NotificationCountAggregate.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], NotificationCountAggregate.prototype, "userId", void 0);
@@ -34941,17 +34948,14 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationCountOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountOrderByAggregateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountOrderByAggregateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountOrderByAggregateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], NotificationCountOrderByAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationCountOrderByAggregateInput.prototype, "isRead", void 0);
@@ -34959,13 +34963,19 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationCountOrderByAggregateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountOrderByAggregateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCountOrderByAggregateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationCountOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCountOrderByAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationCountOrderByAggregateInput.prototype, "userId", void 0);
 NotificationCountOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -34990,19 +35000,14 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], NotificationCreateManyUserInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyUserInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyUserInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyUserInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationCreateManyUserInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateManyUserInput.prototype, "isRead", void 0);
@@ -35010,11 +35015,17 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateManyUserInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyUserInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyUserInput.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCreateManyUserInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCreateManyUserInput.prototype, "updatedAt", void 0);
 NotificationCreateManyUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], NotificationCreateManyUserInput);
@@ -35025,19 +35036,14 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], NotificationCreateManyInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationCreateManyInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateManyInput.prototype, "isRead", void 0);
@@ -35045,13 +35051,19 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateManyInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
+], NotificationCreateManyInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCreateManyInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationCreateManyInput.prototype, "userId", void 0);
 NotificationCreateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35096,19 +35108,14 @@ exports.NotificationCreateOrConnectWithoutUserInput = NotificationCreateOrConnec
 let NotificationCreateWithoutUserInput = class NotificationCreateWithoutUserInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateWithoutUserInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
 ], NotificationCreateWithoutUserInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateWithoutUserInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationCreateWithoutUserInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateWithoutUserInput.prototype, "isRead", void 0);
@@ -35116,11 +35123,17 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateWithoutUserInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateWithoutUserInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateWithoutUserInput.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCreateWithoutUserInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCreateWithoutUserInput.prototype, "updatedAt", void 0);
 NotificationCreateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], NotificationCreateWithoutUserInput);
@@ -35128,19 +35141,14 @@ exports.NotificationCreateWithoutUserInput = NotificationCreateWithoutUserInput;
 let NotificationCreateInput = class NotificationCreateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
 ], NotificationCreateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationCreateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationCreateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateInput.prototype, "isRead", void 0);
@@ -35148,13 +35156,19 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationCreateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationCreateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutNotificationInput, { nullable: false })
+    (0, graphql_8.HideField)()
+], NotificationCreateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationCreateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationCreateInput.prototype, "user", void 0);
 NotificationCreateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35215,9 +35229,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], NotificationGroupBy.prototype, "content", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], NotificationGroupBy.prototype, "createdAt", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: false })
 ], NotificationGroupBy.prototype, "isRead", void 0);
 __decorate([
@@ -35229,6 +35240,12 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], NotificationGroupBy.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], NotificationGroupBy.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], NotificationGroupBy.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], NotificationGroupBy.prototype, "userId", void 0);
@@ -35272,17 +35289,14 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMaxAggregateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxAggregateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxAggregateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxAggregateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], NotificationMaxAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMaxAggregateInput.prototype, "isRead", void 0);
@@ -35290,13 +35304,19 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMaxAggregateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxAggregateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxAggregateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationMaxAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationMaxAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationMaxAggregateInput.prototype, "userId", void 0);
 NotificationMaxAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35317,9 +35337,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], NotificationMaxAggregate.prototype, "content", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationMaxAggregate.prototype, "createdAt", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMaxAggregate.prototype, "isRead", void 0);
 __decorate([
@@ -35331,6 +35348,12 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], NotificationMaxAggregate.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], NotificationMaxAggregate.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], NotificationMaxAggregate.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], NotificationMaxAggregate.prototype, "userId", void 0);
@@ -35344,17 +35367,14 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationMaxOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxOrderByAggregateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxOrderByAggregateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxOrderByAggregateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], NotificationMaxOrderByAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationMaxOrderByAggregateInput.prototype, "isRead", void 0);
@@ -35362,13 +35382,19 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationMaxOrderByAggregateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxOrderByAggregateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMaxOrderByAggregateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationMaxOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationMaxOrderByAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationMaxOrderByAggregateInput.prototype, "userId", void 0);
 NotificationMaxOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35380,17 +35406,14 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMinAggregateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinAggregateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinAggregateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinAggregateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], NotificationMinAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMinAggregateInput.prototype, "isRead", void 0);
@@ -35398,13 +35421,19 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMinAggregateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinAggregateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinAggregateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationMinAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationMinAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationMinAggregateInput.prototype, "userId", void 0);
 NotificationMinAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35425,9 +35454,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], NotificationMinAggregate.prototype, "content", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationMinAggregate.prototype, "createdAt", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationMinAggregate.prototype, "isRead", void 0);
 __decorate([
@@ -35439,6 +35465,12 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], NotificationMinAggregate.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], NotificationMinAggregate.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], NotificationMinAggregate.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], NotificationMinAggregate.prototype, "userId", void 0);
@@ -35452,17 +35484,14 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationMinOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinOrderByAggregateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinOrderByAggregateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinOrderByAggregateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], NotificationMinOrderByAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationMinOrderByAggregateInput.prototype, "isRead", void 0);
@@ -35470,13 +35499,19 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationMinOrderByAggregateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinOrderByAggregateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationMinOrderByAggregateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationMinOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationMinOrderByAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationMinOrderByAggregateInput.prototype, "userId", void 0);
 NotificationMinOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35497,17 +35532,14 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationOrderByWithAggregationInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithAggregationInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithAggregationInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithAggregationInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], NotificationOrderByWithAggregationInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationOrderByWithAggregationInput.prototype, "isRead", void 0);
@@ -35515,13 +35547,19 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationOrderByWithAggregationInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithAggregationInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithAggregationInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationOrderByWithAggregationInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationOrderByWithAggregationInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithAggregationInput.prototype, "userId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NotificationCountOrderByAggregateInput, { nullable: true })
@@ -35548,17 +35586,14 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationOrderByWithRelationInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], NotificationOrderByWithRelationInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationOrderByWithRelationInput.prototype, "isRead", void 0);
@@ -35566,16 +35601,22 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], NotificationOrderByWithRelationInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationOrderByWithRelationInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationOrderByWithRelationInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "userId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserOrderByWithRelationInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "user", void 0);
 NotificationOrderByWithRelationInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35596,17 +35637,14 @@ __decorate([
     (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
 ], NotificationScalarWhereWithAggregatesInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereWithAggregatesInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereWithAggregatesInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereWithAggregatesInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
-], NotificationScalarWhereWithAggregatesInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolWithAggregatesFilter, { nullable: true })
 ], NotificationScalarWhereWithAggregatesInput.prototype, "isRead", void 0);
@@ -35614,13 +35652,19 @@ __decorate([
     (0, graphql_1.Field)(() => BoolWithAggregatesFilter, { nullable: true })
 ], NotificationScalarWhereWithAggregatesInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereWithAggregatesInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereWithAggregatesInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationScalarWhereWithAggregatesInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationScalarWhereWithAggregatesInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereWithAggregatesInput.prototype, "userId", void 0);
 NotificationScalarWhereWithAggregatesInput = NotificationScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -35641,17 +35685,14 @@ __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], NotificationScalarWhereInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
-], NotificationScalarWhereInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], NotificationScalarWhereInput.prototype, "isRead", void 0);
@@ -35659,13 +35700,19 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], NotificationScalarWhereInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationScalarWhereInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationScalarWhereInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationScalarWhereInput.prototype, "userId", void 0);
 NotificationScalarWhereInput = NotificationScalarWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -35726,19 +35773,14 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationUncheckedCreateWithoutUserInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "isRead", void 0);
@@ -35746,11 +35788,17 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateWithoutUserInput.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedCreateWithoutUserInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedCreateWithoutUserInput.prototype, "updatedAt", void 0);
 NotificationUncheckedCreateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], NotificationUncheckedCreateWithoutUserInput);
@@ -35761,19 +35809,14 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], NotificationUncheckedCreateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false }),
-    Validator.IsNotEmpty()
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], NotificationUncheckedCreateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationUncheckedCreateInput.prototype, "isRead", void 0);
@@ -35781,13 +35824,19 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], NotificationUncheckedCreateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_8.HideField)()
+], NotificationUncheckedCreateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedCreateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedCreateInput.prototype, "userId", void 0);
 NotificationUncheckedCreateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35849,17 +35898,14 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "isRead", void 0);
@@ -35867,11 +35913,17 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateManyWithoutUserInput.prototype, "updatedAt", void 0);
 NotificationUncheckedUpdateManyWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], NotificationUncheckedUpdateManyWithoutUserInput);
@@ -35882,17 +35934,14 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateManyInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], NotificationUncheckedUpdateManyInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateManyInput.prototype, "isRead", void 0);
@@ -35900,13 +35949,19 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateManyInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateManyInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateManyInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateManyInput.prototype, "userId", void 0);
 NotificationUncheckedUpdateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35918,17 +35973,14 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], NotificationUncheckedUpdateWithoutUserInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "isRead", void 0);
@@ -35936,11 +35988,17 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateWithoutUserInput.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateWithoutUserInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateWithoutUserInput.prototype, "updatedAt", void 0);
 NotificationUncheckedUpdateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], NotificationUncheckedUpdateWithoutUserInput);
@@ -35951,17 +36009,14 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], NotificationUncheckedUpdateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateInput.prototype, "isRead", void 0);
@@ -35969,13 +36024,19 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUncheckedUpdateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUncheckedUpdateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationUncheckedUpdateInput.prototype, "userId", void 0);
 NotificationUncheckedUpdateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -35984,17 +36045,14 @@ exports.NotificationUncheckedUpdateInput = NotificationUncheckedUpdateInput;
 let NotificationUpdateManyMutationInput = class NotificationUpdateManyMutationInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateManyMutationInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateManyMutationInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateManyMutationInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], NotificationUpdateManyMutationInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUpdateManyMutationInput.prototype, "isRead", void 0);
@@ -36002,11 +36060,17 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUpdateManyMutationInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateManyMutationInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateManyMutationInput.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUpdateManyMutationInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUpdateManyMutationInput.prototype, "updatedAt", void 0);
 NotificationUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
 ], NotificationUpdateManyMutationInput);
@@ -36092,17 +36156,14 @@ exports.NotificationUpdateWithWhereUniqueWithoutUserInput = NotificationUpdateWi
 let NotificationUpdateWithoutUserInput = class NotificationUpdateWithoutUserInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateWithoutUserInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateWithoutUserInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateWithoutUserInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], NotificationUpdateWithoutUserInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUpdateWithoutUserInput.prototype, "isRead", void 0);
@@ -36110,11 +36171,17 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUpdateWithoutUserInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateWithoutUserInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateWithoutUserInput.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUpdateWithoutUserInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUpdateWithoutUserInput.prototype, "updatedAt", void 0);
 NotificationUpdateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], NotificationUpdateWithoutUserInput);
@@ -36122,17 +36189,14 @@ exports.NotificationUpdateWithoutUserInput = NotificationUpdateWithoutUserInput;
 let NotificationUpdateInput = class NotificationUpdateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], NotificationUpdateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUpdateInput.prototype, "isRead", void 0);
@@ -36140,13 +36204,19 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], NotificationUpdateInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationUpdateInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutNotificationNestedInput, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationUpdateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationUpdateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationUpdateInput.prototype, "user", void 0);
 NotificationUpdateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -36185,17 +36255,14 @@ __decorate([
     (0, graphql_1.Field)(() => [NotificationWhereInput], { nullable: true })
 ], NotificationWhereUniqueInput.prototype, "NOT", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
-], NotificationWhereUniqueInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], NotificationWhereUniqueInput.prototype, "isRead", void 0);
@@ -36203,16 +36270,22 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], NotificationWhereUniqueInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationWhereUniqueInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationWhereUniqueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "userId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserRelationFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "user", void 0);
 NotificationWhereUniqueInput = __decorate([
     (0, graphql_4.InputType)()
@@ -36233,17 +36306,14 @@ __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], NotificationWhereInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "title", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "subtitle", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "content", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
-], NotificationWhereInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], NotificationWhereInput.prototype, "isRead", void 0);
@@ -36251,16 +36321,22 @@ __decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], NotificationWhereInput.prototype, "isCleared", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "deepLink", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "fcmToken", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_8.HideField)()
+], NotificationWhereInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
+], NotificationWhereInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "userId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserRelationFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "user", void 0);
 NotificationWhereInput = NotificationWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -36281,9 +36357,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], Notification.prototype, "content", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], Notification.prototype, "createdAt", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: false, defaultValue: false })
 ], Notification.prototype, "isRead", void 0);
 __decorate([
@@ -36295,6 +36368,12 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], Notification.prototype, "fcmToken", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], Notification.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], Notification.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], Notification.prototype, "userId", void 0);
