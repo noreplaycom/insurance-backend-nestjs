@@ -48,7 +48,9 @@ export async function claimSeed() {
           data: {
             name: faker.name.jobTitle(),
             description: faker.lorem.paragraph(),
-            orderLevel: faker.datatype.number(5),
+            higherLevelThan: {
+              connect: { id: faker.helpers.arrayElement(roles).id },
+            },
             rolePermissions: {
               connect: { id: faker.helpers.arrayElement(permissions).id },
             },

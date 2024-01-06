@@ -1559,39 +1559,40 @@ type AggregateRole {
 
 type RoleAvgAggregate {
   id: Float
-  orderLevel: Float
+  higherLevelThanId: Float
 }
 
 type RoleCountAggregate {
   id: Int!
   name: Int!
   description: Int!
-  orderLevel: Int!
+  higherLevelThanId: Int!
   _all: Int!
 }
 
 type RoleCount {
   rolePermissions: Int!
   users: Int!
+  lowerLevelThan: Int!
 }
 
 type RoleMaxAggregate {
   id: Int
   name: String
   description: String
-  orderLevel: Int
+  higherLevelThanId: Int
 }
 
 type RoleMinAggregate {
   id: Int
   name: String
   description: String
-  orderLevel: Int
+  higherLevelThanId: Int
 }
 
 type RoleSumAggregate {
   id: Int
-  orderLevel: Int
+  higherLevelThanId: Int
 }
 
 type Role {
@@ -1600,11 +1601,11 @@ type Role {
   """E.g., 'superuser', 'analyst', 'group leader'"""
   name: String!
   description: String
-
-  """Jika orderLevel dia adalah 9999 maka dia adalah superuser"""
-  orderLevel: Int!
+  higherLevelThanId: Int
+  higherLevelThan: Role
   rolePermissions: [RolePermission!]
   users: [User!]
+  lowerLevelThan: [Role!]
   _count: RoleCount!
 }
 
@@ -2297,9 +2298,16 @@ input RoleWhereInput {
   id: IntFilter
   name: StringFilter
   description: StringNullableFilter
-  orderLevel: IntFilter
+  higherLevelThanId: IntNullableFilter
+  higherLevelThan: RoleNullableRelationFilter
   rolePermissions: RolePermissionListRelationFilter
   users: UserListRelationFilter
+  lowerLevelThan: RoleListRelationFilter
+}
+
+input RoleNullableRelationFilter {
+  is: RoleWhereInput
+  isNot: RoleWhereInput
 }
 
 input RolePermissionListRelationFilter {
@@ -2332,15 +2340,16 @@ input NestedEnumPermissionFilter {
   not: NestedEnumPermissionFilter
 }
 
-input RoleNullableRelationFilter {
-  is: RoleWhereInput
-  isNot: RoleWhereInput
-}
-
 input UserListRelationFilter {
   every: UserWhereInput
   some: UserWhereInput
   none: UserWhereInput
+}
+
+input RoleListRelationFilter {
+  every: RoleWhereInput
+  some: RoleWhereInput
+  none: RoleWhereInput
 }
 
 input ParticipantNullableRelationFilter {
@@ -3133,9 +3142,11 @@ input RoleOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
   description: SortOrderInput
-  orderLevel: SortOrder
+  higherLevelThanId: SortOrderInput
+  higherLevelThan: RoleOrderByWithRelationInput
   rolePermissions: RolePermissionOrderByRelationAggregateInput
   users: UserOrderByRelationAggregateInput
+  lowerLevelThan: RoleOrderByRelationAggregateInput
 }
 
 input RolePermissionOrderByRelationAggregateInput {
@@ -3143,6 +3154,10 @@ input RolePermissionOrderByRelationAggregateInput {
 }
 
 input UserOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input RoleOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -3477,48 +3492,50 @@ input RoleWhereUniqueInput {
   NOT: [RoleWhereInput!]
   name: StringFilter
   description: StringNullableFilter
-  orderLevel: IntFilter
+  higherLevelThanId: IntNullableFilter
+  higherLevelThan: RoleNullableRelationFilter
   rolePermissions: RolePermissionListRelationFilter
   users: UserListRelationFilter
+  lowerLevelThan: RoleListRelationFilter
 }
 
 enum RoleScalarFieldEnum {
   id
   name
   description
-  orderLevel
+  higherLevelThanId
 }
 
 input RoleCountAggregateInput {
   id: Boolean
   name: Boolean
   description: Boolean
-  orderLevel: Boolean
+  higherLevelThanId: Boolean
   _all: Boolean
 }
 
 input RoleAvgAggregateInput {
   id: Boolean
-  orderLevel: Boolean
+  higherLevelThanId: Boolean
 }
 
 input RoleSumAggregateInput {
   id: Boolean
-  orderLevel: Boolean
+  higherLevelThanId: Boolean
 }
 
 input RoleMinAggregateInput {
   id: Boolean
   name: Boolean
   description: Boolean
-  orderLevel: Boolean
+  higherLevelThanId: Boolean
 }
 
 input RoleMaxAggregateInput {
   id: Boolean
   name: Boolean
   description: Boolean
-  orderLevel: Boolean
+  higherLevelThanId: Boolean
 }
 
 input NotificationOrderByWithRelationInput {
@@ -3674,8 +3691,23 @@ input RoleCreateNestedOneWithoutUsersInput {
 input RoleCreateWithoutUsersInput {
   name: String!
   description: String
-  orderLevel: Int
+  higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
   rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
+}
+
+input RoleCreateNestedOneWithoutLowerLevelThanInput {
+  create: RoleCreateWithoutLowerLevelThanInput
+  connectOrCreate: RoleCreateOrConnectWithoutLowerLevelThanInput
+  connect: RoleWhereUniqueInput
+}
+
+input RoleCreateWithoutLowerLevelThanInput {
+  name: String!
+  description: String
+  higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
+  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  users: UserCreateNestedManyWithoutRoleInput
 }
 
 input RolePermissionCreateNestedManyWithoutRoleInput {
@@ -3714,89 +3746,44 @@ input RolePermissionCreateManyRoleInput {
   permission: Permission!
 }
 
-input RoleCreateOrConnectWithoutUsersInput {
-  where: RoleWhereUniqueInput!
-  create: RoleCreateWithoutUsersInput!
+input UserCreateNestedManyWithoutRoleInput {
+  create: [UserCreateWithoutRoleInput!]
+  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
+  createMany: UserCreateManyRoleInputEnvelope
+  connect: [UserWhereUniqueInput!]
 }
 
-input ClaimCreateNestedManyWithoutInputedByInput {
-  create: [ClaimCreateWithoutInputedByInput!]
-  connectOrCreate: [ClaimCreateOrConnectWithoutInputedByInput!]
-  createMany: ClaimCreateManyInputedByInputEnvelope
-  connect: [ClaimWhereUniqueInput!]
+input UserCreateWithoutRoleInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
 }
 
-input ClaimCreateWithoutInputedByInput {
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  participant: ParticipantCreateNestedOneWithoutClaimsInput!
-  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
-  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
-  disease: DiseaseCreateNestedOneWithoutClaimsInput
-  clinics: ClinicCreateNestedOneWithoutClaimsInput!
-  program: ProgramCreateNestedOneWithoutClaimsInput!
-  tags: TagCreateNestedManyWithoutClaimsInput
-}
-
-input ClaimFinancialCreateNestedOneWithoutClaimInput {
-  create: ClaimFinancialCreateWithoutClaimInput
-  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
-  connect: ClaimFinancialWhereUniqueInput
-}
-
-input ClaimFinancialCreateWithoutClaimInput {
-  requestedAmount: Float!
-  paidAmount: Float
-  rejectedAmount: Float
-  transactionProcessDate: DateTime
-  transferDate: DateTime
-  branchPayee: BranchCreateNestedOneWithoutClaimFinancialInput
-  claimStatus: ClaimStatusCreateNestedOneWithoutClaimFinancialInput
-}
-
-input BranchCreateNestedOneWithoutClaimFinancialInput {
-  create: BranchCreateWithoutClaimFinancialInput
-  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
-  connect: BranchWhereUniqueInput
-}
-
-input BranchCreateWithoutClaimFinancialInput {
-  name: String!
-  createdAt: DateTime
-  updatedAt: DateTime
-  employment: EmploymentCreateNestedManyWithoutBranchInput
-}
-
-input EmploymentCreateNestedManyWithoutBranchInput {
-  create: [EmploymentCreateWithoutBranchInput!]
-  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
-  createMany: EmploymentCreateManyBranchInputEnvelope
-  connect: [EmploymentWhereUniqueInput!]
-}
-
-input EmploymentCreateWithoutBranchInput {
-  employmentPosition: Position!
-  participant: ParticipantCreateNestedOneWithoutEmploymentsInput!
-  group: GroupCreateNestedOneWithoutEmploymentInput
-  region: RegionCreateNestedOneWithoutEmploymentInput
-}
-
-input ParticipantCreateNestedOneWithoutEmploymentsInput {
-  create: ParticipantCreateWithoutEmploymentsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutEmploymentsInput
+input ParticipantCreateNestedOneWithoutUserInput {
+  create: ParticipantCreateWithoutUserInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutUserInput
   connect: ParticipantWhereUniqueInput
 }
 
-input ParticipantCreateWithoutEmploymentsInput {
+input ParticipantCreateWithoutUserInput {
   gender: Gender!
   birthDate: DateTime!
   isActive: Boolean!
   status: ParticipantStatus!
-  user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   claims: ClaimCreateNestedManyWithoutParticipantInput
+  employments: EmploymentCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   balances: AccountCreateNestedManyWithoutParticipantInput
@@ -3871,337 +3858,56 @@ input ClaimCreateWithoutParticipantInput {
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
-input ClaimProcessCreateNestedOneWithoutClaimInput {
-  create: ClaimProcessCreateWithoutClaimInput
-  connectOrCreate: ClaimProcessCreateOrConnectWithoutClaimInput
-  connect: ClaimProcessWhereUniqueInput
+input ClaimFinancialCreateNestedOneWithoutClaimInput {
+  create: ClaimFinancialCreateWithoutClaimInput
+  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
+  connect: ClaimFinancialWhereUniqueInput
 }
 
-input ClaimProcessCreateWithoutClaimInput {
-  startTreatment: DateTime
-  endTreatment: DateTime
-  expeditionDate: DateTime
-  reclaim: String
-  processDate: DateTime
-  submissionNote: String
-  description: String
-  additionalNote: String
-  documents: DocumentCreateNestedManyWithoutClaimProcessInput
-}
-
-input DocumentCreateNestedManyWithoutClaimProcessInput {
-  create: [DocumentCreateWithoutClaimProcessInput!]
-  connectOrCreate: [DocumentCreateOrConnectWithoutClaimProcessInput!]
-  createMany: DocumentCreateManyClaimProcessInputEnvelope
-  connect: [DocumentWhereUniqueInput!]
-}
-
-input DocumentCreateWithoutClaimProcessInput {
-  id: String
-  name: String!
-  path: String!
-  size: Int!
-  printCount: Int!
-  createdAt: DateTime
-  updatedAt: DateTime
-  source: DocumentSource!
-  type: DocumentType!
-  rejectionLetterOf: ClaimStatusCreateNestedOneWithoutRejectionLetterInput
-  guaranteeLetterOf: ClaimStatusCreateNestedOneWithoutGuaranteeLetterInput
-  transactionLetterOf: ClaimStatusCreateNestedOneWithoutTransactionLetterInput
-  bookKeepingOrderOf: ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput
-}
-
-input ClaimStatusCreateNestedOneWithoutRejectionLetterInput {
-  create: ClaimStatusCreateWithoutRejectionLetterInput
-  connectOrCreate: ClaimStatusCreateOrConnectWithoutRejectionLetterInput
-  connect: ClaimStatusWhereUniqueInput
-}
-
-input ClaimStatusCreateWithoutRejectionLetterInput {
-  description: String
-  rejectionReason: String
-  createdAt: DateTime
-  status: ClaimStatusType!
-  createBy: UserCreateNestedOneWithoutClaimActionsInput!
-  claim: ClaimCreateNestedOneWithoutClaimStatusesInput!
-  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
-  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
-  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
-  claimFinancial: ClaimFinancialCreateNestedOneWithoutClaimStatusInput
-}
-
-input UserCreateNestedOneWithoutClaimActionsInput {
-  create: UserCreateWithoutClaimActionsInput
-  connectOrCreate: UserCreateOrConnectWithoutClaimActionsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutClaimActionsInput {
-  id: String
-  fullName: String!
-  email: String!
-  emailVerifiedAt: DateTime
-  password: String!
-  profilePictureUrl: String
-  deletedAt: DateTime
-  participantId: Int
-  role: RoleCreateNestedOneWithoutUsersInput!
-  participant: ParticipantCreateNestedOneWithoutUserInput
-  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
-  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
-  notification: NotificationCreateNestedManyWithoutUserInput
-}
-
-input ParticipantCreateNestedOneWithoutUserInput {
-  create: ParticipantCreateWithoutUserInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutUserInput
-  connect: ParticipantWhereUniqueInput
-}
-
-input ParticipantCreateWithoutUserInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
-  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
-  claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
-  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
-  balances: AccountCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
-}
-
-input EmploymentCreateNestedManyWithoutParticipantInput {
-  create: [EmploymentCreateWithoutParticipantInput!]
-  connectOrCreate: [EmploymentCreateOrConnectWithoutParticipantInput!]
-  createMany: EmploymentCreateManyParticipantInputEnvelope
-  connect: [EmploymentWhereUniqueInput!]
-}
-
-input EmploymentCreateWithoutParticipantInput {
-  employmentPosition: Position!
-  branch: BranchCreateNestedOneWithoutEmploymentInput!
-  group: GroupCreateNestedOneWithoutEmploymentInput
-  region: RegionCreateNestedOneWithoutEmploymentInput
-}
-
-input BranchCreateNestedOneWithoutEmploymentInput {
-  create: BranchCreateWithoutEmploymentInput
-  connectOrCreate: BranchCreateOrConnectWithoutEmploymentInput
-  connect: BranchWhereUniqueInput
-}
-
-input BranchCreateWithoutEmploymentInput {
-  name: String!
-  createdAt: DateTime
-  updatedAt: DateTime
-  claimFinancial: ClaimFinancialCreateNestedManyWithoutBranchPayeeInput
-}
-
-input ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
-  create: [ClaimFinancialCreateWithoutBranchPayeeInput!]
-  connectOrCreate: [ClaimFinancialCreateOrConnectWithoutBranchPayeeInput!]
-  createMany: ClaimFinancialCreateManyBranchPayeeInputEnvelope
-  connect: [ClaimFinancialWhereUniqueInput!]
-}
-
-input ClaimFinancialCreateWithoutBranchPayeeInput {
+input ClaimFinancialCreateWithoutClaimInput {
   requestedAmount: Float!
   paidAmount: Float
   rejectedAmount: Float
   transactionProcessDate: DateTime
   transferDate: DateTime
-  claim: ClaimCreateNestedOneWithoutClaimFinancialsInput
+  branchPayee: BranchCreateNestedOneWithoutClaimFinancialInput
   claimStatus: ClaimStatusCreateNestedOneWithoutClaimFinancialInput
 }
 
-input ClaimCreateNestedOneWithoutClaimFinancialsInput {
-  create: ClaimCreateWithoutClaimFinancialsInput
-  connectOrCreate: ClaimCreateOrConnectWithoutClaimFinancialsInput
-  connect: ClaimWhereUniqueInput
+input BranchCreateNestedOneWithoutClaimFinancialInput {
+  create: BranchCreateWithoutClaimFinancialInput
+  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
+  connect: BranchWhereUniqueInput
 }
 
-input ClaimCreateWithoutClaimFinancialsInput {
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  participant: ParticipantCreateNestedOneWithoutClaimsInput!
-  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
-  disease: DiseaseCreateNestedOneWithoutClaimsInput
-  clinics: ClinicCreateNestedOneWithoutClaimsInput!
-  inputedBy: UserCreateNestedOneWithoutClaimsInputInput
-  program: ProgramCreateNestedOneWithoutClaimsInput!
-  tags: TagCreateNestedManyWithoutClaimsInput
-}
-
-input DiseaseCreateNestedOneWithoutClaimsInput {
-  create: DiseaseCreateWithoutClaimsInput
-  connectOrCreate: DiseaseCreateOrConnectWithoutClaimsInput
-  connect: DiseaseWhereUniqueInput
-}
-
-input DiseaseCreateWithoutClaimsInput {
-  code: String!
+input BranchCreateWithoutClaimFinancialInput {
   name: String!
   createdAt: DateTime
   updatedAt: DateTime
+  employment: EmploymentCreateNestedManyWithoutBranchInput
 }
 
-input DiseaseCreateOrConnectWithoutClaimsInput {
-  where: DiseaseWhereUniqueInput!
-  create: DiseaseCreateWithoutClaimsInput!
+input EmploymentCreateNestedManyWithoutBranchInput {
+  create: [EmploymentCreateWithoutBranchInput!]
+  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
+  createMany: EmploymentCreateManyBranchInputEnvelope
+  connect: [EmploymentWhereUniqueInput!]
 }
 
-input DiseaseWhereUniqueInput {
-  id: Int
-  AND: [DiseaseWhereInput!]
-  OR: [DiseaseWhereInput!]
-  NOT: [DiseaseWhereInput!]
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claims: ClaimListRelationFilter
+input EmploymentCreateWithoutBranchInput {
+  employmentPosition: Position!
+  participant: ParticipantCreateNestedOneWithoutEmploymentsInput!
+  group: GroupCreateNestedOneWithoutEmploymentInput
+  region: RegionCreateNestedOneWithoutEmploymentInput
 }
 
-input ClinicCreateNestedOneWithoutClaimsInput {
-  create: ClinicCreateWithoutClaimsInput
-  connectOrCreate: ClinicCreateOrConnectWithoutClaimsInput
-  connect: ClinicWhereUniqueInput
-}
-
-input ClinicCreateWithoutClaimsInput {
-  code: String!
-  name: String!
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-input ClinicCreateOrConnectWithoutClaimsInput {
-  where: ClinicWhereUniqueInput!
-  create: ClinicCreateWithoutClaimsInput!
-}
-
-input ClinicWhereUniqueInput {
-  id: Int
-  AND: [ClinicWhereInput!]
-  OR: [ClinicWhereInput!]
-  NOT: [ClinicWhereInput!]
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claims: ClaimListRelationFilter
-}
-
-input UserCreateNestedOneWithoutClaimsInputInput {
-  create: UserCreateWithoutClaimsInputInput
-  connectOrCreate: UserCreateOrConnectWithoutClaimsInputInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutClaimsInputInput {
-  id: String
-  fullName: String!
-  email: String!
-  emailVerifiedAt: DateTime
-  password: String!
-  profilePictureUrl: String
-  deletedAt: DateTime
-  participantId: Int
-  role: RoleCreateNestedOneWithoutUsersInput!
-  participant: ParticipantCreateNestedOneWithoutUserInput
-  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
-  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
-  notification: NotificationCreateNestedManyWithoutUserInput
-}
-
-input ClaimStatusCreateNestedManyWithoutCreateByInput {
-  create: [ClaimStatusCreateWithoutCreateByInput!]
-  connectOrCreate: [ClaimStatusCreateOrConnectWithoutCreateByInput!]
-  createMany: ClaimStatusCreateManyCreateByInputEnvelope
-  connect: [ClaimStatusWhereUniqueInput!]
-}
-
-input ClaimStatusCreateWithoutCreateByInput {
-  description: String
-  rejectionReason: String
-  createdAt: DateTime
-  status: ClaimStatusType!
-  claim: ClaimCreateNestedOneWithoutClaimStatusesInput!
-  rejectionLetter: DocumentCreateNestedOneWithoutRejectionLetterOfInput
-  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
-  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
-  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
-  claimFinancial: ClaimFinancialCreateNestedOneWithoutClaimStatusInput
-}
-
-input ClaimCreateNestedOneWithoutClaimStatusesInput {
-  create: ClaimCreateWithoutClaimStatusesInput
-  connectOrCreate: ClaimCreateOrConnectWithoutClaimStatusesInput
-  connect: ClaimWhereUniqueInput
-}
-
-input ClaimCreateWithoutClaimStatusesInput {
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  participant: ParticipantCreateNestedOneWithoutClaimsInput!
-  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
-  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
-  disease: DiseaseCreateNestedOneWithoutClaimsInput
-  clinics: ClinicCreateNestedOneWithoutClaimsInput!
-  inputedBy: UserCreateNestedOneWithoutClaimsInputInput
-  program: ProgramCreateNestedOneWithoutClaimsInput!
-  tags: TagCreateNestedManyWithoutClaimsInput
-}
-
-input ProgramCreateNestedOneWithoutClaimsInput {
-  create: ProgramCreateWithoutClaimsInput
-  connectOrCreate: ProgramCreateOrConnectWithoutClaimsInput
-  connect: ProgramWhereUniqueInput
-}
-
-input ProgramCreateWithoutClaimsInput {
-  plan: ApplicationType!
-  maxAllowancePercentage: Int
-  allowanceCeiling: Float
-  maxAllowancePerYear: Float
-  claimPeriodMax: Int
-  reclaimPeriodMax: Int
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
-  class: Class!
-  programParticipations: ProgramParticipationCreateNestedManyWithoutProgramInput
-}
-
-input ProgramParticipationCreateNestedManyWithoutProgramInput {
-  create: [ProgramParticipationCreateWithoutProgramInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutProgramInput!]
-  createMany: ProgramParticipationCreateManyProgramInputEnvelope
-  connect: [ProgramParticipationWhereUniqueInput!]
-}
-
-input ProgramParticipationCreateWithoutProgramInput {
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  participant: ParticipantCreateNestedOneWithoutProgramParticipationsInput!
-  funding: AccountCreateNestedOneWithoutProgramParticipationInput!
-}
-
-input ParticipantCreateNestedOneWithoutProgramParticipationsInput {
-  create: ParticipantCreateWithoutProgramParticipationsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationsInput
+input ParticipantCreateNestedOneWithoutEmploymentsInput {
+  create: ParticipantCreateWithoutEmploymentsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutEmploymentsInput
   connect: ParticipantWhereUniqueInput
 }
 
-input ParticipantCreateWithoutProgramParticipationsInput {
+input ParticipantCreateWithoutEmploymentsInput {
   gender: Gender!
   birthDate: DateTime!
   isActive: Boolean!
@@ -4210,8 +3916,8 @@ input ParticipantCreateWithoutProgramParticipationsInput {
   relation: ParticipantCreateNestedOneWithoutParticipantInput
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   balances: AccountCreateNestedManyWithoutParticipantInput
   Participant: ParticipantCreateNestedManyWithoutRelationInput
 }
@@ -4399,6 +4105,338 @@ input ContactInfoCreateManyParticipantInput {
   addressId: Int!
 }
 
+input ProgramParticipationCreateNestedManyWithoutParticipantInput {
+  create: [ProgramParticipationCreateWithoutParticipantInput!]
+  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutParticipantInput!]
+  createMany: ProgramParticipationCreateManyParticipantInputEnvelope
+  connect: [ProgramParticipationWhereUniqueInput!]
+}
+
+input ProgramParticipationCreateWithoutParticipantInput {
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+  funding: AccountCreateNestedOneWithoutProgramParticipationInput!
+  Program: ProgramCreateNestedOneWithoutProgramParticipationsInput
+}
+
+input AccountCreateNestedOneWithoutProgramParticipationInput {
+  create: AccountCreateWithoutProgramParticipationInput
+  connectOrCreate: AccountCreateOrConnectWithoutProgramParticipationInput
+  connect: AccountWhereUniqueInput
+}
+
+input AccountCreateWithoutProgramParticipationInput {
+  currentBalance: Float!
+  currentBalanceLastUpdate: DateTime
+  participant: ParticipantCreateNestedOneWithoutBalancesInput!
+  transactions: TransactionCreateNestedManyWithoutAccountInput
+}
+
+input ParticipantCreateNestedOneWithoutBalancesInput {
+  create: ParticipantCreateWithoutBalancesInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutBalancesInput
+  connect: ParticipantWhereUniqueInput
+}
+
+input ParticipantCreateWithoutBalancesInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
+  claims: ClaimCreateNestedManyWithoutParticipantInput
+  employments: EmploymentCreateNestedManyWithoutParticipantInput
+  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  Participant: ParticipantCreateNestedManyWithoutRelationInput
+}
+
+input EmploymentCreateNestedManyWithoutParticipantInput {
+  create: [EmploymentCreateWithoutParticipantInput!]
+  connectOrCreate: [EmploymentCreateOrConnectWithoutParticipantInput!]
+  createMany: EmploymentCreateManyParticipantInputEnvelope
+  connect: [EmploymentWhereUniqueInput!]
+}
+
+input EmploymentCreateWithoutParticipantInput {
+  employmentPosition: Position!
+  branch: BranchCreateNestedOneWithoutEmploymentInput!
+  group: GroupCreateNestedOneWithoutEmploymentInput
+  region: RegionCreateNestedOneWithoutEmploymentInput
+}
+
+input BranchCreateNestedOneWithoutEmploymentInput {
+  create: BranchCreateWithoutEmploymentInput
+  connectOrCreate: BranchCreateOrConnectWithoutEmploymentInput
+  connect: BranchWhereUniqueInput
+}
+
+input BranchCreateWithoutEmploymentInput {
+  name: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  claimFinancial: ClaimFinancialCreateNestedManyWithoutBranchPayeeInput
+}
+
+input ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
+  create: [ClaimFinancialCreateWithoutBranchPayeeInput!]
+  connectOrCreate: [ClaimFinancialCreateOrConnectWithoutBranchPayeeInput!]
+  createMany: ClaimFinancialCreateManyBranchPayeeInputEnvelope
+  connect: [ClaimFinancialWhereUniqueInput!]
+}
+
+input ClaimFinancialCreateWithoutBranchPayeeInput {
+  requestedAmount: Float!
+  paidAmount: Float
+  rejectedAmount: Float
+  transactionProcessDate: DateTime
+  transferDate: DateTime
+  claim: ClaimCreateNestedOneWithoutClaimFinancialsInput
+  claimStatus: ClaimStatusCreateNestedOneWithoutClaimFinancialInput
+}
+
+input ClaimCreateNestedOneWithoutClaimFinancialsInput {
+  create: ClaimCreateWithoutClaimFinancialsInput
+  connectOrCreate: ClaimCreateOrConnectWithoutClaimFinancialsInput
+  connect: ClaimWhereUniqueInput
+}
+
+input ClaimCreateWithoutClaimFinancialsInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
+  disease: DiseaseCreateNestedOneWithoutClaimsInput
+  clinics: ClinicCreateNestedOneWithoutClaimsInput!
+  inputedBy: UserCreateNestedOneWithoutClaimsInputInput
+  program: ProgramCreateNestedOneWithoutClaimsInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
+}
+
+input ClaimProcessCreateNestedOneWithoutClaimInput {
+  create: ClaimProcessCreateWithoutClaimInput
+  connectOrCreate: ClaimProcessCreateOrConnectWithoutClaimInput
+  connect: ClaimProcessWhereUniqueInput
+}
+
+input ClaimProcessCreateWithoutClaimInput {
+  startTreatment: DateTime
+  endTreatment: DateTime
+  expeditionDate: DateTime
+  reclaim: String
+  processDate: DateTime
+  submissionNote: String
+  description: String
+  additionalNote: String
+  documents: DocumentCreateNestedManyWithoutClaimProcessInput
+}
+
+input DocumentCreateNestedManyWithoutClaimProcessInput {
+  create: [DocumentCreateWithoutClaimProcessInput!]
+  connectOrCreate: [DocumentCreateOrConnectWithoutClaimProcessInput!]
+  createMany: DocumentCreateManyClaimProcessInputEnvelope
+  connect: [DocumentWhereUniqueInput!]
+}
+
+input DocumentCreateWithoutClaimProcessInput {
+  id: String
+  name: String!
+  path: String!
+  size: Int!
+  printCount: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+  source: DocumentSource!
+  type: DocumentType!
+  rejectionLetterOf: ClaimStatusCreateNestedOneWithoutRejectionLetterInput
+  guaranteeLetterOf: ClaimStatusCreateNestedOneWithoutGuaranteeLetterInput
+  transactionLetterOf: ClaimStatusCreateNestedOneWithoutTransactionLetterInput
+  bookKeepingOrderOf: ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput
+}
+
+input ClaimStatusCreateNestedOneWithoutRejectionLetterInput {
+  create: ClaimStatusCreateWithoutRejectionLetterInput
+  connectOrCreate: ClaimStatusCreateOrConnectWithoutRejectionLetterInput
+  connect: ClaimStatusWhereUniqueInput
+}
+
+input ClaimStatusCreateWithoutRejectionLetterInput {
+  description: String
+  rejectionReason: String
+  createdAt: DateTime
+  status: ClaimStatusType!
+  createBy: UserCreateNestedOneWithoutClaimActionsInput!
+  claim: ClaimCreateNestedOneWithoutClaimStatusesInput!
+  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
+  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
+  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
+  claimFinancial: ClaimFinancialCreateNestedOneWithoutClaimStatusInput
+}
+
+input UserCreateNestedOneWithoutClaimActionsInput {
+  create: UserCreateWithoutClaimActionsInput
+  connectOrCreate: UserCreateOrConnectWithoutClaimActionsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutClaimActionsInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput!
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
+}
+
+input ClaimCreateNestedManyWithoutInputedByInput {
+  create: [ClaimCreateWithoutInputedByInput!]
+  connectOrCreate: [ClaimCreateOrConnectWithoutInputedByInput!]
+  createMany: ClaimCreateManyInputedByInputEnvelope
+  connect: [ClaimWhereUniqueInput!]
+}
+
+input ClaimCreateWithoutInputedByInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
+  disease: DiseaseCreateNestedOneWithoutClaimsInput
+  clinics: ClinicCreateNestedOneWithoutClaimsInput!
+  program: ProgramCreateNestedOneWithoutClaimsInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
+}
+
+input DiseaseCreateNestedOneWithoutClaimsInput {
+  create: DiseaseCreateWithoutClaimsInput
+  connectOrCreate: DiseaseCreateOrConnectWithoutClaimsInput
+  connect: DiseaseWhereUniqueInput
+}
+
+input DiseaseCreateWithoutClaimsInput {
+  code: String!
+  name: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input DiseaseCreateOrConnectWithoutClaimsInput {
+  where: DiseaseWhereUniqueInput!
+  create: DiseaseCreateWithoutClaimsInput!
+}
+
+input DiseaseWhereUniqueInput {
+  id: Int
+  AND: [DiseaseWhereInput!]
+  OR: [DiseaseWhereInput!]
+  NOT: [DiseaseWhereInput!]
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claims: ClaimListRelationFilter
+}
+
+input ClinicCreateNestedOneWithoutClaimsInput {
+  create: ClinicCreateWithoutClaimsInput
+  connectOrCreate: ClinicCreateOrConnectWithoutClaimsInput
+  connect: ClinicWhereUniqueInput
+}
+
+input ClinicCreateWithoutClaimsInput {
+  code: String!
+  name: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ClinicCreateOrConnectWithoutClaimsInput {
+  where: ClinicWhereUniqueInput!
+  create: ClinicCreateWithoutClaimsInput!
+}
+
+input ClinicWhereUniqueInput {
+  id: Int
+  AND: [ClinicWhereInput!]
+  OR: [ClinicWhereInput!]
+  NOT: [ClinicWhereInput!]
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claims: ClaimListRelationFilter
+}
+
+input ProgramCreateNestedOneWithoutClaimsInput {
+  create: ProgramCreateWithoutClaimsInput
+  connectOrCreate: ProgramCreateOrConnectWithoutClaimsInput
+  connect: ProgramWhereUniqueInput
+}
+
+input ProgramCreateWithoutClaimsInput {
+  plan: ApplicationType!
+  maxAllowancePercentage: Int
+  allowanceCeiling: Float
+  maxAllowancePerYear: Float
+  claimPeriodMax: Int
+  reclaimPeriodMax: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  class: Class!
+  programParticipations: ProgramParticipationCreateNestedManyWithoutProgramInput
+}
+
+input ProgramParticipationCreateNestedManyWithoutProgramInput {
+  create: [ProgramParticipationCreateWithoutProgramInput!]
+  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutProgramInput!]
+  createMany: ProgramParticipationCreateManyProgramInputEnvelope
+  connect: [ProgramParticipationWhereUniqueInput!]
+}
+
+input ProgramParticipationCreateWithoutProgramInput {
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+  participant: ParticipantCreateNestedOneWithoutProgramParticipationsInput!
+  funding: AccountCreateNestedOneWithoutProgramParticipationInput!
+}
+
+input ParticipantCreateNestedOneWithoutProgramParticipationsInput {
+  create: ParticipantCreateWithoutProgramParticipationsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationsInput
+  connect: ParticipantWhereUniqueInput
+}
+
+input ParticipantCreateWithoutProgramParticipationsInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
+  claims: ClaimCreateNestedManyWithoutParticipantInput
+  employments: EmploymentCreateNestedManyWithoutParticipantInput
+  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  balances: AccountCreateNestedManyWithoutParticipantInput
+  Participant: ParticipantCreateNestedManyWithoutRelationInput
+}
+
 input AccountCreateNestedManyWithoutParticipantInput {
   create: [AccountCreateWithoutParticipantInput!]
   connectOrCreate: [AccountCreateOrConnectWithoutParticipantInput!]
@@ -4514,6 +4552,68 @@ input ClaimCreateWithoutProgramInput {
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
+input UserCreateNestedOneWithoutClaimsInputInput {
+  create: UserCreateWithoutClaimsInputInput
+  connectOrCreate: UserCreateOrConnectWithoutClaimsInputInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutClaimsInputInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput!
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
+}
+
+input ClaimStatusCreateNestedManyWithoutCreateByInput {
+  create: [ClaimStatusCreateWithoutCreateByInput!]
+  connectOrCreate: [ClaimStatusCreateOrConnectWithoutCreateByInput!]
+  createMany: ClaimStatusCreateManyCreateByInputEnvelope
+  connect: [ClaimStatusWhereUniqueInput!]
+}
+
+input ClaimStatusCreateWithoutCreateByInput {
+  description: String
+  rejectionReason: String
+  createdAt: DateTime
+  status: ClaimStatusType!
+  claim: ClaimCreateNestedOneWithoutClaimStatusesInput!
+  rejectionLetter: DocumentCreateNestedOneWithoutRejectionLetterOfInput
+  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
+  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
+  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
+  claimFinancial: ClaimFinancialCreateNestedOneWithoutClaimStatusInput
+}
+
+input ClaimCreateNestedOneWithoutClaimStatusesInput {
+  create: ClaimCreateWithoutClaimStatusesInput
+  connectOrCreate: ClaimCreateOrConnectWithoutClaimStatusesInput
+  connect: ClaimWhereUniqueInput
+}
+
+input ClaimCreateWithoutClaimStatusesInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
+  disease: DiseaseCreateNestedOneWithoutClaimsInput
+  clinics: ClinicCreateNestedOneWithoutClaimsInput!
+  inputedBy: UserCreateNestedOneWithoutClaimsInputInput
+  program: ProgramCreateNestedOneWithoutClaimsInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
+}
+
 input TagCreateNestedManyWithoutClaimsInput {
   create: [TagCreateWithoutClaimsInput!]
   connectOrCreate: [TagCreateOrConnectWithoutClaimsInput!]
@@ -4542,289 +4642,6 @@ input TagWhereUniqueInput {
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   Claims: ClaimListRelationFilter
-}
-
-input ClaimCreateOrConnectWithoutProgramInput {
-  where: ClaimWhereUniqueInput!
-  create: ClaimCreateWithoutProgramInput!
-}
-
-input ClaimCreateManyProgramInputEnvelope {
-  data: [ClaimCreateManyProgramInput!]!
-  skipDuplicates: Boolean
-}
-
-input ClaimCreateManyProgramInput {
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  participantId: String!
-  claimFinancialId: Int!
-  claimProcessId: Int!
-  diseaseId: Int
-  clinicId: Int!
-  inputedById: String
-}
-
-input ProgramCreateOrConnectWithoutProgramParticipationsInput {
-  where: ProgramWhereUniqueInput!
-  create: ProgramCreateWithoutProgramParticipationsInput!
-}
-
-input ProgramWhereUniqueInput {
-  id: Int
-  AND: [ProgramWhereInput!]
-  OR: [ProgramWhereInput!]
-  NOT: [ProgramWhereInput!]
-  plan: EnumApplicationTypeFilter
-  maxAllowancePercentage: IntNullableFilter
-  allowanceCeiling: FloatNullableFilter
-  maxAllowancePerYear: FloatNullableFilter
-  claimPeriodMax: IntNullableFilter
-  reclaimPeriodMax: IntNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  deletedAt: DateTimeNullableFilter
-  class: EnumClassFilter
-  programParticipations: ProgramParticipationListRelationFilter
-  claims: ClaimListRelationFilter
-}
-
-input ProgramParticipationCreateOrConnectWithoutFundingInput {
-  where: ProgramParticipationWhereUniqueInput!
-  create: ProgramParticipationCreateWithoutFundingInput!
-}
-
-input ProgramParticipationWhereUniqueInput {
-  id: Int
-  AND: [ProgramParticipationWhereInput!]
-  OR: [ProgramParticipationWhereInput!]
-  NOT: [ProgramParticipationWhereInput!]
-  bpjsNumber: StringNullableFilter
-  nonActiveReason: StringNullableFilter
-  effectiveDate: DateTimeFilter
-  nonActiveDate: DateTimeNullableFilter
-  participantId: StringFilter
-  fundingId: IntFilter
-  programId: IntNullableFilter
-  participant: ParticipantRelationFilter
-  funding: AccountRelationFilter
-  Program: ProgramNullableRelationFilter
-}
-
-input ProgramParticipationCreateManyFundingInputEnvelope {
-  data: [ProgramParticipationCreateManyFundingInput!]!
-  skipDuplicates: Boolean
-}
-
-input ProgramParticipationCreateManyFundingInput {
-  id: Int
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  participantId: String!
-  programId: Int
-}
-
-input AccountCreateOrConnectWithoutParticipantInput {
-  where: AccountWhereUniqueInput!
-  create: AccountCreateWithoutParticipantInput!
-}
-
-input AccountWhereUniqueInput {
-  id: Int
-  AND: [AccountWhereInput!]
-  OR: [AccountWhereInput!]
-  NOT: [AccountWhereInput!]
-  currentBalance: FloatFilter
-  currentBalanceLastUpdate: DateTimeNullableFilter
-  participantId: StringFilter
-  participant: ParticipantRelationFilter
-  transactions: TransactionListRelationFilter
-  programParticipation: ProgramParticipationListRelationFilter
-}
-
-input AccountCreateManyParticipantInputEnvelope {
-  data: [AccountCreateManyParticipantInput!]!
-  skipDuplicates: Boolean
-}
-
-input AccountCreateManyParticipantInput {
-  id: Int
-  currentBalance: Float!
-  currentBalanceLastUpdate: DateTime
-}
-
-input ParticipantCreateNestedManyWithoutRelationInput {
-  create: [ParticipantCreateWithoutRelationInput!]
-  connectOrCreate: [ParticipantCreateOrConnectWithoutRelationInput!]
-  createMany: ParticipantCreateManyRelationInputEnvelope
-  connect: [ParticipantWhereUniqueInput!]
-}
-
-input ParticipantCreateWithoutRelationInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  user: UserCreateNestedOneWithoutParticipantInput!
-  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
-  claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
-  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
-  balances: AccountCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
-}
-
-input ProgramParticipationCreateNestedManyWithoutParticipantInput {
-  create: [ProgramParticipationCreateWithoutParticipantInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutParticipantInput!]
-  createMany: ProgramParticipationCreateManyParticipantInputEnvelope
-  connect: [ProgramParticipationWhereUniqueInput!]
-}
-
-input ProgramParticipationCreateWithoutParticipantInput {
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  funding: AccountCreateNestedOneWithoutProgramParticipationInput!
-  Program: ProgramCreateNestedOneWithoutProgramParticipationsInput
-}
-
-input AccountCreateNestedOneWithoutProgramParticipationInput {
-  create: AccountCreateWithoutProgramParticipationInput
-  connectOrCreate: AccountCreateOrConnectWithoutProgramParticipationInput
-  connect: AccountWhereUniqueInput
-}
-
-input AccountCreateWithoutProgramParticipationInput {
-  currentBalance: Float!
-  currentBalanceLastUpdate: DateTime
-  participant: ParticipantCreateNestedOneWithoutBalancesInput!
-  transactions: TransactionCreateNestedManyWithoutAccountInput
-}
-
-input ParticipantCreateNestedOneWithoutBalancesInput {
-  create: ParticipantCreateWithoutBalancesInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutBalancesInput
-  connect: ParticipantWhereUniqueInput
-}
-
-input ParticipantCreateWithoutBalancesInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  user: UserCreateNestedOneWithoutParticipantInput!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
-  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
-  claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
-  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
-}
-
-input ParticipantCreateOrConnectWithoutBalancesInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutBalancesInput!
-}
-
-input ParticipantWhereUniqueInput {
-  userId: String
-  AND: [ParticipantWhereInput!]
-  OR: [ParticipantWhereInput!]
-  NOT: [ParticipantWhereInput!]
-  gender: EnumGenderFilter
-  birthDate: DateTimeFilter
-  isActive: BoolFilter
-  status: EnumParticipantStatusFilter
-  relationId: StringNullableFilter
-  user: UserRelationFilter
-  relation: ParticipantNullableRelationFilter
-  bankAccount: BankAccountNullableRelationFilter
-  claims: ClaimListRelationFilter
-  employments: EmploymentListRelationFilter
-  contactInfos: ContactInfoListRelationFilter
-  programParticipations: ProgramParticipationListRelationFilter
-  balances: AccountListRelationFilter
-  Participant: ParticipantListRelationFilter
-}
-
-input AccountCreateOrConnectWithoutProgramParticipationInput {
-  where: AccountWhereUniqueInput!
-  create: AccountCreateWithoutProgramParticipationInput!
-}
-
-input ProgramParticipationCreateOrConnectWithoutParticipantInput {
-  where: ProgramParticipationWhereUniqueInput!
-  create: ProgramParticipationCreateWithoutParticipantInput!
-}
-
-input ProgramParticipationCreateManyParticipantInputEnvelope {
-  data: [ProgramParticipationCreateManyParticipantInput!]!
-  skipDuplicates: Boolean
-}
-
-input ProgramParticipationCreateManyParticipantInput {
-  id: Int
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  fundingId: Int!
-  programId: Int
-}
-
-input ParticipantCreateOrConnectWithoutRelationInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutRelationInput!
-}
-
-input ParticipantCreateManyRelationInputEnvelope {
-  data: [ParticipantCreateManyRelationInput!]!
-  skipDuplicates: Boolean
-}
-
-input ParticipantCreateManyRelationInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  userId: String!
-}
-
-input ParticipantCreateOrConnectWithoutProgramParticipationsInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutProgramParticipationsInput!
-}
-
-input ProgramParticipationCreateOrConnectWithoutProgramInput {
-  where: ProgramParticipationWhereUniqueInput!
-  create: ProgramParticipationCreateWithoutProgramInput!
-}
-
-input ProgramParticipationCreateManyProgramInputEnvelope {
-  data: [ProgramParticipationCreateManyProgramInput!]!
-  skipDuplicates: Boolean
-}
-
-input ProgramParticipationCreateManyProgramInput {
-  id: Int
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  participantId: String!
-  fundingId: Int!
-}
-
-input ProgramCreateOrConnectWithoutClaimsInput {
-  where: ProgramWhereUniqueInput!
-  create: ProgramCreateWithoutClaimsInput!
 }
 
 input ClaimCreateOrConnectWithoutClaimStatusesInput {
@@ -5260,6 +5077,268 @@ input UserWhereUniqueInput {
   notification: NotificationListRelationFilter
 }
 
+input ClaimCreateOrConnectWithoutProgramInput {
+  where: ClaimWhereUniqueInput!
+  create: ClaimCreateWithoutProgramInput!
+}
+
+input ClaimCreateManyProgramInputEnvelope {
+  data: [ClaimCreateManyProgramInput!]!
+  skipDuplicates: Boolean
+}
+
+input ClaimCreateManyProgramInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participantId: String!
+  claimFinancialId: Int!
+  claimProcessId: Int!
+  diseaseId: Int
+  clinicId: Int!
+  inputedById: String
+}
+
+input ProgramCreateOrConnectWithoutProgramParticipationsInput {
+  where: ProgramWhereUniqueInput!
+  create: ProgramCreateWithoutProgramParticipationsInput!
+}
+
+input ProgramWhereUniqueInput {
+  id: Int
+  AND: [ProgramWhereInput!]
+  OR: [ProgramWhereInput!]
+  NOT: [ProgramWhereInput!]
+  plan: EnumApplicationTypeFilter
+  maxAllowancePercentage: IntNullableFilter
+  allowanceCeiling: FloatNullableFilter
+  maxAllowancePerYear: FloatNullableFilter
+  claimPeriodMax: IntNullableFilter
+  reclaimPeriodMax: IntNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
+  class: EnumClassFilter
+  programParticipations: ProgramParticipationListRelationFilter
+  claims: ClaimListRelationFilter
+}
+
+input ProgramParticipationCreateOrConnectWithoutFundingInput {
+  where: ProgramParticipationWhereUniqueInput!
+  create: ProgramParticipationCreateWithoutFundingInput!
+}
+
+input ProgramParticipationWhereUniqueInput {
+  id: Int
+  AND: [ProgramParticipationWhereInput!]
+  OR: [ProgramParticipationWhereInput!]
+  NOT: [ProgramParticipationWhereInput!]
+  bpjsNumber: StringNullableFilter
+  nonActiveReason: StringNullableFilter
+  effectiveDate: DateTimeFilter
+  nonActiveDate: DateTimeNullableFilter
+  participantId: StringFilter
+  fundingId: IntFilter
+  programId: IntNullableFilter
+  participant: ParticipantRelationFilter
+  funding: AccountRelationFilter
+  Program: ProgramNullableRelationFilter
+}
+
+input ProgramParticipationCreateManyFundingInputEnvelope {
+  data: [ProgramParticipationCreateManyFundingInput!]!
+  skipDuplicates: Boolean
+}
+
+input ProgramParticipationCreateManyFundingInput {
+  id: Int
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+  participantId: String!
+  programId: Int
+}
+
+input AccountCreateOrConnectWithoutParticipantInput {
+  where: AccountWhereUniqueInput!
+  create: AccountCreateWithoutParticipantInput!
+}
+
+input AccountWhereUniqueInput {
+  id: Int
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  currentBalance: FloatFilter
+  currentBalanceLastUpdate: DateTimeNullableFilter
+  participantId: StringFilter
+  participant: ParticipantRelationFilter
+  transactions: TransactionListRelationFilter
+  programParticipation: ProgramParticipationListRelationFilter
+}
+
+input AccountCreateManyParticipantInputEnvelope {
+  data: [AccountCreateManyParticipantInput!]!
+  skipDuplicates: Boolean
+}
+
+input AccountCreateManyParticipantInput {
+  id: Int
+  currentBalance: Float!
+  currentBalanceLastUpdate: DateTime
+}
+
+input ParticipantCreateNestedManyWithoutRelationInput {
+  create: [ParticipantCreateWithoutRelationInput!]
+  connectOrCreate: [ParticipantCreateOrConnectWithoutRelationInput!]
+  createMany: ParticipantCreateManyRelationInputEnvelope
+  connect: [ParticipantWhereUniqueInput!]
+}
+
+input ParticipantCreateWithoutRelationInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
+  claims: ClaimCreateNestedManyWithoutParticipantInput
+  employments: EmploymentCreateNestedManyWithoutParticipantInput
+  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  balances: AccountCreateNestedManyWithoutParticipantInput
+  Participant: ParticipantCreateNestedManyWithoutRelationInput
+}
+
+input ParticipantCreateOrConnectWithoutRelationInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutRelationInput!
+}
+
+input ParticipantWhereUniqueInput {
+  userId: String
+  AND: [ParticipantWhereInput!]
+  OR: [ParticipantWhereInput!]
+  NOT: [ParticipantWhereInput!]
+  gender: EnumGenderFilter
+  birthDate: DateTimeFilter
+  isActive: BoolFilter
+  status: EnumParticipantStatusFilter
+  relationId: StringNullableFilter
+  user: UserRelationFilter
+  relation: ParticipantNullableRelationFilter
+  bankAccount: BankAccountNullableRelationFilter
+  claims: ClaimListRelationFilter
+  employments: EmploymentListRelationFilter
+  contactInfos: ContactInfoListRelationFilter
+  programParticipations: ProgramParticipationListRelationFilter
+  balances: AccountListRelationFilter
+  Participant: ParticipantListRelationFilter
+}
+
+input ParticipantCreateManyRelationInputEnvelope {
+  data: [ParticipantCreateManyRelationInput!]!
+  skipDuplicates: Boolean
+}
+
+input ParticipantCreateManyRelationInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  userId: String!
+}
+
+input ParticipantCreateOrConnectWithoutProgramParticipationsInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutProgramParticipationsInput!
+}
+
+input ProgramParticipationCreateOrConnectWithoutProgramInput {
+  where: ProgramParticipationWhereUniqueInput!
+  create: ProgramParticipationCreateWithoutProgramInput!
+}
+
+input ProgramParticipationCreateManyProgramInputEnvelope {
+  data: [ProgramParticipationCreateManyProgramInput!]!
+  skipDuplicates: Boolean
+}
+
+input ProgramParticipationCreateManyProgramInput {
+  id: Int
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+  participantId: String!
+  fundingId: Int!
+}
+
+input ProgramCreateOrConnectWithoutClaimsInput {
+  where: ProgramWhereUniqueInput!
+  create: ProgramCreateWithoutClaimsInput!
+}
+
+input ClaimCreateOrConnectWithoutInputedByInput {
+  where: ClaimWhereUniqueInput!
+  create: ClaimCreateWithoutInputedByInput!
+}
+
+input ClaimCreateManyInputedByInputEnvelope {
+  data: [ClaimCreateManyInputedByInput!]!
+  skipDuplicates: Boolean
+}
+
+input ClaimCreateManyInputedByInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participantId: String!
+  claimFinancialId: Int!
+  claimProcessId: Int!
+  diseaseId: Int
+  clinicId: Int!
+  programId: Int!
+}
+
+input UserCreateOrConnectWithoutClaimActionsInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutClaimActionsInput!
+}
+
+input ClaimStatusCreateOrConnectWithoutRejectionLetterInput {
+  where: ClaimStatusWhereUniqueInput!
+  create: ClaimStatusCreateWithoutRejectionLetterInput!
+}
+
+input DocumentCreateOrConnectWithoutClaimProcessInput {
+  where: DocumentWhereUniqueInput!
+  create: DocumentCreateWithoutClaimProcessInput!
+}
+
+input DocumentCreateManyClaimProcessInputEnvelope {
+  data: [DocumentCreateManyClaimProcessInput!]!
+  skipDuplicates: Boolean
+}
+
+input DocumentCreateManyClaimProcessInput {
+  id: String
+  name: String!
+  path: String!
+  size: Int!
+  printCount: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+  source: DocumentSource!
+  type: DocumentType!
+}
+
+input ClaimProcessCreateOrConnectWithoutClaimInput {
+  where: ClaimProcessWhereUniqueInput!
+  create: ClaimProcessCreateWithoutClaimInput!
+}
+
 input ClaimCreateOrConnectWithoutClaimFinancialsInput {
   where: ClaimWhereUniqueInput!
   create: ClaimCreateWithoutClaimFinancialsInput!
@@ -5416,73 +5495,34 @@ input EmploymentCreateManyParticipantInput {
   regionId: Int
 }
 
-input ParticipantCreateOrConnectWithoutUserInput {
+input ParticipantCreateOrConnectWithoutBalancesInput {
   where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutUserInput!
+  create: ParticipantCreateWithoutBalancesInput!
 }
 
-input UserCreateOrConnectWithoutClaimActionsInput {
-  where: UserWhereUniqueInput!
-  create: UserCreateWithoutClaimActionsInput!
+input AccountCreateOrConnectWithoutProgramParticipationInput {
+  where: AccountWhereUniqueInput!
+  create: AccountCreateWithoutProgramParticipationInput!
 }
 
-input ClaimStatusCreateOrConnectWithoutRejectionLetterInput {
-  where: ClaimStatusWhereUniqueInput!
-  create: ClaimStatusCreateWithoutRejectionLetterInput!
+input ProgramParticipationCreateOrConnectWithoutParticipantInput {
+  where: ProgramParticipationWhereUniqueInput!
+  create: ProgramParticipationCreateWithoutParticipantInput!
 }
 
-input DocumentCreateOrConnectWithoutClaimProcessInput {
-  where: DocumentWhereUniqueInput!
-  create: DocumentCreateWithoutClaimProcessInput!
-}
-
-input DocumentCreateManyClaimProcessInputEnvelope {
-  data: [DocumentCreateManyClaimProcessInput!]!
+input ProgramParticipationCreateManyParticipantInputEnvelope {
+  data: [ProgramParticipationCreateManyParticipantInput!]!
   skipDuplicates: Boolean
 }
 
-input DocumentCreateManyClaimProcessInput {
-  id: String
-  name: String!
-  path: String!
-  size: Int!
-  printCount: Int!
-  createdAt: DateTime
-  updatedAt: DateTime
-  source: DocumentSource!
-  type: DocumentType!
-}
-
-input ClaimProcessCreateOrConnectWithoutClaimInput {
-  where: ClaimProcessWhereUniqueInput!
-  create: ClaimProcessCreateWithoutClaimInput!
-}
-
-input ClaimCreateOrConnectWithoutParticipantInput {
-  where: ClaimWhereUniqueInput!
-  create: ClaimCreateWithoutParticipantInput!
-}
-
-input ClaimCreateManyParticipantInputEnvelope {
-  data: [ClaimCreateManyParticipantInput!]!
-  skipDuplicates: Boolean
-}
-
-input ClaimCreateManyParticipantInput {
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  claimFinancialId: Int!
-  claimProcessId: Int!
-  diseaseId: Int
-  clinicId: Int!
-  inputedById: String
-  programId: Int!
-}
-
-input ParticipantCreateOrConnectWithoutParticipantInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutParticipantInput!
+input ProgramParticipationCreateManyParticipantInput {
+  id: Int
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+  fundingId: Int!
+  programId: Int
 }
 
 input ParticipantCreateOrConnectWithoutEmploymentsInput {
@@ -5518,26 +5558,98 @@ input ClaimFinancialCreateOrConnectWithoutClaimInput {
   create: ClaimFinancialCreateWithoutClaimInput!
 }
 
-input ClaimCreateOrConnectWithoutInputedByInput {
+input ClaimCreateOrConnectWithoutParticipantInput {
   where: ClaimWhereUniqueInput!
-  create: ClaimCreateWithoutInputedByInput!
+  create: ClaimCreateWithoutParticipantInput!
 }
 
-input ClaimCreateManyInputedByInputEnvelope {
-  data: [ClaimCreateManyInputedByInput!]!
+input ClaimCreateManyParticipantInputEnvelope {
+  data: [ClaimCreateManyParticipantInput!]!
   skipDuplicates: Boolean
 }
 
-input ClaimCreateManyInputedByInput {
+input ClaimCreateManyParticipantInput {
   channel: ClaimChannel!
   admedicaStatus: AdmedicaStatus!
   company: String!
-  participantId: String!
   claimFinancialId: Int!
   claimProcessId: Int!
   diseaseId: Int
   clinicId: Int!
+  inputedById: String
   programId: Int!
+}
+
+input ParticipantCreateOrConnectWithoutParticipantInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutParticipantInput!
+}
+
+input ParticipantCreateOrConnectWithoutUserInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutUserInput!
+}
+
+input UserCreateOrConnectWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutRoleInput!
+}
+
+input UserCreateManyRoleInputEnvelope {
+  data: [UserCreateManyRoleInput!]!
+  skipDuplicates: Boolean
+}
+
+input UserCreateManyRoleInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+}
+
+input RoleCreateOrConnectWithoutLowerLevelThanInput {
+  where: RoleWhereUniqueInput!
+  create: RoleCreateWithoutLowerLevelThanInput!
+}
+
+input RoleCreateNestedManyWithoutHigherLevelThanInput {
+  create: [RoleCreateWithoutHigherLevelThanInput!]
+  connectOrCreate: [RoleCreateOrConnectWithoutHigherLevelThanInput!]
+  createMany: RoleCreateManyHigherLevelThanInputEnvelope
+  connect: [RoleWhereUniqueInput!]
+}
+
+input RoleCreateWithoutHigherLevelThanInput {
+  name: String!
+  description: String
+  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  users: UserCreateNestedManyWithoutRoleInput
+  lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
+}
+
+input RoleCreateOrConnectWithoutHigherLevelThanInput {
+  where: RoleWhereUniqueInput!
+  create: RoleCreateWithoutHigherLevelThanInput!
+}
+
+input RoleCreateManyHigherLevelThanInputEnvelope {
+  data: [RoleCreateManyHigherLevelThanInput!]!
+  skipDuplicates: Boolean
+}
+
+input RoleCreateManyHigherLevelThanInput {
+  id: Int
+  name: String!
+  description: String
+}
+
+input RoleCreateOrConnectWithoutUsersInput {
+  where: RoleWhereUniqueInput!
+  create: RoleCreateWithoutUsersInput!
 }
 
 input UserCreateOrConnectWithoutParticipantInput {
@@ -5675,16 +5787,33 @@ input RoleUpsertWithoutUsersInput {
 input RoleUpdateWithoutUsersInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
-  orderLevel: IntFieldUpdateOperationsInput
+  higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
 }
 
-input IntFieldUpdateOperationsInput {
-  set: Int
-  increment: Int
-  decrement: Int
-  multiply: Int
-  divide: Int
+input RoleUpdateOneWithoutLowerLevelThanNestedInput {
+  create: RoleCreateWithoutLowerLevelThanInput
+  connectOrCreate: RoleCreateOrConnectWithoutLowerLevelThanInput
+  upsert: RoleUpsertWithoutLowerLevelThanInput
+  disconnect: RoleWhereInput
+  delete: RoleWhereInput
+  connect: RoleWhereUniqueInput
+  update: RoleUpdateToOneWithWhereWithoutLowerLevelThanInput
+}
+
+input RoleUpsertWithoutLowerLevelThanInput {
+  update: RoleUpdateWithoutLowerLevelThanInput!
+  create: RoleCreateWithoutLowerLevelThanInput!
+  where: RoleWhereInput
+}
+
+input RoleUpdateWithoutLowerLevelThanInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
+  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  users: UserUpdateManyWithoutRoleNestedInput
 }
 
 input RolePermissionUpdateManyWithoutRoleNestedInput {
@@ -5738,9 +5867,40 @@ input RolePermissionUpdateManyMutationInput {
   permission: EnumPermissionFieldUpdateOperationsInput
 }
 
-input RoleUpdateToOneWithWhereWithoutUsersInput {
-  where: RoleWhereInput
-  data: RoleUpdateWithoutUsersInput!
+input UserUpdateManyWithoutRoleNestedInput {
+  create: [UserCreateWithoutRoleInput!]
+  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutRoleInput!]
+  createMany: UserCreateManyRoleInputEnvelope
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutRoleInput!]
+  updateMany: [UserUpdateManyWithWhereWithoutRoleInput!]
+  deleteMany: [UserScalarWhereInput!]
+}
+
+input UserUpsertWithWhereUniqueWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutRoleInput!
+  create: UserCreateWithoutRoleInput!
+}
+
+input UserUpdateWithoutRoleInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
 }
 
 input ParticipantUpdateOneWithoutUserNestedInput {
@@ -6130,6 +6290,14 @@ input DocumentUpdateWithoutClaimProcessInput {
   guaranteeLetterOf: ClaimStatusUpdateOneWithoutGuaranteeLetterNestedInput
   transactionLetterOf: ClaimStatusUpdateOneWithoutTransactionLetterNestedInput
   bookKeepingOrderOf: ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput
+}
+
+input IntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
 }
 
 input EnumDocumentSourceFieldUpdateOperationsInput {
@@ -8006,107 +8174,6 @@ input ParticipantUpdateToOneWithWhereWithoutUserInput {
   data: ParticipantUpdateWithoutUserInput!
 }
 
-input UserUpdateToOneWithWhereWithoutClaimActionsInput {
-  where: UserWhereInput
-  data: UserUpdateWithoutClaimActionsInput!
-}
-
-input RoleCreateInput {
-  name: String!
-  description: String
-  orderLevel: Int
-  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
-  users: UserCreateNestedManyWithoutRoleInput
-}
-
-input UserCreateNestedManyWithoutRoleInput {
-  create: [UserCreateWithoutRoleInput!]
-  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
-  createMany: UserCreateManyRoleInputEnvelope
-  connect: [UserWhereUniqueInput!]
-}
-
-input UserCreateWithoutRoleInput {
-  id: String
-  fullName: String!
-  email: String!
-  emailVerifiedAt: DateTime
-  password: String!
-  profilePictureUrl: String
-  deletedAt: DateTime
-  participantId: Int
-  participant: ParticipantCreateNestedOneWithoutUserInput
-  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
-  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
-  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
-  notification: NotificationCreateNestedManyWithoutUserInput
-}
-
-input UserCreateOrConnectWithoutRoleInput {
-  where: UserWhereUniqueInput!
-  create: UserCreateWithoutRoleInput!
-}
-
-input UserCreateManyRoleInputEnvelope {
-  data: [UserCreateManyRoleInput!]!
-  skipDuplicates: Boolean
-}
-
-input UserCreateManyRoleInput {
-  id: String
-  fullName: String!
-  email: String!
-  emailVerifiedAt: DateTime
-  password: String!
-  profilePictureUrl: String
-  deletedAt: DateTime
-  participantId: Int
-}
-
-input RoleUpdateInput {
-  name: StringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  orderLevel: IntFieldUpdateOperationsInput
-  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
-  users: UserUpdateManyWithoutRoleNestedInput
-}
-
-input UserUpdateManyWithoutRoleNestedInput {
-  create: [UserCreateWithoutRoleInput!]
-  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutRoleInput!]
-  createMany: UserCreateManyRoleInputEnvelope
-  set: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  delete: [UserWhereUniqueInput!]
-  connect: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutRoleInput!]
-  updateMany: [UserUpdateManyWithWhereWithoutRoleInput!]
-  deleteMany: [UserScalarWhereInput!]
-}
-
-input UserUpsertWithWhereUniqueWithoutRoleInput {
-  where: UserWhereUniqueInput!
-  update: UserUpdateWithoutRoleInput!
-  create: UserCreateWithoutRoleInput!
-}
-
-input UserUpdateWithoutRoleInput {
-  id: StringFieldUpdateOperationsInput
-  fullName: StringFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  profilePictureUrl: NullableStringFieldUpdateOperationsInput
-  deletedAt: NullableDateTimeFieldUpdateOperationsInput
-  participantId: NullableIntFieldUpdateOperationsInput
-  participant: ParticipantUpdateOneWithoutUserNestedInput
-  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
-  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
-  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
-  notification: NotificationUpdateManyWithoutUserNestedInput
-}
-
 input UserUpdateWithWhereUniqueWithoutRoleInput {
   where: UserWhereUniqueInput!
   data: UserUpdateWithoutRoleInput!
@@ -8141,6 +8208,92 @@ input UserUpdateManyMutationInput {
   profilePictureUrl: NullableStringFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   participantId: NullableIntFieldUpdateOperationsInput
+}
+
+input RoleUpdateToOneWithWhereWithoutLowerLevelThanInput {
+  where: RoleWhereInput
+  data: RoleUpdateWithoutLowerLevelThanInput!
+}
+
+input RoleUpdateManyWithoutHigherLevelThanNestedInput {
+  create: [RoleCreateWithoutHigherLevelThanInput!]
+  connectOrCreate: [RoleCreateOrConnectWithoutHigherLevelThanInput!]
+  upsert: [RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput!]
+  createMany: RoleCreateManyHigherLevelThanInputEnvelope
+  set: [RoleWhereUniqueInput!]
+  disconnect: [RoleWhereUniqueInput!]
+  delete: [RoleWhereUniqueInput!]
+  connect: [RoleWhereUniqueInput!]
+  update: [RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput!]
+  updateMany: [RoleUpdateManyWithWhereWithoutHigherLevelThanInput!]
+  deleteMany: [RoleScalarWhereInput!]
+}
+
+input RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput {
+  where: RoleWhereUniqueInput!
+  update: RoleUpdateWithoutHigherLevelThanInput!
+  create: RoleCreateWithoutHigherLevelThanInput!
+}
+
+input RoleUpdateWithoutHigherLevelThanInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  users: UserUpdateManyWithoutRoleNestedInput
+  lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
+}
+
+input RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput {
+  where: RoleWhereUniqueInput!
+  data: RoleUpdateWithoutHigherLevelThanInput!
+}
+
+input RoleUpdateManyWithWhereWithoutHigherLevelThanInput {
+  where: RoleScalarWhereInput!
+  data: RoleUpdateManyMutationInput!
+}
+
+input RoleScalarWhereInput {
+  AND: [RoleScalarWhereInput!]
+  OR: [RoleScalarWhereInput!]
+  NOT: [RoleScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  description: StringNullableFilter
+  higherLevelThanId: IntNullableFilter
+}
+
+input RoleUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+}
+
+input RoleUpdateToOneWithWhereWithoutUsersInput {
+  where: RoleWhereInput
+  data: RoleUpdateWithoutUsersInput!
+}
+
+input UserUpdateToOneWithWhereWithoutClaimActionsInput {
+  where: UserWhereInput
+  data: UserUpdateWithoutClaimActionsInput!
+}
+
+input RoleCreateInput {
+  name: String!
+  description: String
+  higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
+  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  users: UserCreateNestedManyWithoutRoleInput
+  lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
+}
+
+input RoleUpdateInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
+  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  users: UserUpdateManyWithoutRoleNestedInput
+  lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
 }
 
 input NotificationUpdateInput {
