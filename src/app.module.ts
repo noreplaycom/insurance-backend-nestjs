@@ -35,6 +35,7 @@ import { TagModule } from './services/tag/tag.module';
 import { JwtModule } from '@nestjs/jwt';
 import { UploaderModule } from './services/uploader/uploader.module';
 import { NotificationModule } from './services/notification/notification.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 // import { DashboardModule } from './services/Dashboard/dashboard.module';
 // import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
 // import { UploaderModule } from './services/uploader/uploader.module';
@@ -96,7 +97,7 @@ import { NotificationModule } from './services/notification/notification.module'
       name: 'uploader',
     }),
     //for shceduler
-    // SchedulerModule,
+    SchedulerModule,
     ConfigsModule,
     //EmailModule,
     // UploaderModule,
