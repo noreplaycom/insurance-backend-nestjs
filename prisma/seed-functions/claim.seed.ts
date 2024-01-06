@@ -2,6 +2,7 @@ import {
   AdmedicaStatus,
   ApplicationType,
   ClaimChannel,
+  ClaimStatusType,
   Class,
   Gender,
   ParticipantStatus,
@@ -207,8 +208,30 @@ export async function claimSeed() {
           code: faker.datatype.number(100).toString(),
         },
       },
-      inputedBy: { create: userCreateInput },
+      inputedBy: {
+        create: {
+          fullName: faker.name.firstName(),
+          email: faker.internet.email(),
+          password: faker.internet.password(),
+          role: { connect: { id: faker.helpers.arrayElement(newRoles).id } },
+        },
+      },
       program: { connect: { id: faker.helpers.arrayElement(programs).id } },
+      claimStatuses: {
+        create: {
+          status: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
+          createBy: {
+            create: {
+              fullName: faker.name.firstName(),
+              email: faker.internet.email(),
+              password: faker.internet.password(),
+              role: {
+                connect: { id: faker.helpers.arrayElement(newRoles).id },
+              },
+            },
+          },
+        },
+      },
     };
 
     // Create claim

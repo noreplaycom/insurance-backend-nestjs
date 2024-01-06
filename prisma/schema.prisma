@@ -344,7 +344,7 @@ model Employment {
 
     region Region? @relation(fields: [regionId], references: [id])
 
-    regionId Int
+    regionId Int?
 }
 
 model Branch {

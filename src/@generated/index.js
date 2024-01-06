@@ -14518,7 +14518,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimFinancialCreateManyBranchPayeeInput.prototype, "transferDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialCreateManyBranchPayeeInput.prototype, "claimStatusId", void 0);
 ClaimFinancialCreateManyBranchPayeeInput = __decorate([
     (0, graphql_4.InputType)()
@@ -14548,7 +14548,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialCreateManyInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialCreateManyInput.prototype, "claimStatusId", void 0);
 ClaimFinancialCreateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -14829,7 +14829,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialGroupBy.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialGroupBy.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimFinancialCountAggregate, { nullable: true })
@@ -15090,7 +15090,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimFinancialOrderByWithAggregationInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimFinancialOrderByWithAggregationInput.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimFinancialCountOrderByAggregateInput, { nullable: true })
@@ -15135,7 +15135,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimFinancialOrderByWithRelationInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimFinancialOrderByWithRelationInput.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BranchOrderByWithRelationInput, { nullable: true })
@@ -15195,7 +15195,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
 ], ClaimFinancialScalarWhereWithAggregatesInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
 ], ClaimFinancialScalarWhereWithAggregatesInput.prototype, "claimStatusId", void 0);
 ClaimFinancialScalarWhereWithAggregatesInput = ClaimFinancialScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -15234,7 +15234,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ClaimFinancialScalarWhereInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ClaimFinancialScalarWhereInput.prototype, "claimStatusId", void 0);
 ClaimFinancialScalarWhereInput = ClaimFinancialScalarWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -15373,7 +15373,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimFinancialUncheckedCreateWithoutBranchPayeeInput.prototype, "transferDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialUncheckedCreateWithoutBranchPayeeInput.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput, { nullable: true })
@@ -15436,7 +15436,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialUncheckedCreateWithoutClaimInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialUncheckedCreateWithoutClaimInput.prototype, "claimStatusId", void 0);
 ClaimFinancialUncheckedCreateWithoutClaimInput = __decorate([
     (0, graphql_4.InputType)()
@@ -15466,7 +15466,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialUncheckedCreateInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancialUncheckedCreateInput.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput, { nullable: true })
@@ -15546,7 +15546,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput.prototype, "transferDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput.prototype, "claimStatusId", void 0);
 ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput = __decorate([
     (0, graphql_4.InputType)()
@@ -15576,7 +15576,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateManyInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateManyInput.prototype, "claimStatusId", void 0);
 ClaimFinancialUncheckedUpdateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -15637,7 +15637,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput.prototype, "transferDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput, { nullable: true })
@@ -15700,7 +15700,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateWithoutClaimInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateWithoutClaimInput.prototype, "claimStatusId", void 0);
 ClaimFinancialUncheckedUpdateWithoutClaimInput = __decorate([
     (0, graphql_4.InputType)()
@@ -15730,7 +15730,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimFinancialUncheckedUpdateInput.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput, { nullable: true })
@@ -16172,7 +16172,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ClaimFinancialWhereInput.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ClaimFinancialWhereInput.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BranchNullableRelationFilter, { nullable: true })
@@ -16211,7 +16211,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true, description: 'Cabang: Cabang Pembayar Pensiun' })
 ], ClaimFinancial.prototype, "branchId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimFinancial.prototype, "claimStatusId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Branch, { nullable: true, description: 'Cabang: Cabang Pembayar Pensiun' })

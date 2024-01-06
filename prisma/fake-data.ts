@@ -401,7 +401,7 @@ export function fakeClaimFinancialComplete() {
     transactionProcessDate: undefined,
     transferDate: undefined,
     branchId: undefined,
-    claimStatusId: faker.datatype.number(),
+    claimStatusId: undefined,
   };
 }
 export function fakeClaimProcess() {

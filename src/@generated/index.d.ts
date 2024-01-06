@@ -4778,7 +4778,7 @@ export declare class ClaimFinancialCreateManyBranchPayeeInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimStatusId: number;
+    claimStatusId?: number;
 }
 export declare class ClaimFinancialCreateManyInput {
     id?: number;
@@ -4788,7 +4788,7 @@ export declare class ClaimFinancialCreateManyInput {
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
     branchId?: number;
-    claimStatusId: number;
+    claimStatusId?: number;
 }
 export declare class ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
     create?: Array<ClaimFinancialCreateWithoutBranchPayeeInput>;
@@ -4876,7 +4876,7 @@ export declare class ClaimFinancialGroupBy {
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
     branchId?: number;
-    claimStatusId: number;
+    claimStatusId?: number;
     _count?: InstanceType<typeof ClaimFinancialCountAggregate>;
     _avg?: InstanceType<typeof ClaimFinancialAvgAggregate>;
     _sum?: InstanceType<typeof ClaimFinancialSumAggregate>;
@@ -4963,7 +4963,7 @@ export declare class ClaimFinancialOrderByWithAggregationInput {
     transactionProcessDate?: InstanceType<typeof SortOrderInput>;
     transferDate?: InstanceType<typeof SortOrderInput>;
     branchId?: InstanceType<typeof SortOrderInput>;
-    claimStatusId?: keyof typeof SortOrder;
+    claimStatusId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof ClaimFinancialCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ClaimFinancialAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ClaimFinancialMaxOrderByAggregateInput>;
@@ -4978,7 +4978,7 @@ export declare class ClaimFinancialOrderByWithRelationInput {
     transactionProcessDate?: InstanceType<typeof SortOrderInput>;
     transferDate?: InstanceType<typeof SortOrderInput>;
     branchId?: InstanceType<typeof SortOrderInput>;
-    claimStatusId?: keyof typeof SortOrder;
+    claimStatusId?: InstanceType<typeof SortOrderInput>;
     branchPayee?: InstanceType<typeof BranchOrderByWithRelationInput>;
     claim?: InstanceType<typeof ClaimOrderByWithRelationInput>;
     claimStatus?: InstanceType<typeof ClaimStatusOrderByWithRelationInput>;
@@ -4998,7 +4998,7 @@ export declare class ClaimFinancialScalarWhereWithAggregatesInput {
     transactionProcessDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     branchId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
-    claimStatusId?: InstanceType<typeof IntWithAggregatesFilter>;
+    claimStatusId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
 }
 export declare class ClaimFinancialScalarWhereInput {
     AND?: Array<ClaimFinancialScalarWhereInput>;
@@ -5011,7 +5011,7 @@ export declare class ClaimFinancialScalarWhereInput {
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
     branchId?: InstanceType<typeof IntNullableFilter>;
-    claimStatusId?: InstanceType<typeof IntFilter>;
+    claimStatusId?: InstanceType<typeof IntNullableFilter>;
 }
 export declare class ClaimFinancialSumAggregateInput {
     id?: true;
@@ -5055,7 +5055,7 @@ export declare class ClaimFinancialUncheckedCreateWithoutBranchPayeeInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    claimStatusId: number;
+    claimStatusId?: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialUncheckedCreateWithoutClaimStatusInput {
@@ -5076,7 +5076,7 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
     branchId?: number;
-    claimStatusId: number;
+    claimStatusId?: number;
 }
 export declare class ClaimFinancialUncheckedCreateInput {
     id?: number;
@@ -5086,7 +5086,7 @@ export declare class ClaimFinancialUncheckedCreateInput {
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
     branchId?: number;
-    claimStatusId: number;
+    claimStatusId?: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeNestedInput {
@@ -5109,7 +5109,7 @@ export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5119,7 +5119,7 @@ export declare class ClaimFinancialUncheckedUpdateManyInput {
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
@@ -5137,7 +5137,7 @@ export declare class ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutClaimStatusInput {
@@ -5158,7 +5158,7 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5168,7 +5168,7 @@ export declare class ClaimFinancialUncheckedUpdateInput {
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUpdateManyMutationInput {
@@ -5302,7 +5302,7 @@ export declare class ClaimFinancialWhereInput {
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
     branchId?: InstanceType<typeof IntNullableFilter>;
-    claimStatusId?: InstanceType<typeof IntFilter>;
+    claimStatusId?: InstanceType<typeof IntNullableFilter>;
     branchPayee?: InstanceType<typeof BranchNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     claimStatus?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
@@ -5315,7 +5315,7 @@ export declare class ClaimFinancial {
     transactionProcessDate: Date | null;
     transferDate: Date | null;
     branchId: number | null;
-    claimStatusId: number;
+    claimStatusId: number | null;
     branchPayee?: InstanceType<typeof Branch> | null;
     claim?: InstanceType<typeof Claim> | null;
     claimStatus?: InstanceType<typeof ClaimStatus> | null;
