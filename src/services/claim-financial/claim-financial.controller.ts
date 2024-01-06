@@ -1,28 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ClaimFinancial } from 'src/@generated';
+import { ClaimFinancialService } from './claim-financial.service';
 
 @Injectable()
-export abstract class ClaimFinancialController {
-  abstract createOne(claimFinancialCreateArgs: Prisma.ClaimFinancialCreateArgs): Promise<ClaimFinancial>;
+export class ClaimFinancialController {
+  constructor(private readonly claimFinancialService: ClaimFinancialService) {}
 
-  abstract createMany(claimFinancialCreateManyArgs: Prisma.ClaimFinancialCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(claimFinancialCreateArgs: Prisma.ClaimFinancialCreateArgs) {
+    return await this.claimFinancialService.createOne(claimFinancialCreateArgs);
+  }
 
-  abstract findOne(claimFinancialFindUniqueArgs: Prisma.ClaimFinancialFindUniqueArgs): Promise<ClaimFinancial>;
+  async createMany(claimFinancialCreateManyArgs: Prisma.ClaimFinancialCreateManyArgs) {
+    return await this.claimFinancialService.createMany(claimFinancialCreateManyArgs);
+  }
 
-  abstract findMany(claimFinancialFindManyArgs: Prisma.ClaimFinancialFindManyArgs): Promise<ClaimFinancial[]>;
+  async findOne(claimFinancialFindUniqueArgs: Prisma.ClaimFinancialFindUniqueArgs) {
+    return await this.claimFinancialService.findOne(claimFinancialFindUniqueArgs);
+  }
 
-  abstract findFirst(claimFinancialFindFirstArgs: Prisma.ClaimFinancialFindFirstArgs): Promise<ClaimFinancial>;
+  async findMany(claimFinancialFindManyArgs: Prisma.ClaimFinancialFindManyArgs) {
+    return await this.claimFinancialService.findMany(claimFinancialFindManyArgs);
+  }
 
-  abstract updateOne(claimFinancialUpdateOneArgs: Prisma.ClaimFinancialUpdateArgs): Promise<ClaimFinancial>;
+  async findFirst(claimFinancialFindFirstArgs: Prisma.ClaimFinancialFindFirstArgs) {
+    return await this.claimFinancialService.findFirst(claimFinancialFindFirstArgs);
+  }
 
-  abstract updateMany(claimFinancialUpdateManyArgs: Prisma.ClaimFinancialUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(claimFinancialUpdateOneArgs: Prisma.ClaimFinancialUpdateArgs) {
+    return await this.claimFinancialService.updateOne(claimFinancialUpdateOneArgs);
+  }
 
-  abstract delete(claimFinancialDeleteArgs: Prisma.ClaimFinancialDeleteArgs): Promise<boolean>;
+  async updateMany(claimFinancialUpdateManyArgs: Prisma.ClaimFinancialUpdateManyArgs) {
+    return await this.claimFinancialService.updateMany(claimFinancialUpdateManyArgs);
+  }
 
-  abstract deleteMany(claimFinancialDeleteManyArgs: Prisma.ClaimFinancialDeleteManyArgs): Promise<boolean>;
+  async delete(claimFinancialDeleteArgs: Prisma.ClaimFinancialDeleteArgs) {
+    return await this.claimFinancialService.delete(claimFinancialDeleteArgs);
+  }
 
-  abstract aggregate(claimFinancialAggregateArgs: Prisma.ClaimFinancialAggregateArgs): Promise<Prisma.GetClaimFinancialAggregateType<Prisma.ClaimFinancialAggregateArgs>>;
+  async deleteMany(claimFinancialDeleteManyArgs: Prisma.ClaimFinancialDeleteManyArgs) {
+    return await this.claimFinancialService.deleteMany(claimFinancialDeleteManyArgs);
+  }
 
-  abstract count(claimFinancialCountArgs: Prisma.ClaimFinancialCountArgs): Promise<number>;
+  async aggregate(claimFinancialAggregateArgs: Prisma.ClaimFinancialAggregateArgs) {
+    return await this.claimFinancialService.aggregate(claimFinancialAggregateArgs);
+  }
+
+  async count(claimFinancialCountArgs: Prisma.ClaimFinancialCountArgs) {
+    return await this.claimFinancialService.count(claimFinancialCountArgs);
+  }
 }

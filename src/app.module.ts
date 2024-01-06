@@ -17,7 +17,6 @@ import { BranchModule } from './services/branch/branch.module';
 import { ClaimModule } from './services/claim/claim.module';
 import { ClaimProcessModule } from './services/claim-process/claim-process.module';
 import { ClaimStatusModule } from './services/claim-status/claim-status.module';
-import { ClaimTypeModule } from './services/claim-type/claim-type.module';
 import { ClinicModule } from './services/clinic/clinic.module';
 //import { CompanyModule } from './services/company/company.module';
 import { ContactInfoModule } from './services/contact-info/contact-info.module';

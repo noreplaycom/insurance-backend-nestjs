@@ -1,31 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { RolePermission } from 'src/@generated';
-import { PermissionFindOneByUserIdArgs } from './dto/permission_find_one';
+import { RolePermissionService } from './role-permission.service';
 
 @Injectable()
-export abstract class RolePermissionController {
-  abstract createOne(rolePermissionCreateArgs: Prisma.RolePermissionCreateArgs): Promise<RolePermission>;
+export class RolePermissionController {
+  constructor(private readonly rolePermissionService: RolePermissionService) {}
 
-  abstract createMany(rolePermissionCreateManyArgs: Prisma.RolePermissionCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(rolePermissionCreateArgs: Prisma.RolePermissionCreateArgs) {
+    return await this.rolePermissionService.createOne(rolePermissionCreateArgs);
+  }
 
-  abstract findOne(rolePermissionFindUniqueArgs: Prisma.RolePermissionFindUniqueArgs): Promise<RolePermission>;
-  
-  abstract findMany(rolePermissionFindManyArgs: Prisma.RolePermissionFindManyArgs): Promise<RolePermission[]>;
-  
-  abstract findFirst(rolePermissionFindFirstArgs: Prisma.RolePermissionFindFirstArgs): Promise<RolePermission>;
-  
-  abstract updateOne(rolePermissionUpdateOneArgs: Prisma.RolePermissionUpdateArgs): Promise<RolePermission>;
-  
-  abstract updateMany(rolePermissionUpdateManyArgs: Prisma.RolePermissionUpdateManyArgs): Promise<Prisma.BatchPayload>;
-  
-  abstract delete(rolePermissionDeleteArgs: Prisma.RolePermissionDeleteArgs): Promise<boolean>;
-  
-  abstract deleteMany(rolePermissionDeleteManyArgs: Prisma.RolePermissionDeleteManyArgs): Promise<boolean>;
-  
-  abstract aggregate(rolePermissionAggregateArgs: Prisma.RolePermissionAggregateArgs): Promise<Prisma.GetRolePermissionAggregateType<Prisma.RolePermissionAggregateArgs>>;
-  
-  abstract count(rolePermissionCountArgs: Prisma.RolePermissionCountArgs): Promise<number>;
-  
-  abstract findOneByUserId(permissionFindOneByUserIdArgs: PermissionFindOneByUserIdArgs): Promise<RolePermission>;
+  async createMany(rolePermissionCreateManyArgs: Prisma.RolePermissionCreateManyArgs) {
+    return await this.rolePermissionService.createMany(rolePermissionCreateManyArgs);
+  }
+
+  async findOne(rolePermissionFindUniqueArgs: Prisma.RolePermissionFindUniqueArgs) {
+    return await this.rolePermissionService.findOne(rolePermissionFindUniqueArgs);
+  }
+
+  async findMany(rolePermissionFindManyArgs: Prisma.RolePermissionFindManyArgs) {
+    return await this.rolePermissionService.findMany(rolePermissionFindManyArgs);
+  }
+
+  async findFirst(rolePermissionFindFirstArgs: Prisma.RolePermissionFindFirstArgs) {
+    return await this.rolePermissionService.findFirst(rolePermissionFindFirstArgs);
+  }
+
+  async updateOne(rolePermissionUpdateOneArgs: Prisma.RolePermissionUpdateArgs) {
+    return await this.rolePermissionService.updateOne(rolePermissionUpdateOneArgs);
+  }
+
+  async updateMany(rolePermissionUpdateManyArgs: Prisma.RolePermissionUpdateManyArgs) {
+    return await this.rolePermissionService.updateMany(rolePermissionUpdateManyArgs);
+  }
+
+  async delete(rolePermissionDeleteArgs: Prisma.RolePermissionDeleteArgs) {
+    return await this.rolePermissionService.delete(rolePermissionDeleteArgs);
+  }
+
+  async deleteMany(rolePermissionDeleteManyArgs: Prisma.RolePermissionDeleteManyArgs) {
+    return await this.rolePermissionService.deleteMany(rolePermissionDeleteManyArgs);
+  }
+
+  async aggregate(rolePermissionAggregateArgs: Prisma.RolePermissionAggregateArgs) {
+    return await this.rolePermissionService.aggregate(rolePermissionAggregateArgs);
+  }
+
+  async count(rolePermissionCountArgs: Prisma.RolePermissionCountArgs) {
+    return await this.rolePermissionService.count(rolePermissionCountArgs);
+  }
 }

@@ -1,33 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ClaimStatus } from 'src/@generated';
-import { ClaimStatusFindManyByClaimIdArgs } from './dto/claim_status_find_many_by_claim_id';
+import { ClaimStatusService } from './claim-status.service';
 
 @Injectable()
-export abstract class ClaimStatusController {
-  abstract createOne(claimStatusCreateArgs: Prisma.ClaimStatusCreateArgs): Promise<ClaimStatus>;
+export class ClaimStatusController {
+  constructor(private readonly claimStatusService: ClaimStatusService) {}
 
-  abstract createMany(claimStatusCreateManyArgs: Prisma.ClaimStatusCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(claimStatusCreateArgs: Prisma.ClaimStatusCreateArgs) {
+    return await this.claimStatusService.createOne(claimStatusCreateArgs);
+  }
 
-  abstract findOne(claimStatusFindUniqueArgs: Prisma.ClaimStatusFindUniqueArgs): Promise<ClaimStatus>;
+  async createMany(claimStatusCreateManyArgs: Prisma.ClaimStatusCreateManyArgs) {
+    return await this.claimStatusService.createMany(claimStatusCreateManyArgs);
+  }
 
-  abstract findMany(claimStatusFindManyArgs: Prisma.ClaimStatusFindManyArgs): Promise<ClaimStatus[]>;
-  
-  abstract findFirst(claimStatusFindFirstArgs: Prisma.ClaimStatusFindFirstArgs): Promise<ClaimStatus>;
-  
-  abstract updateOne(claimStatusUpdateOneArgs: Prisma.ClaimStatusUpdateArgs): Promise<ClaimStatus>;
-  
-  abstract updateMany(claimStatusUpdateManyArgs: Prisma.ClaimStatusUpdateManyArgs): Promise<Prisma.BatchPayload>;
-  
-  abstract delete(claimStatusDeleteArgs: Prisma.ClaimStatusDeleteArgs): Promise<boolean>;
-  
-  abstract deleteMany(claimStatusDeleteManyArgs: Prisma.ClaimStatusDeleteManyArgs): Promise<boolean>;
-  
-  abstract aggregate(claimStatusAggregateArgs: Prisma.ClaimStatusAggregateArgs): Promise<Prisma.GetClaimStatusAggregateType<Prisma.ClaimStatusAggregateArgs>>;
-  
-  abstract count(claimStatusCountArgs: Prisma.ClaimStatusCountArgs): Promise<number>;
-  
-  abstract getClaimStatusTypes(claimStatusCountArgs: Prisma.ClaimStatusCountArgs): Promise<string[]>;
-  
-  abstract findManyByClaimId(claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs): Promise<ClaimStatus[]>;
+  async findOne(claimStatusFindUniqueArgs: Prisma.ClaimStatusFindUniqueArgs) {
+    return await this.claimStatusService.findOne(claimStatusFindUniqueArgs);
+  }
+
+  async findMany(claimStatusFindManyArgs: Prisma.ClaimStatusFindManyArgs) {
+    return await this.claimStatusService.findMany(claimStatusFindManyArgs);
+  }
+
+  async findFirst(claimStatusFindFirstArgs: Prisma.ClaimStatusFindFirstArgs) {
+    return await this.claimStatusService.findFirst(claimStatusFindFirstArgs);
+  }
+
+  async updateOne(claimStatusUpdateOneArgs: Prisma.ClaimStatusUpdateArgs) {
+    return await this.claimStatusService.updateOne(claimStatusUpdateOneArgs);
+  }
+
+  async updateMany(claimStatusUpdateManyArgs: Prisma.ClaimStatusUpdateManyArgs) {
+    return await this.claimStatusService.updateMany(claimStatusUpdateManyArgs);
+  }
+
+  async delete(claimStatusDeleteArgs: Prisma.ClaimStatusDeleteArgs) {
+    return await this.claimStatusService.delete(claimStatusDeleteArgs);
+  }
+
+  async deleteMany(claimStatusDeleteManyArgs: Prisma.ClaimStatusDeleteManyArgs) {
+    return await this.claimStatusService.deleteMany(claimStatusDeleteManyArgs);
+  }
+
+  async aggregate(claimStatusAggregateArgs: Prisma.ClaimStatusAggregateArgs) {
+    return await this.claimStatusService.aggregate(claimStatusAggregateArgs);
+  }
+
+  async count(claimStatusCountArgs: Prisma.ClaimStatusCountArgs) {
+    return await this.claimStatusService.count(claimStatusCountArgs);
+  }
 }

@@ -1,28 +1,52 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
-import { File } from 'src/@generated';
+// import { Injectable } from '@nestjs/common';
+// import { Prisma } from '@prisma/client';
+// import { FileService } from './file.service';
 
-@Injectable()
-export abstract class FileController {
-  abstract createOne(fileCreateArgs: Prisma.FileCreateArgs): Promise<File>;
+// @Injectable()
+// export class FileController {
+//   constructor(private readonly fileService: FileService) {}
 
-  abstract createMany(fileCreateManyArgs: Prisma.FileCreateManyArgs): Promise<Prisma.BatchPayload>;
+//   async createOne(fileCreateArgs: Prisma.FileCreateArgs) {
+//     return await this.fileService.createOne(fileCreateArgs);
+//   }
 
-  abstract findOne(fileFindUniqueArgs: Prisma.FileFindUniqueArgs): Promise<File>;
+//   async createMany(fileCreateManyArgs: Prisma.FileCreateManyArgs) {
+//     return await this.fileService.createMany(fileCreateManyArgs);
+//   }
 
-  abstract findMany(fileFindManyArgs: Prisma.FileFindManyArgs): Promise<File[]>;
+//   async findOne(fileFindUniqueArgs: Prisma.FileFindUniqueArgs) {
+//     return await this.fileService.findOne(fileFindUniqueArgs);
+//   }
 
-  abstract findFirst(fileFindFirstArgs: Prisma.FileFindFirstArgs): Promise<File>;
+//   async findMany(fileFindManyArgs: Prisma.FileFindManyArgs) {
+//     return await this.fileService.findMany(fileFindManyArgs);
+//   }
 
-  abstract updateOne(fileUpdateOneArgs: Prisma.FileUpdateArgs): Promise<File>;
+//   async findFirst(fileFindFirstArgs: Prisma.FileFindFirstArgs) {
+//     return await this.fileService.findFirst(fileFindFirstArgs);
+//   }
 
-  abstract updateMany(fileUpdateManyArgs: Prisma.FileUpdateManyArgs): Promise<Prisma.BatchPayload>;
+//   async updateOne(fileUpdateOneArgs: Prisma.FileUpdateArgs) {
+//     return await this.fileService.updateOne(fileUpdateOneArgs);
+//   }
 
-  abstract delete(fileDeleteArgs: Prisma.FileDeleteArgs): Promise<boolean>;
+//   async updateMany(fileUpdateManyArgs: Prisma.FileUpdateManyArgs) {
+//     return await this.fileService.updateMany(fileUpdateManyArgs);
+//   }
 
-  abstract deleteMany(fileDeleteManyArgs: Prisma.FileDeleteManyArgs): Promise<boolean>;
+//   async delete(fileDeleteArgs: Prisma.FileDeleteArgs) {
+//     return await this.fileService.delete(fileDeleteArgs);
+//   }
 
-  abstract aggregate(fileAggregateArgs: Prisma.FileAggregateArgs): Promise<Prisma.GetFileAggregateType<Prisma.FileAggregateArgs>>;
+//   async deleteMany(fileDeleteManyArgs: Prisma.FileDeleteManyArgs) {
+//     return await this.fileService.deleteMany(fileDeleteManyArgs);
+//   }
 
-  abstract count(fileCountArgs: Prisma.FileCountArgs): Promise<number>;
-}
+//   async aggregate(fileAggregateArgs: Prisma.FileAggregateArgs) {
+//     return await this.fileService.aggregate(fileAggregateArgs);
+//   }
+
+//   async count(fileCountArgs: Prisma.FileCountArgs) {
+//     return await this.fileService.count(fileCountArgs);
+//   }
+// }

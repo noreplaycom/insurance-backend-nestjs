@@ -19,7 +19,6 @@ import {
 import { ClaimStatusController } from './claim-status.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
-import { ClaimStatusFindManyByClaimIdArgs } from './dto/claim_status_find_many_by_claim_id';
 
 interface ClaimStatusSelect {
   select: Prisma.ClaimStatusSelect;
@@ -29,154 +28,133 @@ interface ClaimStatusSelect {
 export class ClaimStatusResolver {
   constructor(private readonly claimStatusController: ClaimStatusController) {}
 
-  // @Mutation(() => ClaimStatus, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimStatusCreateOne(
-  //   @Args()
-  //   claimStatusCreateArgs: CreateOneClaimStatusArgs,
-  //   @Relations() relations: ClaimStatusSelect,
-  // ): Promise<ClaimStatus | void> {
-  //   return await this.claimStatusController.createOne({
-  //     ...claimStatusCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Mutation(() => BatchPayload, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimStatusCreateMany(
-  //   @Args()
-  //   createManyClaimStatusArgs: CreateManyClaimStatusArgs,
-  // ) {
-  //   return await this.claimStatusController.createMany(createManyClaimStatusArgs);
-  // }
-
-  // @Query(() => ClaimStatus, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimStatusFindOne(
-  //   @Args()
-  //   claimStatusFindUniqueArgs: FindUniqueClaimStatusArgs,
-  //   @Relations() relations: ClaimStatusSelect,
-  // ): Promise<ClaimStatus | void> {
-  //   return this.claimStatusController.findOne({
-  //     ...claimStatusFindUniqueArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Query(() => [ClaimStatus], {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimStatusFindMany(
-  //   @Args() claimStatusFindManyArgs: FindManyClaimStatusArgs,
-  //   @Relations() relations: ClaimStatusSelect,
-  // ) {
-  //   return this.claimStatusController.findMany({
-  //     ...claimStatusFindManyArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Query(() => ClaimStatus, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimStatusFindFirst(
-  //   @Args()
-  //   findFirstClaimStatusArgs: FindFirstClaimStatusArgs,
-  //   @Relations() relations: ClaimStatusSelect,
-  // ): Promise<ClaimStatus | void> {
-  //   return this.claimStatusController.findFirst({
-  //     ...findFirstClaimStatusArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Mutation(() => ClaimStatus, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimStatusUpdateOne(
-  //   @Args() claimStatusUpdateOneArgs: UpdateOneClaimStatusArgs,
-  //   @Relations() relations: ClaimStatusSelect,
-  // ) {
-  //   return this.claimStatusController.updateOne({
-  //     ...replaceNullWithUndefined(claimStatusUpdateOneArgs),
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Mutation(() => ClaimStatus, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimStatusUpdateMany(@Args() updateManyClaimStatusArgs: UpdateManyClaimStatusArgs) {
-  //   return this.claimStatusController.updateMany(updateManyClaimStatusArgs);
-  // }
-
-  // @Mutation(() => Boolean, {
-  //   nullable: false,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimStatusDelete(
-  //   @Args() deleteOneClaimStatusArgs: DeleteOneClaimStatusArgs,
-  //   @Relations() relations: ClaimStatusSelect,
-  // ) {
-  //   return this.claimStatusController.delete({
-  //     ...deleteOneClaimStatusArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Mutation(() => Boolean, {
-  //   nullable: false,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimStatusDeleteMany(@Args() deleteManyClaimStatusArgs: DeleteManyClaimStatusArgs) {
-  //   return this.claimStatusController.deleteMany(deleteManyClaimStatusArgs);
-  // }
-
-  // @Query(() => AggregateClaimStatus, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimStatusAggregate(@Args() claimStatusAggregateArgs: ClaimStatusAggregateArgs) {
-  //   return this.claimStatusController.aggregate(claimStatusAggregateArgs);
-  // }
-
-  // @Query(() => Float, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimStatusCount(@Args() claimStatusCountAggregateInput: FindManyClaimStatusArgs) {
-  //   return this.claimStatusController.count(claimStatusCountAggregateInput);
-  // }
-
-  // ? CLAIM LIST SCREEN
-  @Query(() => [String], {
+  @Mutation(() => ClaimStatus, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  claimStatusTypeFindMany() {
-    return this.claimStatusController.getClaimStatusTypes();
+  async claimStatusCreateOne(
+    @Args()
+    claimStatusCreateArgs: CreateOneClaimStatusArgs,
+    @Relations() relations: ClaimStatusSelect,
+  ): Promise<ClaimStatus | void> {
+    return await this.claimStatusController.createOne({
+      ...claimStatusCreateArgs,
+      select: relations.select,
+    });
   }
 
-  // ? CLAIM STATUS TRACKING SCREEN
+  @Mutation(() => BatchPayload, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimStatusCreateMany(
+    @Args()
+    createManyClaimStatusArgs: CreateManyClaimStatusArgs,
+  ) {
+    return await this.claimStatusController.createMany(createManyClaimStatusArgs);
+  }
+
+  @Query(() => ClaimStatus, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimStatusFindOne(
+    @Args()
+    claimStatusFindUniqueArgs: FindUniqueClaimStatusArgs,
+    @Relations() relations: ClaimStatusSelect,
+  ): Promise<ClaimStatus | void> {
+    return this.claimStatusController.findOne({
+      ...claimStatusFindUniqueArgs,
+      select: relations.select,
+    });
+  }
+
   @Query(() => [ClaimStatus], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
   claimStatusFindMany(
-    @Args('claimStatusFindManyByClaimIdArgs') claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs,
-    // @Relations() relations: ClaimStatusSelect,
+    @Args() claimStatusFindManyArgs: FindManyClaimStatusArgs,
+    @Relations() relations: ClaimStatusSelect,
   ) {
-    return this.claimStatusController.findManyByClaimId(claimStatusFindManyByClaimIdArgs);
+    return this.claimStatusController.findMany({
+      ...claimStatusFindManyArgs,
+      select: relations.select,
+    });
+  }
+
+  @Query(() => ClaimStatus, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimStatusFindFirst(
+    @Args()
+    findFirstClaimStatusArgs: FindFirstClaimStatusArgs,
+    @Relations() relations: ClaimStatusSelect,
+  ): Promise<ClaimStatus | void> {
+    return this.claimStatusController.findFirst({
+      ...findFirstClaimStatusArgs,
+      select: relations.select,
+    });
+  }
+
+  @Mutation(() => ClaimStatus, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimStatusUpdateOne(
+    @Args() claimStatusUpdateOneArgs: UpdateOneClaimStatusArgs,
+    @Relations() relations: ClaimStatusSelect,
+  ) {
+    return this.claimStatusController.updateOne({
+      ...replaceNullWithUndefined(claimStatusUpdateOneArgs),
+      select: relations.select,
+    });
+  }
+
+  @Mutation(() => ClaimStatus, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimStatusUpdateMany(@Args() updateManyClaimStatusArgs: UpdateManyClaimStatusArgs) {
+    return this.claimStatusController.updateMany(updateManyClaimStatusArgs);
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimStatusDelete(
+    @Args() deleteOneClaimStatusArgs: DeleteOneClaimStatusArgs,
+    @Relations() relations: ClaimStatusSelect,
+  ) {
+    return this.claimStatusController.delete({
+      ...deleteOneClaimStatusArgs,
+      select: relations.select,
+    });
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimStatusDeleteMany(@Args() deleteManyClaimStatusArgs: DeleteManyClaimStatusArgs) {
+    return this.claimStatusController.deleteMany(deleteManyClaimStatusArgs);
+  }
+
+  @Query(() => AggregateClaimStatus, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimStatusAggregate(@Args() claimStatusAggregateArgs: ClaimStatusAggregateArgs) {
+    return this.claimStatusController.aggregate(claimStatusAggregateArgs);
+  }
+
+  @Query(() => Float, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimStatusCount(@Args() claimStatusCountAggregateInput: FindManyClaimStatusArgs) {
+    return this.claimStatusController.count(claimStatusCountAggregateInput);
   }
 }

@@ -1,28 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Group } from 'src/@generated';
+import { GroupService } from './group.service';
 
 @Injectable()
-export abstract class GroupController {
-  abstract createOne(groupCreateArgs: Prisma.GroupCreateArgs): Promise<Group>;
+export class GroupController {
+  constructor(private readonly groupService: GroupService) {}
 
-  abstract createMany(groupCreateManyArgs: Prisma.GroupCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(groupCreateArgs: Prisma.GroupCreateArgs) {
+    return await this.groupService.createOne(groupCreateArgs);
+  }
 
-  abstract findOne(groupFindUniqueArgs: Prisma.GroupFindUniqueArgs): Promise<Group>;
+  async createMany(groupCreateManyArgs: Prisma.GroupCreateManyArgs) {
+    return await this.groupService.createMany(groupCreateManyArgs);
+  }
 
-  abstract findMany(groupFindManyArgs: Prisma.GroupFindManyArgs): Promise<Group[]>;
+  async findOne(groupFindUniqueArgs: Prisma.GroupFindUniqueArgs) {
+    return await this.groupService.findOne(groupFindUniqueArgs);
+  }
 
-  abstract findFirst(groupFindFirstArgs: Prisma.GroupFindFirstArgs): Promise<Group>;
+  async findMany(groupFindManyArgs: Prisma.GroupFindManyArgs) {
+    return await this.groupService.findMany(groupFindManyArgs);
+  }
 
-  abstract updateOne(groupUpdateOneArgs: Prisma.GroupUpdateArgs): Promise<Group>;
+  async findFirst(groupFindFirstArgs: Prisma.GroupFindFirstArgs) {
+    return await this.groupService.findFirst(groupFindFirstArgs);
+  }
 
-  abstract updateMany(groupUpdateManyArgs: Prisma.GroupUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(groupUpdateOneArgs: Prisma.GroupUpdateArgs) {
+    return await this.groupService.updateOne(groupUpdateOneArgs);
+  }
 
-  abstract delete(groupDeleteArgs: Prisma.GroupDeleteArgs): Promise<boolean>;
+  async updateMany(groupUpdateManyArgs: Prisma.GroupUpdateManyArgs) {
+    return await this.groupService.updateMany(groupUpdateManyArgs);
+  }
 
-  abstract deleteMany(groupDeleteManyArgs: Prisma.GroupDeleteManyArgs): Promise<boolean>;
+  async delete(groupDeleteArgs: Prisma.GroupDeleteArgs) {
+    return await this.groupService.delete(groupDeleteArgs);
+  }
 
-  abstract aggregate(groupAggregateArgs: Prisma.GroupAggregateArgs): Promise<Prisma.GetGroupAggregateType<Prisma.GroupAggregateArgs>>;
+  async deleteMany(groupDeleteManyArgs: Prisma.GroupDeleteManyArgs) {
+    return await this.groupService.deleteMany(groupDeleteManyArgs);
+  }
 
-  abstract count(groupCountArgs: Prisma.GroupCountArgs): Promise<number>;
+  async aggregate(groupAggregateArgs: Prisma.GroupAggregateArgs) {
+    return await this.groupService.aggregate(groupAggregateArgs);
+  }
+
+  async count(groupCountArgs: Prisma.GroupCountArgs) {
+    return await this.groupService.count(groupCountArgs);
+  }
 }

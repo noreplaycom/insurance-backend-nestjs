@@ -1,28 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Tag } from 'src/@generated';
+import { TagService } from './tag.service';
 
 @Injectable()
-export abstract class TagController {
-  abstract createOne(tagCreateArgs: Prisma.TagCreateArgs): Promise<Tag>;
+export class TagController {
+  constructor(private readonly tagService: TagService) {}
 
-  abstract createMany(tagCreateManyArgs: Prisma.TagCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(tagCreateArgs: Prisma.TagCreateArgs) {
+    return await this.tagService.createOne(tagCreateArgs);
+  }
 
-  abstract findOne(tagFindUniqueArgs: Prisma.TagFindUniqueArgs): Promise<Tag>;
+  async createMany(tagCreateManyArgs: Prisma.TagCreateManyArgs) {
+    return await this.tagService.createMany(tagCreateManyArgs);
+  }
 
-  abstract findMany(tagFindManyArgs: Prisma.TagFindManyArgs): Promise<Tag[]>;
+  async findOne(tagFindUniqueArgs: Prisma.TagFindUniqueArgs) {
+    return await this.tagService.findOne(tagFindUniqueArgs);
+  }
 
-  abstract findFirst(tagFindFirstArgs: Prisma.TagFindFirstArgs): Promise<Tag>;
+  async findMany(tagFindManyArgs: Prisma.TagFindManyArgs) {
+    return await this.tagService.findMany(tagFindManyArgs);
+  }
 
-  abstract updateOne(tagUpdateOneArgs: Prisma.TagUpdateArgs): Promise<Tag>;
+  async findFirst(tagFindFirstArgs: Prisma.TagFindFirstArgs) {
+    return await this.tagService.findFirst(tagFindFirstArgs);
+  }
 
-  abstract updateMany(tagUpdateManyArgs: Prisma.TagUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(tagUpdateOneArgs: Prisma.TagUpdateArgs) {
+    return await this.tagService.updateOne(tagUpdateOneArgs);
+  }
 
-  abstract delete(tagDeleteArgs: Prisma.TagDeleteArgs): Promise<boolean>;
+  async updateMany(tagUpdateManyArgs: Prisma.TagUpdateManyArgs) {
+    return await this.tagService.updateMany(tagUpdateManyArgs);
+  }
 
-  abstract deleteMany(tagDeleteManyArgs: Prisma.TagDeleteManyArgs): Promise<boolean>;
+  async delete(tagDeleteArgs: Prisma.TagDeleteArgs) {
+    return await this.tagService.delete(tagDeleteArgs);
+  }
 
-  abstract aggregate(tagAggregateArgs: Prisma.TagAggregateArgs): Promise<Prisma.GetTagAggregateType<Prisma.TagAggregateArgs>>;
+  async deleteMany(tagDeleteManyArgs: Prisma.TagDeleteManyArgs) {
+    return await this.tagService.deleteMany(tagDeleteManyArgs);
+  }
 
-  abstract count(tagCountArgs: Prisma.TagCountArgs): Promise<number>;
+  async aggregate(tagAggregateArgs: Prisma.TagAggregateArgs) {
+    return await this.tagService.aggregate(tagAggregateArgs);
+  }
+
+  async count(tagCountArgs: Prisma.TagCountArgs) {
+    return await this.tagService.count(tagCountArgs);
+  }
 }

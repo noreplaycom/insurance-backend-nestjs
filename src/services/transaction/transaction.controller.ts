@@ -1,28 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Transaction } from 'src/@generated';
+import { TransactionService } from './transaction.service';
 
 @Injectable()
-export abstract class TransactionController {
-  abstract createOne(transactionCreateArgs: Prisma.TransactionCreateArgs): Promise<Transaction>;
+export class TransactionController {
+  constructor(private readonly transactionService: TransactionService) {}
 
-  abstract createMany(transactionCreateManyArgs: Prisma.TransactionCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(transactionCreateArgs: Prisma.TransactionCreateArgs) {
+    return await this.transactionService.createOne(transactionCreateArgs);
+  }
 
-  abstract findOne(transactionFindUniqueArgs: Prisma.TransactionFindUniqueArgs): Promise<Transaction>;
+  async createMany(transactionCreateManyArgs: Prisma.TransactionCreateManyArgs) {
+    return await this.transactionService.createMany(transactionCreateManyArgs);
+  }
 
-  abstract findMany(transactionFindManyArgs: Prisma.TransactionFindManyArgs): Promise<Transaction[]>;
+  async findOne(transactionFindUniqueArgs: Prisma.TransactionFindUniqueArgs) {
+    return await this.transactionService.findOne(transactionFindUniqueArgs);
+  }
 
-  abstract findFirst(transactionFindFirstArgs: Prisma.TransactionFindFirstArgs): Promise<Transaction>;
+  async findMany(transactionFindManyArgs: Prisma.TransactionFindManyArgs) {
+    return await this.transactionService.findMany(transactionFindManyArgs);
+  }
 
-  abstract updateOne(transactionUpdateOneArgs: Prisma.TransactionUpdateArgs): Promise<Transaction>;
+  async findFirst(transactionFindFirstArgs: Prisma.TransactionFindFirstArgs) {
+    return await this.transactionService.findFirst(transactionFindFirstArgs);
+  }
 
-  abstract updateMany(transactionUpdateManyArgs: Prisma.TransactionUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(transactionUpdateOneArgs: Prisma.TransactionUpdateArgs) {
+    return await this.transactionService.updateOne(transactionUpdateOneArgs);
+  }
 
-  abstract delete(transactionDeleteArgs: Prisma.TransactionDeleteArgs): Promise<boolean>;
+  async updateMany(transactionUpdateManyArgs: Prisma.TransactionUpdateManyArgs) {
+    return await this.transactionService.updateMany(transactionUpdateManyArgs);
+  }
 
-  abstract deleteMany(transactionDeleteManyArgs: Prisma.TransactionDeleteManyArgs): Promise<boolean>;
+  async delete(transactionDeleteArgs: Prisma.TransactionDeleteArgs) {
+    return await this.transactionService.delete(transactionDeleteArgs);
+  }
 
-  abstract aggregate(transactionAggregateArgs: Prisma.TransactionAggregateArgs): Promise<Prisma.GetTransactionAggregateType<Prisma.TransactionAggregateArgs>>;
+  async deleteMany(transactionDeleteManyArgs: Prisma.TransactionDeleteManyArgs) {
+    return await this.transactionService.deleteMany(transactionDeleteManyArgs);
+  }
 
-  abstract count(transactionCountArgs: Prisma.TransactionCountArgs): Promise<number>;
+  async aggregate(transactionAggregateArgs: Prisma.TransactionAggregateArgs) {
+    return await this.transactionService.aggregate(transactionAggregateArgs);
+  }
+
+  async count(transactionCountArgs: Prisma.TransactionCountArgs) {
+    return await this.transactionService.count(transactionCountArgs);
+  }
 }

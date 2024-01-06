@@ -1,28 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { ProgramParticipation } from 'src/@generated';
+import { ProgramParticipationService } from './program-participation.service';
 
 @Injectable()
-export abstract class ProgramParticipationController {
-  abstract createOne(programParticipationCreateArgs: Prisma.ProgramParticipationCreateArgs): Promise<ProgramParticipation>;
+export class ProgramParticipationController {
+  constructor(private readonly programParticipationService: ProgramParticipationService) {}
 
-  abstract createMany(programParticipationCreateManyArgs: Prisma.ProgramParticipationCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(programParticipationCreateArgs: Prisma.ProgramParticipationCreateArgs) {
+    return await this.programParticipationService.createOne(programParticipationCreateArgs);
+  }
 
-  abstract findOne(programParticipationFindUniqueArgs: Prisma.ProgramParticipationFindUniqueArgs): Promise<ProgramParticipation>;
+  async createMany(programParticipationCreateManyArgs: Prisma.ProgramParticipationCreateManyArgs) {
+    return await this.programParticipationService.createMany(programParticipationCreateManyArgs);
+  }
 
-  abstract findMany(programParticipationFindManyArgs: Prisma.ProgramParticipationFindManyArgs): Promise<ProgramParticipation[]>;
+  async findOne(programParticipationFindUniqueArgs: Prisma.ProgramParticipationFindUniqueArgs) {
+    return await this.programParticipationService.findOne(programParticipationFindUniqueArgs);
+  }
 
-  abstract findFirst(programParticipationFindFirstArgs: Prisma.ProgramParticipationFindFirstArgs): Promise<ProgramParticipation>;
+  async findMany(programParticipationFindManyArgs: Prisma.ProgramParticipationFindManyArgs) {
+    return await this.programParticipationService.findMany(programParticipationFindManyArgs);
+  }
 
-  abstract updateOne(programParticipationUpdateOneArgs: Prisma.ProgramParticipationUpdateArgs): Promise<ProgramParticipation>;
+  async findFirst(programParticipationFindFirstArgs: Prisma.ProgramParticipationFindFirstArgs) {
+    return await this.programParticipationService.findFirst(programParticipationFindFirstArgs);
+  }
 
-  abstract updateMany(programParticipationUpdateManyArgs: Prisma.ProgramParticipationUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(programParticipationUpdateOneArgs: Prisma.ProgramParticipationUpdateArgs) {
+    return await this.programParticipationService.updateOne(programParticipationUpdateOneArgs);
+  }
 
-  abstract delete(programParticipationDeleteArgs: Prisma.ProgramParticipationDeleteArgs): Promise<boolean>;
+  async updateMany(programParticipationUpdateManyArgs: Prisma.ProgramParticipationUpdateManyArgs) {
+    return await this.programParticipationService.updateMany(programParticipationUpdateManyArgs);
+  }
 
-  abstract deleteMany(programParticipationDeleteManyArgs: Prisma.ProgramParticipationDeleteManyArgs): Promise<boolean>;
+  async delete(programParticipationDeleteArgs: Prisma.ProgramParticipationDeleteArgs) {
+    return await this.programParticipationService.delete(programParticipationDeleteArgs);
+  }
 
-  abstract aggregate(programParticipationAggregateArgs: Prisma.ProgramParticipationAggregateArgs): Promise<Prisma.GetProgramParticipationAggregateType<Prisma.ProgramParticipationAggregateArgs>>;
+  async deleteMany(programParticipationDeleteManyArgs: Prisma.ProgramParticipationDeleteManyArgs) {
+    return await this.programParticipationService.deleteMany(programParticipationDeleteManyArgs);
+  }
 
-  abstract count(programParticipationCountArgs: Prisma.ProgramParticipationCountArgs): Promise<number>;
+  async aggregate(programParticipationAggregateArgs: Prisma.ProgramParticipationAggregateArgs) {
+    return await this.programParticipationService.aggregate(programParticipationAggregateArgs);
+  }
+
+  async count(programParticipationCountArgs: Prisma.ProgramParticipationCountArgs) {
+    return await this.programParticipationService.count(programParticipationCountArgs);
+  }
 }

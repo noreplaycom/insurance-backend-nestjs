@@ -1,32 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Program } from 'src/@generated';
+import { ProgramService } from './program.service';
 
 @Injectable()
-export abstract class ProgramController {
-  abstract createOne(programCreateArgs: Prisma.ProgramCreateArgs): Promise<Program>;
+export class ProgramController {
+  constructor(private readonly programService: ProgramService) {}
 
-  abstract createMany(programCreateManyArgs: Prisma.ProgramCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(programCreateArgs: Prisma.ProgramCreateArgs) {
+    return await this.programService.createOne(programCreateArgs);
+  }
 
-  abstract findOne(programFindUniqueArgs: Prisma.ProgramFindUniqueArgs): Promise<Program>;
+  async createMany(programCreateManyArgs: Prisma.ProgramCreateManyArgs) {
+    return await this.programService.createMany(programCreateManyArgs);
+  }
 
-  abstract findMany(programFindManyArgs: Prisma.ProgramFindManyArgs): Promise<Program[]>;
+  async findOne(programFindUniqueArgs: Prisma.ProgramFindUniqueArgs) {
+    return await this.programService.findOne(programFindUniqueArgs);
+  }
 
-  abstract findFirst(programFindFirstArgs: Prisma.ProgramFindFirstArgs): Promise<Program>;
+  async findMany(programFindManyArgs: Prisma.ProgramFindManyArgs) {
+    return await this.programService.findMany(programFindManyArgs);
+  }
 
-  abstract updateOne(programUpdateOneArgs: Prisma.ProgramUpdateArgs): Promise<Program>;
+  async findFirst(programFindFirstArgs: Prisma.ProgramFindFirstArgs) {
+    return await this.programService.findFirst(programFindFirstArgs);
+  }
 
-  abstract updateMany(programUpdateManyArgs: Prisma.ProgramUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(programUpdateOneArgs: Prisma.ProgramUpdateArgs) {
+    return await this.programService.updateOne(programUpdateOneArgs);
+  }
 
-  abstract delete(programDeleteArgs: Prisma.ProgramDeleteArgs): Promise<boolean>;
+  async updateMany(programUpdateManyArgs: Prisma.ProgramUpdateManyArgs) {
+    return await this.programService.updateMany(programUpdateManyArgs);
+  }
 
-  abstract deleteMany(programDeleteManyArgs: Prisma.ProgramDeleteManyArgs): Promise<boolean>;
+  async delete(programDeleteArgs: Prisma.ProgramDeleteArgs) {
+    return await this.programService.delete(programDeleteArgs);
+  }
 
-  abstract aggregate(programAggregateArgs: Prisma.ProgramAggregateArgs): Promise<Prisma.GetProgramAggregateType<Prisma.ProgramAggregateArgs>>;
+  async deleteMany(programDeleteManyArgs: Prisma.ProgramDeleteManyArgs) {
+    return await this.programService.deleteMany(programDeleteManyArgs);
+  }
 
-  abstract count(programCountArgs: Prisma.ProgramCountArgs): Promise<number>;
+  async aggregate(programAggregateArgs: Prisma.ProgramAggregateArgs) {
+    return await this.programService.aggregate(programAggregateArgs);
+  }
 
-  abstract getClassesProgram(): Promise<string[]>;
-
-  abstract getApplicationTypesProgram(): Promise<string[]>;
+  async count(programCountArgs: Prisma.ProgramCountArgs) {
+    return await this.programService.count(programCountArgs);
+  }
 }

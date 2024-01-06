@@ -1,30 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Notification } from 'src/@generated';
+import { NotificationService } from './notification.service';
 
 @Injectable()
-export abstract class NotificationController {
-  abstract createOne(notificationCreateArgs: Prisma.NotificationCreateArgs): Promise<Notification>;
+export class NotificationController {
+  constructor(private readonly notificationService: NotificationService) {}
 
-  abstract createMany(notificationCreateManyArgs: Prisma.NotificationCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(notificationCreateArgs: Prisma.NotificationCreateArgs) {
+    return await this.notificationService.createOne(notificationCreateArgs);
+  }
 
-  abstract findOne(notificationFindUniqueArgs: Prisma.NotificationFindUniqueArgs): Promise<Notification>;
+  async createMany(notificationCreateManyArgs: Prisma.NotificationCreateManyArgs) {
+    return await this.notificationService.createMany(notificationCreateManyArgs);
+  }
 
-  abstract findMany(notificationFindManyArgs: Prisma.NotificationFindManyArgs): Promise<Notification[]>;
+  async findOne(notificationFindUniqueArgs: Prisma.NotificationFindUniqueArgs) {
+    return await this.notificationService.findOne(notificationFindUniqueArgs);
+  }
 
-  abstract findFirst(notificationFindFirstArgs: Prisma.NotificationFindFirstArgs): Promise<Notification>;
+  async findMany(notificationFindManyArgs: Prisma.NotificationFindManyArgs) {
+    return await this.notificationService.findMany(notificationFindManyArgs);
+  }
 
-  abstract updateOne(notificationUpdateOneArgs: Prisma.NotificationUpdateArgs): Promise<Notification>;
+  async findFirst(notificationFindFirstArgs: Prisma.NotificationFindFirstArgs) {
+    return await this.notificationService.findFirst(notificationFindFirstArgs);
+  }
 
-  abstract updateMany(notificationUpdateManyArgs: Prisma.NotificationUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(notificationUpdateOneArgs: Prisma.NotificationUpdateArgs) {
+    return await this.notificationService.updateOne(notificationUpdateOneArgs);
+  }
 
-  abstract delete(notificationDeleteArgs: Prisma.NotificationDeleteArgs): Promise<boolean>;
+  async updateMany(notificationUpdateManyArgs: Prisma.NotificationUpdateManyArgs) {
+    return await this.notificationService.updateMany(notificationUpdateManyArgs);
+  }
 
-  abstract deleteMany(notificationDeleteManyArgs: Prisma.NotificationDeleteManyArgs): Promise<boolean>;
+  async delete(notificationDeleteArgs: Prisma.NotificationDeleteArgs) {
+    return await this.notificationService.delete(notificationDeleteArgs);
+  }
 
-  abstract aggregate(notificationAggregateArgs: Prisma.NotificationAggregateArgs): Promise<Prisma.GetNotificationAggregateType<Prisma.NotificationAggregateArgs>>;
+  async deleteMany(notificationDeleteManyArgs: Prisma.NotificationDeleteManyArgs) {
+    return await this.notificationService.deleteMany(notificationDeleteManyArgs);
+  }
 
-  abstract count(notificationCountArgs: Prisma.NotificationCountArgs): Promise<number>;
+  async aggregate(notificationAggregateArgs: Prisma.NotificationAggregateArgs) {
+    return await this.notificationService.aggregate(notificationAggregateArgs);
+  }
 
-  abstract updateManyIsCleared(): Promise<boolean>;
+  async count(notificationCountArgs: Prisma.NotificationCountArgs) {
+    return await this.notificationService.count(notificationCountArgs);
+  }
 }

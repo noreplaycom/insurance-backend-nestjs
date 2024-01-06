@@ -1,28 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Branch } from 'src/@generated';
+import { BranchService } from './branch.service';
 
 @Injectable()
-export abstract class BranchController {
-  abstract createOne(branchCreateArgs: Prisma.BranchCreateArgs): Promise<Branch>;
+export class BranchController {
+  constructor(private readonly branchService: BranchService) {}
 
-  abstract createMany(branchCreateManyArgs: Prisma.BranchCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(branchCreateArgs: Prisma.BranchCreateArgs) {
+    return await this.branchService.createOne(branchCreateArgs);
+  }
 
-  abstract findOne(branchFindUniqueArgs: Prisma.BranchFindUniqueArgs): Promise<Branch>;
+  async createMany(branchCreateManyArgs: Prisma.BranchCreateManyArgs) {
+    return await this.branchService.createMany(branchCreateManyArgs);
+  }
 
-  abstract findMany(branchFindManyArgs: Prisma.BranchFindManyArgs): Promise<Branch[]>;
+  async findOne(branchFindUniqueArgs: Prisma.BranchFindUniqueArgs) {
+    return await this.branchService.findOne(branchFindUniqueArgs);
+  }
 
-  abstract findFirst(branchFindFirstArgs: Prisma.BranchFindFirstArgs): Promise<Branch>;
+  async findMany(branchFindManyArgs: Prisma.BranchFindManyArgs) {
+    return await this.branchService.findMany(branchFindManyArgs);
+  }
 
-  abstract updateOne(branchUpdateOneArgs: Prisma.BranchUpdateArgs): Promise<Branch>;
+  async findFirst(branchFindFirstArgs: Prisma.BranchFindFirstArgs) {
+    return await this.branchService.findFirst(branchFindFirstArgs);
+  }
 
-  abstract updateMany(branchUpdateManyArgs: Prisma.BranchUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(branchUpdateOneArgs: Prisma.BranchUpdateArgs) {
+    return await this.branchService.updateOne(branchUpdateOneArgs);
+  }
 
-  abstract delete(branchDeleteArgs: Prisma.BranchDeleteArgs): Promise<boolean>;
+  async updateMany(branchUpdateManyArgs: Prisma.BranchUpdateManyArgs) {
+    return await this.branchService.updateMany(branchUpdateManyArgs);
+  }
 
-  abstract deleteMany(branchDeleteManyArgs: Prisma.BranchDeleteManyArgs): Promise<boolean>;
+  async delete(branchDeleteArgs: Prisma.BranchDeleteArgs) {
+    return await this.branchService.delete(branchDeleteArgs);
+  }
 
-  abstract aggregate(branchAggregateArgs: Prisma.BranchAggregateArgs): Promise<Prisma.GetBranchAggregateType<Prisma.BranchAggregateArgs>>;
+  async deleteMany(branchDeleteManyArgs: Prisma.BranchDeleteManyArgs) {
+    return await this.branchService.deleteMany(branchDeleteManyArgs);
+  }
 
-  abstract count(branchCountArgs: Prisma.BranchCountArgs): Promise<number>;
+  async aggregate(branchAggregateArgs: Prisma.BranchAggregateArgs) {
+    return await this.branchService.aggregate(branchAggregateArgs);
+  }
+
+  async count(branchCountArgs: Prisma.BranchCountArgs) {
+    return await this.branchService.count(branchCountArgs);
+  }
 }

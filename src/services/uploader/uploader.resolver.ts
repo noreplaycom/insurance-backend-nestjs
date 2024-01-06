@@ -39,10 +39,10 @@ export class UploaderResolver {
       stream.on('error', reject);
     });
     const result = Buffer.concat(chunks);
-    const workbook = (read(result))
-    console.log(workbook.SheetNames)
-    const sheet = workbook.Sheets['Sheet 1']
-    console.log(utils.sheet_to_json(sheet))
-    return 'success'
+    const workbook = read(result);
+    console.log(workbook.SheetNames);
+    const sheet = workbook.Sheets['Sheet 1'];
+    console.log(utils.sheet_to_json(sheet));
+    return 'success';
   }
 }

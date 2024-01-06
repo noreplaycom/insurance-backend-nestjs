@@ -19,7 +19,6 @@ import {
 import { NotificationController } from './notification.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
-import { NotificationUpdateOneIsReadAndIsClearedArgs } from './dto/notification_update_one';
 
 interface NotificationSelect {
   select: Prisma.NotificationSelect;
@@ -29,145 +28,72 @@ interface NotificationSelect {
 export class NotificationResolver {
   constructor(private readonly notificationController: NotificationController) {}
 
-  // @Mutation(() => Notification, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async notificationCreateOne(
-  //   @Args()
-  //   notificationCreateArgs: CreateOneNotificationArgs,
-  //   @Relations() relations: NotificationSelect,
-  // ): Promise<Notification | void> {
-  //   return await this.notificationController.createOne({
-  //     ...notificationCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Notification, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async notificationCreateOne(
+    @Args()
+    notificationCreateArgs: CreateOneNotificationArgs,
+    @Relations() relations: NotificationSelect,
+  ): Promise<Notification | void> {
+    return await this.notificationController.createOne({
+      ...notificationCreateArgs,
+      select: relations.select,
+    });
+  }
 
-  // @Mutation(() => BatchPayload, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async notificationCreateMany(
-  //   @Args()
-  //   createManyNotificationArgs: CreateManyNotificationArgs,
-  // ) {
-  //   return await this.notificationController.createMany(createManyNotificationArgs);
-  // }
+  @Mutation(() => BatchPayload, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async notificationCreateMany(
+    @Args()
+    createManyNotificationArgs: CreateManyNotificationArgs,
+  ) {
+    return await this.notificationController.createMany(createManyNotificationArgs);
+  }
 
-  // @Query(() => Notification, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // notificationFindOne(
-  //   @Args()
-  //   notificationFindUniqueArgs: FindUniqueNotificationArgs,
-  //   @Relations() relations: NotificationSelect,
-  // ): Promise<Notification | void> {
-  //   return this.notificationController.findOne({
-  //     ...notificationFindUniqueArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Query(() => Notification, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  notificationFindOne(
+    @Args()
+    notificationFindUniqueArgs: FindUniqueNotificationArgs,
+    @Relations() relations: NotificationSelect,
+  ): Promise<Notification | void> {
+    return this.notificationController.findOne({
+      ...notificationFindUniqueArgs,
+      select: relations.select,
+    });
+  }
 
-  // @Query(() => [Notification], {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // notificationFindMany(
-  //   @Args() notificationFindManyArgs: FindManyNotificationArgs,
-  //   @Relations() relations: NotificationSelect,
-  // ) {
-  //   return this.notificationController.findMany({
-  //     ...notificationFindManyArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Query(() => Notification, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // notificationFindFirst(
-  //   @Args()
-  //   findFirstNotificationArgs: FindFirstNotificationArgs,
-  //   @Relations() relations: NotificationSelect,
-  // ): Promise<Notification | void> {
-  //   return this.notificationController.findFirst({
-  //     ...findFirstNotificationArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Mutation(() => Notification, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async notificationUpdateOne(
-  //   @Args() notificationUpdateOneArgs: UpdateOneNotificationArgs,
-  //   @Relations() relations: NotificationSelect,
-  // ) {
-  //   return this.notificationController.updateOne({
-  //     ...replaceNullWithUndefined(notificationUpdateOneArgs),
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Mutation(() => Notification, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async notificationUpdateMany(@Args() updateManyNotificationArgs: UpdateManyNotificationArgs) {
-  //   return this.notificationController.updateMany(updateManyNotificationArgs);
-  // }
-
-  // @Mutation(() => Boolean, {
-  //   nullable: false,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async notificationDelete(
-  //   @Args() deleteOneNotificationArgs: DeleteOneNotificationArgs,
-  //   @Relations() relations: NotificationSelect,
-  // ) {
-  //   return this.notificationController.delete({
-  //     ...deleteOneNotificationArgs,
-  //     select: relations.select,
-  //   });
-  // }
-
-  // @Mutation(() => Boolean, {
-  //   nullable: false,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async notificationDeleteMany(@Args() deleteManyNotificationArgs: DeleteManyNotificationArgs) {
-  //   return this.notificationController.deleteMany(deleteManyNotificationArgs);
-  // }
-
-  // @Query(() => AggregateNotification, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // notificationAggregate(@Args() notificationAggregateArgs: NotificationAggregateArgs) {
-  //   return this.notificationController.aggregate(notificationAggregateArgs);
-  // }
-
-  // @Query(() => Float, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // notificationCount(@Args() notificationCountAggregateInput: FindManyNotificationArgs) {
-  //   return this.notificationController.count(notificationCountAggregateInput);
-  // }
-
-  // ? NOTIFICATION SCREEN
   @Query(() => [Notification], {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
   notificationFindMany(
+    @Args() notificationFindManyArgs: FindManyNotificationArgs,
     @Relations() relations: NotificationSelect,
   ) {
     return this.notificationController.findMany({
+      ...notificationFindManyArgs,
+      select: relations.select,
+    });
+  }
+
+  @Query(() => Notification, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  notificationFindFirst(
+    @Args()
+    findFirstNotificationArgs: FindFirstNotificationArgs,
+    @Relations() relations: NotificationSelect,
+  ): Promise<Notification | void> {
+    return this.notificationController.findFirst({
+      ...findFirstNotificationArgs,
       select: relations.select,
     });
   }
@@ -177,26 +103,58 @@ export class NotificationResolver {
     description: 'Deskripsinya ada disini loh',
   })
   async notificationUpdateOne(
-    @Args('notificationUpdateOneIsReadAndIsClearedArgs') notificationUpdateOneIsReadAndIsClearedArgs: NotificationUpdateOneIsReadAndIsClearedArgs,
+    @Args() notificationUpdateOneArgs: UpdateOneNotificationArgs,
     @Relations() relations: NotificationSelect,
   ) {
     return this.notificationController.updateOne({
-      ...replaceNullWithUndefined({
-        where: { id: notificationUpdateOneIsReadAndIsClearedArgs.id },
-        data: {
-          isCleared: notificationUpdateOneIsReadAndIsClearedArgs.isCleared,
-          isRead: notificationUpdateOneIsReadAndIsClearedArgs.isRead,
-        }
-      }),
+      ...replaceNullWithUndefined(notificationUpdateOneArgs),
+      select: relations.select,
+    });
+  }
+
+  @Mutation(() => Notification, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async notificationUpdateMany(@Args() updateManyNotificationArgs: UpdateManyNotificationArgs) {
+    return this.notificationController.updateMany(updateManyNotificationArgs);
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async notificationDelete(
+    @Args() deleteOneNotificationArgs: DeleteOneNotificationArgs,
+    @Relations() relations: NotificationSelect,
+  ) {
+    return this.notificationController.delete({
+      ...deleteOneNotificationArgs,
       select: relations.select,
     });
   }
 
   @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async notificationDeleteMany(@Args() deleteManyNotificationArgs: DeleteManyNotificationArgs) {
+    return this.notificationController.deleteMany(deleteManyNotificationArgs);
+  }
+
+  @Query(() => AggregateNotification, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  async notificationUpdateMany() {
-    return this.notificationController.updateManyIsCleared();
+  notificationAggregate(@Args() notificationAggregateArgs: NotificationAggregateArgs) {
+    return this.notificationController.aggregate(notificationAggregateArgs);
+  }
+
+  @Query(() => Float, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  notificationCount(@Args() notificationCountAggregateInput: FindManyNotificationArgs) {
+    return this.notificationController.count(notificationCountAggregateInput);
   }
 }

@@ -857,52 +857,10 @@ model Disease {
 
     updatedAt DateTime @updatedAt
 
-    //-------------------------- 1 relations --------------------------------
-
-    // group DiseaseGroup @relation(fields: [groupId], references: [id])
-
-    // groupId Int @unique
-
     //-------------------------- m relations --------------------------------
 
     claims Claim[]
 }
-
-// model DiseaseGroup {
-//     //-------------------------- scalars --------------------------------
-//     id Int @id @default(autoincrement())
-
-//     name String
-
-//     createdAt DateTime @default(now())
-
-//     updatedAt DateTime @updatedAt
-
-//     //-------------------------- 1 relations --------------------------------
-
-//     DiseaseCluster DiseaseCluster @relation(fields: [diseaseClusterId], references: [id])
-
-//     diseaseClusterId Int
-
-//     //-------------------------- m relations --------------------------------
-
-//     disease Disease[]
-// }
-
-// model DiseaseCluster {
-//     //-------------------------- scalars --------------------------------
-//     id Int @id @default(autoincrement())
-
-//     name String
-
-//     createdAt DateTime @default(now())
-
-//     updatedAt DateTime @updatedAt
-
-//     //-------------------------- m relations --------------------------------
-
-//     diseaseGroups DiseaseGroup[]
-// }
 
 model Clinic {
     //-------------------------- scalars --------------------------------

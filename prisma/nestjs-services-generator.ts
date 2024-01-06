@@ -46,7 +46,7 @@ example
 ## Example
 
 ```bash
-bun run duplicatePrismaModels.ts ./prisma/schema.prisma ./prisma/template/file ./src/services modelName1 modelName2
+bun run nestjs-services-generator.ts ./prisma/schema.prisma ./prisma/template/file ./src/services modelName1 modelName2
 ```
 
 ## Notes

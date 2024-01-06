@@ -1,28 +1,52 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { Announcement } from 'src/@generated';
+import { AnnouncementService } from './announcement.service';
 
 @Injectable()
-export abstract class AnnouncementController {
-  abstract createOne(announcementCreateArgs: Prisma.AnnouncementCreateArgs): Promise<Announcement>;
+export class AnnouncementController {
+  constructor(private readonly announcementService: AnnouncementService) {}
 
-  abstract createMany(announcementCreateManyArgs: Prisma.AnnouncementCreateManyArgs): Promise<Prisma.BatchPayload>;
+  async createOne(announcementCreateArgs: Prisma.AnnouncementCreateArgs) {
+    return await this.announcementService.createOne(announcementCreateArgs);
+  }
 
-  abstract findOne(announcementFindUniqueArgs: Prisma.AnnouncementFindUniqueArgs): Promise<Announcement>;
+  async createMany(announcementCreateManyArgs: Prisma.AnnouncementCreateManyArgs) {
+    return await this.announcementService.createMany(announcementCreateManyArgs);
+  }
 
-  abstract findMany(announcementFindManyArgs: Prisma.AnnouncementFindManyArgs): Promise<Announcement[]>;
+  async findOne(announcementFindUniqueArgs: Prisma.AnnouncementFindUniqueArgs) {
+    return await this.announcementService.findOne(announcementFindUniqueArgs);
+  }
 
-  abstract findFirst(announcementFindFirstArgs: Prisma.AnnouncementFindFirstArgs): Promise<Announcement>;
+  async findMany(announcementFindManyArgs: Prisma.AnnouncementFindManyArgs) {
+    return await this.announcementService.findMany(announcementFindManyArgs);
+  }
 
-  abstract updateOne(announcementUpdateOneArgs: Prisma.AnnouncementUpdateArgs): Promise<Announcement>;
+  async findFirst(announcementFindFirstArgs: Prisma.AnnouncementFindFirstArgs) {
+    return await this.announcementService.findFirst(announcementFindFirstArgs);
+  }
 
-  abstract updateMany(announcementUpdateManyArgs: Prisma.AnnouncementUpdateManyArgs): Promise<Prisma.BatchPayload>;
+  async updateOne(announcementUpdateOneArgs: Prisma.AnnouncementUpdateArgs) {
+    return await this.announcementService.updateOne(announcementUpdateOneArgs);
+  }
 
-  abstract delete(announcementDeleteArgs: Prisma.AnnouncementDeleteArgs): Promise<boolean>;
+  async updateMany(announcementUpdateManyArgs: Prisma.AnnouncementUpdateManyArgs) {
+    return await this.announcementService.updateMany(announcementUpdateManyArgs);
+  }
 
-  abstract deleteMany(announcementDeleteManyArgs: Prisma.AnnouncementDeleteManyArgs): Promise<boolean>;
+  async delete(announcementDeleteArgs: Prisma.AnnouncementDeleteArgs) {
+    return await this.announcementService.delete(announcementDeleteArgs);
+  }
 
-  abstract aggregate(announcementAggregateArgs: Prisma.AnnouncementAggregateArgs): Promise<Prisma.GetAnnouncementAggregateType<Prisma.AnnouncementAggregateArgs>>;
+  async deleteMany(announcementDeleteManyArgs: Prisma.AnnouncementDeleteManyArgs) {
+    return await this.announcementService.deleteMany(announcementDeleteManyArgs);
+  }
 
-  abstract count(announcementCountArgs: Prisma.AnnouncementCountArgs): Promise<number>;
+  async aggregate(announcementAggregateArgs: Prisma.AnnouncementAggregateArgs) {
+    return await this.announcementService.aggregate(announcementAggregateArgs);
+  }
+
+  async count(announcementCountArgs: Prisma.AnnouncementCountArgs) {
+    return await this.announcementService.count(announcementCountArgs);
+  }
 }

@@ -23,7 +23,7 @@
     "prisma"
   ],
   "exclude": [
-    "./prisma/template/**",
+    "/prisma/template/**",
     // "prisma/fake-data.ts",
   ]
 }
