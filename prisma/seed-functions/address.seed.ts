@@ -10,7 +10,7 @@ export async function populateProvinceCityDistricSubdistric() {
       'Start populating ProvinceCityDistricSubdistric into the database...',
     );
     // Define the path to the JSON file within the Prisma folder
-    const jsonFilePath = join(__dirname, 'kodepos.json');
+    const jsonFilePath = join('prisma', 'kodepos.json');
     // Read the JSON file
     const jsonData = await fs.readFile(jsonFilePath, 'utf-8');
     const parsedData = JSON.parse(jsonData);
@@ -126,8 +126,6 @@ export async function populateProvinceCityDistricSubdistric() {
         console.log(' subdistrict query finished');
         return res;
       });
-
-    console.log('Data successfully populated into the database.');
   } catch (error) {
     console.error('Error populating the database:', error);
   }

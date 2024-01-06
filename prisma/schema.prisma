@@ -103,15 +103,14 @@ model Role {
 }
 
 model RolePermission {
+    id     Int  @id @default(autoincrement())
     //-------------------------- scalars --------------------------------
-    roleId Int
+    roleId Int?
 
     //-------------------------- 1 relations --------------------------------
-    role Role @relation(fields: [roleId], references: [id])
+    role Role? @relation(fields: [roleId], references: [id])
 
     permission Permission
-
-    @@id([roleId, permission])
 }
 
 enum Permission {
@@ -341,7 +340,7 @@ model Employment {
 
     group Group? @relation(fields: [groupId], references: [id])
 
-    groupId Int
+    groupId Int?
 
     region Region? @relation(fields: [regionId], references: [id])
 
@@ -734,7 +733,7 @@ model ClaimFinancial {
     claim Claim?
 
     ///Cabang: Cabang Pembayar Pensiun
-    branchId Int
+    branchId Int?
 
     claimStatus ClaimStatus? @relation(fields: [claimStatusId], references: [id])
 

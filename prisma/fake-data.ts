@@ -52,7 +52,8 @@ export function fakeRolePermission() {
 }
 export function fakeRolePermissionComplete() {
   return {
-    roleId: faker.datatype.number(),
+    id: faker.datatype.number(),
+    roleId: undefined,
     permission: faker.helpers.arrayElement([Permission.CREATE_CLAIM, Permission.UPDATE_CLAIM, Permission.UPDATE_CLAIM_STATUS, Permission.UPDATE_STATUS_FINANCIAL, Permission.RELEASE_CLAIM, Permission.DELETE_CLAIM_DOCUMENT, Permission.CREATE_CLAIM_DOCUMENT, Permission.IMPORT_CLAIM, Permission.EXPORT_CLAIM, Permission.CREATE_PARTICIPANT, Permission.UPDATE_PARTICIPANT, Permission.IMPORT_PARTICIPANT, Permission.EXPORT_PARTICIPANT] as const),
   };
 }

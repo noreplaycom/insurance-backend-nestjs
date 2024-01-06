@@ -1,5 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import { Permission, PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { claimSeed } from './seed-functions/claim.seed';
+import { faker } from '@faker-js/faker';
 
 const prisma = new PrismaClient();
 
@@ -11,6 +13,8 @@ export enum Period {
 
 async function main() {
   console.log('Start seeding ...');
+
+  await claimSeed();
 
   // async function findGuestsSharingSameShowTime() {
   //   const guestsWithSharedSeats = await prisma.guest.findMany({

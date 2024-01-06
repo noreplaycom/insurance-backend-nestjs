@@ -19,8 +19,47 @@ export async function claimSeed() {
   const subdistricts = await prisma.subdistrict.findMany();
 
   if (subdistricts.length <= 0) {
-    populateProvinceCityDistricSubdistric();
+    await populateProvinceCityDistricSubdistric();
   }
+
+  const roles = await prisma.role.findMany({
+    include: { rolePermissions: { select: { permission: true } } },
+  });
+
+  const permissions = await prisma.rolePermission.findMany();
+
+  if (permissions.length <= 0) {
+    for (let i = 0; i < 4; i++) {
+      console.log(
+        await prisma.rolePermission.create({
+          data: {
+            permission: faker.helpers.arrayElement(Object.values(Permission)),
+          },
+        }),
+      );
+    }
+  }
+
+  if (roles.length <= 0) {
+    for (let i = 0; i < 4; i++) {
+      console.log(
+        await prisma.role.create({
+          data: {
+            name: faker.name.jobTitle(),
+            description: faker.lorem.paragraph(),
+            order: faker.datatype.number(5),
+            rolePermissions: {
+              connect: { id: faker.helpers.arrayElement(permissions).id },
+            },
+          },
+        }),
+      );
+    }
+  }
+
+  const newRoles = await prisma.role.findMany({
+    include: { rolePermissions: { select: { permission: true } } },
+  });
 
   const programs = await prisma.program.findMany();
 
@@ -36,67 +75,26 @@ export async function claimSeed() {
   }
 
   const participants = await prisma.participant.findMany();
-
-  const roles = await prisma.role.findMany({
-    include: { rolePermissions: true },
-  });
-
   const employments = await prisma.employment.findMany();
   const branches = await prisma.branch.findMany();
 
+  // Create claims
   for (let i = 0; i < 100; i++) {
-    const RolePermissionCreateMany: Prisma.RolePermissionCreateManyRoleInput[] =
-      [];
-
-    const availablePermissions = Object.values(Permission);
-
-    // Specify the desired number of random permissions
-    const numRandomPermissions = 5; // Adjust this as needed
-
-    // Create a set to store unique permissions
-    const uniquePermissions = new Set();
-
-    // Generate and add random permissions until the desired number is reached
-    while (uniquePermissions.size < numRandomPermissions) {
-      const randomPermission = faker.helpers.arrayElement(availablePermissions);
-      uniquePermissions.add(randomPermission);
-      RolePermissionCreateMany.push({
-        permission: randomPermission,
-      });
-    }
-
-    const roleCreateInput: Prisma.RoleCreateWithoutUsersInput = {
-      name: faker.name.jobTitle(),
-      description: faker.lorem.paragraph(),
-      order: faker.datatype.number(5),
-      rolePermissions: { createMany: { data: RolePermissionCreateMany } },
-    };
-
     const userCreateInput: Prisma.UserCreateWithoutParticipantInput = {
       fullName: faker.name.firstName(),
       email: faker.internet.email(),
       password: faker.internet.password(),
-      role: {
-        connectOrCreate: {
-          where: {
-            id:
-              roles.length > 4
-                ? faker.helpers.arrayElement(roles).id
-                : undefined,
-          },
-          create: roleCreateInput,
-        },
-      },
+      role: { connect: { id: faker.helpers.arrayElement(newRoles).id } },
     };
 
     const participantCreateInput: Prisma.ParticipantCreateNestedOneWithoutClaimsInput =
       {
         connectOrCreate: {
-          where: {
-            userId: faker.datatype.boolean()
-              ? faker.helpers.arrayElement(participants).userId
-              : undefined,
-          },
+          where: faker.datatype.boolean()
+            ? participants.length > 0
+              ? { userId: faker.helpers.arrayElement(participants).userId }
+              : { userId: 'ABC' }
+            : { userId: 'ABC' },
           create: {
             gender: faker.helpers.arrayElement(Object.values(Gender)),
             birthDate: faker.date.past(),
@@ -107,11 +105,14 @@ export async function claimSeed() {
             user: {
               create: userCreateInput,
             },
-            relation: {
-              connect: {
-                userId: faker.helpers.arrayElement(participants).userId,
-              },
-            },
+            // relation: {
+            //   connectOrCreate: {
+            //     where: {userId: faker.helpers.arrayElement(participants).userId},
+            //     create: {
+
+            //     },
+            //   },
+            // },
             bankAccount: {
               create: {
                 accountName: faker.finance.creditCardIssuer(),
@@ -123,24 +124,25 @@ export async function claimSeed() {
             },
             employments: {
               connectOrCreate: {
-                where: {
-                  id:
-                    employments.length > 30
-                      ? faker.helpers.arrayElement(employments).id
-                      : undefined,
-                },
+                where:
+                  employments.length > 30
+                    ? {
+                        id: faker.helpers.arrayElement(employments).id,
+                      }
+                    : { id: 1001010 },
                 create: {
                   employmentPosition: faker.helpers.arrayElement(
                     Object.values(Position),
                   ),
                   branch: {
                     connectOrCreate: {
-                      where: {
-                        id:
-                          branches.length > 30
-                            ? faker.helpers.arrayElement(branches).id
-                            : undefined,
-                      },
+                      where:
+                        branches.length > 30
+                          ? {
+                              id: faker.helpers.arrayElement(branches).id,
+                            }
+                          : { id: 1001010 },
+
                       create: {
                         name: faker.company.name(),
                       },
@@ -194,29 +196,18 @@ export async function claimSeed() {
         },
       },
       disease: {
-        connectOrCreate: {
-          where: undefined,
-          create: {
-            name: faker.lorem.word(),
-            code: faker.datatype.number(100).toString(),
-          },
+        create: {
+          name: faker.lorem.word(),
+          code: faker.datatype.number(100).toString(),
         },
       },
       clinics: {
-        connectOrCreate: {
-          where: undefined,
-          create: {
-            name: faker.company.name(),
-            code: faker.datatype.number(100).toString(),
-          },
+        create: {
+          name: faker.company.name(),
+          code: faker.datatype.number(100).toString(),
         },
       },
-      inputedBy: {
-        connectOrCreate: {
-          where: undefined,
-          create: userCreateInput,
-        },
-      },
+      inputedBy: { create: userCreateInput },
       program: { connect: { id: faker.helpers.arrayElement(programs).id } },
     };
 

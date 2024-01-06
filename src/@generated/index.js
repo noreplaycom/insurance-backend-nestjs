@@ -47,9 +47,9 @@ exports.ProgramParticipationSumOrderByAggregateInput = exports.ProgramParticipat
 exports.FindUniqueProvinceOrThrowArgs = exports.FindManyProvinceArgs = exports.FindFirstProvinceArgs = exports.FindFirstProvinceOrThrowArgs = exports.DeleteOneProvinceArgs = exports.DeleteManyProvinceArgs = exports.CreateOneProvinceArgs = exports.CreateManyProvinceArgs = exports.AggregateProvince = exports.UpsertOneProgramParticipationArgs = exports.UpdateOneProgramParticipationArgs = exports.UpdateManyProgramParticipationArgs = exports.ProgramParticipation = exports.ProgramParticipationWhereInput = exports.ProgramParticipationWhereUniqueInput = exports.ProgramParticipationUpsertWithWhereUniqueWithoutProgramInput = exports.ProgramParticipationUpsertWithWhereUniqueWithoutParticipantInput = exports.ProgramParticipationUpsertWithWhereUniqueWithoutFundingInput = exports.ProgramParticipationUpdateInput = exports.ProgramParticipationUpdateWithoutProgramInput = exports.ProgramParticipationUpdateWithoutParticipantInput = exports.ProgramParticipationUpdateWithoutFundingInput = exports.ProgramParticipationUpdateWithWhereUniqueWithoutProgramInput = exports.ProgramParticipationUpdateWithWhereUniqueWithoutParticipantInput = exports.ProgramParticipationUpdateWithWhereUniqueWithoutFundingInput = exports.ProgramParticipationUpdateManyWithoutProgramNestedInput = exports.ProgramParticipationUpdateManyWithoutParticipantNestedInput = exports.ProgramParticipationUpdateManyWithoutFundingNestedInput = exports.ProgramParticipationUpdateManyWithWhereWithoutProgramInput = exports.ProgramParticipationUpdateManyWithWhereWithoutParticipantInput = exports.ProgramParticipationUpdateManyWithWhereWithoutFundingInput = exports.ProgramParticipationUpdateManyMutationInput = exports.ProgramParticipationUncheckedUpdateInput = exports.ProgramParticipationUncheckedUpdateWithoutProgramInput = exports.ProgramParticipationUncheckedUpdateWithoutParticipantInput = exports.ProgramParticipationUncheckedUpdateWithoutFundingInput = exports.ProgramParticipationUncheckedUpdateManyInput = exports.ProgramParticipationUncheckedUpdateManyWithoutProgramInput = exports.ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput = exports.ProgramParticipationUncheckedUpdateManyWithoutParticipantInput = exports.ProgramParticipationUncheckedUpdateManyWithoutParticipantNestedInput = exports.ProgramParticipationUncheckedUpdateManyWithoutFundingInput = exports.ProgramParticipationUncheckedUpdateManyWithoutFundingNestedInput = exports.ProgramParticipationUncheckedCreateInput = exports.ProgramParticipationUncheckedCreateWithoutProgramInput = exports.ProgramParticipationUncheckedCreateWithoutParticipantInput = exports.ProgramParticipationUncheckedCreateWithoutFundingInput = exports.ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput = exports.ProgramParticipationUncheckedCreateNestedManyWithoutParticipantInput = exports.ProgramParticipationUncheckedCreateNestedManyWithoutFundingInput = void 0;
 exports.DeleteManyRegionArgs = exports.CreateOneRegionArgs = exports.CreateManyRegionArgs = exports.AggregateRegion = exports.UpsertOneProvinceArgs = exports.UpdateOneProvinceArgs = exports.UpdateManyProvinceArgs = exports.Province = exports.ProvinceWhereInput = exports.ProvinceWhereUniqueInput = exports.ProvinceUpsertWithoutCitiesInput = exports.ProvinceUpdateInput = exports.ProvinceUpdateWithoutCitiesInput = exports.ProvinceUpdateToOneWithWhereWithoutCitiesInput = exports.ProvinceUpdateOneRequiredWithoutCitiesNestedInput = exports.ProvinceUpdateManyMutationInput = exports.ProvinceUncheckedUpdateInput = exports.ProvinceUncheckedUpdateWithoutCitiesInput = exports.ProvinceUncheckedUpdateManyInput = exports.ProvinceUncheckedCreateInput = exports.ProvinceUncheckedCreateWithoutCitiesInput = exports.ProvinceSumOrderByAggregateInput = exports.ProvinceSumAggregate = exports.ProvinceSumAggregateInput = exports.ProvinceScalarWhereWithAggregatesInput = exports.ProvinceRelationFilter = exports.ProvinceOrderByWithRelationInput = exports.ProvinceOrderByWithAggregationInput = exports.ProvinceMinOrderByAggregateInput = exports.ProvinceMinAggregate = exports.ProvinceMinAggregateInput = exports.ProvinceMaxOrderByAggregateInput = exports.ProvinceMaxAggregate = exports.ProvinceMaxAggregateInput = exports.ProvinceGroupBy = exports.ProvinceGroupByArgs = exports.ProvinceCreateInput = exports.ProvinceCreateWithoutCitiesInput = exports.ProvinceCreateOrConnectWithoutCitiesInput = exports.ProvinceCreateNestedOneWithoutCitiesInput = exports.ProvinceCreateManyInput = exports.ProvinceCount = exports.ProvinceCountOrderByAggregateInput = exports.ProvinceCountAggregate = exports.ProvinceCountAggregateInput = exports.ProvinceAvgOrderByAggregateInput = exports.ProvinceAvgAggregate = exports.ProvinceAvgAggregateInput = exports.ProvinceAggregateArgs = exports.FindUniqueProvinceArgs = void 0;
 exports.UpdateOneRegionArgs = exports.UpdateManyRegionArgs = exports.Region = exports.RegionWhereInput = exports.RegionWhereUniqueInput = exports.RegionUpsertWithoutEmploymentInput = exports.RegionUpdateInput = exports.RegionUpdateWithoutEmploymentInput = exports.RegionUpdateToOneWithWhereWithoutEmploymentInput = exports.RegionUpdateOneWithoutEmploymentNestedInput = exports.RegionUpdateManyMutationInput = exports.RegionUncheckedUpdateInput = exports.RegionUncheckedUpdateWithoutEmploymentInput = exports.RegionUncheckedUpdateManyInput = exports.RegionUncheckedCreateInput = exports.RegionUncheckedCreateWithoutEmploymentInput = exports.RegionSumOrderByAggregateInput = exports.RegionSumAggregate = exports.RegionSumAggregateInput = exports.RegionScalarWhereWithAggregatesInput = exports.RegionOrderByWithRelationInput = exports.RegionOrderByWithAggregationInput = exports.RegionNullableRelationFilter = exports.RegionMinOrderByAggregateInput = exports.RegionMinAggregate = exports.RegionMinAggregateInput = exports.RegionMaxOrderByAggregateInput = exports.RegionMaxAggregate = exports.RegionMaxAggregateInput = exports.RegionGroupBy = exports.RegionGroupByArgs = exports.RegionCreateInput = exports.RegionCreateWithoutEmploymentInput = exports.RegionCreateOrConnectWithoutEmploymentInput = exports.RegionCreateNestedOneWithoutEmploymentInput = exports.RegionCreateManyInput = exports.RegionCount = exports.RegionCountOrderByAggregateInput = exports.RegionCountAggregate = exports.RegionCountAggregateInput = exports.RegionAvgOrderByAggregateInput = exports.RegionAvgAggregate = exports.RegionAvgAggregateInput = exports.RegionAggregateArgs = exports.FindUniqueRegionArgs = exports.FindUniqueRegionOrThrowArgs = exports.FindManyRegionArgs = exports.FindFirstRegionArgs = exports.FindFirstRegionOrThrowArgs = exports.DeleteOneRegionArgs = void 0;
-exports.RoleUpdateManyMutationInput = exports.RoleUncheckedUpdateInput = exports.RoleUncheckedUpdateWithoutUsersInput = exports.RoleUncheckedUpdateWithoutRolePermissionsInput = exports.RoleUncheckedUpdateManyInput = exports.RoleUncheckedCreateInput = exports.RoleUncheckedCreateWithoutUsersInput = exports.RoleUncheckedCreateWithoutRolePermissionsInput = exports.RoleSumOrderByAggregateInput = exports.RoleSumAggregate = exports.RoleSumAggregateInput = exports.RoleScalarWhereWithAggregatesInput = exports.RoleRelationFilter = exports.RoleOrderByWithRelationInput = exports.RoleOrderByWithAggregationInput = exports.RoleMinOrderByAggregateInput = exports.RoleMinAggregate = exports.RoleMinAggregateInput = exports.RoleMaxOrderByAggregateInput = exports.RoleMaxAggregate = exports.RoleMaxAggregateInput = exports.RoleGroupBy = exports.RoleGroupByArgs = exports.RoleCreateInput = exports.RoleCreateWithoutUsersInput = exports.RoleCreateWithoutRolePermissionsInput = exports.RoleCreateOrConnectWithoutUsersInput = exports.RoleCreateOrConnectWithoutRolePermissionsInput = exports.RoleCreateNestedOneWithoutUsersInput = exports.RoleCreateNestedOneWithoutRolePermissionsInput = exports.RoleCreateManyInput = exports.RoleCount = exports.RoleCountOrderByAggregateInput = exports.RoleCountAggregate = exports.RoleCountAggregateInput = exports.RoleAvgOrderByAggregateInput = exports.RoleAvgAggregate = exports.RoleAvgAggregateInput = exports.RoleAggregateArgs = exports.FindUniqueRoleArgs = exports.FindUniqueRoleOrThrowArgs = exports.FindManyRoleArgs = exports.FindFirstRoleArgs = exports.FindFirstRoleOrThrowArgs = exports.DeleteOneRoleArgs = exports.DeleteManyRoleArgs = exports.CreateOneRoleArgs = exports.CreateManyRoleArgs = exports.AggregateRole = exports.UpsertOneRegionArgs = void 0;
-exports.RolePermissionOrderByWithAggregationInput = exports.RolePermissionOrderByRelationAggregateInput = exports.RolePermissionMinOrderByAggregateInput = exports.RolePermissionMinAggregate = exports.RolePermissionMinAggregateInput = exports.RolePermissionMaxOrderByAggregateInput = exports.RolePermissionMaxAggregate = exports.RolePermissionMaxAggregateInput = exports.RolePermissionListRelationFilter = exports.RolePermissionGroupBy = exports.RolePermissionGroupByArgs = exports.RolePermissionCreateInput = exports.RolePermissionCreateWithoutRoleInput = exports.RolePermissionCreateOrConnectWithoutRoleInput = exports.RolePermissionCreateNestedManyWithoutRoleInput = exports.RolePermissionCreateManyInput = exports.RolePermissionCreateManyRoleInput = exports.RolePermissionCreateManyRoleInputEnvelope = exports.RolePermissionCountOrderByAggregateInput = exports.RolePermissionCountAggregate = exports.RolePermissionCountAggregateInput = exports.RolePermissionAvgOrderByAggregateInput = exports.RolePermissionAvgAggregate = exports.RolePermissionAvgAggregateInput = exports.RolePermissionAggregateArgs = exports.FindUniqueRolePermissionArgs = exports.FindUniqueRolePermissionOrThrowArgs = exports.FindManyRolePermissionArgs = exports.FindFirstRolePermissionArgs = exports.FindFirstRolePermissionOrThrowArgs = exports.DeleteOneRolePermissionArgs = exports.DeleteManyRolePermissionArgs = exports.CreateOneRolePermissionArgs = exports.CreateManyRolePermissionArgs = exports.AggregateRolePermission = exports.UpsertOneRoleArgs = exports.UpdateOneRoleArgs = exports.UpdateManyRoleArgs = exports.Role = exports.RoleWhereInput = exports.RoleWhereUniqueInput = exports.RoleUpsertWithoutUsersInput = exports.RoleUpsertWithoutRolePermissionsInput = exports.RoleUpdateInput = exports.RoleUpdateWithoutUsersInput = exports.RoleUpdateWithoutRolePermissionsInput = exports.RoleUpdateToOneWithWhereWithoutUsersInput = exports.RoleUpdateToOneWithWhereWithoutRolePermissionsInput = exports.RoleUpdateOneRequiredWithoutUsersNestedInput = exports.RoleUpdateOneRequiredWithoutRolePermissionsNestedInput = void 0;
-exports.SubdistrictCreateNestedManyWithoutDistrictInput = exports.SubdistrictCreateManyInput = exports.SubdistrictCreateManyDistrictInput = exports.SubdistrictCreateManyDistrictInputEnvelope = exports.SubdistrictCount = exports.SubdistrictCountOrderByAggregateInput = exports.SubdistrictCountAggregate = exports.SubdistrictCountAggregateInput = exports.SubdistrictAvgOrderByAggregateInput = exports.SubdistrictAvgAggregate = exports.SubdistrictAvgAggregateInput = exports.SubdistrictAggregateArgs = exports.FindUniqueSubdistrictArgs = exports.FindUniqueSubdistrictOrThrowArgs = exports.FindManySubdistrictArgs = exports.FindFirstSubdistrictArgs = exports.FindFirstSubdistrictOrThrowArgs = exports.DeleteOneSubdistrictArgs = exports.DeleteManySubdistrictArgs = exports.CreateOneSubdistrictArgs = exports.CreateManySubdistrictArgs = exports.AggregateSubdistrict = exports.UpsertOneRolePermissionArgs = exports.UpdateOneRolePermissionArgs = exports.UpdateManyRolePermissionArgs = exports.RolePermission = exports.RolePermissionWhereInput = exports.RolePermissionWhereUniqueInput = exports.RolePermissionUpsertWithWhereUniqueWithoutRoleInput = exports.RolePermissionUpdateInput = exports.RolePermissionUpdateWithoutRoleInput = exports.RolePermissionUpdateWithWhereUniqueWithoutRoleInput = exports.RolePermissionUpdateManyWithoutRoleNestedInput = exports.RolePermissionUpdateManyWithWhereWithoutRoleInput = exports.RolePermissionUpdateManyMutationInput = exports.RolePermissionUncheckedUpdateInput = exports.RolePermissionUncheckedUpdateWithoutRoleInput = exports.RolePermissionUncheckedUpdateManyInput = exports.RolePermissionUncheckedUpdateManyWithoutRoleInput = exports.RolePermissionUncheckedUpdateManyWithoutRoleNestedInput = exports.RolePermissionUncheckedCreateInput = exports.RolePermissionUncheckedCreateWithoutRoleInput = exports.RolePermissionUncheckedCreateNestedManyWithoutRoleInput = exports.RolePermissionSumOrderByAggregateInput = exports.RolePermissionSumAggregate = exports.RolePermissionSumAggregateInput = exports.RolePermissionScalarWhereInput = exports.RolePermissionScalarWhereWithAggregatesInput = exports.RolePermissionRoleIdPermissionCompoundUniqueInput = exports.RolePermissionOrderByWithRelationInput = void 0;
+exports.RoleUncheckedUpdateInput = exports.RoleUncheckedUpdateWithoutUsersInput = exports.RoleUncheckedUpdateWithoutRolePermissionsInput = exports.RoleUncheckedUpdateManyInput = exports.RoleUncheckedCreateInput = exports.RoleUncheckedCreateWithoutUsersInput = exports.RoleUncheckedCreateWithoutRolePermissionsInput = exports.RoleSumOrderByAggregateInput = exports.RoleSumAggregate = exports.RoleSumAggregateInput = exports.RoleScalarWhereWithAggregatesInput = exports.RoleRelationFilter = exports.RoleOrderByWithRelationInput = exports.RoleOrderByWithAggregationInput = exports.RoleNullableRelationFilter = exports.RoleMinOrderByAggregateInput = exports.RoleMinAggregate = exports.RoleMinAggregateInput = exports.RoleMaxOrderByAggregateInput = exports.RoleMaxAggregate = exports.RoleMaxAggregateInput = exports.RoleGroupBy = exports.RoleGroupByArgs = exports.RoleCreateInput = exports.RoleCreateWithoutUsersInput = exports.RoleCreateWithoutRolePermissionsInput = exports.RoleCreateOrConnectWithoutUsersInput = exports.RoleCreateOrConnectWithoutRolePermissionsInput = exports.RoleCreateNestedOneWithoutUsersInput = exports.RoleCreateNestedOneWithoutRolePermissionsInput = exports.RoleCreateManyInput = exports.RoleCount = exports.RoleCountOrderByAggregateInput = exports.RoleCountAggregate = exports.RoleCountAggregateInput = exports.RoleAvgOrderByAggregateInput = exports.RoleAvgAggregate = exports.RoleAvgAggregateInput = exports.RoleAggregateArgs = exports.FindUniqueRoleArgs = exports.FindUniqueRoleOrThrowArgs = exports.FindManyRoleArgs = exports.FindFirstRoleArgs = exports.FindFirstRoleOrThrowArgs = exports.DeleteOneRoleArgs = exports.DeleteManyRoleArgs = exports.CreateOneRoleArgs = exports.CreateManyRoleArgs = exports.AggregateRole = exports.UpsertOneRegionArgs = void 0;
+exports.RolePermissionOrderByRelationAggregateInput = exports.RolePermissionMinOrderByAggregateInput = exports.RolePermissionMinAggregate = exports.RolePermissionMinAggregateInput = exports.RolePermissionMaxOrderByAggregateInput = exports.RolePermissionMaxAggregate = exports.RolePermissionMaxAggregateInput = exports.RolePermissionListRelationFilter = exports.RolePermissionGroupBy = exports.RolePermissionGroupByArgs = exports.RolePermissionCreateInput = exports.RolePermissionCreateWithoutRoleInput = exports.RolePermissionCreateOrConnectWithoutRoleInput = exports.RolePermissionCreateNestedManyWithoutRoleInput = exports.RolePermissionCreateManyInput = exports.RolePermissionCreateManyRoleInput = exports.RolePermissionCreateManyRoleInputEnvelope = exports.RolePermissionCountOrderByAggregateInput = exports.RolePermissionCountAggregate = exports.RolePermissionCountAggregateInput = exports.RolePermissionAvgOrderByAggregateInput = exports.RolePermissionAvgAggregate = exports.RolePermissionAvgAggregateInput = exports.RolePermissionAggregateArgs = exports.FindUniqueRolePermissionArgs = exports.FindUniqueRolePermissionOrThrowArgs = exports.FindManyRolePermissionArgs = exports.FindFirstRolePermissionArgs = exports.FindFirstRolePermissionOrThrowArgs = exports.DeleteOneRolePermissionArgs = exports.DeleteManyRolePermissionArgs = exports.CreateOneRolePermissionArgs = exports.CreateManyRolePermissionArgs = exports.AggregateRolePermission = exports.UpsertOneRoleArgs = exports.UpdateOneRoleArgs = exports.UpdateManyRoleArgs = exports.Role = exports.RoleWhereInput = exports.RoleWhereUniqueInput = exports.RoleUpsertWithoutUsersInput = exports.RoleUpsertWithoutRolePermissionsInput = exports.RoleUpdateInput = exports.RoleUpdateWithoutUsersInput = exports.RoleUpdateWithoutRolePermissionsInput = exports.RoleUpdateToOneWithWhereWithoutUsersInput = exports.RoleUpdateToOneWithWhereWithoutRolePermissionsInput = exports.RoleUpdateOneWithoutRolePermissionsNestedInput = exports.RoleUpdateOneRequiredWithoutUsersNestedInput = exports.RoleUpdateManyMutationInput = void 0;
+exports.SubdistrictCreateNestedManyWithoutDistrictInput = exports.SubdistrictCreateManyInput = exports.SubdistrictCreateManyDistrictInput = exports.SubdistrictCreateManyDistrictInputEnvelope = exports.SubdistrictCount = exports.SubdistrictCountOrderByAggregateInput = exports.SubdistrictCountAggregate = exports.SubdistrictCountAggregateInput = exports.SubdistrictAvgOrderByAggregateInput = exports.SubdistrictAvgAggregate = exports.SubdistrictAvgAggregateInput = exports.SubdistrictAggregateArgs = exports.FindUniqueSubdistrictArgs = exports.FindUniqueSubdistrictOrThrowArgs = exports.FindManySubdistrictArgs = exports.FindFirstSubdistrictArgs = exports.FindFirstSubdistrictOrThrowArgs = exports.DeleteOneSubdistrictArgs = exports.DeleteManySubdistrictArgs = exports.CreateOneSubdistrictArgs = exports.CreateManySubdistrictArgs = exports.AggregateSubdistrict = exports.UpsertOneRolePermissionArgs = exports.UpdateOneRolePermissionArgs = exports.UpdateManyRolePermissionArgs = exports.RolePermission = exports.RolePermissionWhereInput = exports.RolePermissionWhereUniqueInput = exports.RolePermissionUpsertWithWhereUniqueWithoutRoleInput = exports.RolePermissionUpdateInput = exports.RolePermissionUpdateWithoutRoleInput = exports.RolePermissionUpdateWithWhereUniqueWithoutRoleInput = exports.RolePermissionUpdateManyWithoutRoleNestedInput = exports.RolePermissionUpdateManyWithWhereWithoutRoleInput = exports.RolePermissionUpdateManyMutationInput = exports.RolePermissionUncheckedUpdateInput = exports.RolePermissionUncheckedUpdateWithoutRoleInput = exports.RolePermissionUncheckedUpdateManyInput = exports.RolePermissionUncheckedUpdateManyWithoutRoleInput = exports.RolePermissionUncheckedUpdateManyWithoutRoleNestedInput = exports.RolePermissionUncheckedCreateInput = exports.RolePermissionUncheckedCreateWithoutRoleInput = exports.RolePermissionUncheckedCreateNestedManyWithoutRoleInput = exports.RolePermissionSumOrderByAggregateInput = exports.RolePermissionSumAggregate = exports.RolePermissionSumAggregateInput = exports.RolePermissionScalarWhereInput = exports.RolePermissionScalarWhereWithAggregatesInput = exports.RolePermissionOrderByWithRelationInput = exports.RolePermissionOrderByWithAggregationInput = void 0;
 exports.UpdateOneSubdistrictArgs = exports.UpdateManySubdistrictArgs = exports.Subdistrict = exports.SubdistrictWhereInput = exports.SubdistrictWhereUniqueInput = exports.SubdistrictUpsertWithoutAddressInput = exports.SubdistrictUpsertWithWhereUniqueWithoutDistrictInput = exports.SubdistrictUpdateInput = exports.SubdistrictUpdateWithoutDistrictInput = exports.SubdistrictUpdateWithoutAddressInput = exports.SubdistrictUpdateWithWhereUniqueWithoutDistrictInput = exports.SubdistrictUpdateToOneWithWhereWithoutAddressInput = exports.SubdistrictUpdateOneRequiredWithoutAddressNestedInput = exports.SubdistrictUpdateManyWithoutDistrictNestedInput = exports.SubdistrictUpdateManyWithWhereWithoutDistrictInput = exports.SubdistrictUpdateManyMutationInput = exports.SubdistrictUncheckedUpdateInput = exports.SubdistrictUncheckedUpdateWithoutDistrictInput = exports.SubdistrictUncheckedUpdateWithoutAddressInput = exports.SubdistrictUncheckedUpdateManyInput = exports.SubdistrictUncheckedUpdateManyWithoutDistrictInput = exports.SubdistrictUncheckedUpdateManyWithoutDistrictNestedInput = exports.SubdistrictUncheckedCreateInput = exports.SubdistrictUncheckedCreateWithoutDistrictInput = exports.SubdistrictUncheckedCreateWithoutAddressInput = exports.SubdistrictUncheckedCreateNestedManyWithoutDistrictInput = exports.SubdistrictSumOrderByAggregateInput = exports.SubdistrictSumAggregate = exports.SubdistrictSumAggregateInput = exports.SubdistrictScalarWhereInput = exports.SubdistrictScalarWhereWithAggregatesInput = exports.SubdistrictRelationFilter = exports.SubdistrictOrderByWithRelationInput = exports.SubdistrictOrderByWithAggregationInput = exports.SubdistrictOrderByRelationAggregateInput = exports.SubdistrictMinOrderByAggregateInput = exports.SubdistrictMinAggregate = exports.SubdistrictMinAggregateInput = exports.SubdistrictMaxOrderByAggregateInput = exports.SubdistrictMaxAggregate = exports.SubdistrictMaxAggregateInput = exports.SubdistrictListRelationFilter = exports.SubdistrictGroupBy = exports.SubdistrictGroupByArgs = exports.SubdistrictCreateInput = exports.SubdistrictCreateWithoutDistrictInput = exports.SubdistrictCreateWithoutAddressInput = exports.SubdistrictCreateOrConnectWithoutDistrictInput = exports.SubdistrictCreateOrConnectWithoutAddressInput = exports.SubdistrictCreateNestedOneWithoutAddressInput = void 0;
 exports.TagUpdateManyMutationInput = exports.TagUncheckedUpdateInput = exports.TagUncheckedUpdateWithoutClaimsInput = exports.TagUncheckedUpdateManyInput = exports.TagUncheckedUpdateManyWithoutClaimsInput = exports.TagUncheckedUpdateManyWithoutClaimsNestedInput = exports.TagUncheckedCreateInput = exports.TagUncheckedCreateWithoutClaimsInput = exports.TagUncheckedCreateNestedManyWithoutClaimsInput = exports.TagSumOrderByAggregateInput = exports.TagSumAggregate = exports.TagSumAggregateInput = exports.TagScalarWhereInput = exports.TagScalarWhereWithAggregatesInput = exports.TagOrderByWithRelationInput = exports.TagOrderByWithAggregationInput = exports.TagOrderByRelationAggregateInput = exports.TagMinOrderByAggregateInput = exports.TagMinAggregate = exports.TagMinAggregateInput = exports.TagMaxOrderByAggregateInput = exports.TagMaxAggregate = exports.TagMaxAggregateInput = exports.TagListRelationFilter = exports.TagGroupBy = exports.TagGroupByArgs = exports.TagCreateInput = exports.TagCreateWithoutClaimsInput = exports.TagCreateOrConnectWithoutClaimsInput = exports.TagCreateNestedManyWithoutClaimsInput = exports.TagCreateManyInput = exports.TagCount = exports.TagCountOrderByAggregateInput = exports.TagCountAggregate = exports.TagCountAggregateInput = exports.TagAvgOrderByAggregateInput = exports.TagAvgAggregate = exports.TagAvgAggregateInput = exports.TagAggregateArgs = exports.FindUniqueTagArgs = exports.FindUniqueTagOrThrowArgs = exports.FindManyTagArgs = exports.FindFirstTagArgs = exports.FindFirstTagOrThrowArgs = exports.DeleteOneTagArgs = exports.DeleteManyTagArgs = exports.CreateOneTagArgs = exports.CreateManyTagArgs = exports.AggregateTag = exports.UpsertOneSubdistrictArgs = void 0;
 exports.TransactionScalarWhereInput = exports.TransactionScalarWhereWithAggregatesInput = exports.TransactionOrderByWithRelationInput = exports.TransactionOrderByWithAggregationInput = exports.TransactionOrderByRelationAggregateInput = exports.TransactionMinOrderByAggregateInput = exports.TransactionMinAggregate = exports.TransactionMinAggregateInput = exports.TransactionMaxOrderByAggregateInput = exports.TransactionMaxAggregate = exports.TransactionMaxAggregateInput = exports.TransactionListRelationFilter = exports.TransactionGroupBy = exports.TransactionGroupByArgs = exports.TransactionCreateInput = exports.TransactionCreateWithoutAccountInput = exports.TransactionCreateOrConnectWithoutAccountInput = exports.TransactionCreateNestedManyWithoutAccountInput = exports.TransactionCreateManyInput = exports.TransactionCreateManyAccountInput = exports.TransactionCreateManyAccountInputEnvelope = exports.TransactionCountOrderByAggregateInput = exports.TransactionCountAggregate = exports.TransactionCountAggregateInput = exports.TransactionAvgOrderByAggregateInput = exports.TransactionAvgAggregate = exports.TransactionAvgAggregateInput = exports.TransactionAggregateArgs = exports.FindUniqueTransactionArgs = exports.FindUniqueTransactionOrThrowArgs = exports.FindManyTransactionArgs = exports.FindFirstTransactionArgs = exports.FindFirstTransactionOrThrowArgs = exports.DeleteOneTransactionArgs = exports.DeleteManyTransactionArgs = exports.CreateOneTransactionArgs = exports.CreateManyTransactionArgs = exports.AggregateTransaction = exports.UpsertOneTagArgs = exports.UpdateOneTagArgs = exports.UpdateManyTagArgs = exports.Tag = exports.TagWhereInput = exports.TagWhereUniqueInput = exports.TagUpsertWithWhereUniqueWithoutClaimsInput = exports.TagUpdateInput = exports.TagUpdateWithoutClaimsInput = exports.TagUpdateWithWhereUniqueWithoutClaimsInput = exports.TagUpdateManyWithoutClaimsNestedInput = exports.TagUpdateManyWithWhereWithoutClaimsInput = void 0;
@@ -106,6 +106,7 @@ var SubdistrictScalarFieldEnum;
 })(SubdistrictScalarFieldEnum = exports.SubdistrictScalarFieldEnum || (exports.SubdistrictScalarFieldEnum = {}));
 var RolePermissionScalarFieldEnum;
 (function (RolePermissionScalarFieldEnum) {
+    RolePermissionScalarFieldEnum["id"] = "id";
     RolePermissionScalarFieldEnum["roleId"] = "roleId";
     RolePermissionScalarFieldEnum["permission"] = "permission";
 })(RolePermissionScalarFieldEnum = exports.RolePermissionScalarFieldEnum || (exports.RolePermissionScalarFieldEnum = {}));
@@ -48649,6 +48650,18 @@ RoleMinOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleMinOrderByAggregateInput);
 exports.RoleMinOrderByAggregateInput = RoleMinOrderByAggregateInput;
+let RoleNullableRelationFilter = class RoleNullableRelationFilter {
+};
+__decorate([
+    (0, graphql_1.Field)(() => RoleWhereInput, { nullable: true })
+], RoleNullableRelationFilter.prototype, "is", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => RoleWhereInput, { nullable: true })
+], RoleNullableRelationFilter.prototype, "isNot", void 0);
+RoleNullableRelationFilter = __decorate([
+    (0, graphql_4.InputType)()
+], RoleNullableRelationFilter);
+exports.RoleNullableRelationFilter = RoleNullableRelationFilter;
 let RoleOrderByWithAggregationInput = class RoleOrderByWithAggregationInput {
 };
 __decorate([
@@ -48946,32 +48959,6 @@ RoleUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleUpdateManyMutationInput);
 exports.RoleUpdateManyMutationInput = RoleUpdateManyMutationInput;
-let RoleUpdateOneRequiredWithoutRolePermissionsNestedInput = class RoleUpdateOneRequiredWithoutRolePermissionsNestedInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => RoleCreateWithoutRolePermissionsInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => RoleCreateWithoutRolePermissionsInput)
-], RoleUpdateOneRequiredWithoutRolePermissionsNestedInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => RoleCreateOrConnectWithoutRolePermissionsInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => RoleCreateOrConnectWithoutRolePermissionsInput)
-], RoleUpdateOneRequiredWithoutRolePermissionsNestedInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => RoleUpsertWithoutRolePermissionsInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => RoleUpsertWithoutRolePermissionsInput)
-], RoleUpdateOneRequiredWithoutRolePermissionsNestedInput.prototype, "upsert", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => RoleWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => RoleWhereUniqueInput)
-], RoleUpdateOneRequiredWithoutRolePermissionsNestedInput.prototype, "connect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => RoleUpdateToOneWithWhereWithoutRolePermissionsInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => RoleUpdateToOneWithWhereWithoutRolePermissionsInput)
-], RoleUpdateOneRequiredWithoutRolePermissionsNestedInput.prototype, "update", void 0);
-RoleUpdateOneRequiredWithoutRolePermissionsNestedInput = __decorate([
-    (0, graphql_4.InputType)()
-], RoleUpdateOneRequiredWithoutRolePermissionsNestedInput);
-exports.RoleUpdateOneRequiredWithoutRolePermissionsNestedInput = RoleUpdateOneRequiredWithoutRolePermissionsNestedInput;
 let RoleUpdateOneRequiredWithoutUsersNestedInput = class RoleUpdateOneRequiredWithoutUsersNestedInput {
 };
 __decorate([
@@ -48998,6 +48985,40 @@ RoleUpdateOneRequiredWithoutUsersNestedInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleUpdateOneRequiredWithoutUsersNestedInput);
 exports.RoleUpdateOneRequiredWithoutUsersNestedInput = RoleUpdateOneRequiredWithoutUsersNestedInput;
+let RoleUpdateOneWithoutRolePermissionsNestedInput = class RoleUpdateOneWithoutRolePermissionsNestedInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => RoleCreateWithoutRolePermissionsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => RoleCreateWithoutRolePermissionsInput)
+], RoleUpdateOneWithoutRolePermissionsNestedInput.prototype, "create", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => RoleCreateOrConnectWithoutRolePermissionsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => RoleCreateOrConnectWithoutRolePermissionsInput)
+], RoleUpdateOneWithoutRolePermissionsNestedInput.prototype, "connectOrCreate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => RoleUpsertWithoutRolePermissionsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => RoleUpsertWithoutRolePermissionsInput)
+], RoleUpdateOneWithoutRolePermissionsNestedInput.prototype, "upsert", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => RoleWhereInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => RoleWhereInput)
+], RoleUpdateOneWithoutRolePermissionsNestedInput.prototype, "disconnect", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => RoleWhereInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => RoleWhereInput)
+], RoleUpdateOneWithoutRolePermissionsNestedInput.prototype, "delete", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => RoleWhereUniqueInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => RoleWhereUniqueInput)
+], RoleUpdateOneWithoutRolePermissionsNestedInput.prototype, "connect", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => RoleUpdateToOneWithWhereWithoutRolePermissionsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => RoleUpdateToOneWithWhereWithoutRolePermissionsInput)
+], RoleUpdateOneWithoutRolePermissionsNestedInput.prototype, "update", void 0);
+RoleUpdateOneWithoutRolePermissionsNestedInput = __decorate([
+    (0, graphql_4.InputType)()
+], RoleUpdateOneWithoutRolePermissionsNestedInput);
+exports.RoleUpdateOneWithoutRolePermissionsNestedInput = RoleUpdateOneWithoutRolePermissionsNestedInput;
 let RoleUpdateToOneWithWhereWithoutRolePermissionsInput = class RoleUpdateToOneWithWhereWithoutRolePermissionsInput {
 };
 __decorate([
@@ -49458,6 +49479,9 @@ let RolePermissionAvgAggregateInput = class RolePermissionAvgAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], RolePermissionAvgAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], RolePermissionAvgAggregateInput.prototype, "roleId", void 0);
 RolePermissionAvgAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -49465,6 +49489,9 @@ RolePermissionAvgAggregateInput = __decorate([
 exports.RolePermissionAvgAggregateInput = RolePermissionAvgAggregateInput;
 let RolePermissionAvgAggregate = class RolePermissionAvgAggregate {
 };
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], RolePermissionAvgAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], RolePermissionAvgAggregate.prototype, "roleId", void 0);
@@ -49476,6 +49503,9 @@ let RolePermissionAvgOrderByAggregateInput = class RolePermissionAvgOrderByAggre
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], RolePermissionAvgOrderByAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], RolePermissionAvgOrderByAggregateInput.prototype, "roleId", void 0);
 RolePermissionAvgOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -49483,6 +49513,9 @@ RolePermissionAvgOrderByAggregateInput = __decorate([
 exports.RolePermissionAvgOrderByAggregateInput = RolePermissionAvgOrderByAggregateInput;
 let RolePermissionCountAggregateInput = class RolePermissionCountAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], RolePermissionCountAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], RolePermissionCountAggregateInput.prototype, "roleId", void 0);
@@ -49500,6 +49533,9 @@ let RolePermissionCountAggregate = class RolePermissionCountAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], RolePermissionCountAggregate.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], RolePermissionCountAggregate.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
@@ -49513,6 +49549,9 @@ RolePermissionCountAggregate = __decorate([
 exports.RolePermissionCountAggregate = RolePermissionCountAggregate;
 let RolePermissionCountOrderByAggregateInput = class RolePermissionCountOrderByAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], RolePermissionCountOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], RolePermissionCountOrderByAggregateInput.prototype, "roleId", void 0);
@@ -49539,6 +49578,9 @@ exports.RolePermissionCreateManyRoleInputEnvelope = RolePermissionCreateManyRole
 let RolePermissionCreateManyRoleInput = class RolePermissionCreateManyRoleInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionCreateManyRoleInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: false })
 ], RolePermissionCreateManyRoleInput.prototype, "permission", void 0);
 RolePermissionCreateManyRoleInput = __decorate([
@@ -49548,7 +49590,10 @@ exports.RolePermissionCreateManyRoleInput = RolePermissionCreateManyRoleInput;
 let RolePermissionCreateManyInput = class RolePermissionCreateManyInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionCreateManyInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], RolePermissionCreateManyInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: false })
@@ -49608,7 +49653,7 @@ __decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: false })
 ], RolePermissionCreateInput.prototype, "permission", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutRolePermissionsInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutRolePermissionsInput, { nullable: true })
 ], RolePermissionCreateInput.prototype, "role", void 0);
 RolePermissionCreateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -49658,6 +49703,9 @@ let RolePermissionGroupBy = class RolePermissionGroupBy {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], RolePermissionGroupBy.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], RolePermissionGroupBy.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: false })
@@ -49700,6 +49748,9 @@ let RolePermissionMaxAggregateInput = class RolePermissionMaxAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], RolePermissionMaxAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], RolePermissionMaxAggregateInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -49710,6 +49761,9 @@ RolePermissionMaxAggregateInput = __decorate([
 exports.RolePermissionMaxAggregateInput = RolePermissionMaxAggregateInput;
 let RolePermissionMaxAggregate = class RolePermissionMaxAggregate {
 };
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionMaxAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], RolePermissionMaxAggregate.prototype, "roleId", void 0);
@@ -49724,6 +49778,9 @@ let RolePermissionMaxOrderByAggregateInput = class RolePermissionMaxOrderByAggre
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], RolePermissionMaxOrderByAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], RolePermissionMaxOrderByAggregateInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -49734,6 +49791,9 @@ RolePermissionMaxOrderByAggregateInput = __decorate([
 exports.RolePermissionMaxOrderByAggregateInput = RolePermissionMaxOrderByAggregateInput;
 let RolePermissionMinAggregateInput = class RolePermissionMinAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], RolePermissionMinAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], RolePermissionMinAggregateInput.prototype, "roleId", void 0);
@@ -49748,6 +49808,9 @@ let RolePermissionMinAggregate = class RolePermissionMinAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionMinAggregate.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], RolePermissionMinAggregate.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: true })
@@ -49758,6 +49821,9 @@ RolePermissionMinAggregate = __decorate([
 exports.RolePermissionMinAggregate = RolePermissionMinAggregate;
 let RolePermissionMinOrderByAggregateInput = class RolePermissionMinOrderByAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], RolePermissionMinOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], RolePermissionMinOrderByAggregateInput.prototype, "roleId", void 0);
@@ -49781,6 +49847,9 @@ let RolePermissionOrderByWithAggregationInput = class RolePermissionOrderByWithA
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], RolePermissionOrderByWithAggregationInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], RolePermissionOrderByWithAggregationInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -49808,6 +49877,9 @@ let RolePermissionOrderByWithRelationInput = class RolePermissionOrderByWithRela
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], RolePermissionOrderByWithRelationInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], RolePermissionOrderByWithRelationInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -49819,18 +49891,6 @@ RolePermissionOrderByWithRelationInput = __decorate([
     (0, graphql_4.InputType)()
 ], RolePermissionOrderByWithRelationInput);
 exports.RolePermissionOrderByWithRelationInput = RolePermissionOrderByWithRelationInput;
-let RolePermissionRoleIdPermissionCompoundUniqueInput = class RolePermissionRoleIdPermissionCompoundUniqueInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RolePermissionRoleIdPermissionCompoundUniqueInput.prototype, "roleId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Permission, { nullable: false })
-], RolePermissionRoleIdPermissionCompoundUniqueInput.prototype, "permission", void 0);
-RolePermissionRoleIdPermissionCompoundUniqueInput = __decorate([
-    (0, graphql_4.InputType)()
-], RolePermissionRoleIdPermissionCompoundUniqueInput);
-exports.RolePermissionRoleIdPermissionCompoundUniqueInput = RolePermissionRoleIdPermissionCompoundUniqueInput;
 let RolePermissionScalarWhereWithAggregatesInput = RolePermissionScalarWhereWithAggregatesInput_1 = class RolePermissionScalarWhereWithAggregatesInput {
 };
 __decorate([
@@ -49844,6 +49904,9 @@ __decorate([
 ], RolePermissionScalarWhereWithAggregatesInput.prototype, "NOT", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
+], RolePermissionScalarWhereWithAggregatesInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
 ], RolePermissionScalarWhereWithAggregatesInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumPermissionWithAggregatesFilter, { nullable: true })
@@ -49865,6 +49928,9 @@ __decorate([
 ], RolePermissionScalarWhereInput.prototype, "NOT", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+], RolePermissionScalarWhereInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], RolePermissionScalarWhereInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumPermissionFilter, { nullable: true })
@@ -49877,6 +49943,9 @@ let RolePermissionSumAggregateInput = class RolePermissionSumAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], RolePermissionSumAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], RolePermissionSumAggregateInput.prototype, "roleId", void 0);
 RolePermissionSumAggregateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -49886,6 +49955,9 @@ let RolePermissionSumAggregate = class RolePermissionSumAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionSumAggregate.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], RolePermissionSumAggregate.prototype, "roleId", void 0);
 RolePermissionSumAggregate = __decorate([
     (0, graphql_5.ObjectType)()
@@ -49893,6 +49965,9 @@ RolePermissionSumAggregate = __decorate([
 exports.RolePermissionSumAggregate = RolePermissionSumAggregate;
 let RolePermissionSumOrderByAggregateInput = class RolePermissionSumOrderByAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], RolePermissionSumOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], RolePermissionSumOrderByAggregateInput.prototype, "roleId", void 0);
@@ -49925,6 +50000,9 @@ exports.RolePermissionUncheckedCreateNestedManyWithoutRoleInput = RolePermission
 let RolePermissionUncheckedCreateWithoutRoleInput = class RolePermissionUncheckedCreateWithoutRoleInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionUncheckedCreateWithoutRoleInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: false })
 ], RolePermissionUncheckedCreateWithoutRoleInput.prototype, "permission", void 0);
 RolePermissionUncheckedCreateWithoutRoleInput = __decorate([
@@ -49934,7 +50012,10 @@ exports.RolePermissionUncheckedCreateWithoutRoleInput = RolePermissionUncheckedC
 let RolePermissionUncheckedCreateInput = class RolePermissionUncheckedCreateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionUncheckedCreateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], RolePermissionUncheckedCreateInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: false })
@@ -49996,6 +50077,9 @@ exports.RolePermissionUncheckedUpdateManyWithoutRoleNestedInput = RolePermission
 let RolePermissionUncheckedUpdateManyWithoutRoleInput = class RolePermissionUncheckedUpdateManyWithoutRoleInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], RolePermissionUncheckedUpdateManyWithoutRoleInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumPermissionFieldUpdateOperationsInput, { nullable: true })
 ], RolePermissionUncheckedUpdateManyWithoutRoleInput.prototype, "permission", void 0);
 RolePermissionUncheckedUpdateManyWithoutRoleInput = __decorate([
@@ -50006,6 +50090,9 @@ let RolePermissionUncheckedUpdateManyInput = class RolePermissionUncheckedUpdate
 };
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], RolePermissionUncheckedUpdateManyInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], RolePermissionUncheckedUpdateManyInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumPermissionFieldUpdateOperationsInput, { nullable: true })
@@ -50017,6 +50104,9 @@ exports.RolePermissionUncheckedUpdateManyInput = RolePermissionUncheckedUpdateMa
 let RolePermissionUncheckedUpdateWithoutRoleInput = class RolePermissionUncheckedUpdateWithoutRoleInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], RolePermissionUncheckedUpdateWithoutRoleInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumPermissionFieldUpdateOperationsInput, { nullable: true })
 ], RolePermissionUncheckedUpdateWithoutRoleInput.prototype, "permission", void 0);
 RolePermissionUncheckedUpdateWithoutRoleInput = __decorate([
@@ -50027,6 +50117,9 @@ let RolePermissionUncheckedUpdateInput = class RolePermissionUncheckedUpdateInpu
 };
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], RolePermissionUncheckedUpdateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], RolePermissionUncheckedUpdateInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumPermissionFieldUpdateOperationsInput, { nullable: true })
@@ -50137,7 +50230,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumPermissionFieldUpdateOperationsInput, { nullable: true })
 ], RolePermissionUpdateInput.prototype, "permission", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutRolePermissionsNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => RoleUpdateOneWithoutRolePermissionsNestedInput, { nullable: true })
 ], RolePermissionUpdateInput.prototype, "role", void 0);
 RolePermissionUpdateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -50164,8 +50257,8 @@ exports.RolePermissionUpsertWithWhereUniqueWithoutRoleInput = RolePermissionUpse
 let RolePermissionWhereUniqueInput = class RolePermissionWhereUniqueInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => RolePermissionRoleIdPermissionCompoundUniqueInput, { nullable: true })
-], RolePermissionWhereUniqueInput.prototype, "roleId_permission", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RolePermissionWhereUniqueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [RolePermissionWhereInput], { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "AND", void 0);
@@ -50176,13 +50269,13 @@ __decorate([
     (0, graphql_1.Field)(() => [RolePermissionWhereInput], { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "NOT", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumPermissionFilter, { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "permission", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleRelationFilter, { nullable: true })
+    (0, graphql_1.Field)(() => RoleNullableRelationFilter, { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "role", void 0);
 RolePermissionWhereUniqueInput = __decorate([
     (0, graphql_4.InputType)()
@@ -50201,12 +50294,15 @@ __decorate([
 ], RolePermissionWhereInput.prototype, "NOT", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+], RolePermissionWhereInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], RolePermissionWhereInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumPermissionFilter, { nullable: true })
 ], RolePermissionWhereInput.prototype, "permission", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleRelationFilter, { nullable: true })
+    (0, graphql_1.Field)(() => RoleNullableRelationFilter, { nullable: true })
 ], RolePermissionWhereInput.prototype, "role", void 0);
 RolePermissionWhereInput = RolePermissionWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -50216,12 +50312,15 @@ let RolePermission = class RolePermission {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], RolePermission.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], RolePermission.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Permission, { nullable: false })
 ], RolePermission.prototype, "permission", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Role, { nullable: false })
+    (0, graphql_1.Field)(() => Role, { nullable: true })
 ], RolePermission.prototype, "role", void 0);
 RolePermission = __decorate([
     (0, graphql_5.ObjectType)()

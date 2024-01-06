@@ -34,6 +34,7 @@ export declare enum SubdistrictScalarFieldEnum {
     postalCode = "postalCode"
 }
 export declare enum RolePermissionScalarFieldEnum {
+    id = "id",
     roleId = "roleId",
     permission = "permission"
 }
@@ -15649,6 +15650,10 @@ export declare class RoleMinOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     order?: keyof typeof SortOrder;
 }
+export declare class RoleNullableRelationFilter {
+    is?: InstanceType<typeof RoleWhereInput>;
+    isNot?: InstanceType<typeof RoleWhereInput>;
+}
 export declare class RoleOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
@@ -15748,19 +15753,21 @@ export declare class RoleUpdateManyMutationInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     order?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
-export declare class RoleUpdateOneRequiredWithoutRolePermissionsNestedInput {
-    create?: InstanceType<typeof RoleCreateWithoutRolePermissionsInput>;
-    connectOrCreate?: InstanceType<typeof RoleCreateOrConnectWithoutRolePermissionsInput>;
-    upsert?: InstanceType<typeof RoleUpsertWithoutRolePermissionsInput>;
-    connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof RoleUpdateToOneWithWhereWithoutRolePermissionsInput>;
-}
 export declare class RoleUpdateOneRequiredWithoutUsersNestedInput {
     create?: InstanceType<typeof RoleCreateWithoutUsersInput>;
     connectOrCreate?: InstanceType<typeof RoleCreateOrConnectWithoutUsersInput>;
     upsert?: InstanceType<typeof RoleUpsertWithoutUsersInput>;
     connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof RoleUpdateToOneWithWhereWithoutUsersInput>;
+}
+export declare class RoleUpdateOneWithoutRolePermissionsNestedInput {
+    create?: InstanceType<typeof RoleCreateWithoutRolePermissionsInput>;
+    connectOrCreate?: InstanceType<typeof RoleCreateOrConnectWithoutRolePermissionsInput>;
+    upsert?: InstanceType<typeof RoleUpsertWithoutRolePermissionsInput>;
+    disconnect?: InstanceType<typeof RoleWhereInput>;
+    delete?: InstanceType<typeof RoleWhereInput>;
+    connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id'>;
+    update?: InstanceType<typeof RoleUpdateToOneWithWhereWithoutRolePermissionsInput>;
 }
 export declare class RoleUpdateToOneWithWhereWithoutRolePermissionsInput {
     where?: InstanceType<typeof RoleWhereInput>;
@@ -15861,12 +15868,12 @@ export declare class DeleteManyRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
 }
 export declare class DeleteOneRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
 }
 export declare class FindFirstRolePermissionOrThrowArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
@@ -15874,7 +15881,7 @@ export declare class FindFirstRolePermissionOrThrowArgs {
 export declare class FindFirstRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
@@ -15882,21 +15889,21 @@ export declare class FindFirstRolePermissionArgs {
 export declare class FindManyRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
 }
 export declare class FindUniqueRolePermissionOrThrowArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
 }
 export declare class FindUniqueRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
 }
 export declare class RolePermissionAggregateArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof RolePermissionCountAggregateInput>;
@@ -15906,25 +15913,31 @@ export declare class RolePermissionAggregateArgs {
     _max?: InstanceType<typeof RolePermissionMaxAggregateInput>;
 }
 export declare class RolePermissionAvgAggregateInput {
+    id?: true;
     roleId?: true;
 }
 export declare class RolePermissionAvgAggregate {
+    id?: number;
     roleId?: number;
 }
 export declare class RolePermissionAvgOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     roleId?: keyof typeof SortOrder;
 }
 export declare class RolePermissionCountAggregateInput {
+    id?: true;
     roleId?: true;
     permission?: true;
     _all?: true;
 }
 export declare class RolePermissionCountAggregate {
+    id: number;
     roleId: number;
     permission: number;
     _all: number;
 }
 export declare class RolePermissionCountOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     roleId?: keyof typeof SortOrder;
     permission?: keyof typeof SortOrder;
 }
@@ -15933,20 +15946,22 @@ export declare class RolePermissionCreateManyRoleInputEnvelope {
     skipDuplicates?: boolean;
 }
 export declare class RolePermissionCreateManyRoleInput {
+    id?: number;
     permission: keyof typeof Permission;
 }
 export declare class RolePermissionCreateManyInput {
-    roleId: number;
+    id?: number;
+    roleId?: number;
     permission: keyof typeof Permission;
 }
 export declare class RolePermissionCreateNestedManyWithoutRoleInput {
     create?: Array<RolePermissionCreateWithoutRoleInput>;
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
 }
 export declare class RolePermissionCreateOrConnectWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     create: InstanceType<typeof RolePermissionCreateWithoutRoleInput>;
 }
 export declare class RolePermissionCreateWithoutRoleInput {
@@ -15954,7 +15969,7 @@ export declare class RolePermissionCreateWithoutRoleInput {
 }
 export declare class RolePermissionCreateInput {
     permission: keyof typeof Permission;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutRolePermissionsInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutRolePermissionsInput>;
 }
 export declare class RolePermissionGroupByArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
@@ -15970,7 +15985,8 @@ export declare class RolePermissionGroupByArgs {
     _max?: InstanceType<typeof RolePermissionMaxAggregateInput>;
 }
 export declare class RolePermissionGroupBy {
-    roleId: number;
+    id: number;
+    roleId?: number;
     permission: keyof typeof Permission;
     _count?: InstanceType<typeof RolePermissionCountAggregate>;
     _avg?: InstanceType<typeof RolePermissionAvgAggregate>;
@@ -15984,26 +16000,32 @@ export declare class RolePermissionListRelationFilter {
     none?: InstanceType<typeof RolePermissionWhereInput>;
 }
 export declare class RolePermissionMaxAggregateInput {
+    id?: true;
     roleId?: true;
     permission?: true;
 }
 export declare class RolePermissionMaxAggregate {
+    id?: number;
     roleId?: number;
     permission?: keyof typeof Permission;
 }
 export declare class RolePermissionMaxOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     roleId?: keyof typeof SortOrder;
     permission?: keyof typeof SortOrder;
 }
 export declare class RolePermissionMinAggregateInput {
+    id?: true;
     roleId?: true;
     permission?: true;
 }
 export declare class RolePermissionMinAggregate {
+    id?: number;
     roleId?: number;
     permission?: keyof typeof Permission;
 }
 export declare class RolePermissionMinOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     roleId?: keyof typeof SortOrder;
     permission?: keyof typeof SortOrder;
 }
@@ -16011,7 +16033,8 @@ export declare class RolePermissionOrderByRelationAggregateInput {
     _count?: keyof typeof SortOrder;
 }
 export declare class RolePermissionOrderByWithAggregationInput {
-    roleId?: keyof typeof SortOrder;
+    id?: keyof typeof SortOrder;
+    roleId?: InstanceType<typeof SortOrderInput>;
     permission?: keyof typeof SortOrder;
     _count?: InstanceType<typeof RolePermissionCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof RolePermissionAvgOrderByAggregateInput>;
@@ -16020,48 +16043,52 @@ export declare class RolePermissionOrderByWithAggregationInput {
     _sum?: InstanceType<typeof RolePermissionSumOrderByAggregateInput>;
 }
 export declare class RolePermissionOrderByWithRelationInput {
-    roleId?: keyof typeof SortOrder;
+    id?: keyof typeof SortOrder;
+    roleId?: InstanceType<typeof SortOrderInput>;
     permission?: keyof typeof SortOrder;
     role?: InstanceType<typeof RoleOrderByWithRelationInput>;
-}
-export declare class RolePermissionRoleIdPermissionCompoundUniqueInput {
-    roleId: number;
-    permission: keyof typeof Permission;
 }
 export declare class RolePermissionScalarWhereWithAggregatesInput {
     AND?: Array<RolePermissionScalarWhereWithAggregatesInput>;
     OR?: Array<RolePermissionScalarWhereWithAggregatesInput>;
     NOT?: Array<RolePermissionScalarWhereWithAggregatesInput>;
-    roleId?: InstanceType<typeof IntWithAggregatesFilter>;
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    roleId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     permission?: InstanceType<typeof EnumPermissionWithAggregatesFilter>;
 }
 export declare class RolePermissionScalarWhereInput {
     AND?: Array<RolePermissionScalarWhereInput>;
     OR?: Array<RolePermissionScalarWhereInput>;
     NOT?: Array<RolePermissionScalarWhereInput>;
-    roleId?: InstanceType<typeof IntFilter>;
+    id?: InstanceType<typeof IntFilter>;
+    roleId?: InstanceType<typeof IntNullableFilter>;
     permission?: InstanceType<typeof EnumPermissionFilter>;
 }
 export declare class RolePermissionSumAggregateInput {
+    id?: true;
     roleId?: true;
 }
 export declare class RolePermissionSumAggregate {
+    id?: number;
     roleId?: number;
 }
 export declare class RolePermissionSumOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     roleId?: keyof typeof SortOrder;
 }
 export declare class RolePermissionUncheckedCreateNestedManyWithoutRoleInput {
     create?: Array<RolePermissionCreateWithoutRoleInput>;
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
 }
 export declare class RolePermissionUncheckedCreateWithoutRoleInput {
+    id?: number;
     permission: keyof typeof Permission;
 }
 export declare class RolePermissionUncheckedCreateInput {
-    roleId: number;
+    id?: number;
+    roleId?: number;
     permission: keyof typeof Permission;
 }
 export declare class RolePermissionUncheckedUpdateManyWithoutRoleNestedInput {
@@ -16069,26 +16096,30 @@ export declare class RolePermissionUncheckedUpdateManyWithoutRoleNestedInput {
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     upsert?: Array<RolePermissionUpsertWithWhereUniqueWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
     update?: Array<RolePermissionUpdateWithWhereUniqueWithoutRoleInput>;
     updateMany?: Array<RolePermissionUpdateManyWithWhereWithoutRoleInput>;
     deleteMany?: Array<RolePermissionScalarWhereInput>;
 }
 export declare class RolePermissionUncheckedUpdateManyWithoutRoleInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     permission?: InstanceType<typeof EnumPermissionFieldUpdateOperationsInput>;
 }
 export declare class RolePermissionUncheckedUpdateManyInput {
-    roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    roleId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     permission?: InstanceType<typeof EnumPermissionFieldUpdateOperationsInput>;
 }
 export declare class RolePermissionUncheckedUpdateWithoutRoleInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     permission?: InstanceType<typeof EnumPermissionFieldUpdateOperationsInput>;
 }
 export declare class RolePermissionUncheckedUpdateInput {
-    roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    roleId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     permission?: InstanceType<typeof EnumPermissionFieldUpdateOperationsInput>;
 }
 export declare class RolePermissionUpdateManyMutationInput {
@@ -16103,16 +16134,16 @@ export declare class RolePermissionUpdateManyWithoutRoleNestedInput {
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     upsert?: Array<RolePermissionUpsertWithWhereUniqueWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>>;
     update?: Array<RolePermissionUpdateWithWhereUniqueWithoutRoleInput>;
     updateMany?: Array<RolePermissionUpdateManyWithWhereWithoutRoleInput>;
     deleteMany?: Array<RolePermissionScalarWhereInput>;
 }
 export declare class RolePermissionUpdateWithWhereUniqueWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     data: InstanceType<typeof RolePermissionUpdateWithoutRoleInput>;
 }
 export declare class RolePermissionUpdateWithoutRoleInput {
@@ -16120,34 +16151,36 @@ export declare class RolePermissionUpdateWithoutRoleInput {
 }
 export declare class RolePermissionUpdateInput {
     permission?: InstanceType<typeof EnumPermissionFieldUpdateOperationsInput>;
-    role?: InstanceType<typeof RoleUpdateOneRequiredWithoutRolePermissionsNestedInput>;
+    role?: InstanceType<typeof RoleUpdateOneWithoutRolePermissionsNestedInput>;
 }
 export declare class RolePermissionUpsertWithWhereUniqueWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     update: InstanceType<typeof RolePermissionUpdateWithoutRoleInput>;
     create: InstanceType<typeof RolePermissionCreateWithoutRoleInput>;
 }
 export declare class RolePermissionWhereUniqueInput {
-    roleId_permission?: InstanceType<typeof RolePermissionRoleIdPermissionCompoundUniqueInput>;
+    id?: number;
     AND?: Array<RolePermissionWhereInput>;
     OR?: Array<RolePermissionWhereInput>;
     NOT?: Array<RolePermissionWhereInput>;
-    roleId?: InstanceType<typeof IntFilter>;
+    roleId?: InstanceType<typeof IntNullableFilter>;
     permission?: InstanceType<typeof EnumPermissionFilter>;
-    role?: InstanceType<typeof RoleRelationFilter>;
+    role?: InstanceType<typeof RoleNullableRelationFilter>;
 }
 export declare class RolePermissionWhereInput {
     AND?: Array<RolePermissionWhereInput>;
     OR?: Array<RolePermissionWhereInput>;
     NOT?: Array<RolePermissionWhereInput>;
-    roleId?: InstanceType<typeof IntFilter>;
+    id?: InstanceType<typeof IntFilter>;
+    roleId?: InstanceType<typeof IntNullableFilter>;
     permission?: InstanceType<typeof EnumPermissionFilter>;
-    role?: InstanceType<typeof RoleRelationFilter>;
+    role?: InstanceType<typeof RoleNullableRelationFilter>;
 }
 export declare class RolePermission {
-    roleId: number;
+    id: number;
+    roleId: number | null;
     permission: keyof typeof Permission;
-    role?: InstanceType<typeof Role>;
+    role?: InstanceType<typeof Role> | null;
 }
 export declare class UpdateManyRolePermissionArgs {
     data: InstanceType<typeof RolePermissionUpdateManyMutationInput>;
@@ -16155,10 +16188,10 @@ export declare class UpdateManyRolePermissionArgs {
 }
 export declare class UpdateOneRolePermissionArgs {
     data: InstanceType<typeof RolePermissionUpdateInput>;
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
 }
 export declare class UpsertOneRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'id'>;
     create: InstanceType<typeof RolePermissionCreateInput>;
     update: InstanceType<typeof RolePermissionUpdateInput>;
 }
