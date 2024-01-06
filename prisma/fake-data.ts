@@ -62,7 +62,6 @@ export function fakeParticipant() {
     birthDate: faker.datatype.datetime(),
     isActive: faker.datatype.boolean(),
     status: faker.helpers.arrayElement([ParticipantStatus.PENSIUNAN, ParticipantStatus.PASANGAN, ParticipantStatus.YATIM, ParticipantStatus.JANDADUDA6BULAN] as const),
-    bankAccountId: faker.datatype.number(),
   };
 }
 export function fakeParticipantComplete() {
@@ -73,7 +72,6 @@ export function fakeParticipantComplete() {
     status: faker.helpers.arrayElement([ParticipantStatus.PENSIUNAN, ParticipantStatus.PASANGAN, ParticipantStatus.YATIM, ParticipantStatus.JANDADUDA6BULAN] as const),
     userId: faker.datatype.uuid(),
     relationId: undefined,
-    bankAccountId: faker.datatype.number(),
   };
 }
 export function fakeContactInfo() {

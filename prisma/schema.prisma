@@ -109,7 +109,7 @@ model RolePermission {
     //-------------------------- 1 relations --------------------------------
     role Role @relation(fields: [roleId], references: [id])
 
-    permission Permission @unique
+    permission Permission
 
     @@id([roleId, permission])
 }
@@ -249,7 +249,7 @@ model Address {
     cityId Int
 
     ///Kode Pos
-    postalCode String
+    postalCode Int
 
     //-------------------------- scalars --------------------------------
 

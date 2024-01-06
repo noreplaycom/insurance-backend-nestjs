@@ -185,8 +185,7 @@ export declare enum ParticipantScalarFieldEnum {
     isActive = "isActive",
     status = "status",
     userId = "userId",
-    relationId = "relationId",
-    bankAccountId = "bankAccountId"
+    relationId = "relationId"
 }
 export declare enum NotificationScalarFieldEnum {
     id = "id",
@@ -10923,8 +10922,6 @@ export declare class UpsertOneNotificationArgs {
 }
 export declare class AggregateParticipant {
     _count?: InstanceType<typeof ParticipantCountAggregate>;
-    _avg?: InstanceType<typeof ParticipantAvgAggregate>;
-    _sum?: InstanceType<typeof ParticipantSumAggregate>;
     _min?: InstanceType<typeof ParticipantMinAggregate>;
     _max?: InstanceType<typeof ParticipantMaxAggregate>;
 }
@@ -10978,19 +10975,8 @@ export declare class ParticipantAggregateArgs {
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ParticipantCountAggregateInput>;
-    _avg?: InstanceType<typeof ParticipantAvgAggregateInput>;
-    _sum?: InstanceType<typeof ParticipantSumAggregateInput>;
     _min?: InstanceType<typeof ParticipantMinAggregateInput>;
     _max?: InstanceType<typeof ParticipantMaxAggregateInput>;
-}
-export declare class ParticipantAvgAggregateInput {
-    bankAccountId?: true;
-}
-export declare class ParticipantAvgAggregate {
-    bankAccountId?: number;
-}
-export declare class ParticipantAvgOrderByAggregateInput {
-    bankAccountId?: keyof typeof SortOrder;
 }
 export declare class ParticipantCountAggregateInput {
     gender?: true;
@@ -10999,7 +10985,6 @@ export declare class ParticipantCountAggregateInput {
     status?: true;
     userId?: true;
     relationId?: true;
-    bankAccountId?: true;
     _all?: true;
 }
 export declare class ParticipantCountAggregate {
@@ -11009,7 +10994,6 @@ export declare class ParticipantCountAggregate {
     status: number;
     userId: number;
     relationId: number;
-    bankAccountId: number;
     _all: number;
 }
 export declare class ParticipantCountOrderByAggregateInput {
@@ -11019,7 +11003,6 @@ export declare class ParticipantCountOrderByAggregateInput {
     status?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
     relationId?: keyof typeof SortOrder;
-    bankAccountId?: keyof typeof SortOrder;
 }
 export declare class ParticipantCount {
     claims?: number;
@@ -11039,7 +11022,6 @@ export declare class ParticipantCreateManyRelationInput {
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
     userId: string;
-    bankAccountId: number;
 }
 export declare class ParticipantCreateManyInput {
     gender: keyof typeof Gender;
@@ -11048,7 +11030,6 @@ export declare class ParticipantCreateManyInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
 }
 export declare class ParticipantCreateNestedManyWithoutRelationInput {
     create?: Array<ParticipantCreateWithoutRelationInput>;
@@ -11137,7 +11118,6 @@ export declare class ParticipantCreateWithoutBalancesInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
@@ -11152,7 +11132,6 @@ export declare class ParticipantCreateWithoutBankAccountInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimCreateNestedManyWithoutParticipantInput>;
@@ -11167,7 +11146,6 @@ export declare class ParticipantCreateWithoutClaimsInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
@@ -11182,7 +11160,6 @@ export declare class ParticipantCreateWithoutContactInfosInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
@@ -11197,7 +11174,6 @@ export declare class ParticipantCreateWithoutEmploymentsInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
@@ -11212,7 +11188,6 @@ export declare class ParticipantCreateWithoutParticipantInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
@@ -11227,7 +11202,6 @@ export declare class ParticipantCreateWithoutProgramParticipationsInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
@@ -11242,7 +11216,6 @@ export declare class ParticipantCreateWithoutRelationInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimCreateNestedManyWithoutParticipantInput>;
@@ -11257,7 +11230,6 @@ export declare class ParticipantCreateWithoutUserInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimCreateNestedManyWithoutParticipantInput>;
@@ -11272,7 +11244,6 @@ export declare class ParticipantCreateInput {
     birthDate: Date | string;
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
-    bankAccountId: number;
     user: InstanceType<typeof UserCreateNestedOneWithoutParticipantInput>;
     relation?: InstanceType<typeof ParticipantCreateNestedOneWithoutParticipantInput>;
     bankAccount?: InstanceType<typeof BankAccountCreateNestedOneWithoutParticipantInput>;
@@ -11291,8 +11262,6 @@ export declare class ParticipantGroupByArgs {
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ParticipantCountAggregateInput>;
-    _avg?: InstanceType<typeof ParticipantAvgAggregateInput>;
-    _sum?: InstanceType<typeof ParticipantSumAggregateInput>;
     _min?: InstanceType<typeof ParticipantMinAggregateInput>;
     _max?: InstanceType<typeof ParticipantMaxAggregateInput>;
 }
@@ -11303,10 +11272,7 @@ export declare class ParticipantGroupBy {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     _count?: InstanceType<typeof ParticipantCountAggregate>;
-    _avg?: InstanceType<typeof ParticipantAvgAggregate>;
-    _sum?: InstanceType<typeof ParticipantSumAggregate>;
     _min?: InstanceType<typeof ParticipantMinAggregate>;
     _max?: InstanceType<typeof ParticipantMaxAggregate>;
 }
@@ -11322,7 +11288,6 @@ export declare class ParticipantMaxAggregateInput {
     status?: true;
     userId?: true;
     relationId?: true;
-    bankAccountId?: true;
 }
 export declare class ParticipantMaxAggregate {
     gender?: keyof typeof Gender;
@@ -11331,7 +11296,6 @@ export declare class ParticipantMaxAggregate {
     status?: keyof typeof ParticipantStatus;
     userId?: string;
     relationId?: string;
-    bankAccountId?: number;
 }
 export declare class ParticipantMaxOrderByAggregateInput {
     gender?: keyof typeof SortOrder;
@@ -11340,7 +11304,6 @@ export declare class ParticipantMaxOrderByAggregateInput {
     status?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
     relationId?: keyof typeof SortOrder;
-    bankAccountId?: keyof typeof SortOrder;
 }
 export declare class ParticipantMinAggregateInput {
     gender?: true;
@@ -11349,7 +11312,6 @@ export declare class ParticipantMinAggregateInput {
     status?: true;
     userId?: true;
     relationId?: true;
-    bankAccountId?: true;
 }
 export declare class ParticipantMinAggregate {
     gender?: keyof typeof Gender;
@@ -11358,7 +11320,6 @@ export declare class ParticipantMinAggregate {
     status?: keyof typeof ParticipantStatus;
     userId?: string;
     relationId?: string;
-    bankAccountId?: number;
 }
 export declare class ParticipantMinOrderByAggregateInput {
     gender?: keyof typeof SortOrder;
@@ -11367,7 +11328,6 @@ export declare class ParticipantMinOrderByAggregateInput {
     status?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
     relationId?: keyof typeof SortOrder;
-    bankAccountId?: keyof typeof SortOrder;
 }
 export declare class ParticipantNullableRelationFilter {
     is?: InstanceType<typeof ParticipantWhereInput>;
@@ -11383,12 +11343,9 @@ export declare class ParticipantOrderByWithAggregationInput {
     status?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
     relationId?: InstanceType<typeof SortOrderInput>;
-    bankAccountId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ParticipantCountOrderByAggregateInput>;
-    _avg?: InstanceType<typeof ParticipantAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ParticipantMaxOrderByAggregateInput>;
     _min?: InstanceType<typeof ParticipantMinOrderByAggregateInput>;
-    _sum?: InstanceType<typeof ParticipantSumOrderByAggregateInput>;
 }
 export declare class ParticipantOrderByWithRelationInput {
     gender?: keyof typeof SortOrder;
@@ -11397,7 +11354,6 @@ export declare class ParticipantOrderByWithRelationInput {
     status?: keyof typeof SortOrder;
     userId?: keyof typeof SortOrder;
     relationId?: InstanceType<typeof SortOrderInput>;
-    bankAccountId?: keyof typeof SortOrder;
     user?: InstanceType<typeof UserOrderByWithRelationInput>;
     relation?: InstanceType<typeof ParticipantOrderByWithRelationInput>;
     bankAccount?: InstanceType<typeof BankAccountOrderByWithRelationInput>;
@@ -11422,7 +11378,6 @@ export declare class ParticipantScalarWhereWithAggregatesInput {
     status?: InstanceType<typeof EnumParticipantStatusWithAggregatesFilter>;
     userId?: InstanceType<typeof StringWithAggregatesFilter>;
     relationId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    bankAccountId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
 export declare class ParticipantScalarWhereInput {
     AND?: Array<ParticipantScalarWhereInput>;
@@ -11434,16 +11389,6 @@ export declare class ParticipantScalarWhereInput {
     status?: InstanceType<typeof EnumParticipantStatusFilter>;
     userId?: InstanceType<typeof StringFilter>;
     relationId?: InstanceType<typeof StringNullableFilter>;
-    bankAccountId?: InstanceType<typeof IntFilter>;
-}
-export declare class ParticipantSumAggregateInput {
-    bankAccountId?: true;
-}
-export declare class ParticipantSumAggregate {
-    bankAccountId?: number;
-}
-export declare class ParticipantSumOrderByAggregateInput {
-    bankAccountId?: keyof typeof SortOrder;
 }
 export declare class ParticipantUncheckedCreateNestedManyWithoutRelationInput {
     create?: Array<ParticipantCreateWithoutRelationInput>;
@@ -11463,7 +11408,6 @@ export declare class ParticipantUncheckedCreateWithoutBalancesInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11478,7 +11422,6 @@ export declare class ParticipantUncheckedCreateWithoutBankAccountInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
     contactInfos?: InstanceType<typeof ContactInfoUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11493,7 +11436,6 @@ export declare class ParticipantUncheckedCreateWithoutClaimsInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
     contactInfos?: InstanceType<typeof ContactInfoUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11508,7 +11450,6 @@ export declare class ParticipantUncheckedCreateWithoutContactInfosInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11523,7 +11464,6 @@ export declare class ParticipantUncheckedCreateWithoutEmploymentsInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     contactInfos?: InstanceType<typeof ContactInfoUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11538,7 +11478,6 @@ export declare class ParticipantUncheckedCreateWithoutParticipantInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11553,7 +11492,6 @@ export declare class ParticipantUncheckedCreateWithoutProgramParticipationsInput
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11567,7 +11505,6 @@ export declare class ParticipantUncheckedCreateWithoutRelationInput {
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
     userId: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11582,7 +11519,6 @@ export declare class ParticipantUncheckedCreateWithoutUserInput {
     isActive: boolean;
     status: keyof typeof ParticipantStatus;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11598,7 +11534,6 @@ export declare class ParticipantUncheckedCreateInput {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId?: string;
-    bankAccountId: number;
     bankAccount?: InstanceType<typeof BankAccountUncheckedCreateNestedOneWithoutParticipantInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutParticipantInput>;
     employments?: InstanceType<typeof EmploymentUncheckedCreateNestedManyWithoutParticipantInput>;
@@ -11626,7 +11561,6 @@ export declare class ParticipantUncheckedUpdateManyWithoutRelationInput {
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ParticipantUncheckedUpdateManyInput {
     gender?: InstanceType<typeof EnumGenderFieldUpdateOperationsInput>;
@@ -11635,7 +11569,6 @@ export declare class ParticipantUncheckedUpdateManyInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ParticipantUncheckedUpdateOneWithoutUserNestedInput {
     create?: InstanceType<typeof ParticipantCreateWithoutUserInput>;
@@ -11653,7 +11586,6 @@ export declare class ParticipantUncheckedUpdateWithoutBalancesInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11668,7 +11600,6 @@ export declare class ParticipantUncheckedUpdateWithoutBankAccountInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
     contactInfos?: InstanceType<typeof ContactInfoUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11683,7 +11614,6 @@ export declare class ParticipantUncheckedUpdateWithoutClaimsInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
     contactInfos?: InstanceType<typeof ContactInfoUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11698,7 +11628,6 @@ export declare class ParticipantUncheckedUpdateWithoutContactInfosInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11713,7 +11642,6 @@ export declare class ParticipantUncheckedUpdateWithoutEmploymentsInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     contactInfos?: InstanceType<typeof ContactInfoUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11728,7 +11656,6 @@ export declare class ParticipantUncheckedUpdateWithoutParticipantInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11743,7 +11670,6 @@ export declare class ParticipantUncheckedUpdateWithoutProgramParticipationsInput
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11757,7 +11683,6 @@ export declare class ParticipantUncheckedUpdateWithoutRelationInput {
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11772,7 +11697,6 @@ export declare class ParticipantUncheckedUpdateWithoutUserInput {
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11788,7 +11712,6 @@ export declare class ParticipantUncheckedUpdateInput {
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     relationId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     bankAccount?: InstanceType<typeof BankAccountUncheckedUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutParticipantNestedInput>;
     employments?: InstanceType<typeof EmploymentUncheckedUpdateManyWithoutParticipantNestedInput>;
@@ -11802,7 +11725,6 @@ export declare class ParticipantUpdateManyMutationInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ParticipantUpdateManyWithWhereWithoutRelationInput {
     where: InstanceType<typeof ParticipantScalarWhereInput>;
@@ -11922,7 +11844,6 @@ export declare class ParticipantUpdateWithoutBalancesInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
@@ -11937,7 +11858,6 @@ export declare class ParticipantUpdateWithoutBankAccountInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUpdateManyWithoutParticipantNestedInput>;
@@ -11952,7 +11872,6 @@ export declare class ParticipantUpdateWithoutClaimsInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
@@ -11967,7 +11886,6 @@ export declare class ParticipantUpdateWithoutContactInfosInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
@@ -11982,7 +11900,6 @@ export declare class ParticipantUpdateWithoutEmploymentsInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
@@ -11997,7 +11914,6 @@ export declare class ParticipantUpdateWithoutParticipantInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
@@ -12012,7 +11928,6 @@ export declare class ParticipantUpdateWithoutProgramParticipationsInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
@@ -12027,7 +11942,6 @@ export declare class ParticipantUpdateWithoutRelationInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUpdateManyWithoutParticipantNestedInput>;
@@ -12042,7 +11956,6 @@ export declare class ParticipantUpdateWithoutUserInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
     claims?: InstanceType<typeof ClaimUpdateManyWithoutParticipantNestedInput>;
@@ -12057,7 +11970,6 @@ export declare class ParticipantUpdateInput {
     birthDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     isActive?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumParticipantStatusFieldUpdateOperationsInput>;
-    bankAccountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutParticipantNestedInput>;
     relation?: InstanceType<typeof ParticipantUpdateOneWithoutParticipantNestedInput>;
     bankAccount?: InstanceType<typeof BankAccountUpdateOneWithoutParticipantNestedInput>;
@@ -12123,7 +12035,6 @@ export declare class ParticipantWhereUniqueInput {
     isActive?: InstanceType<typeof BoolFilter>;
     status?: InstanceType<typeof EnumParticipantStatusFilter>;
     relationId?: InstanceType<typeof StringNullableFilter>;
-    bankAccountId?: InstanceType<typeof IntFilter>;
     user?: InstanceType<typeof UserRelationFilter>;
     relation?: InstanceType<typeof ParticipantNullableRelationFilter>;
     bankAccount?: InstanceType<typeof BankAccountNullableRelationFilter>;
@@ -12144,7 +12055,6 @@ export declare class ParticipantWhereInput {
     status?: InstanceType<typeof EnumParticipantStatusFilter>;
     userId?: InstanceType<typeof StringFilter>;
     relationId?: InstanceType<typeof StringNullableFilter>;
-    bankAccountId?: InstanceType<typeof IntFilter>;
     user?: InstanceType<typeof UserRelationFilter>;
     relation?: InstanceType<typeof ParticipantNullableRelationFilter>;
     bankAccount?: InstanceType<typeof BankAccountNullableRelationFilter>;
@@ -12162,7 +12072,6 @@ export declare class Participant {
     status: keyof typeof ParticipantStatus;
     userId: string;
     relationId: string | null;
-    bankAccountId: number;
     user?: InstanceType<typeof User>;
     relation?: InstanceType<typeof Participant> | null;
     bankAccount?: InstanceType<typeof BankAccount> | null;
@@ -15211,12 +15120,12 @@ export declare class DeleteManyRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
 }
 export declare class DeleteOneRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
 }
 export declare class FindFirstRolePermissionOrThrowArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
@@ -15224,7 +15133,7 @@ export declare class FindFirstRolePermissionOrThrowArgs {
 export declare class FindFirstRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
@@ -15232,21 +15141,21 @@ export declare class FindFirstRolePermissionArgs {
 export declare class FindManyRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
 }
 export declare class FindUniqueRolePermissionOrThrowArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
 }
 export declare class FindUniqueRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
 }
 export declare class RolePermissionAggregateArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof RolePermissionCountAggregateInput>;
@@ -15293,10 +15202,10 @@ export declare class RolePermissionCreateNestedManyWithoutRoleInput {
     create?: Array<RolePermissionCreateWithoutRoleInput>;
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
 }
 export declare class RolePermissionCreateOrConnectWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     create: InstanceType<typeof RolePermissionCreateWithoutRoleInput>;
 }
 export declare class RolePermissionCreateWithoutRoleInput {
@@ -15405,7 +15314,7 @@ export declare class RolePermissionUncheckedCreateNestedManyWithoutRoleInput {
     create?: Array<RolePermissionCreateWithoutRoleInput>;
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
 }
 export declare class RolePermissionUncheckedCreateWithoutRoleInput {
     permission: keyof typeof Permission;
@@ -15419,10 +15328,10 @@ export declare class RolePermissionUncheckedUpdateManyWithoutRoleNestedInput {
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     upsert?: Array<RolePermissionUpsertWithWhereUniqueWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
     update?: Array<RolePermissionUpdateWithWhereUniqueWithoutRoleInput>;
     updateMany?: Array<RolePermissionUpdateManyWithWhereWithoutRoleInput>;
     deleteMany?: Array<RolePermissionScalarWhereInput>;
@@ -15453,16 +15362,16 @@ export declare class RolePermissionUpdateManyWithoutRoleNestedInput {
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     upsert?: Array<RolePermissionUpsertWithWhereUniqueWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
     update?: Array<RolePermissionUpdateWithWhereUniqueWithoutRoleInput>;
     updateMany?: Array<RolePermissionUpdateManyWithWhereWithoutRoleInput>;
     deleteMany?: Array<RolePermissionScalarWhereInput>;
 }
 export declare class RolePermissionUpdateWithWhereUniqueWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     data: InstanceType<typeof RolePermissionUpdateWithoutRoleInput>;
 }
 export declare class RolePermissionUpdateWithoutRoleInput {
@@ -15473,17 +15382,17 @@ export declare class RolePermissionUpdateInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutRolePermissionsNestedInput>;
 }
 export declare class RolePermissionUpsertWithWhereUniqueWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     update: InstanceType<typeof RolePermissionUpdateWithoutRoleInput>;
     create: InstanceType<typeof RolePermissionCreateWithoutRoleInput>;
 }
 export declare class RolePermissionWhereUniqueInput {
+    permission?: keyof typeof Permission;
     roleId_permission?: InstanceType<typeof RolePermissionRoleIdPermissionCompoundUniqueInput>;
     AND?: Array<RolePermissionWhereInput>;
     OR?: Array<RolePermissionWhereInput>;
     NOT?: Array<RolePermissionWhereInput>;
     roleId?: InstanceType<typeof IntFilter>;
-    permission?: InstanceType<typeof EnumPermissionFilter>;
     role?: InstanceType<typeof RoleRelationFilter>;
 }
 export declare class RolePermissionWhereInput {
@@ -15505,10 +15414,10 @@ export declare class UpdateManyRolePermissionArgs {
 }
 export declare class UpdateOneRolePermissionArgs {
     data: InstanceType<typeof RolePermissionUpdateInput>;
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
 }
 export declare class UpsertOneRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
     create: InstanceType<typeof RolePermissionCreateInput>;
     update: InstanceType<typeof RolePermissionUpdateInput>;
 }
