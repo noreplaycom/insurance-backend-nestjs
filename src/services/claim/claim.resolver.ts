@@ -168,13 +168,13 @@ export class ClaimResolver {
   //   return this.claimController.aggregate(claimAggregateArgs);
   // }
 
-  // @Query(() => Float, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimCount(@Args() claimCountAggregateInput: FindManyClaimArgs) {
-  //   return this.claimController.count(claimCountAggregateInput);
-  // }
+  @Query(() => Float, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimCount(@Args() claimCountAggregateInput: FindManyClaimArgs) {
+    return this.claimController.count(claimCountAggregateInput);
+  }
 
   // ? DASHBOARD SCREEN
   @Query(() => [ClaimCountQuantityByCustomRangeAndPeriodQuery], {
@@ -351,14 +351,14 @@ export class ClaimResolver {
     return await this.claimController.createOneForm(claimFormCreateOneArgs);
   }
 
-  @Query(() => Int, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimCount(
-    @Args('claimCountQuantityWhereArgs')
-    claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
-  ) {
-    return this.claimController.countWhere(claimCountQuantityWhereArgs);
-  }
+  // @Query(() => Int, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimCount(
+  //   @Args('claimCountQuantityWhereArgs')
+  //   claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
+  // ) {
+  //   return this.claimController.countWhere(claimCountQuantityWhereArgs);
+  // }
 }
