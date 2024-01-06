@@ -87,9 +87,9 @@ model Role {
 
     order Int
 
-    higherLevelThan Role? @relation("level", fields: [higherLevelThanId], references: [id])
+    // higherLevelThan Role? @relation("level", fields: [higherLevelThanId], references: [id])
 
-    higherLevelThanId Int?
+    // higherLevelThanId Int?
 
     //-------------------------- m relations --------------------------------
 
@@ -97,7 +97,7 @@ model Role {
 
     users User[]
 
-    lowerLevelThan Role[] @relation("level")
+    // lowerLevelThan Role[] @relation("level")
 
     @@map("roles")
 }

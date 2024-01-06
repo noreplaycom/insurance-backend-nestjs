@@ -57,12 +57,15 @@ export declare enum ProgramParticipationScalarFieldEnum {
 export declare enum ProgramScalarFieldEnum {
     id = "id",
     plan = "plan",
+    maxAllowancePercentage = "maxAllowancePercentage",
+    allowanceCeiling = "allowanceCeiling",
+    maxAllowancePerYear = "maxAllowancePerYear",
+    claimPeriodMax = "claimPeriodMax",
+    reclaimPeriodMax = "reclaimPeriodMax",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     deletedAt = "deletedAt",
-    allowanceCeiling = "allowanceCeiling",
-    'class' = "class",
-    maxAllowance = "maxAllowance"
+    'class' = "class"
 }
 export declare enum TransactionType {
     CREDIT = "CREDIT",
@@ -247,14 +250,6 @@ export declare enum ClinicScalarFieldEnum {
     createdAt = "createdAt",
     updatedAt = "updatedAt"
 }
-export declare enum ClaimTypeScalarFieldEnum {
-    id = "id",
-    jenis = "jenis",
-    jenisRI = "jenisRI",
-    plan = "plan",
-    programId = "programId",
-    claimId = "claimId"
-}
 export declare enum ClaimStatusScalarFieldEnum {
     id = "id",
     description = "description",
@@ -303,7 +298,7 @@ export declare enum ClaimScalarFieldEnum {
     diseaseId = "diseaseId",
     clinicId = "clinicId",
     inputedById = "inputedById",
-    claimTypeId = "claimTypeId"
+    programId = "programId"
 }
 export declare enum CityScalarFieldEnum {
     id = "id",
@@ -2819,7 +2814,7 @@ export declare class AggregateClaim {
 export declare class ClaimAggregateArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ClaimCountAggregateInput>;
@@ -2833,21 +2828,21 @@ export declare class ClaimAvgAggregateInput {
     claimProcessId?: true;
     diseaseId?: true;
     clinicId?: true;
-    claimTypeId?: true;
+    programId?: true;
 }
 export declare class ClaimAvgAggregate {
     claimFinancialId?: number;
     claimProcessId?: number;
     diseaseId?: number;
     clinicId?: number;
-    claimTypeId?: number;
+    programId?: number;
 }
 export declare class ClaimAvgOrderByAggregateInput {
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
-    claimTypeId?: keyof typeof SortOrder;
+    programId?: keyof typeof SortOrder;
 }
 export declare class ClaimCountAggregateInput {
     id?: true;
@@ -2863,7 +2858,7 @@ export declare class ClaimCountAggregateInput {
     diseaseId?: true;
     clinicId?: true;
     inputedById?: true;
-    claimTypeId?: true;
+    programId?: true;
     _all?: true;
 }
 export declare class ClaimCountAggregate {
@@ -2880,7 +2875,7 @@ export declare class ClaimCountAggregate {
     diseaseId: number;
     clinicId: number;
     inputedById: number;
-    claimTypeId: number;
+    programId: number;
     _all: number;
 }
 export declare class ClaimCountOrderByAggregateInput {
@@ -2897,7 +2892,7 @@ export declare class ClaimCountOrderByAggregateInput {
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
     inputedById?: keyof typeof SortOrder;
-    claimTypeId?: keyof typeof SortOrder;
+    programId?: keyof typeof SortOrder;
 }
 export declare class ClaimCount {
     tags?: number;
@@ -2920,7 +2915,7 @@ export declare class ClaimCreateManyClinicsInput {
     claimProcessId: number;
     diseaseId?: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
 }
 export declare class ClaimCreateManyDiseaseInputEnvelope {
     data: Array<ClaimCreateManyDiseaseInput>;
@@ -2939,7 +2934,7 @@ export declare class ClaimCreateManyDiseaseInput {
     claimProcessId: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
 }
 export declare class ClaimCreateManyInputedByInputEnvelope {
     data: Array<ClaimCreateManyInputedByInput>;
@@ -2958,7 +2953,7 @@ export declare class ClaimCreateManyInputedByInput {
     claimProcessId: number;
     diseaseId?: number;
     clinicId: number;
-    claimTypeId: number;
+    programId: number;
 }
 export declare class ClaimCreateManyParticipantInputEnvelope {
     data: Array<ClaimCreateManyParticipantInput>;
@@ -2977,7 +2972,26 @@ export declare class ClaimCreateManyParticipantInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
+}
+export declare class ClaimCreateManyProgramInputEnvelope {
+    data: Array<ClaimCreateManyProgramInput>;
+    skipDuplicates?: boolean;
+}
+export declare class ClaimCreateManyProgramInput {
+    id?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    channel: keyof typeof ClaimChannel;
+    admedicaStatus: keyof typeof AdmedicaStatus;
+    company: string;
+    participantId: string;
+    claimFinancialId: number;
+    claimProcessId: number;
+    diseaseId?: number;
+    clinicId: number;
+    inputedById?: string;
 }
 export declare class ClaimCreateManyInput {
     id?: string;
@@ -2993,91 +3007,92 @@ export declare class ClaimCreateManyInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
 }
 export declare class ClaimCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimCreateWithoutClinicsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutDiseaseInput {
     create?: Array<ClaimCreateWithoutDiseaseInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutInputedByInput {
     create?: Array<ClaimCreateWithoutInputedByInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutParticipantInput {
     create?: Array<ClaimCreateWithoutParticipantInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+}
+export declare class ClaimCreateNestedManyWithoutProgramInput {
+    create?: Array<ClaimCreateWithoutProgramInput>;
+    connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
+    createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimCreateNestedManyWithoutTagsInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimCreateNestedOneWithoutClaimFinancialsInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimFinancialsInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimFinancialsInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class ClaimCreateNestedOneWithoutClaimProcessesInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimProcessesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimProcessesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class ClaimCreateNestedOneWithoutClaimStatusesInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimStatusesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimStatusesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-}
-export declare class ClaimCreateNestedOneWithoutClaimTypesInput {
-    create?: InstanceType<typeof ClaimCreateWithoutClaimTypesInput>;
-    connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimTypesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class ClaimCreateOrConnectWithoutClaimFinancialsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutClaimFinancialsInput>;
 }
 export declare class ClaimCreateOrConnectWithoutClaimProcessesInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutClaimProcessesInput>;
 }
 export declare class ClaimCreateOrConnectWithoutClaimStatusesInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutClaimStatusesInput>;
 }
-export declare class ClaimCreateOrConnectWithoutClaimTypesInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-    create: InstanceType<typeof ClaimCreateWithoutClaimTypesInput>;
-}
 export declare class ClaimCreateOrConnectWithoutClinicsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutClinicsInput>;
 }
 export declare class ClaimCreateOrConnectWithoutDiseaseInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutDiseaseInput>;
 }
 export declare class ClaimCreateOrConnectWithoutInputedByInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutInputedByInput>;
 }
 export declare class ClaimCreateOrConnectWithoutParticipantInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutParticipantInput>;
 }
+export declare class ClaimCreateOrConnectWithoutProgramInput {
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    create: InstanceType<typeof ClaimCreateWithoutProgramInput>;
+}
 export declare class ClaimCreateOrConnectWithoutTagsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateWithoutTagsInput>;
 }
 export declare class ClaimCreateWithoutClaimFinancialsInput {
@@ -3093,7 +3108,7 @@ export declare class ClaimCreateWithoutClaimFinancialsInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
@@ -3110,7 +3125,7 @@ export declare class ClaimCreateWithoutClaimProcessesInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
@@ -3128,25 +3143,8 @@ export declare class ClaimCreateWithoutClaimStatusesInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
-}
-export declare class ClaimCreateWithoutClaimTypesInput {
-    id?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
-    channel: keyof typeof ClaimChannel;
-    admedicaStatus: keyof typeof AdmedicaStatus;
-    company: string;
-    participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
-    claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
-    claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
-    disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
-    inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
 export declare class ClaimCreateWithoutClinicsInput {
     id?: string;
@@ -3161,7 +3159,7 @@ export declare class ClaimCreateWithoutClinicsInput {
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
@@ -3178,7 +3176,7 @@ export declare class ClaimCreateWithoutDiseaseInput {
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
@@ -3195,7 +3193,7 @@ export declare class ClaimCreateWithoutInputedByInput {
     claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
@@ -3212,7 +3210,24 @@ export declare class ClaimCreateWithoutParticipantInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
+    tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
+    claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
+}
+export declare class ClaimCreateWithoutProgramInput {
+    id?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    channel: keyof typeof ClaimChannel;
+    admedicaStatus: keyof typeof AdmedicaStatus;
+    company: string;
+    participant: InstanceType<typeof ParticipantCreateNestedOneWithoutClaimsInput>;
+    claimFinancials: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimInput>;
+    claimProcesses: InstanceType<typeof ClaimProcessCreateNestedOneWithoutClaimInput>;
+    disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
+    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
+    inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
@@ -3230,7 +3245,7 @@ export declare class ClaimCreateWithoutTagsInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
 export declare class ClaimCreateInput {
@@ -3247,7 +3262,7 @@ export declare class ClaimCreateInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimsInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimsInput>;
     inputedBy?: InstanceType<typeof UserCreateNestedOneWithoutClaimsInputInput>;
-    claimTypes: InstanceType<typeof ClaimTypeCreateNestedOneWithoutClaimsInput>;
+    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimsInput>;
     tags?: InstanceType<typeof TagCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutClaimInput>;
 }
@@ -3278,7 +3293,7 @@ export declare class ClaimGroupBy {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     _count?: InstanceType<typeof ClaimCountAggregate>;
     _avg?: InstanceType<typeof ClaimAvgAggregate>;
     _sum?: InstanceType<typeof ClaimSumAggregate>;
@@ -3304,7 +3319,7 @@ export declare class ClaimMaxAggregateInput {
     diseaseId?: true;
     clinicId?: true;
     inputedById?: true;
-    claimTypeId?: true;
+    programId?: true;
 }
 export declare class ClaimMaxAggregate {
     id?: string;
@@ -3320,7 +3335,7 @@ export declare class ClaimMaxAggregate {
     diseaseId?: number;
     clinicId?: number;
     inputedById?: string;
-    claimTypeId?: number;
+    programId?: number;
 }
 export declare class ClaimMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -3336,7 +3351,7 @@ export declare class ClaimMaxOrderByAggregateInput {
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
     inputedById?: keyof typeof SortOrder;
-    claimTypeId?: keyof typeof SortOrder;
+    programId?: keyof typeof SortOrder;
 }
 export declare class ClaimMinAggregateInput {
     id?: true;
@@ -3352,7 +3367,7 @@ export declare class ClaimMinAggregateInput {
     diseaseId?: true;
     clinicId?: true;
     inputedById?: true;
-    claimTypeId?: true;
+    programId?: true;
 }
 export declare class ClaimMinAggregate {
     id?: string;
@@ -3368,7 +3383,7 @@ export declare class ClaimMinAggregate {
     diseaseId?: number;
     clinicId?: number;
     inputedById?: string;
-    claimTypeId?: number;
+    programId?: number;
 }
 export declare class ClaimMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -3384,7 +3399,7 @@ export declare class ClaimMinOrderByAggregateInput {
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
     inputedById?: keyof typeof SortOrder;
-    claimTypeId?: keyof typeof SortOrder;
+    programId?: keyof typeof SortOrder;
 }
 export declare class ClaimNullableRelationFilter {
     is?: InstanceType<typeof ClaimWhereInput>;
@@ -3407,7 +3422,7 @@ export declare class ClaimOrderByWithAggregationInput {
     diseaseId?: InstanceType<typeof SortOrderInput>;
     clinicId?: keyof typeof SortOrder;
     inputedById?: InstanceType<typeof SortOrderInput>;
-    claimTypeId?: keyof typeof SortOrder;
+    programId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ClaimCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ClaimAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ClaimMaxOrderByAggregateInput>;
@@ -3428,14 +3443,14 @@ export declare class ClaimOrderByWithRelationInput {
     diseaseId?: InstanceType<typeof SortOrderInput>;
     clinicId?: keyof typeof SortOrder;
     inputedById?: InstanceType<typeof SortOrderInput>;
-    claimTypeId?: keyof typeof SortOrder;
+    programId?: keyof typeof SortOrder;
     participant?: InstanceType<typeof ParticipantOrderByWithRelationInput>;
     claimFinancials?: InstanceType<typeof ClaimFinancialOrderByWithRelationInput>;
     claimProcesses?: InstanceType<typeof ClaimProcessOrderByWithRelationInput>;
     disease?: InstanceType<typeof DiseaseOrderByWithRelationInput>;
     clinics?: InstanceType<typeof ClinicOrderByWithRelationInput>;
     inputedBy?: InstanceType<typeof UserOrderByWithRelationInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeOrderByWithRelationInput>;
+    program?: InstanceType<typeof ProgramOrderByWithRelationInput>;
     tags?: InstanceType<typeof TagOrderByRelationAggregateInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusOrderByRelationAggregateInput>;
 }
@@ -3460,7 +3475,7 @@ export declare class ClaimScalarWhereWithAggregatesInput {
     diseaseId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     clinicId?: InstanceType<typeof IntWithAggregatesFilter>;
     inputedById?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    claimTypeId?: InstanceType<typeof IntWithAggregatesFilter>;
+    programId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
 export declare class ClaimScalarWhereInput {
     AND?: Array<ClaimScalarWhereInput>;
@@ -3479,72 +3494,73 @@ export declare class ClaimScalarWhereInput {
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntFilter>;
     inputedById?: InstanceType<typeof StringNullableFilter>;
-    claimTypeId?: InstanceType<typeof IntFilter>;
+    programId?: InstanceType<typeof IntFilter>;
 }
 export declare class ClaimSumAggregateInput {
     claimFinancialId?: true;
     claimProcessId?: true;
     diseaseId?: true;
     clinicId?: true;
-    claimTypeId?: true;
+    programId?: true;
 }
 export declare class ClaimSumAggregate {
     claimFinancialId?: number;
     claimProcessId?: number;
     diseaseId?: number;
     clinicId?: number;
-    claimTypeId?: number;
+    programId?: number;
 }
 export declare class ClaimSumOrderByAggregateInput {
     claimFinancialId?: keyof typeof SortOrder;
     claimProcessId?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
-    claimTypeId?: keyof typeof SortOrder;
+    programId?: keyof typeof SortOrder;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimCreateWithoutClinicsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutDiseaseInput {
     create?: Array<ClaimCreateWithoutDiseaseInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutInputedByInput {
     create?: Array<ClaimCreateWithoutInputedByInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutParticipantInput {
     create?: Array<ClaimCreateWithoutParticipantInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+}
+export declare class ClaimUncheckedCreateNestedManyWithoutProgramInput {
+    create?: Array<ClaimCreateWithoutProgramInput>;
+    connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
+    createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimUncheckedCreateNestedManyWithoutTagsInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
 }
 export declare class ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimFinancialsInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimFinancialsInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class ClaimUncheckedCreateNestedOneWithoutClaimProcessesInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimProcessesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimProcessesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-}
-export declare class ClaimUncheckedCreateNestedOneWithoutClaimTypesInput {
-    create?: InstanceType<typeof ClaimCreateWithoutClaimTypesInput>;
-    connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimTypesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class ClaimUncheckedCreateWithoutClaimFinancialsInput {
     id?: string;
@@ -3559,7 +3575,7 @@ export declare class ClaimUncheckedCreateWithoutClaimFinancialsInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
@@ -3576,7 +3592,7 @@ export declare class ClaimUncheckedCreateWithoutClaimProcessesInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
@@ -3594,25 +3610,8 @@ export declare class ClaimUncheckedCreateWithoutClaimStatusesInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
-}
-export declare class ClaimUncheckedCreateWithoutClaimTypesInput {
-    id?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
-    channel: keyof typeof ClaimChannel;
-    admedicaStatus: keyof typeof AdmedicaStatus;
-    company: string;
-    participantId: string;
-    claimFinancialId: number;
-    claimProcessId: number;
-    diseaseId?: number;
-    clinicId: number;
-    inputedById?: string;
-    tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
 export declare class ClaimUncheckedCreateWithoutClinicsInput {
     id?: string;
@@ -3627,7 +3626,7 @@ export declare class ClaimUncheckedCreateWithoutClinicsInput {
     claimProcessId: number;
     diseaseId?: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
@@ -3644,7 +3643,7 @@ export declare class ClaimUncheckedCreateWithoutDiseaseInput {
     claimProcessId: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
@@ -3661,7 +3660,7 @@ export declare class ClaimUncheckedCreateWithoutInputedByInput {
     claimProcessId: number;
     diseaseId?: number;
     clinicId: number;
-    claimTypeId: number;
+    programId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
@@ -3678,7 +3677,24 @@ export declare class ClaimUncheckedCreateWithoutParticipantInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
+    tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
+    claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
+}
+export declare class ClaimUncheckedCreateWithoutProgramInput {
+    id?: string;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    channel: keyof typeof ClaimChannel;
+    admedicaStatus: keyof typeof AdmedicaStatus;
+    company: string;
+    participantId: string;
+    claimFinancialId: number;
+    claimProcessId: number;
+    diseaseId?: number;
+    clinicId: number;
+    inputedById?: string;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
@@ -3696,7 +3712,7 @@ export declare class ClaimUncheckedCreateWithoutTagsInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
 export declare class ClaimUncheckedCreateInput {
@@ -3713,7 +3729,7 @@ export declare class ClaimUncheckedCreateInput {
     diseaseId?: number;
     clinicId: number;
     inputedById?: string;
-    claimTypeId: number;
+    programId: number;
     tags?: InstanceType<typeof TagUncheckedCreateNestedManyWithoutClaimsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutClaimInput>;
 }
@@ -3722,10 +3738,10 @@ export declare class ClaimUncheckedUpdateManyWithoutClinicsNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutClinicsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutClinicsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3743,17 +3759,17 @@ export declare class ClaimUncheckedUpdateManyWithoutClinicsInput {
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimUncheckedUpdateManyWithoutDiseaseNestedInput {
     create?: Array<ClaimCreateWithoutDiseaseInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutDiseaseInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutDiseaseInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3771,17 +3787,17 @@ export declare class ClaimUncheckedUpdateManyWithoutDiseaseInput {
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimUncheckedUpdateManyWithoutInputedByNestedInput {
     create?: Array<ClaimCreateWithoutInputedByInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutInputedByInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutInputedByInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3799,17 +3815,17 @@ export declare class ClaimUncheckedUpdateManyWithoutInputedByInput {
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimUncheckedUpdateManyWithoutParticipantNestedInput {
     create?: Array<ClaimCreateWithoutParticipantInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutParticipantInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutParticipantInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3827,16 +3843,44 @@ export declare class ClaimUncheckedUpdateManyWithoutParticipantInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+}
+export declare class ClaimUncheckedUpdateManyWithoutProgramNestedInput {
+    create?: Array<ClaimCreateWithoutProgramInput>;
+    connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
+    upsert?: Array<ClaimUpsertWithWhereUniqueWithoutProgramInput>;
+    createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    update?: Array<ClaimUpdateWithWhereUniqueWithoutProgramInput>;
+    updateMany?: Array<ClaimUpdateManyWithWhereWithoutProgramInput>;
+    deleteMany?: Array<ClaimScalarWhereInput>;
+}
+export declare class ClaimUncheckedUpdateManyWithoutProgramInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
+    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class ClaimUncheckedUpdateManyWithoutTagsNestedInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutTagsInput>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutTagsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutTagsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -3855,7 +3899,7 @@ export declare class ClaimUncheckedUpdateManyWithoutTagsInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimUncheckedUpdateManyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -3871,7 +3915,7 @@ export declare class ClaimUncheckedUpdateManyInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimFinancialsInput>;
@@ -3879,7 +3923,7 @@ export declare class ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimFinancialsInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput>;
 }
 export declare class ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput {
@@ -3888,17 +3932,8 @@ export declare class ClaimUncheckedUpdateOneWithoutClaimProcessesNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimProcessesInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimProcessesInput>;
-}
-export declare class ClaimUncheckedUpdateOneWithoutClaimTypesNestedInput {
-    create?: InstanceType<typeof ClaimCreateWithoutClaimTypesInput>;
-    connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimTypesInput>;
-    upsert?: InstanceType<typeof ClaimUpsertWithoutClaimTypesInput>;
-    disconnect?: InstanceType<typeof ClaimWhereInput>;
-    delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-    update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimTypesInput>;
 }
 export declare class ClaimUncheckedUpdateWithoutClaimFinancialsInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -3913,7 +3948,7 @@ export declare class ClaimUncheckedUpdateWithoutClaimFinancialsInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
@@ -3930,7 +3965,7 @@ export declare class ClaimUncheckedUpdateWithoutClaimProcessesInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
@@ -3948,25 +3983,8 @@ export declare class ClaimUncheckedUpdateWithoutClaimStatusesInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
-}
-export declare class ClaimUncheckedUpdateWithoutClaimTypesInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
-    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
 export declare class ClaimUncheckedUpdateWithoutClinicsInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -3981,7 +3999,7 @@ export declare class ClaimUncheckedUpdateWithoutClinicsInput {
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
@@ -3998,7 +4016,7 @@ export declare class ClaimUncheckedUpdateWithoutDiseaseInput {
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
@@ -4015,7 +4033,7 @@ export declare class ClaimUncheckedUpdateWithoutInputedByInput {
     claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
@@ -4032,7 +4050,24 @@ export declare class ClaimUncheckedUpdateWithoutParticipantInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
+    claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
+}
+export declare class ClaimUncheckedUpdateWithoutProgramInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
+    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    claimFinancialId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimProcessId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
@@ -4050,7 +4085,7 @@ export declare class ClaimUncheckedUpdateWithoutTagsInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
 export declare class ClaimUncheckedUpdateInput {
@@ -4067,7 +4102,7 @@ export declare class ClaimUncheckedUpdateInput {
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     inputedById?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimTypeId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     tags?: InstanceType<typeof TagUncheckedUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput>;
 }
@@ -4096,6 +4131,10 @@ export declare class ClaimUpdateManyWithWhereWithoutParticipantInput {
     where: InstanceType<typeof ClaimScalarWhereInput>;
     data: InstanceType<typeof ClaimUpdateManyMutationInput>;
 }
+export declare class ClaimUpdateManyWithWhereWithoutProgramInput {
+    where: InstanceType<typeof ClaimScalarWhereInput>;
+    data: InstanceType<typeof ClaimUpdateManyMutationInput>;
+}
 export declare class ClaimUpdateManyWithWhereWithoutTagsInput {
     where: InstanceType<typeof ClaimScalarWhereInput>;
     data: InstanceType<typeof ClaimUpdateManyMutationInput>;
@@ -4105,10 +4144,10 @@ export declare class ClaimUpdateManyWithoutClinicsNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutClinicsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutClinicsInput>;
     createMany?: InstanceType<typeof ClaimCreateManyClinicsInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutClinicsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutClinicsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4118,10 +4157,10 @@ export declare class ClaimUpdateManyWithoutDiseaseNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutDiseaseInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimCreateManyDiseaseInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutDiseaseInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutDiseaseInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4131,10 +4170,10 @@ export declare class ClaimUpdateManyWithoutInputedByNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutInputedByInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutInputedByInput>;
     createMany?: InstanceType<typeof ClaimCreateManyInputedByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutInputedByInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutInputedByInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4144,22 +4183,35 @@ export declare class ClaimUpdateManyWithoutParticipantNestedInput {
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutParticipantInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutParticipantInput>;
     createMany?: InstanceType<typeof ClaimCreateManyParticipantInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutParticipantInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutParticipantInput>;
+    deleteMany?: Array<ClaimScalarWhereInput>;
+}
+export declare class ClaimUpdateManyWithoutProgramNestedInput {
+    create?: Array<ClaimCreateWithoutProgramInput>;
+    connectOrCreate?: Array<ClaimCreateOrConnectWithoutProgramInput>;
+    upsert?: Array<ClaimUpsertWithWhereUniqueWithoutProgramInput>;
+    createMany?: InstanceType<typeof ClaimCreateManyProgramInputEnvelope>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    update?: Array<ClaimUpdateWithWhereUniqueWithoutProgramInput>;
+    updateMany?: Array<ClaimUpdateManyWithWhereWithoutProgramInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
 }
 export declare class ClaimUpdateManyWithoutTagsNestedInput {
     create?: Array<ClaimCreateWithoutTagsInput>;
     connectOrCreate?: Array<ClaimCreateOrConnectWithoutTagsInput>;
     upsert?: Array<ClaimUpsertWithWhereUniqueWithoutTagsInput>;
-    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>>;
+    set?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>>;
     update?: Array<ClaimUpdateWithWhereUniqueWithoutTagsInput>;
     updateMany?: Array<ClaimUpdateManyWithWhereWithoutTagsInput>;
     deleteMany?: Array<ClaimScalarWhereInput>;
@@ -4168,7 +4220,7 @@ export declare class ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput {
     create?: InstanceType<typeof ClaimCreateWithoutClaimStatusesInput>;
     connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimStatusesInput>;
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimStatusesInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimStatusesInput>;
 }
 export declare class ClaimUpdateOneWithoutClaimFinancialsNestedInput {
@@ -4177,7 +4229,7 @@ export declare class ClaimUpdateOneWithoutClaimFinancialsNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimFinancialsInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput>;
 }
 export declare class ClaimUpdateOneWithoutClaimProcessesNestedInput {
@@ -4186,17 +4238,8 @@ export declare class ClaimUpdateOneWithoutClaimProcessesNestedInput {
     upsert?: InstanceType<typeof ClaimUpsertWithoutClaimProcessesInput>;
     disconnect?: InstanceType<typeof ClaimWhereInput>;
     delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimProcessesInput>;
-}
-export declare class ClaimUpdateOneWithoutClaimTypesNestedInput {
-    create?: InstanceType<typeof ClaimCreateWithoutClaimTypesInput>;
-    connectOrCreate?: InstanceType<typeof ClaimCreateOrConnectWithoutClaimTypesInput>;
-    upsert?: InstanceType<typeof ClaimUpsertWithoutClaimTypesInput>;
-    disconnect?: InstanceType<typeof ClaimWhereInput>;
-    delete?: InstanceType<typeof ClaimWhereInput>;
-    connect?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
-    update?: InstanceType<typeof ClaimUpdateToOneWithWhereWithoutClaimTypesInput>;
 }
 export declare class ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput {
     where?: InstanceType<typeof ClaimWhereInput>;
@@ -4210,28 +4253,28 @@ export declare class ClaimUpdateToOneWithWhereWithoutClaimStatusesInput {
     where?: InstanceType<typeof ClaimWhereInput>;
     data: InstanceType<typeof ClaimUpdateWithoutClaimStatusesInput>;
 }
-export declare class ClaimUpdateToOneWithWhereWithoutClaimTypesInput {
-    where?: InstanceType<typeof ClaimWhereInput>;
-    data: InstanceType<typeof ClaimUpdateWithoutClaimTypesInput>;
-}
 export declare class ClaimUpdateWithWhereUniqueWithoutClinicsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     data: InstanceType<typeof ClaimUpdateWithoutClinicsInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutDiseaseInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     data: InstanceType<typeof ClaimUpdateWithoutDiseaseInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutInputedByInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     data: InstanceType<typeof ClaimUpdateWithoutInputedByInput>;
 }
 export declare class ClaimUpdateWithWhereUniqueWithoutParticipantInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     data: InstanceType<typeof ClaimUpdateWithoutParticipantInput>;
 }
+export declare class ClaimUpdateWithWhereUniqueWithoutProgramInput {
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    data: InstanceType<typeof ClaimUpdateWithoutProgramInput>;
+}
 export declare class ClaimUpdateWithWhereUniqueWithoutTagsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     data: InstanceType<typeof ClaimUpdateWithoutTagsInput>;
 }
 export declare class ClaimUpdateWithoutClaimFinancialsInput {
@@ -4247,7 +4290,7 @@ export declare class ClaimUpdateWithoutClaimFinancialsInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
@@ -4264,7 +4307,7 @@ export declare class ClaimUpdateWithoutClaimProcessesInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
@@ -4282,25 +4325,8 @@ export declare class ClaimUpdateWithoutClaimStatusesInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
-}
-export declare class ClaimUpdateWithoutClaimTypesInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
-    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
-    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
-    claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
-    claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
-    disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
-    inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
-    claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
 export declare class ClaimUpdateWithoutClinicsInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -4315,7 +4341,7 @@ export declare class ClaimUpdateWithoutClinicsInput {
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
@@ -4332,7 +4358,7 @@ export declare class ClaimUpdateWithoutDiseaseInput {
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
@@ -4349,7 +4375,7 @@ export declare class ClaimUpdateWithoutInputedByInput {
     claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
@@ -4366,7 +4392,24 @@ export declare class ClaimUpdateWithoutParticipantInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
+    tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
+    claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
+}
+export declare class ClaimUpdateWithoutProgramInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    channel?: InstanceType<typeof EnumClaimChannelFieldUpdateOperationsInput>;
+    admedicaStatus?: InstanceType<typeof EnumAdmedicaStatusFieldUpdateOperationsInput>;
+    company?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutClaimsNestedInput>;
+    claimFinancials?: InstanceType<typeof ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput>;
+    claimProcesses?: InstanceType<typeof ClaimProcessUpdateOneRequiredWithoutClaimNestedInput>;
+    disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
+    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
+    inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
@@ -4384,7 +4427,7 @@ export declare class ClaimUpdateWithoutTagsInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
 export declare class ClaimUpdateInput {
@@ -4401,32 +4444,37 @@ export declare class ClaimUpdateInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimsNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimsNestedInput>;
     inputedBy?: InstanceType<typeof UserUpdateOneWithoutClaimsInputNestedInput>;
-    claimTypes?: InstanceType<typeof ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput>;
+    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimsNestedInput>;
     tags?: InstanceType<typeof TagUpdateManyWithoutClaimsNestedInput>;
     claimStatuses?: InstanceType<typeof ClaimStatusUpdateManyWithoutClaimNestedInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutClinicsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update: InstanceType<typeof ClaimUpdateWithoutClinicsInput>;
     create: InstanceType<typeof ClaimCreateWithoutClinicsInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutDiseaseInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update: InstanceType<typeof ClaimUpdateWithoutDiseaseInput>;
     create: InstanceType<typeof ClaimCreateWithoutDiseaseInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutInputedByInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update: InstanceType<typeof ClaimUpdateWithoutInputedByInput>;
     create: InstanceType<typeof ClaimCreateWithoutInputedByInput>;
 }
 export declare class ClaimUpsertWithWhereUniqueWithoutParticipantInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update: InstanceType<typeof ClaimUpdateWithoutParticipantInput>;
     create: InstanceType<typeof ClaimCreateWithoutParticipantInput>;
 }
+export declare class ClaimUpsertWithWhereUniqueWithoutProgramInput {
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
+    update: InstanceType<typeof ClaimUpdateWithoutProgramInput>;
+    create: InstanceType<typeof ClaimCreateWithoutProgramInput>;
+}
 export declare class ClaimUpsertWithWhereUniqueWithoutTagsInput {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     update: InstanceType<typeof ClaimUpdateWithoutTagsInput>;
     create: InstanceType<typeof ClaimCreateWithoutTagsInput>;
 }
@@ -4445,16 +4493,11 @@ export declare class ClaimUpsertWithoutClaimStatusesInput {
     create: InstanceType<typeof ClaimCreateWithoutClaimStatusesInput>;
     where?: InstanceType<typeof ClaimWhereInput>;
 }
-export declare class ClaimUpsertWithoutClaimTypesInput {
-    update: InstanceType<typeof ClaimUpdateWithoutClaimTypesInput>;
-    create: InstanceType<typeof ClaimCreateWithoutClaimTypesInput>;
-    where?: InstanceType<typeof ClaimWhereInput>;
-}
 export declare class ClaimWhereUniqueInput {
     id?: string;
     claimFinancialId?: number;
     claimProcessId?: number;
-    claimTypeId?: number;
+    programId?: number;
     AND?: Array<ClaimWhereInput>;
     OR?: Array<ClaimWhereInput>;
     NOT?: Array<ClaimWhereInput>;
@@ -4474,7 +4517,7 @@ export declare class ClaimWhereUniqueInput {
     disease?: InstanceType<typeof DiseaseNullableRelationFilter>;
     clinics?: InstanceType<typeof ClinicRelationFilter>;
     inputedBy?: InstanceType<typeof UserNullableRelationFilter>;
-    claimTypes?: InstanceType<typeof ClaimTypeRelationFilter>;
+    program?: InstanceType<typeof ProgramRelationFilter>;
     tags?: InstanceType<typeof TagListRelationFilter>;
     claimStatuses?: InstanceType<typeof ClaimStatusListRelationFilter>;
 }
@@ -4495,14 +4538,14 @@ export declare class ClaimWhereInput {
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntFilter>;
     inputedById?: InstanceType<typeof StringNullableFilter>;
-    claimTypeId?: InstanceType<typeof IntFilter>;
+    programId?: InstanceType<typeof IntFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
     claimFinancials?: InstanceType<typeof ClaimFinancialRelationFilter>;
     claimProcesses?: InstanceType<typeof ClaimProcessRelationFilter>;
     disease?: InstanceType<typeof DiseaseNullableRelationFilter>;
     clinics?: InstanceType<typeof ClinicRelationFilter>;
     inputedBy?: InstanceType<typeof UserNullableRelationFilter>;
-    claimTypes?: InstanceType<typeof ClaimTypeRelationFilter>;
+    program?: InstanceType<typeof ProgramRelationFilter>;
     tags?: InstanceType<typeof TagListRelationFilter>;
     claimStatuses?: InstanceType<typeof ClaimStatusListRelationFilter>;
 }
@@ -4520,14 +4563,14 @@ export declare class Claim {
     diseaseId: number | null;
     clinicId: number;
     inputedById: string | null;
-    claimTypeId: number;
+    programId: number;
     participant?: InstanceType<typeof Participant>;
     claimFinancials?: InstanceType<typeof ClaimFinancial>;
     claimProcesses?: InstanceType<typeof ClaimProcess>;
     disease?: InstanceType<typeof Disease> | null;
     clinics?: InstanceType<typeof Clinic>;
     inputedBy?: InstanceType<typeof User> | null;
-    claimTypes?: InstanceType<typeof ClaimType>;
+    program?: InstanceType<typeof Program>;
     tags?: Array<Tag>;
     claimStatuses?: Array<ClaimStatus>;
     _count?: InstanceType<typeof ClaimCount>;
@@ -4543,12 +4586,12 @@ export declare class DeleteManyClaimArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
 }
 export declare class DeleteOneClaimArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class FindFirstClaimOrThrowArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimScalarFieldEnum>;
@@ -4556,7 +4599,7 @@ export declare class FindFirstClaimOrThrowArgs {
 export declare class FindFirstClaimArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimScalarFieldEnum>;
@@ -4564,16 +4607,16 @@ export declare class FindFirstClaimArgs {
 export declare class FindManyClaimArgs {
     where?: InstanceType<typeof ClaimWhereInput>;
     orderBy?: Array<ClaimOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    cursor?: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimScalarFieldEnum>;
 }
 export declare class FindUniqueClaimOrThrowArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class FindUniqueClaimArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class UpdateManyClaimArgs {
     data: InstanceType<typeof ClaimUpdateManyMutationInput>;
@@ -4581,10 +4624,10 @@ export declare class UpdateManyClaimArgs {
 }
 export declare class UpdateOneClaimArgs {
     data: InstanceType<typeof ClaimUpdateInput>;
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
 }
 export declare class UpsertOneClaimArgs {
-    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'claimTypeId'>;
+    where: Prisma.AtLeast<ClaimWhereUniqueInput, 'id' | 'claimFinancialId' | 'claimProcessId' | 'programId'>;
     create: InstanceType<typeof ClaimCreateInput>;
     update: InstanceType<typeof ClaimUpdateInput>;
 }
@@ -7004,518 +7047,6 @@ export declare class UpsertOneClaimStatusArgs {
     where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
     create: InstanceType<typeof ClaimStatusCreateInput>;
     update: InstanceType<typeof ClaimStatusUpdateInput>;
-}
-export declare class AggregateClaimType {
-    _count?: InstanceType<typeof ClaimTypeCountAggregate>;
-    _avg?: InstanceType<typeof ClaimTypeAvgAggregate>;
-    _sum?: InstanceType<typeof ClaimTypeSumAggregate>;
-    _min?: InstanceType<typeof ClaimTypeMinAggregate>;
-    _max?: InstanceType<typeof ClaimTypeMaxAggregate>;
-}
-export declare class ClaimTypeAggregateArgs {
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-    orderBy?: Array<ClaimTypeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    take?: number;
-    skip?: number;
-    _count?: InstanceType<typeof ClaimTypeCountAggregateInput>;
-    _avg?: InstanceType<typeof ClaimTypeAvgAggregateInput>;
-    _sum?: InstanceType<typeof ClaimTypeSumAggregateInput>;
-    _min?: InstanceType<typeof ClaimTypeMinAggregateInput>;
-    _max?: InstanceType<typeof ClaimTypeMaxAggregateInput>;
-}
-export declare class ClaimTypeAvgAggregateInput {
-    id?: true;
-    programId?: true;
-    claimId?: true;
-}
-export declare class ClaimTypeAvgAggregate {
-    id?: number;
-    programId?: number;
-    claimId?: number;
-}
-export declare class ClaimTypeAvgOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    programId?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
-}
-export declare class ClaimTypeCountAggregateInput {
-    id?: true;
-    jenis?: true;
-    jenisRI?: true;
-    plan?: true;
-    programId?: true;
-    claimId?: true;
-    _all?: true;
-}
-export declare class ClaimTypeCountAggregate {
-    id: number;
-    jenis: number;
-    jenisRI: number;
-    plan: number;
-    programId: number;
-    claimId: number;
-    _all: number;
-}
-export declare class ClaimTypeCountOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    jenis?: keyof typeof SortOrder;
-    jenisRI?: keyof typeof SortOrder;
-    plan?: keyof typeof SortOrder;
-    programId?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
-}
-export declare class ClaimTypeCreateManyProgramInputEnvelope {
-    data: Array<ClaimTypeCreateManyProgramInput>;
-    skipDuplicates?: boolean;
-}
-export declare class ClaimTypeCreateManyProgramInput {
-    id?: number;
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    claimId: number;
-}
-export declare class ClaimTypeCreateManyInput {
-    id?: number;
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    programId: number;
-    claimId: number;
-}
-export declare class ClaimTypeCreateNestedManyWithoutProgramInput {
-    create?: Array<ClaimTypeCreateWithoutProgramInput>;
-    connectOrCreate?: Array<ClaimTypeCreateOrConnectWithoutProgramInput>;
-    createMany?: InstanceType<typeof ClaimTypeCreateManyProgramInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-}
-export declare class ClaimTypeCreateNestedOneWithoutClaimsInput {
-    create?: InstanceType<typeof ClaimTypeCreateWithoutClaimsInput>;
-    connectOrCreate?: InstanceType<typeof ClaimTypeCreateOrConnectWithoutClaimsInput>;
-    connect?: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-}
-export declare class ClaimTypeCreateOrConnectWithoutClaimsInput {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    create: InstanceType<typeof ClaimTypeCreateWithoutClaimsInput>;
-}
-export declare class ClaimTypeCreateOrConnectWithoutProgramInput {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    create: InstanceType<typeof ClaimTypeCreateWithoutProgramInput>;
-}
-export declare class ClaimTypeCreateWithoutClaimsInput {
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    claimId: number;
-    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimTypeInput>;
-}
-export declare class ClaimTypeCreateWithoutProgramInput {
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    claimId: number;
-    claims?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimTypesInput>;
-}
-export declare class ClaimTypeCreateInput {
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    claimId: number;
-    program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimTypeInput>;
-    claims?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimTypesInput>;
-}
-export declare class ClaimTypeGroupByArgs {
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-    orderBy?: Array<ClaimTypeOrderByWithAggregationInput>;
-    by: Array<keyof typeof ClaimTypeScalarFieldEnum>;
-    having?: InstanceType<typeof ClaimTypeScalarWhereWithAggregatesInput>;
-    take?: number;
-    skip?: number;
-    _count?: InstanceType<typeof ClaimTypeCountAggregateInput>;
-    _avg?: InstanceType<typeof ClaimTypeAvgAggregateInput>;
-    _sum?: InstanceType<typeof ClaimTypeSumAggregateInput>;
-    _min?: InstanceType<typeof ClaimTypeMinAggregateInput>;
-    _max?: InstanceType<typeof ClaimTypeMaxAggregateInput>;
-}
-export declare class ClaimTypeGroupBy {
-    id: number;
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    programId: number;
-    claimId: number;
-    _count?: InstanceType<typeof ClaimTypeCountAggregate>;
-    _avg?: InstanceType<typeof ClaimTypeAvgAggregate>;
-    _sum?: InstanceType<typeof ClaimTypeSumAggregate>;
-    _min?: InstanceType<typeof ClaimTypeMinAggregate>;
-    _max?: InstanceType<typeof ClaimTypeMaxAggregate>;
-}
-export declare class ClaimTypeListRelationFilter {
-    every?: InstanceType<typeof ClaimTypeWhereInput>;
-    some?: InstanceType<typeof ClaimTypeWhereInput>;
-    none?: InstanceType<typeof ClaimTypeWhereInput>;
-}
-export declare class ClaimTypeMaxAggregateInput {
-    id?: true;
-    jenis?: true;
-    jenisRI?: true;
-    plan?: true;
-    programId?: true;
-    claimId?: true;
-}
-export declare class ClaimTypeMaxAggregate {
-    id?: number;
-    jenis?: string;
-    jenisRI?: string;
-    plan?: string;
-    programId?: number;
-    claimId?: number;
-}
-export declare class ClaimTypeMaxOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    jenis?: keyof typeof SortOrder;
-    jenisRI?: keyof typeof SortOrder;
-    plan?: keyof typeof SortOrder;
-    programId?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
-}
-export declare class ClaimTypeMinAggregateInput {
-    id?: true;
-    jenis?: true;
-    jenisRI?: true;
-    plan?: true;
-    programId?: true;
-    claimId?: true;
-}
-export declare class ClaimTypeMinAggregate {
-    id?: number;
-    jenis?: string;
-    jenisRI?: string;
-    plan?: string;
-    programId?: number;
-    claimId?: number;
-}
-export declare class ClaimTypeMinOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    jenis?: keyof typeof SortOrder;
-    jenisRI?: keyof typeof SortOrder;
-    plan?: keyof typeof SortOrder;
-    programId?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
-}
-export declare class ClaimTypeOrderByRelationAggregateInput {
-    _count?: keyof typeof SortOrder;
-}
-export declare class ClaimTypeOrderByWithAggregationInput {
-    id?: keyof typeof SortOrder;
-    jenis?: keyof typeof SortOrder;
-    jenisRI?: keyof typeof SortOrder;
-    plan?: keyof typeof SortOrder;
-    programId?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
-    _count?: InstanceType<typeof ClaimTypeCountOrderByAggregateInput>;
-    _avg?: InstanceType<typeof ClaimTypeAvgOrderByAggregateInput>;
-    _max?: InstanceType<typeof ClaimTypeMaxOrderByAggregateInput>;
-    _min?: InstanceType<typeof ClaimTypeMinOrderByAggregateInput>;
-    _sum?: InstanceType<typeof ClaimTypeSumOrderByAggregateInput>;
-}
-export declare class ClaimTypeOrderByWithRelationInput {
-    id?: keyof typeof SortOrder;
-    jenis?: keyof typeof SortOrder;
-    jenisRI?: keyof typeof SortOrder;
-    plan?: keyof typeof SortOrder;
-    programId?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
-    program?: InstanceType<typeof ProgramOrderByWithRelationInput>;
-    claims?: InstanceType<typeof ClaimOrderByWithRelationInput>;
-}
-export declare class ClaimTypeRelationFilter {
-    is?: InstanceType<typeof ClaimTypeWhereInput>;
-    isNot?: InstanceType<typeof ClaimTypeWhereInput>;
-}
-export declare class ClaimTypeScalarWhereWithAggregatesInput {
-    AND?: Array<ClaimTypeScalarWhereWithAggregatesInput>;
-    OR?: Array<ClaimTypeScalarWhereWithAggregatesInput>;
-    NOT?: Array<ClaimTypeScalarWhereWithAggregatesInput>;
-    id?: InstanceType<typeof IntWithAggregatesFilter>;
-    jenis?: InstanceType<typeof StringWithAggregatesFilter>;
-    jenisRI?: InstanceType<typeof StringWithAggregatesFilter>;
-    plan?: InstanceType<typeof StringWithAggregatesFilter>;
-    programId?: InstanceType<typeof IntWithAggregatesFilter>;
-    claimId?: InstanceType<typeof IntWithAggregatesFilter>;
-}
-export declare class ClaimTypeScalarWhereInput {
-    AND?: Array<ClaimTypeScalarWhereInput>;
-    OR?: Array<ClaimTypeScalarWhereInput>;
-    NOT?: Array<ClaimTypeScalarWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
-    jenis?: InstanceType<typeof StringFilter>;
-    jenisRI?: InstanceType<typeof StringFilter>;
-    plan?: InstanceType<typeof StringFilter>;
-    programId?: InstanceType<typeof IntFilter>;
-    claimId?: InstanceType<typeof IntFilter>;
-}
-export declare class ClaimTypeSumAggregateInput {
-    id?: true;
-    programId?: true;
-    claimId?: true;
-}
-export declare class ClaimTypeSumAggregate {
-    id?: number;
-    programId?: number;
-    claimId?: number;
-}
-export declare class ClaimTypeSumOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    programId?: keyof typeof SortOrder;
-    claimId?: keyof typeof SortOrder;
-}
-export declare class ClaimTypeUncheckedCreateNestedManyWithoutProgramInput {
-    create?: Array<ClaimTypeCreateWithoutProgramInput>;
-    connectOrCreate?: Array<ClaimTypeCreateOrConnectWithoutProgramInput>;
-    createMany?: InstanceType<typeof ClaimTypeCreateManyProgramInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-}
-export declare class ClaimTypeUncheckedCreateWithoutClaimsInput {
-    id?: number;
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    programId: number;
-    claimId: number;
-}
-export declare class ClaimTypeUncheckedCreateWithoutProgramInput {
-    id?: number;
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    claimId: number;
-    claims?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimTypesInput>;
-}
-export declare class ClaimTypeUncheckedCreateInput {
-    id?: number;
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    programId: number;
-    claimId: number;
-    claims?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimTypesInput>;
-}
-export declare class ClaimTypeUncheckedUpdateManyWithoutProgramNestedInput {
-    create?: Array<ClaimTypeCreateWithoutProgramInput>;
-    connectOrCreate?: Array<ClaimTypeCreateOrConnectWithoutProgramInput>;
-    upsert?: Array<ClaimTypeUpsertWithWhereUniqueWithoutProgramInput>;
-    createMany?: InstanceType<typeof ClaimTypeCreateManyProgramInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    update?: Array<ClaimTypeUpdateWithWhereUniqueWithoutProgramInput>;
-    updateMany?: Array<ClaimTypeUpdateManyWithWhereWithoutProgramInput>;
-    deleteMany?: Array<ClaimTypeScalarWhereInput>;
-}
-export declare class ClaimTypeUncheckedUpdateManyWithoutProgramInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-}
-export declare class ClaimTypeUncheckedUpdateManyInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-}
-export declare class ClaimTypeUncheckedUpdateWithoutClaimsInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-}
-export declare class ClaimTypeUncheckedUpdateWithoutProgramInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claims?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimTypesNestedInput>;
-}
-export declare class ClaimTypeUncheckedUpdateInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claims?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimTypesNestedInput>;
-}
-export declare class ClaimTypeUpdateManyMutationInput {
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-}
-export declare class ClaimTypeUpdateManyWithWhereWithoutProgramInput {
-    where: InstanceType<typeof ClaimTypeScalarWhereInput>;
-    data: InstanceType<typeof ClaimTypeUpdateManyMutationInput>;
-}
-export declare class ClaimTypeUpdateManyWithoutProgramNestedInput {
-    create?: Array<ClaimTypeCreateWithoutProgramInput>;
-    connectOrCreate?: Array<ClaimTypeCreateOrConnectWithoutProgramInput>;
-    upsert?: Array<ClaimTypeUpsertWithWhereUniqueWithoutProgramInput>;
-    createMany?: InstanceType<typeof ClaimTypeCreateManyProgramInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>>;
-    update?: Array<ClaimTypeUpdateWithWhereUniqueWithoutProgramInput>;
-    updateMany?: Array<ClaimTypeUpdateManyWithWhereWithoutProgramInput>;
-    deleteMany?: Array<ClaimTypeScalarWhereInput>;
-}
-export declare class ClaimTypeUpdateOneRequiredWithoutClaimsNestedInput {
-    create?: InstanceType<typeof ClaimTypeCreateWithoutClaimsInput>;
-    connectOrCreate?: InstanceType<typeof ClaimTypeCreateOrConnectWithoutClaimsInput>;
-    upsert?: InstanceType<typeof ClaimTypeUpsertWithoutClaimsInput>;
-    connect?: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    update?: InstanceType<typeof ClaimTypeUpdateToOneWithWhereWithoutClaimsInput>;
-}
-export declare class ClaimTypeUpdateToOneWithWhereWithoutClaimsInput {
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-    data: InstanceType<typeof ClaimTypeUpdateWithoutClaimsInput>;
-}
-export declare class ClaimTypeUpdateWithWhereUniqueWithoutProgramInput {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    data: InstanceType<typeof ClaimTypeUpdateWithoutProgramInput>;
-}
-export declare class ClaimTypeUpdateWithoutClaimsInput {
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimTypeNestedInput>;
-}
-export declare class ClaimTypeUpdateWithoutProgramInput {
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claims?: InstanceType<typeof ClaimUpdateOneWithoutClaimTypesNestedInput>;
-}
-export declare class ClaimTypeUpdateInput {
-    jenis?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    jenisRI?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    plan?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimTypeNestedInput>;
-    claims?: InstanceType<typeof ClaimUpdateOneWithoutClaimTypesNestedInput>;
-}
-export declare class ClaimTypeUpsertWithWhereUniqueWithoutProgramInput {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    update: InstanceType<typeof ClaimTypeUpdateWithoutProgramInput>;
-    create: InstanceType<typeof ClaimTypeCreateWithoutProgramInput>;
-}
-export declare class ClaimTypeUpsertWithoutClaimsInput {
-    update: InstanceType<typeof ClaimTypeUpdateWithoutClaimsInput>;
-    create: InstanceType<typeof ClaimTypeCreateWithoutClaimsInput>;
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-}
-export declare class ClaimTypeWhereUniqueInput {
-    id?: number;
-    claimId?: number;
-    AND?: Array<ClaimTypeWhereInput>;
-    OR?: Array<ClaimTypeWhereInput>;
-    NOT?: Array<ClaimTypeWhereInput>;
-    jenis?: InstanceType<typeof StringFilter>;
-    jenisRI?: InstanceType<typeof StringFilter>;
-    plan?: InstanceType<typeof StringFilter>;
-    programId?: InstanceType<typeof IntFilter>;
-    program?: InstanceType<typeof ProgramRelationFilter>;
-    claims?: InstanceType<typeof ClaimNullableRelationFilter>;
-}
-export declare class ClaimTypeWhereInput {
-    AND?: Array<ClaimTypeWhereInput>;
-    OR?: Array<ClaimTypeWhereInput>;
-    NOT?: Array<ClaimTypeWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
-    jenis?: InstanceType<typeof StringFilter>;
-    jenisRI?: InstanceType<typeof StringFilter>;
-    plan?: InstanceType<typeof StringFilter>;
-    programId?: InstanceType<typeof IntFilter>;
-    claimId?: InstanceType<typeof IntFilter>;
-    program?: InstanceType<typeof ProgramRelationFilter>;
-    claims?: InstanceType<typeof ClaimNullableRelationFilter>;
-}
-export declare class ClaimType {
-    id: number;
-    jenis: string;
-    jenisRI: string;
-    plan: string;
-    programId: number;
-    claimId: number;
-    program?: InstanceType<typeof Program>;
-    claims?: InstanceType<typeof Claim> | null;
-}
-export declare class CreateManyClaimTypeArgs {
-    data: Array<ClaimTypeCreateManyInput>;
-    skipDuplicates?: boolean;
-}
-export declare class CreateOneClaimTypeArgs {
-    data: InstanceType<typeof ClaimTypeCreateInput>;
-}
-export declare class DeleteManyClaimTypeArgs {
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-}
-export declare class DeleteOneClaimTypeArgs {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-}
-export declare class FindFirstClaimTypeOrThrowArgs {
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-    orderBy?: Array<ClaimTypeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof ClaimTypeScalarFieldEnum>;
-}
-export declare class FindFirstClaimTypeArgs {
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-    orderBy?: Array<ClaimTypeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof ClaimTypeScalarFieldEnum>;
-}
-export declare class FindManyClaimTypeArgs {
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-    orderBy?: Array<ClaimTypeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof ClaimTypeScalarFieldEnum>;
-}
-export declare class FindUniqueClaimTypeOrThrowArgs {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-}
-export declare class FindUniqueClaimTypeArgs {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-}
-export declare class UpdateManyClaimTypeArgs {
-    data: InstanceType<typeof ClaimTypeUpdateManyMutationInput>;
-    where?: InstanceType<typeof ClaimTypeWhereInput>;
-}
-export declare class UpdateOneClaimTypeArgs {
-    data: InstanceType<typeof ClaimTypeUpdateInput>;
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-}
-export declare class UpsertOneClaimTypeArgs {
-    where: Prisma.AtLeast<ClaimTypeWhereUniqueInput, 'id' | 'claimId'>;
-    create: InstanceType<typeof ClaimTypeCreateInput>;
-    update: InstanceType<typeof ClaimTypeUpdateInput>;
 }
 export declare class AggregateClinic {
     _count?: InstanceType<typeof ClinicCountAggregate>;
@@ -13634,68 +13165,89 @@ export declare class ProgramAggregateArgs {
 }
 export declare class ProgramAvgAggregateInput {
     id?: true;
+    maxAllowancePercentage?: true;
     allowanceCeiling?: true;
-    maxAllowance?: true;
+    maxAllowancePerYear?: true;
+    claimPeriodMax?: true;
+    reclaimPeriodMax?: true;
 }
 export declare class ProgramAvgAggregate {
     id?: number;
+    maxAllowancePercentage?: number;
     allowanceCeiling?: number;
-    maxAllowance?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
 }
 export declare class ProgramAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    maxAllowancePercentage?: keyof typeof SortOrder;
     allowanceCeiling?: keyof typeof SortOrder;
-    maxAllowance?: keyof typeof SortOrder;
+    maxAllowancePerYear?: keyof typeof SortOrder;
+    claimPeriodMax?: keyof typeof SortOrder;
+    reclaimPeriodMax?: keyof typeof SortOrder;
 }
 export declare class ProgramCountAggregateInput {
     id?: true;
     plan?: true;
+    maxAllowancePercentage?: true;
+    allowanceCeiling?: true;
+    maxAllowancePerYear?: true;
+    claimPeriodMax?: true;
+    reclaimPeriodMax?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
-    allowanceCeiling?: true;
     class?: true;
-    maxAllowance?: true;
     _all?: true;
 }
 export declare class ProgramCountAggregate {
     id: number;
     plan: number;
+    maxAllowancePercentage: number;
+    allowanceCeiling: number;
+    maxAllowancePerYear: number;
+    claimPeriodMax: number;
+    reclaimPeriodMax: number;
     createdAt: number;
     updatedAt: number;
     deletedAt: number;
-    allowanceCeiling: number;
     class: number;
-    maxAllowance: number;
     _all: number;
 }
 export declare class ProgramCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     plan?: keyof typeof SortOrder;
+    maxAllowancePercentage?: keyof typeof SortOrder;
+    allowanceCeiling?: keyof typeof SortOrder;
+    maxAllowancePerYear?: keyof typeof SortOrder;
+    claimPeriodMax?: keyof typeof SortOrder;
+    reclaimPeriodMax?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
-    allowanceCeiling?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
-    maxAllowance?: keyof typeof SortOrder;
 }
 export declare class ProgramCount {
     programParticipations?: number;
-    claimType?: number;
+    claims?: number;
 }
 export declare class ProgramCreateManyInput {
     id?: number;
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
 }
-export declare class ProgramCreateNestedOneWithoutClaimTypeInput {
-    create?: InstanceType<typeof ProgramCreateWithoutClaimTypeInput>;
-    connectOrCreate?: InstanceType<typeof ProgramCreateOrConnectWithoutClaimTypeInput>;
+export declare class ProgramCreateNestedOneWithoutClaimsInput {
+    create?: InstanceType<typeof ProgramCreateWithoutClaimsInput>;
+    connectOrCreate?: InstanceType<typeof ProgramCreateOrConnectWithoutClaimsInput>;
     connect?: Prisma.AtLeast<ProgramWhereUniqueInput, 'id'>;
 }
 export declare class ProgramCreateNestedOneWithoutProgramParticipationsInput {
@@ -13703,44 +13255,53 @@ export declare class ProgramCreateNestedOneWithoutProgramParticipationsInput {
     connectOrCreate?: InstanceType<typeof ProgramCreateOrConnectWithoutProgramParticipationsInput>;
     connect?: Prisma.AtLeast<ProgramWhereUniqueInput, 'id'>;
 }
-export declare class ProgramCreateOrConnectWithoutClaimTypeInput {
+export declare class ProgramCreateOrConnectWithoutClaimsInput {
     where: Prisma.AtLeast<ProgramWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof ProgramCreateWithoutClaimTypeInput>;
+    create: InstanceType<typeof ProgramCreateWithoutClaimsInput>;
 }
 export declare class ProgramCreateOrConnectWithoutProgramParticipationsInput {
     where: Prisma.AtLeast<ProgramWhereUniqueInput, 'id'>;
     create: InstanceType<typeof ProgramCreateWithoutProgramParticipationsInput>;
 }
-export declare class ProgramCreateWithoutClaimTypeInput {
+export declare class ProgramCreateWithoutClaimsInput {
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
     programParticipations?: InstanceType<typeof ProgramParticipationCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramCreateWithoutProgramParticipationsInput {
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
-    claimType?: InstanceType<typeof ClaimTypeCreateNestedManyWithoutProgramInput>;
+    claims?: InstanceType<typeof ClaimCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramCreateInput {
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
     programParticipations?: InstanceType<typeof ProgramParticipationCreateNestedManyWithoutProgramInput>;
-    claimType?: InstanceType<typeof ClaimTypeCreateNestedManyWithoutProgramInput>;
+    claims?: InstanceType<typeof ClaimCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramGroupByArgs {
     where?: InstanceType<typeof ProgramWhereInput>;
@@ -13758,12 +13319,15 @@ export declare class ProgramGroupByArgs {
 export declare class ProgramGroupBy {
     id: number;
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt: Date | string;
     updatedAt: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
     _count?: InstanceType<typeof ProgramCountAggregate>;
     _avg?: InstanceType<typeof ProgramAvgAggregate>;
     _sum?: InstanceType<typeof ProgramSumAggregate>;
@@ -13773,62 +13337,80 @@ export declare class ProgramGroupBy {
 export declare class ProgramMaxAggregateInput {
     id?: true;
     plan?: true;
+    maxAllowancePercentage?: true;
+    allowanceCeiling?: true;
+    maxAllowancePerYear?: true;
+    claimPeriodMax?: true;
+    reclaimPeriodMax?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
-    allowanceCeiling?: true;
     class?: true;
-    maxAllowance?: true;
 }
 export declare class ProgramMaxAggregate {
     id?: number;
     plan?: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling?: number;
     class?: keyof typeof Class;
-    maxAllowance?: number;
 }
 export declare class ProgramMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     plan?: keyof typeof SortOrder;
+    maxAllowancePercentage?: keyof typeof SortOrder;
+    allowanceCeiling?: keyof typeof SortOrder;
+    maxAllowancePerYear?: keyof typeof SortOrder;
+    claimPeriodMax?: keyof typeof SortOrder;
+    reclaimPeriodMax?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
-    allowanceCeiling?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
-    maxAllowance?: keyof typeof SortOrder;
 }
 export declare class ProgramMinAggregateInput {
     id?: true;
     plan?: true;
+    maxAllowancePercentage?: true;
+    allowanceCeiling?: true;
+    maxAllowancePerYear?: true;
+    claimPeriodMax?: true;
+    reclaimPeriodMax?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
-    allowanceCeiling?: true;
     class?: true;
-    maxAllowance?: true;
 }
 export declare class ProgramMinAggregate {
     id?: number;
     plan?: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling?: number;
     class?: keyof typeof Class;
-    maxAllowance?: number;
 }
 export declare class ProgramMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     plan?: keyof typeof SortOrder;
+    maxAllowancePercentage?: keyof typeof SortOrder;
+    allowanceCeiling?: keyof typeof SortOrder;
+    maxAllowancePerYear?: keyof typeof SortOrder;
+    claimPeriodMax?: keyof typeof SortOrder;
+    reclaimPeriodMax?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
-    allowanceCeiling?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
-    maxAllowance?: keyof typeof SortOrder;
 }
 export declare class ProgramNullableRelationFilter {
     is?: InstanceType<typeof ProgramWhereInput>;
@@ -13837,12 +13419,15 @@ export declare class ProgramNullableRelationFilter {
 export declare class ProgramOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     plan?: keyof typeof SortOrder;
+    maxAllowancePercentage?: InstanceType<typeof SortOrderInput>;
+    allowanceCeiling?: InstanceType<typeof SortOrderInput>;
+    maxAllowancePerYear?: InstanceType<typeof SortOrderInput>;
+    claimPeriodMax?: InstanceType<typeof SortOrderInput>;
+    reclaimPeriodMax?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
-    allowanceCeiling?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
-    maxAllowance?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ProgramCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ProgramAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ProgramMaxOrderByAggregateInput>;
@@ -13852,14 +13437,17 @@ export declare class ProgramOrderByWithAggregationInput {
 export declare class ProgramOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     plan?: keyof typeof SortOrder;
+    maxAllowancePercentage?: InstanceType<typeof SortOrderInput>;
+    allowanceCeiling?: InstanceType<typeof SortOrderInput>;
+    maxAllowancePerYear?: InstanceType<typeof SortOrderInput>;
+    claimPeriodMax?: InstanceType<typeof SortOrderInput>;
+    reclaimPeriodMax?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
-    allowanceCeiling?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
-    maxAllowance?: keyof typeof SortOrder;
     programParticipations?: InstanceType<typeof ProgramParticipationOrderByRelationAggregateInput>;
-    claimType?: InstanceType<typeof ClaimTypeOrderByRelationAggregateInput>;
+    claims?: InstanceType<typeof ClaimOrderByRelationAggregateInput>;
 }
 export declare class ProgramRelationFilter {
     is?: InstanceType<typeof ProgramWhereInput>;
@@ -13871,121 +13459,157 @@ export declare class ProgramScalarWhereWithAggregatesInput {
     NOT?: Array<ProgramScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     plan?: InstanceType<typeof EnumApplicationTypeWithAggregatesFilter>;
+    maxAllowancePercentage?: InstanceType<typeof IntNullableWithAggregatesFilter>;
+    allowanceCeiling?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
+    maxAllowancePerYear?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
+    claimPeriodMax?: InstanceType<typeof IntNullableWithAggregatesFilter>;
+    reclaimPeriodMax?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    allowanceCeiling?: InstanceType<typeof FloatWithAggregatesFilter>;
     class?: InstanceType<typeof EnumClassWithAggregatesFilter>;
-    maxAllowance?: InstanceType<typeof FloatWithAggregatesFilter>;
 }
 export declare class ProgramSumAggregateInput {
     id?: true;
+    maxAllowancePercentage?: true;
     allowanceCeiling?: true;
-    maxAllowance?: true;
+    maxAllowancePerYear?: true;
+    claimPeriodMax?: true;
+    reclaimPeriodMax?: true;
 }
 export declare class ProgramSumAggregate {
     id?: number;
+    maxAllowancePercentage?: number;
     allowanceCeiling?: number;
-    maxAllowance?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
 }
 export declare class ProgramSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    maxAllowancePercentage?: keyof typeof SortOrder;
     allowanceCeiling?: keyof typeof SortOrder;
-    maxAllowance?: keyof typeof SortOrder;
+    maxAllowancePerYear?: keyof typeof SortOrder;
+    claimPeriodMax?: keyof typeof SortOrder;
+    reclaimPeriodMax?: keyof typeof SortOrder;
 }
-export declare class ProgramUncheckedCreateWithoutClaimTypeInput {
+export declare class ProgramUncheckedCreateWithoutClaimsInput {
     id?: number;
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramUncheckedCreateWithoutProgramParticipationsInput {
     id?: number;
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
-    claimType?: InstanceType<typeof ClaimTypeUncheckedCreateNestedManyWithoutProgramInput>;
+    claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramUncheckedCreateInput {
     id?: number;
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage?: number;
+    allowanceCeiling?: number;
+    maxAllowancePerYear?: number;
+    claimPeriodMax?: number;
+    reclaimPeriodMax?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput>;
-    claimType?: InstanceType<typeof ClaimTypeUncheckedCreateNestedManyWithoutProgramInput>;
+    claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
 }
-export declare class ProgramUncheckedUpdateWithoutClaimTypeInput {
+export declare class ProgramUncheckedUpdateWithoutClaimsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUncheckedUpdateWithoutProgramParticipationsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    claimType?: InstanceType<typeof ClaimTypeUncheckedUpdateManyWithoutProgramNestedInput>;
+    claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput>;
-    claimType?: InstanceType<typeof ClaimTypeUncheckedUpdateManyWithoutProgramNestedInput>;
+    claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUpdateManyMutationInput {
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
 }
-export declare class ProgramUpdateOneRequiredWithoutClaimTypeNestedInput {
-    create?: InstanceType<typeof ProgramCreateWithoutClaimTypeInput>;
-    connectOrCreate?: InstanceType<typeof ProgramCreateOrConnectWithoutClaimTypeInput>;
-    upsert?: InstanceType<typeof ProgramUpsertWithoutClaimTypeInput>;
+export declare class ProgramUpdateOneRequiredWithoutClaimsNestedInput {
+    create?: InstanceType<typeof ProgramCreateWithoutClaimsInput>;
+    connectOrCreate?: InstanceType<typeof ProgramCreateOrConnectWithoutClaimsInput>;
+    upsert?: InstanceType<typeof ProgramUpsertWithoutClaimsInput>;
     connect?: Prisma.AtLeast<ProgramWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof ProgramUpdateToOneWithWhereWithoutClaimTypeInput>;
+    update?: InstanceType<typeof ProgramUpdateToOneWithWhereWithoutClaimsInput>;
 }
 export declare class ProgramUpdateOneWithoutProgramParticipationsNestedInput {
     create?: InstanceType<typeof ProgramCreateWithoutProgramParticipationsInput>;
@@ -13996,48 +13620,57 @@ export declare class ProgramUpdateOneWithoutProgramParticipationsNestedInput {
     connect?: Prisma.AtLeast<ProgramWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof ProgramUpdateToOneWithWhereWithoutProgramParticipationsInput>;
 }
-export declare class ProgramUpdateToOneWithWhereWithoutClaimTypeInput {
+export declare class ProgramUpdateToOneWithWhereWithoutClaimsInput {
     where?: InstanceType<typeof ProgramWhereInput>;
-    data: InstanceType<typeof ProgramUpdateWithoutClaimTypeInput>;
+    data: InstanceType<typeof ProgramUpdateWithoutClaimsInput>;
 }
 export declare class ProgramUpdateToOneWithWhereWithoutProgramParticipationsInput {
     where?: InstanceType<typeof ProgramWhereInput>;
     data: InstanceType<typeof ProgramUpdateWithoutProgramParticipationsInput>;
 }
-export declare class ProgramUpdateWithoutClaimTypeInput {
+export declare class ProgramUpdateWithoutClaimsInput {
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUpdateWithoutProgramParticipationsInput {
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    claimType?: InstanceType<typeof ClaimTypeUpdateManyWithoutProgramNestedInput>;
+    claims?: InstanceType<typeof ClaimUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUpdateInput {
     plan?: InstanceType<typeof EnumApplicationTypeFieldUpdateOperationsInput>;
+    maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceCeiling?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    maxAllowancePerYear?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
-    maxAllowance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUpdateManyWithoutProgramNestedInput>;
-    claimType?: InstanceType<typeof ClaimTypeUpdateManyWithoutProgramNestedInput>;
+    claims?: InstanceType<typeof ClaimUpdateManyWithoutProgramNestedInput>;
 }
-export declare class ProgramUpsertWithoutClaimTypeInput {
-    update: InstanceType<typeof ProgramUpdateWithoutClaimTypeInput>;
-    create: InstanceType<typeof ProgramCreateWithoutClaimTypeInput>;
+export declare class ProgramUpsertWithoutClaimsInput {
+    update: InstanceType<typeof ProgramUpdateWithoutClaimsInput>;
+    create: InstanceType<typeof ProgramCreateWithoutClaimsInput>;
     where?: InstanceType<typeof ProgramWhereInput>;
 }
 export declare class ProgramUpsertWithoutProgramParticipationsInput {
@@ -14051,14 +13684,17 @@ export declare class ProgramWhereUniqueInput {
     OR?: Array<ProgramWhereInput>;
     NOT?: Array<ProgramWhereInput>;
     plan?: InstanceType<typeof EnumApplicationTypeFilter>;
+    maxAllowancePercentage?: InstanceType<typeof IntNullableFilter>;
+    allowanceCeiling?: InstanceType<typeof FloatNullableFilter>;
+    maxAllowancePerYear?: InstanceType<typeof FloatNullableFilter>;
+    claimPeriodMax?: InstanceType<typeof IntNullableFilter>;
+    reclaimPeriodMax?: InstanceType<typeof IntNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
-    allowanceCeiling?: InstanceType<typeof FloatFilter>;
     class?: InstanceType<typeof EnumClassFilter>;
-    maxAllowance?: InstanceType<typeof FloatFilter>;
     programParticipations?: InstanceType<typeof ProgramParticipationListRelationFilter>;
-    claimType?: InstanceType<typeof ClaimTypeListRelationFilter>;
+    claims?: InstanceType<typeof ClaimListRelationFilter>;
 }
 export declare class ProgramWhereInput {
     AND?: Array<ProgramWhereInput>;
@@ -14066,26 +13702,32 @@ export declare class ProgramWhereInput {
     NOT?: Array<ProgramWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     plan?: InstanceType<typeof EnumApplicationTypeFilter>;
+    maxAllowancePercentage?: InstanceType<typeof IntNullableFilter>;
+    allowanceCeiling?: InstanceType<typeof FloatNullableFilter>;
+    maxAllowancePerYear?: InstanceType<typeof FloatNullableFilter>;
+    claimPeriodMax?: InstanceType<typeof IntNullableFilter>;
+    reclaimPeriodMax?: InstanceType<typeof IntNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
-    allowanceCeiling?: InstanceType<typeof FloatFilter>;
     class?: InstanceType<typeof EnumClassFilter>;
-    maxAllowance?: InstanceType<typeof FloatFilter>;
     programParticipations?: InstanceType<typeof ProgramParticipationListRelationFilter>;
-    claimType?: InstanceType<typeof ClaimTypeListRelationFilter>;
+    claims?: InstanceType<typeof ClaimListRelationFilter>;
 }
 export declare class Program {
     id: number;
     plan: keyof typeof ApplicationType;
+    maxAllowancePercentage: number | null;
+    allowanceCeiling: number | null;
+    maxAllowancePerYear: number | null;
+    claimPeriodMax: number | null;
+    reclaimPeriodMax: number | null;
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
-    allowanceCeiling: number;
     class: keyof typeof Class;
-    maxAllowance: number;
     programParticipations?: Array<ProgramParticipation>;
-    claimType?: Array<ClaimType>;
+    claims?: Array<Claim>;
     _count?: InstanceType<typeof ProgramCount>;
 }
 export declare class UpdateManyProgramArgs {

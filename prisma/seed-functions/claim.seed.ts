@@ -1,27 +1,71 @@
-import { AdmedicaStatus, ClaimChannel, PrismaClient } from '@prisma/client';
+import {
+  AdmedicaStatus,
+  ClaimChannel,
+  Gender,
+  ParticipantStatus,
+  Prisma,
+  PrismaClient,
+} from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 let prisma = new PrismaClient();
 
 export async function claimSeed() {
-  // Fetch or create necessary related records
-  const participants = await prisma.participant.findMany(); // Ensure Participants exist
-  const diseases = await prisma.disease.findMany(); // Ensure Diseases exist
-  const clinics = await prisma.clinic.findMany(); // Ensure Clinics exist
-  const users = await prisma.user.findMany(); // Ensure Users exist
-  // ... fetch or create other necessary entities like ClaimFinancial, ClaimProcess, etc.
-
   // Check if required entities exist
-  if (
-    participants.length === 0 ||
-    diseases.length === 0 ||
-    clinics.length === 0 ||
-    users.length === 0
-  ) {
-    console.log('Required related models are not seeded yet.');
-    return;
-  }
+  // if (
+  //   participants.length === 0 ||
+  //   diseases.length === 0 ||
+  //   clinics.length === 0 ||
+  //   users.length === 0
+  // ) {
+  //   console.log('Required related models are not seeded yet.');
+  //   return;
+  // }
+
+  const programs = await prisma.program.findMany({
+    where: { claims: { none: {} } },
+  });
+
+  const roles = await prisma.role.findMany({
+    where: { users: { none: {} } },
+  });
+
   for (let i = 0; i < 100; i++) {
+    // Fetch or create necessary related records
+    // const participants = await prisma.participant.findFirst({
+    //   where: { claims: { none: {} } },
+    // });
+    // const diseases = await prisma.disease.findFirst({
+    //   where: { claims: { none: {} } },
+    // });
+    // const users = await prisma.user.findFirst({
+    //   where: { claimActions: { none: {} } },
+    // });
+    // const clinics = await prisma.clinic.findFirst({
+    //   where: { claims: { none: {} } },
+    // });
+
+    const userCreateOne: Prisma.UserCreateWithoutParticipantInput = {
+      fullName: faker.name.firstName(),
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      role: {
+        connectOrCreate: {
+          where: {
+            id:
+              roles.length > 4
+                ? faker.helpers.arrayElement(roles).id
+                : undefined,
+          },
+          create: {
+            name: faker.name.jobTitle(),
+            description: faker.lorem.paragraph(),
+            order: faker.datatype.number(5),
+          },
+        },
+      },
+    };
+
     await prisma.claim.create({
       data: {
         id: faker.datatype.uuid(),
@@ -32,29 +76,72 @@ export async function claimSeed() {
           Object.values(AdmedicaStatus),
         ),
         company: faker.company.companyName(),
-        participantId: faker.helpers.arrayElement(participants).userId,
+        participant: {
+          connectOrCreate: {
+            where: undefined,
+            create: {
+              gender: faker.helpers.arrayElement(Object.values(Gender)),
+              birthDate: faker.date.past(),
+              isActive: faker.datatype.boolean(),
+              status: faker.helpers.arrayElement(
+                Object.values(ParticipantStatus),
+              ),
+              user: {
+                create: userCreateOne,
+              },
+            },
+          },
+        },
         claimFinancials: {
           create: {
-            requestedAmount: faker.datatype.float({ min: 1000, max: 10000 }),
-            paidAmount: faker.datatype.float({ min: 500, max: 9000 }),
-            rejectedAmount: faker.datatype.float({ min: 100, max: 2000 }),
-            transactionProcessDate: faker.date.past(),
-            transferDate: faker.date.future(),
-            branchId: branch.id,
-            claimStatusId: claimStatus.id,
-          },
+            requestedAmount: faker.datatype.float({
+              min: 300000,
+              max: 3000000,
+            }),
           },
         },
         claimProcesses: {
-          // Create related ClaimProcess record
+          create: {
+            startTreatment: faker.date.past(),
+            endTreatment: faker.date.recent(),
+            submissionNote: faker.lorem.paragraph(),
+            description: faker.lorem.paragraph(),
+            additionalNote: faker.lorem.paragraph(),
+          },
         },
-        diseaseId: faker.helpers.arrayElement(diseases).id,
-        clinicId: faker.helpers.arrayElement(clinics).id,
-        inputedById: faker.helpers.arrayElement(users).id,
-        // Add more fields as required
+        disease: {
+          connectOrCreate: {
+            where: undefined,
+            create: {
+              name: faker.lorem.word(),
+              code: faker.datatype.number(100).toString(),
+            },
+          },
+        },
+        clinics: {
+          connectOrCreate: {
+            where: undefined,
+            create: {
+              name: faker.company.companyName(),
+              code: faker.datatype.number(100).toString(),
+            },
+          },
+        },
+        inputedBy: {
+          connectOrCreate: {
+            where: undefined,
+            create: userCreateOne,
+          },
+        },
+      },
+      program: {
+        connectOrCreate: {
+          where: { id: faker.helpers.arrayElement(programs).id },
+          create: {},
+        },
       },
     });
   }
 
-  console.log('Claims seeding completed.');
+  console.log('Claims seeding with its relations completed.');
 }

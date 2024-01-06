@@ -259,23 +259,29 @@ export function fakeProgramParticipationComplete() {
 export function fakeProgram() {
   return {
     plan: faker.helpers.arrayElement([ApplicationType.SANTUNAN_HARIAN_RAWAT_INAP, ApplicationType.BANTUAN_BIAYA_CUCI_DARAH, ApplicationType.BANTUAN_KURSI_RODA, ApplicationType.BANTUAN_WALKER, ApplicationType.BANTUAN_IGD_UGD, ApplicationType.BANTUAN_RAWAT_INAP] as const),
+    maxAllowancePercentage: undefined,
+    allowanceCeiling: undefined,
+    maxAllowancePerYear: undefined,
+    claimPeriodMax: undefined,
+    reclaimPeriodMax: undefined,
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    allowanceCeiling: faker.datatype.float(),
     class: faker.helpers.arrayElement([Class.I, Class.II, Class.III] as const),
-    maxAllowance: faker.datatype.float(),
   };
 }
 export function fakeProgramComplete() {
   return {
     id: faker.datatype.number(),
     plan: faker.helpers.arrayElement([ApplicationType.SANTUNAN_HARIAN_RAWAT_INAP, ApplicationType.BANTUAN_BIAYA_CUCI_DARAH, ApplicationType.BANTUAN_KURSI_RODA, ApplicationType.BANTUAN_WALKER, ApplicationType.BANTUAN_IGD_UGD, ApplicationType.BANTUAN_RAWAT_INAP] as const),
+    maxAllowancePercentage: undefined,
+    allowanceCeiling: undefined,
+    maxAllowancePerYear: undefined,
+    claimPeriodMax: undefined,
+    reclaimPeriodMax: undefined,
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    allowanceCeiling: faker.datatype.float(),
     class: faker.helpers.arrayElement([Class.I, Class.II, Class.III] as const),
-    maxAllowance: faker.datatype.float(),
   };
 }
 export function fakeClaim() {
@@ -302,7 +308,7 @@ export function fakeClaimComplete() {
     diseaseId: undefined,
     clinicId: faker.datatype.number(),
     inputedById: undefined,
-    claimTypeId: faker.datatype.number(),
+    programId: faker.datatype.number(),
   };
 }
 export function fakeDocument() {
@@ -344,24 +350,6 @@ export function fakeTagComplete() {
     color: faker.helpers.arrayElement([Color.WHITE, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN] as const),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
-  };
-}
-export function fakeClaimType() {
-  return {
-    jenis: faker.lorem.words(5),
-    jenisRI: faker.lorem.words(5),
-    plan: faker.lorem.words(5),
-    claimId: faker.datatype.number(),
-  };
-}
-export function fakeClaimTypeComplete() {
-  return {
-    id: faker.datatype.number(),
-    jenis: faker.lorem.words(5),
-    jenisRI: faker.lorem.words(5),
-    plan: faker.lorem.words(5),
-    programId: faker.datatype.number(),
-    claimId: faker.datatype.number(),
   };
 }
 export function fakeClaimFinancial() {
