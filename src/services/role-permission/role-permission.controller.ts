@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, RolePermission } from '@prisma/client';
 import { RolePermissionService } from './role-permission.service';
+import { PermissionFindOneByUserIdArgs } from './dto/permission_find_one';
 
 @Injectable()
 export class RolePermissionController {
@@ -48,5 +49,9 @@ export class RolePermissionController {
 
   async count(rolePermissionCountArgs: Prisma.RolePermissionCountArgs) {
     return await this.rolePermissionService.count(rolePermissionCountArgs);
+  }
+
+  async findOneByUserId(permissionFindOneByUserIdArgs: PermissionFindOneByUserIdArgs): Promise<RolePermission> {
+    return await this.rolePermissionService.findFirst({});
   }
 }

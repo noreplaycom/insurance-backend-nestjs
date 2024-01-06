@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ParticipantService } from './participant.service';
+import { ParticipantStatus } from 'src/@generated';
 
 @Injectable()
 export class ParticipantController {
@@ -48,5 +49,9 @@ export class ParticipantController {
 
   async count(participantCountArgs: Prisma.ParticipantCountArgs) {
     return await this.participantService.count(participantCountArgs);
+  }
+
+  async getParticipantStatuses(): Promise<string[]> {
+    return Object.keys(ParticipantStatus);
   }
 }

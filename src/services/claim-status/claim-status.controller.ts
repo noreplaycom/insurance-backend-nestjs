@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { ClaimStatusService } from './claim-status.service';
+import { ClaimStatus, ClaimStatusType } from 'src/@generated';
+import { ClaimStatusFindManyByClaimIdArgs } from './dto/claim_status_find_many_by_claim_id';
 
 @Injectable()
 export class ClaimStatusController {
@@ -48,5 +50,13 @@ export class ClaimStatusController {
 
   async count(claimStatusCountArgs: Prisma.ClaimStatusCountArgs) {
     return await this.claimStatusService.count(claimStatusCountArgs);
+  }
+
+  async getClaimStatusTypes(): Promise<string[]> {
+    return Object.keys(ClaimStatusType);
+  }
+
+  async findManyByClaimId(claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs): Promise<ClaimStatus[]> {
+    return await this.claimStatusService.findMany({})
   }
 }

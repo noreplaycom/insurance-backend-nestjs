@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { UserService } from './user.service';
+import { UserFindOneByIdArgs } from './dto/user_find_one';
+import { UserUpdateOneByIdArgs } from './dto/user_update_one';
+import { UserDeleteOneByIdArgs } from './dto/user_delete_one';
+import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
 
 @Injectable()
 export class UserController {
@@ -48,5 +52,25 @@ export class UserController {
 
   async count(userCountArgs: Prisma.UserCountArgs) {
     return await this.userService.count(userCountArgs);
+  }
+
+  async findManyNotParticipant(): Promise<User[]> {
+    return [];
+  }
+
+  async createOneAsParticipant(userCreateOneAsParticipantArgs: UserCreateOneAsParticipantArgs): Promise<User> {
+    return await this.userService.findFirst({});
+  }
+
+  async findOneById(userFindOneByIdArgs: UserFindOneByIdArgs): Promise<User> {
+    return await this.userService.findFirst({});
+  }
+
+  async updateOneById(userUpdateOneByIdArgs: UserUpdateOneByIdArgs): Promise<User> {
+    return await this.userService.findFirst({});
+  }
+
+  async deleteById(userDeleteOneByIdArgs: UserDeleteOneByIdArgs): Promise<boolean> {
+    return true
   }
 }

@@ -49,4 +49,8 @@ export class NotificationController {
   async count(notificationCountArgs: Prisma.NotificationCountArgs) {
     return await this.notificationService.count(notificationCountArgs);
   }
+
+  async updateManyIsCleared(): Promise<boolean> {
+    return true;
+  }
 }
