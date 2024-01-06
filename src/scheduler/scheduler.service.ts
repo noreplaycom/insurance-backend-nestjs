@@ -1,6 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { BackupType } from 'src/@generated';
+import { BackupController } from 'src/services/backup/backup.controller';
 import { postgresBackup } from 'src/utils/database-import.function';
 // import { UploaderService } from '../services/uploader/uploader.service';
 // import { ImagesController } from 'src/services/images/images.controller';
@@ -10,6 +12,7 @@ export class SchedulerService {
   constructor(
     // private readonly imagesController: ImagesController, // private readonly uploaderService: UploaderService,
     private readonly configService: ConfigService,
+    private readonly backupController: BackupController,
   ) {}
   private readonly logger = new Logger(SchedulerService.name);
 
@@ -18,7 +21,8 @@ export class SchedulerService {
   async databaseLocalBackupForPostgres() {
     try {
       const postgresConnectionString = this.configService.get('DATABASE_URL');
-      await postgresBackup(postgresConnectionString);
+      const path = await postgresBackup(postgresConnectionString);
+      await this.backupController.createOneAutomatic();
     } catch (error) {
       this.logger.error('scheduler database backup for postgres failed');
     }

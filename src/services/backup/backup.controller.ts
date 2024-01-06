@@ -1,14 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { BackupService } from './backup.service';
+import { ConfigService } from '@nestjs/config';
+import { postgresBackup } from 'src/utils/database-import.function';
+import { BackupType } from 'src/@generated';
 
 @Injectable()
 export class BackupController {
-  constructor(private readonly backupService: BackupService) {}
+  constructor(
+    private readonly backupService: BackupService,
+    private readonly configService: ConfigService,
+  ) {}
 
-  async createOne(backupCreateArgs: Prisma.BackupCreateArgs) {
-    return await this.backupService.createOne(backupCreateArgs);
-  }
+  // async createOne(backupCreateArgs: Prisma.BackupCreateArgs) {
+  //   return await this.backupService.createOne(backupCreateArgs);
+  // }
 
   async createMany(backupCreateManyArgs: Prisma.BackupCreateManyArgs) {
     return await this.backupService.createMany(backupCreateManyArgs);
@@ -48,5 +54,31 @@ export class BackupController {
 
   async count(backupCountArgs: Prisma.BackupCountArgs) {
     return await this.backupService.count(backupCountArgs);
+  }
+
+  async createOne(backupCreateArgs: Prisma.BackupCreateArgs) {
+    const postgresConnectionString = this.configService.get('DATABASE_URL');
+    const path = await postgresBackup(postgresConnectionString);
+    return await this.backupService.createOne({
+      data: {
+        ...backupCreateArgs.data,
+        isSuccessful: !!path,
+        path,
+        type: BackupType.MANUAL
+      }
+    });
+  }
+
+  async createOneAutomatic() {
+    const postgresConnectionString = this.configService.get('DATABASE_URL');
+    const path = await postgresBackup(postgresConnectionString);
+    return await this.backupService.createOne({
+      data: {
+        path,
+        isSuccessful: !!path,
+        name: 'Database weekly back up by scheduler',
+        type: BackupType.AUTO,
+      }
+    })
   }
 }

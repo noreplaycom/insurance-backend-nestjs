@@ -379,7 +379,7 @@ export class ClaimController {
   async export() {
     const claims = await this.claimService.findMany({});
     const xlsxFilePath = await createXLSX(claims, 'claim');
-    return this.configService.get('APP_URL') + '/' + xlsxFilePath;
+    return this.configService.get('APP_URL') + xlsxFilePath;
   }
 
   async findManyByClaimIds(

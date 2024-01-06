@@ -8,13 +8,13 @@ export async function createXLSX(data: Record<string, any>[], type: string) {
   const workBook = utils.book_new();
   utils.book_append_sheet(workBook, workSheet, type);
 
-  const volume = join(process.cwd(), `volume/xlsx/`);
+  const volume = join(process.cwd(), `volume/xlsx`);
   const filename = `${type}.xlsx`;
-  const path = `xlsx/${filename}`;
+  const path = `/xlsx/${filename}`;
   if (!existsSync(volume)) {
     mkdirSync(volume);
   }
-  writeXLSXFile(workBook, volume + filename, {
+  writeXLSXFile(workBook, volume + '/' + filename, {
     bookType: 'xlsx',
     type: 'file',
   });
