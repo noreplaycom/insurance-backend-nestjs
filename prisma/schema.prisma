@@ -85,12 +85,12 @@ model Role {
 
     description String?
 
-    ///Jika orderLevel dia adalah 9999 maka dia adalah superuser
-    orderLevel Int @default(0)
+    // ///Jika orderLevel dia adalah 9999 maka     dia adalah superuser
+    // orderLevel Int @default(0)
 
-    // higherLevelThan Role? @relation("level", fields: [higherLevelThanId], references: [id])
+    higherLevelThan Role? @relation("level", fields: [higherLevelThanId], references: [id])
 
-    // higherLevelThanId Int?
+    higherLevelThanId Int?
 
     //-------------------------- m relations --------------------------------
 
@@ -98,7 +98,7 @@ model Role {
 
     users User[]
 
-    // lowerLevelThan Role[] @relation("level")
+    lowerLevelThan Role[] @relation("level")
 
     @@map("roles")
 }
