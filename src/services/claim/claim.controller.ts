@@ -25,7 +25,10 @@ import {
 import { FileUpload } from 'graphql-upload';
 import { createXLSX, readXLSX } from 'src/utils/excel.function';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
-import { detectMimeTypeFromFilename, mapFileTypeEnumFromMIME } from 'src/utils/mime-types.function';
+import {
+  detectMimeTypeFromFilename,
+  mapFileTypeEnumFromMIME,
+} from 'src/utils/mime-types.function';
 import { FileType } from 'src/model/enums';
 import { ConfigService } from '@nestjs/config';
 import { ClaimFindManyByClaimIdsArgs } from './dto/claim_find_many_by_claim_ids';
@@ -292,7 +295,7 @@ export class ClaimController {
     claimFindOneByIdArgs: ClaimFindOneByIdArgs,
   ): Promise<Claim> {
     return await this.claimService.findOne({
-      where: { id: claimFindOneByIdArgs.id }
+      where: { id: claimFindOneByIdArgs.id },
     });
   }
 
@@ -300,15 +303,15 @@ export class ClaimController {
     claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs,
   ): Promise<Claim> {
     return await this.claimService.findOne({
-      where: { id: claimUpdateOneOfStatusArgs.id }
-    })
+      where: { id: claimUpdateOneOfStatusArgs.id },
+    });
   }
 
   async createOneForm(
     claimFormCreateOneArgs: ClaimFormCreateOneArgs,
   ): Promise<Claim> {
     return await this.claimService.createOne({
-      data: claimFormCreateOneArgs
+      data: claimFormCreateOneArgs,
     });
   }
 
@@ -318,15 +321,16 @@ export class ClaimController {
     return await this.claimService.count(claimCountQuantityWhereArgs);
   }
 
-  async import(
-    file: FileUpload
-  ): Promise<boolean> {
+  async import(file: FileUpload): Promise<boolean> {
+    //TODO: Permission check. jika user tidak memiliki permission untuk import, maka throw error
+
     const { createReadStream } = file;
     const mimeTypes = detectMimeTypeFromFilename(file.filename);
     const detectedFileTypes = mapFileTypeEnumFromMIME(mimeTypes);
 
-    if (detectedFileTypes !== FileType.XLSX) throw new IGraphQLError({ code: 180002 });
-    
+    if (detectedFileTypes !== FileType.XLSX)
+      throw new IGraphQLError({ code: 180002 });
+
     const stream = createReadStream();
     const chunks = [];
     await new Promise<Buffer>((resolve, reject) => {
@@ -357,17 +361,19 @@ export class ClaimController {
       'clinicId',
       'inputedById',
       'programId',
-    ]
+    ];
     const headers = Object.keys(data ? data[0] : {});
-    const validHeaders = expectedHeaders.every(expectedHeader => headers.includes(expectedHeader));
+    const validHeaders = expectedHeaders.every((expectedHeader) =>
+      headers.includes(expectedHeader),
+    );
 
-    if (!validHeaders) throw new IGraphQLError({ code: 180001 })
+    if (!validHeaders) throw new IGraphQLError({ code: 180001 });
 
     await this.claimService.createMany({
       data: data as Claim[],
-      skipDuplicates: true
-    })
-    return true
+      skipDuplicates: true,
+    });
+    return true;
   }
 
   async export() {
