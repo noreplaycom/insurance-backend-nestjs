@@ -31,6 +31,7 @@ import {
 } from 'src/utils/mime-types.function';
 import { FileType } from 'src/model/enums';
 import { ConfigService } from '@nestjs/config';
+import { ClaimFindManyByClaimIdsArgs } from './dto/claim_find_many_by_claim_ids';
 
 @Injectable()
 export class ClaimController {
@@ -317,7 +318,7 @@ export class ClaimController {
   async countWhere(
     claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
   ): Promise<number> {
-    return 10;
+    return await this.claimService.count(claimCountQuantityWhereArgs);
   }
 
   async import(file: FileUpload): Promise<boolean> {
@@ -379,5 +380,17 @@ export class ClaimController {
     const claims = await this.claimService.findMany({});
     const xlsxFilePath = createXLSX(claims, 'claim');
     return this.configService.get('APP_URL') + '/' + xlsxFilePath;
+  }
+
+  async findManyByClaimIds(
+    claimFindManyByClaimIdsArgs: ClaimFindManyByClaimIdsArgs
+  ) {
+    return await this.claimService.findMany({
+      where: {
+        id: {
+          in: claimFindManyByClaimIdsArgs.ids
+        }
+      }
+    })
   }
 }
