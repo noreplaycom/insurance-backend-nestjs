@@ -2685,16 +2685,8 @@ input NotificationWhereInput {
   OR: [NotificationWhereInput!]
   NOT: [NotificationWhereInput!]
   id: IntFilter
-  title: StringFilter
-  subtitle: StringFilter
-  content: StringFilter
   isRead: BoolFilter
   isCleared: BoolFilter
-  deepLink: StringNullableFilter
-  fcmToken: StringNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  userId: StringFilter
   user: UserRelationFilter
 }
 
@@ -3480,31 +3472,15 @@ input NotificationWhereUniqueInput {
   AND: [NotificationWhereInput!]
   OR: [NotificationWhereInput!]
   NOT: [NotificationWhereInput!]
-  title: StringFilter
-  subtitle: StringFilter
-  content: StringFilter
   isRead: BoolFilter
   isCleared: BoolFilter
-  deepLink: StringNullableFilter
-  fcmToken: StringNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  userId: StringFilter
   user: UserRelationFilter
 }
 
 input NotificationOrderByWithRelationInput {
   id: SortOrder
-  title: SortOrder
-  subtitle: SortOrder
-  content: SortOrder
   isRead: SortOrder
   isCleared: SortOrder
-  deepLink: SortOrderInput
-  fcmToken: SortOrderInput
-  createdAt: SortOrder
-  updatedAt: SortOrder
-  userId: SortOrder
   user: UserOrderByWithRelationInput
 }
 
@@ -3524,16 +3500,8 @@ enum NotificationScalarFieldEnum {
 
 input NotificationCountAggregateInput {
   id: Boolean
-  title: Boolean
-  subtitle: Boolean
-  content: Boolean
   isRead: Boolean
   isCleared: Boolean
-  deepLink: Boolean
-  fcmToken: Boolean
-  createdAt: Boolean
-  updatedAt: Boolean
-  userId: Boolean
   _all: Boolean
 }
 
@@ -3547,30 +3515,14 @@ input NotificationSumAggregateInput {
 
 input NotificationMinAggregateInput {
   id: Boolean
-  title: Boolean
-  subtitle: Boolean
-  content: Boolean
   isRead: Boolean
   isCleared: Boolean
-  deepLink: Boolean
-  fcmToken: Boolean
-  createdAt: Boolean
-  updatedAt: Boolean
-  userId: Boolean
 }
 
 input NotificationMaxAggregateInput {
   id: Boolean
-  title: Boolean
-  subtitle: Boolean
-  content: Boolean
   isRead: Boolean
   isCleared: Boolean
-  deepLink: Boolean
-  fcmToken: Boolean
-  createdAt: Boolean
-  updatedAt: Boolean
-  userId: Boolean
 }
 
 type Mutation {
@@ -5250,15 +5202,8 @@ input NotificationCreateNestedManyWithoutUserInput {
 }
 
 input NotificationCreateWithoutUserInput {
-  title: String!
-  subtitle: String!
-  content: String!
   isRead: Boolean
   isCleared: Boolean
-  deepLink: String
-  fcmToken: String
-  createdAt: DateTime
-  updatedAt: DateTime
 }
 
 input NotificationCreateOrConnectWithoutUserInput {
@@ -5273,15 +5218,8 @@ input NotificationCreateManyUserInputEnvelope {
 
 input NotificationCreateManyUserInput {
   id: Int
-  title: String!
-  subtitle: String!
-  content: String!
   isRead: Boolean
   isCleared: Boolean
-  deepLink: String
-  fcmToken: String
-  createdAt: DateTime
-  updatedAt: DateTime
 }
 
 input UserCreateOrConnectWithoutClaimsInputInput {
@@ -7749,15 +7687,8 @@ input NotificationUpsertWithWhereUniqueWithoutUserInput {
 }
 
 input NotificationUpdateWithoutUserInput {
-  title: StringFieldUpdateOperationsInput
-  subtitle: StringFieldUpdateOperationsInput
-  content: StringFieldUpdateOperationsInput
   isRead: BoolFieldUpdateOperationsInput
   isCleared: BoolFieldUpdateOperationsInput
-  deepLink: NullableStringFieldUpdateOperationsInput
-  fcmToken: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input NotificationUpdateWithWhereUniqueWithoutUserInput {
@@ -7775,28 +7706,13 @@ input NotificationScalarWhereInput {
   OR: [NotificationScalarWhereInput!]
   NOT: [NotificationScalarWhereInput!]
   id: IntFilter
-  title: StringFilter
-  subtitle: StringFilter
-  content: StringFilter
   isRead: BoolFilter
   isCleared: BoolFilter
-  deepLink: StringNullableFilter
-  fcmToken: StringNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  userId: StringFilter
 }
 
 input NotificationUpdateManyMutationInput {
-  title: StringFieldUpdateOperationsInput
-  subtitle: StringFieldUpdateOperationsInput
-  content: StringFieldUpdateOperationsInput
   isRead: BoolFieldUpdateOperationsInput
   isCleared: BoolFieldUpdateOperationsInput
-  deepLink: NullableStringFieldUpdateOperationsInput
-  fcmToken: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpdateToOneWithWhereWithoutClaimsInputInput {
@@ -8084,103 +8000,17 @@ input UserUpdateToOneWithWhereWithoutClaimActionsInput {
 }
 
 input NotificationCreateInput {
-  title: String!
-  subtitle: String!
-  content: String!
   isRead: Boolean
   isCleared: Boolean
-  deepLink: String
-  fcmToken: String
-  createdAt: DateTime
-  updatedAt: DateTime
-  user: UserCreateNestedOneWithoutNotificationInput!
-}
-
-input UserCreateNestedOneWithoutNotificationInput {
-  create: UserCreateWithoutNotificationInput
-  connectOrCreate: UserCreateOrConnectWithoutNotificationInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutNotificationInput {
-  id: String
-  fullName: String!
-  email: String!
-  emailVerifiedAt: DateTime
-  password: String!
-  profilePictureUrl: String
-  deletedAt: DateTime
-  participantId: Int
-  role: RoleCreateNestedOneWithoutUsersInput!
-  participant: ParticipantCreateNestedOneWithoutUserInput
-  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
-  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
-  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
-}
-
-input UserCreateOrConnectWithoutNotificationInput {
-  where: UserWhereUniqueInput!
-  create: UserCreateWithoutNotificationInput!
 }
 
 input NotificationCreateManyInput {
   id: Int
-  title: String!
-  subtitle: String!
-  content: String!
   isRead: Boolean
   isCleared: Boolean
-  deepLink: String
-  fcmToken: String
-  createdAt: DateTime
-  updatedAt: DateTime
-  userId: String!
 }
 
 input NotificationUpdateInput {
-  title: StringFieldUpdateOperationsInput
-  subtitle: StringFieldUpdateOperationsInput
-  content: StringFieldUpdateOperationsInput
   isRead: BoolFieldUpdateOperationsInput
   isCleared: BoolFieldUpdateOperationsInput
-  deepLink: NullableStringFieldUpdateOperationsInput
-  fcmToken: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutNotificationNestedInput
-}
-
-input UserUpdateOneRequiredWithoutNotificationNestedInput {
-  create: UserCreateWithoutNotificationInput
-  connectOrCreate: UserCreateOrConnectWithoutNotificationInput
-  upsert: UserUpsertWithoutNotificationInput
-  connect: UserWhereUniqueInput
-  update: UserUpdateToOneWithWhereWithoutNotificationInput
-}
-
-input UserUpsertWithoutNotificationInput {
-  update: UserUpdateWithoutNotificationInput!
-  create: UserCreateWithoutNotificationInput!
-  where: UserWhereInput
-}
-
-input UserUpdateWithoutNotificationInput {
-  id: StringFieldUpdateOperationsInput
-  fullName: StringFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  profilePictureUrl: NullableStringFieldUpdateOperationsInput
-  deletedAt: NullableDateTimeFieldUpdateOperationsInput
-  participantId: NullableIntFieldUpdateOperationsInput
-  role: RoleUpdateOneRequiredWithoutUsersNestedInput
-  participant: ParticipantUpdateOneWithoutUserNestedInput
-  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
-  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
-  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
-}
-
-input UserUpdateToOneWithWhereWithoutNotificationInput {
-  where: UserWhereInput
-  data: UserUpdateWithoutNotificationInput!
 }

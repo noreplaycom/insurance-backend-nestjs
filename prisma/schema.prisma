@@ -449,7 +449,7 @@ model Notification {
     updatedAt DateTime @updatedAt
 
     //-------------------------- 1 relations --------------------------------
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['NotificationCreate*Input','NotificationUpdate*Input']})
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     /// @HideField({ output: false, input: true })
     userId String

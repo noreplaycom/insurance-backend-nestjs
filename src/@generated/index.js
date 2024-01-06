@@ -35616,7 +35616,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], NotificationOrderByWithRelationInput.prototype, "userId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => UserOrderByWithRelationInput, { nullable: true })
 ], NotificationOrderByWithRelationInput.prototype, "user", void 0);
 NotificationOrderByWithRelationInput = __decorate([
     (0, graphql_4.InputType)()
@@ -36285,7 +36285,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], NotificationWhereUniqueInput.prototype, "userId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => UserRelationFilter, { nullable: true })
 ], NotificationWhereUniqueInput.prototype, "user", void 0);
 NotificationWhereUniqueInput = __decorate([
     (0, graphql_4.InputType)()
@@ -36336,7 +36336,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], NotificationWhereInput.prototype, "userId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => UserRelationFilter, { nullable: true })
 ], NotificationWhereInput.prototype, "user", void 0);
 NotificationWhereInput = NotificationWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
