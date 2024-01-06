@@ -69,7 +69,7 @@ import { NotificationModule } from './services/notification/notification.module'
       },
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), 'volume/xlsx'),
+      rootPath: join(process.cwd(), 'volume'),
     }),
     JwtModule.registerAsync({
       global: true,
