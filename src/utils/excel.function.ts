@@ -3,23 +3,18 @@ import { utils, writeFile as writeXLSXFile, read as readXLSBuffer } from 'xlsx';
 import { join } from 'path';
 
 export function createXLSX(data: Record<string, any>[], type: string) {
-  const date = new Date()
-  const year = date.getFullYear();
-  const month = date.getMonth()+1;
-  const dt = date.getDate();
-  const fullDate = `${year}-${month > 10 ? month : '0' + month.toString()}-${dt > 10 ? dt : '0' + dt.toString()}`
-
   const workSheet = utils.json_to_sheet(data);
   const workBook = utils.book_new();
   utils.book_append_sheet(workBook, workSheet, type);
 
   const now = new Date().toISOString();
-  const path = `/volume/xlsx/${type}/${type}-${now}.xlsx`
-  writeXLSXFile(workBook, join(process.cwd(), path), {
+  const path = `xlsx/${type}/${type}-${now}.xlsx`
+  const volume = `volume/${path}`;
+  writeXLSXFile(workBook, join(process.cwd(), volume), {
     bookType: 'xlsx',
     type: 'file',
   });
-  return `${type}/${type}-${now}.xlsx`;
+  return path;
 }
 
 export function readXLSX(data: Buffer): unknown[] {
