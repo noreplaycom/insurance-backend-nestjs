@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Claim, Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { ClaimService } from './claim.service';
-import { ClaimChannel, ClaimStatusType } from 'src/@generated';
+import { Claim, ClaimChannel, ClaimStatusType } from 'src/@generated';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
 import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
 import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
@@ -22,10 +22,17 @@ import {
   ClaimCountTotalByCustomRangeAndPeriodArgs,
   ClaimCountTotalByCustomRangeAndPeriodQuery,
 } from './dto/claim_count_total_by_custom_range_and_period';
+import { FileUpload } from 'graphql-upload';
+import { createXLSX, readXLSX } from 'src/utils/excel.function';
+import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
+import { detectMimeTypeFromFilename, mapFileTypeEnumFromMIME } from 'src/utils/mime-types.function';
+import { FileType } from 'src/model/enums';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class ClaimController {
   constructor(
+    private readonly configService: ConfigService,
     private readonly claimService: ClaimService,
     private readonly claimFinancialController: ClaimFinancialController,
   ) {}
@@ -283,24 +290,88 @@ export class ClaimController {
   async findOneById(
     claimFindOneByIdArgs: ClaimFindOneByIdArgs,
   ): Promise<Claim> {
-    return await this.claimService.findFirst({});
+    return await this.claimService.findOne({
+      where: { id: claimFindOneByIdArgs.id }
+    });
   }
 
   async updateOneOfStatus(
     claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs,
   ): Promise<Claim> {
-    return await this.claimService.findFirst({});
+    return await this.claimService.findOne({
+      where: { id: claimUpdateOneOfStatusArgs.id }
+    })
   }
 
   async createOneForm(
     claimFormCreateOneArgs: ClaimFormCreateOneArgs,
   ): Promise<Claim> {
-    return await this.claimService.findFirst({});
+    return await this.claimService.createOne({
+      data: claimFormCreateOneArgs
+    });
   }
 
   async countWhere(
     claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
   ): Promise<number> {
     return 10;
+  }
+
+  async import(
+    file: FileUpload
+  ): Promise<boolean> {
+    const { createReadStream } = file;
+    const mimeTypes = detectMimeTypeFromFilename(file.filename);
+    const detectedFileTypes = mapFileTypeEnumFromMIME(mimeTypes);
+
+    if (detectedFileTypes !== FileType.XLSX) throw new IGraphQLError({ code: 180002 });
+    
+    const stream = createReadStream();
+    const chunks = [];
+    await new Promise<Buffer>((resolve, reject) => {
+      let buffer: Buffer;
+      stream.on('data', function (chunk: any) {
+        chunks.push(chunk);
+      });
+      stream.on('end', function () {
+        buffer = Buffer.concat(chunks);
+        resolve(buffer);
+      });
+      stream.on('error', reject);
+    });
+    const result = Buffer.concat(chunks);
+    const data = readXLSX(result);
+    const expectedHeaders = [
+      'id',
+      'createdAt',
+      'updatedAt',
+      'deletedAt',
+      'channel',
+      'admedicaStatus',
+      'company',
+      'participantId',
+      'claimFinancialId',
+      'claimProcessId',
+      'diseaseId',
+      'clinicId',
+      'inputedById',
+      'programId',
+    ]
+    const headers = Object.keys(data ? data[0] : {});
+    const validHeaders = expectedHeaders.every(expectedHeader => headers.includes(expectedHeader));
+
+    if (!validHeaders) throw new IGraphQLError({ code: 180001 })
+
+    await this.claimService.createMany({
+      data: data as Claim[],
+      skipDuplicates: true
+    })
+    return true
+  }
+
+  async export() {
+    const claims = await this.claimService.findMany({});
+    const xlsxFilePath = createXLSX(claims, 'claim');
+    return this.configService.get('APP_URL') + '/' + xlsxFilePath;
   }
 }

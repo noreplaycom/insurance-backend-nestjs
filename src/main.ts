@@ -5,6 +5,7 @@ import { IExceptionFilter } from './utils/exception/custom-exception-filter';
 import { ConfigService } from '@nestjs/config';
 // Ignore the import error
 import { graphqlUploadExpress } from 'graphql-upload';
+import { DatabaseTool } from './backup/backup';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -32,5 +33,8 @@ async function bootstrap() {
 
   await app.listen(port);
   console.log(`Application is running in ${environment} mode on port ${port}`);
+
+  const dbTool = new DatabaseTool(configService);
+  await dbTool.performBackup()
 }
 bootstrap();
