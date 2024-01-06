@@ -692,22 +692,6 @@ enum Color {
     GREEN
 }
 
-// model Company {
-//     //-------------------------- scalars --------------------------------
-
-//     id Int @id @default(autoincrement())
-
-//     name String
-
-//     //-------------------------- m relations --------------------------------
-
-//     claims Claim[]
-
-//     createdAt DateTime @default(now())
-
-//     updatedAt DateTime @updatedAt
-// }
-
 enum ApplicationType {
     SANTUNAN_HARIAN_RAWAT_INAP
     BANTUAN_BIAYA_CUCI_DARAH
