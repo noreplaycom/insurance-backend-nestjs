@@ -34,7 +34,7 @@ async function bootstrap() {
   await app.listen(port);
   console.log(`Application is running in ${environment} mode on port ${port}`);
   
-  const dbconnectionString = configService.get('DATABASE_URL');
-  await postgresBackup(dbconnectionString);
+  // const dbconnectionString = configService.get('DATABASE_URL');
+  // await postgresBackup(dbconnectionString);
 }
 bootstrap();
