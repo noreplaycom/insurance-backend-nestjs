@@ -418,6 +418,14 @@ type Claim {
   _count: ClaimCount!
 }
 
+type AggregateClaimFinancial {
+  _count: ClaimFinancialCountAggregate
+  _avg: ClaimFinancialAvgAggregate
+  _sum: ClaimFinancialSumAggregate
+  _min: ClaimFinancialMinAggregate
+  _max: ClaimFinancialMaxAggregate
+}
+
 type ClaimFinancialAvgAggregate {
   id: Float
   requestedAmount: Float
@@ -1926,6 +1934,21 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   claimCount(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialFindOne(where: ClaimFinancialWhereUniqueInput!): ClaimFinancial
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialFindMany(where: ClaimFinancialWhereInput, orderBy: [ClaimFinancialOrderByWithRelationInput!], cursor: ClaimFinancialWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimFinancialScalarFieldEnum!]): [ClaimFinancial!]
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialFindFirst(where: ClaimFinancialWhereInput, orderBy: [ClaimFinancialOrderByWithRelationInput!], cursor: ClaimFinancialWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimFinancialScalarFieldEnum!]): ClaimFinancial
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialAggregate(where: ClaimFinancialWhereInput, orderBy: [ClaimFinancialOrderByWithRelationInput!], cursor: ClaimFinancialWhereUniqueInput, take: Int, skip: Int, _count: ClaimFinancialCountAggregateInput, _avg: ClaimFinancialAvgAggregateInput, _sum: ClaimFinancialSumAggregateInput, _min: ClaimFinancialMinAggregateInput, _max: ClaimFinancialMaxAggregateInput): AggregateClaimFinancial
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialCount(where: ClaimFinancialWhereInput, orderBy: [ClaimFinancialOrderByWithRelationInput!], cursor: ClaimFinancialWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimFinancialScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
   claimStatusFindOne(where: ClaimStatusWhereUniqueInput!): ClaimStatus
@@ -3493,6 +3516,86 @@ input ClaimMaxAggregateInput {
   programId: Boolean
 }
 
+input ClaimFinancialWhereUniqueInput {
+  id: Int
+  claimStatusId: Int
+  AND: [ClaimFinancialWhereInput!]
+  OR: [ClaimFinancialWhereInput!]
+  NOT: [ClaimFinancialWhereInput!]
+  requestedAmount: FloatFilter
+  paidAmount: FloatNullableFilter
+  rejectedAmount: FloatNullableFilter
+  transactionProcessDate: DateTimeNullableFilter
+  transferDate: DateTimeNullableFilter
+  branchId: IntFilter
+  branchPayee: BranchNullableRelationFilter
+  claim: ClaimNullableRelationFilter
+  claimStatus: ClaimStatusNullableRelationFilter
+}
+
+enum ClaimFinancialScalarFieldEnum {
+  id
+  requestedAmount
+  paidAmount
+  rejectedAmount
+  transactionProcessDate
+  transferDate
+  branchId
+  claimStatusId
+}
+
+input ClaimFinancialCountAggregateInput {
+  id: Boolean
+  requestedAmount: Boolean
+  paidAmount: Boolean
+  rejectedAmount: Boolean
+  transactionProcessDate: Boolean
+  transferDate: Boolean
+  branchId: Boolean
+  claimStatusId: Boolean
+  _all: Boolean
+}
+
+input ClaimFinancialAvgAggregateInput {
+  id: Boolean
+  requestedAmount: Boolean
+  paidAmount: Boolean
+  rejectedAmount: Boolean
+  branchId: Boolean
+  claimStatusId: Boolean
+}
+
+input ClaimFinancialSumAggregateInput {
+  id: Boolean
+  requestedAmount: Boolean
+  paidAmount: Boolean
+  rejectedAmount: Boolean
+  branchId: Boolean
+  claimStatusId: Boolean
+}
+
+input ClaimFinancialMinAggregateInput {
+  id: Boolean
+  requestedAmount: Boolean
+  paidAmount: Boolean
+  rejectedAmount: Boolean
+  transactionProcessDate: Boolean
+  transferDate: Boolean
+  branchId: Boolean
+  claimStatusId: Boolean
+}
+
+input ClaimFinancialMaxAggregateInput {
+  id: Boolean
+  requestedAmount: Boolean
+  paidAmount: Boolean
+  rejectedAmount: Boolean
+  transactionProcessDate: Boolean
+  transferDate: Boolean
+  branchId: Boolean
+  claimStatusId: Boolean
+}
+
 input ClaimStatusWhereUniqueInput {
   id: Int
   rejectionLetterId: String
@@ -4089,6 +4192,24 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   claimDeleteMany(where: ClaimWhereInput): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialCreateOne(data: ClaimFinancialCreateInput!): ClaimFinancial
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialCreateMany(data: [ClaimFinancialCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialUpdateOne(data: ClaimFinancialUpdateInput!, where: ClaimFinancialWhereUniqueInput!): ClaimFinancial
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialUpdateMany(data: ClaimFinancialUpdateManyMutationInput!, where: ClaimFinancialWhereInput): ClaimFinancial
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialDelete(where: ClaimFinancialWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  claimFinancialDeleteMany(where: ClaimFinancialWhereInput): Boolean!
 
   """Deskripsinya ada disini loh"""
   claimStatusCreateOne(data: ClaimStatusCreateInput!): ClaimStatus
@@ -5456,23 +5577,6 @@ input ClaimFinancialCreateWithoutClaimStatusInput {
 input ClaimFinancialCreateOrConnectWithoutClaimStatusInput {
   where: ClaimFinancialWhereUniqueInput!
   create: ClaimFinancialCreateWithoutClaimStatusInput!
-}
-
-input ClaimFinancialWhereUniqueInput {
-  id: Int
-  claimStatusId: Int
-  AND: [ClaimFinancialWhereInput!]
-  OR: [ClaimFinancialWhereInput!]
-  NOT: [ClaimFinancialWhereInput!]
-  requestedAmount: FloatFilter
-  paidAmount: FloatNullableFilter
-  rejectedAmount: FloatNullableFilter
-  transactionProcessDate: DateTimeNullableFilter
-  transferDate: DateTimeNullableFilter
-  branchId: IntFilter
-  branchPayee: BranchNullableRelationFilter
-  claim: ClaimNullableRelationFilter
-  claimStatus: ClaimStatusNullableRelationFilter
 }
 
 input ClaimStatusCreateOrConnectWithoutTransactionLetterInput {
@@ -8737,6 +8841,39 @@ input UserUpdateToOneWithWhereWithoutParticipantInput {
 input ParticipantUpdateToOneWithWhereWithoutClaimsInput {
   where: ParticipantWhereInput
   data: ParticipantUpdateWithoutClaimsInput!
+}
+
+input ClaimFinancialCreateInput {
+  requestedAmount: Float!
+  paidAmount: Float
+  rejectedAmount: Float
+  transactionProcessDate: DateTime
+  transferDate: DateTime
+  branchPayee: BranchCreateNestedOneWithoutClaimFinancialInput
+  claim: ClaimCreateNestedOneWithoutClaimFinancialsInput
+  claimStatus: ClaimStatusCreateNestedOneWithoutClaimFinancialInput
+}
+
+input ClaimFinancialCreateManyInput {
+  id: Int
+  requestedAmount: Float!
+  paidAmount: Float
+  rejectedAmount: Float
+  transactionProcessDate: DateTime
+  transferDate: DateTime
+  branchId: Int!
+  claimStatusId: Int!
+}
+
+input ClaimFinancialUpdateInput {
+  requestedAmount: FloatFieldUpdateOperationsInput
+  paidAmount: NullableFloatFieldUpdateOperationsInput
+  rejectedAmount: NullableFloatFieldUpdateOperationsInput
+  transactionProcessDate: NullableDateTimeFieldUpdateOperationsInput
+  transferDate: NullableDateTimeFieldUpdateOperationsInput
+  branchPayee: BranchUpdateOneWithoutClaimFinancialNestedInput
+  claim: ClaimUpdateOneWithoutClaimFinancialsNestedInput
+  claimStatus: ClaimStatusUpdateOneWithoutClaimFinancialNestedInput
 }
 
 input ClaimStatusCreateInput {
