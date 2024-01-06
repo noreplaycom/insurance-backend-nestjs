@@ -18,4 +18,14 @@ export class DatabaseTool {
       })
     })
   }
+
+  async performBackup() {
+    try {
+      await this.execute();
+      this.logger.log('backup success...');
+    } catch (error) {
+      this.logger.error(error);
+      this.logger.error('backup failed...')
+    }
+  }
 }

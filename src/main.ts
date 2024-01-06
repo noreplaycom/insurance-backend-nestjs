@@ -33,8 +33,5 @@ async function bootstrap() {
 
   await app.listen(port);
   console.log(`Application is running in ${environment} mode on port ${port}`);
-
-  const dbTool = new DatabaseTool(configService);
-  await dbTool.performBackup()
 }
 bootstrap();
