@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Float } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Relations } from 'src/utils/relations.decorator';
 import {
@@ -34,8 +34,8 @@ import {
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
 import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
-import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
-import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
+// import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
+// import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 import { ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 
 interface ClaimSelect {
@@ -46,20 +46,20 @@ interface ClaimSelect {
 export class ClaimResolver {
   constructor(private readonly claimController: ClaimController) {}
 
-  // @Mutation(() => Claim, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimCreateOne(
-  //   @Args()
-  //   claimCreateArgs: CreateOneClaimArgs,
-  //   @Relations() relations: ClaimSelect,
-  // ): Promise<Claim | void> {
-  //   return await this.claimController.createOne({
-  //     ...claimCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimCreateOne(
+    @Args()
+    claimCreateArgs: CreateOneClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ): Promise<Claim | void> {
+    return await this.claimController.createOne({
+      ...claimCreateArgs,
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,
@@ -339,17 +339,17 @@ export class ClaimResolver {
   }
 
   // ? CLAIM FORM SCREEN
-  @Mutation(() => Claim, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async claimCreateOne(
-    @Args('claimFormCreateOneArgs')
-    claimFormCreateOneArgs: ClaimFormCreateOneArgs,
-    // @Relations() relations: ClaimSelect,
-  ): Promise<Claim | void> {
-    return await this.claimController.createOneForm(claimFormCreateOneArgs);
-  }
+  // @Mutation(() => Claim, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimCreateOne(
+  //   @Args('claimFormCreateOneArgs')
+  //   claimFormCreateOneArgs: ClaimFormCreateOneArgs,
+  //   // @Relations() relations: ClaimSelect,
+  // ): Promise<Claim | void> {
+  //   return await this.claimController.createOneForm(claimFormCreateOneArgs);
+  // }
 
   // @Query(() => Int, {
   //   nullable: true,
