@@ -10,7 +10,9 @@ export class ContactInfoController {
     return await this.contactInfoService.createOne(contactInfoCreateArgs);
   }
 
-  async createMany(contactInfoCreateManyArgs: Prisma.ContactInfoCreateManyArgs) {
+  async createMany(
+    contactInfoCreateManyArgs: Prisma.ContactInfoCreateManyArgs,
+  ) {
     return await this.contactInfoService.createMany(contactInfoCreateManyArgs);
   }
 
@@ -30,7 +32,9 @@ export class ContactInfoController {
     return await this.contactInfoService.updateOne(contactInfoUpdateOneArgs);
   }
 
-  async updateMany(contactInfoUpdateManyArgs: Prisma.ContactInfoUpdateManyArgs) {
+  async updateMany(
+    contactInfoUpdateManyArgs: Prisma.ContactInfoUpdateManyArgs,
+  ) {
     return await this.contactInfoService.updateMany(contactInfoUpdateManyArgs);
   }
 
@@ -38,7 +42,9 @@ export class ContactInfoController {
     return await this.contactInfoService.delete(contactInfoDeleteArgs);
   }
 
-  async deleteMany(contactInfoDeleteManyArgs: Prisma.ContactInfoDeleteManyArgs) {
+  async deleteMany(
+    contactInfoDeleteManyArgs: Prisma.ContactInfoDeleteManyArgs,
+  ) {
     return await this.contactInfoService.deleteMany(contactInfoDeleteManyArgs);
   }
 

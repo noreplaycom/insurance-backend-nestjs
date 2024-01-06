@@ -11,6 +11,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   async createOne(userCreateArgs: Prisma.UserCreateArgs) {
+    //TODO: Auto create superuser when app first run. (username: superuser, password: superuser)
+    //TODO: Auto assign role to participant when create user as participant
     return await this.userService.createOne(userCreateArgs);
   }
 
@@ -58,7 +60,9 @@ export class UserController {
     return [];
   }
 
-  async createOneAsParticipant(userCreateOneAsParticipantArgs: UserCreateOneAsParticipantArgs): Promise<User> {
+  async createOneAsParticipant(
+    userCreateOneAsParticipantArgs: UserCreateOneAsParticipantArgs,
+  ): Promise<User> {
     return await this.userService.findFirst({});
   }
 
@@ -66,11 +70,15 @@ export class UserController {
     return await this.userService.findFirst({});
   }
 
-  async updateOneById(userUpdateOneByIdArgs: UserUpdateOneByIdArgs): Promise<User> {
+  async updateOneById(
+    userUpdateOneByIdArgs: UserUpdateOneByIdArgs,
+  ): Promise<User> {
     return await this.userService.findFirst({});
   }
 
-  async deleteById(userDeleteOneByIdArgs: UserDeleteOneByIdArgs): Promise<boolean> {
-    return true
+  async deleteById(
+    userDeleteOneByIdArgs: UserDeleteOneByIdArgs,
+  ): Promise<boolean> {
+    return true;
   }
 }

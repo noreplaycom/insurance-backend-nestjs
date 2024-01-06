@@ -9,10 +9,19 @@ import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 import { ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimFinancialController } from '../claim-financial/claim-financial.controller';
 import { Period } from 'src/model/period.enum';
-import { ClaimCountQuantityByCustomRangeAndPeriodArgs, ClaimCountQuantityByCustomRangeAndPeriodQuery } from './dto/claim_count_quantity_by_custom_range_and_period';
+import {
+  ClaimCountQuantityByCustomRangeAndPeriodArgs,
+  ClaimCountQuantityByCustomRangeAndPeriodQuery,
+} from './dto/claim_count_quantity_by_custom_range_and_period';
 import { getNextPeriodDate } from 'src/utils/get-next-period.function';
-import { ClaimCountTotalPercentageVsCustomPeriodArgs, ClaimCountTotalPercentageVsCustomPeriodQuery } from './dto/claim_count_total_percentage_vs_custom_period';
-import { ClaimCountTotalByCustomRangeAndPeriodArgs, ClaimCountTotalByCustomRangeAndPeriodQuery } from './dto/claim_count_total_by_custom_range_and_period';
+import {
+  ClaimCountTotalPercentageVsCustomPeriodArgs,
+  ClaimCountTotalPercentageVsCustomPeriodQuery,
+} from './dto/claim_count_total_percentage_vs_custom_period';
+import {
+  ClaimCountTotalByCustomRangeAndPeriodArgs,
+  ClaimCountTotalByCustomRangeAndPeriodQuery,
+} from './dto/claim_count_total_by_custom_range_and_period';
 
 @Injectable()
 export class ClaimController {
@@ -22,6 +31,8 @@ export class ClaimController {
   ) {}
 
   async createOne(claimCreateArgs: Prisma.ClaimCreateArgs) {
+    //TODO: Auto assign claim status to new claim on claimCreateArgs
+    //TODO: send notification to higher user role when new claim created
     return await this.claimService.createOne(claimCreateArgs);
   }
 
@@ -78,16 +89,18 @@ export class ClaimController {
     }
   }
 
-  async countQuantityByCustomRangeAndPeriod(args: ClaimCountQuantityByCustomRangeAndPeriodArgs): Promise<ClaimCountQuantityByCustomRangeAndPeriodQuery[]> {
+  async countQuantityByCustomRangeAndPeriod(
+    args: ClaimCountQuantityByCustomRangeAndPeriodArgs,
+  ): Promise<ClaimCountQuantityByCustomRangeAndPeriodQuery[]> {
     const { period, end, start } = args;
     const claimCounts: ClaimCountQuantityByCustomRangeAndPeriodQuery[] = [];
 
     if (period === Period.ALLTIME) {
-      const countedClaim = await this.claimService.count({})
+      const countedClaim = await this.claimService.count({});
       claimCounts.push({
         period: new Date().toISOString(), // Convert date to string for consistent grouping
         quantityClaims: countedClaim,
-      })
+      });
     } else {
       const spreadDate: Date[] = [];
       const countedClaims: Promise<number>[] = [];
@@ -96,28 +109,32 @@ export class ClaimController {
       while (startDate <= end) {
         const until = getNextPeriodDate(startDate, period);
         spreadDate.push(startDate);
-        countedClaims.push(this.claimService.count({
-          where: {
-            createdAt: { gte: startDate, lt: until }
-          }
-        }))
+        countedClaims.push(
+          this.claimService.count({
+            where: {
+              createdAt: { gte: startDate, lt: until },
+            },
+          }),
+        );
         startDate = until;
       }
 
       const spreadClaims = await Promise.all(countedClaims);
 
-      spreadClaims.map((spreadClaim, index) => claimCounts
-        .push({
+      spreadClaims.map((spreadClaim, index) =>
+        claimCounts.push({
           period: spreadDate[index].toISOString(),
-          quantityClaims: spreadClaim
-        })
-      )
+          quantityClaims: spreadClaim,
+        }),
+      );
     }
 
     return claimCounts;
   }
 
-  async countTotalPercentageVsCustomPeriod(args: ClaimCountTotalPercentageVsCustomPeriodArgs): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery> {
+  async countTotalPercentageVsCustomPeriod(
+    args: ClaimCountTotalPercentageVsCustomPeriodArgs,
+  ): Promise<ClaimCountTotalPercentageVsCustomPeriodQuery> {
     const currentStartTime = new Date();
     const currentEndTime = new Date();
     const previousStartTime = new Date();
@@ -142,34 +159,36 @@ export class ClaimController {
         previousStartTime.setDate(previousStartTime.getDate() + 0);
     }
 
-    const [currentTimeTotalClaims, previousTimeTotalClaims] = await Promise.all([
-      this.claimFinancialController.aggregate({
-        where: {
-          claim: {
-            createdAt: {
-              gte: currentStartTime,
-              lt: currentEndTime,
-            }
-          }
-        },
-        _sum: { paidAmount: true }
-      }),
-      this.claimFinancialController.aggregate({
-        where: {
-          claim: {
-            createdAt: {
-              gte: previousStartTime,
-              lt: previousEndTime,
-            }
-          }
-        },
-        _sum: { paidAmount: true }
-      }),
-    ]);
-    const currentTotalAmount = currentTimeTotalClaims._sum.paidAmount ?? 0
-    const previousTotalAmount = previousTimeTotalClaims._sum.paidAmount ?? 0
+    const [currentTimeTotalClaims, previousTimeTotalClaims] = await Promise.all(
+      [
+        this.claimFinancialController.aggregate({
+          where: {
+            claim: {
+              createdAt: {
+                gte: currentStartTime,
+                lt: currentEndTime,
+              },
+            },
+          },
+          _sum: { paidAmount: true },
+        }),
+        this.claimFinancialController.aggregate({
+          where: {
+            claim: {
+              createdAt: {
+                gte: previousStartTime,
+                lt: previousEndTime,
+              },
+            },
+          },
+          _sum: { paidAmount: true },
+        }),
+      ],
+    );
+    const currentTotalAmount = currentTimeTotalClaims._sum.paidAmount ?? 0;
+    const previousTotalAmount = previousTimeTotalClaims._sum.paidAmount ?? 0;
     const diff = currentTotalAmount - previousTotalAmount;
-    const percentage = diff ? diff/previousTotalAmount * 100 : 0;
+    const percentage = diff ? (diff / previousTotalAmount) * 100 : 0;
 
     return {
       versus: this.periodValue(args.period),
@@ -178,18 +197,20 @@ export class ClaimController {
     };
   }
 
-  async countTotalByCustomRangeAndPeriod(args: ClaimCountTotalByCustomRangeAndPeriodArgs): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery[]> {
+  async countTotalByCustomRangeAndPeriod(
+    args: ClaimCountTotalByCustomRangeAndPeriodArgs,
+  ): Promise<ClaimCountTotalByCustomRangeAndPeriodQuery[]> {
     const { period, end, start } = args;
     const claimTotal: ClaimCountTotalByCustomRangeAndPeriodQuery[] = [];
 
     if (period === Period.ALLTIME) {
       const totalClaims = await this.claimFinancialController.aggregate({
-        _sum: { paidAmount: true }
-      })
+        _sum: { paidAmount: true },
+      });
       claimTotal.push({
         period: new Date().toISOString(), // Convert date to string for consistent grouping
         totalClaims: totalClaims._sum.paidAmount ?? 0,
-      })
+      });
     } else {
       const spreadDate: Date[] = [];
       const totalClaims = [];
@@ -198,55 +219,59 @@ export class ClaimController {
       while (startDate <= end) {
         const until = getNextPeriodDate(startDate, period);
         spreadDate.push(startDate);
-        totalClaims.push(this.claimFinancialController.aggregate({
-          where: {
-            claim: {
-              createdAt: { gte: startDate, lt: until }
-            }
-          },
-          _sum: { paidAmount: true }
-        }))
+        totalClaims.push(
+          this.claimFinancialController.aggregate({
+            where: {
+              claim: {
+                createdAt: { gte: startDate, lt: until },
+              },
+            },
+            _sum: { paidAmount: true },
+          }),
+        );
         startDate = until;
       }
 
       const spreadClaims = await Promise.all(totalClaims);
 
-      spreadClaims.map((spreadClaim, index) => claimTotal
-        .push({
+      spreadClaims.map((spreadClaim, index) =>
+        claimTotal.push({
           period: spreadDate[index].toISOString(),
           totalClaims: spreadClaim._sum.paidAmount ?? 0,
-        })
-      )
+        }),
+      );
     }
 
     return claimTotal;
   }
 
   async countQuantityByStatus(): Promise<ClaimCountQuantityByStatusQuery[]> {
-    const statuses: string[] = []
+    const statuses: string[] = [];
     const quantities: Promise<number>[] = [];
     const countedQuantitiesByStatus: ClaimCountQuantityByStatusQuery[] = [];
-    
+
     for (const key in ClaimStatusType) {
       statuses.push(key);
-      quantities.push(this.claimService.count({
-        where: {
-          claimStatuses: {
-            some: {
-              status: key as ClaimStatusType
-            }
-          }
-        }
-      }))
+      quantities.push(
+        this.claimService.count({
+          where: {
+            claimStatuses: {
+              some: {
+                status: key as ClaimStatusType,
+              },
+            },
+          },
+        }),
+      );
     }
 
     const countedQuantities = await Promise.all(quantities);
-    statuses.map((status, index) => countedQuantitiesByStatus
-      .push({
+    statuses.map((status, index) =>
+      countedQuantitiesByStatus.push({
         status: status as ClaimStatusType,
         total: countedQuantities[index],
-      })
-    )
+      }),
+    );
 
     return countedQuantitiesByStatus;
   }
@@ -255,19 +280,27 @@ export class ClaimController {
     return Object.keys(ClaimChannel);
   }
 
-  async findOneById(claimFindOneByIdArgs: ClaimFindOneByIdArgs): Promise<Claim> {
+  async findOneById(
+    claimFindOneByIdArgs: ClaimFindOneByIdArgs,
+  ): Promise<Claim> {
     return await this.claimService.findFirst({});
   }
 
-  async updateOneOfStatus(claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs): Promise<Claim> {
+  async updateOneOfStatus(
+    claimUpdateOneOfStatusArgs: ClaimUpdateOneOfStatusArgs,
+  ): Promise<Claim> {
     return await this.claimService.findFirst({});
   }
 
-  async createOneForm(claimFormCreateOneArgs: ClaimFormCreateOneArgs): Promise<Claim> {
+  async createOneForm(
+    claimFormCreateOneArgs: ClaimFormCreateOneArgs,
+  ): Promise<Claim> {
     return await this.claimService.findFirst({});
   }
 
-  async countWhere(claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs): Promise<number> {
+  async countWhere(
+    claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
+  ): Promise<number> {
     return 10;
   }
 }

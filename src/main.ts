@@ -29,6 +29,7 @@ async function bootstrap() {
       maxFiles: 10,
     }),
   );
+
   await app.listen(port);
   console.log(`Application is running in ${environment} mode on port ${port}`);
 }

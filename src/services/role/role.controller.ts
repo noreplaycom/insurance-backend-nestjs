@@ -13,6 +13,7 @@ export class RoleController {
   }
 
   async createMany(roleCreateManyArgs: Prisma.RoleCreateManyArgs) {
+    //TODO: Auto create 3 role when app first run. [SuperUser, Participant, Admin]
     return await this.roleService.createMany(roleCreateManyArgs);
   }
 
@@ -52,11 +53,13 @@ export class RoleController {
     return await this.roleService.count(roleCountArgs);
   }
 
-  async findOneByUser(roleFindOneByUserArgs: RoleFindOneByUserArgs): Promise<Role> {
+  async findOneByUser(
+    roleFindOneByUserArgs: RoleFindOneByUserArgs,
+  ): Promise<Role> {
     return await this.roleService.findFirst({});
   }
 
   async findOneById(roleFindOneByIdArgs: RoleFindOneByIdArgs): Promise<Role> {
-    return await this.roleService.findFirst({})
+    return await this.roleService.findFirst({});
   }
 }
