@@ -45,9 +45,6 @@ import { NotificationModule } from './services/notification/notification.module'
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), 'volume/xlsx'),
-    }),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       useFactory: () => {
@@ -70,6 +67,9 @@ import { NotificationModule } from './services/notification/notification.module'
           },
         };
       },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'volume/xlsx'),
     }),
     JwtModule.registerAsync({
       global: true,
