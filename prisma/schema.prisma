@@ -737,7 +737,7 @@ model ClaimFinancial {
 
     claimStatus ClaimStatus? @relation(fields: [claimStatusId], references: [id])
 
-    claimStatusId Int @unique
+    claimStatusId Int? @unique
 }
 
 model ClaimProcess {

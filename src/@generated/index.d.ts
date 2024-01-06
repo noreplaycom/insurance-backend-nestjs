@@ -4787,7 +4787,7 @@ export declare class ClaimFinancialCreateManyInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    branchId: number;
+    branchId?: number;
     claimStatusId: number;
 }
 export declare class ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
@@ -4875,7 +4875,7 @@ export declare class ClaimFinancialGroupBy {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    branchId: number;
+    branchId?: number;
     claimStatusId: number;
     _count?: InstanceType<typeof ClaimFinancialCountAggregate>;
     _avg?: InstanceType<typeof ClaimFinancialAvgAggregate>;
@@ -4962,7 +4962,7 @@ export declare class ClaimFinancialOrderByWithAggregationInput {
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
     transactionProcessDate?: InstanceType<typeof SortOrderInput>;
     transferDate?: InstanceType<typeof SortOrderInput>;
-    branchId?: keyof typeof SortOrder;
+    branchId?: InstanceType<typeof SortOrderInput>;
     claimStatusId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ClaimFinancialCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ClaimFinancialAvgOrderByAggregateInput>;
@@ -4977,7 +4977,7 @@ export declare class ClaimFinancialOrderByWithRelationInput {
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
     transactionProcessDate?: InstanceType<typeof SortOrderInput>;
     transferDate?: InstanceType<typeof SortOrderInput>;
-    branchId?: keyof typeof SortOrder;
+    branchId?: InstanceType<typeof SortOrderInput>;
     claimStatusId?: keyof typeof SortOrder;
     branchPayee?: InstanceType<typeof BranchOrderByWithRelationInput>;
     claim?: InstanceType<typeof ClaimOrderByWithRelationInput>;
@@ -4997,7 +4997,7 @@ export declare class ClaimFinancialScalarWhereWithAggregatesInput {
     rejectedAmount?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
     transactionProcessDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    branchId?: InstanceType<typeof IntWithAggregatesFilter>;
+    branchId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     claimStatusId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
 export declare class ClaimFinancialScalarWhereInput {
@@ -5010,7 +5010,7 @@ export declare class ClaimFinancialScalarWhereInput {
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
-    branchId?: InstanceType<typeof IntFilter>;
+    branchId?: InstanceType<typeof IntNullableFilter>;
     claimStatusId?: InstanceType<typeof IntFilter>;
 }
 export declare class ClaimFinancialSumAggregateInput {
@@ -5065,7 +5065,7 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimStatusInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    branchId: number;
+    branchId?: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
@@ -5075,7 +5075,7 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    branchId: number;
+    branchId?: number;
     claimStatusId: number;
 }
 export declare class ClaimFinancialUncheckedCreateInput {
@@ -5085,7 +5085,7 @@ export declare class ClaimFinancialUncheckedCreateInput {
     rejectedAmount?: number;
     transactionProcessDate?: Date | string;
     transferDate?: Date | string;
-    branchId: number;
+    branchId?: number;
     claimStatusId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
@@ -5118,7 +5118,7 @@ export declare class ClaimFinancialUncheckedUpdateManyInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInput {
@@ -5147,7 +5147,7 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimStatusInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
@@ -5157,7 +5157,7 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateInput {
@@ -5167,7 +5167,7 @@ export declare class ClaimFinancialUncheckedUpdateInput {
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
@@ -5286,7 +5286,7 @@ export declare class ClaimFinancialWhereUniqueInput {
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
-    branchId?: InstanceType<typeof IntFilter>;
+    branchId?: InstanceType<typeof IntNullableFilter>;
     branchPayee?: InstanceType<typeof BranchNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     claimStatus?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
@@ -5301,7 +5301,7 @@ export declare class ClaimFinancialWhereInput {
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
     transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
     transferDate?: InstanceType<typeof DateTimeNullableFilter>;
-    branchId?: InstanceType<typeof IntFilter>;
+    branchId?: InstanceType<typeof IntNullableFilter>;
     claimStatusId?: InstanceType<typeof IntFilter>;
     branchPayee?: InstanceType<typeof BranchNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
@@ -5314,7 +5314,7 @@ export declare class ClaimFinancial {
     rejectedAmount: number | null;
     transactionProcessDate: Date | null;
     transferDate: Date | null;
-    branchId: number;
+    branchId: number | null;
     claimStatusId: number;
     branchPayee?: InstanceType<typeof Branch> | null;
     claim?: InstanceType<typeof Claim> | null;
@@ -9846,7 +9846,7 @@ export declare class EmploymentCreateManyBranchInput {
     id?: number;
     employmentPosition: keyof typeof Position;
     participantId: string;
-    groupId: number;
+    groupId?: number;
     regionId: number;
 }
 export declare class EmploymentCreateManyGroupInputEnvelope {
@@ -9868,7 +9868,7 @@ export declare class EmploymentCreateManyParticipantInput {
     id?: number;
     employmentPosition: keyof typeof Position;
     branchId: number;
-    groupId: number;
+    groupId?: number;
     regionId: number;
 }
 export declare class EmploymentCreateManyRegionInputEnvelope {
@@ -9880,14 +9880,14 @@ export declare class EmploymentCreateManyRegionInput {
     employmentPosition: keyof typeof Position;
     participantId: string;
     branchId: number;
-    groupId: number;
+    groupId?: number;
 }
 export declare class EmploymentCreateManyInput {
     id?: number;
     employmentPosition: keyof typeof Position;
     participantId: string;
     branchId: number;
-    groupId: number;
+    groupId?: number;
     regionId: number;
 }
 export declare class EmploymentCreateNestedManyWithoutBranchInput {
@@ -9979,7 +9979,7 @@ export declare class EmploymentGroupBy {
     employmentPosition: keyof typeof Position;
     participantId: string;
     branchId: number;
-    groupId: number;
+    groupId?: number;
     regionId: number;
     _count?: InstanceType<typeof EmploymentCountAggregate>;
     _avg?: InstanceType<typeof EmploymentAvgAggregate>;
@@ -10048,7 +10048,7 @@ export declare class EmploymentOrderByWithAggregationInput {
     employmentPosition?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
-    groupId?: keyof typeof SortOrder;
+    groupId?: InstanceType<typeof SortOrderInput>;
     regionId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof EmploymentCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof EmploymentAvgOrderByAggregateInput>;
@@ -10061,7 +10061,7 @@ export declare class EmploymentOrderByWithRelationInput {
     employmentPosition?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
-    groupId?: keyof typeof SortOrder;
+    groupId?: InstanceType<typeof SortOrderInput>;
     regionId?: keyof typeof SortOrder;
     participant?: InstanceType<typeof ParticipantOrderByWithRelationInput>;
     branch?: InstanceType<typeof BranchOrderByWithRelationInput>;
@@ -10076,7 +10076,7 @@ export declare class EmploymentScalarWhereWithAggregatesInput {
     employmentPosition?: InstanceType<typeof EnumPositionWithAggregatesFilter>;
     participantId?: InstanceType<typeof StringWithAggregatesFilter>;
     branchId?: InstanceType<typeof IntWithAggregatesFilter>;
-    groupId?: InstanceType<typeof IntWithAggregatesFilter>;
+    groupId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     regionId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
 export declare class EmploymentScalarWhereInput {
@@ -10087,7 +10087,7 @@ export declare class EmploymentScalarWhereInput {
     employmentPosition?: InstanceType<typeof EnumPositionFilter>;
     participantId?: InstanceType<typeof StringFilter>;
     branchId?: InstanceType<typeof IntFilter>;
-    groupId?: InstanceType<typeof IntFilter>;
+    groupId?: InstanceType<typeof IntNullableFilter>;
     regionId?: InstanceType<typeof IntFilter>;
 }
 export declare class EmploymentSumAggregateInput {
@@ -10136,7 +10136,7 @@ export declare class EmploymentUncheckedCreateWithoutBranchInput {
     id?: number;
     employmentPosition: keyof typeof Position;
     participantId: string;
-    groupId: number;
+    groupId?: number;
     regionId: number;
 }
 export declare class EmploymentUncheckedCreateWithoutGroupInput {
@@ -10150,7 +10150,7 @@ export declare class EmploymentUncheckedCreateWithoutParticipantInput {
     id?: number;
     employmentPosition: keyof typeof Position;
     branchId: number;
-    groupId: number;
+    groupId?: number;
     regionId: number;
 }
 export declare class EmploymentUncheckedCreateWithoutRegionInput {
@@ -10158,14 +10158,14 @@ export declare class EmploymentUncheckedCreateWithoutRegionInput {
     employmentPosition: keyof typeof Position;
     participantId: string;
     branchId: number;
-    groupId: number;
+    groupId?: number;
 }
 export declare class EmploymentUncheckedCreateInput {
     id?: number;
     employmentPosition: keyof typeof Position;
     participantId: string;
     branchId: number;
-    groupId: number;
+    groupId?: number;
     regionId: number;
 }
 export declare class EmploymentUncheckedUpdateManyWithoutBranchNestedInput {
@@ -10185,7 +10185,7 @@ export declare class EmploymentUncheckedUpdateManyWithoutBranchInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUncheckedUpdateManyWithoutGroupNestedInput {
@@ -10225,7 +10225,7 @@ export declare class EmploymentUncheckedUpdateManyWithoutParticipantInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUncheckedUpdateManyWithoutRegionNestedInput {
@@ -10246,21 +10246,21 @@ export declare class EmploymentUncheckedUpdateManyWithoutRegionInput {
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUncheckedUpdateWithoutBranchInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUncheckedUpdateWithoutGroupInput {
@@ -10274,7 +10274,7 @@ export declare class EmploymentUncheckedUpdateWithoutParticipantInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUncheckedUpdateWithoutRegionInput {
@@ -10282,14 +10282,14 @@ export declare class EmploymentUncheckedUpdateWithoutRegionInput {
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     employmentPosition?: InstanceType<typeof EnumPositionFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    groupId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    groupId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     regionId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class EmploymentUpdateManyMutationInput {
@@ -10438,7 +10438,7 @@ export declare class EmploymentWhereUniqueInput {
     employmentPosition?: InstanceType<typeof EnumPositionFilter>;
     participantId?: InstanceType<typeof StringFilter>;
     branchId?: InstanceType<typeof IntFilter>;
-    groupId?: InstanceType<typeof IntFilter>;
+    groupId?: InstanceType<typeof IntNullableFilter>;
     regionId?: InstanceType<typeof IntFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
     branch?: InstanceType<typeof BranchRelationFilter>;
@@ -10453,7 +10453,7 @@ export declare class EmploymentWhereInput {
     employmentPosition?: InstanceType<typeof EnumPositionFilter>;
     participantId?: InstanceType<typeof StringFilter>;
     branchId?: InstanceType<typeof IntFilter>;
-    groupId?: InstanceType<typeof IntFilter>;
+    groupId?: InstanceType<typeof IntNullableFilter>;
     regionId?: InstanceType<typeof IntFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
     branch?: InstanceType<typeof BranchRelationFilter>;
@@ -10465,7 +10465,7 @@ export declare class Employment {
     employmentPosition: keyof typeof Position;
     participantId: string;
     branchId: number;
-    groupId: number;
+    groupId: number | null;
     regionId: number;
     participant?: InstanceType<typeof Participant>;
     branch?: InstanceType<typeof Branch>;

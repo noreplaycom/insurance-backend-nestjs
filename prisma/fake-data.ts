@@ -179,7 +179,7 @@ export function fakeEmploymentComplete() {
     employmentPosition: faker.helpers.arrayElement([Position.AMGR, Position.AVP, Position.PGD, Position.MGR, Position.SASST, Position.VP, Position.SAVP, Position.SMGR, Position.SAMGR, Position.ASST] as const),
     participantId: faker.datatype.uuid(),
     branchId: faker.datatype.number(),
-    groupId: faker.datatype.number(),
+    groupId: undefined,
     regionId: faker.datatype.number(),
   };
 }
@@ -400,7 +400,7 @@ export function fakeClaimFinancialComplete() {
     rejectedAmount: undefined,
     transactionProcessDate: undefined,
     transferDate: undefined,
-    branchId: faker.datatype.number(),
+    branchId: undefined,
     claimStatusId: faker.datatype.number(),
   };
 }
