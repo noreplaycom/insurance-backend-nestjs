@@ -2149,6 +2149,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], AddressAvgAggregateInput.prototype, "cityId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], AddressAvgAggregateInput.prototype, "postalCode", void 0);
 AddressAvgAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], AddressAvgAggregateInput);
@@ -2161,6 +2164,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], AddressAvgAggregate.prototype, "cityId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], AddressAvgAggregate.prototype, "postalCode", void 0);
 AddressAvgAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], AddressAvgAggregate);
@@ -2173,6 +2179,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], AddressAvgOrderByAggregateInput.prototype, "cityId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], AddressAvgOrderByAggregateInput.prototype, "postalCode", void 0);
 AddressAvgOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], AddressAvgOrderByAggregateInput);
@@ -2268,7 +2277,7 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], AddressCreateManyCityInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressCreateManyCityInput.prototype, "postalCode", void 0);
 AddressCreateManyCityInput = __decorate([
     (0, graphql_4.InputType)()
@@ -2286,7 +2295,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressCreateManyInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressCreateManyInput.prototype, "postalCode", void 0);
 AddressCreateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -2366,7 +2375,7 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], AddressCreateWithoutCityInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressCreateWithoutCityInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ContactInfoCreateNestedManyWithoutAddressInput, { nullable: true })
@@ -2381,7 +2390,7 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], AddressCreateWithoutContactInfoInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressCreateWithoutContactInfoInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => CityCreateNestedOneWithoutAddressInput, { nullable: false })
@@ -2396,7 +2405,7 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], AddressCreateInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressCreateInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => CityCreateNestedOneWithoutAddressInput, { nullable: false })
@@ -2460,7 +2469,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressGroupBy.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressGroupBy.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => AddressCountAggregate, { nullable: true })
@@ -2526,7 +2535,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], AddressMaxAggregate.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], AddressMaxAggregate.prototype, "postalCode", void 0);
 AddressMaxAggregate = __decorate([
     (0, graphql_5.ObjectType)()
@@ -2580,7 +2589,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], AddressMinAggregate.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], AddressMinAggregate.prototype, "postalCode", void 0);
 AddressMinAggregate = __decorate([
     (0, graphql_5.ObjectType)()
@@ -2703,7 +2712,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
 ], AddressScalarWhereWithAggregatesInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
 ], AddressScalarWhereWithAggregatesInput.prototype, "postalCode", void 0);
 AddressScalarWhereWithAggregatesInput = AddressScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -2730,7 +2739,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], AddressScalarWhereInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], AddressScalarWhereInput.prototype, "postalCode", void 0);
 AddressScalarWhereInput = AddressScalarWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -2744,6 +2753,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], AddressSumAggregateInput.prototype, "cityId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], AddressSumAggregateInput.prototype, "postalCode", void 0);
 AddressSumAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], AddressSumAggregateInput);
@@ -2756,6 +2768,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], AddressSumAggregate.prototype, "cityId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], AddressSumAggregate.prototype, "postalCode", void 0);
 AddressSumAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], AddressSumAggregate);
@@ -2768,6 +2783,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], AddressSumOrderByAggregateInput.prototype, "cityId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], AddressSumOrderByAggregateInput.prototype, "postalCode", void 0);
 AddressSumOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], AddressSumOrderByAggregateInput);
@@ -2803,7 +2821,7 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], AddressUncheckedCreateWithoutCityInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressUncheckedCreateWithoutCityInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ContactInfoUncheckedCreateNestedManyWithoutAddressInput, { nullable: true })
@@ -2824,7 +2842,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressUncheckedCreateWithoutContactInfoInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressUncheckedCreateWithoutContactInfoInput.prototype, "postalCode", void 0);
 AddressUncheckedCreateWithoutContactInfoInput = __decorate([
     (0, graphql_4.InputType)()
@@ -2842,7 +2860,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressUncheckedCreateInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], AddressUncheckedCreateInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ContactInfoUncheckedCreateNestedManyWithoutAddressInput, { nullable: true })
@@ -2910,7 +2928,7 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateManyWithoutCityInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateManyWithoutCityInput.prototype, "postalCode", void 0);
 AddressUncheckedUpdateManyWithoutCityInput = __decorate([
     (0, graphql_4.InputType)()
@@ -2928,7 +2946,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateManyInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateManyInput.prototype, "postalCode", void 0);
 AddressUncheckedUpdateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -2943,7 +2961,7 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateWithoutCityInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateWithoutCityInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ContactInfoUncheckedUpdateManyWithoutAddressNestedInput, { nullable: true })
@@ -2964,7 +2982,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateWithoutContactInfoInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateWithoutContactInfoInput.prototype, "postalCode", void 0);
 AddressUncheckedUpdateWithoutContactInfoInput = __decorate([
     (0, graphql_4.InputType)()
@@ -2982,7 +3000,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUncheckedUpdateInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ContactInfoUncheckedUpdateManyWithoutAddressNestedInput, { nullable: true })
@@ -2997,7 +3015,7 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateManyMutationInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateManyMutationInput.prototype, "postalCode", void 0);
 AddressUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
@@ -3127,7 +3145,7 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateWithoutCityInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateWithoutCityInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ContactInfoUpdateManyWithoutAddressNestedInput, { nullable: true })
@@ -3142,7 +3160,7 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateWithoutContactInfoInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateWithoutContactInfoInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => CityUpdateOneRequiredWithoutAddressNestedInput, { nullable: true })
@@ -3157,7 +3175,7 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateInput.prototype, "address", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], AddressUpdateInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => CityUpdateOneRequiredWithoutAddressNestedInput, { nullable: true })
@@ -3226,7 +3244,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], AddressWhereUniqueInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], AddressWhereUniqueInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => CityRelationFilter, { nullable: true })
@@ -3259,7 +3277,7 @@ __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], AddressWhereInput.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], AddressWhereInput.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => CityRelationFilter, { nullable: true })
@@ -3283,7 +3301,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false, description: 'Kota' })
 ], Address.prototype, "cityId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false, description: 'Kode Pos' })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false, description: 'Kode Pos' })
 ], Address.prototype, "postalCode", void 0);
 __decorate([
     (0, graphql_1.Field)(() => City, { nullable: false, description: 'Kota' })
@@ -47767,9 +47785,6 @@ exports.RolePermissionUpsertWithWhereUniqueWithoutRoleInput = RolePermissionUpse
 let RolePermissionWhereUniqueInput = class RolePermissionWhereUniqueInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => Permission, { nullable: true })
-], RolePermissionWhereUniqueInput.prototype, "permission", void 0);
-__decorate([
     (0, graphql_1.Field)(() => RolePermissionRoleIdPermissionCompoundUniqueInput, { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "roleId_permission", void 0);
 __decorate([
@@ -47784,6 +47799,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "roleId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EnumPermissionFilter, { nullable: true })
+], RolePermissionWhereUniqueInput.prototype, "permission", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RoleRelationFilter, { nullable: true })
 ], RolePermissionWhereUniqueInput.prototype, "role", void 0);

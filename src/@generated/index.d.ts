@@ -862,14 +862,17 @@ export declare class AddressAggregateArgs {
 export declare class AddressAvgAggregateInput {
     id?: true;
     cityId?: true;
+    postalCode?: true;
 }
 export declare class AddressAvgAggregate {
     id?: number;
     cityId?: number;
+    postalCode?: number;
 }
 export declare class AddressAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     cityId?: keyof typeof SortOrder;
+    postalCode?: keyof typeof SortOrder;
 }
 export declare class AddressCountAggregateInput {
     id?: true;
@@ -901,13 +904,13 @@ export declare class AddressCreateManyCityInputEnvelope {
 export declare class AddressCreateManyCityInput {
     id?: number;
     address: string;
-    postalCode: string;
+    postalCode: number;
 }
 export declare class AddressCreateManyInput {
     id?: number;
     address: string;
     cityId: number;
-    postalCode: string;
+    postalCode: number;
 }
 export declare class AddressCreateNestedManyWithoutCityInput {
     create?: Array<AddressCreateWithoutCityInput>;
@@ -930,17 +933,17 @@ export declare class AddressCreateOrConnectWithoutContactInfoInput {
 }
 export declare class AddressCreateWithoutCityInput {
     address: string;
-    postalCode: string;
+    postalCode: number;
     ContactInfo?: InstanceType<typeof ContactInfoCreateNestedManyWithoutAddressInput>;
 }
 export declare class AddressCreateWithoutContactInfoInput {
     address: string;
-    postalCode: string;
+    postalCode: number;
     city: InstanceType<typeof CityCreateNestedOneWithoutAddressInput>;
 }
 export declare class AddressCreateInput {
     address: string;
-    postalCode: string;
+    postalCode: number;
     city: InstanceType<typeof CityCreateNestedOneWithoutAddressInput>;
     ContactInfo?: InstanceType<typeof ContactInfoCreateNestedManyWithoutAddressInput>;
 }
@@ -961,7 +964,7 @@ export declare class AddressGroupBy {
     id: number;
     address: string;
     cityId: number;
-    postalCode: string;
+    postalCode: number;
     _count?: InstanceType<typeof AddressCountAggregate>;
     _avg?: InstanceType<typeof AddressAvgAggregate>;
     _sum?: InstanceType<typeof AddressSumAggregate>;
@@ -983,7 +986,7 @@ export declare class AddressMaxAggregate {
     id?: number;
     address?: string;
     cityId?: number;
-    postalCode?: string;
+    postalCode?: number;
 }
 export declare class AddressMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -1001,7 +1004,7 @@ export declare class AddressMinAggregate {
     id?: number;
     address?: string;
     cityId?: number;
-    postalCode?: string;
+    postalCode?: number;
 }
 export declare class AddressMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -1042,7 +1045,7 @@ export declare class AddressScalarWhereWithAggregatesInput {
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     address?: InstanceType<typeof StringWithAggregatesFilter>;
     cityId?: InstanceType<typeof IntWithAggregatesFilter>;
-    postalCode?: InstanceType<typeof StringWithAggregatesFilter>;
+    postalCode?: InstanceType<typeof IntWithAggregatesFilter>;
 }
 export declare class AddressScalarWhereInput {
     AND?: Array<AddressScalarWhereInput>;
@@ -1051,19 +1054,22 @@ export declare class AddressScalarWhereInput {
     id?: InstanceType<typeof IntFilter>;
     address?: InstanceType<typeof StringFilter>;
     cityId?: InstanceType<typeof IntFilter>;
-    postalCode?: InstanceType<typeof StringFilter>;
+    postalCode?: InstanceType<typeof IntFilter>;
 }
 export declare class AddressSumAggregateInput {
     id?: true;
     cityId?: true;
+    postalCode?: true;
 }
 export declare class AddressSumAggregate {
     id?: number;
     cityId?: number;
+    postalCode?: number;
 }
 export declare class AddressSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     cityId?: keyof typeof SortOrder;
+    postalCode?: keyof typeof SortOrder;
 }
 export declare class AddressUncheckedCreateNestedManyWithoutCityInput {
     create?: Array<AddressCreateWithoutCityInput>;
@@ -1074,20 +1080,20 @@ export declare class AddressUncheckedCreateNestedManyWithoutCityInput {
 export declare class AddressUncheckedCreateWithoutCityInput {
     id?: number;
     address: string;
-    postalCode: string;
+    postalCode: number;
     ContactInfo?: InstanceType<typeof ContactInfoUncheckedCreateNestedManyWithoutAddressInput>;
 }
 export declare class AddressUncheckedCreateWithoutContactInfoInput {
     id?: number;
     address: string;
     cityId: number;
-    postalCode: string;
+    postalCode: number;
 }
 export declare class AddressUncheckedCreateInput {
     id?: number;
     address: string;
     cityId: number;
-    postalCode: string;
+    postalCode: number;
     ContactInfo?: InstanceType<typeof ContactInfoUncheckedCreateNestedManyWithoutAddressInput>;
 }
 export declare class AddressUncheckedUpdateManyWithoutCityNestedInput {
@@ -1106,36 +1112,36 @@ export declare class AddressUncheckedUpdateManyWithoutCityNestedInput {
 export declare class AddressUncheckedUpdateManyWithoutCityInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class AddressUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     cityId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class AddressUncheckedUpdateWithoutCityInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     ContactInfo?: InstanceType<typeof ContactInfoUncheckedUpdateManyWithoutAddressNestedInput>;
 }
 export declare class AddressUncheckedUpdateWithoutContactInfoInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     cityId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class AddressUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     cityId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     ContactInfo?: InstanceType<typeof ContactInfoUncheckedUpdateManyWithoutAddressNestedInput>;
 }
 export declare class AddressUpdateManyMutationInput {
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class AddressUpdateManyWithWhereWithoutCityInput {
     where: InstanceType<typeof AddressScalarWhereInput>;
@@ -1171,17 +1177,17 @@ export declare class AddressUpdateWithWhereUniqueWithoutCityInput {
 }
 export declare class AddressUpdateWithoutCityInput {
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     ContactInfo?: InstanceType<typeof ContactInfoUpdateManyWithoutAddressNestedInput>;
 }
 export declare class AddressUpdateWithoutContactInfoInput {
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     city?: InstanceType<typeof CityUpdateOneRequiredWithoutAddressNestedInput>;
 }
 export declare class AddressUpdateInput {
     address?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    postalCode?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    postalCode?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     city?: InstanceType<typeof CityUpdateOneRequiredWithoutAddressNestedInput>;
     ContactInfo?: InstanceType<typeof ContactInfoUpdateManyWithoutAddressNestedInput>;
 }
@@ -1202,7 +1208,7 @@ export declare class AddressWhereUniqueInput {
     NOT?: Array<AddressWhereInput>;
     address?: InstanceType<typeof StringFilter>;
     cityId?: InstanceType<typeof IntFilter>;
-    postalCode?: InstanceType<typeof StringFilter>;
+    postalCode?: InstanceType<typeof IntFilter>;
     city?: InstanceType<typeof CityRelationFilter>;
     ContactInfo?: InstanceType<typeof ContactInfoListRelationFilter>;
 }
@@ -1213,7 +1219,7 @@ export declare class AddressWhereInput {
     id?: InstanceType<typeof IntFilter>;
     address?: InstanceType<typeof StringFilter>;
     cityId?: InstanceType<typeof IntFilter>;
-    postalCode?: InstanceType<typeof StringFilter>;
+    postalCode?: InstanceType<typeof IntFilter>;
     city?: InstanceType<typeof CityRelationFilter>;
     ContactInfo?: InstanceType<typeof ContactInfoListRelationFilter>;
 }
@@ -1221,7 +1227,7 @@ export declare class Address {
     id: number;
     address: string;
     cityId: number;
-    postalCode: string;
+    postalCode: number;
     city?: InstanceType<typeof City>;
     ContactInfo?: Array<ContactInfo>;
     _count?: InstanceType<typeof AddressCount>;
@@ -15120,12 +15126,12 @@ export declare class DeleteManyRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
 }
 export declare class DeleteOneRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
 }
 export declare class FindFirstRolePermissionOrThrowArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
@@ -15133,7 +15139,7 @@ export declare class FindFirstRolePermissionOrThrowArgs {
 export declare class FindFirstRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
@@ -15141,21 +15147,21 @@ export declare class FindFirstRolePermissionArgs {
 export declare class FindManyRolePermissionArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof RolePermissionScalarFieldEnum>;
 }
 export declare class FindUniqueRolePermissionOrThrowArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
 }
 export declare class FindUniqueRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
 }
 export declare class RolePermissionAggregateArgs {
     where?: InstanceType<typeof RolePermissionWhereInput>;
     orderBy?: Array<RolePermissionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    cursor?: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof RolePermissionCountAggregateInput>;
@@ -15202,10 +15208,10 @@ export declare class RolePermissionCreateNestedManyWithoutRoleInput {
     create?: Array<RolePermissionCreateWithoutRoleInput>;
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
 }
 export declare class RolePermissionCreateOrConnectWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     create: InstanceType<typeof RolePermissionCreateWithoutRoleInput>;
 }
 export declare class RolePermissionCreateWithoutRoleInput {
@@ -15314,7 +15320,7 @@ export declare class RolePermissionUncheckedCreateNestedManyWithoutRoleInput {
     create?: Array<RolePermissionCreateWithoutRoleInput>;
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
 }
 export declare class RolePermissionUncheckedCreateWithoutRoleInput {
     permission: keyof typeof Permission;
@@ -15328,10 +15334,10 @@ export declare class RolePermissionUncheckedUpdateManyWithoutRoleNestedInput {
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     upsert?: Array<RolePermissionUpsertWithWhereUniqueWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
-    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
-    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
     update?: Array<RolePermissionUpdateWithWhereUniqueWithoutRoleInput>;
     updateMany?: Array<RolePermissionUpdateManyWithWhereWithoutRoleInput>;
     deleteMany?: Array<RolePermissionScalarWhereInput>;
@@ -15362,16 +15368,16 @@ export declare class RolePermissionUpdateManyWithoutRoleNestedInput {
     connectOrCreate?: Array<RolePermissionCreateOrConnectWithoutRoleInput>;
     upsert?: Array<RolePermissionUpsertWithWhereUniqueWithoutRoleInput>;
     createMany?: InstanceType<typeof RolePermissionCreateManyRoleInputEnvelope>;
-    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
-    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
-    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
-    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>>;
+    set?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    disconnect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    delete?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
+    connect?: Array<Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>>;
     update?: Array<RolePermissionUpdateWithWhereUniqueWithoutRoleInput>;
     updateMany?: Array<RolePermissionUpdateManyWithWhereWithoutRoleInput>;
     deleteMany?: Array<RolePermissionScalarWhereInput>;
 }
 export declare class RolePermissionUpdateWithWhereUniqueWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     data: InstanceType<typeof RolePermissionUpdateWithoutRoleInput>;
 }
 export declare class RolePermissionUpdateWithoutRoleInput {
@@ -15382,17 +15388,17 @@ export declare class RolePermissionUpdateInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutRolePermissionsNestedInput>;
 }
 export declare class RolePermissionUpsertWithWhereUniqueWithoutRoleInput {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     update: InstanceType<typeof RolePermissionUpdateWithoutRoleInput>;
     create: InstanceType<typeof RolePermissionCreateWithoutRoleInput>;
 }
 export declare class RolePermissionWhereUniqueInput {
-    permission?: keyof typeof Permission;
     roleId_permission?: InstanceType<typeof RolePermissionRoleIdPermissionCompoundUniqueInput>;
     AND?: Array<RolePermissionWhereInput>;
     OR?: Array<RolePermissionWhereInput>;
     NOT?: Array<RolePermissionWhereInput>;
     roleId?: InstanceType<typeof IntFilter>;
+    permission?: InstanceType<typeof EnumPermissionFilter>;
     role?: InstanceType<typeof RoleRelationFilter>;
 }
 export declare class RolePermissionWhereInput {
@@ -15414,10 +15420,10 @@ export declare class UpdateManyRolePermissionArgs {
 }
 export declare class UpdateOneRolePermissionArgs {
     data: InstanceType<typeof RolePermissionUpdateInput>;
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
 }
 export declare class UpsertOneRolePermissionArgs {
-    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'permission' | 'roleId_permission'>;
+    where: Prisma.AtLeast<RolePermissionWhereUniqueInput, 'roleId_permission'>;
     create: InstanceType<typeof RolePermissionCreateInput>;
     update: InstanceType<typeof RolePermissionUpdateInput>;
 }

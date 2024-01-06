@@ -39,6 +39,8 @@ export async function claimSeed() {
     }
   }
 
+  const city = await prisma.city.findMany();
+
   const participants = await prisma.participant.findMany();
 
   const roles = await prisma.role.findMany({
@@ -164,11 +166,12 @@ export async function claimSeed() {
             },
             contactInfos: {
               create: {
-                telp: faker.phone.phoneNumber(),
+                telp: faker.phone.number(),
                 address: {
                   create: {
                     address: faker.address.streetAddress(),
-                    postalCode: faker.address.zipCode,
+                    postalCode: faker.address.zipCode(),
+                    city: { connect: {} },
                   },
                 },
               },

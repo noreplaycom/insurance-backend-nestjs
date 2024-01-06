@@ -95,7 +95,7 @@ export function fakeContactInfoComplete() {
 export function fakeAddress() {
   return {
     address: faker.lorem.words(5),
-    postalCode: faker.lorem.words(5),
+    postalCode: faker.datatype.number(),
   };
 }
 export function fakeAddressComplete() {
@@ -103,7 +103,7 @@ export function fakeAddressComplete() {
     id: faker.datatype.number(),
     address: faker.lorem.words(5),
     cityId: faker.datatype.number(),
-    postalCode: faker.lorem.words(5),
+    postalCode: faker.datatype.number(),
   };
 }
 export function fakeCity() {
