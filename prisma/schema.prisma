@@ -85,7 +85,8 @@ model Role {
 
     description String?
 
-    order Int
+    ///Jika orderLevel dia adalah 9999 maka dia adalah superuser
+    orderLevel Int @default(0)
 
     // higherLevelThan Role? @relation("level", fields: [higherLevelThanId], references: [id])
 

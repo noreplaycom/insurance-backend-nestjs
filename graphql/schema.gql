@@ -1549,6 +1549,14 @@ type Region {
   _count: RegionCount!
 }
 
+type AggregateRole {
+  _count: RoleCountAggregate
+  _avg: RoleAvgAggregate
+  _sum: RoleSumAggregate
+  _min: RoleMinAggregate
+  _max: RoleMaxAggregate
+}
+
 type RoleAvgAggregate {
   id: Float
   order: Float
@@ -1962,6 +1970,18 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   claimStatusCount(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
+  roleFindOne(where: RoleWhereUniqueInput!): Role
+
+  """Deskripsinya ada disini loh"""
+  roleFindMany(where: RoleWhereInput, orderBy: [RoleOrderByWithRelationInput!], cursor: RoleWhereUniqueInput, take: Int, skip: Int, distinct: [RoleScalarFieldEnum!]): [Role!]
+
+  """Deskripsinya ada disini loh"""
+  roleAggregate(where: RoleWhereInput, orderBy: [RoleOrderByWithRelationInput!], cursor: RoleWhereUniqueInput, take: Int, skip: Int, _count: RoleCountAggregateInput, _avg: RoleAvgAggregateInput, _sum: RoleSumAggregateInput, _min: RoleMinAggregateInput, _max: RoleMaxAggregateInput): AggregateRole
+
+  """Deskripsinya ada disini loh"""
+  roleCount(where: RoleWhereInput, orderBy: [RoleOrderByWithRelationInput!], cursor: RoleWhereUniqueInput, take: Int, skip: Int, distinct: [RoleScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
   notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
@@ -3448,6 +3468,57 @@ input ClaimStatusMaxAggregateInput {
   bookKeepingOrderId: Boolean
 }
 
+input RoleWhereUniqueInput {
+  id: Int
+  AND: [RoleWhereInput!]
+  OR: [RoleWhereInput!]
+  NOT: [RoleWhereInput!]
+  name: StringFilter
+  description: StringNullableFilter
+  order: IntFilter
+  rolePermissions: RolePermissionListRelationFilter
+  users: UserListRelationFilter
+}
+
+enum RoleScalarFieldEnum {
+  id
+  name
+  description
+  order
+}
+
+input RoleCountAggregateInput {
+  id: Boolean
+  name: Boolean
+  description: Boolean
+  order: Boolean
+  _all: Boolean
+}
+
+input RoleAvgAggregateInput {
+  id: Boolean
+  order: Boolean
+}
+
+input RoleSumAggregateInput {
+  id: Boolean
+  order: Boolean
+}
+
+input RoleMinAggregateInput {
+  id: Boolean
+  name: Boolean
+  description: Boolean
+  order: Boolean
+}
+
+input RoleMaxAggregateInput {
+  id: Boolean
+  name: Boolean
+  description: Boolean
+  order: Boolean
+}
+
 input NotificationOrderByWithRelationInput {
   id: SortOrder
   isRead: SortOrder
@@ -3513,6 +3584,15 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   claimStatusDeleteMany(where: ClaimStatusWhereInput): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  roleCreateOne(data: RoleCreateInput!): Role
+
+  """Deskripsinya ada disini loh"""
+  roleUpdateOne(data: RoleUpdateInput!, where: RoleWhereUniqueInput!): Role
+
+  """Deskripsinya ada disini loh"""
+  roleDelete(where: RoleWhereUniqueInput!): Boolean!
 
   """Deskripsinya ada disini loh"""
   notificationUpdateOne(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
@@ -3635,18 +3715,6 @@ input RolePermissionCreateManyRoleInput {
 input RoleCreateOrConnectWithoutUsersInput {
   where: RoleWhereUniqueInput!
   create: RoleCreateWithoutUsersInput!
-}
-
-input RoleWhereUniqueInput {
-  id: Int
-  AND: [RoleWhereInput!]
-  OR: [RoleWhereInput!]
-  NOT: [RoleWhereInput!]
-  name: StringFilter
-  description: StringNullableFilter
-  order: IntFilter
-  rolePermissions: RolePermissionListRelationFilter
-  users: UserListRelationFilter
 }
 
 input ClaimCreateNestedManyWithoutInputedByInput {
@@ -7939,6 +8007,138 @@ input ParticipantUpdateToOneWithWhereWithoutUserInput {
 input UserUpdateToOneWithWhereWithoutClaimActionsInput {
   where: UserWhereInput
   data: UserUpdateWithoutClaimActionsInput!
+}
+
+input RoleCreateInput {
+  name: String!
+  description: String
+  order: Int!
+  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  users: UserCreateNestedManyWithoutRoleInput
+}
+
+input UserCreateNestedManyWithoutRoleInput {
+  create: [UserCreateWithoutRoleInput!]
+  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
+  createMany: UserCreateManyRoleInputEnvelope
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateWithoutRoleInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
+}
+
+input UserCreateOrConnectWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutRoleInput!
+}
+
+input UserCreateManyRoleInputEnvelope {
+  data: [UserCreateManyRoleInput!]!
+  skipDuplicates: Boolean
+}
+
+input UserCreateManyRoleInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+}
+
+input RoleUpdateInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  order: IntFieldUpdateOperationsInput
+  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  users: UserUpdateManyWithoutRoleNestedInput
+}
+
+input UserUpdateManyWithoutRoleNestedInput {
+  create: [UserCreateWithoutRoleInput!]
+  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutRoleInput!]
+  createMany: UserCreateManyRoleInputEnvelope
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutRoleInput!]
+  updateMany: [UserUpdateManyWithWhereWithoutRoleInput!]
+  deleteMany: [UserScalarWhereInput!]
+}
+
+input UserUpsertWithWhereUniqueWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutRoleInput!
+  create: UserCreateWithoutRoleInput!
+}
+
+input UserUpdateWithoutRoleInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
+}
+
+input UserUpdateWithWhereUniqueWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutRoleInput!
+}
+
+input UserUpdateManyWithWhereWithoutRoleInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyMutationInput!
+}
+
+input UserScalarWhereInput {
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
+  id: StringFilter
+  fullName: StringFilter
+  email: StringFilter
+  emailVerifiedAt: DateTimeNullableFilter
+  password: StringFilter
+  profilePictureUrl: StringNullableFilter
+  deletedAt: DateTimeNullableFilter
+  roleId: IntFilter
+  participantId: IntNullableFilter
+}
+
+input UserUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
 }
 
 input NotificationUpdateInput {
