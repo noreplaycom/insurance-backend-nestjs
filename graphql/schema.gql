@@ -1559,14 +1559,14 @@ type AggregateRole {
 
 type RoleAvgAggregate {
   id: Float
-  order: Float
+  orderLevel: Float
 }
 
 type RoleCountAggregate {
   id: Int!
   name: Int!
   description: Int!
-  order: Int!
+  orderLevel: Int!
   _all: Int!
 }
 
@@ -1579,19 +1579,19 @@ type RoleMaxAggregate {
   id: Int
   name: String
   description: String
-  order: Int
+  orderLevel: Int
 }
 
 type RoleMinAggregate {
   id: Int
   name: String
   description: String
-  order: Int
+  orderLevel: Int
 }
 
 type RoleSumAggregate {
   id: Int
-  order: Int
+  orderLevel: Int
 }
 
 type Role {
@@ -1600,7 +1600,9 @@ type Role {
   """E.g., 'superuser', 'analyst', 'group leader'"""
   name: String!
   description: String
-  order: Int!
+
+  """Jika orderLevel dia adalah 9999 maka dia adalah superuser"""
+  orderLevel: Int!
   rolePermissions: [RolePermission!]
   users: [User!]
   _count: RoleCount!
@@ -2295,7 +2297,7 @@ input RoleWhereInput {
   id: IntFilter
   name: StringFilter
   description: StringNullableFilter
-  order: IntFilter
+  orderLevel: IntFilter
   rolePermissions: RolePermissionListRelationFilter
   users: UserListRelationFilter
 }
@@ -3131,7 +3133,7 @@ input RoleOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
   description: SortOrderInput
-  order: SortOrder
+  orderLevel: SortOrder
   rolePermissions: RolePermissionOrderByRelationAggregateInput
   users: UserOrderByRelationAggregateInput
 }
@@ -3475,7 +3477,7 @@ input RoleWhereUniqueInput {
   NOT: [RoleWhereInput!]
   name: StringFilter
   description: StringNullableFilter
-  order: IntFilter
+  orderLevel: IntFilter
   rolePermissions: RolePermissionListRelationFilter
   users: UserListRelationFilter
 }
@@ -3484,39 +3486,39 @@ enum RoleScalarFieldEnum {
   id
   name
   description
-  order
+  orderLevel
 }
 
 input RoleCountAggregateInput {
   id: Boolean
   name: Boolean
   description: Boolean
-  order: Boolean
+  orderLevel: Boolean
   _all: Boolean
 }
 
 input RoleAvgAggregateInput {
   id: Boolean
-  order: Boolean
+  orderLevel: Boolean
 }
 
 input RoleSumAggregateInput {
   id: Boolean
-  order: Boolean
+  orderLevel: Boolean
 }
 
 input RoleMinAggregateInput {
   id: Boolean
   name: Boolean
   description: Boolean
-  order: Boolean
+  orderLevel: Boolean
 }
 
 input RoleMaxAggregateInput {
   id: Boolean
   name: Boolean
   description: Boolean
-  order: Boolean
+  orderLevel: Boolean
 }
 
 input NotificationOrderByWithRelationInput {
@@ -3672,7 +3674,7 @@ input RoleCreateNestedOneWithoutUsersInput {
 input RoleCreateWithoutUsersInput {
   name: String!
   description: String
-  order: Int!
+  orderLevel: Int
   rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
 }
 
@@ -5673,7 +5675,7 @@ input RoleUpsertWithoutUsersInput {
 input RoleUpdateWithoutUsersInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
-  order: IntFieldUpdateOperationsInput
+  orderLevel: IntFieldUpdateOperationsInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
 }
 
@@ -8012,7 +8014,7 @@ input UserUpdateToOneWithWhereWithoutClaimActionsInput {
 input RoleCreateInput {
   name: String!
   description: String
-  order: Int!
+  orderLevel: Int
   rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
   users: UserCreateNestedManyWithoutRoleInput
 }
@@ -8064,7 +8066,7 @@ input UserCreateManyRoleInput {
 input RoleUpdateInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
-  order: IntFieldUpdateOperationsInput
+  orderLevel: IntFieldUpdateOperationsInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
   users: UserUpdateManyWithoutRoleNestedInput
 }

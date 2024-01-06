@@ -34,7 +34,6 @@ export function fakeRole() {
   return {
     name: faker.name.fullName(),
     description: undefined,
-    order: faker.datatype.number(),
   };
 }
 export function fakeRoleComplete() {
@@ -42,7 +41,7 @@ export function fakeRoleComplete() {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
     description: undefined,
-    order: faker.datatype.number(),
+    orderLevel: 0,
   };
 }
 export function fakeRolePermission() {

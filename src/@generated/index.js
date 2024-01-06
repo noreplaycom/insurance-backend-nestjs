@@ -116,7 +116,7 @@ var RoleScalarFieldEnum;
     RoleScalarFieldEnum["id"] = "id";
     RoleScalarFieldEnum["name"] = "name";
     RoleScalarFieldEnum["description"] = "description";
-    RoleScalarFieldEnum["order"] = "order";
+    RoleScalarFieldEnum["orderLevel"] = "orderLevel";
 })(RoleScalarFieldEnum = exports.RoleScalarFieldEnum || (exports.RoleScalarFieldEnum = {}));
 var RegionScalarFieldEnum;
 (function (RegionScalarFieldEnum) {
@@ -49366,7 +49366,7 @@ __decorate([
 ], RoleAvgAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], RoleAvgAggregateInput.prototype, "order", void 0);
+], RoleAvgAggregateInput.prototype, "orderLevel", void 0);
 RoleAvgAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleAvgAggregateInput);
@@ -49378,7 +49378,7 @@ __decorate([
 ], RoleAvgAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
-], RoleAvgAggregate.prototype, "order", void 0);
+], RoleAvgAggregate.prototype, "orderLevel", void 0);
 RoleAvgAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], RoleAvgAggregate);
@@ -49390,7 +49390,7 @@ __decorate([
 ], RoleAvgOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], RoleAvgOrderByAggregateInput.prototype, "order", void 0);
+], RoleAvgOrderByAggregateInput.prototype, "orderLevel", void 0);
 RoleAvgOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleAvgOrderByAggregateInput);
@@ -49408,7 +49408,7 @@ __decorate([
 ], RoleCountAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], RoleCountAggregateInput.prototype, "order", void 0);
+], RoleCountAggregateInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], RoleCountAggregateInput.prototype, "_all", void 0);
@@ -49429,7 +49429,7 @@ __decorate([
 ], RoleCountAggregate.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleCountAggregate.prototype, "order", void 0);
+], RoleCountAggregate.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], RoleCountAggregate.prototype, "_all", void 0);
@@ -49450,7 +49450,7 @@ __decorate([
 ], RoleCountOrderByAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], RoleCountOrderByAggregateInput.prototype, "order", void 0);
+], RoleCountOrderByAggregateInput.prototype, "orderLevel", void 0);
 RoleCountOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleCountOrderByAggregateInput);
@@ -49479,8 +49479,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], RoleCreateManyInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleCreateManyInput.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RoleCreateManyInput.prototype, "orderLevel", void 0);
 RoleCreateManyInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleCreateManyInput);
@@ -49558,8 +49558,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], RoleCreateWithoutRolePermissionsInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleCreateWithoutRolePermissionsInput.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RoleCreateWithoutRolePermissionsInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => UserCreateNestedManyWithoutRoleInput, { nullable: true })
 ], RoleCreateWithoutRolePermissionsInput.prototype, "users", void 0);
@@ -49576,8 +49576,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], RoleCreateWithoutUsersInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleCreateWithoutUsersInput.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RoleCreateWithoutUsersInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionCreateNestedManyWithoutRoleInput, { nullable: true })
 ], RoleCreateWithoutUsersInput.prototype, "rolePermissions", void 0);
@@ -49594,8 +49594,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], RoleCreateInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleCreateInput.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RoleCreateInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionCreateNestedManyWithoutRoleInput, { nullable: true })
 ], RoleCreateInput.prototype, "rolePermissions", void 0);
@@ -49659,7 +49659,7 @@ __decorate([
 ], RoleGroupBy.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleGroupBy.prototype, "order", void 0);
+], RoleGroupBy.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RoleCountAggregate, { nullable: true })
 ], RoleGroupBy.prototype, "_count", void 0);
@@ -49692,7 +49692,7 @@ __decorate([
 ], RoleMaxAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], RoleMaxAggregateInput.prototype, "order", void 0);
+], RoleMaxAggregateInput.prototype, "orderLevel", void 0);
 RoleMaxAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleMaxAggregateInput);
@@ -49710,7 +49710,7 @@ __decorate([
 ], RoleMaxAggregate.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
-], RoleMaxAggregate.prototype, "order", void 0);
+], RoleMaxAggregate.prototype, "orderLevel", void 0);
 RoleMaxAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], RoleMaxAggregate);
@@ -49728,7 +49728,7 @@ __decorate([
 ], RoleMaxOrderByAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], RoleMaxOrderByAggregateInput.prototype, "order", void 0);
+], RoleMaxOrderByAggregateInput.prototype, "orderLevel", void 0);
 RoleMaxOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleMaxOrderByAggregateInput);
@@ -49746,7 +49746,7 @@ __decorate([
 ], RoleMinAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], RoleMinAggregateInput.prototype, "order", void 0);
+], RoleMinAggregateInput.prototype, "orderLevel", void 0);
 RoleMinAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleMinAggregateInput);
@@ -49764,7 +49764,7 @@ __decorate([
 ], RoleMinAggregate.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
-], RoleMinAggregate.prototype, "order", void 0);
+], RoleMinAggregate.prototype, "orderLevel", void 0);
 RoleMinAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], RoleMinAggregate);
@@ -49782,7 +49782,7 @@ __decorate([
 ], RoleMinOrderByAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], RoleMinOrderByAggregateInput.prototype, "order", void 0);
+], RoleMinOrderByAggregateInput.prototype, "orderLevel", void 0);
 RoleMinOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleMinOrderByAggregateInput);
@@ -49812,7 +49812,7 @@ __decorate([
 ], RoleOrderByWithAggregationInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], RoleOrderByWithAggregationInput.prototype, "order", void 0);
+], RoleOrderByWithAggregationInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RoleCountOrderByAggregateInput, { nullable: true })
 ], RoleOrderByWithAggregationInput.prototype, "_count", void 0);
@@ -49845,7 +49845,7 @@ __decorate([
 ], RoleOrderByWithRelationInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], RoleOrderByWithRelationInput.prototype, "order", void 0);
+], RoleOrderByWithRelationInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionOrderByRelationAggregateInput, { nullable: true })
 ], RoleOrderByWithRelationInput.prototype, "rolePermissions", void 0);
@@ -49890,7 +49890,7 @@ __decorate([
 ], RoleScalarWhereWithAggregatesInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
-], RoleScalarWhereWithAggregatesInput.prototype, "order", void 0);
+], RoleScalarWhereWithAggregatesInput.prototype, "orderLevel", void 0);
 RoleScalarWhereWithAggregatesInput = RoleScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_4.InputType)()
 ], RoleScalarWhereWithAggregatesInput);
@@ -49902,7 +49902,7 @@ __decorate([
 ], RoleSumAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], RoleSumAggregateInput.prototype, "order", void 0);
+], RoleSumAggregateInput.prototype, "orderLevel", void 0);
 RoleSumAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleSumAggregateInput);
@@ -49914,7 +49914,7 @@ __decorate([
 ], RoleSumAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
-], RoleSumAggregate.prototype, "order", void 0);
+], RoleSumAggregate.prototype, "orderLevel", void 0);
 RoleSumAggregate = __decorate([
     (0, graphql_5.ObjectType)()
 ], RoleSumAggregate);
@@ -49926,7 +49926,7 @@ __decorate([
 ], RoleSumOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], RoleSumOrderByAggregateInput.prototype, "order", void 0);
+], RoleSumOrderByAggregateInput.prototype, "orderLevel", void 0);
 RoleSumOrderByAggregateInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleSumOrderByAggregateInput);
@@ -49943,8 +49943,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], RoleUncheckedCreateWithoutRolePermissionsInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleUncheckedCreateWithoutRolePermissionsInput.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RoleUncheckedCreateWithoutRolePermissionsInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => UserUncheckedCreateNestedManyWithoutRoleInput, { nullable: true })
 ], RoleUncheckedCreateWithoutRolePermissionsInput.prototype, "users", void 0);
@@ -49964,8 +49964,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], RoleUncheckedCreateWithoutUsersInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleUncheckedCreateWithoutUsersInput.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RoleUncheckedCreateWithoutUsersInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionUncheckedCreateNestedManyWithoutRoleInput, { nullable: true })
 ], RoleUncheckedCreateWithoutUsersInput.prototype, "rolePermissions", void 0);
@@ -49985,8 +49985,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], RoleUncheckedCreateInput.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], RoleUncheckedCreateInput.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
+], RoleUncheckedCreateInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionUncheckedCreateNestedManyWithoutRoleInput, { nullable: true })
 ], RoleUncheckedCreateInput.prototype, "rolePermissions", void 0);
@@ -50010,7 +50010,7 @@ __decorate([
 ], RoleUncheckedUpdateManyInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUncheckedUpdateManyInput.prototype, "order", void 0);
+], RoleUncheckedUpdateManyInput.prototype, "orderLevel", void 0);
 RoleUncheckedUpdateManyInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleUncheckedUpdateManyInput);
@@ -50028,7 +50028,7 @@ __decorate([
 ], RoleUncheckedUpdateWithoutRolePermissionsInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUncheckedUpdateWithoutRolePermissionsInput.prototype, "order", void 0);
+], RoleUncheckedUpdateWithoutRolePermissionsInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => UserUncheckedUpdateManyWithoutRoleNestedInput, { nullable: true })
 ], RoleUncheckedUpdateWithoutRolePermissionsInput.prototype, "users", void 0);
@@ -50049,7 +50049,7 @@ __decorate([
 ], RoleUncheckedUpdateWithoutUsersInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUncheckedUpdateWithoutUsersInput.prototype, "order", void 0);
+], RoleUncheckedUpdateWithoutUsersInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionUncheckedUpdateManyWithoutRoleNestedInput, { nullable: true })
 ], RoleUncheckedUpdateWithoutUsersInput.prototype, "rolePermissions", void 0);
@@ -50070,7 +50070,7 @@ __decorate([
 ], RoleUncheckedUpdateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUncheckedUpdateInput.prototype, "order", void 0);
+], RoleUncheckedUpdateInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionUncheckedUpdateManyWithoutRoleNestedInput, { nullable: true })
 ], RoleUncheckedUpdateInput.prototype, "rolePermissions", void 0);
@@ -50091,7 +50091,7 @@ __decorate([
 ], RoleUpdateManyMutationInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUpdateManyMutationInput.prototype, "order", void 0);
+], RoleUpdateManyMutationInput.prototype, "orderLevel", void 0);
 RoleUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
 ], RoleUpdateManyMutationInput);
@@ -50194,7 +50194,7 @@ __decorate([
 ], RoleUpdateWithoutRolePermissionsInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUpdateWithoutRolePermissionsInput.prototype, "order", void 0);
+], RoleUpdateWithoutRolePermissionsInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => UserUpdateManyWithoutRoleNestedInput, { nullable: true })
 ], RoleUpdateWithoutRolePermissionsInput.prototype, "users", void 0);
@@ -50212,7 +50212,7 @@ __decorate([
 ], RoleUpdateWithoutUsersInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUpdateWithoutUsersInput.prototype, "order", void 0);
+], RoleUpdateWithoutUsersInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionUpdateManyWithoutRoleNestedInput, { nullable: true })
 ], RoleUpdateWithoutUsersInput.prototype, "rolePermissions", void 0);
@@ -50230,7 +50230,7 @@ __decorate([
 ], RoleUpdateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], RoleUpdateInput.prototype, "order", void 0);
+], RoleUpdateInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionUpdateManyWithoutRoleNestedInput, { nullable: true })
 ], RoleUpdateInput.prototype, "rolePermissions", void 0);
@@ -50299,7 +50299,7 @@ __decorate([
 ], RoleWhereUniqueInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
-], RoleWhereUniqueInput.prototype, "order", void 0);
+], RoleWhereUniqueInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionListRelationFilter, { nullable: true })
 ], RoleWhereUniqueInput.prototype, "rolePermissions", void 0);
@@ -50332,7 +50332,7 @@ __decorate([
 ], RoleWhereInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
-], RoleWhereInput.prototype, "order", void 0);
+], RoleWhereInput.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => RolePermissionListRelationFilter, { nullable: true })
 ], RoleWhereInput.prototype, "rolePermissions", void 0);
@@ -50355,8 +50355,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], Role.prototype, "description", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], Role.prototype, "order", void 0);
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false, defaultValue: 0, description: 'Jika orderLevel dia adalah 9999 maka dia adalah superuser' })
+], Role.prototype, "orderLevel", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [RolePermission], { nullable: true })
 ], Role.prototype, "rolePermissions", void 0);
