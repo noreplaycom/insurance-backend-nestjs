@@ -497,8 +497,8 @@ type ClaimFinancial {
   transferDate: DateTime
 
   """Cabang: Cabang Pembayar Pensiun"""
-  branchId: Int!
-  claimStatusId: Int!
+  branchId: Int
+  claimStatusId: Int
 
   """Cabang: Cabang Pembayar Pensiun"""
   branchPayee: Branch
@@ -1054,8 +1054,8 @@ type Employment {
   employmentPosition: Position!
   participantId: String!
   branchId: Int!
-  groupId: Int!
-  regionId: Int!
+  groupId: Int
+  regionId: Int
   participant: Participant!
   branch: Branch!
   group: Group
@@ -1609,16 +1609,19 @@ type AggregateRolePermission {
 }
 
 type RolePermissionAvgAggregate {
+  id: Float
   roleId: Float
 }
 
 type RolePermissionCountAggregate {
+  id: Int!
   roleId: Int!
   permission: Int!
   _all: Int!
 }
 
 type RolePermissionMaxAggregate {
+  id: Int
   roleId: Int
   permission: Permission
 }
@@ -1640,18 +1643,21 @@ enum Permission {
 }
 
 type RolePermissionMinAggregate {
+  id: Int
   roleId: Int
   permission: Permission
 }
 
 type RolePermissionSumAggregate {
+  id: Int
   roleId: Int
 }
 
 type RolePermission {
-  roleId: Int!
+  id: Int!
+  roleId: Int
   permission: Permission!
-  role: Role!
+  role: Role
 }
 
 type SubdistrictAvgAggregate {
@@ -2075,7 +2081,6 @@ input ClaimWhereUniqueInput {
   id: String
   claimFinancialId: Int
   claimProcessId: Int
-  programId: Int
   AND: [ClaimWhereInput!]
   OR: [ClaimWhereInput!]
   NOT: [ClaimWhereInput!]
@@ -2089,6 +2094,7 @@ input ClaimWhereUniqueInput {
   diseaseId: IntNullableFilter
   clinicId: IntFilter
   inputedById: StringNullableFilter
+  programId: IntFilter
   participant: ParticipantRelationFilter
   claimFinancials: ClaimFinancialRelationFilter
   claimProcesses: ClaimProcessRelationFilter
@@ -2425,9 +2431,10 @@ input RolePermissionWhereInput {
   AND: [RolePermissionWhereInput!]
   OR: [RolePermissionWhereInput!]
   NOT: [RolePermissionWhereInput!]
-  roleId: IntFilter
+  id: IntFilter
+  roleId: IntNullableFilter
   permission: EnumPermissionFilter
-  role: RoleRelationFilter
+  role: RoleNullableRelationFilter
 }
 
 input EnumPermissionFilter {
@@ -2442,6 +2449,11 @@ input NestedEnumPermissionFilter {
   in: [Permission!]
   notIn: [Permission!]
   not: NestedEnumPermissionFilter
+}
+
+input RoleNullableRelationFilter {
+  is: RoleWhereInput
+  isNot: RoleWhereInput
 }
 
 input UserListRelationFilter {
@@ -2617,8 +2629,8 @@ input ClaimFinancialWhereInput {
   rejectedAmount: FloatNullableFilter
   transactionProcessDate: DateTimeNullableFilter
   transferDate: DateTimeNullableFilter
-  branchId: IntFilter
-  claimStatusId: IntFilter
+  branchId: IntNullableFilter
+  claimStatusId: IntNullableFilter
   branchPayee: BranchNullableRelationFilter
   claim: ClaimNullableRelationFilter
   claimStatus: ClaimStatusNullableRelationFilter
@@ -2699,8 +2711,8 @@ input EmploymentWhereInput {
   employmentPosition: EnumPositionFilter
   participantId: StringFilter
   branchId: IntFilter
-  groupId: IntFilter
-  regionId: IntFilter
+  groupId: IntNullableFilter
+  regionId: IntNullableFilter
   participant: ParticipantRelationFilter
   branch: BranchRelationFilter
   group: GroupNullableRelationFilter
@@ -3316,8 +3328,8 @@ input ClaimFinancialOrderByWithRelationInput {
   rejectedAmount: SortOrderInput
   transactionProcessDate: SortOrderInput
   transferDate: SortOrderInput
-  branchId: SortOrder
-  claimStatusId: SortOrder
+  branchId: SortOrderInput
+  claimStatusId: SortOrderInput
   branchPayee: BranchOrderByWithRelationInput
   claim: ClaimOrderByWithRelationInput
   claimStatus: ClaimStatusOrderByWithRelationInput
@@ -3527,7 +3539,7 @@ input ClaimFinancialWhereUniqueInput {
   rejectedAmount: FloatNullableFilter
   transactionProcessDate: DateTimeNullableFilter
   transferDate: DateTimeNullableFilter
-  branchId: IntFilter
+  branchId: IntNullableFilter
   branchPayee: BranchNullableRelationFilter
   claim: ClaimNullableRelationFilter
   claimStatus: ClaimStatusNullableRelationFilter
@@ -3889,51 +3901,53 @@ input RoleMaxAggregateInput {
 }
 
 input RolePermissionWhereUniqueInput {
-  roleId_permission: RolePermissionRoleIdPermissionCompoundUniqueInput
+  id: Int
   AND: [RolePermissionWhereInput!]
   OR: [RolePermissionWhereInput!]
   NOT: [RolePermissionWhereInput!]
-  roleId: IntFilter
+  roleId: IntNullableFilter
   permission: EnumPermissionFilter
-  role: RoleRelationFilter
-}
-
-input RolePermissionRoleIdPermissionCompoundUniqueInput {
-  roleId: Int!
-  permission: Permission!
+  role: RoleNullableRelationFilter
 }
 
 input RolePermissionOrderByWithRelationInput {
-  roleId: SortOrder
+  id: SortOrder
+  roleId: SortOrderInput
   permission: SortOrder
   role: RoleOrderByWithRelationInput
 }
 
 enum RolePermissionScalarFieldEnum {
+  id
   roleId
   permission
 }
 
 input RolePermissionCountAggregateInput {
+  id: Boolean
   roleId: Boolean
   permission: Boolean
   _all: Boolean
 }
 
 input RolePermissionAvgAggregateInput {
+  id: Boolean
   roleId: Boolean
 }
 
 input RolePermissionSumAggregateInput {
+  id: Boolean
   roleId: Boolean
 }
 
 input RolePermissionMinAggregateInput {
+  id: Boolean
   roleId: Boolean
   permission: Boolean
 }
 
 input RolePermissionMaxAggregateInput {
+  id: Boolean
   roleId: Boolean
   permission: Boolean
 }
@@ -4453,6 +4467,7 @@ input RolePermissionCreateManyRoleInputEnvelope {
 }
 
 input RolePermissionCreateManyRoleInput {
+  id: Int
   permission: Permission!
 }
 
@@ -6046,7 +6061,7 @@ input ClaimFinancialCreateManyBranchPayeeInput {
   rejectedAmount: Float
   transactionProcessDate: DateTime
   transferDate: DateTime
-  claimStatusId: Int!
+  claimStatusId: Int
 }
 
 input BranchCreateOrConnectWithoutEmploymentInput {
@@ -6135,8 +6150,8 @@ input EmploymentWhereUniqueInput {
   employmentPosition: EnumPositionFilter
   participantId: StringFilter
   branchId: IntFilter
-  groupId: IntFilter
-  regionId: IntFilter
+  groupId: IntNullableFilter
+  regionId: IntNullableFilter
   participant: ParticipantRelationFilter
   branch: BranchRelationFilter
   group: GroupNullableRelationFilter
@@ -6152,8 +6167,8 @@ input EmploymentCreateManyParticipantInput {
   id: Int
   employmentPosition: Position!
   branchId: Int!
-  groupId: Int!
-  regionId: Int!
+  groupId: Int
+  regionId: Int
 }
 
 input ParticipantCreateOrConnectWithoutUserInput {
@@ -6248,8 +6263,8 @@ input EmploymentCreateManyBranchInput {
   id: Int
   employmentPosition: Position!
   participantId: String!
-  groupId: Int!
-  regionId: Int!
+  groupId: Int
+  regionId: Int
 }
 
 input BranchCreateOrConnectWithoutClaimFinancialInput {
@@ -6508,7 +6523,8 @@ input RolePermissionScalarWhereInput {
   AND: [RolePermissionScalarWhereInput!]
   OR: [RolePermissionScalarWhereInput!]
   NOT: [RolePermissionScalarWhereInput!]
-  roleId: IntFilter
+  id: IntFilter
+  roleId: IntNullableFilter
   permission: EnumPermissionFilter
 }
 
@@ -8628,8 +8644,8 @@ input ClaimFinancialScalarWhereInput {
   rejectedAmount: FloatNullableFilter
   transactionProcessDate: DateTimeNullableFilter
   transferDate: DateTimeNullableFilter
-  branchId: IntFilter
-  claimStatusId: IntFilter
+  branchId: IntNullableFilter
+  claimStatusId: IntNullableFilter
 }
 
 input ClaimFinancialUpdateManyMutationInput {
@@ -8717,8 +8733,8 @@ input EmploymentScalarWhereInput {
   employmentPosition: EnumPositionFilter
   participantId: StringFilter
   branchId: IntFilter
-  groupId: IntFilter
-  regionId: IntFilter
+  groupId: IntNullableFilter
+  regionId: IntNullableFilter
 }
 
 input EmploymentUpdateManyMutationInput {
@@ -8861,8 +8877,8 @@ input ClaimFinancialCreateManyInput {
   rejectedAmount: Float
   transactionProcessDate: DateTime
   transferDate: DateTime
-  branchId: Int!
-  claimStatusId: Int!
+  branchId: Int
+  claimStatusId: Int
 }
 
 input ClaimFinancialUpdateInput {
@@ -9163,7 +9179,7 @@ input RoleUpdateManyMutationInput {
 
 input RolePermissionCreateInput {
   permission: Permission!
-  role: RoleCreateNestedOneWithoutRolePermissionsInput!
+  role: RoleCreateNestedOneWithoutRolePermissionsInput
 }
 
 input RoleCreateNestedOneWithoutRolePermissionsInput {
@@ -9185,19 +9201,22 @@ input RoleCreateOrConnectWithoutRolePermissionsInput {
 }
 
 input RolePermissionCreateManyInput {
-  roleId: Int!
+  id: Int
+  roleId: Int
   permission: Permission!
 }
 
 input RolePermissionUpdateInput {
   permission: EnumPermissionFieldUpdateOperationsInput
-  role: RoleUpdateOneRequiredWithoutRolePermissionsNestedInput
+  role: RoleUpdateOneWithoutRolePermissionsNestedInput
 }
 
-input RoleUpdateOneRequiredWithoutRolePermissionsNestedInput {
+input RoleUpdateOneWithoutRolePermissionsNestedInput {
   create: RoleCreateWithoutRolePermissionsInput
   connectOrCreate: RoleCreateOrConnectWithoutRolePermissionsInput
   upsert: RoleUpsertWithoutRolePermissionsInput
+  disconnect: RoleWhereInput
+  delete: RoleWhereInput
   connect: RoleWhereUniqueInput
   update: RoleUpdateToOneWithWhereWithoutRolePermissionsInput
 }
