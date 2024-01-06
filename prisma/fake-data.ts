@@ -180,7 +180,7 @@ export function fakeEmploymentComplete() {
     participantId: faker.datatype.uuid(),
     branchId: faker.datatype.number(),
     groupId: undefined,
-    regionId: faker.datatype.number(),
+    regionId: undefined,
   };
 }
 export function fakeBranch() {

@@ -593,7 +593,7 @@ model Claim {
 
     program Program @relation(fields: [programId], references: [id])
 
-    programId Int @unique
+    programId Int
 
     //-------------------------- m relations --------------------------------
 
