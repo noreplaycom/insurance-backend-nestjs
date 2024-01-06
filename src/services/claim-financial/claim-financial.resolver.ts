@@ -28,133 +28,133 @@ interface ClaimFinancialSelect {
 export class ClaimFinancialResolver {
   constructor(private readonly claimFinancialController: ClaimFinancialController) {}
 
-  @Mutation(() => ClaimFinancial, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async claimFinancialCreateOne(
-    @Args()
-    claimFinancialCreateArgs: CreateOneClaimFinancialArgs,
-    @Relations() relations: ClaimFinancialSelect,
-  ): Promise<ClaimFinancial | void> {
-    return await this.claimFinancialController.createOne({
-      ...claimFinancialCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => ClaimFinancial, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimFinancialCreateOne(
+  //   @Args()
+  //   claimFinancialCreateArgs: CreateOneClaimFinancialArgs,
+  //   @Relations() relations: ClaimFinancialSelect,
+  // ): Promise<ClaimFinancial | void> {
+  //   return await this.claimFinancialController.createOne({
+  //     ...claimFinancialCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => BatchPayload, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async claimFinancialCreateMany(
-    @Args()
-    createManyClaimFinancialArgs: CreateManyClaimFinancialArgs,
-  ) {
-    return await this.claimFinancialController.createMany(createManyClaimFinancialArgs);
-  }
+  // @Mutation(() => BatchPayload, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimFinancialCreateMany(
+  //   @Args()
+  //   createManyClaimFinancialArgs: CreateManyClaimFinancialArgs,
+  // ) {
+  //   return await this.claimFinancialController.createMany(createManyClaimFinancialArgs);
+  // }
 
-  @Query(() => ClaimFinancial, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimFinancialFindOne(
-    @Args()
-    claimFinancialFindUniqueArgs: FindUniqueClaimFinancialArgs,
-    @Relations() relations: ClaimFinancialSelect,
-  ): Promise<ClaimFinancial | void> {
-    return this.claimFinancialController.findOne({
-      ...claimFinancialFindUniqueArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => ClaimFinancial, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimFinancialFindOne(
+  //   @Args()
+  //   claimFinancialFindUniqueArgs: FindUniqueClaimFinancialArgs,
+  //   @Relations() relations: ClaimFinancialSelect,
+  // ): Promise<ClaimFinancial | void> {
+  //   return this.claimFinancialController.findOne({
+  //     ...claimFinancialFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Query(() => [ClaimFinancial], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimFinancialFindMany(
-    @Args() claimFinancialFindManyArgs: FindManyClaimFinancialArgs,
-    @Relations() relations: ClaimFinancialSelect,
-  ) {
-    return this.claimFinancialController.findMany({
-      ...claimFinancialFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [ClaimFinancial], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimFinancialFindMany(
+  //   @Args() claimFinancialFindManyArgs: FindManyClaimFinancialArgs,
+  //   @Relations() relations: ClaimFinancialSelect,
+  // ) {
+  //   return this.claimFinancialController.findMany({
+  //     ...claimFinancialFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Query(() => ClaimFinancial, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimFinancialFindFirst(
-    @Args()
-    findFirstClaimFinancialArgs: FindFirstClaimFinancialArgs,
-    @Relations() relations: ClaimFinancialSelect,
-  ): Promise<ClaimFinancial | void> {
-    return this.claimFinancialController.findFirst({
-      ...findFirstClaimFinancialArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => ClaimFinancial, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimFinancialFindFirst(
+  //   @Args()
+  //   findFirstClaimFinancialArgs: FindFirstClaimFinancialArgs,
+  //   @Relations() relations: ClaimFinancialSelect,
+  // ): Promise<ClaimFinancial | void> {
+  //   return this.claimFinancialController.findFirst({
+  //     ...findFirstClaimFinancialArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => ClaimFinancial, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async claimFinancialUpdateOne(
-    @Args() claimFinancialUpdateOneArgs: UpdateOneClaimFinancialArgs,
-    @Relations() relations: ClaimFinancialSelect,
-  ) {
-    return this.claimFinancialController.updateOne({
-      ...replaceNullWithUndefined(claimFinancialUpdateOneArgs),
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => ClaimFinancial, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimFinancialUpdateOne(
+  //   @Args() claimFinancialUpdateOneArgs: UpdateOneClaimFinancialArgs,
+  //   @Relations() relations: ClaimFinancialSelect,
+  // ) {
+  //   return this.claimFinancialController.updateOne({
+  //     ...replaceNullWithUndefined(claimFinancialUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => ClaimFinancial, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async claimFinancialUpdateMany(@Args() updateManyClaimFinancialArgs: UpdateManyClaimFinancialArgs) {
-    return this.claimFinancialController.updateMany(updateManyClaimFinancialArgs);
-  }
+  // @Mutation(() => ClaimFinancial, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimFinancialUpdateMany(@Args() updateManyClaimFinancialArgs: UpdateManyClaimFinancialArgs) {
+  //   return this.claimFinancialController.updateMany(updateManyClaimFinancialArgs);
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async claimFinancialDelete(
-    @Args() deleteOneClaimFinancialArgs: DeleteOneClaimFinancialArgs,
-    @Relations() relations: ClaimFinancialSelect,
-  ) {
-    return this.claimFinancialController.delete({
-      ...deleteOneClaimFinancialArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimFinancialDelete(
+  //   @Args() deleteOneClaimFinancialArgs: DeleteOneClaimFinancialArgs,
+  //   @Relations() relations: ClaimFinancialSelect,
+  // ) {
+  //   return this.claimFinancialController.delete({
+  //     ...deleteOneClaimFinancialArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async claimFinancialDeleteMany(@Args() deleteManyClaimFinancialArgs: DeleteManyClaimFinancialArgs) {
-    return this.claimFinancialController.deleteMany(deleteManyClaimFinancialArgs);
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async claimFinancialDeleteMany(@Args() deleteManyClaimFinancialArgs: DeleteManyClaimFinancialArgs) {
+  //   return this.claimFinancialController.deleteMany(deleteManyClaimFinancialArgs);
+  // }
 
-  @Query(() => AggregateClaimFinancial, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimFinancialAggregate(@Args() claimFinancialAggregateArgs: ClaimFinancialAggregateArgs) {
-    return this.claimFinancialController.aggregate(claimFinancialAggregateArgs);
-  }
+  // @Query(() => AggregateClaimFinancial, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimFinancialAggregate(@Args() claimFinancialAggregateArgs: ClaimFinancialAggregateArgs) {
+  //   return this.claimFinancialController.aggregate(claimFinancialAggregateArgs);
+  // }
 
-  @Query(() => Float, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimFinancialCount(@Args() claimFinancialCountAggregateInput: FindManyClaimFinancialArgs) {
-    return this.claimFinancialController.count(claimFinancialCountAggregateInput);
-  }
+  // @Query(() => Float, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // claimFinancialCount(@Args() claimFinancialCountAggregateInput: FindManyClaimFinancialArgs) {
+  //   return this.claimFinancialController.count(claimFinancialCountAggregateInput);
+  // }
 }
