@@ -44,13 +44,14 @@ model User {
 
     profilePictureUrl String?
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     ///Tgl.Masuk Peserta
     createdAt DateTime @default(now())
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     updatedAt DateTime @updatedAt
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     deletedAt DateTime? //implement softdelete
 
     //-------------------------- 1 relations --------------------------------
@@ -228,10 +229,13 @@ model ContactInfo {
 
     telp String
 
+    /// @HideField({ match: ['ContactInfoCreate*Input','ContactInfoUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['ContactInfoCreate*Input','ContactInfoUpdate*Input']})
     updatedAt DateTime @updatedAt
 
+    /// @HideField({ match: ['ContactInfoCreate*Input','ContactInfoUpdate*Input']})
     deletedAt DateTime?
 
     //-------------------------- 1 relations --------------------------------
@@ -367,8 +371,10 @@ model Branch {
     ///Nama Cabang
     name String
 
+    /// @HideField({ match: ['BranchCreate*Input','BranchUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['BranchCreate*Input','BranchUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- m relations --------------------------------
@@ -384,8 +390,10 @@ model Group {
 
     name String
 
+    /// @HideField({ match: ['GroupCreate*Input','GroupUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['GroupCreate*Input','GroupUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- m relations --------------------------------
@@ -399,8 +407,10 @@ model Region {
 
     name String
 
+    /// @HideField({ match: ['RegionCreate*Input','RegionUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['RegionCreate*Input','RegionUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- m relations --------------------------------
@@ -417,8 +427,10 @@ model Announcement {
 
     imageUrl String?
 
+    /// @HideField({ match: ['AnnouncementCreate*Input','AnnouncementUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['AnnouncementCreate*Input','AnnouncementUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- 1 relations --------------------------------
@@ -454,10 +466,10 @@ model Notification {
     /// @HideField({ output: false, input: true })
     fcmToken String?
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['NotificationCreate*Input','NotificationUpdate*Input']})
     createdAt DateTime @default(now())
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['NotificationCreate*Input','NotificationUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- 1 relations --------------------------------
@@ -533,10 +545,13 @@ model Program {
     ///Klaim ulang maksimal [60] hari sejak tanggal pemberitahuan
     reclaimPeriodMax Int?
 
+    /// @HideField({ match: ['ProgramCreate*Input','ProgramUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['ProgramCreate*Input','ProgramUpdate*Input']})
     updatedAt DateTime @updatedAt
 
+    /// @HideField({ match: ['ProgramCreate*Input','ProgramUpdate*Input']})
     deletedAt DateTime?
 
     //-------------------------- 1 relations --------------------------------
@@ -561,21 +576,20 @@ enum Class {
 model Claim {
     //-------------------------- scalars --------------------------------
 
-    /// @HideField({ output: false, input: true })
     ///Nok:	Nomer Register Klaim
     ///Nomor Sm	nomer register Surat masuk (Klaim melalui WA/Reguler/Exception/Email)
     id String @id @default(cuid())
 
     //orderNumber  String //tidak perlu nomor urut
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     ///Tklaim:	Tanggal Klaim
     createdAt DateTime @default(now())
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     updatedAt DateTime @updatedAt
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     deletedAt DateTime?
 
     //-------------------------- 1 relations --------------------------------
@@ -612,16 +626,22 @@ model Claim {
 
     clinicId Int
 
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     inputedBy User? @relation(fields: [inputedById], references: [id])
 
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     inputedById String?
 
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     program Program @relation(fields: [programId], references: [id])
 
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     programId Int
 
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})    
     waitingFor User? @relation("waitingfor", fields: [waitingForId], references: [id])
 
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     waitingForId String?
 
     //-------------------------- m relations --------------------------------
@@ -656,8 +676,10 @@ model Document {
     ///Jumlah Cetak:	Jumlah cetak dokumen
     printCount Int
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     updatedAt DateTime @updatedAt
     //-------------------------- 1 relations --------------------------------
 
@@ -707,10 +729,10 @@ model Tag {
     /// @HideField({ output: true, input: true })
     isException Boolean @default(false)
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['TagCreate*Input','TagUpdate*Input']})
     createdAt DateTime @default(now())
 
-    /// @HideField({ output: false, input: true })
+    /// @HideField({ match: ['TagCreate*Input','TagUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- m relations --------------------------------
@@ -819,18 +841,24 @@ model ClaimStatus {
 
     rejectionReason String?
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     createdAt DateTime @default(now())
 
     //-------------------------- 1 relations --------------------------------
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     status ClaimStatusType
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     createBy User @relation("statusUpdatedBy", fields: [createById], references: [id])
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     createById String
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     claim Claim @relation(fields: [claimId], references: [id])
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     claimId String
 
     ///Nomor surat tolak
@@ -871,8 +899,10 @@ model Disease {
     ///NamaPenyakit: nama penyakit
     name String
 
+    /// @HideField({ match: ['DiseaseCreate*Input','DiseaseUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['DiseaseCreate*Input','DiseaseUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- m relations --------------------------------
@@ -888,8 +918,10 @@ model Clinic {
 
     name String
 
+    /// @HideField({ match: ['ClinicCreate*Input','ClinicUpdate*Input']})
     createdAt DateTime @default(now())
 
+    /// @HideField({ match: ['ClinicCreate*Input','ClinicUpdate*Input']})
     updatedAt DateTime @updatedAt
 
     //-------------------------- m relations --------------------------------
@@ -931,6 +963,7 @@ model Transaction {
 
     description String?
 
+    /// @HideField({ match: ['TransactionCreate*Input','TransactionUpdate*Input']})
     createdAt DateTime @default(now())
 
     //-------------------------- 1 relations --------------------------------
@@ -975,6 +1008,7 @@ model Backup {
 
     type BackupType
 
+    /// @HideField({ match: ['BackupCreate*Input','BackupUpdate*Input']})
     createdAt DateTime @default(now())
 }
 
