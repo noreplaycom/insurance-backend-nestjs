@@ -522,9 +522,15 @@ model Program {
 
     id Int @id @default(autoincrement())
 
-    ///Nama Program
-    ///Plan	PlanType = jenis Rawat inap atau disingkat RI
-    plan ApplicationType
+    ///Nama Program/jenis program
+    type ProgramType
+
+    santunanHarianRawatInapPlan SantunanHarianRawatInapPlan?
+
+    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
+    santunanHarianRawatInapNominalPlan Float?
+
+    tambahanBantuanRawatInapType TambahanBantuanRawatInapType?
 
     // ///Jenis:	Jenis Produk Bantuan
     // jenis String
@@ -535,11 +541,18 @@ model Program {
     ///misal 50% dari biaya UGD/IGD, Plafon per pasangan maksimal Rp. 1.500.000 /tahun 
     maxAllowancePercentage Int?
 
-    ///Plafon Santunan:	Plafon Santnan Harian Rawat Inap
-    allowanceCeiling Float?
+    ///Plafon Santunan
+    allowanceCeiling Float
+
+    ///Periode Santunan
+    allowanceCeilingPeriod Period
+
+    ///Berapa kali? contoh: Plafon per orang maksimal Rp. 2.000.000 eenmaleg (hanya 1 kali) 
+    ///contoh: Plafon per orang perminggu maksimal 2 kali kunjungan, per kunjunan maksimal Rp.700.000 
+    allowanceQuota Int?
 
     ///Maksimal santunan [60] hari rawat inap/tahun/orang
-    maxAllowancePerYear Float?
+    allowanceQuotaPeriod Period
 
     ///Masa klaim [60] hari sejak keluar rumah sakit/tanggal kuitansi
     claimPeriodMax Int?
@@ -563,6 +576,19 @@ model Program {
     programParticipations ProgramParticipation[]
 
     claimProgram ClaimProgram[]
+}
+
+enum TambahanBantuanRawatInapType {
+    BPJS
+    NON_BPJS
+}
+
+enum Period {
+    DAILY
+    WEEKLY
+    MONTHLY
+    YEARLY
+    ALLTIME
 }
 
 model Claim {
@@ -728,7 +754,7 @@ enum Color {
     GREEN
 }
 
-enum ApplicationType {
+enum ProgramType {
     SANTUNAN_HARIAN_RAWAT_INAP
     BANTUAN_BIAYA_CUCI_DARAH
     BANTUAN_KURSI_RODA
@@ -798,9 +824,6 @@ model ClaimProgram {
 
     ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
     santunanHarianRawatInapPlan SantunanHarianRawatInapPlan?
-
-    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-    santunanHarianRawatInapNominalPlan Float
 
     ///Tmulairawat	Tanggal mulai Rawat
     startTreatment DateTime?

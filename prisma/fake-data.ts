@@ -1,4 +1,4 @@
-import { RoleType, Permission, ParticipantStatus, Position, Class, ClaimChannel, DocumentSource, DocumentType, Color, ApplicationType, AdmedicaStatus, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
+import { RoleType, Permission, ParticipantStatus, Position, ClaimChannel, DocumentSource, DocumentType, Color, ApplicationType, AdmedicaStatus, SantunanHarianRawatInapPlan, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 
@@ -300,7 +300,6 @@ export function fakeProgram() {
     reclaimPeriodMax: undefined,
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    class: undefined,
   };
 }
 export function fakeProgramComplete() {
@@ -315,7 +314,6 @@ export function fakeProgramComplete() {
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    class: undefined,
   };
 }
 export function fakeClaim() {
@@ -338,11 +336,8 @@ export function fakeClaimComplete() {
     company: faker.lorem.words(5),
     participantId: faker.datatype.uuid(),
     claimFinancialId: faker.datatype.number(),
-    claimProcessId: faker.datatype.number(),
-    diseaseId: undefined,
-    clinicId: faker.datatype.number(),
+    claimProgramId: faker.datatype.number(),
     inputedById: undefined,
-    programId: faker.datatype.number(),
     waitingForId: undefined,
   };
 }
@@ -351,7 +346,6 @@ export function fakeDocument() {
     name: faker.name.fullName(),
     path: faker.lorem.words(5),
     size: faker.datatype.number(),
-    printCount: faker.datatype.number(),
     updatedAt: faker.datatype.datetime(),
     source: faker.helpers.arrayElement([DocumentSource.UPLOADED, DocumentSource.GENERATED] as const),
     type: faker.helpers.arrayElement([DocumentType.INVOICE, DocumentType.CLAIM_FORM, DocumentType.REJECTION_LETTER, DocumentType.GUARANTEE_LETTER, DocumentType.RECAP, DocumentType.EXPEDITION, DocumentType.TRANSFER] as const),
@@ -363,12 +357,11 @@ export function fakeDocumentComplete() {
     name: faker.name.fullName(),
     path: faker.lorem.words(5),
     size: faker.datatype.number(),
-    printCount: faker.datatype.number(),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     source: faker.helpers.arrayElement([DocumentSource.UPLOADED, DocumentSource.GENERATED] as const),
     type: faker.helpers.arrayElement([DocumentType.INVOICE, DocumentType.CLAIM_FORM, DocumentType.REJECTION_LETTER, DocumentType.GUARANTEE_LETTER, DocumentType.RECAP, DocumentType.EXPEDITION, DocumentType.TRANSFER] as const),
-    claimProcessId: undefined,
+    claimProgramId: undefined,
   };
 }
 export function fakeTag() {
@@ -409,29 +402,51 @@ export function fakeClaimFinancialComplete() {
     claimStatusId: undefined,
   };
 }
-export function fakeClaimProcess() {
+export function fakeClaimProgram() {
   return {
-    startTreatment: undefined,
-    endTreatment: undefined,
     expeditionDate: undefined,
     reclaim: undefined,
-    processDate: undefined,
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,
+    santunanHarianRawatInapPlan: undefined,
+    santunanHarianRawatInapNominalPlan: undefined,
+    startTreatment: undefined,
+    endTreatment: undefined,
+    storeName: undefined,
   };
 }
-export function fakeClaimProcessComplete() {
+export function fakeClaimProgramComplete() {
   return {
     id: faker.datatype.number(),
-    startTreatment: undefined,
-    endTreatment: undefined,
     expeditionDate: undefined,
     reclaim: undefined,
-    processDate: undefined,
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,
+    santunanHarianRawatInapPlan: undefined,
+    santunanHarianRawatInapNominalPlan: undefined,
+    startTreatment: undefined,
+    endTreatment: undefined,
+    storeName: undefined,
+    diseaseId: undefined,
+    clinicId: faker.datatype.number(),
+    programId: faker.datatype.number(),
+  };
+}
+export function fakeInvoiceProof() {
+  return {
+    issuedDate: faker.datatype.datetime(),
+    amount: faker.datatype.number(),
+  };
+}
+export function fakeInvoiceProofComplete() {
+  return {
+    id: faker.datatype.number(),
+    issuedDate: faker.datatype.datetime(),
+    amount: faker.datatype.number(),
+    documentProofId: faker.datatype.uuid(),
+    claimProgramId: undefined,
   };
 }
 export function fakeClaimStatus() {
