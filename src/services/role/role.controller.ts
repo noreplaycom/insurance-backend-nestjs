@@ -36,14 +36,6 @@ export class RoleController {
           name: 'Peserta',
           description: 'peserta',
           roleType: RoleType.PARTICIPANT,
-          rolePermissions: {
-            createMany: {
-              data: [
-                { permission: Permission.CREATE_CLAIM },
-                { permission: Permission.CREATE_CLAIM },
-              ],
-            },
-          },
         },
       });
 
@@ -55,7 +47,16 @@ export class RoleController {
           roleType: RoleType.ADMIN,
           rolePermissions: {
             createMany: {
-              data: permissions.map((permission) => ({ permission })),
+              data: [
+                { permission: Permission.CREATE_CLAIM },
+                { permission: Permission.CREATE_CLAIM_DOCUMENT },
+                { permission: Permission.CREATE_PARTICIPANT },
+                { permission: Permission.EXPORT_CLAIM },
+                { permission: Permission.EXPORT_PARTICIPANT },
+                { permission: Permission.UPDATE_CLAIM },
+                { permission: Permission.UPDATE_PARTICIPANT },
+                { permission: Permission.UPDATE_CLAIM_STATUS },
+              ],
             },
           },
         },
