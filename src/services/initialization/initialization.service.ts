@@ -15,10 +15,10 @@ export class InitializationService {
       await populateProvinceCityDistricSubdistric();
     }
 
-    await this.createSuperUserIfNotExist();
+    await this.createUserAndRoleAndProgram();
   }
 
-  private async createSuperUserIfNotExist() {
+  private async createUserAndRoleAndProgram() {
     try {
       // Check if roles is empty
       const roles = await this.prisma.role.findMany({});
@@ -27,8 +27,6 @@ export class InitializationService {
           'fresh start?.. creating superuser, admin with roles and permissions',
         );
         await this.prisma.$transaction(async (prisma) => {
-          const permissions = Object.values(Permission);
-
           // Create participant role
           await prisma.role.create({
             data: {
@@ -40,60 +38,17 @@ export class InitializationService {
           });
 
           // Create user superuser
-          await prisma.user.create({
-            data: {
-              fullName: 'Super User',
-              email: 'superuser@ydds.lab.web.id',
-              password: '123456',
-              role: {
-                create: {
-                  name: 'superuser',
-                  description: 'superuser',
-                  roleType: RoleType.SUPERUSER,
-                  rolePermissions: {
-                    createMany: {
-                      data: permissions.map((permission) => ({ permission })),
-                    },
-                  },
-                },
-              },
-            },
-          });
+          await this.createSuperUser(prisma);
 
           // Create user admin
-          await prisma.user.create({
-            data: {
-              fullName: 'Admin Berkas',
-              email: 'adminberkas@ydds.lab.web.id',
-              password: '123456',
-              role: {
-                create: {
-                  name: 'Admin Berkas',
-                  description: 'admin berkas',
-                  roleType: RoleType.ADMIN,
-                  rolePermissions: {
-                    createMany: {
-                      data: [
-                        { permission: Permission.CREATE_CLAIM },
-                        { permission: Permission.CREATE_CLAIM_DOCUMENT },
-                        { permission: Permission.CREATE_PARTICIPANT },
-                        { permission: Permission.EXPORT_CLAIM },
-                        { permission: Permission.EXPORT_PARTICIPANT },
-                        { permission: Permission.UPDATE_CLAIM },
-                        { permission: Permission.UPDATE_PARTICIPANT },
-                        { permission: Permission.UPDATE_CLAIM_STATUS },
-                      ],
-                    },
-                  },
-                },
-              },
-            },
-          });
+          await this.createAdminUser(prisma);
 
           // Create Exception tag
           await prisma.tag.create({
             data: { name: 'Exception', color: Color.RED, isException: true },
           });
+
+          //TODO: Create program
         });
 
         console.log('Superuser and admin created');
@@ -106,5 +61,59 @@ export class InitializationService {
       // Be cautious when using this, as it might have unintended consequences.
       process.exit(1);
     }
+  }
+
+  private async createAdminUser(prisma) {
+    await prisma.user.create({
+      data: {
+        fullName: 'Admin Berkas',
+        email: 'adminberkas@ydds.lab.web.id',
+        password: '123456',
+        role: {
+          create: {
+            name: 'Admin Berkas',
+            description: 'admin berkas',
+            roleType: RoleType.ADMIN,
+            rolePermissions: {
+              createMany: {
+                data: [
+                  { permission: Permission.CREATE_CLAIM },
+                  { permission: Permission.CREATE_CLAIM_DOCUMENT },
+                  { permission: Permission.CREATE_PARTICIPANT },
+                  { permission: Permission.EXPORT_CLAIM },
+                  { permission: Permission.EXPORT_PARTICIPANT },
+                  { permission: Permission.UPDATE_CLAIM },
+                  { permission: Permission.UPDATE_PARTICIPANT },
+                  { permission: Permission.UPDATE_CLAIM_STATUS },
+                ],
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+  private async createSuperUser(prisma) {
+    const permissions = Object.values(Permission);
+    await prisma.user.create({
+      data: {
+        fullName: 'Super User',
+        email: 'superuser@ydds.lab.web.id',
+        password: '123456',
+        role: {
+          create: {
+            name: 'superuser',
+            description: 'superuser',
+            roleType: RoleType.SUPERUSER,
+            rolePermissions: {
+              createMany: {
+                data: permissions.map((permission) => ({ permission })),
+              },
+            },
+          },
+        },
+      },
+    });
   }
 }

@@ -121,7 +121,7 @@ import { InitializationModule } from './services/initialization/initialization.m
     // DocumentModule,
     // EmploymentModule,
     // GroupModule,
-    // ParticipantModule,
+    ParticipantModule,
     // ProgramModule,
     // ProgramParticipationModule,
     // RegionModule,

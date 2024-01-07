@@ -2027,6 +2027,15 @@ type Query {
   claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
+  participantFindOne(where: ParticipantWhereUniqueInput!): Participant
+
+  """Deskripsinya ada disini loh"""
+  participantFindMany(where: ParticipantWhereInput, orderBy: [ParticipantOrderByWithRelationInput!], cursor: ParticipantWhereUniqueInput, take: Int, skip: Int, distinct: [ParticipantScalarFieldEnum!]): [Participant!]
+
+  """Deskripsinya ada disini loh"""
+  participantCount(where: ParticipantWhereInput, orderBy: [ParticipantOrderByWithRelationInput!], cursor: ParticipantWhereUniqueInput, take: Int, skip: Int, distinct: [ParticipantScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
   roleFindOne(where: RoleWhereUniqueInput!): Role
 
   """Deskripsinya ada disini loh"""
@@ -3681,6 +3690,36 @@ input ClaimStatusMaxAggregateInput {
   bookKeepingOrderId: Boolean
 }
 
+input ParticipantWhereUniqueInput {
+  userId: String
+  AND: [ParticipantWhereInput!]
+  OR: [ParticipantWhereInput!]
+  NOT: [ParticipantWhereInput!]
+  gender: EnumGenderFilter
+  birthDate: DateTimeFilter
+  isActive: BoolFilter
+  status: EnumParticipantStatusFilter
+  relationId: StringNullableFilter
+  user: UserRelationFilter
+  relation: ParticipantNullableRelationFilter
+  bankAccount: BankAccountNullableRelationFilter
+  claims: ClaimListRelationFilter
+  employments: EmploymentListRelationFilter
+  contactInfos: ContactInfoListRelationFilter
+  programParticipations: ProgramParticipationListRelationFilter
+  balances: AccountListRelationFilter
+  Participant: ParticipantListRelationFilter
+}
+
+enum ParticipantScalarFieldEnum {
+  gender
+  birthDate
+  isActive
+  status
+  userId
+  relationId
+}
+
 input RoleWhereUniqueInput {
   id: Int
   AND: [RoleWhereInput!]
@@ -5259,27 +5298,6 @@ input ParticipantCreateWithoutProgramParticipationsInput {
 input ParticipantCreateOrConnectWithoutProgramParticipationsInput {
   where: ParticipantWhereUniqueInput!
   create: ParticipantCreateWithoutProgramParticipationsInput!
-}
-
-input ParticipantWhereUniqueInput {
-  userId: String
-  AND: [ParticipantWhereInput!]
-  OR: [ParticipantWhereInput!]
-  NOT: [ParticipantWhereInput!]
-  gender: EnumGenderFilter
-  birthDate: DateTimeFilter
-  isActive: BoolFilter
-  status: EnumParticipantStatusFilter
-  relationId: StringNullableFilter
-  user: UserRelationFilter
-  relation: ParticipantNullableRelationFilter
-  bankAccount: BankAccountNullableRelationFilter
-  claims: ClaimListRelationFilter
-  employments: EmploymentListRelationFilter
-  contactInfos: ContactInfoListRelationFilter
-  programParticipations: ProgramParticipationListRelationFilter
-  balances: AccountListRelationFilter
-  Participant: ParticipantListRelationFilter
 }
 
 input ProgramCreateNestedOneWithoutProgramParticipationsInput {
