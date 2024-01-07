@@ -38,7 +38,7 @@
 //     @Relations() relations: FileSelect,
 //   ): Promise<File | void> {
 //     return await this.fileController.createOne({
-//       ...fileCreateArgs,
+//       ...replaceNullWithUndefined(fileCreateArgs),
 //       select: relations.select,
 //     });
 //   }
@@ -51,7 +51,7 @@
 //     @Args()
 //     createManyFileArgs: CreateManyFileArgs,
 //   ) {
-//     return await this.fileController.createMany(createManyFileArgs);
+//     return await this.fileController.createMany(replaceNullWithUndefined(createManyFileArgs));
 //   }
 
 //   @Query(() => File, {

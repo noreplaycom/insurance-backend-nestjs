@@ -5,6 +5,7 @@ import { RoleFindOneByUserArgs } from './dto/role_find_one_by_user';
 import { RoleFindOneByIdArgs } from './dto/role_find_one_by_id';
 import { UserController } from '../user/user.controller';
 import { PrismaService } from 'prisma/prisma.service';
+import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 
 @Injectable()
 export class RoleController {
@@ -39,6 +40,19 @@ export class RoleController {
   }
 
   async delete(roleDeleteArgs: Prisma.RoleDeleteArgs) {
+    const roleType = await this.roleService.findOne({
+      where: { id: roleDeleteArgs?.where?.id },
+    });
+
+    switch (roleType.roleType) {
+      case RoleType.SUPERUSER:
+        throw new IGraphQLError({ code: 190001 });
+      case RoleType.PARTICIPANT:
+        throw new IGraphQLError({ code: 190002 });
+      default:
+        break;
+    }
+
     return await this.roleService.delete(roleDeleteArgs);
   }
 

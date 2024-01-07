@@ -89,8 +89,12 @@ export const errorCodes: Record<number, string> = {
     'Ukuran file tidak boleh lebih dari 10 mb untuk gambar, MP4 100 mb, PDF 30 mb',
   170005: 'File tidak didukung',
   170006: 'Gagal membersihkan file di storage yang tidak terpakai',
+  // ? Role
+  190001: 'Dilarang menghapus Role SuperUser',
+  190002: 'Dilarang menghapus Role Participant',
 
   // ? Claim
-  180001: 'Headers file excel untuk import data claim tidak sesuai, mohon periksa kembali file excel Anda',
+  180001:
+    'Headers file excel untuk import data claim tidak sesuai, mohon periksa kembali file excel Anda',
   180002: 'File claim untuk import harus XLSX, mohon periksa kembali file Anda',
 };

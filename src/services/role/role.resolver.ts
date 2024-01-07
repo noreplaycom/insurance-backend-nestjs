@@ -38,7 +38,7 @@ export class RoleResolver {
     @Relations() relations: RoleSelect,
   ): Promise<Role | void> {
     return await this.roleController.createOne({
-      ...roleCreateArgs,
+      ...replaceNullWithUndefined(roleCreateArgs),
       select: relations.select,
     });
   }
