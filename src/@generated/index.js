@@ -54782,7 +54782,7 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], TagCountAggregateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagCountAggregateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -54836,7 +54836,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], TagCountOrderByAggregateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagCountOrderByAggregateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -54869,7 +54869,7 @@ __decorate([
     (0, graphql_1.Field)(() => Color, { nullable: false })
 ], TagCreateManyInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagCreateManyInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -54922,7 +54922,7 @@ __decorate([
     (0, graphql_1.Field)(() => Color, { nullable: false })
 ], TagCreateWithoutClaimsInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagCreateWithoutClaimsInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -54943,7 +54943,7 @@ __decorate([
     (0, graphql_1.Field)(() => Color, { nullable: false })
 ], TagCreateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagCreateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -55064,7 +55064,7 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], TagMaxAggregateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagMaxAggregateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -55112,7 +55112,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], TagMaxOrderByAggregateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagMaxOrderByAggregateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -55136,7 +55136,7 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], TagMinAggregateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagMinAggregateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -55184,7 +55184,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], TagMinOrderByAggregateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagMinOrderByAggregateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -55217,7 +55217,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], TagOrderByWithAggregationInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagOrderByWithAggregationInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -55256,7 +55256,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], TagOrderByWithRelationInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagOrderByWithRelationInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -55292,7 +55292,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorWithAggregatesFilter, { nullable: true })
 ], TagScalarWhereWithAggregatesInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolWithAggregatesFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagScalarWhereWithAggregatesInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
@@ -55325,7 +55325,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFilter, { nullable: true })
 ], TagScalarWhereInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagScalarWhereInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
@@ -55394,7 +55394,7 @@ __decorate([
     (0, graphql_1.Field)(() => Color, { nullable: false })
 ], TagUncheckedCreateWithoutClaimsInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUncheckedCreateWithoutClaimsInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -55418,7 +55418,7 @@ __decorate([
     (0, graphql_1.Field)(() => Color, { nullable: false })
 ], TagUncheckedCreateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUncheckedCreateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -55491,7 +55491,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFieldUpdateOperationsInput, { nullable: true })
 ], TagUncheckedUpdateManyWithoutClaimsInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUncheckedUpdateManyWithoutClaimsInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -55515,7 +55515,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFieldUpdateOperationsInput, { nullable: true })
 ], TagUncheckedUpdateManyInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUncheckedUpdateManyInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -55539,7 +55539,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFieldUpdateOperationsInput, { nullable: true })
 ], TagUncheckedUpdateWithoutClaimsInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUncheckedUpdateWithoutClaimsInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -55563,7 +55563,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFieldUpdateOperationsInput, { nullable: true })
 ], TagUncheckedUpdateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUncheckedUpdateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -55587,7 +55587,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFieldUpdateOperationsInput, { nullable: true })
 ], TagUpdateManyMutationInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUpdateManyMutationInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -55682,7 +55682,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFieldUpdateOperationsInput, { nullable: true })
 ], TagUpdateWithoutClaimsInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUpdateWithoutClaimsInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -55703,7 +55703,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFieldUpdateOperationsInput, { nullable: true })
 ], TagUpdateInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagUpdateInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -55757,7 +55757,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFilter, { nullable: true })
 ], TagWhereUniqueInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagWhereUniqueInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
@@ -55793,7 +55793,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumColorFilter, { nullable: true })
 ], TagWhereInput.prototype, "color", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
+    (0, graphql_8.HideField)()
 ], TagWhereInput.prototype, "isException", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })

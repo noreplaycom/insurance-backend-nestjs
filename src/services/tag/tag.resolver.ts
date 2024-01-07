@@ -28,20 +28,20 @@ interface TagSelect {
 export class TagResolver {
   constructor(private readonly tagController: TagController) {}
 
-  // @Mutation(() => Tag, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async tagCreateOne(
-  //   @Args()
-  //   tagCreateArgs: CreateOneTagArgs,
-  //   @Relations() relations: TagSelect,
-  // ): Promise<Tag | void> {
-  //   return await this.tagController.createOne({
-  //     ...tagCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Tag, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async tagCreateOne(
+    @Args()
+    tagCreateArgs: CreateOneTagArgs,
+    @Relations() relations: TagSelect,
+  ): Promise<Tag | void> {
+    return await this.tagController.createOne({
+      ...tagCreateArgs,
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,
@@ -98,19 +98,20 @@ export class TagResolver {
   //   });
   // }
 
-  // @Mutation(() => Tag, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async tagUpdateOne(
-  //   @Args() tagUpdateOneArgs: UpdateOneTagArgs,
-  //   @Relations() relations: TagSelect,
-  // ) {
-  //   return this.tagController.updateOne({
-  //     ...replaceNullWithUndefined(tagUpdateOneArgs),
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Tag, {
+    nullable: true,
+    description:
+      'update nama dan warna tag di database bukan hanya di dokumen claim saja. ',
+  })
+  async tagUpdateOne(
+    @Args() tagUpdateOneArgs: UpdateOneTagArgs,
+    @Relations() relations: TagSelect,
+  ) {
+    return this.tagController.updateOne({
+      ...replaceNullWithUndefined(tagUpdateOneArgs),
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => Tag, {
   //   nullable: true,
@@ -122,7 +123,7 @@ export class TagResolver {
 
   @Mutation(() => Boolean, {
     nullable: false,
-    description: 'Deskripsinya ada disini loh',
+    description: 'Permanently delete all tag also from all claims',
   })
   async tagDelete(
     @Args() deleteOneTagArgs: DeleteOneTagArgs,

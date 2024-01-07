@@ -3746,6 +3746,7 @@ enum TagScalarFieldEnum {
   id
   name
   color
+  isException
   createdAt
   updatedAt
 }
@@ -3880,6 +3881,14 @@ type Mutation {
   roleDelete(where: RoleWhereUniqueInput!): Boolean!
 
   """Deskripsinya ada disini loh"""
+  tagCreateOne(data: TagCreateInput!): Tag
+
+  """
+  update nama dan warna tag di database bukan hanya di dokumen claim saja. 
+  """
+  tagUpdateOne(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+
+  """Permanently delete all tag also from all claims"""
   tagDelete(where: TagWhereUniqueInput!): Boolean!
 
   """Deskripsinya ada disini loh"""
@@ -8761,6 +8770,90 @@ input RoleUpdateInput {
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
   users: UserUpdateManyWithoutRoleNestedInput
   lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
+}
+
+input TagCreateInput {
+  name: String!
+  color: Color!
+  createdAt: DateTime
+  updatedAt: DateTime
+  Claims: ClaimCreateNestedManyWithoutTagsInput
+}
+
+input ClaimCreateNestedManyWithoutTagsInput {
+  create: [ClaimCreateWithoutTagsInput!]
+  connectOrCreate: [ClaimCreateOrConnectWithoutTagsInput!]
+  connect: [ClaimWhereUniqueInput!]
+}
+
+input ClaimCreateWithoutTagsInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
+  disease: DiseaseCreateNestedOneWithoutClaimsInput
+  clinics: ClinicCreateNestedOneWithoutClaimsInput!
+  inputedBy: UserCreateNestedOneWithoutClaimsInputInput
+  program: ProgramCreateNestedOneWithoutClaimsInput!
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
+}
+
+input ClaimCreateOrConnectWithoutTagsInput {
+  where: ClaimWhereUniqueInput!
+  create: ClaimCreateWithoutTagsInput!
+}
+
+input TagUpdateInput {
+  name: StringFieldUpdateOperationsInput
+  color: EnumColorFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+  Claims: ClaimUpdateManyWithoutTagsNestedInput
+}
+
+input ClaimUpdateManyWithoutTagsNestedInput {
+  create: [ClaimCreateWithoutTagsInput!]
+  connectOrCreate: [ClaimCreateOrConnectWithoutTagsInput!]
+  upsert: [ClaimUpsertWithWhereUniqueWithoutTagsInput!]
+  set: [ClaimWhereUniqueInput!]
+  disconnect: [ClaimWhereUniqueInput!]
+  delete: [ClaimWhereUniqueInput!]
+  connect: [ClaimWhereUniqueInput!]
+  update: [ClaimUpdateWithWhereUniqueWithoutTagsInput!]
+  updateMany: [ClaimUpdateManyWithWhereWithoutTagsInput!]
+  deleteMany: [ClaimScalarWhereInput!]
+}
+
+input ClaimUpsertWithWhereUniqueWithoutTagsInput {
+  where: ClaimWhereUniqueInput!
+  update: ClaimUpdateWithoutTagsInput!
+  create: ClaimCreateWithoutTagsInput!
+}
+
+input ClaimUpdateWithoutTagsInput {
+  channel: EnumClaimChannelFieldUpdateOperationsInput
+  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
+  company: StringFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneRequiredWithoutClaimsNestedInput
+  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
+  claimProcesses: ClaimProcessUpdateOneRequiredWithoutClaimNestedInput
+  disease: DiseaseUpdateOneWithoutClaimsNestedInput
+  clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
+  inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
+  program: ProgramUpdateOneRequiredWithoutClaimsNestedInput
+  waitingFor: UserUpdateOneWithoutClaimsOnWaitNestedInput
+}
+
+input ClaimUpdateWithWhereUniqueWithoutTagsInput {
+  where: ClaimWhereUniqueInput!
+  data: ClaimUpdateWithoutTagsInput!
+}
+
+input ClaimUpdateManyWithWhereWithoutTagsInput {
+  where: ClaimScalarWhereInput!
+  data: ClaimUpdateManyMutationInput!
 }
 
 input NotificationUpdateInput {
