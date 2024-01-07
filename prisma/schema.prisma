@@ -77,6 +77,8 @@ model User {
     //claim-claim yang menunggu aksi dari user
     claimsOnWait Claim[] @relation("waitingfor")
 
+    documentPrints Document[] @relation("printedby")
+
     @@map("users")
 }
 
@@ -556,21 +558,11 @@ model Program {
 
     //-------------------------- 1 relations --------------------------------
 
-    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-    class Class?
-
     //-------------------------- m relations --------------------------------
 
     programParticipations ProgramParticipation[]
 
-    claims Claim[]
-}
-
-///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-enum Class {
-    I
-    II
-    III
+    claimProgram ClaimProgram[]
 }
 
 model Claim {
@@ -583,7 +575,7 @@ model Claim {
     //orderNumber  String //tidak perlu nomor urut
 
     /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
-    ///Tklaim:	Tanggal Klaim
+    ///Tklaim:	Tanggal Klaim atau TProses Pengajuan:	Tanggal Proses pengajuan 
     createdAt DateTime @default(now())
 
     /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
@@ -614,29 +606,15 @@ model Claim {
 
     claimFinancialId Int @unique
 
-    claimProcesses ClaimProcess @relation(fields: [claimProcessId], references: [id])
+    claimProgram ClaimProgram @relation(fields: [claimProgramId], references: [id])
 
-    claimProcessId Int @unique
-
-    disease Disease? @relation(fields: [diseaseId], references: [id])
-
-    diseaseId Int?
-
-    clinics Clinic @relation(fields: [clinicId], references: [id])
-
-    clinicId Int
+    claimProgramId Int @unique
 
     /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     inputedBy User? @relation(fields: [inputedById], references: [id])
 
     /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     inputedById String?
-
-    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
-    program Program @relation(fields: [programId], references: [id])
-
-    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
-    programId Int
 
     /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})    
     waitingFor User? @relation("waitingfor", fields: [waitingForId], references: [id])
@@ -673,9 +651,6 @@ model Document {
     ///Ukuran:	Ukuran dokumen
     size Int
 
-    ///Jumlah Cetak:	Jumlah cetak dokumen
-    printCount Int
-
     /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     createdAt DateTime @default(now())
 
@@ -687,6 +662,9 @@ model Document {
 
     type DocumentType
 
+    ///Siapa saja yang telah mencetak dokumen ini
+    printedby User[] @relation("printedby")
+
     rejectionLetterOf ClaimStatus? @relation("rejectionLetter")
 
     guaranteeLetterOf ClaimStatus? @relation("guaranteeLetter")
@@ -697,9 +675,11 @@ model Document {
     ///Perintah Pembukuan
     bookKeepingOrderOf ClaimStatus? @relation("bookKeepingOrder")
 
-    claimProcess ClaimProcess? @relation(fields: [claimProcessId], references: [id])
+    claimProgramm ClaimProgram? @relation(fields: [claimProgramId], references: [id])
 
-    claimProcessId Int?
+    claimProgramId Int?
+
+    invoiceProof InvoiceProof?
 }
 
 enum DocumentSource {
@@ -797,24 +777,15 @@ model ClaimFinancial {
     claimStatusId Int? @unique
 }
 
-model ClaimProcess {
+model ClaimProgram {
     //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
-
-    ///Tmulairawat	Tanggal mulai Rawat
-    startTreatment DateTime?
-
-    ///Takhirrawat	Tanggal akhir rawat
-    endTreatment DateTime?
 
     ///Tekspedisi	Tanggal ekspedisi
     expeditionDate DateTime?
 
     ///Reklaim:	Keterangan untuk klaim ulang
     reclaim String?
-
-    ///TProses Pengajuan:	Tanggal Proses pengajuan
-    processDate DateTime?
 
     ///Ket.Pengajuan:	Keterangan konfirmasi
     submissionNote String?
@@ -825,11 +796,72 @@ model ClaimProcess {
     ///Ket.Tambahan	keterangan tambahan
     additionalNote String?
 
+    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
+    santunanHarianRawatInapPlan SantunanHarianRawatInapPlan?
+
+    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
+    santunanHarianRawatInapNominalPlan Float
+
+    ///Tmulairawat	Tanggal mulai Rawat
+    startTreatment DateTime?
+
+    ///Takhirrawat	Tanggal akhir rawat
+    endTreatment DateTime?
+
+    ///Nama toko atau tempat pembelian kursi roda
+    storeName String?
+
     //-------------------------- 1 relations --------------------------------
+
+    disease Disease? @relation(fields: [diseaseId], references: [id])
+
+    diseaseId Int?
+
+    clinics Clinic @relation(fields: [clinicId], references: [id])
+
+    clinicId Int
+
     claim Claim?
+
+    /// @HideField({ match: ['ClaimProgramCreate*Input','ClaimProgramUpdate*Input']})
+    program Program @relation(fields: [programId], references: [id])
+
+    /// @HideField({ match: ['ClaimProgramCreate*Input','ClaimProgramUpdate*Input']})
+    programId Int
+
+    //-------------------------- m relations --------------------------------
 
     ///Kwitansi, data, dll: Bukti Pembayaran/Invoice Rumah Sakit oleh Peserta
     documents Document[]
+
+    ///Kuitansi: Bukti2 pembayaran klinik atau rumah sakit
+    invoiceProofs InvoiceProof[]
+}
+
+enum SantunanHarianRawatInapPlan {
+    I
+    II
+    III
+}
+
+///Kuitansi bukti pembayaran klinik atau rumah sakit
+model InvoiceProof {
+    //-------------------------- scalars --------------------------------
+    id Int @id @default(autoincrement())
+
+    ///Tanggal saat kuitansi diterbitkan
+    issuedDate DateTime
+
+    ///Nominal biaya hemodialisa sesuai dengan kuitansi
+    amount Int
+
+    //-------------------------- 1 relations --------------------------------
+
+    documentProof Document @relation(fields: [documentProofId], references: [id])
+
+    documentProofId String        @unique
+    ClaimProgram    ClaimProgram? @relation(fields: [claimProgramId], references: [id])
+    claimProgramId  Int?
 }
 
 model ClaimStatus {
@@ -907,7 +939,7 @@ model Disease {
 
     //-------------------------- m relations --------------------------------
 
-    claims Claim[]
+    claimProgram ClaimProgram[]
 }
 
 model Clinic {
@@ -926,7 +958,7 @@ model Clinic {
 
     //-------------------------- m relations --------------------------------
 
-    claims Claim[]
+    claimProgram ClaimProgram[]
 }
 
 model Account {

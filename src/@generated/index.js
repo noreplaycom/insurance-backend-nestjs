@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var AccountScalarWhereWithAggregatesInput_1, AccountScalarWhereInput_1, AccountWhereInput_1, AddressScalarWhereWithAggregatesInput_1, AddressScalarWhereInput_1, AddressWhereInput_1, AnnouncementScalarWhereWithAggregatesInput_1, AnnouncementScalarWhereInput_1, AnnouncementWhereInput_1, BackupScalarWhereWithAggregatesInput_1, BackupWhereInput_1, BankAccountScalarWhereWithAggregatesInput_1, BankAccountWhereInput_1, BranchScalarWhereWithAggregatesInput_1, BranchWhereInput_1, CityScalarWhereWithAggregatesInput_1, CityScalarWhereInput_1, CityWhereInput_1, ClaimScalarWhereWithAggregatesInput_1, ClaimScalarWhereInput_1, ClaimWhereInput_1, ClaimFinancialScalarWhereWithAggregatesInput_1, ClaimFinancialScalarWhereInput_1, ClaimFinancialWhereInput_1, ClaimProcessScalarWhereWithAggregatesInput_1, ClaimProcessWhereInput_1, ClaimStatusScalarWhereWithAggregatesInput_1, ClaimStatusScalarWhereInput_1, ClaimStatusWhereInput_1, ClinicScalarWhereWithAggregatesInput_1, ClinicWhereInput_1, ContactInfoScalarWhereWithAggregatesInput_1, ContactInfoScalarWhereInput_1, ContactInfoWhereInput_1, DiseaseScalarWhereWithAggregatesInput_1, DiseaseWhereInput_1, DistrictScalarWhereWithAggregatesInput_1, DistrictScalarWhereInput_1, DistrictWhereInput_1, DocumentScalarWhereWithAggregatesInput_1, DocumentScalarWhereInput_1, DocumentWhereInput_1, EmploymentScalarWhereWithAggregatesInput_1, EmploymentScalarWhereInput_1, EmploymentWhereInput_1, GroupScalarWhereWithAggregatesInput_1, GroupWhereInput_1, NotificationScalarWhereWithAggregatesInput_1, NotificationScalarWhereInput_1, NotificationWhereInput_1, ParticipantOrderByWithRelationInput_1, ParticipantScalarWhereWithAggregatesInput_1, ParticipantScalarWhereInput_1, ParticipantWhereInput_1, Participant_1, NestedBoolFilter_1, NestedBoolWithAggregatesFilter_1, NestedDateTimeFilter_1, NestedDateTimeNullableFilter_1, NestedDateTimeNullableWithAggregatesFilter_1, NestedDateTimeWithAggregatesFilter_1, NestedEnumAdmedicaStatusFilter_1, NestedEnumAdmedicaStatusWithAggregatesFilter_1, NestedEnumApplicationTypeFilter_1, NestedEnumApplicationTypeWithAggregatesFilter_1, NestedEnumBackupTypeFilter_1, NestedEnumBackupTypeWithAggregatesFilter_1, NestedEnumClaimChannelFilter_1, NestedEnumClaimChannelWithAggregatesFilter_1, NestedEnumClaimStatusTypeFilter_1, NestedEnumClaimStatusTypeWithAggregatesFilter_1, NestedEnumClassFilter_1, NestedEnumClassWithAggregatesFilter_1, NestedEnumColorFilter_1, NestedEnumColorWithAggregatesFilter_1, NestedEnumDocumentSourceFilter_1, NestedEnumDocumentSourceWithAggregatesFilter_1, NestedEnumDocumentTypeFilter_1, NestedEnumDocumentTypeWithAggregatesFilter_1, NestedEnumGenderFilter_1, NestedEnumGenderWithAggregatesFilter_1, NestedEnumParticipantStatusFilter_1, NestedEnumParticipantStatusWithAggregatesFilter_1, NestedEnumPermissionFilter_1, NestedEnumPermissionWithAggregatesFilter_1, NestedEnumPositionFilter_1, NestedEnumPositionWithAggregatesFilter_1, NestedEnumRoleTypeNullableFilter_1, NestedEnumRoleTypeNullableWithAggregatesFilter_1, NestedEnumTransactionTypeFilter_1, NestedEnumTransactionTypeWithAggregatesFilter_1, NestedFloatFilter_1, NestedFloatNullableFilter_1, NestedFloatNullableWithAggregatesFilter_1, NestedFloatWithAggregatesFilter_1, NestedIntFilter_1, NestedIntNullableFilter_1, NestedIntNullableWithAggregatesFilter_1, NestedIntWithAggregatesFilter_1, NestedStringFilter_1, NestedStringNullableFilter_1, NestedStringNullableWithAggregatesFilter_1, NestedStringWithAggregatesFilter_1, ProgramScalarWhereWithAggregatesInput_1, ProgramWhereInput_1, ProgramParticipationScalarWhereWithAggregatesInput_1, ProgramParticipationScalarWhereInput_1, ProgramParticipationWhereInput_1, ProvinceScalarWhereWithAggregatesInput_1, ProvinceWhereInput_1, RegionScalarWhereWithAggregatesInput_1, RegionWhereInput_1, RoleOrderByWithRelationInput_1, RoleScalarWhereWithAggregatesInput_1, RoleScalarWhereInput_1, RoleWhereInput_1, Role_1, RolePermissionScalarWhereWithAggregatesInput_1, RolePermissionScalarWhereInput_1, RolePermissionWhereInput_1, SubdistrictScalarWhereWithAggregatesInput_1, SubdistrictScalarWhereInput_1, SubdistrictWhereInput_1, TagScalarWhereWithAggregatesInput_1, TagScalarWhereInput_1, TagWhereInput_1, TransactionScalarWhereWithAggregatesInput_1, TransactionScalarWhereInput_1, TransactionWhereInput_1, UserScalarWhereWithAggregatesInput_1, UserScalarWhereInput_1, UserWhereInput_1;
+var AccountScalarWhereWithAggregatesInput_1, AccountScalarWhereInput_1, AccountWhereInput_1, AddressScalarWhereWithAggregatesInput_1, AddressScalarWhereInput_1, AddressWhereInput_1, AnnouncementScalarWhereWithAggregatesInput_1, AnnouncementScalarWhereInput_1, AnnouncementWhereInput_1, BackupScalarWhereWithAggregatesInput_1, BackupWhereInput_1, BankAccountScalarWhereWithAggregatesInput_1, BankAccountWhereInput_1, BranchScalarWhereWithAggregatesInput_1, BranchWhereInput_1, CityScalarWhereWithAggregatesInput_1, CityScalarWhereInput_1, CityWhereInput_1, ClaimScalarWhereWithAggregatesInput_1, ClaimScalarWhereInput_1, ClaimWhereInput_1, ClaimFinancialScalarWhereWithAggregatesInput_1, ClaimFinancialScalarWhereInput_1, ClaimFinancialWhereInput_1, ClaimProcessScalarWhereWithAggregatesInput_1, ClaimProcessWhereInput_1, ClaimStatusScalarWhereWithAggregatesInput_1, ClaimStatusScalarWhereInput_1, ClaimStatusWhereInput_1, ClinicScalarWhereWithAggregatesInput_1, ClinicWhereInput_1, ContactInfoScalarWhereWithAggregatesInput_1, ContactInfoScalarWhereInput_1, ContactInfoWhereInput_1, DiseaseScalarWhereWithAggregatesInput_1, DiseaseWhereInput_1, DistrictScalarWhereWithAggregatesInput_1, DistrictScalarWhereInput_1, DistrictWhereInput_1, DocumentScalarWhereWithAggregatesInput_1, DocumentScalarWhereInput_1, DocumentWhereInput_1, EmploymentScalarWhereWithAggregatesInput_1, EmploymentScalarWhereInput_1, EmploymentWhereInput_1, GroupScalarWhereWithAggregatesInput_1, GroupWhereInput_1, NotificationScalarWhereWithAggregatesInput_1, NotificationScalarWhereInput_1, NotificationWhereInput_1, ParticipantOrderByWithRelationInput_1, ParticipantScalarWhereWithAggregatesInput_1, ParticipantScalarWhereInput_1, ParticipantWhereInput_1, Participant_1, NestedBoolFilter_1, NestedBoolWithAggregatesFilter_1, NestedDateTimeFilter_1, NestedDateTimeNullableFilter_1, NestedDateTimeNullableWithAggregatesFilter_1, NestedDateTimeWithAggregatesFilter_1, NestedEnumAdmedicaStatusFilter_1, NestedEnumAdmedicaStatusWithAggregatesFilter_1, NestedEnumApplicationTypeFilter_1, NestedEnumApplicationTypeWithAggregatesFilter_1, NestedEnumBackupTypeFilter_1, NestedEnumBackupTypeWithAggregatesFilter_1, NestedEnumClaimChannelFilter_1, NestedEnumClaimChannelWithAggregatesFilter_1, NestedEnumClaimStatusTypeFilter_1, NestedEnumClaimStatusTypeWithAggregatesFilter_1, NestedEnumClassNullableFilter_1, NestedEnumClassNullableWithAggregatesFilter_1, NestedEnumColorFilter_1, NestedEnumColorWithAggregatesFilter_1, NestedEnumDocumentSourceFilter_1, NestedEnumDocumentSourceWithAggregatesFilter_1, NestedEnumDocumentTypeFilter_1, NestedEnumDocumentTypeWithAggregatesFilter_1, NestedEnumGenderFilter_1, NestedEnumGenderWithAggregatesFilter_1, NestedEnumParticipantStatusFilter_1, NestedEnumParticipantStatusWithAggregatesFilter_1, NestedEnumPermissionFilter_1, NestedEnumPermissionWithAggregatesFilter_1, NestedEnumPositionFilter_1, NestedEnumPositionWithAggregatesFilter_1, NestedEnumRoleTypeNullableFilter_1, NestedEnumRoleTypeNullableWithAggregatesFilter_1, NestedEnumTransactionTypeFilter_1, NestedEnumTransactionTypeWithAggregatesFilter_1, NestedFloatFilter_1, NestedFloatNullableFilter_1, NestedFloatNullableWithAggregatesFilter_1, NestedFloatWithAggregatesFilter_1, NestedIntFilter_1, NestedIntNullableFilter_1, NestedIntNullableWithAggregatesFilter_1, NestedIntWithAggregatesFilter_1, NestedStringFilter_1, NestedStringNullableFilter_1, NestedStringNullableWithAggregatesFilter_1, NestedStringWithAggregatesFilter_1, ProgramScalarWhereWithAggregatesInput_1, ProgramWhereInput_1, ProgramParticipationScalarWhereWithAggregatesInput_1, ProgramParticipationScalarWhereInput_1, ProgramParticipationWhereInput_1, ProvinceScalarWhereWithAggregatesInput_1, ProvinceWhereInput_1, RegionScalarWhereWithAggregatesInput_1, RegionWhereInput_1, RoleOrderByWithRelationInput_1, RoleScalarWhereWithAggregatesInput_1, RoleScalarWhereInput_1, RoleWhereInput_1, Role_1, RolePermissionScalarWhereWithAggregatesInput_1, RolePermissionScalarWhereInput_1, RolePermissionWhereInput_1, SubdistrictScalarWhereWithAggregatesInput_1, SubdistrictScalarWhereInput_1, SubdistrictWhereInput_1, TagScalarWhereWithAggregatesInput_1, TagScalarWhereInput_1, TagWhereInput_1, TransactionScalarWhereWithAggregatesInput_1, TransactionScalarWhereInput_1, TransactionWhereInput_1, UserScalarWhereWithAggregatesInput_1, UserScalarWhereInput_1, UserWhereInput_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountAggregateArgs = exports.AccountScalarFieldEnum = exports.AddressScalarFieldEnum = exports.AnnouncementScalarFieldEnum = exports.BackupScalarFieldEnum = exports.BankAccountScalarFieldEnum = exports.BranchScalarFieldEnum = exports.CityScalarFieldEnum = exports.ClaimScalarFieldEnum = exports.ClaimFinancialScalarFieldEnum = exports.ClaimProcessScalarFieldEnum = exports.ClaimStatusScalarFieldEnum = exports.ClinicScalarFieldEnum = exports.ContactInfoScalarFieldEnum = exports.DiseaseScalarFieldEnum = exports.DistrictScalarFieldEnum = exports.DocumentScalarFieldEnum = exports.EmploymentScalarFieldEnum = exports.GroupScalarFieldEnum = exports.NotificationScalarFieldEnum = exports.ParticipantScalarFieldEnum = exports.AdmedicaStatus = exports.ApplicationType = exports.BackupType = exports.ClaimChannel = exports.ClaimStatusType = exports.Class = exports.Color = exports.DocumentSource = exports.DocumentType = exports.Gender = exports.NullsOrder = exports.ParticipantStatus = exports.Permission = exports.Position = exports.QueryMode = exports.RoleType = exports.SortOrder = exports.TransactionIsolationLevel = exports.TransactionType = exports.ProgramScalarFieldEnum = exports.ProgramParticipationScalarFieldEnum = exports.ProvinceScalarFieldEnum = exports.RegionScalarFieldEnum = exports.RoleScalarFieldEnum = exports.RolePermissionScalarFieldEnum = exports.SubdistrictScalarFieldEnum = exports.TagScalarFieldEnum = exports.TransactionScalarFieldEnum = exports.UserScalarFieldEnum = void 0;
 exports.AccountUncheckedUpdateInput = exports.AccountUncheckedUpdateWithoutTransactionsInput = exports.AccountUncheckedUpdateWithoutProgramParticipationInput = exports.AccountUncheckedUpdateWithoutParticipantInput = exports.AccountUncheckedUpdateManyInput = exports.AccountUncheckedUpdateManyWithoutParticipantInput = exports.AccountUncheckedUpdateManyWithoutParticipantNestedInput = exports.AccountUncheckedCreateInput = exports.AccountUncheckedCreateWithoutTransactionsInput = exports.AccountUncheckedCreateWithoutProgramParticipationInput = exports.AccountUncheckedCreateWithoutParticipantInput = exports.AccountUncheckedCreateNestedManyWithoutParticipantInput = exports.AccountSumOrderByAggregateInput = exports.AccountSumAggregate = exports.AccountSumAggregateInput = exports.AccountScalarWhereInput = exports.AccountScalarWhereWithAggregatesInput = exports.AccountRelationFilter = exports.AccountOrderByWithRelationInput = exports.AccountOrderByWithAggregationInput = exports.AccountOrderByRelationAggregateInput = exports.AccountMinOrderByAggregateInput = exports.AccountMinAggregate = exports.AccountMinAggregateInput = exports.AccountMaxOrderByAggregateInput = exports.AccountMaxAggregate = exports.AccountMaxAggregateInput = exports.AccountListRelationFilter = exports.AccountGroupBy = exports.AccountGroupByArgs = exports.AccountCreateInput = exports.AccountCreateWithoutTransactionsInput = exports.AccountCreateWithoutProgramParticipationInput = exports.AccountCreateWithoutParticipantInput = exports.AccountCreateOrConnectWithoutTransactionsInput = exports.AccountCreateOrConnectWithoutProgramParticipationInput = exports.AccountCreateOrConnectWithoutParticipantInput = exports.AccountCreateNestedOneWithoutTransactionsInput = exports.AccountCreateNestedOneWithoutProgramParticipationInput = exports.AccountCreateNestedManyWithoutParticipantInput = exports.AccountCreateManyInput = exports.AccountCreateManyParticipantInput = exports.AccountCreateManyParticipantInputEnvelope = exports.AccountCount = exports.AccountCountOrderByAggregateInput = exports.AccountCountAggregate = exports.AccountCountAggregateInput = exports.AccountAvgOrderByAggregateInput = exports.AccountAvgAggregate = exports.AccountAvgAggregateInput = void 0;
@@ -41,8 +41,8 @@ exports.UpdateOneNotificationArgs = exports.UpdateManyNotificationArgs = exports
 exports.ParticipantListRelationFilter = exports.ParticipantGroupBy = exports.ParticipantGroupByArgs = exports.ParticipantCreateInput = exports.ParticipantCreateWithoutUserInput = exports.ParticipantCreateWithoutRelationInput = exports.ParticipantCreateWithoutProgramParticipationsInput = exports.ParticipantCreateWithoutParticipantInput = exports.ParticipantCreateWithoutEmploymentsInput = exports.ParticipantCreateWithoutContactInfosInput = exports.ParticipantCreateWithoutClaimsInput = exports.ParticipantCreateWithoutBankAccountInput = exports.ParticipantCreateWithoutBalancesInput = exports.ParticipantCreateOrConnectWithoutUserInput = exports.ParticipantCreateOrConnectWithoutRelationInput = exports.ParticipantCreateOrConnectWithoutProgramParticipationsInput = exports.ParticipantCreateOrConnectWithoutParticipantInput = exports.ParticipantCreateOrConnectWithoutEmploymentsInput = exports.ParticipantCreateOrConnectWithoutContactInfosInput = exports.ParticipantCreateOrConnectWithoutClaimsInput = exports.ParticipantCreateOrConnectWithoutBankAccountInput = exports.ParticipantCreateOrConnectWithoutBalancesInput = exports.ParticipantCreateNestedOneWithoutUserInput = exports.ParticipantCreateNestedOneWithoutProgramParticipationsInput = exports.ParticipantCreateNestedOneWithoutParticipantInput = exports.ParticipantCreateNestedOneWithoutEmploymentsInput = exports.ParticipantCreateNestedOneWithoutContactInfosInput = exports.ParticipantCreateNestedOneWithoutClaimsInput = exports.ParticipantCreateNestedOneWithoutBankAccountInput = exports.ParticipantCreateNestedOneWithoutBalancesInput = exports.ParticipantCreateNestedManyWithoutRelationInput = exports.ParticipantCreateManyInput = exports.ParticipantCreateManyRelationInput = exports.ParticipantCreateManyRelationInputEnvelope = exports.ParticipantCount = exports.ParticipantCountOrderByAggregateInput = exports.ParticipantCountAggregate = exports.ParticipantCountAggregateInput = exports.ParticipantAggregateArgs = exports.FindUniqueParticipantArgs = exports.FindUniqueParticipantOrThrowArgs = exports.FindManyParticipantArgs = exports.FindFirstParticipantArgs = exports.FindFirstParticipantOrThrowArgs = exports.DeleteOneParticipantArgs = exports.DeleteManyParticipantArgs = exports.CreateOneParticipantArgs = exports.CreateManyParticipantArgs = exports.AggregateParticipant = exports.UpsertOneNotificationArgs = void 0;
 exports.ParticipantUpdateOneWithoutUserNestedInput = exports.ParticipantUpdateOneWithoutParticipantNestedInput = exports.ParticipantUpdateOneRequiredWithoutProgramParticipationsNestedInput = exports.ParticipantUpdateOneRequiredWithoutEmploymentsNestedInput = exports.ParticipantUpdateOneRequiredWithoutContactInfosNestedInput = exports.ParticipantUpdateOneRequiredWithoutClaimsNestedInput = exports.ParticipantUpdateOneRequiredWithoutBankAccountNestedInput = exports.ParticipantUpdateOneRequiredWithoutBalancesNestedInput = exports.ParticipantUpdateManyWithoutRelationNestedInput = exports.ParticipantUpdateManyWithWhereWithoutRelationInput = exports.ParticipantUpdateManyMutationInput = exports.ParticipantUncheckedUpdateInput = exports.ParticipantUncheckedUpdateWithoutUserInput = exports.ParticipantUncheckedUpdateWithoutRelationInput = exports.ParticipantUncheckedUpdateWithoutProgramParticipationsInput = exports.ParticipantUncheckedUpdateWithoutParticipantInput = exports.ParticipantUncheckedUpdateWithoutEmploymentsInput = exports.ParticipantUncheckedUpdateWithoutContactInfosInput = exports.ParticipantUncheckedUpdateWithoutClaimsInput = exports.ParticipantUncheckedUpdateWithoutBankAccountInput = exports.ParticipantUncheckedUpdateWithoutBalancesInput = exports.ParticipantUncheckedUpdateOneWithoutUserNestedInput = exports.ParticipantUncheckedUpdateManyInput = exports.ParticipantUncheckedUpdateManyWithoutRelationInput = exports.ParticipantUncheckedUpdateManyWithoutRelationNestedInput = exports.ParticipantUncheckedCreateInput = exports.ParticipantUncheckedCreateWithoutUserInput = exports.ParticipantUncheckedCreateWithoutRelationInput = exports.ParticipantUncheckedCreateWithoutProgramParticipationsInput = exports.ParticipantUncheckedCreateWithoutParticipantInput = exports.ParticipantUncheckedCreateWithoutEmploymentsInput = exports.ParticipantUncheckedCreateWithoutContactInfosInput = exports.ParticipantUncheckedCreateWithoutClaimsInput = exports.ParticipantUncheckedCreateWithoutBankAccountInput = exports.ParticipantUncheckedCreateWithoutBalancesInput = exports.ParticipantUncheckedCreateNestedOneWithoutUserInput = exports.ParticipantUncheckedCreateNestedManyWithoutRelationInput = exports.ParticipantScalarWhereInput = exports.ParticipantScalarWhereWithAggregatesInput = exports.ParticipantRelationFilter = exports.ParticipantOrderByWithRelationInput = exports.ParticipantOrderByWithAggregationInput = exports.ParticipantOrderByRelationAggregateInput = exports.ParticipantNullableRelationFilter = exports.ParticipantMinOrderByAggregateInput = exports.ParticipantMinAggregate = exports.ParticipantMinAggregateInput = exports.ParticipantMaxOrderByAggregateInput = exports.ParticipantMaxAggregate = exports.ParticipantMaxAggregateInput = void 0;
 exports.EnumBackupTypeFieldUpdateOperationsInput = exports.EnumApplicationTypeWithAggregatesFilter = exports.EnumApplicationTypeFilter = exports.EnumApplicationTypeFieldUpdateOperationsInput = exports.EnumAdmedicaStatusWithAggregatesFilter = exports.EnumAdmedicaStatusFilter = exports.EnumAdmedicaStatusFieldUpdateOperationsInput = exports.DateTimeWithAggregatesFilter = exports.DateTimeNullableWithAggregatesFilter = exports.DateTimeNullableFilter = exports.DateTimeFilter = exports.DateTimeFieldUpdateOperationsInput = exports.BoolWithAggregatesFilter = exports.BoolFilter = exports.BoolFieldUpdateOperationsInput = exports.AffectedRows = exports.UpsertOneParticipantArgs = exports.UpdateOneParticipantArgs = exports.UpdateManyParticipantArgs = exports.Participant = exports.ParticipantWhereInput = exports.ParticipantWhereUniqueInput = exports.ParticipantUpsertWithoutUserInput = exports.ParticipantUpsertWithoutProgramParticipationsInput = exports.ParticipantUpsertWithoutParticipantInput = exports.ParticipantUpsertWithoutEmploymentsInput = exports.ParticipantUpsertWithoutContactInfosInput = exports.ParticipantUpsertWithoutClaimsInput = exports.ParticipantUpsertWithoutBankAccountInput = exports.ParticipantUpsertWithoutBalancesInput = exports.ParticipantUpsertWithWhereUniqueWithoutRelationInput = exports.ParticipantUpdateInput = exports.ParticipantUpdateWithoutUserInput = exports.ParticipantUpdateWithoutRelationInput = exports.ParticipantUpdateWithoutProgramParticipationsInput = exports.ParticipantUpdateWithoutParticipantInput = exports.ParticipantUpdateWithoutEmploymentsInput = exports.ParticipantUpdateWithoutContactInfosInput = exports.ParticipantUpdateWithoutClaimsInput = exports.ParticipantUpdateWithoutBankAccountInput = exports.ParticipantUpdateWithoutBalancesInput = exports.ParticipantUpdateWithWhereUniqueWithoutRelationInput = exports.ParticipantUpdateToOneWithWhereWithoutUserInput = exports.ParticipantUpdateToOneWithWhereWithoutProgramParticipationsInput = exports.ParticipantUpdateToOneWithWhereWithoutParticipantInput = exports.ParticipantUpdateToOneWithWhereWithoutEmploymentsInput = exports.ParticipantUpdateToOneWithWhereWithoutContactInfosInput = exports.ParticipantUpdateToOneWithWhereWithoutClaimsInput = exports.ParticipantUpdateToOneWithWhereWithoutBankAccountInput = exports.ParticipantUpdateToOneWithWhereWithoutBalancesInput = void 0;
-exports.NestedDateTimeFilter = exports.NestedBoolWithAggregatesFilter = exports.NestedBoolFilter = exports.IntWithAggregatesFilter = exports.IntNullableWithAggregatesFilter = exports.IntNullableFilter = exports.IntFilter = exports.IntFieldUpdateOperationsInput = exports.FloatWithAggregatesFilter = exports.FloatNullableWithAggregatesFilter = exports.FloatNullableFilter = exports.FloatFilter = exports.FloatFieldUpdateOperationsInput = exports.EnumTransactionTypeWithAggregatesFilter = exports.EnumTransactionTypeFilter = exports.EnumTransactionTypeFieldUpdateOperationsInput = exports.EnumRoleTypeNullableWithAggregatesFilter = exports.EnumRoleTypeNullableFilter = exports.EnumPositionWithAggregatesFilter = exports.EnumPositionFilter = exports.EnumPositionFieldUpdateOperationsInput = exports.EnumPermissionWithAggregatesFilter = exports.EnumPermissionFilter = exports.EnumPermissionFieldUpdateOperationsInput = exports.EnumParticipantStatusWithAggregatesFilter = exports.EnumParticipantStatusFilter = exports.EnumParticipantStatusFieldUpdateOperationsInput = exports.EnumGenderWithAggregatesFilter = exports.EnumGenderFilter = exports.EnumGenderFieldUpdateOperationsInput = exports.EnumDocumentTypeWithAggregatesFilter = exports.EnumDocumentTypeFilter = exports.EnumDocumentTypeFieldUpdateOperationsInput = exports.EnumDocumentSourceWithAggregatesFilter = exports.EnumDocumentSourceFilter = exports.EnumDocumentSourceFieldUpdateOperationsInput = exports.EnumColorWithAggregatesFilter = exports.EnumColorFilter = exports.EnumColorFieldUpdateOperationsInput = exports.EnumClassWithAggregatesFilter = exports.EnumClassFilter = exports.EnumClassFieldUpdateOperationsInput = exports.EnumClaimStatusTypeWithAggregatesFilter = exports.EnumClaimStatusTypeFilter = exports.EnumClaimStatusTypeFieldUpdateOperationsInput = exports.EnumClaimChannelWithAggregatesFilter = exports.EnumClaimChannelFilter = exports.EnumClaimChannelFieldUpdateOperationsInput = exports.EnumBackupTypeWithAggregatesFilter = exports.EnumBackupTypeFilter = void 0;
-exports.NullableStringFieldUpdateOperationsInput = exports.NullableIntFieldUpdateOperationsInput = exports.NullableFloatFieldUpdateOperationsInput = exports.NullableEnumRoleTypeFieldUpdateOperationsInput = exports.NullableDateTimeFieldUpdateOperationsInput = exports.NestedStringWithAggregatesFilter = exports.NestedStringNullableWithAggregatesFilter = exports.NestedStringNullableFilter = exports.NestedStringFilter = exports.NestedIntWithAggregatesFilter = exports.NestedIntNullableWithAggregatesFilter = exports.NestedIntNullableFilter = exports.NestedIntFilter = exports.NestedFloatWithAggregatesFilter = exports.NestedFloatNullableWithAggregatesFilter = exports.NestedFloatNullableFilter = exports.NestedFloatFilter = exports.NestedEnumTransactionTypeWithAggregatesFilter = exports.NestedEnumTransactionTypeFilter = exports.NestedEnumRoleTypeNullableWithAggregatesFilter = exports.NestedEnumRoleTypeNullableFilter = exports.NestedEnumPositionWithAggregatesFilter = exports.NestedEnumPositionFilter = exports.NestedEnumPermissionWithAggregatesFilter = exports.NestedEnumPermissionFilter = exports.NestedEnumParticipantStatusWithAggregatesFilter = exports.NestedEnumParticipantStatusFilter = exports.NestedEnumGenderWithAggregatesFilter = exports.NestedEnumGenderFilter = exports.NestedEnumDocumentTypeWithAggregatesFilter = exports.NestedEnumDocumentTypeFilter = exports.NestedEnumDocumentSourceWithAggregatesFilter = exports.NestedEnumDocumentSourceFilter = exports.NestedEnumColorWithAggregatesFilter = exports.NestedEnumColorFilter = exports.NestedEnumClassWithAggregatesFilter = exports.NestedEnumClassFilter = exports.NestedEnumClaimStatusTypeWithAggregatesFilter = exports.NestedEnumClaimStatusTypeFilter = exports.NestedEnumClaimChannelWithAggregatesFilter = exports.NestedEnumClaimChannelFilter = exports.NestedEnumBackupTypeWithAggregatesFilter = exports.NestedEnumBackupTypeFilter = exports.NestedEnumApplicationTypeWithAggregatesFilter = exports.NestedEnumApplicationTypeFilter = exports.NestedEnumAdmedicaStatusWithAggregatesFilter = exports.NestedEnumAdmedicaStatusFilter = exports.NestedDateTimeWithAggregatesFilter = exports.NestedDateTimeNullableWithAggregatesFilter = exports.NestedDateTimeNullableFilter = void 0;
+exports.NestedDateTimeNullableFilter = exports.NestedDateTimeFilter = exports.NestedBoolWithAggregatesFilter = exports.NestedBoolFilter = exports.IntWithAggregatesFilter = exports.IntNullableWithAggregatesFilter = exports.IntNullableFilter = exports.IntFilter = exports.IntFieldUpdateOperationsInput = exports.FloatWithAggregatesFilter = exports.FloatNullableWithAggregatesFilter = exports.FloatNullableFilter = exports.FloatFilter = exports.FloatFieldUpdateOperationsInput = exports.EnumTransactionTypeWithAggregatesFilter = exports.EnumTransactionTypeFilter = exports.EnumTransactionTypeFieldUpdateOperationsInput = exports.EnumRoleTypeNullableWithAggregatesFilter = exports.EnumRoleTypeNullableFilter = exports.EnumPositionWithAggregatesFilter = exports.EnumPositionFilter = exports.EnumPositionFieldUpdateOperationsInput = exports.EnumPermissionWithAggregatesFilter = exports.EnumPermissionFilter = exports.EnumPermissionFieldUpdateOperationsInput = exports.EnumParticipantStatusWithAggregatesFilter = exports.EnumParticipantStatusFilter = exports.EnumParticipantStatusFieldUpdateOperationsInput = exports.EnumGenderWithAggregatesFilter = exports.EnumGenderFilter = exports.EnumGenderFieldUpdateOperationsInput = exports.EnumDocumentTypeWithAggregatesFilter = exports.EnumDocumentTypeFilter = exports.EnumDocumentTypeFieldUpdateOperationsInput = exports.EnumDocumentSourceWithAggregatesFilter = exports.EnumDocumentSourceFilter = exports.EnumDocumentSourceFieldUpdateOperationsInput = exports.EnumColorWithAggregatesFilter = exports.EnumColorFilter = exports.EnumColorFieldUpdateOperationsInput = exports.EnumClassNullableWithAggregatesFilter = exports.EnumClassNullableFilter = exports.EnumClaimStatusTypeWithAggregatesFilter = exports.EnumClaimStatusTypeFilter = exports.EnumClaimStatusTypeFieldUpdateOperationsInput = exports.EnumClaimChannelWithAggregatesFilter = exports.EnumClaimChannelFilter = exports.EnumClaimChannelFieldUpdateOperationsInput = exports.EnumBackupTypeWithAggregatesFilter = exports.EnumBackupTypeFilter = void 0;
+exports.NullableStringFieldUpdateOperationsInput = exports.NullableIntFieldUpdateOperationsInput = exports.NullableFloatFieldUpdateOperationsInput = exports.NullableEnumRoleTypeFieldUpdateOperationsInput = exports.NullableEnumClassFieldUpdateOperationsInput = exports.NullableDateTimeFieldUpdateOperationsInput = exports.NestedStringWithAggregatesFilter = exports.NestedStringNullableWithAggregatesFilter = exports.NestedStringNullableFilter = exports.NestedStringFilter = exports.NestedIntWithAggregatesFilter = exports.NestedIntNullableWithAggregatesFilter = exports.NestedIntNullableFilter = exports.NestedIntFilter = exports.NestedFloatWithAggregatesFilter = exports.NestedFloatNullableWithAggregatesFilter = exports.NestedFloatNullableFilter = exports.NestedFloatFilter = exports.NestedEnumTransactionTypeWithAggregatesFilter = exports.NestedEnumTransactionTypeFilter = exports.NestedEnumRoleTypeNullableWithAggregatesFilter = exports.NestedEnumRoleTypeNullableFilter = exports.NestedEnumPositionWithAggregatesFilter = exports.NestedEnumPositionFilter = exports.NestedEnumPermissionWithAggregatesFilter = exports.NestedEnumPermissionFilter = exports.NestedEnumParticipantStatusWithAggregatesFilter = exports.NestedEnumParticipantStatusFilter = exports.NestedEnumGenderWithAggregatesFilter = exports.NestedEnumGenderFilter = exports.NestedEnumDocumentTypeWithAggregatesFilter = exports.NestedEnumDocumentTypeFilter = exports.NestedEnumDocumentSourceWithAggregatesFilter = exports.NestedEnumDocumentSourceFilter = exports.NestedEnumColorWithAggregatesFilter = exports.NestedEnumColorFilter = exports.NestedEnumClassNullableWithAggregatesFilter = exports.NestedEnumClassNullableFilter = exports.NestedEnumClaimStatusTypeWithAggregatesFilter = exports.NestedEnumClaimStatusTypeFilter = exports.NestedEnumClaimChannelWithAggregatesFilter = exports.NestedEnumClaimChannelFilter = exports.NestedEnumBackupTypeWithAggregatesFilter = exports.NestedEnumBackupTypeFilter = exports.NestedEnumApplicationTypeWithAggregatesFilter = exports.NestedEnumApplicationTypeFilter = exports.NestedEnumAdmedicaStatusWithAggregatesFilter = exports.NestedEnumAdmedicaStatusFilter = exports.NestedDateTimeWithAggregatesFilter = exports.NestedDateTimeNullableWithAggregatesFilter = void 0;
 exports.ProgramUncheckedCreateWithoutProgramParticipationsInput = exports.ProgramUncheckedCreateWithoutClaimsInput = exports.ProgramSumOrderByAggregateInput = exports.ProgramSumAggregate = exports.ProgramSumAggregateInput = exports.ProgramScalarWhereWithAggregatesInput = exports.ProgramRelationFilter = exports.ProgramOrderByWithRelationInput = exports.ProgramOrderByWithAggregationInput = exports.ProgramNullableRelationFilter = exports.ProgramMinOrderByAggregateInput = exports.ProgramMinAggregate = exports.ProgramMinAggregateInput = exports.ProgramMaxOrderByAggregateInput = exports.ProgramMaxAggregate = exports.ProgramMaxAggregateInput = exports.ProgramGroupBy = exports.ProgramGroupByArgs = exports.ProgramCreateInput = exports.ProgramCreateWithoutProgramParticipationsInput = exports.ProgramCreateWithoutClaimsInput = exports.ProgramCreateOrConnectWithoutProgramParticipationsInput = exports.ProgramCreateOrConnectWithoutClaimsInput = exports.ProgramCreateNestedOneWithoutProgramParticipationsInput = exports.ProgramCreateNestedOneWithoutClaimsInput = exports.ProgramCreateManyInput = exports.ProgramCount = exports.ProgramCountOrderByAggregateInput = exports.ProgramCountAggregate = exports.ProgramCountAggregateInput = exports.ProgramAvgOrderByAggregateInput = exports.ProgramAvgAggregate = exports.ProgramAvgAggregateInput = exports.ProgramAggregateArgs = exports.FindUniqueProgramArgs = exports.FindUniqueProgramOrThrowArgs = exports.FindManyProgramArgs = exports.FindFirstProgramArgs = exports.FindFirstProgramOrThrowArgs = exports.DeleteOneProgramArgs = exports.DeleteManyProgramArgs = exports.CreateOneProgramArgs = exports.CreateManyProgramArgs = exports.AggregateProgram = exports.StringWithAggregatesFilter = exports.StringNullableWithAggregatesFilter = exports.StringNullableFilter = exports.StringFilter = exports.StringFieldUpdateOperationsInput = exports.SortOrderInput = void 0;
 exports.ProgramParticipationCreateOrConnectWithoutParticipantInput = exports.ProgramParticipationCreateOrConnectWithoutFundingInput = exports.ProgramParticipationCreateNestedManyWithoutProgramInput = exports.ProgramParticipationCreateNestedManyWithoutParticipantInput = exports.ProgramParticipationCreateNestedManyWithoutFundingInput = exports.ProgramParticipationCreateManyInput = exports.ProgramParticipationCreateManyProgramInput = exports.ProgramParticipationCreateManyProgramInputEnvelope = exports.ProgramParticipationCreateManyParticipantInput = exports.ProgramParticipationCreateManyParticipantInputEnvelope = exports.ProgramParticipationCreateManyFundingInput = exports.ProgramParticipationCreateManyFundingInputEnvelope = exports.ProgramParticipationCountOrderByAggregateInput = exports.ProgramParticipationCountAggregate = exports.ProgramParticipationCountAggregateInput = exports.ProgramParticipationAvgOrderByAggregateInput = exports.ProgramParticipationAvgAggregate = exports.ProgramParticipationAvgAggregateInput = exports.ProgramParticipationAggregateArgs = exports.FindUniqueProgramParticipationArgs = exports.FindUniqueProgramParticipationOrThrowArgs = exports.FindManyProgramParticipationArgs = exports.FindFirstProgramParticipationArgs = exports.FindFirstProgramParticipationOrThrowArgs = exports.DeleteOneProgramParticipationArgs = exports.DeleteManyProgramParticipationArgs = exports.CreateOneProgramParticipationArgs = exports.CreateManyProgramParticipationArgs = exports.AggregateProgramParticipation = exports.UpsertOneProgramArgs = exports.UpdateOneProgramArgs = exports.UpdateManyProgramArgs = exports.Program = exports.ProgramWhereInput = exports.ProgramWhereUniqueInput = exports.ProgramUpsertWithoutProgramParticipationsInput = exports.ProgramUpsertWithoutClaimsInput = exports.ProgramUpdateInput = exports.ProgramUpdateWithoutProgramParticipationsInput = exports.ProgramUpdateWithoutClaimsInput = exports.ProgramUpdateToOneWithWhereWithoutProgramParticipationsInput = exports.ProgramUpdateToOneWithWhereWithoutClaimsInput = exports.ProgramUpdateOneWithoutProgramParticipationsNestedInput = exports.ProgramUpdateOneRequiredWithoutClaimsNestedInput = exports.ProgramUpdateManyMutationInput = exports.ProgramUncheckedUpdateInput = exports.ProgramUncheckedUpdateWithoutProgramParticipationsInput = exports.ProgramUncheckedUpdateWithoutClaimsInput = exports.ProgramUncheckedUpdateManyInput = exports.ProgramUncheckedCreateInput = void 0;
 exports.ProgramParticipationUpdateWithWhereUniqueWithoutProgramInput = exports.ProgramParticipationUpdateWithWhereUniqueWithoutParticipantInput = exports.ProgramParticipationUpdateWithWhereUniqueWithoutFundingInput = exports.ProgramParticipationUpdateManyWithoutProgramNestedInput = exports.ProgramParticipationUpdateManyWithoutParticipantNestedInput = exports.ProgramParticipationUpdateManyWithoutFundingNestedInput = exports.ProgramParticipationUpdateManyWithWhereWithoutProgramInput = exports.ProgramParticipationUpdateManyWithWhereWithoutParticipantInput = exports.ProgramParticipationUpdateManyWithWhereWithoutFundingInput = exports.ProgramParticipationUpdateManyMutationInput = exports.ProgramParticipationUncheckedUpdateInput = exports.ProgramParticipationUncheckedUpdateWithoutProgramInput = exports.ProgramParticipationUncheckedUpdateWithoutParticipantInput = exports.ProgramParticipationUncheckedUpdateWithoutFundingInput = exports.ProgramParticipationUncheckedUpdateManyInput = exports.ProgramParticipationUncheckedUpdateManyWithoutProgramInput = exports.ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput = exports.ProgramParticipationUncheckedUpdateManyWithoutParticipantInput = exports.ProgramParticipationUncheckedUpdateManyWithoutParticipantNestedInput = exports.ProgramParticipationUncheckedUpdateManyWithoutFundingInput = exports.ProgramParticipationUncheckedUpdateManyWithoutFundingNestedInput = exports.ProgramParticipationUncheckedCreateInput = exports.ProgramParticipationUncheckedCreateWithoutProgramInput = exports.ProgramParticipationUncheckedCreateWithoutParticipantInput = exports.ProgramParticipationUncheckedCreateWithoutFundingInput = exports.ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput = exports.ProgramParticipationUncheckedCreateNestedManyWithoutParticipantInput = exports.ProgramParticipationUncheckedCreateNestedManyWithoutFundingInput = exports.ProgramParticipationSumOrderByAggregateInput = exports.ProgramParticipationSumAggregate = exports.ProgramParticipationSumAggregateInput = exports.ProgramParticipationScalarWhereInput = exports.ProgramParticipationScalarWhereWithAggregatesInput = exports.ProgramParticipationOrderByWithRelationInput = exports.ProgramParticipationOrderByWithAggregationInput = exports.ProgramParticipationOrderByRelationAggregateInput = exports.ProgramParticipationMinOrderByAggregateInput = exports.ProgramParticipationMinAggregate = exports.ProgramParticipationMinAggregateInput = exports.ProgramParticipationMaxOrderByAggregateInput = exports.ProgramParticipationMaxAggregate = exports.ProgramParticipationMaxAggregateInput = exports.ProgramParticipationListRelationFilter = exports.ProgramParticipationGroupBy = exports.ProgramParticipationGroupByArgs = exports.ProgramParticipationCreateInput = exports.ProgramParticipationCreateWithoutProgramInput = exports.ProgramParticipationCreateWithoutParticipantInput = exports.ProgramParticipationCreateWithoutFundingInput = exports.ProgramParticipationCreateOrConnectWithoutProgramInput = void 0;
@@ -41380,60 +41380,51 @@ EnumClaimStatusTypeWithAggregatesFilter = __decorate([
     (0, graphql_4.InputType)()
 ], EnumClaimStatusTypeWithAggregatesFilter);
 exports.EnumClaimStatusTypeWithAggregatesFilter = EnumClaimStatusTypeWithAggregatesFilter;
-let EnumClassFieldUpdateOperationsInput = class EnumClassFieldUpdateOperationsInput {
+let EnumClassNullableFilter = class EnumClassNullableFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => Class, { nullable: true })
-], EnumClassFieldUpdateOperationsInput.prototype, "set", void 0);
-EnumClassFieldUpdateOperationsInput = __decorate([
+], EnumClassNullableFilter.prototype, "equals", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [Class], { nullable: true })
+], EnumClassNullableFilter.prototype, "in", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [Class], { nullable: true })
+], EnumClassNullableFilter.prototype, "notIn", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedEnumClassNullableFilter, { nullable: true })
+], EnumClassNullableFilter.prototype, "not", void 0);
+EnumClassNullableFilter = __decorate([
     (0, graphql_4.InputType)()
-], EnumClassFieldUpdateOperationsInput);
-exports.EnumClassFieldUpdateOperationsInput = EnumClassFieldUpdateOperationsInput;
-let EnumClassFilter = class EnumClassFilter {
+], EnumClassNullableFilter);
+exports.EnumClassNullableFilter = EnumClassNullableFilter;
+let EnumClassNullableWithAggregatesFilter = class EnumClassNullableWithAggregatesFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => Class, { nullable: true })
-], EnumClassFilter.prototype, "equals", void 0);
+], EnumClassNullableWithAggregatesFilter.prototype, "equals", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [Class], { nullable: true })
-], EnumClassFilter.prototype, "in", void 0);
+], EnumClassNullableWithAggregatesFilter.prototype, "in", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [Class], { nullable: true })
-], EnumClassFilter.prototype, "notIn", void 0);
+], EnumClassNullableWithAggregatesFilter.prototype, "notIn", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassFilter, { nullable: true })
-], EnumClassFilter.prototype, "not", void 0);
-EnumClassFilter = __decorate([
+    (0, graphql_1.Field)(() => NestedEnumClassNullableWithAggregatesFilter, { nullable: true })
+], EnumClassNullableWithAggregatesFilter.prototype, "not", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedIntNullableFilter, { nullable: true })
+], EnumClassNullableWithAggregatesFilter.prototype, "_count", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedEnumClassNullableFilter, { nullable: true })
+], EnumClassNullableWithAggregatesFilter.prototype, "_min", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedEnumClassNullableFilter, { nullable: true })
+], EnumClassNullableWithAggregatesFilter.prototype, "_max", void 0);
+EnumClassNullableWithAggregatesFilter = __decorate([
     (0, graphql_4.InputType)()
-], EnumClassFilter);
-exports.EnumClassFilter = EnumClassFilter;
-let EnumClassWithAggregatesFilter = class EnumClassWithAggregatesFilter {
-};
-__decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: true })
-], EnumClassWithAggregatesFilter.prototype, "equals", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => [Class], { nullable: true })
-], EnumClassWithAggregatesFilter.prototype, "in", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => [Class], { nullable: true })
-], EnumClassWithAggregatesFilter.prototype, "notIn", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassWithAggregatesFilter, { nullable: true })
-], EnumClassWithAggregatesFilter.prototype, "not", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedIntFilter, { nullable: true })
-], EnumClassWithAggregatesFilter.prototype, "_count", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassFilter, { nullable: true })
-], EnumClassWithAggregatesFilter.prototype, "_min", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassFilter, { nullable: true })
-], EnumClassWithAggregatesFilter.prototype, "_max", void 0);
-EnumClassWithAggregatesFilter = __decorate([
-    (0, graphql_4.InputType)()
-], EnumClassWithAggregatesFilter);
-exports.EnumClassWithAggregatesFilter = EnumClassWithAggregatesFilter;
+], EnumClassNullableWithAggregatesFilter);
+exports.EnumClassNullableWithAggregatesFilter = EnumClassNullableWithAggregatesFilter;
 let EnumColorFieldUpdateOperationsInput = class EnumColorFieldUpdateOperationsInput {
 };
 __decorate([
@@ -42649,51 +42640,51 @@ NestedEnumClaimStatusTypeWithAggregatesFilter = NestedEnumClaimStatusTypeWithAgg
     (0, graphql_4.InputType)()
 ], NestedEnumClaimStatusTypeWithAggregatesFilter);
 exports.NestedEnumClaimStatusTypeWithAggregatesFilter = NestedEnumClaimStatusTypeWithAggregatesFilter;
-let NestedEnumClassFilter = NestedEnumClassFilter_1 = class NestedEnumClassFilter {
+let NestedEnumClassNullableFilter = NestedEnumClassNullableFilter_1 = class NestedEnumClassNullableFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => Class, { nullable: true })
-], NestedEnumClassFilter.prototype, "equals", void 0);
+], NestedEnumClassNullableFilter.prototype, "equals", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [Class], { nullable: true })
-], NestedEnumClassFilter.prototype, "in", void 0);
+], NestedEnumClassNullableFilter.prototype, "in", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [Class], { nullable: true })
-], NestedEnumClassFilter.prototype, "notIn", void 0);
+], NestedEnumClassNullableFilter.prototype, "notIn", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassFilter_1, { nullable: true })
-], NestedEnumClassFilter.prototype, "not", void 0);
-NestedEnumClassFilter = NestedEnumClassFilter_1 = __decorate([
+    (0, graphql_1.Field)(() => NestedEnumClassNullableFilter_1, { nullable: true })
+], NestedEnumClassNullableFilter.prototype, "not", void 0);
+NestedEnumClassNullableFilter = NestedEnumClassNullableFilter_1 = __decorate([
     (0, graphql_4.InputType)()
-], NestedEnumClassFilter);
-exports.NestedEnumClassFilter = NestedEnumClassFilter;
-let NestedEnumClassWithAggregatesFilter = NestedEnumClassWithAggregatesFilter_1 = class NestedEnumClassWithAggregatesFilter {
+], NestedEnumClassNullableFilter);
+exports.NestedEnumClassNullableFilter = NestedEnumClassNullableFilter;
+let NestedEnumClassNullableWithAggregatesFilter = NestedEnumClassNullableWithAggregatesFilter_1 = class NestedEnumClassNullableWithAggregatesFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => Class, { nullable: true })
-], NestedEnumClassWithAggregatesFilter.prototype, "equals", void 0);
+], NestedEnumClassNullableWithAggregatesFilter.prototype, "equals", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [Class], { nullable: true })
-], NestedEnumClassWithAggregatesFilter.prototype, "in", void 0);
+], NestedEnumClassNullableWithAggregatesFilter.prototype, "in", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [Class], { nullable: true })
-], NestedEnumClassWithAggregatesFilter.prototype, "notIn", void 0);
+], NestedEnumClassNullableWithAggregatesFilter.prototype, "notIn", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassWithAggregatesFilter_1, { nullable: true })
-], NestedEnumClassWithAggregatesFilter.prototype, "not", void 0);
+    (0, graphql_1.Field)(() => NestedEnumClassNullableWithAggregatesFilter_1, { nullable: true })
+], NestedEnumClassNullableWithAggregatesFilter.prototype, "not", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedIntFilter, { nullable: true })
-], NestedEnumClassWithAggregatesFilter.prototype, "_count", void 0);
+    (0, graphql_1.Field)(() => NestedIntNullableFilter, { nullable: true })
+], NestedEnumClassNullableWithAggregatesFilter.prototype, "_count", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassFilter, { nullable: true })
-], NestedEnumClassWithAggregatesFilter.prototype, "_min", void 0);
+    (0, graphql_1.Field)(() => NestedEnumClassNullableFilter, { nullable: true })
+], NestedEnumClassNullableWithAggregatesFilter.prototype, "_min", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumClassFilter, { nullable: true })
-], NestedEnumClassWithAggregatesFilter.prototype, "_max", void 0);
-NestedEnumClassWithAggregatesFilter = NestedEnumClassWithAggregatesFilter_1 = __decorate([
+    (0, graphql_1.Field)(() => NestedEnumClassNullableFilter, { nullable: true })
+], NestedEnumClassNullableWithAggregatesFilter.prototype, "_max", void 0);
+NestedEnumClassNullableWithAggregatesFilter = NestedEnumClassNullableWithAggregatesFilter_1 = __decorate([
     (0, graphql_4.InputType)()
-], NestedEnumClassWithAggregatesFilter);
-exports.NestedEnumClassWithAggregatesFilter = NestedEnumClassWithAggregatesFilter;
+], NestedEnumClassNullableWithAggregatesFilter);
+exports.NestedEnumClassNullableWithAggregatesFilter = NestedEnumClassNullableWithAggregatesFilter;
 let NestedEnumColorFilter = NestedEnumColorFilter_1 = class NestedEnumColorFilter {
 };
 __decorate([
@@ -43582,6 +43573,15 @@ NullableDateTimeFieldUpdateOperationsInput = __decorate([
     (0, graphql_4.InputType)()
 ], NullableDateTimeFieldUpdateOperationsInput);
 exports.NullableDateTimeFieldUpdateOperationsInput = NullableDateTimeFieldUpdateOperationsInput;
+let NullableEnumClassFieldUpdateOperationsInput = class NullableEnumClassFieldUpdateOperationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => Class, { nullable: true })
+], NullableEnumClassFieldUpdateOperationsInput.prototype, "set", void 0);
+NullableEnumClassFieldUpdateOperationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], NullableEnumClassFieldUpdateOperationsInput);
+exports.NullableEnumClassFieldUpdateOperationsInput = NullableEnumClassFieldUpdateOperationsInput;
 let NullableEnumRoleTypeFieldUpdateOperationsInput = class NullableEnumRoleTypeFieldUpdateOperationsInput {
 };
 __decorate([
@@ -44285,7 +44285,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramCreateManyInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramCreateManyInput.prototype, "class", void 0);
 ProgramCreateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -44385,7 +44385,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramCreateWithoutClaimsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramCreateWithoutClaimsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationCreateNestedManyWithoutProgramInput, { nullable: true })
@@ -44424,7 +44424,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramCreateWithoutProgramParticipationsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramCreateWithoutProgramParticipationsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimCreateNestedManyWithoutProgramInput, { nullable: true })
@@ -44463,7 +44463,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramCreateInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramCreateInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationCreateNestedManyWithoutProgramInput, { nullable: true })
@@ -44548,7 +44548,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ProgramGroupBy.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramGroupBy.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramCountAggregate, { nullable: true })
@@ -44848,7 +44848,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ProgramOrderByWithAggregationInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ProgramOrderByWithAggregationInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramCountOrderByAggregateInput, { nullable: true })
@@ -44902,7 +44902,7 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ProgramOrderByWithRelationInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ProgramOrderByWithRelationInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationOrderByRelationAggregateInput, { nullable: true })
@@ -44968,7 +44968,7 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
 ], ProgramScalarWhereWithAggregatesInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => EnumClassNullableWithAggregatesFilter, { nullable: true })
 ], ProgramScalarWhereWithAggregatesInput.prototype, "class", void 0);
 ProgramScalarWhereWithAggregatesInput = ProgramScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -45079,7 +45079,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ProgramUncheckedCreateWithoutClaimsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramUncheckedCreateWithoutClaimsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput, { nullable: true })
@@ -45121,7 +45121,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ProgramUncheckedCreateWithoutProgramParticipationsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramUncheckedCreateWithoutProgramParticipationsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedCreateNestedManyWithoutProgramInput, { nullable: true })
@@ -45163,7 +45163,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ProgramUncheckedCreateInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false })
+    (0, graphql_1.Field)(() => Class, { nullable: true })
 ], ProgramUncheckedCreateInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput, { nullable: true })
@@ -45208,7 +45208,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateManyInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateManyInput.prototype, "class", void 0);
 ProgramUncheckedUpdateManyInput = __decorate([
     (0, graphql_4.InputType)()
@@ -45247,7 +45247,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateWithoutClaimsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateWithoutClaimsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput, { nullable: true })
@@ -45289,7 +45289,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateWithoutProgramParticipationsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateWithoutProgramParticipationsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUncheckedUpdateManyWithoutProgramNestedInput, { nullable: true })
@@ -45331,7 +45331,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUncheckedUpdateInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput, { nullable: true })
@@ -45373,7 +45373,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramUpdateManyMutationInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUpdateManyMutationInput.prototype, "class", void 0);
 ProgramUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
@@ -45497,7 +45497,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramUpdateWithoutClaimsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUpdateWithoutClaimsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUpdateManyWithoutProgramNestedInput, { nullable: true })
@@ -45536,7 +45536,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramUpdateWithoutProgramParticipationsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUpdateWithoutProgramParticipationsInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimUpdateManyWithoutProgramNestedInput, { nullable: true })
@@ -45575,7 +45575,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], ProgramUpdateInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableEnumClassFieldUpdateOperationsInput, { nullable: true })
 ], ProgramUpdateInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUpdateManyWithoutProgramNestedInput, { nullable: true })
@@ -45665,7 +45665,7 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], ProgramWhereUniqueInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFilter, { nullable: true })
+    (0, graphql_1.Field)(() => EnumClassNullableFilter, { nullable: true })
 ], ProgramWhereUniqueInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationListRelationFilter, { nullable: true })
@@ -45719,7 +45719,7 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], ProgramWhereInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClassFilter, { nullable: true })
+    (0, graphql_1.Field)(() => EnumClassNullableFilter, { nullable: true })
 ], ProgramWhereInput.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationListRelationFilter, { nullable: true })
@@ -45764,7 +45764,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], Program.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Class, { nullable: false, description: 'KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 ' })
+    (0, graphql_1.Field)(() => Class, { nullable: true, description: 'KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 ' })
 ], Program.prototype, "class", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [ProgramParticipation], { nullable: true })

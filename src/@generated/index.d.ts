@@ -13319,23 +13319,20 @@ export declare class EnumClaimStatusTypeWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumClaimStatusTypeFilter>;
     _max?: InstanceType<typeof NestedEnumClaimStatusTypeFilter>;
 }
-export declare class EnumClassFieldUpdateOperationsInput {
-    set?: keyof typeof Class;
-}
-export declare class EnumClassFilter {
+export declare class EnumClassNullableFilter {
     equals?: keyof typeof Class;
     in?: Array<keyof typeof Class>;
     notIn?: Array<keyof typeof Class>;
-    not?: InstanceType<typeof NestedEnumClassFilter>;
+    not?: InstanceType<typeof NestedEnumClassNullableFilter>;
 }
-export declare class EnumClassWithAggregatesFilter {
+export declare class EnumClassNullableWithAggregatesFilter {
     equals?: keyof typeof Class;
     in?: Array<keyof typeof Class>;
     notIn?: Array<keyof typeof Class>;
-    not?: InstanceType<typeof NestedEnumClassWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntFilter>;
-    _min?: InstanceType<typeof NestedEnumClassFilter>;
-    _max?: InstanceType<typeof NestedEnumClassFilter>;
+    not?: InstanceType<typeof NestedEnumClassNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedEnumClassNullableFilter>;
+    _max?: InstanceType<typeof NestedEnumClassNullableFilter>;
 }
 export declare class EnumColorFieldUpdateOperationsInput {
     set?: keyof typeof Color;
@@ -13742,20 +13739,20 @@ export declare class NestedEnumClaimStatusTypeWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumClaimStatusTypeFilter>;
     _max?: InstanceType<typeof NestedEnumClaimStatusTypeFilter>;
 }
-export declare class NestedEnumClassFilter {
+export declare class NestedEnumClassNullableFilter {
     equals?: keyof typeof Class;
     in?: Array<keyof typeof Class>;
     notIn?: Array<keyof typeof Class>;
-    not?: InstanceType<typeof NestedEnumClassFilter>;
+    not?: InstanceType<typeof NestedEnumClassNullableFilter>;
 }
-export declare class NestedEnumClassWithAggregatesFilter {
+export declare class NestedEnumClassNullableWithAggregatesFilter {
     equals?: keyof typeof Class;
     in?: Array<keyof typeof Class>;
     notIn?: Array<keyof typeof Class>;
-    not?: InstanceType<typeof NestedEnumClassWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntFilter>;
-    _min?: InstanceType<typeof NestedEnumClassFilter>;
-    _max?: InstanceType<typeof NestedEnumClassFilter>;
+    not?: InstanceType<typeof NestedEnumClassNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedEnumClassNullableFilter>;
+    _max?: InstanceType<typeof NestedEnumClassNullableFilter>;
 }
 export declare class NestedEnumColorFilter {
     equals?: keyof typeof Color;
@@ -14053,6 +14050,9 @@ export declare class NestedStringWithAggregatesFilter {
 export declare class NullableDateTimeFieldUpdateOperationsInput {
     set?: Date | string;
 }
+export declare class NullableEnumClassFieldUpdateOperationsInput {
+    set?: keyof typeof Class;
+}
 export declare class NullableEnumRoleTypeFieldUpdateOperationsInput {
     set?: keyof typeof RoleType;
 }
@@ -14284,7 +14284,7 @@ export declare class ProgramCreateManyInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
 }
 export declare class ProgramCreateNestedOneWithoutClaimsInput {
     create?: InstanceType<typeof ProgramCreateWithoutClaimsInput>;
@@ -14314,7 +14314,7 @@ export declare class ProgramCreateWithoutClaimsInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
     programParticipations?: InstanceType<typeof ProgramParticipationCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramCreateWithoutProgramParticipationsInput {
@@ -14327,7 +14327,7 @@ export declare class ProgramCreateWithoutProgramParticipationsInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
     claims?: InstanceType<typeof ClaimCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramCreateInput {
@@ -14340,7 +14340,7 @@ export declare class ProgramCreateInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
     programParticipations?: InstanceType<typeof ProgramParticipationCreateNestedManyWithoutProgramInput>;
     claims?: InstanceType<typeof ClaimCreateNestedManyWithoutProgramInput>;
 }
@@ -14368,7 +14368,7 @@ export declare class ProgramGroupBy {
     createdAt: Date | string;
     updatedAt: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
     _count?: InstanceType<typeof ProgramCountAggregate>;
     _avg?: InstanceType<typeof ProgramAvgAggregate>;
     _sum?: InstanceType<typeof ProgramSumAggregate>;
@@ -14468,7 +14468,7 @@ export declare class ProgramOrderByWithAggregationInput {
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
-    class?: keyof typeof SortOrder;
+    class?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof ProgramCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ProgramAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ProgramMaxOrderByAggregateInput>;
@@ -14486,7 +14486,7 @@ export declare class ProgramOrderByWithRelationInput {
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
-    class?: keyof typeof SortOrder;
+    class?: InstanceType<typeof SortOrderInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationOrderByRelationAggregateInput>;
     claims?: InstanceType<typeof ClaimOrderByRelationAggregateInput>;
 }
@@ -14508,7 +14508,7 @@ export declare class ProgramScalarWhereWithAggregatesInput {
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    class?: InstanceType<typeof EnumClassWithAggregatesFilter>;
+    class?: InstanceType<typeof EnumClassNullableWithAggregatesFilter>;
 }
 export declare class ProgramSumAggregateInput {
     id?: true;
@@ -14545,7 +14545,7 @@ export declare class ProgramUncheckedCreateWithoutClaimsInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramUncheckedCreateWithoutProgramParticipationsInput {
@@ -14559,7 +14559,7 @@ export declare class ProgramUncheckedCreateWithoutProgramParticipationsInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutProgramInput>;
 }
 export declare class ProgramUncheckedCreateInput {
@@ -14573,7 +14573,7 @@ export declare class ProgramUncheckedCreateInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    class: keyof typeof Class;
+    class?: keyof typeof Class;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedCreateNestedManyWithoutProgramInput>;
     claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutProgramInput>;
 }
@@ -14588,7 +14588,7 @@ export declare class ProgramUncheckedUpdateManyInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
 }
 export declare class ProgramUncheckedUpdateWithoutClaimsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -14601,7 +14601,7 @@ export declare class ProgramUncheckedUpdateWithoutClaimsInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUncheckedUpdateWithoutProgramParticipationsInput {
@@ -14615,7 +14615,7 @@ export declare class ProgramUncheckedUpdateWithoutProgramParticipationsInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUncheckedUpdateInput {
@@ -14629,7 +14629,7 @@ export declare class ProgramUncheckedUpdateInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput>;
     claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutProgramNestedInput>;
 }
@@ -14643,7 +14643,7 @@ export declare class ProgramUpdateManyMutationInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
 }
 export declare class ProgramUpdateOneRequiredWithoutClaimsNestedInput {
     create?: InstanceType<typeof ProgramCreateWithoutClaimsInput>;
@@ -14679,7 +14679,7 @@ export declare class ProgramUpdateWithoutClaimsInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUpdateWithoutProgramParticipationsInput {
@@ -14692,7 +14692,7 @@ export declare class ProgramUpdateWithoutProgramParticipationsInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
     claims?: InstanceType<typeof ClaimUpdateManyWithoutProgramNestedInput>;
 }
 export declare class ProgramUpdateInput {
@@ -14705,7 +14705,7 @@ export declare class ProgramUpdateInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof EnumClassFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableEnumClassFieldUpdateOperationsInput>;
     programParticipations?: InstanceType<typeof ProgramParticipationUpdateManyWithoutProgramNestedInput>;
     claims?: InstanceType<typeof ClaimUpdateManyWithoutProgramNestedInput>;
 }
@@ -14733,7 +14733,7 @@ export declare class ProgramWhereUniqueInput {
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
-    class?: InstanceType<typeof EnumClassFilter>;
+    class?: InstanceType<typeof EnumClassNullableFilter>;
     programParticipations?: InstanceType<typeof ProgramParticipationListRelationFilter>;
     claims?: InstanceType<typeof ClaimListRelationFilter>;
 }
@@ -14751,7 +14751,7 @@ export declare class ProgramWhereInput {
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
-    class?: InstanceType<typeof EnumClassFilter>;
+    class?: InstanceType<typeof EnumClassNullableFilter>;
     programParticipations?: InstanceType<typeof ProgramParticipationListRelationFilter>;
     claims?: InstanceType<typeof ClaimListRelationFilter>;
 }
@@ -14766,7 +14766,7 @@ export declare class Program {
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
-    class: keyof typeof Class;
+    class: keyof typeof Class | null;
     programParticipations?: Array<ProgramParticipation>;
     claims?: Array<Claim>;
     _count?: InstanceType<typeof ProgramCount>;

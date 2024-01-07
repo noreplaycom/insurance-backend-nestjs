@@ -16,7 +16,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BankAccountModule } from './services/bank-account/bank-account.module';
 import { BranchModule } from './services/branch/branch.module';
 import { ClaimModule } from './services/claim/claim.module';
-import { ClaimProcessModule } from './services/claim-process/claim-process.module';
 import { ClaimStatusModule } from './services/claim-status/claim-status.module';
 import { ClinicModule } from './services/clinic/clinic.module';
 //import { CompanyModule } from './services/company/company.module';
@@ -71,9 +70,9 @@ import { InitializationModule } from './services/initialization/initialization.m
         };
       },
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), 'volume'),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(process.cwd(), 'volume'),
+    // }),
     JwtModule.registerAsync({
       global: true,
       inject: [ConfigService],

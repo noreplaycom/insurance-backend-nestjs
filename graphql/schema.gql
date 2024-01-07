@@ -1414,7 +1414,7 @@ type Program {
   """
   KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
   """
-  class: Class!
+  class: Class
   programParticipations: [ProgramParticipation!]
   claims: [Claim!]
   _count: ProgramCount!
@@ -3141,7 +3141,7 @@ input ProgramWhereInput {
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
-  class: EnumClassFilter
+  class: EnumClassNullableFilter
   programParticipations: ProgramParticipationListRelationFilter
   claims: ClaimListRelationFilter
 }
@@ -3160,18 +3160,18 @@ input NestedEnumApplicationTypeFilter {
   not: NestedEnumApplicationTypeFilter
 }
 
-input EnumClassFilter {
+input EnumClassNullableFilter {
   equals: Class
   in: [Class!]
   notIn: [Class!]
-  not: NestedEnumClassFilter
+  not: NestedEnumClassNullableFilter
 }
 
-input NestedEnumClassFilter {
+input NestedEnumClassNullableFilter {
   equals: Class
   in: [Class!]
   notIn: [Class!]
-  not: NestedEnumClassFilter
+  not: NestedEnumClassNullableFilter
 }
 
 input AccountListRelationFilter {
@@ -3519,7 +3519,7 @@ input ProgramOrderByWithRelationInput {
   createdAt: SortOrder
   updatedAt: SortOrder
   deletedAt: SortOrderInput
-  class: SortOrder
+  class: SortOrderInput
   programParticipations: ProgramParticipationOrderByRelationAggregateInput
   claims: ClaimOrderByRelationAggregateInput
 }
@@ -5319,7 +5319,7 @@ input ProgramCreateWithoutProgramParticipationsInput {
   maxAllowancePerYear: Float
   claimPeriodMax: Int
   reclaimPeriodMax: Int
-  class: Class!
+  class: Class
   claims: ClaimCreateNestedManyWithoutProgramInput
 }
 
@@ -5384,7 +5384,7 @@ input ProgramWhereUniqueInput {
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
-  class: EnumClassFilter
+  class: EnumClassNullableFilter
   programParticipations: ProgramParticipationListRelationFilter
   claims: ClaimListRelationFilter
 }
@@ -7584,7 +7584,7 @@ input ProgramUpdateWithoutProgramParticipationsInput {
   maxAllowancePerYear: NullableFloatFieldUpdateOperationsInput
   claimPeriodMax: NullableIntFieldUpdateOperationsInput
   reclaimPeriodMax: NullableIntFieldUpdateOperationsInput
-  class: EnumClassFieldUpdateOperationsInput
+  class: NullableEnumClassFieldUpdateOperationsInput
   claims: ClaimUpdateManyWithoutProgramNestedInput
 }
 
@@ -7592,7 +7592,7 @@ input EnumApplicationTypeFieldUpdateOperationsInput {
   set: ApplicationType
 }
 
-input EnumClassFieldUpdateOperationsInput {
+input NullableEnumClassFieldUpdateOperationsInput {
   set: Class
 }
 

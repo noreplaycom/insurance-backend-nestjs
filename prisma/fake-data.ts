@@ -300,7 +300,7 @@ export function fakeProgram() {
     reclaimPeriodMax: undefined,
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    class: faker.helpers.arrayElement([Class.I, Class.II, Class.III] as const),
+    class: undefined,
   };
 }
 export function fakeProgramComplete() {
@@ -315,7 +315,7 @@ export function fakeProgramComplete() {
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    class: faker.helpers.arrayElement([Class.I, Class.II, Class.III] as const),
+    class: undefined,
   };
 }
 export function fakeClaim() {
