@@ -368,6 +368,7 @@ type ClaimCountAggregate {
   clinicId: Int!
   inputedById: Int!
   programId: Int!
+  waitingForId: Int!
   _all: Int!
 }
 
@@ -391,6 +392,7 @@ type ClaimMaxAggregate {
   clinicId: Int
   inputedById: String
   programId: Int
+  waitingForId: String
 }
 
 enum ClaimChannel {
@@ -419,6 +421,7 @@ type ClaimMinAggregate {
   clinicId: Int
   inputedById: String
   programId: Int
+  waitingForId: String
 }
 
 type ClaimSumAggregate {
@@ -456,6 +459,7 @@ type Claim {
   clinicId: Int!
   inputedById: String
   programId: Int!
+  waitingForId: String
   participant: Participant!
   claimFinancials: ClaimFinancial!
   claimProcesses: ClaimProcess!
@@ -463,6 +467,7 @@ type Claim {
   clinics: Clinic!
   inputedBy: User
   program: Program!
+  waitingFor: User
   tags: [Tag!]
   _count: ClaimCount!
 }
@@ -1584,6 +1589,7 @@ type RoleCountAggregate {
   name: Int!
   description: Int!
   higherLevelThanId: Int!
+  roleType: Int!
   _all: Int!
 }
 
@@ -1598,6 +1604,13 @@ type RoleMaxAggregate {
   name: String
   description: String
   higherLevelThanId: Int
+  roleType: RoleType
+}
+
+enum RoleType {
+  SUPERUSER
+  PARTICIPANT
+  ADMIN
 }
 
 type RoleMinAggregate {
@@ -1605,6 +1618,7 @@ type RoleMinAggregate {
   name: String
   description: String
   higherLevelThanId: Int
+  roleType: RoleType
 }
 
 type RoleSumAggregate {
@@ -1619,6 +1633,7 @@ type Role {
   name: String!
   description: String
   higherLevelThanId: Int
+  roleType: RoleType
   higherLevelThan: Role
   rolePermissions: [RolePermission!]
   users: [User!]
@@ -1863,6 +1878,7 @@ type UserCount {
   claimActions: Int!
   announcementCreated: Int!
   notification: Int!
+  claimsOnWait: Int!
 }
 
 type UserMaxAggregate {
@@ -1920,6 +1936,7 @@ type User {
   claimActions: [ClaimStatus!]
   announcementCreated: [Announcement!]
   notification: [Notification!]
+  claimsOnWait: [Claim!]
   _count: UserCount!
 }
 
@@ -2263,6 +2280,7 @@ input ClaimWhereInput {
   clinicId: IntFilter
   inputedById: StringNullableFilter
   programId: IntFilter
+  waitingForId: StringNullableFilter
   participant: ParticipantRelationFilter
   claimFinancials: ClaimFinancialRelationFilter
   claimProcesses: ClaimProcessRelationFilter
@@ -2270,6 +2288,7 @@ input ClaimWhereInput {
   clinics: ClinicRelationFilter
   inputedBy: UserNullableRelationFilter
   program: ProgramRelationFilter
+  waitingFor: UserNullableRelationFilter
   tags: TagListRelationFilter
 }
 
@@ -2401,6 +2420,7 @@ input UserWhereInput {
   claimActions: ClaimStatusListRelationFilter
   announcementCreated: AnnouncementListRelationFilter
   notification: NotificationListRelationFilter
+  claimsOnWait: ClaimListRelationFilter
 }
 
 input DateTimeNullableFilter {
@@ -2438,10 +2458,25 @@ input RoleWhereInput {
   name: StringFilter
   description: StringNullableFilter
   higherLevelThanId: IntNullableFilter
+  roleType: EnumRoleTypeNullableFilter
   higherLevelThan: RoleNullableRelationFilter
   rolePermissions: RolePermissionListRelationFilter
   users: UserListRelationFilter
   lowerLevelThan: RoleListRelationFilter
+}
+
+input EnumRoleTypeNullableFilter {
+  equals: RoleType
+  in: [RoleType!]
+  notIn: [RoleType!]
+  not: NestedEnumRoleTypeNullableFilter
+}
+
+input NestedEnumRoleTypeNullableFilter {
+  equals: RoleType
+  in: [RoleType!]
+  notIn: [RoleType!]
+  not: NestedEnumRoleTypeNullableFilter
 }
 
 input RoleNullableRelationFilter {
@@ -3216,6 +3251,7 @@ input ClaimOrderByWithRelationInput {
   clinicId: SortOrder
   inputedById: SortOrderInput
   programId: SortOrder
+  waitingForId: SortOrderInput
   participant: ParticipantOrderByWithRelationInput
   claimFinancials: ClaimFinancialOrderByWithRelationInput
   claimProcesses: ClaimProcessOrderByWithRelationInput
@@ -3223,6 +3259,7 @@ input ClaimOrderByWithRelationInput {
   clinics: ClinicOrderByWithRelationInput
   inputedBy: UserOrderByWithRelationInput
   program: ProgramOrderByWithRelationInput
+  waitingFor: UserOrderByWithRelationInput
   tags: TagOrderByRelationAggregateInput
 }
 
@@ -3260,6 +3297,7 @@ input UserOrderByWithRelationInput {
   claimActions: ClaimStatusOrderByRelationAggregateInput
   announcementCreated: AnnouncementOrderByRelationAggregateInput
   notification: NotificationOrderByRelationAggregateInput
+  claimsOnWait: ClaimOrderByRelationAggregateInput
 }
 
 input RoleOrderByWithRelationInput {
@@ -3267,6 +3305,7 @@ input RoleOrderByWithRelationInput {
   name: SortOrder
   description: SortOrderInput
   higherLevelThanId: SortOrderInput
+  roleType: SortOrderInput
   higherLevelThan: RoleOrderByWithRelationInput
   rolePermissions: RolePermissionOrderByRelationAggregateInput
   users: UserOrderByRelationAggregateInput
@@ -3465,6 +3504,7 @@ input ClaimWhereUniqueInput {
   clinicId: IntFilter
   inputedById: StringNullableFilter
   programId: IntFilter
+  waitingForId: StringNullableFilter
   participant: ParticipantRelationFilter
   claimFinancials: ClaimFinancialRelationFilter
   claimProcesses: ClaimProcessRelationFilter
@@ -3472,6 +3512,7 @@ input ClaimWhereUniqueInput {
   clinics: ClinicRelationFilter
   inputedBy: UserNullableRelationFilter
   program: ProgramRelationFilter
+  waitingFor: UserNullableRelationFilter
   tags: TagListRelationFilter
 }
 
@@ -3490,6 +3531,7 @@ enum ClaimScalarFieldEnum {
   clinicId
   inputedById
   programId
+  waitingForId
 }
 
 input ClaimCountQuantityByCustomRangeAndPeriodArgs {
@@ -3617,6 +3659,7 @@ input RoleWhereUniqueInput {
   name: StringFilter
   description: StringNullableFilter
   higherLevelThanId: IntNullableFilter
+  roleType: EnumRoleTypeNullableFilter
   higherLevelThan: RoleNullableRelationFilter
   rolePermissions: RolePermissionListRelationFilter
   users: UserListRelationFilter
@@ -3628,6 +3671,7 @@ enum RoleScalarFieldEnum {
   name
   description
   higherLevelThanId
+  roleType
 }
 
 input RoleCountAggregateInput {
@@ -3635,6 +3679,7 @@ input RoleCountAggregateInput {
   name: Boolean
   description: Boolean
   higherLevelThanId: Boolean
+  roleType: Boolean
   _all: Boolean
 }
 
@@ -3653,6 +3698,7 @@ input RoleMinAggregateInput {
   name: Boolean
   description: Boolean
   higherLevelThanId: Boolean
+  roleType: Boolean
 }
 
 input RoleMaxAggregateInput {
@@ -3660,6 +3706,7 @@ input RoleMaxAggregateInput {
   name: Boolean
   description: Boolean
   higherLevelThanId: Boolean
+  roleType: Boolean
 }
 
 input NotificationOrderByWithRelationInput {
@@ -3831,6 +3878,7 @@ input ClaimCreateInput {
   clinics: ClinicCreateNestedOneWithoutClaimsInput!
   inputedBy: UserCreateNestedOneWithoutClaimsInputInput
   program: ProgramCreateNestedOneWithoutClaimsInput!
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
@@ -3875,6 +3923,7 @@ input UserCreateWithoutParticipantInput {
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
   announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
   notification: NotificationCreateNestedManyWithoutUserInput
+  claimsOnWait: ClaimCreateNestedManyWithoutWaitingForInput
 }
 
 input RoleCreateNestedOneWithoutUsersInput {
@@ -3886,6 +3935,7 @@ input RoleCreateNestedOneWithoutUsersInput {
 input RoleCreateWithoutUsersInput {
   name: String!
   description: String
+  roleType: RoleType
   higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
   rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
   lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
@@ -3900,6 +3950,7 @@ input RoleCreateNestedOneWithoutLowerLevelThanInput {
 input RoleCreateWithoutLowerLevelThanInput {
   name: String!
   description: String
+  roleType: RoleType
   higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
   rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
   users: UserCreateNestedManyWithoutRoleInput
@@ -3962,6 +4013,7 @@ input UserCreateWithoutRoleInput {
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
   announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
   notification: NotificationCreateNestedManyWithoutUserInput
+  claimsOnWait: ClaimCreateNestedManyWithoutWaitingForInput
 }
 
 input ParticipantCreateNestedOneWithoutUserInput {
@@ -4050,6 +4102,7 @@ input ClaimCreateWithoutParticipantInput {
   clinics: ClinicCreateNestedOneWithoutClaimsInput!
   inputedBy: UserCreateNestedOneWithoutClaimsInputInput
   program: ProgramCreateNestedOneWithoutClaimsInput!
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
@@ -4410,6 +4463,7 @@ input ClaimCreateWithoutClaimFinancialsInput {
   clinics: ClinicCreateNestedOneWithoutClaimsInput!
   inputedBy: UserCreateNestedOneWithoutClaimsInputInput
   program: ProgramCreateNestedOneWithoutClaimsInput!
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
@@ -4493,6 +4547,7 @@ input UserCreateWithoutClaimActionsInput {
   claimsInput: ClaimCreateNestedManyWithoutInputedByInput
   announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
   notification: NotificationCreateNestedManyWithoutUserInput
+  claimsOnWait: ClaimCreateNestedManyWithoutWaitingForInput
 }
 
 input ClaimCreateNestedManyWithoutInputedByInput {
@@ -4512,6 +4567,7 @@ input ClaimCreateWithoutInputedByInput {
   disease: DiseaseCreateNestedOneWithoutClaimsInput
   clinics: ClinicCreateNestedOneWithoutClaimsInput!
   program: ProgramCreateNestedOneWithoutClaimsInput!
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
@@ -4744,6 +4800,7 @@ input ClaimCreateWithoutProgramInput {
   disease: DiseaseCreateNestedOneWithoutClaimsInput
   clinics: ClinicCreateNestedOneWithoutClaimsInput!
   inputedBy: UserCreateNestedOneWithoutClaimsInputInput
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
@@ -4767,6 +4824,7 @@ input UserCreateWithoutClaimsInputInput {
   claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
   announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
   notification: NotificationCreateNestedManyWithoutUserInput
+  claimsOnWait: ClaimCreateNestedManyWithoutWaitingForInput
 }
 
 input ClaimStatusCreateNestedManyWithoutCreateByInput {
@@ -4806,7 +4864,134 @@ input ClaimCreateWithoutClaimStatusesInput {
   clinics: ClinicCreateNestedOneWithoutClaimsInput!
   inputedBy: UserCreateNestedOneWithoutClaimsInputInput
   program: ProgramCreateNestedOneWithoutClaimsInput!
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
   tags: TagCreateNestedManyWithoutClaimsInput
+}
+
+input UserCreateNestedOneWithoutClaimsOnWaitInput {
+  create: UserCreateWithoutClaimsOnWaitInput
+  connectOrCreate: UserCreateOrConnectWithoutClaimsOnWaitInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutClaimsOnWaitInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  deletedAt: DateTime
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput!
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
+}
+
+input AnnouncementCreateNestedManyWithoutCreatedByInput {
+  create: [AnnouncementCreateWithoutCreatedByInput!]
+  connectOrCreate: [AnnouncementCreateOrConnectWithoutCreatedByInput!]
+  createMany: AnnouncementCreateManyCreatedByInputEnvelope
+  connect: [AnnouncementWhereUniqueInput!]
+}
+
+input AnnouncementCreateWithoutCreatedByInput {
+  title: String!
+  content: String!
+  imageUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input AnnouncementCreateOrConnectWithoutCreatedByInput {
+  where: AnnouncementWhereUniqueInput!
+  create: AnnouncementCreateWithoutCreatedByInput!
+}
+
+input AnnouncementWhereUniqueInput {
+  id: Int
+  AND: [AnnouncementWhereInput!]
+  OR: [AnnouncementWhereInput!]
+  NOT: [AnnouncementWhereInput!]
+  title: StringFilter
+  content: StringFilter
+  imageUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  createdById: StringFilter
+  createdBy: UserRelationFilter
+}
+
+input AnnouncementCreateManyCreatedByInputEnvelope {
+  data: [AnnouncementCreateManyCreatedByInput!]!
+  skipDuplicates: Boolean
+}
+
+input AnnouncementCreateManyCreatedByInput {
+  id: Int
+  title: String!
+  content: String!
+  imageUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input NotificationCreateNestedManyWithoutUserInput {
+  create: [NotificationCreateWithoutUserInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
+  createMany: NotificationCreateManyUserInputEnvelope
+  connect: [NotificationWhereUniqueInput!]
+}
+
+input NotificationCreateWithoutUserInput {
+  isRead: Boolean
+  isCleared: Boolean
+}
+
+input NotificationCreateOrConnectWithoutUserInput {
+  where: NotificationWhereUniqueInput!
+  create: NotificationCreateWithoutUserInput!
+}
+
+input NotificationCreateManyUserInputEnvelope {
+  data: [NotificationCreateManyUserInput!]!
+  skipDuplicates: Boolean
+}
+
+input NotificationCreateManyUserInput {
+  id: Int
+  isRead: Boolean
+  isCleared: Boolean
+}
+
+input UserCreateOrConnectWithoutClaimsOnWaitInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutClaimsOnWaitInput!
+}
+
+input UserWhereUniqueInput {
+  id: String
+  email: String
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  fullName: StringFilter
+  emailVerifiedAt: DateTimeNullableFilter
+  password: StringFilter
+  profilePictureUrl: StringNullableFilter
+  deletedAt: DateTimeNullableFilter
+  roleId: IntFilter
+  participantId: IntNullableFilter
+  role: RoleRelationFilter
+  participant: ParticipantNullableRelationFilter
+  claimsInput: ClaimListRelationFilter
+  claimActions: ClaimStatusListRelationFilter
+  announcementCreated: AnnouncementListRelationFilter
+  notification: NotificationListRelationFilter
+  claimsOnWait: ClaimListRelationFilter
 }
 
 input TagCreateNestedManyWithoutClaimsInput {
@@ -5023,6 +5208,7 @@ input ClaimCreateWithoutClaimProcessesInput {
   clinics: ClinicCreateNestedOneWithoutClaimsInput!
   inputedBy: UserCreateNestedOneWithoutClaimsInputInput
   program: ProgramCreateNestedOneWithoutClaimsInput!
+  waitingFor: UserCreateNestedOneWithoutClaimsOnWaitInput
   tags: TagCreateNestedManyWithoutClaimsInput
 }
 
@@ -5170,106 +5356,53 @@ input ClaimStatusCreateManyCreateByInput {
   bookKeepingOrderId: String
 }
 
-input AnnouncementCreateNestedManyWithoutCreatedByInput {
-  create: [AnnouncementCreateWithoutCreatedByInput!]
-  connectOrCreate: [AnnouncementCreateOrConnectWithoutCreatedByInput!]
-  createMany: AnnouncementCreateManyCreatedByInputEnvelope
-  connect: [AnnouncementWhereUniqueInput!]
+input ClaimCreateNestedManyWithoutWaitingForInput {
+  create: [ClaimCreateWithoutWaitingForInput!]
+  connectOrCreate: [ClaimCreateOrConnectWithoutWaitingForInput!]
+  createMany: ClaimCreateManyWaitingForInputEnvelope
+  connect: [ClaimWhereUniqueInput!]
 }
 
-input AnnouncementCreateWithoutCreatedByInput {
-  title: String!
-  content: String!
-  imageUrl: String
-  createdAt: DateTime
-  updatedAt: DateTime
+input ClaimCreateWithoutWaitingForInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  claimProcesses: ClaimProcessCreateNestedOneWithoutClaimInput!
+  disease: DiseaseCreateNestedOneWithoutClaimsInput
+  clinics: ClinicCreateNestedOneWithoutClaimsInput!
+  inputedBy: UserCreateNestedOneWithoutClaimsInputInput
+  program: ProgramCreateNestedOneWithoutClaimsInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
 }
 
-input AnnouncementCreateOrConnectWithoutCreatedByInput {
-  where: AnnouncementWhereUniqueInput!
-  create: AnnouncementCreateWithoutCreatedByInput!
+input ClaimCreateOrConnectWithoutWaitingForInput {
+  where: ClaimWhereUniqueInput!
+  create: ClaimCreateWithoutWaitingForInput!
 }
 
-input AnnouncementWhereUniqueInput {
-  id: Int
-  AND: [AnnouncementWhereInput!]
-  OR: [AnnouncementWhereInput!]
-  NOT: [AnnouncementWhereInput!]
-  title: StringFilter
-  content: StringFilter
-  imageUrl: StringNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  createdById: StringFilter
-  createdBy: UserRelationFilter
-}
-
-input AnnouncementCreateManyCreatedByInputEnvelope {
-  data: [AnnouncementCreateManyCreatedByInput!]!
+input ClaimCreateManyWaitingForInputEnvelope {
+  data: [ClaimCreateManyWaitingForInput!]!
   skipDuplicates: Boolean
 }
 
-input AnnouncementCreateManyCreatedByInput {
-  id: Int
-  title: String!
-  content: String!
-  imageUrl: String
-  createdAt: DateTime
-  updatedAt: DateTime
-}
-
-input NotificationCreateNestedManyWithoutUserInput {
-  create: [NotificationCreateWithoutUserInput!]
-  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
-  createMany: NotificationCreateManyUserInputEnvelope
-  connect: [NotificationWhereUniqueInput!]
-}
-
-input NotificationCreateWithoutUserInput {
-  isRead: Boolean
-  isCleared: Boolean
-}
-
-input NotificationCreateOrConnectWithoutUserInput {
-  where: NotificationWhereUniqueInput!
-  create: NotificationCreateWithoutUserInput!
-}
-
-input NotificationCreateManyUserInputEnvelope {
-  data: [NotificationCreateManyUserInput!]!
-  skipDuplicates: Boolean
-}
-
-input NotificationCreateManyUserInput {
-  id: Int
-  isRead: Boolean
-  isCleared: Boolean
+input ClaimCreateManyWaitingForInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participantId: String!
+  claimFinancialId: Int!
+  claimProcessId: Int!
+  diseaseId: Int
+  clinicId: Int!
+  inputedById: String
+  programId: Int!
 }
 
 input UserCreateOrConnectWithoutClaimsInputInput {
   where: UserWhereUniqueInput!
   create: UserCreateWithoutClaimsInputInput!
-}
-
-input UserWhereUniqueInput {
-  id: String
-  email: String
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-  fullName: StringFilter
-  emailVerifiedAt: DateTimeNullableFilter
-  password: StringFilter
-  profilePictureUrl: StringNullableFilter
-  deletedAt: DateTimeNullableFilter
-  roleId: IntFilter
-  participantId: IntNullableFilter
-  role: RoleRelationFilter
-  participant: ParticipantNullableRelationFilter
-  claimsInput: ClaimListRelationFilter
-  claimActions: ClaimStatusListRelationFilter
-  announcementCreated: AnnouncementListRelationFilter
-  notification: NotificationListRelationFilter
 }
 
 input ClaimCreateOrConnectWithoutProgramInput {
@@ -5292,6 +5425,7 @@ input ClaimCreateManyProgramInput {
   diseaseId: Int
   clinicId: Int!
   inputedById: String
+  waitingForId: String
 }
 
 input ProgramCreateOrConnectWithoutProgramParticipationsInput {
@@ -5495,6 +5629,7 @@ input ClaimCreateManyInputedByInput {
   diseaseId: Int
   clinicId: Int!
   programId: Int!
+  waitingForId: String
 }
 
 input UserCreateOrConnectWithoutClaimActionsInput {
@@ -5773,6 +5908,7 @@ input ClaimCreateManyParticipantInput {
   clinicId: Int!
   inputedById: String
   programId: Int!
+  waitingForId: String
 }
 
 input ParticipantCreateOrConnectWithoutParticipantInput {
@@ -5821,6 +5957,7 @@ input RoleCreateNestedManyWithoutHigherLevelThanInput {
 input RoleCreateWithoutHigherLevelThanInput {
   name: String!
   description: String
+  roleType: RoleType
   rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
   users: UserCreateNestedManyWithoutRoleInput
   lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
@@ -5840,6 +5977,7 @@ input RoleCreateManyHigherLevelThanInput {
   id: Int
   name: String!
   description: String
+  roleType: RoleType
 }
 
 input RoleCreateOrConnectWithoutUsersInput {
@@ -5939,6 +6077,7 @@ input UserUpdateWithoutClaimActionsInput {
   claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
   announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
   notification: NotificationUpdateManyWithoutUserNestedInput
+  claimsOnWait: ClaimUpdateManyWithoutWaitingForNestedInput
 }
 
 input NullableDateTimeFieldUpdateOperationsInput {
@@ -5970,9 +6109,14 @@ input RoleUpsertWithoutUsersInput {
 input RoleUpdateWithoutUsersInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
   higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
   lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
+}
+
+input NullableEnumRoleTypeFieldUpdateOperationsInput {
+  set: RoleType
 }
 
 input RoleUpdateOneWithoutLowerLevelThanNestedInput {
@@ -5994,6 +6138,7 @@ input RoleUpsertWithoutLowerLevelThanInput {
 input RoleUpdateWithoutLowerLevelThanInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
   higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
   users: UserUpdateManyWithoutRoleNestedInput
@@ -6084,6 +6229,7 @@ input UserUpdateWithoutRoleInput {
   claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
   announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
   notification: NotificationUpdateManyWithoutUserNestedInput
+  claimsOnWait: ClaimUpdateManyWithoutWaitingForNestedInput
 }
 
 input ParticipantUpdateOneWithoutUserNestedInput {
@@ -6184,6 +6330,7 @@ input UserUpdateWithoutParticipantInput {
   claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
   announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
   notification: NotificationUpdateManyWithoutUserNestedInput
+  claimsOnWait: ClaimUpdateManyWithoutWaitingForNestedInput
 }
 
 input ClaimUpdateManyWithoutInputedByNestedInput {
@@ -6216,6 +6363,7 @@ input ClaimUpdateWithoutInputedByInput {
   disease: DiseaseUpdateOneWithoutClaimsNestedInput
   clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
   program: ProgramUpdateOneRequiredWithoutClaimsNestedInput
+  waitingFor: UserUpdateOneWithoutClaimsOnWaitNestedInput
   tags: TagUpdateManyWithoutClaimsNestedInput
 }
 
@@ -6406,6 +6554,7 @@ input ClaimUpdateWithoutClaimFinancialsInput {
   clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
   inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
   program: ProgramUpdateOneRequiredWithoutClaimsNestedInput
+  waitingFor: UserUpdateOneWithoutClaimsOnWaitNestedInput
   tags: TagUpdateManyWithoutClaimsNestedInput
 }
 
@@ -6541,6 +6690,7 @@ input ClaimUpdateWithoutClaimStatusesInput {
   clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
   inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
   program: ProgramUpdateOneRequiredWithoutClaimsNestedInput
+  waitingFor: UserUpdateOneWithoutClaimsOnWaitNestedInput
   tags: TagUpdateManyWithoutClaimsNestedInput
 }
 
@@ -6677,6 +6827,7 @@ input ClaimUpdateWithoutParticipantInput {
   clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
   inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
   program: ProgramUpdateOneRequiredWithoutClaimsNestedInput
+  waitingFor: UserUpdateOneWithoutClaimsOnWaitNestedInput
   tags: TagUpdateManyWithoutClaimsNestedInput
 }
 
@@ -6764,6 +6915,7 @@ input UserUpdateWithoutClaimsInputInput {
   claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
   announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
   notification: NotificationUpdateManyWithoutUserNestedInput
+  claimsOnWait: ClaimUpdateManyWithoutWaitingForNestedInput
 }
 
 input ClaimStatusUpdateManyWithoutCreateByNestedInput {
@@ -7068,6 +7220,7 @@ input ClaimUpdateWithoutClaimProcessesInput {
   clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
   inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
   program: ProgramUpdateOneRequiredWithoutClaimsNestedInput
+  waitingFor: UserUpdateOneWithoutClaimsOnWaitNestedInput
   tags: TagUpdateManyWithoutClaimsNestedInput
 }
 
@@ -7519,7 +7672,154 @@ input ClaimUpdateWithoutProgramInput {
   disease: DiseaseUpdateOneWithoutClaimsNestedInput
   clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
   inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
+  waitingFor: UserUpdateOneWithoutClaimsOnWaitNestedInput
   tags: TagUpdateManyWithoutClaimsNestedInput
+}
+
+input UserUpdateOneWithoutClaimsOnWaitNestedInput {
+  create: UserCreateWithoutClaimsOnWaitInput
+  connectOrCreate: UserCreateOrConnectWithoutClaimsOnWaitInput
+  upsert: UserUpsertWithoutClaimsOnWaitInput
+  disconnect: UserWhereInput
+  delete: UserWhereInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateToOneWithWhereWithoutClaimsOnWaitInput
+}
+
+input UserUpsertWithoutClaimsOnWaitInput {
+  update: UserUpdateWithoutClaimsOnWaitInput!
+  create: UserCreateWithoutClaimsOnWaitInput!
+  where: UserWhereInput
+}
+
+input UserUpdateWithoutClaimsOnWaitInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  emailVerifiedAt: NullableDateTimeFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  participantId: NullableIntFieldUpdateOperationsInput
+  role: RoleUpdateOneRequiredWithoutUsersNestedInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+  claimsInput: ClaimUpdateManyWithoutInputedByNestedInput
+  claimActions: ClaimStatusUpdateManyWithoutCreateByNestedInput
+  announcementCreated: AnnouncementUpdateManyWithoutCreatedByNestedInput
+  notification: NotificationUpdateManyWithoutUserNestedInput
+}
+
+input AnnouncementUpdateManyWithoutCreatedByNestedInput {
+  create: [AnnouncementCreateWithoutCreatedByInput!]
+  connectOrCreate: [AnnouncementCreateOrConnectWithoutCreatedByInput!]
+  upsert: [AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput!]
+  createMany: AnnouncementCreateManyCreatedByInputEnvelope
+  set: [AnnouncementWhereUniqueInput!]
+  disconnect: [AnnouncementWhereUniqueInput!]
+  delete: [AnnouncementWhereUniqueInput!]
+  connect: [AnnouncementWhereUniqueInput!]
+  update: [AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput!]
+  updateMany: [AnnouncementUpdateManyWithWhereWithoutCreatedByInput!]
+  deleteMany: [AnnouncementScalarWhereInput!]
+}
+
+input AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput {
+  where: AnnouncementWhereUniqueInput!
+  update: AnnouncementUpdateWithoutCreatedByInput!
+  create: AnnouncementCreateWithoutCreatedByInput!
+}
+
+input AnnouncementUpdateWithoutCreatedByInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  imageUrl: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput {
+  where: AnnouncementWhereUniqueInput!
+  data: AnnouncementUpdateWithoutCreatedByInput!
+}
+
+input AnnouncementUpdateManyWithWhereWithoutCreatedByInput {
+  where: AnnouncementScalarWhereInput!
+  data: AnnouncementUpdateManyMutationInput!
+}
+
+input AnnouncementScalarWhereInput {
+  AND: [AnnouncementScalarWhereInput!]
+  OR: [AnnouncementScalarWhereInput!]
+  NOT: [AnnouncementScalarWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  content: StringFilter
+  imageUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  createdById: StringFilter
+}
+
+input AnnouncementUpdateManyMutationInput {
+  title: StringFieldUpdateOperationsInput
+  content: StringFieldUpdateOperationsInput
+  imageUrl: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input NotificationUpdateManyWithoutUserNestedInput {
+  create: [NotificationCreateWithoutUserInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
+  upsert: [NotificationUpsertWithWhereUniqueWithoutUserInput!]
+  createMany: NotificationCreateManyUserInputEnvelope
+  set: [NotificationWhereUniqueInput!]
+  disconnect: [NotificationWhereUniqueInput!]
+  delete: [NotificationWhereUniqueInput!]
+  connect: [NotificationWhereUniqueInput!]
+  update: [NotificationUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [NotificationUpdateManyWithWhereWithoutUserInput!]
+  deleteMany: [NotificationScalarWhereInput!]
+}
+
+input NotificationUpsertWithWhereUniqueWithoutUserInput {
+  where: NotificationWhereUniqueInput!
+  update: NotificationUpdateWithoutUserInput!
+  create: NotificationCreateWithoutUserInput!
+}
+
+input NotificationUpdateWithoutUserInput {
+  isRead: BoolFieldUpdateOperationsInput
+  isCleared: BoolFieldUpdateOperationsInput
+}
+
+input NotificationUpdateWithWhereUniqueWithoutUserInput {
+  where: NotificationWhereUniqueInput!
+  data: NotificationUpdateWithoutUserInput!
+}
+
+input NotificationUpdateManyWithWhereWithoutUserInput {
+  where: NotificationScalarWhereInput!
+  data: NotificationUpdateManyMutationInput!
+}
+
+input NotificationScalarWhereInput {
+  AND: [NotificationScalarWhereInput!]
+  OR: [NotificationScalarWhereInput!]
+  NOT: [NotificationScalarWhereInput!]
+  id: IntFilter
+  isRead: BoolFilter
+  isCleared: BoolFilter
+}
+
+input NotificationUpdateManyMutationInput {
+  isRead: BoolFieldUpdateOperationsInput
+  isCleared: BoolFieldUpdateOperationsInput
+}
+
+input UserUpdateToOneWithWhereWithoutClaimsOnWaitInput {
+  where: UserWhereInput
+  data: UserUpdateWithoutClaimsOnWaitInput!
 }
 
 input TagUpdateManyWithoutClaimsNestedInput {
@@ -7604,6 +7904,7 @@ input ClaimScalarWhereInput {
   clinicId: IntFilter
   inputedById: StringNullableFilter
   programId: IntFilter
+  waitingForId: StringNullableFilter
 }
 
 input ClaimUpdateManyMutationInput {
@@ -7966,112 +8267,48 @@ input ClaimStatusUpdateManyMutationInput {
   status: EnumClaimStatusTypeFieldUpdateOperationsInput
 }
 
-input AnnouncementUpdateManyWithoutCreatedByNestedInput {
-  create: [AnnouncementCreateWithoutCreatedByInput!]
-  connectOrCreate: [AnnouncementCreateOrConnectWithoutCreatedByInput!]
-  upsert: [AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput!]
-  createMany: AnnouncementCreateManyCreatedByInputEnvelope
-  set: [AnnouncementWhereUniqueInput!]
-  disconnect: [AnnouncementWhereUniqueInput!]
-  delete: [AnnouncementWhereUniqueInput!]
-  connect: [AnnouncementWhereUniqueInput!]
-  update: [AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput!]
-  updateMany: [AnnouncementUpdateManyWithWhereWithoutCreatedByInput!]
-  deleteMany: [AnnouncementScalarWhereInput!]
+input ClaimUpdateManyWithoutWaitingForNestedInput {
+  create: [ClaimCreateWithoutWaitingForInput!]
+  connectOrCreate: [ClaimCreateOrConnectWithoutWaitingForInput!]
+  upsert: [ClaimUpsertWithWhereUniqueWithoutWaitingForInput!]
+  createMany: ClaimCreateManyWaitingForInputEnvelope
+  set: [ClaimWhereUniqueInput!]
+  disconnect: [ClaimWhereUniqueInput!]
+  delete: [ClaimWhereUniqueInput!]
+  connect: [ClaimWhereUniqueInput!]
+  update: [ClaimUpdateWithWhereUniqueWithoutWaitingForInput!]
+  updateMany: [ClaimUpdateManyWithWhereWithoutWaitingForInput!]
+  deleteMany: [ClaimScalarWhereInput!]
 }
 
-input AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput {
-  where: AnnouncementWhereUniqueInput!
-  update: AnnouncementUpdateWithoutCreatedByInput!
-  create: AnnouncementCreateWithoutCreatedByInput!
+input ClaimUpsertWithWhereUniqueWithoutWaitingForInput {
+  where: ClaimWhereUniqueInput!
+  update: ClaimUpdateWithoutWaitingForInput!
+  create: ClaimCreateWithoutWaitingForInput!
 }
 
-input AnnouncementUpdateWithoutCreatedByInput {
-  title: StringFieldUpdateOperationsInput
-  content: StringFieldUpdateOperationsInput
-  imageUrl: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
+input ClaimUpdateWithoutWaitingForInput {
+  channel: EnumClaimChannelFieldUpdateOperationsInput
+  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
+  company: StringFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneRequiredWithoutClaimsNestedInput
+  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
+  claimProcesses: ClaimProcessUpdateOneRequiredWithoutClaimNestedInput
+  disease: DiseaseUpdateOneWithoutClaimsNestedInput
+  clinics: ClinicUpdateOneRequiredWithoutClaimsNestedInput
+  inputedBy: UserUpdateOneWithoutClaimsInputNestedInput
+  program: ProgramUpdateOneRequiredWithoutClaimsNestedInput
+  tags: TagUpdateManyWithoutClaimsNestedInput
 }
 
-input AnnouncementUpdateWithWhereUniqueWithoutCreatedByInput {
-  where: AnnouncementWhereUniqueInput!
-  data: AnnouncementUpdateWithoutCreatedByInput!
+input ClaimUpdateWithWhereUniqueWithoutWaitingForInput {
+  where: ClaimWhereUniqueInput!
+  data: ClaimUpdateWithoutWaitingForInput!
 }
 
-input AnnouncementUpdateManyWithWhereWithoutCreatedByInput {
-  where: AnnouncementScalarWhereInput!
-  data: AnnouncementUpdateManyMutationInput!
-}
-
-input AnnouncementScalarWhereInput {
-  AND: [AnnouncementScalarWhereInput!]
-  OR: [AnnouncementScalarWhereInput!]
-  NOT: [AnnouncementScalarWhereInput!]
-  id: IntFilter
-  title: StringFilter
-  content: StringFilter
-  imageUrl: StringNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  createdById: StringFilter
-}
-
-input AnnouncementUpdateManyMutationInput {
-  title: StringFieldUpdateOperationsInput
-  content: StringFieldUpdateOperationsInput
-  imageUrl: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input NotificationUpdateManyWithoutUserNestedInput {
-  create: [NotificationCreateWithoutUserInput!]
-  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
-  upsert: [NotificationUpsertWithWhereUniqueWithoutUserInput!]
-  createMany: NotificationCreateManyUserInputEnvelope
-  set: [NotificationWhereUniqueInput!]
-  disconnect: [NotificationWhereUniqueInput!]
-  delete: [NotificationWhereUniqueInput!]
-  connect: [NotificationWhereUniqueInput!]
-  update: [NotificationUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [NotificationUpdateManyWithWhereWithoutUserInput!]
-  deleteMany: [NotificationScalarWhereInput!]
-}
-
-input NotificationUpsertWithWhereUniqueWithoutUserInput {
-  where: NotificationWhereUniqueInput!
-  update: NotificationUpdateWithoutUserInput!
-  create: NotificationCreateWithoutUserInput!
-}
-
-input NotificationUpdateWithoutUserInput {
-  isRead: BoolFieldUpdateOperationsInput
-  isCleared: BoolFieldUpdateOperationsInput
-}
-
-input NotificationUpdateWithWhereUniqueWithoutUserInput {
-  where: NotificationWhereUniqueInput!
-  data: NotificationUpdateWithoutUserInput!
-}
-
-input NotificationUpdateManyWithWhereWithoutUserInput {
-  where: NotificationScalarWhereInput!
-  data: NotificationUpdateManyMutationInput!
-}
-
-input NotificationScalarWhereInput {
-  AND: [NotificationScalarWhereInput!]
-  OR: [NotificationScalarWhereInput!]
-  NOT: [NotificationScalarWhereInput!]
-  id: IntFilter
-  isRead: BoolFilter
-  isCleared: BoolFilter
-}
-
-input NotificationUpdateManyMutationInput {
-  isRead: BoolFieldUpdateOperationsInput
-  isCleared: BoolFieldUpdateOperationsInput
+input ClaimUpdateManyWithWhereWithoutWaitingForInput {
+  where: ClaimScalarWhereInput!
+  data: ClaimUpdateManyMutationInput!
 }
 
 input UserUpdateToOneWithWhereWithoutClaimsInputInput {
@@ -8417,6 +8654,7 @@ input RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput {
 input RoleUpdateWithoutHigherLevelThanInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
   users: UserUpdateManyWithoutRoleNestedInput
   lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
@@ -8440,11 +8678,13 @@ input RoleScalarWhereInput {
   name: StringFilter
   description: StringNullableFilter
   higherLevelThanId: IntNullableFilter
+  roleType: EnumRoleTypeNullableFilter
 }
 
 input RoleUpdateManyMutationInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
 }
 
 input RoleUpdateToOneWithWhereWithoutUsersInput {
@@ -8460,6 +8700,7 @@ input UserUpdateToOneWithWhereWithoutClaimActionsInput {
 input RoleCreateInput {
   name: String!
   description: String
+  roleType: RoleType
   higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
   rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
   users: UserCreateNestedManyWithoutRoleInput
@@ -8469,6 +8710,7 @@ input RoleCreateInput {
 input RoleUpdateInput {
   name: StringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
   higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
   rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
   users: UserUpdateManyWithoutRoleNestedInput

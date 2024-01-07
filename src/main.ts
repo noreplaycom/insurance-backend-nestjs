@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 // Ignore the import error
 import { graphqlUploadExpress } from 'graphql-upload';
 import { postgresBackup } from './utils/database-import.function';
+import { InitializationService } from './services/initialization/initialization.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -24,6 +25,7 @@ async function bootstrap() {
       'Origin, X-Requested-With, Content-Type, Accept, Content-Disposition', // Add Content-Disposition
   });
 
+  //Supaya bisa upload file
   app.use(
     graphqlUploadExpress({
       maxFileSize: 250000000, // max is 250mb
@@ -31,9 +33,20 @@ async function bootstrap() {
     }),
   );
 
+  //custom initialization
+  const initializationService = app.get(InitializationService);
+  try {
+    await initializationService.initialize();
+    console.log('Initialization complete');
+  } catch (error) {
+    console.error('Initialization failed:', error);
+  }
+
   await app.listen(port);
   console.log(`Application is running in ${environment} mode on port ${port}`);
-  
+
+  //check is fresh start with empty database
+
   // const dbconnectionString = configService.get('DATABASE_URL');
   // await postgresBackup(dbconnectionString);
 }

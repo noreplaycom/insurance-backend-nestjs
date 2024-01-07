@@ -36,6 +36,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { UploaderModule } from './services/uploader/uploader.module';
 import { NotificationModule } from './services/notification/notification.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
+import { InitializationModule } from './services/initialization/initialization.module';
 // import { DashboardModule } from './services/Dashboard/dashboard.module';
 // import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
 // import { UploaderModule } from './services/uploader/uploader.module';
@@ -46,6 +47,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({
   imports: [
+    InitializationModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       useFactory: () => {

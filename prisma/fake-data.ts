@@ -34,7 +34,7 @@ export function fakeRole() {
   return {
     name: faker.name.fullName(),
     description: undefined,
-    roleType: faker.helpers.arrayElement([RoleType.SUPERUSER, RoleType.PARTICIPANT, RoleType.ADMIN] as const),
+    roleType: undefined,
   };
 }
 export function fakeRoleComplete() {
@@ -43,7 +43,7 @@ export function fakeRoleComplete() {
     name: faker.name.fullName(),
     description: undefined,
     higherLevelThanId: undefined,
-    roleType: faker.helpers.arrayElement([RoleType.SUPERUSER, RoleType.PARTICIPANT, RoleType.ADMIN] as const),
+    roleType: undefined,
   };
 }
 export function fakeRolePermission() {

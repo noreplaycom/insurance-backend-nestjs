@@ -3,65 +3,98 @@ import { Permission, Prisma, Role, RoleType } from '@prisma/client';
 import { RoleService } from './role.service';
 import { RoleFindOneByUserArgs } from './dto/role_find_one_by_user';
 import { RoleFindOneByIdArgs } from './dto/role_find_one_by_id';
-import { Role } from 'src/@generated';
+import { UserController } from '../user/user.controller';
+import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class RoleController {
-  constructor(private readonly roleService: RoleService) {}
+  constructor(
+    private readonly roleService: RoleService,
+    private readonly prisma: PrismaService,
+  ) {}
 
   async onModuleInit() {
-    const roles = await this.findMany({});
+    await this.prisma
+      .$transaction(async (prisma) => {
+        const roles = await prisma.role.findMany({});
 
-    //check if roles is empty
-    if (roles.length === 0) {
-      const permissions = Object.values(Permission);
+        // Check if roles is empty
+        if (roles.length === 0) {
+          console.log(
+            'Fresh start?... Creating superuser and admin with its role and permissions',
+          );
+          const permissions = Object.values(Permission);
 
-      //create superuser role
-      await this.createOne({
-        data: {
-          name: 'superuser',
-          description: 'superuser',
-          roleType: RoleType.SUPERUSER,
-          rolePermissions: {
-            createMany: {
-              data: permissions.map((permission) => ({ permission })),
+          // Create participant role
+          await prisma.role.create({
+            data: {
+              name: 'Peserta',
+              description: 'peserta',
+              roleType: RoleType.PARTICIPANT,
             },
-          },
-        },
-      });
+          });
 
-      //create participant role
-      await this.createOne({
-        data: {
-          name: 'Peserta',
-          description: 'peserta',
-          roleType: RoleType.PARTICIPANT,
-        },
-      });
-
-      //create admin role
-      await this.createOne({
-        data: {
-          name: 'Admin Berkas',
-          description: 'admin berkas',
-          roleType: RoleType.ADMIN,
-          rolePermissions: {
-            createMany: {
-              data: [
-                { permission: Permission.CREATE_CLAIM },
-                { permission: Permission.CREATE_CLAIM_DOCUMENT },
-                { permission: Permission.CREATE_PARTICIPANT },
-                { permission: Permission.EXPORT_CLAIM },
-                { permission: Permission.EXPORT_PARTICIPANT },
-                { permission: Permission.UPDATE_CLAIM },
-                { permission: Permission.UPDATE_PARTICIPANT },
-                { permission: Permission.UPDATE_CLAIM_STATUS },
-              ],
+          // Create user superuser
+          await prisma.user.create({
+            data: {
+              fullName: 'Super User',
+              email: 'superuser@ydds.lab.web.id',
+              password: '123456',
+              role: {
+                create: {
+                  name: 'superuser',
+                  description: 'superuser',
+                  roleType: RoleType.SUPERUSER,
+                  rolePermissions: {
+                    createMany: {
+                      data: permissions.map((permission) => ({ permission })),
+                    },
+                  },
+                },
+              },
             },
-          },
-        },
+          });
+
+          // Create user admin
+          await prisma.user.create({
+            data: {
+              fullName: 'Admin Berkas',
+              email: 'adminberkas@ydds.lab.web.id',
+              password: '123456',
+              role: {
+                create: {
+                  name: 'Admin Berkas',
+                  description: 'admin berkas',
+                  roleType: RoleType.ADMIN,
+                  rolePermissions: {
+                    createMany: {
+                      data: [
+                        { permission: Permission.CREATE_CLAIM },
+                        { permission: Permission.CREATE_CLAIM_DOCUMENT },
+                        { permission: Permission.CREATE_PARTICIPANT },
+                        { permission: Permission.EXPORT_CLAIM },
+                        { permission: Permission.EXPORT_PARTICIPANT },
+                        { permission: Permission.UPDATE_CLAIM },
+                        { permission: Permission.UPDATE_PARTICIPANT },
+                        { permission: Permission.UPDATE_CLAIM_STATUS },
+                      ],
+                    },
+                  },
+                },
+              },
+            },
+          });
+        }
+      })
+      .then(() => {
+        console.log(
+          'Superuser and admin created with its role and permissions',
+        );
+      })
+      .catch((err) => {
+        console.error('Error creating superuser and admin:', err);
+        process.exit(1); // Exit with error
       });
-    }
   }
 
   async createOne(roleCreateArgs: Prisma.RoleCreateArgs) {

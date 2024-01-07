@@ -95,7 +95,7 @@ model Role {
 
     higherLevelThanId Int?
 
-    roleType RoleType
+    roleType RoleType?
 
     //-------------------------- m relations --------------------------------
 
