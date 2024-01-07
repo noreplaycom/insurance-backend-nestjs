@@ -90,8 +90,9 @@ export class InitializationService {
             },
           });
 
+          // Create Exception tag
           await prisma.tag.create({
-            data: { name: 'Exception', color: Color.RED },
+            data: { name: 'Exception', color: Color.RED, isException: true },
           });
         });
 

@@ -383,6 +383,7 @@ export function fakeTagComplete() {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
     color: faker.helpers.arrayElement([Color.WHITE, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN] as const),
+    isException: false,
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };

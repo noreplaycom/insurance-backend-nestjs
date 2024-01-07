@@ -24,6 +24,7 @@ export declare enum TagScalarFieldEnum {
     id = "id",
     name = "name",
     color = "color",
+    isException = "isException",
     createdAt = "createdAt",
     updatedAt = "updatedAt"
 }
@@ -17608,6 +17609,7 @@ export declare class TagCountAggregateInput {
     id?: true;
     name?: true;
     color?: true;
+    isException?: true;
     createdAt?: true;
     updatedAt?: true;
     _all?: true;
@@ -17616,6 +17618,7 @@ export declare class TagCountAggregate {
     id: number;
     name: number;
     color: number;
+    isException: number;
     createdAt: number;
     updatedAt: number;
     _all: number;
@@ -17624,6 +17627,7 @@ export declare class TagCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     color?: keyof typeof SortOrder;
+    isException?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
 }
@@ -17634,6 +17638,7 @@ export declare class TagCreateManyInput {
     id?: number;
     name: string;
     color: keyof typeof Color;
+    isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 }
@@ -17649,12 +17654,14 @@ export declare class TagCreateOrConnectWithoutClaimsInput {
 export declare class TagCreateWithoutClaimsInput {
     name: string;
     color: keyof typeof Color;
+    isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 }
 export declare class TagCreateInput {
     name: string;
     color: keyof typeof Color;
+    isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     Claims?: InstanceType<typeof ClaimCreateNestedManyWithoutTagsInput>;
@@ -17676,6 +17683,7 @@ export declare class TagGroupBy {
     id: number;
     name: string;
     color: keyof typeof Color;
+    isException: boolean;
     createdAt: Date | string;
     updatedAt: Date | string;
     _count?: InstanceType<typeof TagCountAggregate>;
@@ -17693,6 +17701,7 @@ export declare class TagMaxAggregateInput {
     id?: true;
     name?: true;
     color?: true;
+    isException?: true;
     createdAt?: true;
     updatedAt?: true;
 }
@@ -17700,6 +17709,7 @@ export declare class TagMaxAggregate {
     id?: number;
     name?: string;
     color?: keyof typeof Color;
+    isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 }
@@ -17707,6 +17717,7 @@ export declare class TagMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     color?: keyof typeof SortOrder;
+    isException?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
 }
@@ -17714,6 +17725,7 @@ export declare class TagMinAggregateInput {
     id?: true;
     name?: true;
     color?: true;
+    isException?: true;
     createdAt?: true;
     updatedAt?: true;
 }
@@ -17721,6 +17733,7 @@ export declare class TagMinAggregate {
     id?: number;
     name?: string;
     color?: keyof typeof Color;
+    isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 }
@@ -17728,6 +17741,7 @@ export declare class TagMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     color?: keyof typeof SortOrder;
+    isException?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
 }
@@ -17738,6 +17752,7 @@ export declare class TagOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     color?: keyof typeof SortOrder;
+    isException?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     _count?: InstanceType<typeof TagCountOrderByAggregateInput>;
@@ -17750,6 +17765,7 @@ export declare class TagOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     color?: keyof typeof SortOrder;
+    isException?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     Claims?: InstanceType<typeof ClaimOrderByRelationAggregateInput>;
@@ -17761,6 +17777,7 @@ export declare class TagScalarWhereWithAggregatesInput {
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     color?: InstanceType<typeof EnumColorWithAggregatesFilter>;
+    isException?: InstanceType<typeof BoolWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
 }
@@ -17771,6 +17788,7 @@ export declare class TagScalarWhereInput {
     id?: InstanceType<typeof IntFilter>;
     name?: InstanceType<typeof StringFilter>;
     color?: InstanceType<typeof EnumColorFilter>;
+    isException?: InstanceType<typeof BoolFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
 }
@@ -17792,6 +17810,7 @@ export declare class TagUncheckedCreateWithoutClaimsInput {
     id?: number;
     name: string;
     color: keyof typeof Color;
+    isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
 }
@@ -17799,6 +17818,7 @@ export declare class TagUncheckedCreateInput {
     id?: number;
     name: string;
     color: keyof typeof Color;
+    isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     Claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutTagsInput>;
@@ -17819,6 +17839,7 @@ export declare class TagUncheckedUpdateManyWithoutClaimsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     color?: InstanceType<typeof EnumColorFieldUpdateOperationsInput>;
+    isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
@@ -17826,6 +17847,7 @@ export declare class TagUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     color?: InstanceType<typeof EnumColorFieldUpdateOperationsInput>;
+    isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
@@ -17833,6 +17855,7 @@ export declare class TagUncheckedUpdateWithoutClaimsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     color?: InstanceType<typeof EnumColorFieldUpdateOperationsInput>;
+    isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
@@ -17840,6 +17863,7 @@ export declare class TagUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     color?: InstanceType<typeof EnumColorFieldUpdateOperationsInput>;
+    isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     Claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutTagsNestedInput>;
@@ -17847,6 +17871,7 @@ export declare class TagUncheckedUpdateInput {
 export declare class TagUpdateManyMutationInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     color?: InstanceType<typeof EnumColorFieldUpdateOperationsInput>;
+    isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
@@ -17873,12 +17898,14 @@ export declare class TagUpdateWithWhereUniqueWithoutClaimsInput {
 export declare class TagUpdateWithoutClaimsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     color?: InstanceType<typeof EnumColorFieldUpdateOperationsInput>;
+    isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class TagUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     color?: InstanceType<typeof EnumColorFieldUpdateOperationsInput>;
+    isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     Claims?: InstanceType<typeof ClaimUpdateManyWithoutTagsNestedInput>;
@@ -17895,6 +17922,7 @@ export declare class TagWhereUniqueInput {
     NOT?: Array<TagWhereInput>;
     name?: InstanceType<typeof StringFilter>;
     color?: InstanceType<typeof EnumColorFilter>;
+    isException?: InstanceType<typeof BoolFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     Claims?: InstanceType<typeof ClaimListRelationFilter>;
@@ -17906,6 +17934,7 @@ export declare class TagWhereInput {
     id?: InstanceType<typeof IntFilter>;
     name?: InstanceType<typeof StringFilter>;
     color?: InstanceType<typeof EnumColorFilter>;
+    isException?: InstanceType<typeof BoolFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     Claims?: InstanceType<typeof ClaimListRelationFilter>;
@@ -17914,6 +17943,7 @@ export declare class Tag {
     id: number;
     name: string;
     color: keyof typeof Color;
+    isException: boolean;
     createdAt: Date;
     updatedAt: Date;
     Claims?: Array<Claim>;

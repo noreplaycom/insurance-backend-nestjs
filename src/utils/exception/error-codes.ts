@@ -93,6 +93,9 @@ export const errorCodes: Record<number, string> = {
   190001: 'Dilarang menghapus Role SuperUser',
   190002: 'Dilarang menghapus Role Participant',
 
+  // ? Tag
+  200001: 'Dilarang menghapus Tag Exception',
+
   // ? Claim
   180001:
     'Headers file excel untuk import data claim tidak sesuai, mohon periksa kembali file excel Anda',

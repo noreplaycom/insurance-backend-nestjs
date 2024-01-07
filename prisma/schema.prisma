@@ -704,6 +704,7 @@ model Tag {
 
     color Color
 
+    ///@HideField()
     isException Boolean @default(false)
 
     createdAt DateTime @default(now())

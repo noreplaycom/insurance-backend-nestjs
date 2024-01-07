@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { TagService } from './tag.service';
+import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 
 @Injectable()
 export class TagController {
@@ -35,6 +36,15 @@ export class TagController {
   }
 
   async delete(tagDeleteArgs: Prisma.TagDeleteArgs) {
+    const tagFindOne = await this.tagService.findOne({
+      where: { id: tagDeleteArgs?.where?.id ?? 0 },
+    });
+
+    //check is exception
+    if (tagFindOne?.isException) {
+      throw new IGraphQLError({ code: 200001 });
+    }
+
     return await this.tagService.delete(tagDeleteArgs);
   }
 
