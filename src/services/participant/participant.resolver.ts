@@ -28,31 +28,31 @@ interface ParticipantSelect {
 export class ParticipantResolver {
   constructor(private readonly participantController: ParticipantController) {}
 
-  @Mutation(() => Participant, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async participantCreateOne(
-    @Args()
-    participantCreateArgs: CreateOneParticipantArgs,
-    @Relations() relations: ParticipantSelect,
-  ): Promise<Participant | void> {
-    return await this.participantController.createOne({
-      ...participantCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Participant, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async participantCreateOne(
+  //   @Args()
+  //   participantCreateArgs: CreateOneParticipantArgs,
+  //   @Relations() relations: ParticipantSelect,
+  // ): Promise<Participant | void> {
+  //   return await this.participantController.createOne({
+  //     ...participantCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => BatchPayload, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async participantCreateMany(
-    @Args()
-    createManyParticipantArgs: CreateManyParticipantArgs,
-  ) {
-    return await this.participantController.createMany(createManyParticipantArgs);
-  }
+  // @Mutation(() => BatchPayload, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async participantCreateMany(
+  //   @Args()
+  //   createManyParticipantArgs: CreateManyParticipantArgs,
+  // ) {
+  //   return await this.participantController.createMany(createManyParticipantArgs);
+  // }
 
   @Query(() => Participant, {
     nullable: true,
@@ -83,78 +83,80 @@ export class ParticipantResolver {
     });
   }
 
-  @Query(() => Participant, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  participantFindFirst(
-    @Args()
-    findFirstParticipantArgs: FindFirstParticipantArgs,
-    @Relations() relations: ParticipantSelect,
-  ): Promise<Participant | void> {
-    return this.participantController.findFirst({
-      ...findFirstParticipantArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => Participant, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // participantFindFirst(
+  //   @Args()
+  //   findFirstParticipantArgs: FindFirstParticipantArgs,
+  //   @Relations() relations: ParticipantSelect,
+  // ): Promise<Participant | void> {
+  //   return this.participantController.findFirst({
+  //     ...findFirstParticipantArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Participant, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async participantUpdateOne(
-    @Args() participantUpdateOneArgs: UpdateOneParticipantArgs,
-    @Relations() relations: ParticipantSelect,
-  ) {
-    return this.participantController.updateOne({
-      ...replaceNullWithUndefined(participantUpdateOneArgs),
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Participant, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async participantUpdateOne(
+  //   @Args() participantUpdateOneArgs: UpdateOneParticipantArgs,
+  //   @Relations() relations: ParticipantSelect,
+  // ) {
+  //   return this.participantController.updateOne({
+  //     ...replaceNullWithUndefined(participantUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Participant, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async participantUpdateMany(@Args() updateManyParticipantArgs: UpdateManyParticipantArgs) {
-    return this.participantController.updateMany(updateManyParticipantArgs);
-  }
+  // @Mutation(() => Participant, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async participantUpdateMany(@Args() updateManyParticipantArgs: UpdateManyParticipantArgs) {
+  //   return this.participantController.updateMany(updateManyParticipantArgs);
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async participantDelete(
-    @Args() deleteOneParticipantArgs: DeleteOneParticipantArgs,
-    @Relations() relations: ParticipantSelect,
-  ) {
-    return this.participantController.delete({
-      ...deleteOneParticipantArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async participantDelete(
+  //   @Args() deleteOneParticipantArgs: DeleteOneParticipantArgs,
+  //   @Relations() relations: ParticipantSelect,
+  // ) {
+  //   return this.participantController.delete({
+  //     ...deleteOneParticipantArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async participantDeleteMany(@Args() deleteManyParticipantArgs: DeleteManyParticipantArgs) {
-    return this.participantController.deleteMany(deleteManyParticipantArgs);
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async participantDeleteMany(@Args() deleteManyParticipantArgs: DeleteManyParticipantArgs) {
+  //   return this.participantController.deleteMany(deleteManyParticipantArgs);
+  // }
 
-  @Query(() => AggregateParticipant, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  participantAggregate(@Args() participantAggregateArgs: ParticipantAggregateArgs) {
-    return this.participantController.aggregate(participantAggregateArgs);
-  }
+  // @Query(() => AggregateParticipant, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // participantAggregate(@Args() participantAggregateArgs: ParticipantAggregateArgs) {
+  //   return this.participantController.aggregate(participantAggregateArgs);
+  // }
 
   @Query(() => Float, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  participantCount(@Args() participantCountAggregateInput: FindManyParticipantArgs) {
+  participantCount(
+    @Args() participantCountAggregateInput: FindManyParticipantArgs,
+  ) {
     return this.participantController.count(participantCountAggregateInput);
   }
 }
