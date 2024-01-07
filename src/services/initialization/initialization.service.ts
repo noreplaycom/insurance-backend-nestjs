@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Permission, RoleType } from '@prisma/client';
+import { Color, Permission, RoleType } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
 import { populateProvinceCityDistricSubdistric } from 'prisma/seed-functions/address.seed';
 
@@ -88,6 +88,10 @@ export class InitializationService {
                 },
               },
             },
+          });
+
+          await prisma.tag.create({
+            data: { name: 'Exception', color: Color.RED },
           });
         });
 

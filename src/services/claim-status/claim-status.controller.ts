@@ -12,7 +12,9 @@ export class ClaimStatusController {
     return await this.claimStatusService.createOne(claimStatusCreateArgs);
   }
 
-  async createMany(claimStatusCreateManyArgs: Prisma.ClaimStatusCreateManyArgs) {
+  async createMany(
+    claimStatusCreateManyArgs: Prisma.ClaimStatusCreateManyArgs,
+  ) {
     return await this.claimStatusService.createMany(claimStatusCreateManyArgs);
   }
 
@@ -32,7 +34,9 @@ export class ClaimStatusController {
     return await this.claimStatusService.updateOne(claimStatusUpdateOneArgs);
   }
 
-  async updateMany(claimStatusUpdateManyArgs: Prisma.ClaimStatusUpdateManyArgs) {
+  async updateMany(
+    claimStatusUpdateManyArgs: Prisma.ClaimStatusUpdateManyArgs,
+  ) {
     return await this.claimStatusService.updateMany(claimStatusUpdateManyArgs);
   }
 
@@ -40,7 +44,9 @@ export class ClaimStatusController {
     return await this.claimStatusService.delete(claimStatusDeleteArgs);
   }
 
-  async deleteMany(claimStatusDeleteManyArgs: Prisma.ClaimStatusDeleteManyArgs) {
+  async deleteMany(
+    claimStatusDeleteManyArgs: Prisma.ClaimStatusDeleteManyArgs,
+  ) {
     return await this.claimStatusService.deleteMany(claimStatusDeleteManyArgs);
   }
 
@@ -52,11 +58,13 @@ export class ClaimStatusController {
     return await this.claimStatusService.count(claimStatusCountArgs);
   }
 
-  async getClaimStatusTypes(): Promise<string[]> {
+  async claimStatusTypesFindMany(): Promise<string[]> {
     return Object.keys(ClaimStatusType);
   }
 
-  async findManyByClaimId(claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs): Promise<ClaimStatus[]> {
-    return await this.claimStatusService.findMany({})
+  async findManyByClaimId(
+    claimStatusFindManyByClaimIdArgs: ClaimStatusFindManyByClaimIdArgs,
+  ): Promise<ClaimStatus[]> {
+    return await this.claimStatusService.findMany({});
   }
 }

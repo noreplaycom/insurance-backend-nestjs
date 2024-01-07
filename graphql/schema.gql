@@ -2024,6 +2024,9 @@ type Query {
   claimStatusCount(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
+  claimStatusTypeFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
   roleFindOne(where: RoleWhereUniqueInput!): Role
 
   """Deskripsinya ada disini loh"""
@@ -2034,6 +2037,15 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   roleCount(where: RoleWhereInput, orderBy: [RoleOrderByWithRelationInput!], cursor: RoleWhereUniqueInput, take: Int, skip: Int, distinct: [RoleScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
+  tagFindMany(where: TagWhereInput, orderBy: [TagOrderByWithRelationInput!], cursor: TagWhereUniqueInput, take: Int, skip: Int, distinct: [TagScalarFieldEnum!]): [Tag!]
+
+  """Deskripsinya ada disini loh"""
+  userFindOne(where: UserWhereUniqueInput!): User
+
+  """Deskripsinya ada disini loh"""
+  userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 
   """Deskripsinya ada disini loh"""
   notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
@@ -3709,6 +3721,71 @@ input RoleMaxAggregateInput {
   roleType: Boolean
 }
 
+input TagOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  color: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  Claims: ClaimOrderByRelationAggregateInput
+}
+
+input TagWhereUniqueInput {
+  id: Int
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  NOT: [TagWhereInput!]
+  name: StringFilter
+  color: EnumColorFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  Claims: ClaimListRelationFilter
+}
+
+enum TagScalarFieldEnum {
+  id
+  name
+  color
+  createdAt
+  updatedAt
+}
+
+input UserWhereUniqueInput {
+  id: String
+  email: String
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  fullName: StringFilter
+  emailVerifiedAt: DateTimeNullableFilter
+  password: StringFilter
+  profilePictureUrl: StringNullableFilter
+  deletedAt: DateTimeNullableFilter
+  roleId: IntFilter
+  participantId: IntNullableFilter
+  role: RoleRelationFilter
+  participant: ParticipantNullableRelationFilter
+  claimsInput: ClaimListRelationFilter
+  claimActions: ClaimStatusListRelationFilter
+  announcementCreated: AnnouncementListRelationFilter
+  notification: NotificationListRelationFilter
+  claimsOnWait: ClaimListRelationFilter
+}
+
+enum UserScalarFieldEnum {
+  id
+  fullName
+  email
+  emailVerifiedAt
+  password
+  profilePictureUrl
+  createdAt
+  updatedAt
+  deletedAt
+  roleId
+  participantId
+}
+
 input NotificationOrderByWithRelationInput {
   id: SortOrder
   isRead: SortOrder
@@ -3801,6 +3878,9 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   roleDelete(where: RoleWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  tagDelete(where: TagWhereUniqueInput!): Boolean!
 
   """Deskripsinya ada disini loh"""
   notificationUpdateOne(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
@@ -4972,28 +5052,6 @@ input UserCreateOrConnectWithoutClaimsOnWaitInput {
   create: UserCreateWithoutClaimsOnWaitInput!
 }
 
-input UserWhereUniqueInput {
-  id: String
-  email: String
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-  fullName: StringFilter
-  emailVerifiedAt: DateTimeNullableFilter
-  password: StringFilter
-  profilePictureUrl: StringNullableFilter
-  deletedAt: DateTimeNullableFilter
-  roleId: IntFilter
-  participantId: IntNullableFilter
-  role: RoleRelationFilter
-  participant: ParticipantNullableRelationFilter
-  claimsInput: ClaimListRelationFilter
-  claimActions: ClaimStatusListRelationFilter
-  announcementCreated: AnnouncementListRelationFilter
-  notification: NotificationListRelationFilter
-  claimsOnWait: ClaimListRelationFilter
-}
-
 input TagCreateNestedManyWithoutClaimsInput {
   create: [TagCreateWithoutClaimsInput!]
   connectOrCreate: [TagCreateOrConnectWithoutClaimsInput!]
@@ -5010,18 +5068,6 @@ input TagCreateWithoutClaimsInput {
 input TagCreateOrConnectWithoutClaimsInput {
   where: TagWhereUniqueInput!
   create: TagCreateWithoutClaimsInput!
-}
-
-input TagWhereUniqueInput {
-  id: Int
-  AND: [TagWhereInput!]
-  OR: [TagWhereInput!]
-  NOT: [TagWhereInput!]
-  name: StringFilter
-  color: EnumColorFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  Claims: ClaimListRelationFilter
 }
 
 input ClaimCreateOrConnectWithoutClaimStatusesInput {

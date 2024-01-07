@@ -124,7 +124,7 @@
 //     nullable: false,
 //     description: 'Deskripsinya ada disini loh',
 //   })
-//   async fileDelete(
+//   async fileDeleteOne(
 //     @Args() deleteOneFileArgs: DeleteOneFileArgs,
 //   ) {
 //     return this.fileController.delete(deleteOneFileArgs);

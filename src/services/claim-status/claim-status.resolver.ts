@@ -51,7 +51,9 @@ export class ClaimStatusResolver {
     @Args()
     createManyClaimStatusArgs: CreateManyClaimStatusArgs,
   ) {
-    return await this.claimStatusController.createMany(createManyClaimStatusArgs);
+    return await this.claimStatusController.createMany(
+      createManyClaimStatusArgs,
+    );
   }
 
   @Query(() => ClaimStatus, {
@@ -116,7 +118,9 @@ export class ClaimStatusResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  async claimStatusUpdateMany(@Args() updateManyClaimStatusArgs: UpdateManyClaimStatusArgs) {
+  async claimStatusUpdateMany(
+    @Args() updateManyClaimStatusArgs: UpdateManyClaimStatusArgs,
+  ) {
     return this.claimStatusController.updateMany(updateManyClaimStatusArgs);
   }
 
@@ -138,7 +142,9 @@ export class ClaimStatusResolver {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
-  async claimStatusDeleteMany(@Args() deleteManyClaimStatusArgs: DeleteManyClaimStatusArgs) {
+  async claimStatusDeleteMany(
+    @Args() deleteManyClaimStatusArgs: DeleteManyClaimStatusArgs,
+  ) {
     return this.claimStatusController.deleteMany(deleteManyClaimStatusArgs);
   }
 
@@ -146,7 +152,9 @@ export class ClaimStatusResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  claimStatusAggregate(@Args() claimStatusAggregateArgs: ClaimStatusAggregateArgs) {
+  claimStatusAggregate(
+    @Args() claimStatusAggregateArgs: ClaimStatusAggregateArgs,
+  ) {
     return this.claimStatusController.aggregate(claimStatusAggregateArgs);
   }
 
@@ -154,7 +162,17 @@ export class ClaimStatusResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  claimStatusCount(@Args() claimStatusCountAggregateInput: FindManyClaimStatusArgs) {
+  claimStatusCount(
+    @Args() claimStatusCountAggregateInput: FindManyClaimStatusArgs,
+  ) {
     return this.claimStatusController.count(claimStatusCountAggregateInput);
+  }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimStatusTypeFindMany() {
+    return this.claimStatusController.claimStatusTypesFindMany();
   }
 }

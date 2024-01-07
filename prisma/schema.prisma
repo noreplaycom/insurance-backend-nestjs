@@ -704,6 +704,8 @@ model Tag {
 
     color Color
 
+    isException Boolean @default(false)
+
     createdAt DateTime @default(now())
 
     updatedAt DateTime @updatedAt
