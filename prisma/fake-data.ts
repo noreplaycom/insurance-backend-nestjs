@@ -1,4 +1,4 @@
-import { RoleType, Permission, ParticipantStatus, Position, ClaimChannel, DocumentSource, DocumentType, Color, ApplicationType, AdmedicaStatus, SantunanHarianRawatInapPlan, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
+import { RoleType, Permission, ParticipantStatus, Position, TambahanBantuanRawatInapType, Period, ClaimChannel, DocumentSource, DocumentType, Color, ProgramType, AdmedicaStatus, SantunanHarianRawatInapPlan, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 
@@ -292,10 +292,15 @@ export function fakeProgramParticipationComplete() {
 }
 export function fakeProgram() {
   return {
-    plan: faker.helpers.arrayElement([ApplicationType.SANTUNAN_HARIAN_RAWAT_INAP, ApplicationType.BANTUAN_BIAYA_CUCI_DARAH, ApplicationType.BANTUAN_KURSI_RODA, ApplicationType.BANTUAN_WALKER, ApplicationType.BANTUAN_IGD_UGD, ApplicationType.BANTUAN_RAWAT_INAP] as const),
+    type: faker.helpers.arrayElement([ProgramType.SANTUNAN_HARIAN_RAWAT_INAP, ProgramType.BANTUAN_BIAYA_CUCI_DARAH, ProgramType.BANTUAN_KURSI_RODA, ProgramType.BANTUAN_WALKER, ProgramType.BANTUAN_IGD_UGD, ProgramType.BANTUAN_RAWAT_INAP] as const),
+    santunanHarianRawatInapPlan: undefined,
+    santunanHarianRawatInapNominalPlan: undefined,
+    tambahanBantuanRawatInapType: undefined,
     maxAllowancePercentage: undefined,
-    allowanceCeiling: undefined,
-    maxAllowancePerYear: undefined,
+    allowanceCeiling: faker.datatype.float(),
+    allowanceCeilingPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
+    allowanceQuota: undefined,
+    allowanceQuotaPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
     claimPeriodMax: undefined,
     reclaimPeriodMax: undefined,
     updatedAt: faker.datatype.datetime(),
@@ -305,10 +310,15 @@ export function fakeProgram() {
 export function fakeProgramComplete() {
   return {
     id: faker.datatype.number(),
-    plan: faker.helpers.arrayElement([ApplicationType.SANTUNAN_HARIAN_RAWAT_INAP, ApplicationType.BANTUAN_BIAYA_CUCI_DARAH, ApplicationType.BANTUAN_KURSI_RODA, ApplicationType.BANTUAN_WALKER, ApplicationType.BANTUAN_IGD_UGD, ApplicationType.BANTUAN_RAWAT_INAP] as const),
+    type: faker.helpers.arrayElement([ProgramType.SANTUNAN_HARIAN_RAWAT_INAP, ProgramType.BANTUAN_BIAYA_CUCI_DARAH, ProgramType.BANTUAN_KURSI_RODA, ProgramType.BANTUAN_WALKER, ProgramType.BANTUAN_IGD_UGD, ProgramType.BANTUAN_RAWAT_INAP] as const),
+    santunanHarianRawatInapPlan: undefined,
+    santunanHarianRawatInapNominalPlan: undefined,
+    tambahanBantuanRawatInapType: undefined,
     maxAllowancePercentage: undefined,
-    allowanceCeiling: undefined,
-    maxAllowancePerYear: undefined,
+    allowanceCeiling: faker.datatype.float(),
+    allowanceCeilingPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
+    allowanceQuota: undefined,
+    allowanceQuotaPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
     claimPeriodMax: undefined,
     reclaimPeriodMax: undefined,
     createdAt: new Date(),
@@ -410,7 +420,6 @@ export function fakeClaimProgram() {
     description: undefined,
     additionalNote: undefined,
     santunanHarianRawatInapPlan: undefined,
-    santunanHarianRawatInapNominalPlan: undefined,
     startTreatment: undefined,
     endTreatment: undefined,
     storeName: undefined,
@@ -425,7 +434,6 @@ export function fakeClaimProgramComplete() {
     description: undefined,
     additionalNote: undefined,
     santunanHarianRawatInapPlan: undefined,
-    santunanHarianRawatInapNominalPlan: undefined,
     startTreatment: undefined,
     endTreatment: undefined,
     storeName: undefined,

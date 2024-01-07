@@ -822,9 +822,6 @@ model ClaimProgram {
     ///Ket.Tambahan	keterangan tambahan
     additionalNote String?
 
-    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-    santunanHarianRawatInapPlan SantunanHarianRawatInapPlan?
-
     ///Tmulairawat	Tanggal mulai Rawat
     startTreatment DateTime?
 
@@ -832,7 +829,7 @@ model ClaimProgram {
     endTreatment DateTime?
 
     ///Nama toko atau tempat pembelian kursi roda
-    storeName String?
+    kurisRodaOrWalkerSetoreName String?
 
     //-------------------------- 1 relations --------------------------------
 
@@ -882,9 +879,11 @@ model InvoiceProof {
 
     documentProof Document @relation(fields: [documentProofId], references: [id])
 
-    documentProofId String        @unique
-    ClaimProgram    ClaimProgram? @relation(fields: [claimProgramId], references: [id])
-    claimProgramId  Int?
+    documentProofId String @unique
+
+    claimProgram ClaimProgram? @relation(fields: [claimProgramId], references: [id])
+
+    claimProgramId Int?
 }
 
 model ClaimStatus {
