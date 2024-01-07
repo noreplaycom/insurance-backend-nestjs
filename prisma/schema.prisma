@@ -527,9 +527,6 @@ model Program {
 
     santunanHarianRawatInapPlan SantunanHarianRawatInapPlan?
 
-    ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-    santunanHarianRawatInapNominalPlan Float?
-
     tambahanBantuanRawatInapType TambahanBantuanRawatInapType?
 
     // ///Jenis:	Jenis Produk Bantuan
@@ -541,7 +538,7 @@ model Program {
     ///misal 50% dari biaya UGD/IGD, Plafon per pasangan maksimal Rp. 1.500.000 /tahun 
     maxAllowancePercentage Int?
 
-    ///Plafon Santunan
+    ///Plafon Santunan, contoh KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
     allowanceCeiling Float
 
     ///Periode Santunan

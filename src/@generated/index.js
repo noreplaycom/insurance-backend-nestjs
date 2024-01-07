@@ -432,10 +432,9 @@ var ClaimProgramScalarFieldEnum;
     ClaimProgramScalarFieldEnum["submissionNote"] = "submissionNote";
     ClaimProgramScalarFieldEnum["description"] = "description";
     ClaimProgramScalarFieldEnum["additionalNote"] = "additionalNote";
-    ClaimProgramScalarFieldEnum["santunanHarianRawatInapPlan"] = "santunanHarianRawatInapPlan";
     ClaimProgramScalarFieldEnum["startTreatment"] = "startTreatment";
     ClaimProgramScalarFieldEnum["endTreatment"] = "endTreatment";
-    ClaimProgramScalarFieldEnum["storeName"] = "storeName";
+    ClaimProgramScalarFieldEnum["kurisRodaOrWalkerSetoreName"] = "kurisRodaOrWalkerSetoreName";
     ClaimProgramScalarFieldEnum["diseaseId"] = "diseaseId";
     ClaimProgramScalarFieldEnum["clinicId"] = "clinicId";
     ClaimProgramScalarFieldEnum["programId"] = "programId";
@@ -16098,16 +16097,13 @@ __decorate([
 ], ClaimProgramCountAggregateInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProgramCountAggregateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCountAggregateInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCountAggregateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProgramCountAggregateInput.prototype, "storeName", void 0);
+], ClaimProgramCountAggregateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCountAggregateInput.prototype, "diseaseId", void 0);
@@ -16146,16 +16142,13 @@ __decorate([
 ], ClaimProgramCountAggregate.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ClaimProgramCountAggregate.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ClaimProgramCountAggregate.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ClaimProgramCountAggregate.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ClaimProgramCountAggregate.prototype, "storeName", void 0);
+], ClaimProgramCountAggregate.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ClaimProgramCountAggregate.prototype, "diseaseId", void 0);
@@ -16194,16 +16187,13 @@ __decorate([
 ], ClaimProgramCountOrderByAggregateInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProgramCountOrderByAggregateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramCountOrderByAggregateInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramCountOrderByAggregateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProgramCountOrderByAggregateInput.prototype, "storeName", void 0);
+], ClaimProgramCountOrderByAggregateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramCountOrderByAggregateInput.prototype, "diseaseId", void 0);
@@ -16263,9 +16253,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyClinicsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateManyClinicsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateManyClinicsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16273,7 +16260,7 @@ __decorate([
 ], ClaimProgramCreateManyClinicsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateManyClinicsInput.prototype, "storeName", void 0);
+], ClaimProgramCreateManyClinicsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramCreateManyClinicsInput.prototype, "diseaseId", void 0);
@@ -16318,9 +16305,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyDiseaseInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateManyDiseaseInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateManyDiseaseInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16328,7 +16312,7 @@ __decorate([
 ], ClaimProgramCreateManyDiseaseInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateManyDiseaseInput.prototype, "storeName", void 0);
+], ClaimProgramCreateManyDiseaseInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ClaimProgramCreateManyDiseaseInput.prototype, "clinicId", void 0);
@@ -16373,9 +16357,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyProgramInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateManyProgramInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateManyProgramInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16383,7 +16364,7 @@ __decorate([
 ], ClaimProgramCreateManyProgramInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateManyProgramInput.prototype, "storeName", void 0);
+], ClaimProgramCreateManyProgramInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramCreateManyProgramInput.prototype, "diseaseId", void 0);
@@ -16415,9 +16396,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateManyInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateManyInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16425,7 +16403,7 @@ __decorate([
 ], ClaimProgramCreateManyInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateManyInput.prototype, "storeName", void 0);
+], ClaimProgramCreateManyInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramCreateManyInput.prototype, "diseaseId", void 0);
@@ -16661,9 +16639,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutClaimInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateWithoutClaimInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateWithoutClaimInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16671,7 +16646,7 @@ __decorate([
 ], ClaimProgramCreateWithoutClaimInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateWithoutClaimInput.prototype, "storeName", void 0);
+], ClaimProgramCreateWithoutClaimInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseCreateNestedOneWithoutClaimProgramInput, { nullable: true })
 ], ClaimProgramCreateWithoutClaimInput.prototype, "disease", void 0);
@@ -16709,9 +16684,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutClinicsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateWithoutClinicsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateWithoutClinicsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16719,7 +16691,7 @@ __decorate([
 ], ClaimProgramCreateWithoutClinicsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateWithoutClinicsInput.prototype, "storeName", void 0);
+], ClaimProgramCreateWithoutClinicsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseCreateNestedOneWithoutClaimProgramInput, { nullable: true })
 ], ClaimProgramCreateWithoutClinicsInput.prototype, "disease", void 0);
@@ -16757,9 +16729,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutDiseaseInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateWithoutDiseaseInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateWithoutDiseaseInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16767,7 +16736,7 @@ __decorate([
 ], ClaimProgramCreateWithoutDiseaseInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateWithoutDiseaseInput.prototype, "storeName", void 0);
+], ClaimProgramCreateWithoutDiseaseInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClinicCreateNestedOneWithoutClaimProgramInput, { nullable: false })
 ], ClaimProgramCreateWithoutDiseaseInput.prototype, "clinics", void 0);
@@ -16805,9 +16774,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutDocumentsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateWithoutDocumentsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateWithoutDocumentsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16815,7 +16781,7 @@ __decorate([
 ], ClaimProgramCreateWithoutDocumentsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateWithoutDocumentsInput.prototype, "storeName", void 0);
+], ClaimProgramCreateWithoutDocumentsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseCreateNestedOneWithoutClaimProgramInput, { nullable: true })
 ], ClaimProgramCreateWithoutDocumentsInput.prototype, "disease", void 0);
@@ -16853,9 +16819,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16863,7 +16826,7 @@ __decorate([
 ], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "storeName", void 0);
+], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseCreateNestedOneWithoutClaimProgramInput, { nullable: true })
 ], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "disease", void 0);
@@ -16901,9 +16864,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutProgramInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateWithoutProgramInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateWithoutProgramInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16911,7 +16871,7 @@ __decorate([
 ], ClaimProgramCreateWithoutProgramInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateWithoutProgramInput.prototype, "storeName", void 0);
+], ClaimProgramCreateWithoutProgramInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseCreateNestedOneWithoutClaimProgramInput, { nullable: true })
 ], ClaimProgramCreateWithoutProgramInput.prototype, "disease", void 0);
@@ -16949,9 +16909,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramCreateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramCreateInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -16959,7 +16916,7 @@ __decorate([
 ], ClaimProgramCreateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramCreateInput.prototype, "storeName", void 0);
+], ClaimProgramCreateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseCreateNestedOneWithoutClaimProgramInput, { nullable: true })
 ], ClaimProgramCreateInput.prototype, "disease", void 0);
@@ -17043,9 +17000,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramGroupBy.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramGroupBy.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramGroupBy.prototype, "startTreatment", void 0);
 __decorate([
@@ -17053,7 +17007,7 @@ __decorate([
 ], ClaimProgramGroupBy.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramGroupBy.prototype, "storeName", void 0);
+], ClaimProgramGroupBy.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramGroupBy.prototype, "diseaseId", void 0);
@@ -17119,16 +17073,13 @@ __decorate([
 ], ClaimProgramMaxAggregateInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProgramMaxAggregateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMaxAggregateInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMaxAggregateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProgramMaxAggregateInput.prototype, "storeName", void 0);
+], ClaimProgramMaxAggregateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMaxAggregateInput.prototype, "diseaseId", void 0);
@@ -17163,9 +17114,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramMaxAggregate.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramMaxAggregate.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramMaxAggregate.prototype, "startTreatment", void 0);
 __decorate([
@@ -17173,7 +17121,7 @@ __decorate([
 ], ClaimProgramMaxAggregate.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramMaxAggregate.prototype, "storeName", void 0);
+], ClaimProgramMaxAggregate.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramMaxAggregate.prototype, "diseaseId", void 0);
@@ -17209,16 +17157,13 @@ __decorate([
 ], ClaimProgramMaxOrderByAggregateInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProgramMaxOrderByAggregateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMaxOrderByAggregateInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMaxOrderByAggregateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProgramMaxOrderByAggregateInput.prototype, "storeName", void 0);
+], ClaimProgramMaxOrderByAggregateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMaxOrderByAggregateInput.prototype, "diseaseId", void 0);
@@ -17254,16 +17199,13 @@ __decorate([
 ], ClaimProgramMinAggregateInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProgramMinAggregateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMinAggregateInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMinAggregateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ClaimProgramMinAggregateInput.prototype, "storeName", void 0);
+], ClaimProgramMinAggregateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMinAggregateInput.prototype, "diseaseId", void 0);
@@ -17298,9 +17240,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramMinAggregate.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramMinAggregate.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramMinAggregate.prototype, "startTreatment", void 0);
 __decorate([
@@ -17308,7 +17247,7 @@ __decorate([
 ], ClaimProgramMinAggregate.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramMinAggregate.prototype, "storeName", void 0);
+], ClaimProgramMinAggregate.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramMinAggregate.prototype, "diseaseId", void 0);
@@ -17344,16 +17283,13 @@ __decorate([
 ], ClaimProgramMinOrderByAggregateInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProgramMinOrderByAggregateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMinOrderByAggregateInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMinOrderByAggregateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ClaimProgramMinOrderByAggregateInput.prototype, "storeName", void 0);
+], ClaimProgramMinOrderByAggregateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMinOrderByAggregateInput.prototype, "diseaseId", void 0);
@@ -17410,16 +17346,13 @@ __decorate([
 ], ClaimProgramOrderByWithAggregationInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], ClaimProgramOrderByWithAggregationInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithAggregationInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithAggregationInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], ClaimProgramOrderByWithAggregationInput.prototype, "storeName", void 0);
+], ClaimProgramOrderByWithAggregationInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithAggregationInput.prototype, "diseaseId", void 0);
@@ -17470,16 +17403,13 @@ __decorate([
 ], ClaimProgramOrderByWithRelationInput.prototype, "additionalNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], ClaimProgramOrderByWithRelationInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithRelationInput.prototype, "startTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithRelationInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], ClaimProgramOrderByWithRelationInput.prototype, "storeName", void 0);
+], ClaimProgramOrderByWithRelationInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithRelationInput.prototype, "diseaseId", void 0);
@@ -17553,9 +17483,6 @@ __decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProgramScalarWhereWithAggregatesInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumSantunanHarianRawatInapPlanNullableWithAggregatesFilter, { nullable: true })
-], ClaimProgramScalarWhereWithAggregatesInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProgramScalarWhereWithAggregatesInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -17563,7 +17490,7 @@ __decorate([
 ], ClaimProgramScalarWhereWithAggregatesInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
-], ClaimProgramScalarWhereWithAggregatesInput.prototype, "storeName", void 0);
+], ClaimProgramScalarWhereWithAggregatesInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProgramScalarWhereWithAggregatesInput.prototype, "diseaseId", void 0);
@@ -17607,9 +17534,6 @@ __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProgramScalarWhereInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumSantunanHarianRawatInapPlanNullableFilter, { nullable: true })
-], ClaimProgramScalarWhereInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], ClaimProgramScalarWhereInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -17617,7 +17541,7 @@ __decorate([
 ], ClaimProgramScalarWhereInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
-], ClaimProgramScalarWhereInput.prototype, "storeName", void 0);
+], ClaimProgramScalarWhereInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ClaimProgramScalarWhereInput.prototype, "diseaseId", void 0);
@@ -17772,9 +17696,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -17782,7 +17703,7 @@ __decorate([
 ], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "diseaseId", void 0);
@@ -17823,9 +17744,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -17833,7 +17751,7 @@ __decorate([
 ], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "diseaseId", void 0);
@@ -17874,9 +17792,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -17884,7 +17799,7 @@ __decorate([
 ], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "clinicId", void 0);
@@ -17925,9 +17840,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -17935,7 +17847,7 @@ __decorate([
 ], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "diseaseId", void 0);
@@ -17976,9 +17888,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -17986,7 +17895,7 @@ __decorate([
 ], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "diseaseId", void 0);
@@ -18027,9 +17936,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18037,7 +17943,7 @@ __decorate([
 ], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "diseaseId", void 0);
@@ -18078,9 +17984,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true })
-], ClaimProgramUncheckedCreateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], ClaimProgramUncheckedCreateInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18088,7 +17991,7 @@ __decorate([
 ], ClaimProgramUncheckedCreateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], ClaimProgramUncheckedCreateInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedCreateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgramUncheckedCreateInput.prototype, "diseaseId", void 0);
@@ -18182,9 +18085,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18192,7 +18092,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "diseaseId", void 0);
@@ -18274,9 +18174,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18284,7 +18181,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "clinicId", void 0);
@@ -18366,9 +18263,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18376,7 +18270,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "diseaseId", void 0);
@@ -18408,9 +18302,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18418,7 +18309,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateManyInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateManyInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateManyInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyInput.prototype, "diseaseId", void 0);
@@ -18453,9 +18344,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18463,7 +18351,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "diseaseId", void 0);
@@ -18504,9 +18392,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18514,7 +18399,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "diseaseId", void 0);
@@ -18555,9 +18440,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18565,7 +18447,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "clinicId", void 0);
@@ -18606,9 +18488,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18616,7 +18495,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "diseaseId", void 0);
@@ -18657,9 +18536,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18667,7 +18543,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "diseaseId", void 0);
@@ -18708,9 +18584,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18718,7 +18591,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "diseaseId", void 0);
@@ -18759,9 +18632,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18769,7 +18639,7 @@ __decorate([
 ], ClaimProgramUncheckedUpdateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUncheckedUpdateInput.prototype, "storeName", void 0);
+], ClaimProgramUncheckedUpdateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateInput.prototype, "diseaseId", void 0);
@@ -18810,9 +18680,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateManyMutationInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateManyMutationInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateManyMutationInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -18820,7 +18687,7 @@ __decorate([
 ], ClaimProgramUpdateManyMutationInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateManyMutationInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateManyMutationInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 ClaimProgramUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ClaimProgramUpdateManyMutationInput);
@@ -19213,9 +19080,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClaimInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutClaimInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClaimInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19223,7 +19087,7 @@ __decorate([
 ], ClaimProgramUpdateWithoutClaimInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutClaimInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateWithoutClaimInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseUpdateOneWithoutClaimProgramNestedInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClaimInput.prototype, "disease", void 0);
@@ -19261,9 +19125,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClinicsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutClinicsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClinicsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19271,7 +19132,7 @@ __decorate([
 ], ClaimProgramUpdateWithoutClinicsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutClinicsInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateWithoutClinicsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseUpdateOneWithoutClaimProgramNestedInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClinicsInput.prototype, "disease", void 0);
@@ -19309,9 +19170,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDiseaseInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutDiseaseInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDiseaseInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19319,7 +19177,7 @@ __decorate([
 ], ClaimProgramUpdateWithoutDiseaseInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutDiseaseInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateWithoutDiseaseInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClinicUpdateOneRequiredWithoutClaimProgramNestedInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDiseaseInput.prototype, "clinics", void 0);
@@ -19357,9 +19215,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDocumentsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutDocumentsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDocumentsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19367,7 +19222,7 @@ __decorate([
 ], ClaimProgramUpdateWithoutDocumentsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutDocumentsInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateWithoutDocumentsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseUpdateOneWithoutClaimProgramNestedInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDocumentsInput.prototype, "disease", void 0);
@@ -19405,9 +19260,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19415,7 +19267,7 @@ __decorate([
 ], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseUpdateOneWithoutClaimProgramNestedInput, { nullable: true })
 ], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "disease", void 0);
@@ -19453,9 +19305,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutProgramInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutProgramInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutProgramInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19463,7 +19312,7 @@ __decorate([
 ], ClaimProgramUpdateWithoutProgramInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateWithoutProgramInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateWithoutProgramInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseUpdateOneWithoutClaimProgramNestedInput, { nullable: true })
 ], ClaimProgramUpdateWithoutProgramInput.prototype, "disease", void 0);
@@ -19501,9 +19350,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19511,7 +19357,7 @@ __decorate([
 ], ClaimProgramUpdateInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ClaimProgramUpdateInput.prototype, "storeName", void 0);
+], ClaimProgramUpdateInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DiseaseUpdateOneWithoutClaimProgramNestedInput, { nullable: true })
 ], ClaimProgramUpdateInput.prototype, "disease", void 0);
@@ -19672,9 +19518,6 @@ __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProgramWhereUniqueInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumSantunanHarianRawatInapPlanNullableFilter, { nullable: true })
-], ClaimProgramWhereUniqueInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], ClaimProgramWhereUniqueInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19682,7 +19525,7 @@ __decorate([
 ], ClaimProgramWhereUniqueInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
-], ClaimProgramWhereUniqueInput.prototype, "storeName", void 0);
+], ClaimProgramWhereUniqueInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ClaimProgramWhereUniqueInput.prototype, "diseaseId", void 0);
@@ -19744,9 +19587,6 @@ __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProgramWhereInput.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumSantunanHarianRawatInapPlanNullableFilter, { nullable: true })
-], ClaimProgramWhereInput.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], ClaimProgramWhereInput.prototype, "startTreatment", void 0);
 __decorate([
@@ -19754,7 +19594,7 @@ __decorate([
 ], ClaimProgramWhereInput.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
-], ClaimProgramWhereInput.prototype, "storeName", void 0);
+], ClaimProgramWhereInput.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ClaimProgramWhereInput.prototype, "diseaseId", void 0);
@@ -19807,9 +19647,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true, description: 'Ket.Tambahan\tketerangan tambahan' })
 ], ClaimProgram.prototype, "additionalNote", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SantunanHarianRawatInapPlan, { nullable: true, description: 'KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 ' })
-], ClaimProgram.prototype, "santunanHarianRawatInapPlan", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true, description: 'Tmulairawat\tTanggal mulai Rawat' })
 ], ClaimProgram.prototype, "startTreatment", void 0);
 __decorate([
@@ -19817,7 +19654,7 @@ __decorate([
 ], ClaimProgram.prototype, "endTreatment", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true, description: 'Nama toko atau tempat pembelian kursi roda' })
-], ClaimProgram.prototype, "storeName", void 0);
+], ClaimProgram.prototype, "kurisRodaOrWalkerSetoreName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ClaimProgram.prototype, "diseaseId", void 0);
@@ -36790,7 +36627,7 @@ __decorate([
 ], InvoiceProofCreateWithoutDocumentProofInput.prototype, "amount", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgramCreateNestedOneWithoutInvoiceProofsInput, { nullable: true })
-], InvoiceProofCreateWithoutDocumentProofInput.prototype, "ClaimProgram", void 0);
+], InvoiceProofCreateWithoutDocumentProofInput.prototype, "claimProgram", void 0);
 InvoiceProofCreateWithoutDocumentProofInput = __decorate([
     (0, graphql_4.InputType)()
 ], InvoiceProofCreateWithoutDocumentProofInput);
@@ -36808,7 +36645,7 @@ __decorate([
 ], InvoiceProofCreateInput.prototype, "documentProof", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgramCreateNestedOneWithoutInvoiceProofsInput, { nullable: true })
-], InvoiceProofCreateInput.prototype, "ClaimProgram", void 0);
+], InvoiceProofCreateInput.prototype, "claimProgram", void 0);
 InvoiceProofCreateInput = __decorate([
     (0, graphql_4.InputType)()
 ], InvoiceProofCreateInput);
@@ -37109,7 +36946,7 @@ __decorate([
 ], InvoiceProofOrderByWithRelationInput.prototype, "documentProof", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgramOrderByWithRelationInput, { nullable: true })
-], InvoiceProofOrderByWithRelationInput.prototype, "ClaimProgram", void 0);
+], InvoiceProofOrderByWithRelationInput.prototype, "claimProgram", void 0);
 InvoiceProofOrderByWithRelationInput = __decorate([
     (0, graphql_4.InputType)()
 ], InvoiceProofOrderByWithRelationInput);
@@ -37659,7 +37496,7 @@ __decorate([
 ], InvoiceProofUpdateWithoutDocumentProofInput.prototype, "amount", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput, { nullable: true })
-], InvoiceProofUpdateWithoutDocumentProofInput.prototype, "ClaimProgram", void 0);
+], InvoiceProofUpdateWithoutDocumentProofInput.prototype, "claimProgram", void 0);
 InvoiceProofUpdateWithoutDocumentProofInput = __decorate([
     (0, graphql_4.InputType)()
 ], InvoiceProofUpdateWithoutDocumentProofInput);
@@ -37677,7 +37514,7 @@ __decorate([
 ], InvoiceProofUpdateInput.prototype, "documentProof", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput, { nullable: true })
-], InvoiceProofUpdateInput.prototype, "ClaimProgram", void 0);
+], InvoiceProofUpdateInput.prototype, "claimProgram", void 0);
 InvoiceProofUpdateInput = __decorate([
     (0, graphql_4.InputType)()
 ], InvoiceProofUpdateInput);
@@ -37749,7 +37586,7 @@ __decorate([
 ], InvoiceProofWhereUniqueInput.prototype, "documentProof", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgramNullableRelationFilter, { nullable: true })
-], InvoiceProofWhereUniqueInput.prototype, "ClaimProgram", void 0);
+], InvoiceProofWhereUniqueInput.prototype, "claimProgram", void 0);
 InvoiceProofWhereUniqueInput = __decorate([
     (0, graphql_4.InputType)()
 ], InvoiceProofWhereUniqueInput);
@@ -37785,7 +37622,7 @@ __decorate([
 ], InvoiceProofWhereInput.prototype, "documentProof", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgramNullableRelationFilter, { nullable: true })
-], InvoiceProofWhereInput.prototype, "ClaimProgram", void 0);
+], InvoiceProofWhereInput.prototype, "claimProgram", void 0);
 InvoiceProofWhereInput = InvoiceProofWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
 ], InvoiceProofWhereInput);
@@ -37812,7 +37649,7 @@ __decorate([
 ], InvoiceProof.prototype, "documentProof", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimProgram, { nullable: true })
-], InvoiceProof.prototype, "ClaimProgram", void 0);
+], InvoiceProof.prototype, "claimProgram", void 0);
 InvoiceProof = __decorate([
     (0, graphql_5.ObjectType)({ description: 'Kuitansi bukti pembayaran klinik atau rumah sakit' })
 ], InvoiceProof);

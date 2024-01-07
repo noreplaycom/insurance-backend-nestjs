@@ -4,6 +4,7 @@ import {
   Class,
   Color,
   Permission,
+  ProgramType,
   RoleType,
 } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
@@ -57,29 +58,30 @@ export class InitializationService {
           // Create program
           await prisma.program.createMany({
             data: [
+              /* 
+              1. Plafon per orang perminggu maksimal 2 kali kunjungan, per kunjunan maksimal Rp.700.000 
+              2. Masa klaim 60 hari sejak keluar rumah sakit/tanggal kuitansi
+              3. Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
+              */
               {
-                plan: ApplicationType.BANTUAN_BIAYA_CUCI_DARAH,
-                class: Class.I,
+                type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
+                claimPeriodMax: 60,
+                reclaimPeriodMax: 60,
               },
               {
-                plan: ApplicationType.BANTUAN_IGD_UGD,
-                class: Class.I,
+                type: ProgramType.BANTUAN_BIAYA_CUCI_DARAH,
               },
               {
-                plan: ApplicationType.BANTUAN_KURSI_RODA,
-                class: Class.I,
+                type: ProgramType.BANTUAN_IGD_UGD,
               },
               {
-                plan: ApplicationType.BANTUAN_RAWAT_INAP,
-                class: Class.I,
+                type: ProgramType.BANTUAN_KURSI_RODA,
               },
               {
-                plan: ApplicationType.BANTUAN_WALKER,
-                class: Class.I,
+                type: ProgramType.BANTUAN_WALKER,
               },
               {
-                plan: ApplicationType.SANTUNAN_HARIAN_RAWAT_INAP,
-                class: Class.I,
+                type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
               },
             ],
           });

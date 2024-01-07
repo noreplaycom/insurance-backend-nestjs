@@ -317,10 +317,9 @@ export declare enum ClaimProgramScalarFieldEnum {
     submissionNote = "submissionNote",
     description = "description",
     additionalNote = "additionalNote",
-    santunanHarianRawatInapPlan = "santunanHarianRawatInapPlan",
     startTreatment = "startTreatment",
     endTreatment = "endTreatment",
-    storeName = "storeName",
+    kurisRodaOrWalkerSetoreName = "kurisRodaOrWalkerSetoreName",
     diseaseId = "diseaseId",
     clinicId = "clinicId",
     programId = "programId"
@@ -5315,10 +5314,9 @@ export declare class ClaimProgramCountAggregateInput {
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
-    santunanHarianRawatInapPlan?: true;
     startTreatment?: true;
     endTreatment?: true;
-    storeName?: true;
+    kurisRodaOrWalkerSetoreName?: true;
     diseaseId?: true;
     clinicId?: true;
     programId?: true;
@@ -5331,10 +5329,9 @@ export declare class ClaimProgramCountAggregate {
     submissionNote: number;
     description: number;
     additionalNote: number;
-    santunanHarianRawatInapPlan: number;
     startTreatment: number;
     endTreatment: number;
-    storeName: number;
+    kurisRodaOrWalkerSetoreName: number;
     diseaseId: number;
     clinicId: number;
     programId: number;
@@ -5347,10 +5344,9 @@ export declare class ClaimProgramCountOrderByAggregateInput {
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
-    santunanHarianRawatInapPlan?: keyof typeof SortOrder;
     startTreatment?: keyof typeof SortOrder;
     endTreatment?: keyof typeof SortOrder;
-    storeName?: keyof typeof SortOrder;
+    kurisRodaOrWalkerSetoreName?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
@@ -5370,10 +5366,9 @@ export declare class ClaimProgramCreateManyClinicsInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     programId: number;
 }
@@ -5388,10 +5383,9 @@ export declare class ClaimProgramCreateManyDiseaseInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     clinicId: number;
     programId: number;
 }
@@ -5406,10 +5400,9 @@ export declare class ClaimProgramCreateManyProgramInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
 }
@@ -5420,10 +5413,9 @@ export declare class ClaimProgramCreateManyInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
     programId: number;
@@ -5491,10 +5483,9 @@ export declare class ClaimProgramCreateWithoutClaimInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
@@ -5507,10 +5498,9 @@ export declare class ClaimProgramCreateWithoutClinicsInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
@@ -5523,10 +5513,9 @@ export declare class ClaimProgramCreateWithoutDiseaseInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
@@ -5539,10 +5528,9 @@ export declare class ClaimProgramCreateWithoutDocumentsInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
@@ -5555,10 +5543,9 @@ export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
@@ -5571,10 +5558,9 @@ export declare class ClaimProgramCreateWithoutProgramInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
@@ -5587,10 +5573,9 @@ export declare class ClaimProgramCreateInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
@@ -5618,10 +5603,9 @@ export declare class ClaimProgramGroupBy {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
     programId: number;
@@ -5643,10 +5627,9 @@ export declare class ClaimProgramMaxAggregateInput {
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
-    santunanHarianRawatInapPlan?: true;
     startTreatment?: true;
     endTreatment?: true;
-    storeName?: true;
+    kurisRodaOrWalkerSetoreName?: true;
     diseaseId?: true;
     clinicId?: true;
     programId?: true;
@@ -5658,10 +5641,9 @@ export declare class ClaimProgramMaxAggregate {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId?: number;
     programId?: number;
@@ -5673,10 +5655,9 @@ export declare class ClaimProgramMaxOrderByAggregateInput {
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
-    santunanHarianRawatInapPlan?: keyof typeof SortOrder;
     startTreatment?: keyof typeof SortOrder;
     endTreatment?: keyof typeof SortOrder;
-    storeName?: keyof typeof SortOrder;
+    kurisRodaOrWalkerSetoreName?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
@@ -5688,10 +5669,9 @@ export declare class ClaimProgramMinAggregateInput {
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
-    santunanHarianRawatInapPlan?: true;
     startTreatment?: true;
     endTreatment?: true;
-    storeName?: true;
+    kurisRodaOrWalkerSetoreName?: true;
     diseaseId?: true;
     clinicId?: true;
     programId?: true;
@@ -5703,10 +5683,9 @@ export declare class ClaimProgramMinAggregate {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId?: number;
     programId?: number;
@@ -5718,10 +5697,9 @@ export declare class ClaimProgramMinOrderByAggregateInput {
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
-    santunanHarianRawatInapPlan?: keyof typeof SortOrder;
     startTreatment?: keyof typeof SortOrder;
     endTreatment?: keyof typeof SortOrder;
-    storeName?: keyof typeof SortOrder;
+    kurisRodaOrWalkerSetoreName?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
@@ -5740,10 +5718,9 @@ export declare class ClaimProgramOrderByWithAggregationInput {
     submissionNote?: InstanceType<typeof SortOrderInput>;
     description?: InstanceType<typeof SortOrderInput>;
     additionalNote?: InstanceType<typeof SortOrderInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof SortOrderInput>;
     startTreatment?: InstanceType<typeof SortOrderInput>;
     endTreatment?: InstanceType<typeof SortOrderInput>;
-    storeName?: InstanceType<typeof SortOrderInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof SortOrderInput>;
     diseaseId?: InstanceType<typeof SortOrderInput>;
     clinicId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
@@ -5760,10 +5737,9 @@ export declare class ClaimProgramOrderByWithRelationInput {
     submissionNote?: InstanceType<typeof SortOrderInput>;
     description?: InstanceType<typeof SortOrderInput>;
     additionalNote?: InstanceType<typeof SortOrderInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof SortOrderInput>;
     startTreatment?: InstanceType<typeof SortOrderInput>;
     endTreatment?: InstanceType<typeof SortOrderInput>;
-    storeName?: InstanceType<typeof SortOrderInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof SortOrderInput>;
     diseaseId?: InstanceType<typeof SortOrderInput>;
     clinicId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
@@ -5788,10 +5764,9 @@ export declare class ClaimProgramScalarWhereWithAggregatesInput {
     submissionNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     additionalNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof EnumSantunanHarianRawatInapPlanNullableWithAggregatesFilter>;
     startTreatment?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     endTreatment?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    storeName?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     diseaseId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     clinicId?: InstanceType<typeof IntWithAggregatesFilter>;
     programId?: InstanceType<typeof IntWithAggregatesFilter>;
@@ -5806,10 +5781,9 @@ export declare class ClaimProgramScalarWhereInput {
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof EnumSantunanHarianRawatInapPlanNullableFilter>;
     startTreatment?: InstanceType<typeof DateTimeNullableFilter>;
     endTreatment?: InstanceType<typeof DateTimeNullableFilter>;
-    storeName?: InstanceType<typeof StringNullableFilter>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
@@ -5857,10 +5831,9 @@ export declare class ClaimProgramUncheckedCreateWithoutClaimInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
     programId: number;
@@ -5874,10 +5847,9 @@ export declare class ClaimProgramUncheckedCreateWithoutClinicsInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     programId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
@@ -5891,10 +5863,9 @@ export declare class ClaimProgramUncheckedCreateWithoutDiseaseInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     clinicId: number;
     programId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
@@ -5908,10 +5879,9 @@ export declare class ClaimProgramUncheckedCreateWithoutDocumentsInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
     programId: number;
@@ -5925,10 +5895,9 @@ export declare class ClaimProgramUncheckedCreateWithoutInvoiceProofsInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
     programId: number;
@@ -5942,10 +5911,9 @@ export declare class ClaimProgramUncheckedCreateWithoutProgramInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
@@ -5959,10 +5927,9 @@ export declare class ClaimProgramUncheckedCreateInput {
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
-    santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
     startTreatment?: Date | string;
     endTreatment?: Date | string;
-    storeName?: string;
+    kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
     clinicId: number;
     programId: number;
@@ -5990,10 +5957,9 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutClinicsInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -6017,10 +5983,9 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutDiseaseInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -6044,10 +6009,9 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutProgramInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -6058,10 +6022,9 @@ export declare class ClaimProgramUncheckedUpdateManyInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6073,10 +6036,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6090,10 +6052,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutClinicsInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
@@ -6107,10 +6068,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutDiseaseInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
@@ -6124,10 +6084,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutDocumentsInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6141,10 +6100,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6158,10 +6116,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutProgramInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
@@ -6175,10 +6132,9 @@ export declare class ClaimProgramUncheckedUpdateInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6192,10 +6148,9 @@ export declare class ClaimProgramUpdateManyMutationInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class ClaimProgramUpdateManyWithWhereWithoutClinicsInput {
     where: InstanceType<typeof ClaimProgramScalarWhereInput>;
@@ -6303,10 +6258,9 @@ export declare class ClaimProgramUpdateWithoutClaimInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
@@ -6319,10 +6273,9 @@ export declare class ClaimProgramUpdateWithoutClinicsInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
@@ -6335,10 +6288,9 @@ export declare class ClaimProgramUpdateWithoutDiseaseInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
@@ -6351,10 +6303,9 @@ export declare class ClaimProgramUpdateWithoutDocumentsInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
@@ -6367,10 +6318,9 @@ export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
@@ -6383,10 +6333,9 @@ export declare class ClaimProgramUpdateWithoutProgramInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
@@ -6399,10 +6348,9 @@ export declare class ClaimProgramUpdateInput {
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    storeName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
@@ -6450,10 +6398,9 @@ export declare class ClaimProgramWhereUniqueInput {
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof EnumSantunanHarianRawatInapPlanNullableFilter>;
     startTreatment?: InstanceType<typeof DateTimeNullableFilter>;
     endTreatment?: InstanceType<typeof DateTimeNullableFilter>;
-    storeName?: InstanceType<typeof StringNullableFilter>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
@@ -6474,10 +6421,9 @@ export declare class ClaimProgramWhereInput {
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
-    santunanHarianRawatInapPlan?: InstanceType<typeof EnumSantunanHarianRawatInapPlanNullableFilter>;
     startTreatment?: InstanceType<typeof DateTimeNullableFilter>;
     endTreatment?: InstanceType<typeof DateTimeNullableFilter>;
-    storeName?: InstanceType<typeof StringNullableFilter>;
+    kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
@@ -6495,10 +6441,9 @@ export declare class ClaimProgram {
     submissionNote: string | null;
     description: string | null;
     additionalNote: string | null;
-    santunanHarianRawatInapPlan: keyof typeof SantunanHarianRawatInapPlan | null;
     startTreatment: Date | null;
     endTreatment: Date | null;
-    storeName: string | null;
+    kurisRodaOrWalkerSetoreName: string | null;
     diseaseId: number | null;
     clinicId: number;
     programId: number;
@@ -11854,13 +11799,13 @@ export declare class InvoiceProofCreateWithoutClaimProgramInput {
 export declare class InvoiceProofCreateWithoutDocumentProofInput {
     issuedDate: Date | string;
     amount: number;
-    ClaimProgram?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutInvoiceProofsInput>;
+    claimProgram?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutInvoiceProofsInput>;
 }
 export declare class InvoiceProofCreateInput {
     issuedDate: Date | string;
     amount: number;
     documentProof: InstanceType<typeof DocumentCreateNestedOneWithoutInvoiceProofInput>;
-    ClaimProgram?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutInvoiceProofsInput>;
+    claimProgram?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutInvoiceProofsInput>;
 }
 export declare class InvoiceProofGroupByArgs {
     where?: InstanceType<typeof InvoiceProofWhereInput>;
@@ -11960,7 +11905,7 @@ export declare class InvoiceProofOrderByWithRelationInput {
     documentProofId?: keyof typeof SortOrder;
     claimProgramId?: InstanceType<typeof SortOrderInput>;
     documentProof?: InstanceType<typeof DocumentOrderByWithRelationInput>;
-    ClaimProgram?: InstanceType<typeof ClaimProgramOrderByWithRelationInput>;
+    claimProgram?: InstanceType<typeof ClaimProgramOrderByWithRelationInput>;
 }
 export declare class InvoiceProofScalarWhereWithAggregatesInput {
     AND?: Array<InvoiceProofScalarWhereWithAggregatesInput>;
@@ -12127,13 +12072,13 @@ export declare class InvoiceProofUpdateWithoutClaimProgramInput {
 export declare class InvoiceProofUpdateWithoutDocumentProofInput {
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    ClaimProgram?: InstanceType<typeof ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput>;
+    claimProgram?: InstanceType<typeof ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput>;
 }
 export declare class InvoiceProofUpdateInput {
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     documentProof?: InstanceType<typeof DocumentUpdateOneRequiredWithoutInvoiceProofNestedInput>;
-    ClaimProgram?: InstanceType<typeof ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput>;
+    claimProgram?: InstanceType<typeof ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput>;
 }
 export declare class InvoiceProofUpsertWithWhereUniqueWithoutClaimProgramInput {
     where: Prisma.AtLeast<InvoiceProofWhereUniqueInput, 'id' | 'documentProofId'>;
@@ -12155,7 +12100,7 @@ export declare class InvoiceProofWhereUniqueInput {
     amount?: InstanceType<typeof IntFilter>;
     claimProgramId?: InstanceType<typeof IntNullableFilter>;
     documentProof?: InstanceType<typeof DocumentRelationFilter>;
-    ClaimProgram?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
+    claimProgram?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
 }
 export declare class InvoiceProofWhereInput {
     AND?: Array<InvoiceProofWhereInput>;
@@ -12167,7 +12112,7 @@ export declare class InvoiceProofWhereInput {
     documentProofId?: InstanceType<typeof StringFilter>;
     claimProgramId?: InstanceType<typeof IntNullableFilter>;
     documentProof?: InstanceType<typeof DocumentRelationFilter>;
-    ClaimProgram?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
+    claimProgram?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
 }
 export declare class InvoiceProof {
     id: number;
@@ -12176,7 +12121,7 @@ export declare class InvoiceProof {
     documentProofId: string;
     claimProgramId: number | null;
     documentProof?: InstanceType<typeof Document>;
-    ClaimProgram?: InstanceType<typeof ClaimProgram> | null;
+    claimProgram?: InstanceType<typeof ClaimProgram> | null;
 }
 export declare class UpdateManyInvoiceProofArgs {
     data: InstanceType<typeof InvoiceProofUpdateManyMutationInput>;

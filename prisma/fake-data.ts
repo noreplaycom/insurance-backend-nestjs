@@ -419,10 +419,9 @@ export function fakeClaimProgram() {
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,
-    santunanHarianRawatInapPlan: undefined,
     startTreatment: undefined,
     endTreatment: undefined,
-    storeName: undefined,
+    kurisRodaOrWalkerSetoreName: undefined,
   };
 }
 export function fakeClaimProgramComplete() {
@@ -433,10 +432,9 @@ export function fakeClaimProgramComplete() {
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,
-    santunanHarianRawatInapPlan: undefined,
     startTreatment: undefined,
     endTreatment: undefined,
-    storeName: undefined,
+    kurisRodaOrWalkerSetoreName: undefined,
     diseaseId: undefined,
     clinicId: faker.datatype.number(),
     programId: faker.datatype.number(),
