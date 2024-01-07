@@ -26,7 +26,7 @@ export function fakeUserComplete() {
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    roleId: faker.datatype.number(),
+    roleId: 0,
     participantId: undefined,
   };
 }

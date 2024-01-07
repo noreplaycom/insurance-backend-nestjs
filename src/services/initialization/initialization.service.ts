@@ -32,7 +32,7 @@ export class InitializationService {
           // Create participant role
           await prisma.role.create({
             data: {
-              id: 1,
+              id: 0,
               name: 'Peserta',
               description: 'peserta',
               roleType: RoleType.PARTICIPANT,

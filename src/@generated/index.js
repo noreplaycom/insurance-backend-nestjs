@@ -57678,7 +57678,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserCreateManyInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateManyInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -57948,7 +57948,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateWithoutAnnouncementCreatedInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutAnnouncementCreatedInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -58002,7 +58002,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateWithoutClaimActionsInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutClaimActionsInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -58056,7 +58056,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateWithoutClaimsInputInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutClaimsInputInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -58110,7 +58110,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateWithoutClaimsOnWaitInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutClaimsOnWaitInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -58164,7 +58164,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateWithoutNotificationInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutNotificationInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -58218,7 +58218,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateWithoutParticipantInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutParticipantInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimCreateNestedManyWithoutInputedByInput, { nullable: true })
@@ -58326,7 +58326,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserCreateInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -59024,7 +59024,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutAnnouncementCreatedInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserUncheckedCreateWithoutAnnouncementCreatedInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -59078,7 +59078,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutClaimActionsInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserUncheckedCreateWithoutClaimActionsInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -59132,7 +59132,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsInputInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsInputInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -59186,7 +59186,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsOnWaitInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsOnWaitInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -59240,7 +59240,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutNotificationInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserUncheckedCreateWithoutNotificationInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -59294,7 +59294,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutParticipantInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserUncheckedCreateWithoutParticipantInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -59402,7 +59402,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
@@ -61088,7 +61088,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], User.prototype, "deletedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false, defaultValue: 0 })
 ], User.prototype, "roleId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })

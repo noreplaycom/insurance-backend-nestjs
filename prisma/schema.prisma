@@ -57,7 +57,7 @@ model User {
 
     role Role @relation(fields: [roleId], references: [id], onDelete: SetDefault)
 
-    roleId Int @default(1)
+    roleId Int @default(0)
 
     participant Participant?
 

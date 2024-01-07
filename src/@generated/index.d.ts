@@ -18534,7 +18534,7 @@ export declare class UserCreateManyInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
 }
 export declare class UserCreateNestedManyWithoutRoleInput {
@@ -18612,7 +18612,7 @@ export declare class UserCreateWithoutAnnouncementCreatedInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participantId?: number;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
@@ -18630,7 +18630,7 @@ export declare class UserCreateWithoutClaimActionsInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participantId?: number;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
@@ -18648,7 +18648,7 @@ export declare class UserCreateWithoutClaimsInputInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participantId?: number;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
@@ -18666,7 +18666,7 @@ export declare class UserCreateWithoutClaimsOnWaitInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participantId?: number;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
@@ -18684,7 +18684,7 @@ export declare class UserCreateWithoutNotificationInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participantId?: number;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
@@ -18702,7 +18702,7 @@ export declare class UserCreateWithoutParticipantInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participantId?: number;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
@@ -18738,7 +18738,7 @@ export declare class UserCreateInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participantId?: number;
-    role: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
+    role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
@@ -18969,7 +18969,7 @@ export declare class UserUncheckedCreateWithoutAnnouncementCreatedInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
@@ -18987,7 +18987,7 @@ export declare class UserUncheckedCreateWithoutClaimActionsInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
@@ -19005,7 +19005,7 @@ export declare class UserUncheckedCreateWithoutClaimsInputInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
@@ -19023,7 +19023,7 @@ export declare class UserUncheckedCreateWithoutClaimsOnWaitInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
@@ -19041,7 +19041,7 @@ export declare class UserUncheckedCreateWithoutNotificationInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
@@ -19059,7 +19059,7 @@ export declare class UserUncheckedCreateWithoutParticipantInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
     claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
@@ -19095,7 +19095,7 @@ export declare class UserUncheckedCreateInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
-    roleId: number;
+    roleId?: number;
     participantId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
