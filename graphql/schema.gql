@@ -2035,6 +2035,9 @@ type Query {
   """Deskripsinya ada disini loh"""
   participantCount(where: ParticipantWhereInput, orderBy: [ParticipantOrderByWithRelationInput!], cursor: ParticipantWhereUniqueInput, take: Int, skip: Int, distinct: [ParticipantScalarFieldEnum!]): Float
 
+  """Export participant data to excel file (xlsx)"""
+  participantExport: String!
+
   """Deskripsinya ada disini loh"""
   roleFindOne(where: RoleWhereUniqueInput!): Role
 
@@ -3933,6 +3936,9 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   claimStatusDeleteMany(where: ClaimStatusWhereInput): Boolean!
+
+  """Import participant data from xlsx file"""
+  participantImport(file: Upload): Boolean
 
   """Deskripsinya ada disini loh"""
   roleCreateOne(data: RoleCreateInput!): Role
