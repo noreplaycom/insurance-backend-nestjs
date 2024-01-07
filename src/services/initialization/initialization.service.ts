@@ -1,5 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Color, Permission, RoleType } from '@prisma/client';
+import {
+  ApplicationType,
+  Class,
+  Color,
+  Permission,
+  RoleType,
+} from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
 import { populateProvinceCityDistricSubdistric } from 'prisma/seed-functions/address.seed';
 
@@ -48,7 +54,35 @@ export class InitializationService {
             data: { name: 'Exception', color: Color.RED, isException: true },
           });
 
-          //TODO: Create program
+          // Create program
+          await prisma.program.createMany({
+            data: [
+              {
+                plan: ApplicationType.BANTUAN_BIAYA_CUCI_DARAH,
+                class: Class.I,
+              },
+              {
+                plan: ApplicationType.BANTUAN_IGD_UGD,
+                class: Class.I,
+              },
+              {
+                plan: ApplicationType.BANTUAN_KURSI_RODA,
+                class: Class.I,
+              },
+              {
+                plan: ApplicationType.BANTUAN_RAWAT_INAP,
+                class: Class.I,
+              },
+              {
+                plan: ApplicationType.BANTUAN_WALKER,
+                class: Class.I,
+              },
+              {
+                plan: ApplicationType.SANTUNAN_HARIAN_RAWAT_INAP,
+                class: Class.I,
+              },
+            ],
+          });
         });
 
         console.log('Superuser, admin, role, program created');

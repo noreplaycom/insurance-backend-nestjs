@@ -557,7 +557,7 @@ model Program {
     //-------------------------- 1 relations --------------------------------
 
     ///KELAS: Kelas sesuai Jenjab I=Rp.1.250.000 II=Rp.1.000.000  III= Rp.750.000 
-    class Class
+    class Class?
 
     //-------------------------- m relations --------------------------------
 
