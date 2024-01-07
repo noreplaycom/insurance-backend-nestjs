@@ -124,14 +124,8 @@ export class RoleResolver {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
-  async roleDelete(
-    @Args() deleteOneRoleArgs: DeleteOneRoleArgs,
-    @Relations() relations: RoleSelect,
-  ) {
-    return this.roleController.delete({
-      ...deleteOneRoleArgs,
-      select: relations.select,
-    });
+  async roleDelete(@Args() deleteOneRoleArgs: DeleteOneRoleArgs) {
+    return this.roleController.delete(deleteOneRoleArgs);
   }
 
   // @Mutation(() => Boolean, {

@@ -1,19 +1,73 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, Role } from '@prisma/client';
+import { Permission, Prisma, Role, RoleType } from '@prisma/client';
 import { RoleService } from './role.service';
 import { RoleFindOneByUserArgs } from './dto/role_find_one_by_user';
 import { RoleFindOneByIdArgs } from './dto/role_find_one_by_id';
+import { Role } from 'src/@generated';
 
 @Injectable()
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
+
+  async onModuleInit() {
+    const roles = await this.findMany({});
+
+    //check if roles is empty
+    if (roles.length === 0) {
+      const permissions = Object.values(Permission);
+
+      //create superuser role
+      await this.createOne({
+        data: {
+          name: 'superuser',
+          description: 'superuser',
+          roleType: RoleType.SUPERUSER,
+          rolePermissions: {
+            createMany: {
+              data: permissions.map((permission) => ({ permission })),
+            },
+          },
+        },
+      });
+
+      //create participant role
+      await this.createOne({
+        data: {
+          name: 'Peserta',
+          description: 'peserta',
+          roleType: RoleType.PARTICIPANT,
+          rolePermissions: {
+            createMany: {
+              data: [
+                { permission: Permission.CREATE_CLAIM },
+                { permission: Permission.CREATE_CLAIM },
+              ],
+            },
+          },
+        },
+      });
+
+      //create admin role
+      await this.createOne({
+        data: {
+          name: 'Admin Berkas',
+          description: 'admin berkas',
+          roleType: RoleType.ADMIN,
+          rolePermissions: {
+            createMany: {
+              data: permissions.map((permission) => ({ permission })),
+            },
+          },
+        },
+      });
+    }
+  }
 
   async createOne(roleCreateArgs: Prisma.RoleCreateArgs) {
     return await this.roleService.createOne(roleCreateArgs);
   }
 
   async createMany(roleCreateManyArgs: Prisma.RoleCreateManyArgs) {
-    //TODO: Auto create 3 role when app first run. [SuperUser, Participant, Admin]
     return await this.roleService.createMany(roleCreateManyArgs);
   }
 

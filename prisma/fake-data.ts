@@ -1,4 +1,4 @@
-import { Permission, ParticipantStatus, Position, Class, ClaimChannel, DocumentSource, DocumentType, Color, ApplicationType, AdmedicaStatus, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
+import { RoleType, Permission, ParticipantStatus, Position, Class, ClaimChannel, DocumentSource, DocumentType, Color, ApplicationType, AdmedicaStatus, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 
@@ -34,6 +34,7 @@ export function fakeRole() {
   return {
     name: faker.name.fullName(),
     description: undefined,
+    roleType: faker.helpers.arrayElement([RoleType.SUPERUSER, RoleType.PARTICIPANT, RoleType.ADMIN] as const),
   };
 }
 export function fakeRoleComplete() {
@@ -42,6 +43,7 @@ export function fakeRoleComplete() {
     name: faker.name.fullName(),
     description: undefined,
     higherLevelThanId: undefined,
+    roleType: faker.helpers.arrayElement([RoleType.SUPERUSER, RoleType.PARTICIPANT, RoleType.ADMIN] as const),
   };
 }
 export function fakeRolePermission() {

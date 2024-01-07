@@ -55,7 +55,7 @@ model User {
 
     //-------------------------- 1 relations --------------------------------
 
-    role Role @relation(fields: [roleId], references: [id])
+    role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
 
     roleId Int
 
@@ -72,6 +72,9 @@ model User {
     announcementCreated Announcement[]
 
     notification Notification[]
+
+    //claim-claim yang menunggu aksi dari user
+    claimsOnWait ClaimStatus[] @relation("waitingfor")
 
     @@map("users")
 }
@@ -92,6 +95,8 @@ model Role {
 
     higherLevelThanId Int?
 
+    roleType RoleType
+
     //-------------------------- m relations --------------------------------
 
     rolePermissions RolePermission[]
@@ -101,6 +106,12 @@ model Role {
     lowerLevelThan Role[] @relation("level")
 
     @@map("roles")
+}
+
+enum RoleType {
+    SUPERUSER
+    PARTICIPANT
+    ADMIN
 }
 
 model RolePermission {
@@ -808,6 +819,10 @@ model ClaimStatus {
     createBy User @relation(fields: [createById], references: [id])
 
     createById String
+
+    waitingFor User? @relation("waitingfor", fields: [waitingForId], references: [id])
+
+    waitingForId String?
 
     claim Claim @relation(fields: [claimId], references: [id])
 

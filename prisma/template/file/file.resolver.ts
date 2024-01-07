@@ -126,12 +126,8 @@
 //   })
 //   async fileDelete(
 //     @Args() deleteOneFileArgs: DeleteOneFileArgs,
-//     @Relations() relations: FileSelect,
 //   ) {
-//     return this.fileController.delete({
-//       ...deleteOneFileArgs,
-//       select: relations.select,
-//     });
+//     return this.fileController.delete(deleteOneFileArgs);
 //   }
 
 //   @Mutation(() => Boolean, {

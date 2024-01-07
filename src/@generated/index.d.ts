@@ -42,7 +42,8 @@ export declare enum RoleScalarFieldEnum {
     id = "id",
     name = "name",
     description = "description",
-    higherLevelThanId = "higherLevelThanId"
+    higherLevelThanId = "higherLevelThanId",
+    roleType = "roleType"
 }
 export declare enum RegionScalarFieldEnum {
     id = "id",
@@ -90,6 +91,11 @@ export declare enum TransactionIsolationLevel {
 export declare enum SortOrder {
     asc = "asc",
     desc = "desc"
+}
+export declare enum RoleType {
+    SUPERUSER = "SUPERUSER",
+    PARTICIPANT = "PARTICIPANT",
+    ADMIN = "ADMIN"
 }
 export declare enum QueryMode {
     'default' = "default",
@@ -13218,6 +13224,24 @@ export declare class EnumPositionWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumPositionFilter>;
     _max?: InstanceType<typeof NestedEnumPositionFilter>;
 }
+export declare class EnumRoleTypeFieldUpdateOperationsInput {
+    set?: keyof typeof RoleType;
+}
+export declare class EnumRoleTypeFilter {
+    equals?: keyof typeof RoleType;
+    in?: Array<keyof typeof RoleType>;
+    notIn?: Array<keyof typeof RoleType>;
+    not?: InstanceType<typeof NestedEnumRoleTypeFilter>;
+}
+export declare class EnumRoleTypeWithAggregatesFilter {
+    equals?: keyof typeof RoleType;
+    in?: Array<keyof typeof RoleType>;
+    notIn?: Array<keyof typeof RoleType>;
+    not?: InstanceType<typeof NestedEnumRoleTypeWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntFilter>;
+    _min?: InstanceType<typeof NestedEnumRoleTypeFilter>;
+    _max?: InstanceType<typeof NestedEnumRoleTypeFilter>;
+}
 export declare class EnumTransactionTypeFieldUpdateOperationsInput {
     set?: keyof typeof TransactionType;
 }
@@ -13601,6 +13625,21 @@ export declare class NestedEnumPositionWithAggregatesFilter {
     _count?: InstanceType<typeof NestedIntFilter>;
     _min?: InstanceType<typeof NestedEnumPositionFilter>;
     _max?: InstanceType<typeof NestedEnumPositionFilter>;
+}
+export declare class NestedEnumRoleTypeFilter {
+    equals?: keyof typeof RoleType;
+    in?: Array<keyof typeof RoleType>;
+    notIn?: Array<keyof typeof RoleType>;
+    not?: InstanceType<typeof NestedEnumRoleTypeFilter>;
+}
+export declare class NestedEnumRoleTypeWithAggregatesFilter {
+    equals?: keyof typeof RoleType;
+    in?: Array<keyof typeof RoleType>;
+    notIn?: Array<keyof typeof RoleType>;
+    not?: InstanceType<typeof NestedEnumRoleTypeWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntFilter>;
+    _min?: InstanceType<typeof NestedEnumRoleTypeFilter>;
+    _max?: InstanceType<typeof NestedEnumRoleTypeFilter>;
 }
 export declare class NestedEnumTransactionTypeFilter {
     equals?: keyof typeof TransactionType;
@@ -15912,6 +15951,7 @@ export declare class RoleCountAggregateInput {
     name?: true;
     description?: true;
     higherLevelThanId?: true;
+    roleType?: true;
     _all?: true;
 }
 export declare class RoleCountAggregate {
@@ -15919,6 +15959,7 @@ export declare class RoleCountAggregate {
     name: number;
     description: number;
     higherLevelThanId: number;
+    roleType: number;
     _all: number;
 }
 export declare class RoleCountOrderByAggregateInput {
@@ -15926,6 +15967,7 @@ export declare class RoleCountOrderByAggregateInput {
     name?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     higherLevelThanId?: keyof typeof SortOrder;
+    roleType?: keyof typeof SortOrder;
 }
 export declare class RoleCount {
     rolePermissions?: number;
@@ -15940,12 +15982,14 @@ export declare class RoleCreateManyHigherLevelThanInput {
     id?: number;
     name: string;
     description?: string;
+    roleType: keyof typeof RoleType;
 }
 export declare class RoleCreateManyInput {
     id?: number;
     name: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType: keyof typeof RoleType;
 }
 export declare class RoleCreateNestedManyWithoutHigherLevelThanInput {
     create?: Array<RoleCreateWithoutHigherLevelThanInput>;
@@ -15987,6 +16031,7 @@ export declare class RoleCreateOrConnectWithoutUsersInput {
 export declare class RoleCreateWithoutHigherLevelThanInput {
     name: string;
     description?: string;
+    roleType: keyof typeof RoleType;
     rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
     lowerLevelThan?: InstanceType<typeof RoleCreateNestedManyWithoutHigherLevelThanInput>;
@@ -15994,6 +16039,7 @@ export declare class RoleCreateWithoutHigherLevelThanInput {
 export declare class RoleCreateWithoutLowerLevelThanInput {
     name: string;
     description?: string;
+    roleType: keyof typeof RoleType;
     higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
     rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
@@ -16001,6 +16047,7 @@ export declare class RoleCreateWithoutLowerLevelThanInput {
 export declare class RoleCreateWithoutRolePermissionsInput {
     name: string;
     description?: string;
+    roleType: keyof typeof RoleType;
     higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
     users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
     lowerLevelThan?: InstanceType<typeof RoleCreateNestedManyWithoutHigherLevelThanInput>;
@@ -16008,6 +16055,7 @@ export declare class RoleCreateWithoutRolePermissionsInput {
 export declare class RoleCreateWithoutUsersInput {
     name: string;
     description?: string;
+    roleType: keyof typeof RoleType;
     higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
     rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
     lowerLevelThan?: InstanceType<typeof RoleCreateNestedManyWithoutHigherLevelThanInput>;
@@ -16015,6 +16063,7 @@ export declare class RoleCreateWithoutUsersInput {
 export declare class RoleCreateInput {
     name: string;
     description?: string;
+    roleType: keyof typeof RoleType;
     higherLevelThan?: InstanceType<typeof RoleCreateNestedOneWithoutLowerLevelThanInput>;
     rolePermissions?: InstanceType<typeof RolePermissionCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserCreateNestedManyWithoutRoleInput>;
@@ -16038,6 +16087,7 @@ export declare class RoleGroupBy {
     name: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType: keyof typeof RoleType;
     _count?: InstanceType<typeof RoleCountAggregate>;
     _avg?: InstanceType<typeof RoleAvgAggregate>;
     _sum?: InstanceType<typeof RoleSumAggregate>;
@@ -16054,36 +16104,42 @@ export declare class RoleMaxAggregateInput {
     name?: true;
     description?: true;
     higherLevelThanId?: true;
+    roleType?: true;
 }
 export declare class RoleMaxAggregate {
     id?: number;
     name?: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType?: keyof typeof RoleType;
 }
 export declare class RoleMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     higherLevelThanId?: keyof typeof SortOrder;
+    roleType?: keyof typeof SortOrder;
 }
 export declare class RoleMinAggregateInput {
     id?: true;
     name?: true;
     description?: true;
     higherLevelThanId?: true;
+    roleType?: true;
 }
 export declare class RoleMinAggregate {
     id?: number;
     name?: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType?: keyof typeof RoleType;
 }
 export declare class RoleMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     name?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     higherLevelThanId?: keyof typeof SortOrder;
+    roleType?: keyof typeof SortOrder;
 }
 export declare class RoleNullableRelationFilter {
     is?: InstanceType<typeof RoleWhereInput>;
@@ -16097,6 +16153,7 @@ export declare class RoleOrderByWithAggregationInput {
     name?: keyof typeof SortOrder;
     description?: InstanceType<typeof SortOrderInput>;
     higherLevelThanId?: InstanceType<typeof SortOrderInput>;
+    roleType?: keyof typeof SortOrder;
     _count?: InstanceType<typeof RoleCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof RoleAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof RoleMaxOrderByAggregateInput>;
@@ -16108,6 +16165,7 @@ export declare class RoleOrderByWithRelationInput {
     name?: keyof typeof SortOrder;
     description?: InstanceType<typeof SortOrderInput>;
     higherLevelThanId?: InstanceType<typeof SortOrderInput>;
+    roleType?: keyof typeof SortOrder;
     higherLevelThan?: InstanceType<typeof RoleOrderByWithRelationInput>;
     rolePermissions?: InstanceType<typeof RolePermissionOrderByRelationAggregateInput>;
     users?: InstanceType<typeof UserOrderByRelationAggregateInput>;
@@ -16125,6 +16183,7 @@ export declare class RoleScalarWhereWithAggregatesInput {
     name?: InstanceType<typeof StringWithAggregatesFilter>;
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     higherLevelThanId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
+    roleType?: InstanceType<typeof EnumRoleTypeWithAggregatesFilter>;
 }
 export declare class RoleScalarWhereInput {
     AND?: Array<RoleScalarWhereInput>;
@@ -16134,6 +16193,7 @@ export declare class RoleScalarWhereInput {
     name?: InstanceType<typeof StringFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     higherLevelThanId?: InstanceType<typeof IntNullableFilter>;
+    roleType?: InstanceType<typeof EnumRoleTypeFilter>;
 }
 export declare class RoleSumAggregateInput {
     id?: true;
@@ -16157,6 +16217,7 @@ export declare class RoleUncheckedCreateWithoutHigherLevelThanInput {
     id?: number;
     name: string;
     description?: string;
+    roleType: keyof typeof RoleType;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
@@ -16166,6 +16227,7 @@ export declare class RoleUncheckedCreateWithoutLowerLevelThanInput {
     name: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType: keyof typeof RoleType;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
 }
@@ -16174,6 +16236,7 @@ export declare class RoleUncheckedCreateWithoutRolePermissionsInput {
     name: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType: keyof typeof RoleType;
     users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
 }
@@ -16182,6 +16245,7 @@ export declare class RoleUncheckedCreateWithoutUsersInput {
     name: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType: keyof typeof RoleType;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
 }
@@ -16190,6 +16254,7 @@ export declare class RoleUncheckedCreateInput {
     name: string;
     description?: string;
     higherLevelThanId?: number;
+    roleType: keyof typeof RoleType;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedCreateNestedManyWithoutRoleInput>;
     users?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutRoleInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedCreateNestedManyWithoutHigherLevelThanInput>;
@@ -16211,17 +16276,20 @@ export declare class RoleUncheckedUpdateManyWithoutHigherLevelThanInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
 }
 export declare class RoleUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
 }
 export declare class RoleUncheckedUpdateWithoutHigherLevelThanInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
@@ -16231,6 +16299,7 @@ export declare class RoleUncheckedUpdateWithoutLowerLevelThanInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
 }
@@ -16239,6 +16308,7 @@ export declare class RoleUncheckedUpdateWithoutRolePermissionsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
 }
@@ -16247,6 +16317,7 @@ export declare class RoleUncheckedUpdateWithoutUsersInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
 }
@@ -16255,6 +16326,7 @@ export declare class RoleUncheckedUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     higherLevelThanId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUncheckedUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUncheckedUpdateManyWithoutRoleNestedInput>;
     lowerLevelThan?: InstanceType<typeof RoleUncheckedUpdateManyWithoutHigherLevelThanNestedInput>;
@@ -16262,6 +16334,7 @@ export declare class RoleUncheckedUpdateInput {
 export declare class RoleUpdateManyMutationInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
 }
 export declare class RoleUpdateManyWithWhereWithoutHigherLevelThanInput {
     where: InstanceType<typeof RoleScalarWhereInput>;
@@ -16324,6 +16397,7 @@ export declare class RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput {
 export declare class RoleUpdateWithoutHigherLevelThanInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
     lowerLevelThan?: InstanceType<typeof RoleUpdateManyWithoutHigherLevelThanNestedInput>;
@@ -16331,6 +16405,7 @@ export declare class RoleUpdateWithoutHigherLevelThanInput {
 export declare class RoleUpdateWithoutLowerLevelThanInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
@@ -16338,6 +16413,7 @@ export declare class RoleUpdateWithoutLowerLevelThanInput {
 export declare class RoleUpdateWithoutRolePermissionsInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
     users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
     lowerLevelThan?: InstanceType<typeof RoleUpdateManyWithoutHigherLevelThanNestedInput>;
@@ -16345,6 +16421,7 @@ export declare class RoleUpdateWithoutRolePermissionsInput {
 export declare class RoleUpdateWithoutUsersInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
     lowerLevelThan?: InstanceType<typeof RoleUpdateManyWithoutHigherLevelThanNestedInput>;
@@ -16352,6 +16429,7 @@ export declare class RoleUpdateWithoutUsersInput {
 export declare class RoleUpdateInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    roleType?: InstanceType<typeof EnumRoleTypeFieldUpdateOperationsInput>;
     higherLevelThan?: InstanceType<typeof RoleUpdateOneWithoutLowerLevelThanNestedInput>;
     rolePermissions?: InstanceType<typeof RolePermissionUpdateManyWithoutRoleNestedInput>;
     users?: InstanceType<typeof UserUpdateManyWithoutRoleNestedInput>;
@@ -16385,6 +16463,7 @@ export declare class RoleWhereUniqueInput {
     name?: InstanceType<typeof StringFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     higherLevelThanId?: InstanceType<typeof IntNullableFilter>;
+    roleType?: InstanceType<typeof EnumRoleTypeFilter>;
     higherLevelThan?: InstanceType<typeof RoleNullableRelationFilter>;
     rolePermissions?: InstanceType<typeof RolePermissionListRelationFilter>;
     users?: InstanceType<typeof UserListRelationFilter>;
@@ -16398,6 +16477,7 @@ export declare class RoleWhereInput {
     name?: InstanceType<typeof StringFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     higherLevelThanId?: InstanceType<typeof IntNullableFilter>;
+    roleType?: InstanceType<typeof EnumRoleTypeFilter>;
     higherLevelThan?: InstanceType<typeof RoleNullableRelationFilter>;
     rolePermissions?: InstanceType<typeof RolePermissionListRelationFilter>;
     users?: InstanceType<typeof UserListRelationFilter>;
@@ -16408,6 +16488,7 @@ export declare class Role {
     name: string;
     description: string | null;
     higherLevelThanId: number | null;
+    roleType: keyof typeof RoleType;
     higherLevelThan?: InstanceType<typeof Role> | null;
     rolePermissions?: Array<RolePermission>;
     users?: Array<User>;
