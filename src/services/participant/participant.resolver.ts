@@ -1,3 +1,4 @@
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 // @ts-nocheck
 import { Resolver, Query, Mutation, Args, Float } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
@@ -158,5 +159,23 @@ export class ParticipantResolver {
     @Args() participantCountAggregateInput: FindManyParticipantArgs,
   ) {
     return this.participantController.count(participantCountAggregateInput);
+  }
+
+  @Mutation(() => Boolean, {
+    nullable: true,
+    description: 'Import participant data from xlsx file'
+  })
+  async participantImport(
+    @Args({name: 'file', type: () => GraphQLUpload, nullable: true})
+    file: FileUpload
+  ): Promise<Boolean>{
+    return await this.participantController.import(file);
+  }
+
+  @Query(() => String, {  
+    description: "Export participant data to excel file (xlsx)"
+  })
+  async participantExport(): Promise<String>{
+    return await this.participantController.export();
   }
 }
