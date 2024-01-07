@@ -20,14 +20,13 @@ export class InitializationService {
 
   private async createSuperUserIfNotExist() {
     try {
-      await this.prisma.$transaction(async (prisma) => {
-        const roles = await prisma.role.findMany({});
-
-        // Check if roles is empty
-        if (roles.length === 0) {
-          console.log(
-            'fresh start?.. creating superuser, admin with roles and permissions',
-          );
+      // Check if roles is empty
+      const roles = await this.prisma.role.findMany({});
+      if (roles.length === 0) {
+        console.log(
+          'fresh start?.. creating superuser, admin with roles and permissions',
+        );
+        await this.prisma.$transaction(async (prisma) => {
           const permissions = Object.values(Permission);
 
           // Create participant role
@@ -89,12 +88,10 @@ export class InitializationService {
               },
             },
           });
-        }
-      });
+        });
 
-      console.log(
-        'Superuser and admin created with their roles and permissions',
-      );
+        console.log('Superuser and admin created');
+      }
     } catch (error) {
       // Handle the error here
       console.error('Error creating superuser and admin:', error);
