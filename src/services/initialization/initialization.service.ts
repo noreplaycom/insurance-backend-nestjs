@@ -51,7 +51,7 @@ export class InitializationService {
           //TODO: Create program
         });
 
-        console.log('Superuser and admin created');
+        console.log('Superuser, admin, role, program created');
       }
     } catch (error) {
       // Handle the error here
