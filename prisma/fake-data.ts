@@ -447,6 +447,7 @@ export function fakeClaimStatusComplete() {
     createdAt: new Date(),
     status: faker.helpers.arrayElement([ClaimStatusType.DOCUMENT, ClaimStatusType.PENDING, ClaimStatusType.APPROVED, ClaimStatusType.REJECTED, ClaimStatusType.RELEASE, ClaimStatusType.PAID, ClaimStatusType.COMPLETED, ClaimStatusType.CANCELLED, ClaimStatusType.REOPEN] as const),
     createById: faker.datatype.uuid(),
+    waitingForId: undefined,
     claimId: faker.datatype.uuid(),
     rejectionLetterId: undefined,
     guaranteeLetterId: undefined,

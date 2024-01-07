@@ -67,14 +67,14 @@ model User {
 
     claimsInput Claim[]
 
-    claimActions ClaimStatus[]
+    claimActions ClaimStatus[] @relation("statusUpdatedBy")
 
     announcementCreated Announcement[]
 
     notification Notification[]
 
     //claim-claim yang menunggu aksi dari user
-    claimsOnWait ClaimStatus[] @relation("waitingfor")
+    claimsOnWait Claim[] @relation("waitingfor")
 
     @@map("users")
 }
@@ -620,6 +620,10 @@ model Claim {
 
     programId Int
 
+    waitingFor User? @relation("waitingfor", fields: [waitingForId], references: [id])
+
+    waitingForId String?
+
     //-------------------------- m relations --------------------------------
 
     tags Tag[]
@@ -816,13 +820,9 @@ model ClaimStatus {
 
     status ClaimStatusType
 
-    createBy User @relation(fields: [createById], references: [id])
+    createBy User @relation("statusUpdatedBy", fields: [createById], references: [id])
 
     createById String
-
-    waitingFor User? @relation("waitingfor", fields: [waitingForId], references: [id])
-
-    waitingForId String?
 
     claim Claim @relation(fields: [claimId], references: [id])
 
