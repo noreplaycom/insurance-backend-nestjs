@@ -38,7 +38,7 @@ export class UserResolver {
     @Relations() relations: UserSelect,
   ): Promise<User | void> {
     return await this.userController.createOne({
-      ...userCreateArgs,
+      ...replaceNullWithUndefined(userCreateArgs),
       select: relations.select,
     });
   }
