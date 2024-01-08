@@ -1,4 +1,4 @@
-import { RoleType, Permission, ParticipantStatus, Position, TambahanBantuanRawatInapType, Period, ClaimChannel, DocumentSource, DocumentType, Color, ProgramType, AdmedicaStatus, SantunanHarianRawatInapPlan, Gender, ClaimStatusType, TransactionType, BackupType } from '@prisma/client';
+import { RoleType, Permission, ParticipantStatus, Position, TambahanBantuanRawatInapType, Period, ClaimChannel, DocumentSource, DocumentType, Color, ProgramType, AdmedicaStatus, SantunanHarianRawatInapPlan, Gender, ClaimStatusType, TransactionType, BackupType, ExecutionType } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 
 
@@ -71,6 +71,7 @@ export function fakeParticipantComplete() {
     userId: faker.datatype.uuid(),
     relationId: undefined,
     employmentId: faker.datatype.number(),
+    programParticipationId: faker.datatype.number(),
   };
 }
 export function fakeContactInfo() {
@@ -281,9 +282,7 @@ export function fakeProgramParticipationComplete() {
     nonActiveReason: undefined,
     effectiveDate: faker.datatype.datetime(),
     nonActiveDate: undefined,
-    participantId: faker.datatype.uuid(),
     fundingId: undefined,
-    programId: undefined,
   };
 }
 export function fakeProgram() {
@@ -537,19 +536,19 @@ export function fakeTransactionComplete() {
 }
 export function fakeBackup() {
   return {
-    name: faker.name.fullName(),
     path: undefined,
     isSuccessful: faker.datatype.boolean(),
-    type: faker.helpers.arrayElement([BackupType.MANUAL, BackupType.AUTO] as const),
+    type: faker.helpers.arrayElement([BackupType.DB, BackupType.FULL] as const),
+    executionType: faker.helpers.arrayElement([ExecutionType.MANUAL, ExecutionType.AUTO] as const),
   };
 }
 export function fakeBackupComplete() {
   return {
     id: faker.datatype.number(),
-    name: faker.name.fullName(),
     path: undefined,
     isSuccessful: faker.datatype.boolean(),
-    type: faker.helpers.arrayElement([BackupType.MANUAL, BackupType.AUTO] as const),
+    type: faker.helpers.arrayElement([BackupType.DB, BackupType.FULL] as const),
+    executionType: faker.helpers.arrayElement([ExecutionType.MANUAL, ExecutionType.AUTO] as const),
     createdAt: new Date(),
   };
 }

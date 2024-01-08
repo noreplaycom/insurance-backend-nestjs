@@ -52,6 +52,14 @@ type Account {
   _count: AccountCount!
 }
 
+type AggregateAccount {
+  _count: AccountCountAggregate
+  _avg: AccountAvgAggregate
+  _sum: AccountSumAggregate
+  _min: AccountMinAggregate
+  _max: AccountMaxAggregate
+}
+
 type AddressAvgAggregate {
   id: Float
   subdistrictId: Float
@@ -160,34 +168,39 @@ type BackupAvgAggregate {
 
 type BackupCountAggregate {
   id: Int!
-  name: Int!
   path: Int!
   isSuccessful: Int!
   type: Int!
+  executionType: Int!
   createdAt: Int!
   _all: Int!
 }
 
 type BackupMaxAggregate {
   id: Int
-  name: String
   path: String
   isSuccessful: Boolean
   type: BackupType
+  executionType: ExecutionType
   createdAt: DateTime
 }
 
 enum BackupType {
+  DB
+  FULL
+}
+
+enum ExecutionType {
   MANUAL
   AUTO
 }
 
 type BackupMinAggregate {
   id: Int
-  name: String
   path: String
   isSuccessful: Boolean
   type: BackupType
+  executionType: ExecutionType
   createdAt: DateTime
 }
 
@@ -197,10 +210,10 @@ type BackupSumAggregate {
 
 type Backup {
   id: Int!
-  name: String!
   path: String
   isSuccessful: Boolean!
   type: BackupType!
+  executionType: ExecutionType!
   createdAt: DateTime!
 }
 
@@ -1278,6 +1291,7 @@ type Notification {
 
 type ParticipantAvgAggregate {
   employmentId: Float
+  programParticipationId: Float
 }
 
 type ParticipantCountAggregate {
@@ -1288,13 +1302,13 @@ type ParticipantCountAggregate {
   userId: Int!
   relationId: Int!
   employmentId: Int!
+  programParticipationId: Int!
   _all: Int!
 }
 
 type ParticipantCount {
   claims: Int!
   contactInfos: Int!
-  programParticipations: Int!
   participant: Int!
 }
 
@@ -1306,6 +1320,7 @@ type ParticipantMaxAggregate {
   userId: String
   relationId: String
   employmentId: Int
+  programParticipationId: Int
 }
 
 enum Gender {
@@ -1329,10 +1344,12 @@ type ParticipantMinAggregate {
   userId: String
   relationId: String
   employmentId: Int
+  programParticipationId: Int
 }
 
 type ParticipantSumAggregate {
   employmentId: Int
+  programParticipationId: Int
 }
 
 type Participant {
@@ -1350,6 +1367,7 @@ type Participant {
   userId: String!
   relationId: String
   employmentId: Int!
+  programParticipationId: Int!
   user: User!
 
   """Anggota keluarga dari"""
@@ -1358,7 +1376,7 @@ type Participant {
   bankAccount: BankAccount
   claims: [Claim!]
   contactInfos: [ContactInfo!]
-  programParticipations: [ProgramParticipation!]
+  programParticipation: ProgramParticipation!
 
   """Anggota keluarga dari"""
   participant: [Participant!]
@@ -1525,7 +1543,6 @@ type Program {
 type ProgramParticipationAvgAggregate {
   id: Float
   fundingId: Float
-  programId: Float
 }
 
 type ProgramParticipationCountAggregate {
@@ -1534,10 +1551,12 @@ type ProgramParticipationCountAggregate {
   nonActiveReason: Int!
   effectiveDate: Int!
   nonActiveDate: Int!
-  participantId: Int!
   fundingId: Int!
-  programId: Int!
   _all: Int!
+}
+
+type ProgramParticipationCount {
+  programs: Int!
 }
 
 type ProgramParticipationMaxAggregate {
@@ -1546,9 +1565,7 @@ type ProgramParticipationMaxAggregate {
   nonActiveReason: String
   effectiveDate: DateTime
   nonActiveDate: DateTime
-  participantId: String
   fundingId: Int
-  programId: Int
 }
 
 type ProgramParticipationMinAggregate {
@@ -1557,15 +1574,12 @@ type ProgramParticipationMinAggregate {
   nonActiveReason: String
   effectiveDate: DateTime
   nonActiveDate: DateTime
-  participantId: String
   fundingId: Int
-  programId: Int
 }
 
 type ProgramParticipationSumAggregate {
   id: Int
   fundingId: Int
-  programId: Int
 }
 
 type ProgramParticipation {
@@ -1583,16 +1597,15 @@ type ProgramParticipation {
 
   """Tgl Non Aktif:	tanggal penonaktifan peserta"""
   nonActiveDate: DateTime
-  participantId: String!
 
   """Nomor Dana"""
   fundingId: Int
-  programId: Int
-  participant: Participant!
+  participant: Participant
 
   """Dana"""
   funding: Account
-  Program: Program
+  programs: [Program!]
+  _count: ProgramParticipationCount!
 }
 
 type ProvinceAvgAggregate {
@@ -2170,6 +2183,21 @@ type Query {
   participantExport: String!
 
   """Deskripsinya ada disini loh"""
+  accountFindOne(where: AccountWhereUniqueInput!): Account
+
+  """Deskripsinya ada disini loh"""
+  accountFindMany(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, distinct: [AccountScalarFieldEnum!]): [Account!]
+
+  """Deskripsinya ada disini loh"""
+  accountFindFirst(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, distinct: [AccountScalarFieldEnum!]): Account
+
+  """Deskripsinya ada disini loh"""
+  accountAggregate(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, _count: AccountCountAggregateInput, _avg: AccountAvgAggregateInput, _sum: AccountSumAggregateInput, _min: AccountMinAggregateInput, _max: AccountMaxAggregateInput): AggregateAccount
+
+  """Deskripsinya ada disini loh"""
+  accountCount(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, distinct: [AccountScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
   roleFindOne(where: RoleWhereUniqueInput!): Role
 
   """Deskripsinya ada disini loh"""
@@ -2422,12 +2450,10 @@ input ProgramParticipationWhereInput {
   nonActiveReason: StringNullableFilter
   effectiveDate: DateTimeFilter
   nonActiveDate: DateTimeNullableFilter
-  participantId: StringFilter
   fundingId: IntNullableFilter
-  programId: IntNullableFilter
-  participant: ParticipantRelationFilter
+  participant: ParticipantNullableRelationFilter
   funding: AccountNullableRelationFilter
-  Program: ProgramNullableRelationFilter
+  programs: ProgramListRelationFilter
 }
 
 input StringNullableFilter {
@@ -2464,36 +2490,7 @@ input NestedStringNullableFilter {
   not: NestedStringNullableFilter
 }
 
-input StringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  mode: QueryMode
-  not: NestedStringFilter
-}
-
-input NestedStringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringFilter
-}
-
-input ParticipantRelationFilter {
+input ParticipantNullableRelationFilter {
   is: ParticipantWhereInput
   isNot: ParticipantWhereInput
 }
@@ -2509,13 +2506,14 @@ input ParticipantWhereInput {
   userId: StringFilter
   relationId: StringNullableFilter
   employmentId: IntFilter
+  programParticipationId: IntFilter
   user: UserRelationFilter
   relation: ParticipantNullableRelationFilter
   employment: EmploymentRelationFilter
   bankAccount: BankAccountNullableRelationFilter
   claims: ClaimListRelationFilter
   contactInfos: ContactInfoListRelationFilter
-  programParticipations: ProgramParticipationListRelationFilter
+  programParticipation: ProgramParticipationRelationFilter
   participant: ParticipantListRelationFilter
 }
 
@@ -2555,6 +2553,35 @@ input NestedEnumParticipantStatusFilter {
   in: [ParticipantStatus!]
   notIn: [ParticipantStatus!]
   not: NestedEnumParticipantStatusFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
 }
 
 input UserRelationFilter {
@@ -2667,11 +2694,6 @@ input RoleListRelationFilter {
   none: RoleWhereInput
 }
 
-input ParticipantNullableRelationFilter {
-  is: ParticipantWhereInput
-  isNot: ParticipantWhereInput
-}
-
 input ClaimListRelationFilter {
   every: ClaimWhereInput
   some: ClaimWhereInput
@@ -2729,6 +2751,11 @@ input NestedEnumAdmedicaStatusFilter {
   in: [AdmedicaStatus!]
   notIn: [AdmedicaStatus!]
   not: NestedEnumAdmedicaStatusFilter
+}
+
+input ParticipantRelationFilter {
+  is: ParticipantWhereInput
+  isNot: ParticipantWhereInput
 }
 
 input ClaimFinancialRelationFilter {
@@ -3324,6 +3351,11 @@ input AddressListRelationFilter {
   none: AddressWhereInput
 }
 
+input ProgramParticipationRelationFilter {
+  is: ProgramParticipationWhereInput
+  isNot: ProgramParticipationWhereInput
+}
+
 input ParticipantListRelationFilter {
   every: ParticipantWhereInput
   some: ParticipantWhereInput
@@ -3384,9 +3416,10 @@ input AccountRelationFilter {
   isNot: AccountWhereInput
 }
 
-input ProgramNullableRelationFilter {
-  is: ProgramWhereInput
-  isNot: ProgramWhereInput
+input ProgramListRelationFilter {
+  every: ProgramWhereInput
+  some: ProgramWhereInput
+  none: ProgramWhereInput
 }
 
 input ProgramOrderByWithRelationInput {
@@ -3523,10 +3556,10 @@ input BackupWhereUniqueInput {
   AND: [BackupWhereInput!]
   OR: [BackupWhereInput!]
   NOT: [BackupWhereInput!]
-  name: StringFilter
   path: StringNullableFilter
   isSuccessful: BoolFilter
   type: EnumBackupTypeFilter
+  executionType: EnumExecutionTypeFilter
   createdAt: DateTimeFilter
 }
 
@@ -3535,10 +3568,10 @@ input BackupWhereInput {
   OR: [BackupWhereInput!]
   NOT: [BackupWhereInput!]
   id: IntFilter
-  name: StringFilter
   path: StringNullableFilter
   isSuccessful: BoolFilter
   type: EnumBackupTypeFilter
+  executionType: EnumExecutionTypeFilter
   createdAt: DateTimeFilter
 }
 
@@ -3556,30 +3589,44 @@ input NestedEnumBackupTypeFilter {
   not: NestedEnumBackupTypeFilter
 }
 
+input EnumExecutionTypeFilter {
+  equals: ExecutionType
+  in: [ExecutionType!]
+  notIn: [ExecutionType!]
+  not: NestedEnumExecutionTypeFilter
+}
+
+input NestedEnumExecutionTypeFilter {
+  equals: ExecutionType
+  in: [ExecutionType!]
+  notIn: [ExecutionType!]
+  not: NestedEnumExecutionTypeFilter
+}
+
 input BackupOrderByWithRelationInput {
   id: SortOrder
-  name: SortOrder
   path: SortOrderInput
   isSuccessful: SortOrder
   type: SortOrder
+  executionType: SortOrder
   createdAt: SortOrder
 }
 
 enum BackupScalarFieldEnum {
   id
-  name
   path
   isSuccessful
   type
+  executionType
   createdAt
 }
 
 input BackupCountAggregateInput {
   id: Boolean
-  name: Boolean
   path: Boolean
   isSuccessful: Boolean
   type: Boolean
+  executionType: Boolean
   createdAt: Boolean
   _all: Boolean
 }
@@ -3594,19 +3641,19 @@ input BackupSumAggregateInput {
 
 input BackupMinAggregateInput {
   id: Boolean
-  name: Boolean
   path: Boolean
   isSuccessful: Boolean
   type: Boolean
+  executionType: Boolean
   createdAt: Boolean
 }
 
 input BackupMaxAggregateInput {
   id: Boolean
-  name: Boolean
   path: Boolean
   isSuccessful: Boolean
   type: Boolean
+  executionType: Boolean
   createdAt: Boolean
 }
 
@@ -3687,13 +3734,14 @@ input ParticipantOrderByWithRelationInput {
   userId: SortOrder
   relationId: SortOrderInput
   employmentId: SortOrder
+  programParticipationId: SortOrder
   user: UserOrderByWithRelationInput
   relation: ParticipantOrderByWithRelationInput
   employment: EmploymentOrderByWithRelationInput
   bankAccount: BankAccountOrderByWithRelationInput
   claims: ClaimOrderByRelationAggregateInput
   contactInfos: ContactInfoOrderByRelationAggregateInput
-  programParticipations: ProgramParticipationOrderByRelationAggregateInput
+  programParticipation: ProgramParticipationOrderByWithRelationInput
   participant: ParticipantOrderByRelationAggregateInput
 }
 
@@ -3755,6 +3803,34 @@ input ClaimOrderByRelationAggregateInput {
 }
 
 input ContactInfoOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ProgramParticipationOrderByWithRelationInput {
+  id: SortOrder
+  bpjsNumber: SortOrderInput
+  nonActiveReason: SortOrderInput
+  effectiveDate: SortOrder
+  nonActiveDate: SortOrderInput
+  fundingId: SortOrderInput
+  participant: ParticipantOrderByWithRelationInput
+  funding: AccountOrderByWithRelationInput
+  programs: ProgramOrderByRelationAggregateInput
+}
+
+input AccountOrderByWithRelationInput {
+  id: SortOrder
+  currentBalance: SortOrder
+  currentBalanceLastUpdate: SortOrderInput
+  transactions: TransactionOrderByRelationAggregateInput
+  programParticipation: ProgramParticipationOrderByRelationAggregateInput
+}
+
+input TransactionOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ProgramOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -4073,6 +4149,7 @@ input ClaimStatusMaxAggregateInput {
 input ParticipantWhereUniqueInput {
   userId: String
   employmentId: Int
+  programParticipationId: Int
   AND: [ParticipantWhereInput!]
   OR: [ParticipantWhereInput!]
   NOT: [ParticipantWhereInput!]
@@ -4087,7 +4164,7 @@ input ParticipantWhereUniqueInput {
   bankAccount: BankAccountNullableRelationFilter
   claims: ClaimListRelationFilter
   contactInfos: ContactInfoListRelationFilter
-  programParticipations: ProgramParticipationListRelationFilter
+  programParticipation: ProgramParticipationRelationFilter
   participant: ParticipantListRelationFilter
 }
 
@@ -4099,6 +4176,53 @@ enum ParticipantScalarFieldEnum {
   userId
   relationId
   employmentId
+  programParticipationId
+}
+
+input AccountWhereUniqueInput {
+  id: Int
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  currentBalance: FloatFilter
+  currentBalanceLastUpdate: DateTimeNullableFilter
+  transactions: TransactionListRelationFilter
+  programParticipation: ProgramParticipationListRelationFilter
+}
+
+enum AccountScalarFieldEnum {
+  id
+  currentBalance
+  currentBalanceLastUpdate
+}
+
+input AccountCountAggregateInput {
+  id: Boolean
+  currentBalance: Boolean
+  currentBalanceLastUpdate: Boolean
+  _all: Boolean
+}
+
+input AccountAvgAggregateInput {
+  id: Boolean
+  currentBalance: Boolean
+}
+
+input AccountSumAggregateInput {
+  id: Boolean
+  currentBalance: Boolean
+}
+
+input AccountMinAggregateInput {
+  id: Boolean
+  currentBalance: Boolean
+  currentBalanceLastUpdate: Boolean
+}
+
+input AccountMaxAggregateInput {
+  id: Boolean
+  currentBalance: Boolean
+  currentBalanceLastUpdate: Boolean
 }
 
 input RoleWhereUniqueInput {
@@ -4348,6 +4472,24 @@ type Mutation {
   participantImport(file: Upload): Boolean
 
   """Deskripsinya ada disini loh"""
+  accountCreateOne(data: AccountCreateInput!): Account
+
+  """Deskripsinya ada disini loh"""
+  accountCreateMany(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
+
+  """Deskripsinya ada disini loh"""
+  accountUpdateOne(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
+
+  """Deskripsinya ada disini loh"""
+  accountUpdateMany(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): Account
+
+  """Deskripsinya ada disini loh"""
+  accountDelete(where: AccountWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  accountDeleteMany(where: AccountWhereInput): Boolean!
+
+  """Deskripsinya ada disini loh"""
   roleCreateOne(data: RoleCreateInput!): Role
 
   """Deskripsinya ada disini loh"""
@@ -4393,32 +4535,31 @@ input ProgramCreateInput {
   allowanceQuotaPeriod: Period
   claimPeriodMax: Int
   reclaimPeriodMax: Int
-  programParticipations: ProgramParticipationCreateNestedManyWithoutProgramInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutProgramsInput
   claimProgram: ClaimProgramCreateNestedManyWithoutProgramInput
 }
 
-input ProgramParticipationCreateNestedManyWithoutProgramInput {
-  create: [ProgramParticipationCreateWithoutProgramInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutProgramInput!]
-  createMany: ProgramParticipationCreateManyProgramInputEnvelope
+input ProgramParticipationCreateNestedManyWithoutProgramsInput {
+  create: [ProgramParticipationCreateWithoutProgramsInput!]
+  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutProgramsInput!]
   connect: [ProgramParticipationWhereUniqueInput!]
 }
 
-input ProgramParticipationCreateWithoutProgramInput {
+input ProgramParticipationCreateWithoutProgramsInput {
   bpjsNumber: String
   nonActiveReason: String
   effectiveDate: DateTime!
   nonActiveDate: DateTime
-  participant: ParticipantCreateNestedOneWithoutProgramParticipationsInput!
+  participant: ParticipantCreateNestedOneWithoutProgramParticipationInput
 }
 
-input ParticipantCreateNestedOneWithoutProgramParticipationsInput {
-  create: ParticipantCreateWithoutProgramParticipationsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationsInput
+input ParticipantCreateNestedOneWithoutProgramParticipationInput {
+  create: ParticipantCreateWithoutProgramParticipationInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationInput
   connect: ParticipantWhereUniqueInput
 }
 
-input ParticipantCreateWithoutProgramParticipationsInput {
+input ParticipantCreateWithoutProgramParticipationInput {
   gender: Gender!
   birthDate: DateTime!
   isActive: Boolean!
@@ -4541,7 +4682,7 @@ input ParticipantCreateWithoutUserInput {
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
   participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
@@ -4561,7 +4702,7 @@ input ParticipantCreateWithoutParticipantInput {
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
 }
 
 input EmploymentCreateNestedOneWithoutParticipantInput {
@@ -4638,7 +4779,7 @@ input ParticipantCreateWithoutClaimsInput {
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
   participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
@@ -4846,11 +4987,10 @@ input ContactInfoCreateManyParticipantInput {
   addressId: Int!
 }
 
-input ProgramParticipationCreateNestedManyWithoutParticipantInput {
-  create: [ProgramParticipationCreateWithoutParticipantInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutParticipantInput!]
-  createMany: ProgramParticipationCreateManyParticipantInputEnvelope
-  connect: [ProgramParticipationWhereUniqueInput!]
+input ProgramParticipationCreateNestedOneWithoutParticipantInput {
+  create: ProgramParticipationCreateWithoutParticipantInput
+  connectOrCreate: ProgramParticipationCreateOrConnectWithoutParticipantInput
+  connect: ProgramParticipationWhereUniqueInput
 }
 
 input ProgramParticipationCreateWithoutParticipantInput {
@@ -4858,13 +4998,13 @@ input ProgramParticipationCreateWithoutParticipantInput {
   nonActiveReason: String
   effectiveDate: DateTime!
   nonActiveDate: DateTime
-  Program: ProgramCreateNestedOneWithoutProgramParticipationsInput
+  programs: ProgramCreateNestedManyWithoutProgramParticipationsInput
 }
 
-input ProgramCreateNestedOneWithoutProgramParticipationsInput {
-  create: ProgramCreateWithoutProgramParticipationsInput
-  connectOrCreate: ProgramCreateOrConnectWithoutProgramParticipationsInput
-  connect: ProgramWhereUniqueInput
+input ProgramCreateNestedManyWithoutProgramParticipationsInput {
+  create: [ProgramCreateWithoutProgramParticipationsInput!]
+  connectOrCreate: [ProgramCreateOrConnectWithoutProgramParticipationsInput!]
+  connect: [ProgramWhereUniqueInput!]
 }
 
 input ProgramCreateWithoutProgramParticipationsInput {
@@ -5676,26 +5816,10 @@ input ProgramParticipationWhereUniqueInput {
   nonActiveReason: StringNullableFilter
   effectiveDate: DateTimeFilter
   nonActiveDate: DateTimeNullableFilter
-  participantId: StringFilter
   fundingId: IntNullableFilter
-  programId: IntNullableFilter
-  participant: ParticipantRelationFilter
+  participant: ParticipantNullableRelationFilter
   funding: AccountNullableRelationFilter
-  Program: ProgramNullableRelationFilter
-}
-
-input ProgramParticipationCreateManyParticipantInputEnvelope {
-  data: [ProgramParticipationCreateManyParticipantInput!]!
-  skipDuplicates: Boolean
-}
-
-input ProgramParticipationCreateManyParticipantInput {
-  id: Int
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  programId: Int
+  programs: ProgramListRelationFilter
 }
 
 input ParticipantCreateNestedManyWithoutRelationInput {
@@ -5714,7 +5838,7 @@ input ParticipantCreateWithoutRelationInput {
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
   participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
@@ -5735,6 +5859,7 @@ input ParticipantCreateManyRelationInput {
   status: ParticipantStatus!
   userId: String!
   employmentId: Int!
+  programParticipationId: Int!
 }
 
 input ParticipantCreateOrConnectWithoutClaimsInput {
@@ -5879,28 +6004,14 @@ input UserCreateOrConnectWithoutParticipantInput {
   create: UserCreateWithoutParticipantInput!
 }
 
-input ParticipantCreateOrConnectWithoutProgramParticipationsInput {
+input ParticipantCreateOrConnectWithoutProgramParticipationInput {
   where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutProgramParticipationsInput!
+  create: ParticipantCreateWithoutProgramParticipationInput!
 }
 
-input ProgramParticipationCreateOrConnectWithoutProgramInput {
+input ProgramParticipationCreateOrConnectWithoutProgramsInput {
   where: ProgramParticipationWhereUniqueInput!
-  create: ProgramParticipationCreateWithoutProgramInput!
-}
-
-input ProgramParticipationCreateManyProgramInputEnvelope {
-  data: [ProgramParticipationCreateManyProgramInput!]!
-  skipDuplicates: Boolean
-}
-
-input ProgramParticipationCreateManyProgramInput {
-  id: Int
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  participantId: String!
+  create: ProgramParticipationCreateWithoutProgramsInput!
 }
 
 input ProgramCreateManyInput {
@@ -5928,7 +6039,7 @@ input ProgramUpdateInput {
   allowanceQuotaPeriod: NullableEnumPeriodFieldUpdateOperationsInput
   claimPeriodMax: NullableIntFieldUpdateOperationsInput
   reclaimPeriodMax: NullableIntFieldUpdateOperationsInput
-  programParticipations: ProgramParticipationUpdateManyWithoutProgramNestedInput
+  programParticipations: ProgramParticipationUpdateManyWithoutProgramsNestedInput
   claimProgram: ClaimProgramUpdateManyWithoutProgramNestedInput
 }
 
@@ -5964,32 +6075,31 @@ input NullableEnumPeriodFieldUpdateOperationsInput {
   set: Period
 }
 
-input ProgramParticipationUpdateManyWithoutProgramNestedInput {
-  create: [ProgramParticipationCreateWithoutProgramInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutProgramInput!]
-  upsert: [ProgramParticipationUpsertWithWhereUniqueWithoutProgramInput!]
-  createMany: ProgramParticipationCreateManyProgramInputEnvelope
+input ProgramParticipationUpdateManyWithoutProgramsNestedInput {
+  create: [ProgramParticipationCreateWithoutProgramsInput!]
+  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutProgramsInput!]
+  upsert: [ProgramParticipationUpsertWithWhereUniqueWithoutProgramsInput!]
   set: [ProgramParticipationWhereUniqueInput!]
   disconnect: [ProgramParticipationWhereUniqueInput!]
   delete: [ProgramParticipationWhereUniqueInput!]
   connect: [ProgramParticipationWhereUniqueInput!]
-  update: [ProgramParticipationUpdateWithWhereUniqueWithoutProgramInput!]
-  updateMany: [ProgramParticipationUpdateManyWithWhereWithoutProgramInput!]
+  update: [ProgramParticipationUpdateWithWhereUniqueWithoutProgramsInput!]
+  updateMany: [ProgramParticipationUpdateManyWithWhereWithoutProgramsInput!]
   deleteMany: [ProgramParticipationScalarWhereInput!]
 }
 
-input ProgramParticipationUpsertWithWhereUniqueWithoutProgramInput {
+input ProgramParticipationUpsertWithWhereUniqueWithoutProgramsInput {
   where: ProgramParticipationWhereUniqueInput!
-  update: ProgramParticipationUpdateWithoutProgramInput!
-  create: ProgramParticipationCreateWithoutProgramInput!
+  update: ProgramParticipationUpdateWithoutProgramsInput!
+  create: ProgramParticipationCreateWithoutProgramsInput!
 }
 
-input ProgramParticipationUpdateWithoutProgramInput {
+input ProgramParticipationUpdateWithoutProgramsInput {
   bpjsNumber: NullableStringFieldUpdateOperationsInput
   nonActiveReason: NullableStringFieldUpdateOperationsInput
   effectiveDate: DateTimeFieldUpdateOperationsInput
   nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
-  participant: ParticipantUpdateOneRequiredWithoutProgramParticipationsNestedInput
+  participant: ParticipantUpdateOneWithoutProgramParticipationNestedInput
 }
 
 input NullableStringFieldUpdateOperationsInput {
@@ -6004,21 +6114,23 @@ input NullableDateTimeFieldUpdateOperationsInput {
   set: DateTime
 }
 
-input ParticipantUpdateOneRequiredWithoutProgramParticipationsNestedInput {
-  create: ParticipantCreateWithoutProgramParticipationsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationsInput
-  upsert: ParticipantUpsertWithoutProgramParticipationsInput
+input ParticipantUpdateOneWithoutProgramParticipationNestedInput {
+  create: ParticipantCreateWithoutProgramParticipationInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationInput
+  upsert: ParticipantUpsertWithoutProgramParticipationInput
+  disconnect: ParticipantWhereInput
+  delete: ParticipantWhereInput
   connect: ParticipantWhereUniqueInput
-  update: ParticipantUpdateToOneWithWhereWithoutProgramParticipationsInput
+  update: ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput
 }
 
-input ParticipantUpsertWithoutProgramParticipationsInput {
-  update: ParticipantUpdateWithoutProgramParticipationsInput!
-  create: ParticipantCreateWithoutProgramParticipationsInput!
+input ParticipantUpsertWithoutProgramParticipationInput {
+  update: ParticipantUpdateWithoutProgramParticipationInput!
+  create: ParticipantCreateWithoutProgramParticipationInput!
   where: ParticipantWhereInput
 }
 
-input ParticipantUpdateWithoutProgramParticipationsInput {
+input ParticipantUpdateWithoutProgramParticipationInput {
   gender: EnumGenderFieldUpdateOperationsInput
   birthDate: DateTimeFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
@@ -6225,7 +6337,7 @@ input ParticipantUpdateWithoutUserInput {
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
   participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
@@ -6255,7 +6367,7 @@ input ParticipantUpdateWithoutParticipantInput {
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
 }
 
 input EmploymentUpdateOneRequiredWithoutParticipantNestedInput {
@@ -6399,7 +6511,7 @@ input ParticipantUpdateWithoutClaimsInput {
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
   participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
@@ -6601,24 +6713,18 @@ input ContactInfoUpdateManyMutationInput {
   telp: FloatFieldUpdateOperationsInput
 }
 
-input ProgramParticipationUpdateManyWithoutParticipantNestedInput {
-  create: [ProgramParticipationCreateWithoutParticipantInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutParticipantInput!]
-  upsert: [ProgramParticipationUpsertWithWhereUniqueWithoutParticipantInput!]
-  createMany: ProgramParticipationCreateManyParticipantInputEnvelope
-  set: [ProgramParticipationWhereUniqueInput!]
-  disconnect: [ProgramParticipationWhereUniqueInput!]
-  delete: [ProgramParticipationWhereUniqueInput!]
-  connect: [ProgramParticipationWhereUniqueInput!]
-  update: [ProgramParticipationUpdateWithWhereUniqueWithoutParticipantInput!]
-  updateMany: [ProgramParticipationUpdateManyWithWhereWithoutParticipantInput!]
-  deleteMany: [ProgramParticipationScalarWhereInput!]
+input ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput {
+  create: ProgramParticipationCreateWithoutParticipantInput
+  connectOrCreate: ProgramParticipationCreateOrConnectWithoutParticipantInput
+  upsert: ProgramParticipationUpsertWithoutParticipantInput
+  connect: ProgramParticipationWhereUniqueInput
+  update: ProgramParticipationUpdateToOneWithWhereWithoutParticipantInput
 }
 
-input ProgramParticipationUpsertWithWhereUniqueWithoutParticipantInput {
-  where: ProgramParticipationWhereUniqueInput!
+input ProgramParticipationUpsertWithoutParticipantInput {
   update: ProgramParticipationUpdateWithoutParticipantInput!
   create: ProgramParticipationCreateWithoutParticipantInput!
+  where: ProgramParticipationWhereInput
 }
 
 input ProgramParticipationUpdateWithoutParticipantInput {
@@ -6626,23 +6732,26 @@ input ProgramParticipationUpdateWithoutParticipantInput {
   nonActiveReason: NullableStringFieldUpdateOperationsInput
   effectiveDate: DateTimeFieldUpdateOperationsInput
   nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
-  Program: ProgramUpdateOneWithoutProgramParticipationsNestedInput
+  programs: ProgramUpdateManyWithoutProgramParticipationsNestedInput
 }
 
-input ProgramUpdateOneWithoutProgramParticipationsNestedInput {
-  create: ProgramCreateWithoutProgramParticipationsInput
-  connectOrCreate: ProgramCreateOrConnectWithoutProgramParticipationsInput
-  upsert: ProgramUpsertWithoutProgramParticipationsInput
-  disconnect: ProgramWhereInput
-  delete: ProgramWhereInput
-  connect: ProgramWhereUniqueInput
-  update: ProgramUpdateToOneWithWhereWithoutProgramParticipationsInput
+input ProgramUpdateManyWithoutProgramParticipationsNestedInput {
+  create: [ProgramCreateWithoutProgramParticipationsInput!]
+  connectOrCreate: [ProgramCreateOrConnectWithoutProgramParticipationsInput!]
+  upsert: [ProgramUpsertWithWhereUniqueWithoutProgramParticipationsInput!]
+  set: [ProgramWhereUniqueInput!]
+  disconnect: [ProgramWhereUniqueInput!]
+  delete: [ProgramWhereUniqueInput!]
+  connect: [ProgramWhereUniqueInput!]
+  update: [ProgramUpdateWithWhereUniqueWithoutProgramParticipationsInput!]
+  updateMany: [ProgramUpdateManyWithWhereWithoutProgramParticipationsInput!]
+  deleteMany: [ProgramScalarWhereInput!]
 }
 
-input ProgramUpsertWithoutProgramParticipationsInput {
+input ProgramUpsertWithWhereUniqueWithoutProgramParticipationsInput {
+  where: ProgramWhereUniqueInput!
   update: ProgramUpdateWithoutProgramParticipationsInput!
   create: ProgramCreateWithoutProgramParticipationsInput!
-  where: ProgramWhereInput
 }
 
 input ProgramUpdateWithoutProgramParticipationsInput {
@@ -7685,40 +7794,52 @@ input ClaimProgramUpdateManyMutationInput {
   kurisRodaOrWalkerSetoreName: NullableStringFieldUpdateOperationsInput
 }
 
-input ProgramUpdateToOneWithWhereWithoutProgramParticipationsInput {
-  where: ProgramWhereInput
+input ProgramUpdateWithWhereUniqueWithoutProgramParticipationsInput {
+  where: ProgramWhereUniqueInput!
   data: ProgramUpdateWithoutProgramParticipationsInput!
 }
 
-input ProgramParticipationUpdateWithWhereUniqueWithoutParticipantInput {
-  where: ProgramParticipationWhereUniqueInput!
-  data: ProgramParticipationUpdateWithoutParticipantInput!
+input ProgramUpdateManyWithWhereWithoutProgramParticipationsInput {
+  where: ProgramScalarWhereInput!
+  data: ProgramUpdateManyMutationInput!
 }
 
-input ProgramParticipationUpdateManyWithWhereWithoutParticipantInput {
-  where: ProgramParticipationScalarWhereInput!
-  data: ProgramParticipationUpdateManyMutationInput!
-}
-
-input ProgramParticipationScalarWhereInput {
-  AND: [ProgramParticipationScalarWhereInput!]
-  OR: [ProgramParticipationScalarWhereInput!]
-  NOT: [ProgramParticipationScalarWhereInput!]
+input ProgramScalarWhereInput {
+  AND: [ProgramScalarWhereInput!]
+  OR: [ProgramScalarWhereInput!]
+  NOT: [ProgramScalarWhereInput!]
   id: IntFilter
-  bpjsNumber: StringNullableFilter
-  nonActiveReason: StringNullableFilter
-  effectiveDate: DateTimeFilter
-  nonActiveDate: DateTimeNullableFilter
-  participantId: StringFilter
-  fundingId: IntNullableFilter
-  programId: IntNullableFilter
+  type: EnumProgramTypeFilter
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanNullableFilter
+  tambahanBantuanRawatInapType: EnumTambahanBantuanRawatInapTypeNullableFilter
+  maxAllowancePercentage: IntNullableFilter
+  allowanceCeiling: FloatFilter
+  allowanceCeilingPeriod: EnumPeriodNullableFilter
+  allowanceQuota: IntNullableFilter
+  allowanceQuotaPeriod: EnumPeriodNullableFilter
+  claimPeriodMax: IntNullableFilter
+  reclaimPeriodMax: IntNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
 }
 
-input ProgramParticipationUpdateManyMutationInput {
-  bpjsNumber: NullableStringFieldUpdateOperationsInput
-  nonActiveReason: NullableStringFieldUpdateOperationsInput
-  effectiveDate: DateTimeFieldUpdateOperationsInput
-  nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
+input ProgramUpdateManyMutationInput {
+  type: EnumProgramTypeFieldUpdateOperationsInput
+  santunanHarianRawatInapPlan: NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput
+  tambahanBantuanRawatInapType: NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput
+  maxAllowancePercentage: NullableIntFieldUpdateOperationsInput
+  allowanceCeiling: FloatFieldUpdateOperationsInput
+  allowanceCeilingPeriod: NullableEnumPeriodFieldUpdateOperationsInput
+  allowanceQuota: NullableIntFieldUpdateOperationsInput
+  allowanceQuotaPeriod: NullableEnumPeriodFieldUpdateOperationsInput
+  claimPeriodMax: NullableIntFieldUpdateOperationsInput
+  reclaimPeriodMax: NullableIntFieldUpdateOperationsInput
+}
+
+input ProgramParticipationUpdateToOneWithWhereWithoutParticipantInput {
+  where: ProgramParticipationWhereInput
+  data: ProgramParticipationUpdateWithoutParticipantInput!
 }
 
 input ParticipantUpdateManyWithoutRelationNestedInput {
@@ -7750,7 +7871,7 @@ input ParticipantUpdateWithoutRelationInput {
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
   participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
@@ -7775,6 +7896,7 @@ input ParticipantScalarWhereInput {
   userId: StringFilter
   relationId: StringNullableFilter
   employmentId: IntFilter
+  programParticipationId: IntFilter
 }
 
 input ParticipantUpdateManyMutationInput {
@@ -7963,65 +8085,67 @@ input UserUpdateToOneWithWhereWithoutParticipantInput {
   data: UserUpdateWithoutParticipantInput!
 }
 
-input ParticipantUpdateToOneWithWhereWithoutProgramParticipationsInput {
+input ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput {
   where: ParticipantWhereInput
-  data: ParticipantUpdateWithoutProgramParticipationsInput!
+  data: ParticipantUpdateWithoutProgramParticipationInput!
 }
 
-input ProgramParticipationUpdateWithWhereUniqueWithoutProgramInput {
+input ProgramParticipationUpdateWithWhereUniqueWithoutProgramsInput {
   where: ProgramParticipationWhereUniqueInput!
-  data: ProgramParticipationUpdateWithoutProgramInput!
+  data: ProgramParticipationUpdateWithoutProgramsInput!
 }
 
-input ProgramParticipationUpdateManyWithWhereWithoutProgramInput {
+input ProgramParticipationUpdateManyWithWhereWithoutProgramsInput {
   where: ProgramParticipationScalarWhereInput!
   data: ProgramParticipationUpdateManyMutationInput!
 }
 
-input ProgramUpdateManyMutationInput {
-  type: EnumProgramTypeFieldUpdateOperationsInput
-  santunanHarianRawatInapPlan: NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput
-  tambahanBantuanRawatInapType: NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput
-  maxAllowancePercentage: NullableIntFieldUpdateOperationsInput
-  allowanceCeiling: FloatFieldUpdateOperationsInput
-  allowanceCeilingPeriod: NullableEnumPeriodFieldUpdateOperationsInput
-  allowanceQuota: NullableIntFieldUpdateOperationsInput
-  allowanceQuotaPeriod: NullableEnumPeriodFieldUpdateOperationsInput
-  claimPeriodMax: NullableIntFieldUpdateOperationsInput
-  reclaimPeriodMax: NullableIntFieldUpdateOperationsInput
+input ProgramParticipationScalarWhereInput {
+  AND: [ProgramParticipationScalarWhereInput!]
+  OR: [ProgramParticipationScalarWhereInput!]
+  NOT: [ProgramParticipationScalarWhereInput!]
+  id: IntFilter
+  bpjsNumber: StringNullableFilter
+  nonActiveReason: StringNullableFilter
+  effectiveDate: DateTimeFilter
+  nonActiveDate: DateTimeNullableFilter
+  fundingId: IntNullableFilter
+}
+
+input ProgramParticipationUpdateManyMutationInput {
+  bpjsNumber: NullableStringFieldUpdateOperationsInput
+  nonActiveReason: NullableStringFieldUpdateOperationsInput
+  effectiveDate: DateTimeFieldUpdateOperationsInput
+  nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
 }
 
 input BackupCreateInput {
-  name: String!
-  path: String
-  isSuccessful: Boolean!
   type: BackupType!
+  executionType: ExecutionType!
 }
 
 input BackupCreateManyInput {
   id: Int
-  name: String!
-  path: String
-  isSuccessful: Boolean!
   type: BackupType!
+  executionType: ExecutionType!
 }
 
 input BackupUpdateInput {
-  name: StringFieldUpdateOperationsInput
-  path: NullableStringFieldUpdateOperationsInput
-  isSuccessful: BoolFieldUpdateOperationsInput
   type: EnumBackupTypeFieldUpdateOperationsInput
+  executionType: EnumExecutionTypeFieldUpdateOperationsInput
 }
 
 input EnumBackupTypeFieldUpdateOperationsInput {
   set: BackupType
 }
 
+input EnumExecutionTypeFieldUpdateOperationsInput {
+  set: ExecutionType
+}
+
 input BackupUpdateManyMutationInput {
-  name: StringFieldUpdateOperationsInput
-  path: NullableStringFieldUpdateOperationsInput
-  isSuccessful: BoolFieldUpdateOperationsInput
   type: EnumBackupTypeFieldUpdateOperationsInput
+  executionType: EnumExecutionTypeFieldUpdateOperationsInput
 }
 
 input LoginArgs {
@@ -8105,7 +8229,7 @@ input ParticipantCreateInput {
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
   participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
@@ -8119,8 +8243,207 @@ input ParticipantUpdateInput {
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
   participant: ParticipantUpdateManyWithoutRelationNestedInput
+}
+
+input AccountCreateInput {
+  currentBalance: Float!
+  currentBalanceLastUpdate: DateTime
+  transactions: TransactionCreateNestedManyWithoutAccountInput
+  programParticipation: ProgramParticipationCreateNestedManyWithoutFundingInput
+}
+
+input TransactionCreateNestedManyWithoutAccountInput {
+  create: [TransactionCreateWithoutAccountInput!]
+  connectOrCreate: [TransactionCreateOrConnectWithoutAccountInput!]
+  createMany: TransactionCreateManyAccountInputEnvelope
+  connect: [TransactionWhereUniqueInput!]
+}
+
+input TransactionCreateWithoutAccountInput {
+  amount: Float!
+  transactionType: TransactionType!
+  description: String
+}
+
+input TransactionCreateOrConnectWithoutAccountInput {
+  where: TransactionWhereUniqueInput!
+  create: TransactionCreateWithoutAccountInput!
+}
+
+input TransactionWhereUniqueInput {
+  id: Int
+  AND: [TransactionWhereInput!]
+  OR: [TransactionWhereInput!]
+  NOT: [TransactionWhereInput!]
+  amount: FloatFilter
+  transactionType: EnumTransactionTypeFilter
+  description: StringNullableFilter
+  createdAt: DateTimeFilter
+  accountId: IntFilter
+  account: AccountRelationFilter
+}
+
+input TransactionCreateManyAccountInputEnvelope {
+  data: [TransactionCreateManyAccountInput!]!
+  skipDuplicates: Boolean
+}
+
+input TransactionCreateManyAccountInput {
+  id: Int
+  amount: Float!
+  transactionType: TransactionType!
+  description: String
+}
+
+input ProgramParticipationCreateNestedManyWithoutFundingInput {
+  create: [ProgramParticipationCreateWithoutFundingInput!]
+  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutFundingInput!]
+  createMany: ProgramParticipationCreateManyFundingInputEnvelope
+  connect: [ProgramParticipationWhereUniqueInput!]
+}
+
+input ProgramParticipationCreateWithoutFundingInput {
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+  participant: ParticipantCreateNestedOneWithoutProgramParticipationInput
+  programs: ProgramCreateNestedManyWithoutProgramParticipationsInput
+}
+
+input ProgramParticipationCreateOrConnectWithoutFundingInput {
+  where: ProgramParticipationWhereUniqueInput!
+  create: ProgramParticipationCreateWithoutFundingInput!
+}
+
+input ProgramParticipationCreateManyFundingInputEnvelope {
+  data: [ProgramParticipationCreateManyFundingInput!]!
+  skipDuplicates: Boolean
+}
+
+input ProgramParticipationCreateManyFundingInput {
+  id: Int
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+}
+
+input AccountCreateManyInput {
+  id: Int
+  currentBalance: Float!
+  currentBalanceLastUpdate: DateTime
+}
+
+input AccountUpdateInput {
+  currentBalance: FloatFieldUpdateOperationsInput
+  currentBalanceLastUpdate: NullableDateTimeFieldUpdateOperationsInput
+  transactions: TransactionUpdateManyWithoutAccountNestedInput
+  programParticipation: ProgramParticipationUpdateManyWithoutFundingNestedInput
+}
+
+input TransactionUpdateManyWithoutAccountNestedInput {
+  create: [TransactionCreateWithoutAccountInput!]
+  connectOrCreate: [TransactionCreateOrConnectWithoutAccountInput!]
+  upsert: [TransactionUpsertWithWhereUniqueWithoutAccountInput!]
+  createMany: TransactionCreateManyAccountInputEnvelope
+  set: [TransactionWhereUniqueInput!]
+  disconnect: [TransactionWhereUniqueInput!]
+  delete: [TransactionWhereUniqueInput!]
+  connect: [TransactionWhereUniqueInput!]
+  update: [TransactionUpdateWithWhereUniqueWithoutAccountInput!]
+  updateMany: [TransactionUpdateManyWithWhereWithoutAccountInput!]
+  deleteMany: [TransactionScalarWhereInput!]
+}
+
+input TransactionUpsertWithWhereUniqueWithoutAccountInput {
+  where: TransactionWhereUniqueInput!
+  update: TransactionUpdateWithoutAccountInput!
+  create: TransactionCreateWithoutAccountInput!
+}
+
+input TransactionUpdateWithoutAccountInput {
+  amount: FloatFieldUpdateOperationsInput
+  transactionType: EnumTransactionTypeFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+}
+
+input EnumTransactionTypeFieldUpdateOperationsInput {
+  set: TransactionType
+}
+
+input TransactionUpdateWithWhereUniqueWithoutAccountInput {
+  where: TransactionWhereUniqueInput!
+  data: TransactionUpdateWithoutAccountInput!
+}
+
+input TransactionUpdateManyWithWhereWithoutAccountInput {
+  where: TransactionScalarWhereInput!
+  data: TransactionUpdateManyMutationInput!
+}
+
+input TransactionScalarWhereInput {
+  AND: [TransactionScalarWhereInput!]
+  OR: [TransactionScalarWhereInput!]
+  NOT: [TransactionScalarWhereInput!]
+  id: IntFilter
+  amount: FloatFilter
+  transactionType: EnumTransactionTypeFilter
+  description: StringNullableFilter
+  createdAt: DateTimeFilter
+  accountId: IntFilter
+}
+
+input TransactionUpdateManyMutationInput {
+  amount: FloatFieldUpdateOperationsInput
+  transactionType: EnumTransactionTypeFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+}
+
+input ProgramParticipationUpdateManyWithoutFundingNestedInput {
+  create: [ProgramParticipationCreateWithoutFundingInput!]
+  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutFundingInput!]
+  upsert: [ProgramParticipationUpsertWithWhereUniqueWithoutFundingInput!]
+  createMany: ProgramParticipationCreateManyFundingInputEnvelope
+  set: [ProgramParticipationWhereUniqueInput!]
+  disconnect: [ProgramParticipationWhereUniqueInput!]
+  delete: [ProgramParticipationWhereUniqueInput!]
+  connect: [ProgramParticipationWhereUniqueInput!]
+  update: [ProgramParticipationUpdateWithWhereUniqueWithoutFundingInput!]
+  updateMany: [ProgramParticipationUpdateManyWithWhereWithoutFundingInput!]
+  deleteMany: [ProgramParticipationScalarWhereInput!]
+}
+
+input ProgramParticipationUpsertWithWhereUniqueWithoutFundingInput {
+  where: ProgramParticipationWhereUniqueInput!
+  update: ProgramParticipationUpdateWithoutFundingInput!
+  create: ProgramParticipationCreateWithoutFundingInput!
+}
+
+input ProgramParticipationUpdateWithoutFundingInput {
+  bpjsNumber: NullableStringFieldUpdateOperationsInput
+  nonActiveReason: NullableStringFieldUpdateOperationsInput
+  effectiveDate: DateTimeFieldUpdateOperationsInput
+  nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneWithoutProgramParticipationNestedInput
+  programs: ProgramUpdateManyWithoutProgramParticipationsNestedInput
+}
+
+input ProgramParticipationUpdateWithWhereUniqueWithoutFundingInput {
+  where: ProgramParticipationWhereUniqueInput!
+  data: ProgramParticipationUpdateWithoutFundingInput!
+}
+
+input ProgramParticipationUpdateManyWithWhereWithoutFundingInput {
+  where: ProgramParticipationScalarWhereInput!
+  data: ProgramParticipationUpdateManyMutationInput!
+}
+
+input AccountUpdateManyMutationInput {
+  currentBalance: FloatFieldUpdateOperationsInput
+  currentBalanceLastUpdate: NullableDateTimeFieldUpdateOperationsInput
 }
 
 input RoleCreateInput {

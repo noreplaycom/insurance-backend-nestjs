@@ -1,3 +1,4 @@
+//Architecture Design By Dikki Setiawan - DSAA Group
 //See the visual ER Diagram here https://prisma-erd.simonknott.de/
 
 datasource db {
@@ -205,7 +206,9 @@ model Participant {
 
     contactInfos ContactInfo[]
 
-    programParticipations ProgramParticipation[]
+    programParticipation ProgramParticipation @relation(fields: [programParticipationId], references: [id])
+
+    programParticipationId Int @unique
 
     ///Anggota keluarga dari
     participant Participant[] @relation("ParticipantRelation")
@@ -511,9 +514,7 @@ model ProgramParticipation {
 
     //-------------------------- 1 relations --------------------------------
 
-    participant Participant @relation(fields: [participantId], references: [userId])
-
-    participantId String
+    participant Participant?
 
     /// @HideField({ match: ['ProgramParticipationCreate*Input','ProgramParticipationUpdate*Input']})
     ///Dana
@@ -523,9 +524,7 @@ model ProgramParticipation {
     ///Nomor Dana
     fundingId Int?
 
-    Program Program? @relation(fields: [programId], references: [id])
-
-    programId Int?
+    programs Program[]
 }
 
 ///Reference Document: https://rebrand.ly/d6i9uem
@@ -1062,19 +1061,26 @@ model Backup {
     //-------------------------- scalars --------------------------------
     id Int @id @default(autoincrement())
 
-    name String
-
+    /// @HideField({ match: ['BackupCreate*Input','BackupUpdate*Input']})
     path String?
 
+    /// @HideField({ match: ['BackupCreate*Input','BackupUpdate*Input']})
     isSuccessful Boolean
 
     type BackupType
+
+    executionType ExecutionType
 
     /// @HideField({ match: ['BackupCreate*Input','BackupUpdate*Input']})
     createdAt DateTime @default(now())
 }
 
 enum BackupType {
+    DB
+    FULL
+}
+
+enum ExecutionType {
     MANUAL
     AUTO
 }

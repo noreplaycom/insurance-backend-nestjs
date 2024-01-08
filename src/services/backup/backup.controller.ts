@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { ExecutionType, Prisma } from '@prisma/client';
 import { BackupService } from './backup.service';
 import { ConfigService } from '@nestjs/config';
 import { postgresBackup } from 'src/utils/database-import.function';
@@ -64,8 +64,9 @@ export class BackupController {
         ...backupCreateArgs.data,
         isSuccessful: !!path,
         path,
-        type: BackupType.MANUAL
-      }
+        type: BackupType.DB,
+        executionType: ExecutionType.AUTO,
+      },
     });
   }
 
@@ -76,9 +77,9 @@ export class BackupController {
       data: {
         path,
         isSuccessful: !!path,
-        name: 'Database weekly back up by scheduler',
-        type: BackupType.AUTO,
-      }
-    })
+        type: BackupType.DB,
+        executionType: ExecutionType.AUTO,
+      },
+    });
   }
 }

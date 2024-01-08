@@ -156,6 +156,12 @@ export async function claimSeed() {
                 },
               },
             },
+            programParticipation: {
+              create: {
+                bpjsNumber: '23432525',
+                effectiveDate: new Date(),
+              },
+            },
           },
         },
       };

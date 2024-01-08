@@ -45,7 +45,7 @@ export class AuthController {
     if (user && user.deletedAt) {
       throw new IGraphQLError({ code: 10007 });
     }
-    this.logger.log(user);
+
     return {
       accessToken: this.jwtService.sign({
         id: user.id,
