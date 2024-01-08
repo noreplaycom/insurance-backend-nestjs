@@ -34,7 +34,6 @@ export function fakeRole() {
   return {
     name: faker.name.fullName(),
     description: undefined,
-    roleType: undefined,
   };
 }
 export function fakeRoleComplete() {
@@ -43,7 +42,7 @@ export function fakeRoleComplete() {
     name: faker.name.fullName(),
     description: undefined,
     higherLevelThanId: undefined,
-    roleType: undefined,
+    roleType: RoleType.PARTICIPANT,
   };
 }
 export function fakeRolePermission() {

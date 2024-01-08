@@ -54894,7 +54894,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], Role.prototype, "higherLevelThanId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => RoleType, { nullable: true })
+    (0, graphql_1.Field)(() => RoleType, { nullable: true, defaultValue: 'PARTICIPANT' })
 ], Role.prototype, "roleType", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Role_1, { nullable: true })
@@ -60993,7 +60993,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutAnnouncementCreatedInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutAnnouncementCreatedInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -61050,7 +61050,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutClaimActionsInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutClaimActionsInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -61107,7 +61107,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutClaimsInputInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutClaimsInputInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -61164,7 +61164,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutClaimsOnWaitInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutClaimsOnWaitInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -61221,7 +61221,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutDocumentPrintsInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutDocumentPrintsInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -61278,7 +61278,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutNotificationInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutNotificationInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -61335,7 +61335,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutParticipantInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateWithoutParticipantInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_8.HideField)()
@@ -61449,7 +61449,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleCreateNestedOneWithoutUsersInput, { nullable: true })
 ], UserCreateInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutUserInput, { nullable: true })
@@ -63860,7 +63860,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateWithoutAnnouncementCreatedInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateWithoutAnnouncementCreatedInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutUserNestedInput, { nullable: true })
@@ -63917,7 +63917,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateWithoutClaimActionsInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateWithoutClaimActionsInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutUserNestedInput, { nullable: true })
@@ -63974,7 +63974,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateWithoutClaimsInputInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateWithoutClaimsInputInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutUserNestedInput, { nullable: true })
@@ -64031,7 +64031,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateWithoutClaimsOnWaitInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateWithoutClaimsOnWaitInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutUserNestedInput, { nullable: true })
@@ -64088,7 +64088,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateWithoutDocumentPrintsInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateWithoutDocumentPrintsInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutUserNestedInput, { nullable: true })
@@ -64145,7 +64145,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateWithoutNotificationInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateWithoutNotificationInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutUserNestedInput, { nullable: true })
@@ -64202,7 +64202,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateWithoutParticipantInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateWithoutParticipantInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_8.HideField)()
@@ -64316,7 +64316,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserUpdateInput.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
 ], UserUpdateInput.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutUserNestedInput, { nullable: true })
@@ -64667,7 +64667,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], User.prototype, "participantId", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Role, { nullable: false })
+    (0, graphql_1.Field)(() => Role, { nullable: false, description: 'catatan untuk web frontend, jangan menggunakan role.name sebagai identifikasi role, melainkan gunakan role.rolepermissions untuk melihat izin apa aja yang diberikan kepada user' })
 ], User.prototype, "role", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Participant, { nullable: true })

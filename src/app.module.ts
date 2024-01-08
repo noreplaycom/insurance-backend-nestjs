@@ -128,7 +128,7 @@ import { AuthModule } from './services/auth/auth.module';
     // ProgramParticipationModule,
     // RegionModule,
     RoleModule,
-    //RolePermissionModule,
+    RolePermissionModule,
     TagModule,
     // TransactionModule,
     UserModule,

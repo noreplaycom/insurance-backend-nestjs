@@ -159,4 +159,12 @@ export class RolePermissionResolver {
   // rolePermissionCount(@Args() rolePermissionCountAggregateInput: FindManyRolePermissionArgs) {
   //   return this.rolePermissionController.count(rolePermissionCountAggregateInput);
   // }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  permissionFindMany() {
+    return this.rolePermissionController.permissionFindMany();
+  }
 }
