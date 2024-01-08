@@ -15,6 +15,7 @@ import {
   ClaimAggregateArgs,
   UpdateManyClaimArgs,
   UpdateOneClaimArgs,
+  Permission,
 } from 'src/@generated';
 import { ClaimController } from './claim.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
@@ -37,15 +38,22 @@ import { ClaimUpdateOneOfStatusArgs } from './dto/claim_update_one_of_status';
 // import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
 // import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 import { ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
+import { UseGuards } from '@nestjs/common';
+import { RequiredPermission } from 'src/decorator/permission.decorator';
+import { PermissionGuard } from '../role-permission/role-permission.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 interface ClaimSelect {
   select: Prisma.ClaimSelect;
 }
 
+@UseGuards(JwtAuthGuard)
 @Resolver(() => Claim)
 export class ClaimResolver {
   constructor(private readonly claimController: ClaimController) {}
 
+  @RequiredPermission(Permission.CREATE_CLAIM)
+  @UseGuards(PermissionGuard)
   @Mutation(() => Claim, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -248,6 +256,8 @@ export class ClaimResolver {
     return this.claimController.getClaimChannels();
   }
 
+  @RequiredPermission(Permission.IMPORT_CLAIM)
+  @UseGuards(PermissionGuard)
   @Mutation(() => Boolean, {
     nullable: true,
     description:
@@ -281,6 +291,8 @@ export class ClaimResolver {
     //     return true;
   }
 
+  @RequiredPermission(Permission.EXPORT_CLAIM)
+  @UseGuards(PermissionGuard)
   @Query(() => String, {
     description: 'deskripsi nya disini loh',
   })
@@ -290,6 +302,8 @@ export class ClaimResolver {
 
   // ? CLAIM DETAIL SCREEN
 
+  @RequiredPermission(Permission.UPDATE_CLAIM)
+  @UseGuards(PermissionGuard)
   @Mutation(() => Claim, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
