@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Period, Prisma } from '@prisma/client';
 import { ClaimService } from './claim.service';
 import { Claim, ClaimChannel, ClaimStatusType } from 'src/@generated';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
@@ -8,7 +8,6 @@ import { ClaimFormCreateOneArgs } from './dto/claim_create_one';
 import { ClaimCountQuantityWhereArgs } from './dto/claim_count_quantity_where';
 import { ClaimCountQuantityByStatusQuery } from './dto/claim_count_quantity_by_status';
 import { ClaimFinancialController } from '../claim-financial/claim-financial.controller';
-import { Period } from 'src/model/period.enum';
 import {
   ClaimCountQuantityByCustomRangeAndPeriodArgs,
   ClaimCountQuantityByCustomRangeAndPeriodQuery,
@@ -307,14 +306,6 @@ export class ClaimController {
     });
   }
 
-  async createOneForm(
-    claimFormCreateOneArgs: ClaimFormCreateOneArgs,
-  ): Promise<Claim> {
-    return await this.claimService.createOne({
-      data: claimFormCreateOneArgs,
-    });
-  }
-
   async countWhere(
     claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
   ): Promise<number> {
@@ -383,14 +374,14 @@ export class ClaimController {
   }
 
   async findManyByClaimIds(
-    claimFindManyByClaimIdsArgs: ClaimFindManyByClaimIdsArgs
+    claimFindManyByClaimIdsArgs: ClaimFindManyByClaimIdsArgs,
   ) {
     return await this.claimService.findMany({
       where: {
         id: {
-          in: claimFindManyByClaimIdsArgs.ids
-        }
-      }
-    })
+          in: claimFindManyByClaimIdsArgs.ids,
+        },
+      },
+    });
   }
 }

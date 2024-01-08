@@ -70,7 +70,6 @@ export declare enum ProgramScalarFieldEnum {
     id = "id",
     type = "type",
     santunanHarianRawatInapPlan = "santunanHarianRawatInapPlan",
-    santunanHarianRawatInapNominalPlan = "santunanHarianRawatInapNominalPlan",
     tambahanBantuanRawatInapType = "tambahanBantuanRawatInapType",
     maxAllowancePercentage = "maxAllowancePercentage",
     allowanceCeiling = "allowanceCeiling",
@@ -155,7 +154,9 @@ export declare enum Period {
     WEEKLY = "WEEKLY",
     MONTHLY = "MONTHLY",
     YEARLY = "YEARLY",
-    ALLTIME = "ALLTIME"
+    BIENNIALLY = "BIENNIALLY",
+    ALLTIME = "ALLTIME",
+    EVENT = "EVENT"
 }
 export declare enum ParticipantStatus {
     PENSIUNAN = "PENSIUNAN",
@@ -326,6 +327,7 @@ export declare enum ClaimProgramScalarFieldEnum {
 }
 export declare enum ClaimFinancialScalarFieldEnum {
     id = "id",
+    totalInvoiceProofAmount = "totalInvoiceProofAmount",
     requestedAmount = "requestedAmount",
     paidAmount = "paidAmount",
     rejectedAmount = "rejectedAmount",
@@ -4607,6 +4609,7 @@ export declare class ClaimFinancialAggregateArgs {
 }
 export declare class ClaimFinancialAvgAggregateInput {
     id?: true;
+    totalInvoiceProofAmount?: true;
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
@@ -4615,6 +4618,7 @@ export declare class ClaimFinancialAvgAggregateInput {
 }
 export declare class ClaimFinancialAvgAggregate {
     id?: number;
+    totalInvoiceProofAmount?: number;
     requestedAmount?: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4623,6 +4627,7 @@ export declare class ClaimFinancialAvgAggregate {
 }
 export declare class ClaimFinancialAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    totalInvoiceProofAmount?: keyof typeof SortOrder;
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
@@ -4631,6 +4636,7 @@ export declare class ClaimFinancialAvgOrderByAggregateInput {
 }
 export declare class ClaimFinancialCountAggregateInput {
     id?: true;
+    totalInvoiceProofAmount?: true;
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
@@ -4642,6 +4648,7 @@ export declare class ClaimFinancialCountAggregateInput {
 }
 export declare class ClaimFinancialCountAggregate {
     id: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount: number;
     rejectedAmount: number;
@@ -4653,6 +4660,7 @@ export declare class ClaimFinancialCountAggregate {
 }
 export declare class ClaimFinancialCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    totalInvoiceProofAmount?: keyof typeof SortOrder;
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
@@ -4667,6 +4675,7 @@ export declare class ClaimFinancialCreateManyBranchPayeeInputEnvelope {
 }
 export declare class ClaimFinancialCreateManyBranchPayeeInput {
     id?: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4676,6 +4685,7 @@ export declare class ClaimFinancialCreateManyBranchPayeeInput {
 }
 export declare class ClaimFinancialCreateManyInput {
     id?: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4713,6 +4723,7 @@ export declare class ClaimFinancialCreateOrConnectWithoutClaimInput {
     create: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
 }
 export declare class ClaimFinancialCreateWithoutBranchPayeeInput {
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4722,6 +4733,7 @@ export declare class ClaimFinancialCreateWithoutBranchPayeeInput {
     claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialCreateWithoutClaimStatusInput {
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4731,6 +4743,7 @@ export declare class ClaimFinancialCreateWithoutClaimStatusInput {
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialCreateWithoutClaimInput {
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4740,6 +4753,7 @@ export declare class ClaimFinancialCreateWithoutClaimInput {
     claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialCreateInput {
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4764,6 +4778,7 @@ export declare class ClaimFinancialGroupByArgs {
 }
 export declare class ClaimFinancialGroupBy {
     id: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4784,6 +4799,7 @@ export declare class ClaimFinancialListRelationFilter {
 }
 export declare class ClaimFinancialMaxAggregateInput {
     id?: true;
+    totalInvoiceProofAmount?: true;
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
@@ -4794,6 +4810,7 @@ export declare class ClaimFinancialMaxAggregateInput {
 }
 export declare class ClaimFinancialMaxAggregate {
     id?: number;
+    totalInvoiceProofAmount?: number;
     requestedAmount?: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4804,6 +4821,7 @@ export declare class ClaimFinancialMaxAggregate {
 }
 export declare class ClaimFinancialMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    totalInvoiceProofAmount?: keyof typeof SortOrder;
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
@@ -4814,6 +4832,7 @@ export declare class ClaimFinancialMaxOrderByAggregateInput {
 }
 export declare class ClaimFinancialMinAggregateInput {
     id?: true;
+    totalInvoiceProofAmount?: true;
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
@@ -4824,6 +4843,7 @@ export declare class ClaimFinancialMinAggregateInput {
 }
 export declare class ClaimFinancialMinAggregate {
     id?: number;
+    totalInvoiceProofAmount?: number;
     requestedAmount?: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4834,6 +4854,7 @@ export declare class ClaimFinancialMinAggregate {
 }
 export declare class ClaimFinancialMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    totalInvoiceProofAmount?: keyof typeof SortOrder;
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
@@ -4851,6 +4872,7 @@ export declare class ClaimFinancialOrderByRelationAggregateInput {
 }
 export declare class ClaimFinancialOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
+    totalInvoiceProofAmount?: keyof typeof SortOrder;
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: InstanceType<typeof SortOrderInput>;
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
@@ -4866,6 +4888,7 @@ export declare class ClaimFinancialOrderByWithAggregationInput {
 }
 export declare class ClaimFinancialOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
+    totalInvoiceProofAmount?: keyof typeof SortOrder;
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: InstanceType<typeof SortOrderInput>;
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
@@ -4886,6 +4909,7 @@ export declare class ClaimFinancialScalarWhereWithAggregatesInput {
     OR?: Array<ClaimFinancialScalarWhereWithAggregatesInput>;
     NOT?: Array<ClaimFinancialScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatWithAggregatesFilter>;
     requestedAmount?: InstanceType<typeof FloatWithAggregatesFilter>;
     paidAmount?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
@@ -4899,6 +4923,7 @@ export declare class ClaimFinancialScalarWhereInput {
     OR?: Array<ClaimFinancialScalarWhereInput>;
     NOT?: Array<ClaimFinancialScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFilter>;
     requestedAmount?: InstanceType<typeof FloatFilter>;
     paidAmount?: InstanceType<typeof FloatNullableFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
@@ -4909,6 +4934,7 @@ export declare class ClaimFinancialScalarWhereInput {
 }
 export declare class ClaimFinancialSumAggregateInput {
     id?: true;
+    totalInvoiceProofAmount?: true;
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
@@ -4917,6 +4943,7 @@ export declare class ClaimFinancialSumAggregateInput {
 }
 export declare class ClaimFinancialSumAggregate {
     id?: number;
+    totalInvoiceProofAmount?: number;
     requestedAmount?: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4925,6 +4952,7 @@ export declare class ClaimFinancialSumAggregate {
 }
 export declare class ClaimFinancialSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    totalInvoiceProofAmount?: keyof typeof SortOrder;
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
@@ -4944,6 +4972,7 @@ export declare class ClaimFinancialUncheckedCreateNestedOneWithoutClaimStatusInp
 }
 export declare class ClaimFinancialUncheckedCreateWithoutBranchPayeeInput {
     id?: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4954,6 +4983,7 @@ export declare class ClaimFinancialUncheckedCreateWithoutBranchPayeeInput {
 }
 export declare class ClaimFinancialUncheckedCreateWithoutClaimStatusInput {
     id?: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4964,6 +4994,7 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimStatusInput {
 }
 export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
     id?: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4974,6 +5005,7 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
 }
 export declare class ClaimFinancialUncheckedCreateInput {
     id?: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
@@ -4998,6 +5030,7 @@ export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeNestedIn
 }
 export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5007,6 +5040,7 @@ export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput {
 }
 export declare class ClaimFinancialUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5026,6 +5060,7 @@ export declare class ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInp
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5036,6 +5071,7 @@ export declare class ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput {
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutClaimStatusInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5046,6 +5082,7 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimStatusInput {
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5056,6 +5093,7 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
 }
 export declare class ClaimFinancialUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5066,6 +5104,7 @@ export declare class ClaimFinancialUncheckedUpdateInput {
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUpdateManyMutationInput {
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5118,6 +5157,7 @@ export declare class ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput 
     data: InstanceType<typeof ClaimFinancialUpdateWithoutBranchPayeeInput>;
 }
 export declare class ClaimFinancialUpdateWithoutBranchPayeeInput {
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5127,6 +5167,7 @@ export declare class ClaimFinancialUpdateWithoutBranchPayeeInput {
     claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpdateWithoutClaimStatusInput {
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5136,6 +5177,7 @@ export declare class ClaimFinancialUpdateWithoutClaimStatusInput {
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUpdateWithoutClaimInput {
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5145,6 +5187,7 @@ export declare class ClaimFinancialUpdateWithoutClaimInput {
     claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpdateInput {
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
@@ -5175,6 +5218,7 @@ export declare class ClaimFinancialWhereUniqueInput {
     AND?: Array<ClaimFinancialWhereInput>;
     OR?: Array<ClaimFinancialWhereInput>;
     NOT?: Array<ClaimFinancialWhereInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFilter>;
     requestedAmount?: InstanceType<typeof FloatFilter>;
     paidAmount?: InstanceType<typeof FloatNullableFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
@@ -5190,6 +5234,7 @@ export declare class ClaimFinancialWhereInput {
     OR?: Array<ClaimFinancialWhereInput>;
     NOT?: Array<ClaimFinancialWhereInput>;
     id?: InstanceType<typeof IntFilter>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFilter>;
     requestedAmount?: InstanceType<typeof FloatFilter>;
     paidAmount?: InstanceType<typeof FloatNullableFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
@@ -5203,6 +5248,7 @@ export declare class ClaimFinancialWhereInput {
 }
 export declare class ClaimFinancial {
     id: number;
+    totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount: number | null;
     rejectedAmount: number | null;
@@ -5386,7 +5432,7 @@ export declare class ClaimProgramCreateManyDiseaseInput {
     startTreatment?: Date | string;
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
 }
 export declare class ClaimProgramCreateManyProgramInputEnvelope {
@@ -5404,7 +5450,7 @@ export declare class ClaimProgramCreateManyProgramInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
 }
 export declare class ClaimProgramCreateManyInput {
     id?: number;
@@ -5417,7 +5463,7 @@ export declare class ClaimProgramCreateManyInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
 }
 export declare class ClaimProgramCreateNestedManyWithoutClinicsInput {
@@ -5487,7 +5533,7 @@ export declare class ClaimProgramCreateWithoutClaimInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
+    clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
@@ -5516,7 +5562,7 @@ export declare class ClaimProgramCreateWithoutDiseaseInput {
     startTreatment?: Date | string;
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
+    clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
@@ -5532,7 +5578,7 @@ export declare class ClaimProgramCreateWithoutDocumentsInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
+    clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
@@ -5547,7 +5593,7 @@ export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
+    clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
@@ -5562,7 +5608,7 @@ export declare class ClaimProgramCreateWithoutProgramInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
+    clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
@@ -5577,7 +5623,7 @@ export declare class ClaimProgramCreateInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
-    clinics: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
+    clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
@@ -5607,7 +5653,7 @@ export declare class ClaimProgramGroupBy {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
     _count?: InstanceType<typeof ClaimProgramCountAggregate>;
     _avg?: InstanceType<typeof ClaimProgramAvgAggregate>;
@@ -5722,7 +5768,7 @@ export declare class ClaimProgramOrderByWithAggregationInput {
     endTreatment?: InstanceType<typeof SortOrderInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof SortOrderInput>;
     diseaseId?: InstanceType<typeof SortOrderInput>;
-    clinicId?: keyof typeof SortOrder;
+    clinicId?: InstanceType<typeof SortOrderInput>;
     programId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ClaimProgramCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ClaimProgramAvgOrderByAggregateInput>;
@@ -5741,7 +5787,7 @@ export declare class ClaimProgramOrderByWithRelationInput {
     endTreatment?: InstanceType<typeof SortOrderInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof SortOrderInput>;
     diseaseId?: InstanceType<typeof SortOrderInput>;
-    clinicId?: keyof typeof SortOrder;
+    clinicId?: InstanceType<typeof SortOrderInput>;
     programId?: keyof typeof SortOrder;
     disease?: InstanceType<typeof DiseaseOrderByWithRelationInput>;
     clinics?: InstanceType<typeof ClinicOrderByWithRelationInput>;
@@ -5768,7 +5814,7 @@ export declare class ClaimProgramScalarWhereWithAggregatesInput {
     endTreatment?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     diseaseId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
-    clinicId?: InstanceType<typeof IntWithAggregatesFilter>;
+    clinicId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     programId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
 export declare class ClaimProgramScalarWhereInput {
@@ -5785,7 +5831,7 @@ export declare class ClaimProgramScalarWhereInput {
     endTreatment?: InstanceType<typeof DateTimeNullableFilter>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
-    clinicId?: InstanceType<typeof IntFilter>;
+    clinicId?: InstanceType<typeof IntNullableFilter>;
     programId?: InstanceType<typeof IntFilter>;
 }
 export declare class ClaimProgramSumAggregateInput {
@@ -5835,7 +5881,7 @@ export declare class ClaimProgramUncheckedCreateWithoutClaimInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
@@ -5866,7 +5912,7 @@ export declare class ClaimProgramUncheckedCreateWithoutDiseaseInput {
     startTreatment?: Date | string;
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
@@ -5883,7 +5929,7 @@ export declare class ClaimProgramUncheckedCreateWithoutDocumentsInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
@@ -5899,7 +5945,7 @@ export declare class ClaimProgramUncheckedCreateWithoutInvoiceProofsInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
@@ -5915,7 +5961,7 @@ export declare class ClaimProgramUncheckedCreateWithoutProgramInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
@@ -5931,7 +5977,7 @@ export declare class ClaimProgramUncheckedCreateInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerSetoreName?: string;
     diseaseId?: number;
-    clinicId: number;
+    clinicId?: number;
     programId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
@@ -5986,7 +6032,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutDiseaseInput {
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimProgramUncheckedUpdateManyWithoutProgramNestedInput {
@@ -6013,7 +6059,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutProgramInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ClaimProgramUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6026,7 +6072,7 @@ export declare class ClaimProgramUncheckedUpdateManyInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
@@ -6040,7 +6086,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
@@ -6071,7 +6117,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutDiseaseInput {
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
@@ -6088,7 +6134,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutDocumentsInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
@@ -6104,7 +6150,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
@@ -6120,7 +6166,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutProgramInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
@@ -6136,7 +6182,7 @@ export declare class ClaimProgramUncheckedUpdateInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    clinicId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
@@ -6262,7 +6308,7 @@ export declare class ClaimProgramUpdateWithoutClaimInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
+    clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
@@ -6291,7 +6337,7 @@ export declare class ClaimProgramUpdateWithoutDiseaseInput {
     startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
+    clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
@@ -6307,7 +6353,7 @@ export declare class ClaimProgramUpdateWithoutDocumentsInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
+    clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
@@ -6322,7 +6368,7 @@ export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
+    clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
@@ -6337,7 +6383,7 @@ export declare class ClaimProgramUpdateWithoutProgramInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
+    clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
@@ -6352,7 +6398,7 @@ export declare class ClaimProgramUpdateInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
-    clinics?: InstanceType<typeof ClinicUpdateOneRequiredWithoutClaimProgramNestedInput>;
+    clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutClaimProgramNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
@@ -6402,10 +6448,10 @@ export declare class ClaimProgramWhereUniqueInput {
     endTreatment?: InstanceType<typeof DateTimeNullableFilter>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
-    clinicId?: InstanceType<typeof IntFilter>;
+    clinicId?: InstanceType<typeof IntNullableFilter>;
     programId?: InstanceType<typeof IntFilter>;
     disease?: InstanceType<typeof DiseaseNullableRelationFilter>;
-    clinics?: InstanceType<typeof ClinicRelationFilter>;
+    clinics?: InstanceType<typeof ClinicNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     program?: InstanceType<typeof ProgramRelationFilter>;
     documents?: InstanceType<typeof DocumentListRelationFilter>;
@@ -6425,10 +6471,10 @@ export declare class ClaimProgramWhereInput {
     endTreatment?: InstanceType<typeof DateTimeNullableFilter>;
     kurisRodaOrWalkerSetoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
-    clinicId?: InstanceType<typeof IntFilter>;
+    clinicId?: InstanceType<typeof IntNullableFilter>;
     programId?: InstanceType<typeof IntFilter>;
     disease?: InstanceType<typeof DiseaseNullableRelationFilter>;
-    clinics?: InstanceType<typeof ClinicRelationFilter>;
+    clinics?: InstanceType<typeof ClinicNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     program?: InstanceType<typeof ProgramRelationFilter>;
     documents?: InstanceType<typeof DocumentListRelationFilter>;
@@ -6445,10 +6491,10 @@ export declare class ClaimProgram {
     endTreatment: Date | null;
     kurisRodaOrWalkerSetoreName: string | null;
     diseaseId: number | null;
-    clinicId: number;
+    clinicId: number | null;
     programId: number;
     disease?: InstanceType<typeof Disease> | null;
-    clinics?: InstanceType<typeof Clinic>;
+    clinics?: InstanceType<typeof Clinic> | null;
     claim?: InstanceType<typeof Claim> | null;
     program?: InstanceType<typeof Program>;
     documents?: Array<Document>;
@@ -7845,6 +7891,10 @@ export declare class ClinicMinOrderByAggregateInput {
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
 }
+export declare class ClinicNullableRelationFilter {
+    is?: InstanceType<typeof ClinicWhereInput>;
+    isNot?: InstanceType<typeof ClinicWhereInput>;
+}
 export declare class ClinicOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     code?: keyof typeof SortOrder;
@@ -7864,10 +7914,6 @@ export declare class ClinicOrderByWithRelationInput {
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     claimProgram?: InstanceType<typeof ClaimProgramOrderByRelationAggregateInput>;
-}
-export declare class ClinicRelationFilter {
-    is?: InstanceType<typeof ClinicWhereInput>;
-    isNot?: InstanceType<typeof ClinicWhereInput>;
 }
 export declare class ClinicScalarWhereWithAggregatesInput {
     AND?: Array<ClinicScalarWhereWithAggregatesInput>;
@@ -7931,10 +7977,12 @@ export declare class ClinicUpdateManyMutationInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
-export declare class ClinicUpdateOneRequiredWithoutClaimProgramNestedInput {
+export declare class ClinicUpdateOneWithoutClaimProgramNestedInput {
     create?: InstanceType<typeof ClinicCreateWithoutClaimProgramInput>;
     connectOrCreate?: InstanceType<typeof ClinicCreateOrConnectWithoutClaimProgramInput>;
     upsert?: InstanceType<typeof ClinicUpsertWithoutClaimProgramInput>;
+    disconnect?: InstanceType<typeof ClinicWhereInput>;
+    delete?: InstanceType<typeof ClinicWhereInput>;
     connect?: Prisma.AtLeast<ClinicWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof ClinicUpdateToOneWithWhereWithoutClaimProgramInput>;
 }
@@ -14119,23 +14167,20 @@ export declare class EnumParticipantStatusWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumParticipantStatusFilter>;
     _max?: InstanceType<typeof NestedEnumParticipantStatusFilter>;
 }
-export declare class EnumPeriodFieldUpdateOperationsInput {
-    set?: keyof typeof Period;
-}
-export declare class EnumPeriodFilter {
+export declare class EnumPeriodNullableFilter {
     equals?: keyof typeof Period;
     in?: Array<keyof typeof Period>;
     notIn?: Array<keyof typeof Period>;
-    not?: InstanceType<typeof NestedEnumPeriodFilter>;
+    not?: InstanceType<typeof NestedEnumPeriodNullableFilter>;
 }
-export declare class EnumPeriodWithAggregatesFilter {
+export declare class EnumPeriodNullableWithAggregatesFilter {
     equals?: keyof typeof Period;
     in?: Array<keyof typeof Period>;
     notIn?: Array<keyof typeof Period>;
-    not?: InstanceType<typeof NestedEnumPeriodWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntFilter>;
-    _min?: InstanceType<typeof NestedEnumPeriodFilter>;
-    _max?: InstanceType<typeof NestedEnumPeriodFilter>;
+    not?: InstanceType<typeof NestedEnumPeriodNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedEnumPeriodNullableFilter>;
+    _max?: InstanceType<typeof NestedEnumPeriodNullableFilter>;
 }
 export declare class EnumPermissionFieldUpdateOperationsInput {
     set?: keyof typeof Permission;
@@ -14560,20 +14605,20 @@ export declare class NestedEnumParticipantStatusWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumParticipantStatusFilter>;
     _max?: InstanceType<typeof NestedEnumParticipantStatusFilter>;
 }
-export declare class NestedEnumPeriodFilter {
+export declare class NestedEnumPeriodNullableFilter {
     equals?: keyof typeof Period;
     in?: Array<keyof typeof Period>;
     notIn?: Array<keyof typeof Period>;
-    not?: InstanceType<typeof NestedEnumPeriodFilter>;
+    not?: InstanceType<typeof NestedEnumPeriodNullableFilter>;
 }
-export declare class NestedEnumPeriodWithAggregatesFilter {
+export declare class NestedEnumPeriodNullableWithAggregatesFilter {
     equals?: keyof typeof Period;
     in?: Array<keyof typeof Period>;
     notIn?: Array<keyof typeof Period>;
-    not?: InstanceType<typeof NestedEnumPeriodWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntFilter>;
-    _min?: InstanceType<typeof NestedEnumPeriodFilter>;
-    _max?: InstanceType<typeof NestedEnumPeriodFilter>;
+    not?: InstanceType<typeof NestedEnumPeriodNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedEnumPeriodNullableFilter>;
+    _max?: InstanceType<typeof NestedEnumPeriodNullableFilter>;
 }
 export declare class NestedEnumPermissionFilter {
     equals?: keyof typeof Permission;
@@ -14841,6 +14886,9 @@ export declare class NestedStringWithAggregatesFilter {
 export declare class NullableDateTimeFieldUpdateOperationsInput {
     set?: Date | string;
 }
+export declare class NullableEnumPeriodFieldUpdateOperationsInput {
+    set?: keyof typeof Period;
+}
 export declare class NullableEnumRoleTypeFieldUpdateOperationsInput {
     set?: keyof typeof RoleType;
 }
@@ -15000,7 +15048,6 @@ export declare class ProgramAggregateArgs {
 }
 export declare class ProgramAvgAggregateInput {
     id?: true;
-    santunanHarianRawatInapNominalPlan?: true;
     maxAllowancePercentage?: true;
     allowanceCeiling?: true;
     allowanceQuota?: true;
@@ -15009,7 +15056,6 @@ export declare class ProgramAvgAggregateInput {
 }
 export declare class ProgramAvgAggregate {
     id?: number;
-    santunanHarianRawatInapNominalPlan?: number;
     maxAllowancePercentage?: number;
     allowanceCeiling?: number;
     allowanceQuota?: number;
@@ -15018,7 +15064,6 @@ export declare class ProgramAvgAggregate {
 }
 export declare class ProgramAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    santunanHarianRawatInapNominalPlan?: keyof typeof SortOrder;
     maxAllowancePercentage?: keyof typeof SortOrder;
     allowanceCeiling?: keyof typeof SortOrder;
     allowanceQuota?: keyof typeof SortOrder;
@@ -15029,7 +15074,6 @@ export declare class ProgramCountAggregateInput {
     id?: true;
     type?: true;
     santunanHarianRawatInapPlan?: true;
-    santunanHarianRawatInapNominalPlan?: true;
     tambahanBantuanRawatInapType?: true;
     maxAllowancePercentage?: true;
     allowanceCeiling?: true;
@@ -15047,7 +15091,6 @@ export declare class ProgramCountAggregate {
     id: number;
     type: number;
     santunanHarianRawatInapPlan: number;
-    santunanHarianRawatInapNominalPlan: number;
     tambahanBantuanRawatInapType: number;
     maxAllowancePercentage: number;
     allowanceCeiling: number;
@@ -15065,7 +15108,6 @@ export declare class ProgramCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     type?: keyof typeof SortOrder;
     santunanHarianRawatInapPlan?: keyof typeof SortOrder;
-    santunanHarianRawatInapNominalPlan?: keyof typeof SortOrder;
     tambahanBantuanRawatInapType?: keyof typeof SortOrder;
     maxAllowancePercentage?: keyof typeof SortOrder;
     allowanceCeiling?: keyof typeof SortOrder;
@@ -15086,13 +15128,12 @@ export declare class ProgramCreateManyInput {
     id?: number;
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt?: Date | string;
@@ -15120,13 +15161,12 @@ export declare class ProgramCreateOrConnectWithoutProgramParticipationsInput {
 export declare class ProgramCreateWithoutClaimProgramInput {
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt?: Date | string;
@@ -15137,13 +15177,12 @@ export declare class ProgramCreateWithoutClaimProgramInput {
 export declare class ProgramCreateWithoutProgramParticipationsInput {
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt?: Date | string;
@@ -15154,13 +15193,12 @@ export declare class ProgramCreateWithoutProgramParticipationsInput {
 export declare class ProgramCreateInput {
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt?: Date | string;
@@ -15186,13 +15224,12 @@ export declare class ProgramGroupBy {
     id: number;
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt: Date | string;
@@ -15208,7 +15245,6 @@ export declare class ProgramMaxAggregateInput {
     id?: true;
     type?: true;
     santunanHarianRawatInapPlan?: true;
-    santunanHarianRawatInapNominalPlan?: true;
     tambahanBantuanRawatInapType?: true;
     maxAllowancePercentage?: true;
     allowanceCeiling?: true;
@@ -15225,7 +15261,6 @@ export declare class ProgramMaxAggregate {
     id?: number;
     type?: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling?: number;
@@ -15242,7 +15277,6 @@ export declare class ProgramMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     type?: keyof typeof SortOrder;
     santunanHarianRawatInapPlan?: keyof typeof SortOrder;
-    santunanHarianRawatInapNominalPlan?: keyof typeof SortOrder;
     tambahanBantuanRawatInapType?: keyof typeof SortOrder;
     maxAllowancePercentage?: keyof typeof SortOrder;
     allowanceCeiling?: keyof typeof SortOrder;
@@ -15259,7 +15293,6 @@ export declare class ProgramMinAggregateInput {
     id?: true;
     type?: true;
     santunanHarianRawatInapPlan?: true;
-    santunanHarianRawatInapNominalPlan?: true;
     tambahanBantuanRawatInapType?: true;
     maxAllowancePercentage?: true;
     allowanceCeiling?: true;
@@ -15276,7 +15309,6 @@ export declare class ProgramMinAggregate {
     id?: number;
     type?: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling?: number;
@@ -15293,7 +15325,6 @@ export declare class ProgramMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     type?: keyof typeof SortOrder;
     santunanHarianRawatInapPlan?: keyof typeof SortOrder;
-    santunanHarianRawatInapNominalPlan?: keyof typeof SortOrder;
     tambahanBantuanRawatInapType?: keyof typeof SortOrder;
     maxAllowancePercentage?: keyof typeof SortOrder;
     allowanceCeiling?: keyof typeof SortOrder;
@@ -15314,13 +15345,12 @@ export declare class ProgramOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     type?: keyof typeof SortOrder;
     santunanHarianRawatInapPlan?: InstanceType<typeof SortOrderInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof SortOrderInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof SortOrderInput>;
     maxAllowancePercentage?: InstanceType<typeof SortOrderInput>;
     allowanceCeiling?: keyof typeof SortOrder;
-    allowanceCeilingPeriod?: keyof typeof SortOrder;
+    allowanceCeilingPeriod?: InstanceType<typeof SortOrderInput>;
     allowanceQuota?: InstanceType<typeof SortOrderInput>;
-    allowanceQuotaPeriod?: keyof typeof SortOrder;
+    allowanceQuotaPeriod?: InstanceType<typeof SortOrderInput>;
     claimPeriodMax?: InstanceType<typeof SortOrderInput>;
     reclaimPeriodMax?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
@@ -15336,13 +15366,12 @@ export declare class ProgramOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     type?: keyof typeof SortOrder;
     santunanHarianRawatInapPlan?: InstanceType<typeof SortOrderInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof SortOrderInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof SortOrderInput>;
     maxAllowancePercentage?: InstanceType<typeof SortOrderInput>;
     allowanceCeiling?: keyof typeof SortOrder;
-    allowanceCeilingPeriod?: keyof typeof SortOrder;
+    allowanceCeilingPeriod?: InstanceType<typeof SortOrderInput>;
     allowanceQuota?: InstanceType<typeof SortOrderInput>;
-    allowanceQuotaPeriod?: keyof typeof SortOrder;
+    allowanceQuotaPeriod?: InstanceType<typeof SortOrderInput>;
     claimPeriodMax?: InstanceType<typeof SortOrderInput>;
     reclaimPeriodMax?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
@@ -15362,13 +15391,12 @@ export declare class ProgramScalarWhereWithAggregatesInput {
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     type?: InstanceType<typeof EnumProgramTypeWithAggregatesFilter>;
     santunanHarianRawatInapPlan?: InstanceType<typeof EnumSantunanHarianRawatInapPlanNullableWithAggregatesFilter>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
     tambahanBantuanRawatInapType?: InstanceType<typeof EnumTambahanBantuanRawatInapTypeNullableWithAggregatesFilter>;
     maxAllowancePercentage?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     allowanceCeiling?: InstanceType<typeof FloatWithAggregatesFilter>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodWithAggregatesFilter>;
+    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodNullableWithAggregatesFilter>;
     allowanceQuota?: InstanceType<typeof IntNullableWithAggregatesFilter>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodWithAggregatesFilter>;
+    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodNullableWithAggregatesFilter>;
     claimPeriodMax?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     reclaimPeriodMax?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
@@ -15377,7 +15405,6 @@ export declare class ProgramScalarWhereWithAggregatesInput {
 }
 export declare class ProgramSumAggregateInput {
     id?: true;
-    santunanHarianRawatInapNominalPlan?: true;
     maxAllowancePercentage?: true;
     allowanceCeiling?: true;
     allowanceQuota?: true;
@@ -15386,7 +15413,6 @@ export declare class ProgramSumAggregateInput {
 }
 export declare class ProgramSumAggregate {
     id?: number;
-    santunanHarianRawatInapNominalPlan?: number;
     maxAllowancePercentage?: number;
     allowanceCeiling?: number;
     allowanceQuota?: number;
@@ -15395,7 +15421,6 @@ export declare class ProgramSumAggregate {
 }
 export declare class ProgramSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    santunanHarianRawatInapNominalPlan?: keyof typeof SortOrder;
     maxAllowancePercentage?: keyof typeof SortOrder;
     allowanceCeiling?: keyof typeof SortOrder;
     allowanceQuota?: keyof typeof SortOrder;
@@ -15406,13 +15431,12 @@ export declare class ProgramUncheckedCreateWithoutClaimProgramInput {
     id?: number;
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt?: Date | string;
@@ -15424,13 +15448,12 @@ export declare class ProgramUncheckedCreateWithoutProgramParticipationsInput {
     id?: number;
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt?: Date | string;
@@ -15442,13 +15465,12 @@ export declare class ProgramUncheckedCreateInput {
     id?: number;
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan?: keyof typeof SantunanHarianRawatInapPlan;
-    santunanHarianRawatInapNominalPlan?: number;
     tambahanBantuanRawatInapType?: keyof typeof TambahanBantuanRawatInapType;
     maxAllowancePercentage?: number;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod?: keyof typeof Period;
     allowanceQuota?: number;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod?: keyof typeof Period;
     claimPeriodMax?: number;
     reclaimPeriodMax?: number;
     createdAt?: Date | string;
@@ -15461,13 +15483,12 @@ export declare class ProgramUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15478,13 +15499,12 @@ export declare class ProgramUncheckedUpdateWithoutClaimProgramInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15496,13 +15516,12 @@ export declare class ProgramUncheckedUpdateWithoutProgramParticipationsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15514,13 +15533,12 @@ export declare class ProgramUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15532,13 +15550,12 @@ export declare class ProgramUncheckedUpdateInput {
 export declare class ProgramUpdateManyMutationInput {
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15572,13 +15589,12 @@ export declare class ProgramUpdateToOneWithWhereWithoutProgramParticipationsInpu
 export declare class ProgramUpdateWithoutClaimProgramInput {
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15589,13 +15605,12 @@ export declare class ProgramUpdateWithoutClaimProgramInput {
 export declare class ProgramUpdateWithoutProgramParticipationsInput {
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15606,13 +15621,12 @@ export declare class ProgramUpdateWithoutProgramParticipationsInput {
 export declare class ProgramUpdateInput {
     type?: InstanceType<typeof EnumProgramTypeFieldUpdateOperationsInput>;
     santunanHarianRawatInapPlan?: InstanceType<typeof NullableEnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     tambahanBantuanRawatInapType?: InstanceType<typeof NullableEnumTambahanBantuanRawatInapTypeFieldUpdateOperationsInput>;
     maxAllowancePercentage?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     allowanceCeiling?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceCeilingPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     allowanceQuota?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFieldUpdateOperationsInput>;
+    allowanceQuotaPeriod?: InstanceType<typeof NullableEnumPeriodFieldUpdateOperationsInput>;
     claimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     reclaimPeriodMax?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -15638,13 +15652,12 @@ export declare class ProgramWhereUniqueInput {
     NOT?: Array<ProgramWhereInput>;
     type?: InstanceType<typeof EnumProgramTypeFilter>;
     santunanHarianRawatInapPlan?: InstanceType<typeof EnumSantunanHarianRawatInapPlanNullableFilter>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof FloatNullableFilter>;
     tambahanBantuanRawatInapType?: InstanceType<typeof EnumTambahanBantuanRawatInapTypeNullableFilter>;
     maxAllowancePercentage?: InstanceType<typeof IntNullableFilter>;
     allowanceCeiling?: InstanceType<typeof FloatFilter>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFilter>;
+    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodNullableFilter>;
     allowanceQuota?: InstanceType<typeof IntNullableFilter>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFilter>;
+    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodNullableFilter>;
     claimPeriodMax?: InstanceType<typeof IntNullableFilter>;
     reclaimPeriodMax?: InstanceType<typeof IntNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
@@ -15660,13 +15673,12 @@ export declare class ProgramWhereInput {
     id?: InstanceType<typeof IntFilter>;
     type?: InstanceType<typeof EnumProgramTypeFilter>;
     santunanHarianRawatInapPlan?: InstanceType<typeof EnumSantunanHarianRawatInapPlanNullableFilter>;
-    santunanHarianRawatInapNominalPlan?: InstanceType<typeof FloatNullableFilter>;
     tambahanBantuanRawatInapType?: InstanceType<typeof EnumTambahanBantuanRawatInapTypeNullableFilter>;
     maxAllowancePercentage?: InstanceType<typeof IntNullableFilter>;
     allowanceCeiling?: InstanceType<typeof FloatFilter>;
-    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodFilter>;
+    allowanceCeilingPeriod?: InstanceType<typeof EnumPeriodNullableFilter>;
     allowanceQuota?: InstanceType<typeof IntNullableFilter>;
-    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodFilter>;
+    allowanceQuotaPeriod?: InstanceType<typeof EnumPeriodNullableFilter>;
     claimPeriodMax?: InstanceType<typeof IntNullableFilter>;
     reclaimPeriodMax?: InstanceType<typeof IntNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
@@ -15679,13 +15691,12 @@ export declare class Program {
     id: number;
     type: keyof typeof ProgramType;
     santunanHarianRawatInapPlan: keyof typeof SantunanHarianRawatInapPlan | null;
-    santunanHarianRawatInapNominalPlan: number | null;
     tambahanBantuanRawatInapType: keyof typeof TambahanBantuanRawatInapType | null;
     maxAllowancePercentage: number | null;
     allowanceCeiling: number;
-    allowanceCeilingPeriod: keyof typeof Period;
+    allowanceCeilingPeriod: keyof typeof Period | null;
     allowanceQuota: number | null;
-    allowanceQuotaPeriod: keyof typeof Period;
+    allowanceQuotaPeriod: keyof typeof Period | null;
     claimPeriodMax: number | null;
     reclaimPeriodMax: number | null;
     createdAt: Date;

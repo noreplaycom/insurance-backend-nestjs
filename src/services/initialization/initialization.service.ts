@@ -1,19 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import {
-  ApplicationType,
-  Class,
   Color,
+  Period,
   Permission,
   ProgramType,
   RoleType,
+  SantunanHarianRawatInapPlan,
+  TambahanBantuanRawatInapType,
 } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
 import { populateProvinceCityDistricSubdistric } from 'prisma/seed-functions/address.seed';
+import { ProgramController } from '../program/program.controller';
 
 // initialization.service.ts
 @Injectable()
 export class InitializationService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly programController: ProgramController,
+  ) {}
 
   async initialize() {
     const subdistricts = await this.prisma.subdistrict.findMany();
@@ -56,35 +61,7 @@ export class InitializationService {
           });
 
           // Create program
-          await prisma.program.createMany({
-            data: [
-              /* 
-              1. Plafon per orang perminggu maksimal 2 kali kunjungan, per kunjunan maksimal Rp.700.000 
-              2. Masa klaim 60 hari sejak keluar rumah sakit/tanggal kuitansi
-              3. Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
-              */
-              {
-                type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
-                claimPeriodMax: 60,
-                reclaimPeriodMax: 60,
-              },
-              {
-                type: ProgramType.BANTUAN_BIAYA_CUCI_DARAH,
-              },
-              {
-                type: ProgramType.BANTUAN_IGD_UGD,
-              },
-              {
-                type: ProgramType.BANTUAN_KURSI_RODA,
-              },
-              {
-                type: ProgramType.BANTUAN_WALKER,
-              },
-              {
-                type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
-              },
-            ],
-          });
+          await this.programController.createManyProgram();
         });
 
         console.log('Superuser, admin, role, program created');

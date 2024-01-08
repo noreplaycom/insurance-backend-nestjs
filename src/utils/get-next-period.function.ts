@@ -1,4 +1,4 @@
-import { Period } from 'src/model/period.enum';
+import { Period } from '@prisma/client';
 
 export function getNextPeriodDate(currentDate: Date, period: Period): Date {
   const nextDate = new Date(currentDate);

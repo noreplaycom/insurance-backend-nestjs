@@ -1,5 +1,5 @@
 import { ObjectType, Field, InputType, Float } from '@nestjs/graphql';
-import { Period } from 'src/model/period.enum';
+import { Period } from 'src/@generated';
 
 @ObjectType()
 export class ClaimCountTotalByCustomRangeAndPeriodQuery {

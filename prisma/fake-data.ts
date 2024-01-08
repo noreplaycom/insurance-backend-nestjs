@@ -294,13 +294,12 @@ export function fakeProgram() {
   return {
     type: faker.helpers.arrayElement([ProgramType.SANTUNAN_HARIAN_RAWAT_INAP, ProgramType.BANTUAN_BIAYA_CUCI_DARAH, ProgramType.BANTUAN_KURSI_RODA, ProgramType.BANTUAN_WALKER, ProgramType.BANTUAN_IGD_UGD, ProgramType.BANTUAN_RAWAT_INAP] as const),
     santunanHarianRawatInapPlan: undefined,
-    santunanHarianRawatInapNominalPlan: undefined,
     tambahanBantuanRawatInapType: undefined,
     maxAllowancePercentage: undefined,
     allowanceCeiling: faker.datatype.float(),
-    allowanceCeilingPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
+    allowanceCeilingPeriod: undefined,
     allowanceQuota: undefined,
-    allowanceQuotaPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
+    allowanceQuotaPeriod: undefined,
     claimPeriodMax: undefined,
     reclaimPeriodMax: undefined,
     updatedAt: faker.datatype.datetime(),
@@ -312,13 +311,12 @@ export function fakeProgramComplete() {
     id: faker.datatype.number(),
     type: faker.helpers.arrayElement([ProgramType.SANTUNAN_HARIAN_RAWAT_INAP, ProgramType.BANTUAN_BIAYA_CUCI_DARAH, ProgramType.BANTUAN_KURSI_RODA, ProgramType.BANTUAN_WALKER, ProgramType.BANTUAN_IGD_UGD, ProgramType.BANTUAN_RAWAT_INAP] as const),
     santunanHarianRawatInapPlan: undefined,
-    santunanHarianRawatInapNominalPlan: undefined,
     tambahanBantuanRawatInapType: undefined,
     maxAllowancePercentage: undefined,
     allowanceCeiling: faker.datatype.float(),
-    allowanceCeilingPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
+    allowanceCeilingPeriod: undefined,
     allowanceQuota: undefined,
-    allowanceQuotaPeriod: faker.helpers.arrayElement([Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY, Period.ALLTIME] as const),
+    allowanceQuotaPeriod: undefined,
     claimPeriodMax: undefined,
     reclaimPeriodMax: undefined,
     createdAt: new Date(),
@@ -393,6 +391,7 @@ export function fakeTagComplete() {
 }
 export function fakeClaimFinancial() {
   return {
+    totalInvoiceProofAmount: faker.datatype.float(),
     requestedAmount: faker.datatype.float(),
     paidAmount: undefined,
     rejectedAmount: undefined,
@@ -403,6 +402,7 @@ export function fakeClaimFinancial() {
 export function fakeClaimFinancialComplete() {
   return {
     id: faker.datatype.number(),
+    totalInvoiceProofAmount: faker.datatype.float(),
     requestedAmount: faker.datatype.float(),
     paidAmount: undefined,
     rejectedAmount: undefined,
@@ -436,7 +436,7 @@ export function fakeClaimProgramComplete() {
     endTreatment: undefined,
     kurisRodaOrWalkerSetoreName: undefined,
     diseaseId: undefined,
-    clinicId: faker.datatype.number(),
+    clinicId: undefined,
     programId: faker.datatype.number(),
   };
 }

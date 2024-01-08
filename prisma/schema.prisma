@@ -542,14 +542,14 @@ model Program {
     allowanceCeiling Float
 
     ///Periode Santunan
-    allowanceCeilingPeriod Period
+    allowanceCeilingPeriod Period?
 
     ///Berapa kali? contoh: Plafon per orang maksimal Rp. 2.000.000 eenmaleg (hanya 1 kali) 
     ///contoh: Plafon per orang perminggu maksimal 2 kali kunjungan, per kunjunan maksimal Rp.700.000 
     allowanceQuota Int?
 
     ///Maksimal santunan [60] hari rawat inap/tahun/orang
-    allowanceQuotaPeriod Period
+    allowanceQuotaPeriod Period?
 
     ///Masa klaim [60] hari sejak keluar rumah sakit/tanggal kuitansi
     claimPeriodMax Int?
@@ -585,7 +585,10 @@ enum Period {
     WEEKLY
     MONTHLY
     YEARLY
+    ///Setiap dua tahun sekali
+    BIENNIALLY
     ALLTIME
+    EVENT
 }
 
 model Claim {
@@ -770,6 +773,8 @@ model ClaimFinancial {
 
     id Int @id @default(autoincrement())
 
+    totalInvoiceProofAmount Float
+
     ///Aju:	Jumlah nominal klaim diajukan
     requestedAmount Float
 
@@ -834,9 +839,9 @@ model ClaimProgram {
 
     diseaseId Int?
 
-    clinics Clinic @relation(fields: [clinicId], references: [id])
+    clinics Clinic? @relation(fields: [clinicId], references: [id])
 
-    clinicId Int
+    clinicId Int?
 
     claim Claim?
 
