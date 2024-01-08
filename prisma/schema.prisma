@@ -522,9 +522,11 @@ model ProgramParticipation {
 
     participantId String
 
+    /// @HideField({ match: ['ProgramParticipationCreate*Input','ProgramParticipationUpdate*Input']})
     ///Dana
     funding Account @relation(fields: [fundingId], references: [id])
 
+    /// @HideField({ match: ['ProgramParticipationCreate*Input','ProgramParticipationUpdate*Input']})
     ///Nomor Dana
     fundingId Int
 
