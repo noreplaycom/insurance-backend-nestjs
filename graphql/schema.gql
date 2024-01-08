@@ -11,7 +11,6 @@ type AccountCountAggregate {
   id: Int!
   currentBalance: Int!
   currentBalanceLastUpdate: Int!
-  participantId: Int!
   _all: Int!
 }
 
@@ -24,7 +23,6 @@ type AccountMaxAggregate {
   id: Int
   currentBalance: Float
   currentBalanceLastUpdate: DateTime
-  participantId: String
 }
 
 """
@@ -36,7 +34,6 @@ type AccountMinAggregate {
   id: Int
   currentBalance: Float
   currentBalanceLastUpdate: DateTime
-  participantId: String
 }
 
 type AccountSumAggregate {
@@ -50,8 +47,6 @@ type Account {
   """Sisa Plafon:	Sisa Plafon Santunan Harian Rawat Inap"""
   currentBalance: Float!
   currentBalanceLastUpdate: DateTime
-  participantId: String!
-  participant: Participant!
   transactions: [Transaction!]
   programParticipation: [ProgramParticipation!]
   _count: AccountCount!
@@ -1300,7 +1295,6 @@ type ParticipantCount {
   claims: Int!
   contactInfos: Int!
   programParticipations: Int!
-  balances: Int!
   participant: Int!
 }
 
@@ -1365,7 +1359,6 @@ type Participant {
   claims: [Claim!]
   contactInfos: [ContactInfo!]
   programParticipations: [ProgramParticipation!]
-  balances: [Account!]
 
   """Anggota keluarga dari"""
   participant: [Participant!]
@@ -2523,7 +2516,6 @@ input ParticipantWhereInput {
   claims: ClaimListRelationFilter
   contactInfos: ContactInfoListRelationFilter
   programParticipations: ProgramParticipationListRelationFilter
-  balances: AccountListRelationFilter
   participant: ParticipantListRelationFilter
 }
 
@@ -3332,10 +3324,15 @@ input AddressListRelationFilter {
   none: AddressWhereInput
 }
 
-input AccountListRelationFilter {
-  every: AccountWhereInput
-  some: AccountWhereInput
-  none: AccountWhereInput
+input ParticipantListRelationFilter {
+  every: ParticipantWhereInput
+  some: ParticipantWhereInput
+  none: ParticipantWhereInput
+}
+
+input AccountNullableRelationFilter {
+  is: AccountWhereInput
+  isNot: AccountWhereInput
 }
 
 input AccountWhereInput {
@@ -3345,8 +3342,6 @@ input AccountWhereInput {
   id: IntFilter
   currentBalance: FloatFilter
   currentBalanceLastUpdate: DateTimeNullableFilter
-  participantId: StringFilter
-  participant: ParticipantRelationFilter
   transactions: TransactionListRelationFilter
   programParticipation: ProgramParticipationListRelationFilter
 }
@@ -3385,17 +3380,6 @@ input NestedEnumTransactionTypeFilter {
 }
 
 input AccountRelationFilter {
-  is: AccountWhereInput
-  isNot: AccountWhereInput
-}
-
-input ParticipantListRelationFilter {
-  every: ParticipantWhereInput
-  some: ParticipantWhereInput
-  none: ParticipantWhereInput
-}
-
-input AccountNullableRelationFilter {
   is: AccountWhereInput
   isNot: AccountWhereInput
 }
@@ -3710,7 +3694,6 @@ input ParticipantOrderByWithRelationInput {
   claims: ClaimOrderByRelationAggregateInput
   contactInfos: ContactInfoOrderByRelationAggregateInput
   programParticipations: ProgramParticipationOrderByRelationAggregateInput
-  balances: AccountOrderByRelationAggregateInput
   participant: ParticipantOrderByRelationAggregateInput
 }
 
@@ -3772,10 +3755,6 @@ input ClaimOrderByRelationAggregateInput {
 }
 
 input ContactInfoOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input AccountOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -4109,7 +4088,6 @@ input ParticipantWhereUniqueInput {
   claims: ClaimListRelationFilter
   contactInfos: ContactInfoListRelationFilter
   programParticipations: ProgramParticipationListRelationFilter
-  balances: AccountListRelationFilter
   participant: ParticipantListRelationFilter
 }
 
@@ -4362,6 +4340,9 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   participantCreateOne(data: ParticipantCreateInput!): Participant
+
+  """Deskripsinya ada disini loh"""
+  participantUpdateOne(data: ParticipantUpdateInput!, where: ParticipantWhereUniqueInput!): Participant
 
   """Import participant data from xlsx file"""
   participantImport(file: Upload): Boolean
@@ -8126,6 +8107,20 @@ input ParticipantCreateInput {
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   participant: ParticipantCreateNestedManyWithoutRelationInput
+}
+
+input ParticipantUpdateInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  birthDate: DateTimeFieldUpdateOperationsInput
+  isActive: BoolFieldUpdateOperationsInput
+  status: EnumParticipantStatusFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutParticipantNestedInput
+  relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
+  bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
+  contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
+  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input RoleCreateInput {

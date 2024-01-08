@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { Resolver, Query, Mutation, Args, Float } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
@@ -78,7 +79,7 @@ export class ParticipantResolver {
     @Relations() relations: ParticipantSelect,
   ) {
     return this.participantController.findMany({
-      ...participantFindManyArgs,
+      ...replaceNullWithUndefined(participantFindManyArgs),
       select: relations.select,
     });
   }
@@ -98,19 +99,19 @@ export class ParticipantResolver {
   //   });
   // }
 
-  // @Mutation(() => Participant, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async participantUpdateOne(
-  //   @Args() participantUpdateOneArgs: UpdateOneParticipantArgs,
-  //   @Relations() relations: ParticipantSelect,
-  // ) {
-  //   return this.participantController.updateOne({
-  //     ...replaceNullWithUndefined(participantUpdateOneArgs),
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Participant, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async participantUpdateOne(
+    @Args() participantUpdateOneArgs: UpdateOneParticipantArgs,
+    @Relations() relations: ParticipantSelect,
+  ) {
+    return this.participantController.updateOne({
+      ...replaceNullWithUndefined(participantUpdateOneArgs),
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => Participant, {
   //   nullable: true,

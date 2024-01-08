@@ -207,9 +207,6 @@ model Participant {
 
     programParticipations ProgramParticipation[]
 
-    /// @HideField({ match: ['ParticipantCreate*Input','ParticipantUpdate*Input']})
-    balances Account[]
-
     ///Anggota keluarga dari
     participant Participant[] @relation("ParticipantRelation")
 
@@ -1010,12 +1007,6 @@ model Account {
     currentBalance Float
 
     currentBalanceLastUpdate DateTime?
-
-    //-------------------------- 1 relations --------------------------------
-
-    participant Participant @relation(fields: [participantId], references: [userId])
-
-    participantId String
 
     //-------------------------- m relations --------------------------------
 

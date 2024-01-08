@@ -516,7 +516,6 @@ export function fakeAccountComplete() {
     id: faker.datatype.number(),
     currentBalance: faker.datatype.float(),
     currentBalanceLastUpdate: undefined,
-    participantId: faker.datatype.uuid(),
   };
 }
 export function fakeTransaction() {
