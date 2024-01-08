@@ -64,7 +64,7 @@ export class UserResolver {
     @Relations() relations: UserSelect,
   ): Promise<User | void> {
     return this.userController.findOne({
-      ...userFindUniqueArgs,
+      ...replaceNullWithUndefined(userFindUniqueArgs),
       select: relations.select,
     });
   }
@@ -78,7 +78,7 @@ export class UserResolver {
     @Relations() relations: UserSelect,
   ) {
     return this.userController.findMany({
-      ...userFindManyArgs,
+      ...replaceNullWithUndefined(userFindManyArgs),
       select: relations.select,
     });
   }

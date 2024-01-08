@@ -2120,6 +2120,9 @@ type Query {
   claimFindOne(where: ClaimWhereUniqueInput!): Claim
 
   """Deskripsinya ada disini loh"""
+  claimFindMany(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): [Claim!]
+
+  """Deskripsinya ada disini loh"""
   claimCount(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
@@ -2133,9 +2136,6 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   claimCountQuantityByStatus: [ClaimCountQuantityByStatusQuery!]
-
-  """Deskripsinya ada disini loh"""
-  claimFindMany(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): [Claim!]
 
   """Deskripsinya ada disini loh"""
   claimChannelFindMany: [String!]

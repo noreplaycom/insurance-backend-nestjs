@@ -56,7 +56,7 @@ export class ClaimResolver {
     @Relations() relations: ClaimSelect,
   ): Promise<Claim | void> {
     return await this.claimController.createOne({
-      ...claimCreateArgs,
+      ...replaceNullWithUndefined(claimCreateArgs),
       select: relations.select,
     });
   }
@@ -82,24 +82,24 @@ export class ClaimResolver {
     @Relations() relations: ClaimSelect,
   ): Promise<Claim | void> {
     return this.claimController.findOne({
-      ...claimFindUniqueArgs,
+      ...replaceNullWithUndefined(claimFindUniqueArgs),
       select: relations.select,
     });
   }
 
-  // @Query(() => [Claim], {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimFindMany(
-  //   @Args() claimFindManyArgs: FindManyClaimArgs,
-  //   @Relations() relations: ClaimSelect,
-  // ) {
-  //   return this.claimController.findMany({
-  //     ...claimFindManyArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Query(() => [Claim], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimFindMany(
+    @Args() claimFindManyArgs: FindManyClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ) {
+    return this.claimController.findMany({
+      ...replaceNullWithUndefined(claimFindManyArgs),
+      select: relations.select,
+    });
+  }
 
   // @Query(() => Claim, {
   //   nullable: true,

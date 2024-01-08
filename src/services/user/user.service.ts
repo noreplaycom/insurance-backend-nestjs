@@ -12,7 +12,6 @@ export class UserService {
     try {
       return await this.prisma.user.create(userCreateArgs);
     } catch (err) {
-      this.logger.error(err);
       throw new IGraphQLError({ code: 123456, err: err });
     }
   }
