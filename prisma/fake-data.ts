@@ -284,7 +284,7 @@ export function fakeProgramParticipationComplete() {
     effectiveDate: faker.datatype.datetime(),
     nonActiveDate: undefined,
     participantId: faker.datatype.uuid(),
-    fundingId: faker.datatype.number(),
+    fundingId: undefined,
     programId: undefined,
   };
 }

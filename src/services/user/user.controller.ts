@@ -15,10 +15,15 @@ export class UserController {
     //TODO: Auto create superuser when app first run. (username: superuser, password: superuser)
     //TODO: Auto assign role to participant when create user as participant
 
-    const { password } = userCreateArgs.data;
+    const { password, participant } = userCreateArgs.data;
 
     //encrypt user password
-    userCreateArgs.data.password = await encryptUserPassword(password);
+    //check if password is not null
+    if (password) {
+      userCreateArgs.data.password = await encryptUserPassword(password);
+    }
+
+    //TODO: if participant create, then create funding account
 
     return await this.userService.createOne(userCreateArgs);
   }

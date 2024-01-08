@@ -576,6 +576,10 @@ export declare class AccountMinOrderByAggregateInput {
     currentBalanceLastUpdate?: keyof typeof SortOrder;
     participantId?: keyof typeof SortOrder;
 }
+export declare class AccountNullableRelationFilter {
+    is?: InstanceType<typeof AccountWhereInput>;
+    isNot?: InstanceType<typeof AccountWhereInput>;
+}
 export declare class AccountOrderByRelationAggregateInput {
     _count?: keyof typeof SortOrder;
 }
@@ -742,19 +746,21 @@ export declare class AccountUpdateManyWithoutParticipantNestedInput {
     updateMany?: Array<AccountUpdateManyWithWhereWithoutParticipantInput>;
     deleteMany?: Array<AccountScalarWhereInput>;
 }
-export declare class AccountUpdateOneRequiredWithoutProgramParticipationNestedInput {
-    create?: InstanceType<typeof AccountCreateWithoutProgramParticipationInput>;
-    connectOrCreate?: InstanceType<typeof AccountCreateOrConnectWithoutProgramParticipationInput>;
-    upsert?: InstanceType<typeof AccountUpsertWithoutProgramParticipationInput>;
-    connect?: Prisma.AtLeast<AccountWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof AccountUpdateToOneWithWhereWithoutProgramParticipationInput>;
-}
 export declare class AccountUpdateOneRequiredWithoutTransactionsNestedInput {
     create?: InstanceType<typeof AccountCreateWithoutTransactionsInput>;
     connectOrCreate?: InstanceType<typeof AccountCreateOrConnectWithoutTransactionsInput>;
     upsert?: InstanceType<typeof AccountUpsertWithoutTransactionsInput>;
     connect?: Prisma.AtLeast<AccountWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof AccountUpdateToOneWithWhereWithoutTransactionsInput>;
+}
+export declare class AccountUpdateOneWithoutProgramParticipationNestedInput {
+    create?: InstanceType<typeof AccountCreateWithoutProgramParticipationInput>;
+    connectOrCreate?: InstanceType<typeof AccountCreateOrConnectWithoutProgramParticipationInput>;
+    upsert?: InstanceType<typeof AccountUpsertWithoutProgramParticipationInput>;
+    disconnect?: InstanceType<typeof AccountWhereInput>;
+    delete?: InstanceType<typeof AccountWhereInput>;
+    connect?: Prisma.AtLeast<AccountWhereUniqueInput, 'id'>;
+    update?: InstanceType<typeof AccountUpdateToOneWithWhereWithoutProgramParticipationInput>;
 }
 export declare class AccountUpdateToOneWithWhereWithoutProgramParticipationInput {
     where?: InstanceType<typeof AccountWhereInput>;
@@ -15852,7 +15858,7 @@ export declare class ProgramParticipationCreateManyParticipantInput {
     nonActiveReason?: string;
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
-    fundingId: number;
+    fundingId?: number;
     programId?: number;
 }
 export declare class ProgramParticipationCreateManyProgramInputEnvelope {
@@ -15866,7 +15872,7 @@ export declare class ProgramParticipationCreateManyProgramInput {
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
     participantId: string;
-    fundingId: number;
+    fundingId?: number;
 }
 export declare class ProgramParticipationCreateManyInput {
     id?: number;
@@ -15875,7 +15881,7 @@ export declare class ProgramParticipationCreateManyInput {
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
     participantId: string;
-    fundingId: number;
+    fundingId?: number;
     programId?: number;
 }
 export declare class ProgramParticipationCreateNestedManyWithoutFundingInput {
@@ -15921,7 +15927,7 @@ export declare class ProgramParticipationCreateWithoutParticipantInput {
     nonActiveReason?: string;
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
-    funding: InstanceType<typeof AccountCreateNestedOneWithoutProgramParticipationInput>;
+    funding?: InstanceType<typeof AccountCreateNestedOneWithoutProgramParticipationInput>;
     Program?: InstanceType<typeof ProgramCreateNestedOneWithoutProgramParticipationsInput>;
 }
 export declare class ProgramParticipationCreateWithoutProgramInput {
@@ -15930,7 +15936,7 @@ export declare class ProgramParticipationCreateWithoutProgramInput {
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutProgramParticipationsInput>;
-    funding: InstanceType<typeof AccountCreateNestedOneWithoutProgramParticipationInput>;
+    funding?: InstanceType<typeof AccountCreateNestedOneWithoutProgramParticipationInput>;
 }
 export declare class ProgramParticipationCreateInput {
     bpjsNumber?: string;
@@ -15938,7 +15944,7 @@ export declare class ProgramParticipationCreateInput {
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutProgramParticipationsInput>;
-    funding: InstanceType<typeof AccountCreateNestedOneWithoutProgramParticipationInput>;
+    funding?: InstanceType<typeof AccountCreateNestedOneWithoutProgramParticipationInput>;
     Program?: InstanceType<typeof ProgramCreateNestedOneWithoutProgramParticipationsInput>;
 }
 export declare class ProgramParticipationGroupByArgs {
@@ -15961,7 +15967,7 @@ export declare class ProgramParticipationGroupBy {
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
     participantId: string;
-    fundingId: number;
+    fundingId?: number;
     programId?: number;
     _count?: InstanceType<typeof ProgramParticipationCountAggregate>;
     _avg?: InstanceType<typeof ProgramParticipationAvgAggregate>;
@@ -16044,7 +16050,7 @@ export declare class ProgramParticipationOrderByWithAggregationInput {
     effectiveDate?: keyof typeof SortOrder;
     nonActiveDate?: InstanceType<typeof SortOrderInput>;
     participantId?: keyof typeof SortOrder;
-    fundingId?: keyof typeof SortOrder;
+    fundingId?: InstanceType<typeof SortOrderInput>;
     programId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof ProgramParticipationCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ProgramParticipationAvgOrderByAggregateInput>;
@@ -16059,7 +16065,7 @@ export declare class ProgramParticipationOrderByWithRelationInput {
     effectiveDate?: keyof typeof SortOrder;
     nonActiveDate?: InstanceType<typeof SortOrderInput>;
     participantId?: keyof typeof SortOrder;
-    fundingId?: keyof typeof SortOrder;
+    fundingId?: InstanceType<typeof SortOrderInput>;
     programId?: InstanceType<typeof SortOrderInput>;
     participant?: InstanceType<typeof ParticipantOrderByWithRelationInput>;
     funding?: InstanceType<typeof AccountOrderByWithRelationInput>;
@@ -16075,7 +16081,7 @@ export declare class ProgramParticipationScalarWhereWithAggregatesInput {
     effectiveDate?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     nonActiveDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     participantId?: InstanceType<typeof StringWithAggregatesFilter>;
-    fundingId?: InstanceType<typeof IntWithAggregatesFilter>;
+    fundingId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     programId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
 }
 export declare class ProgramParticipationScalarWhereInput {
@@ -16088,7 +16094,7 @@ export declare class ProgramParticipationScalarWhereInput {
     effectiveDate?: InstanceType<typeof DateTimeFilter>;
     nonActiveDate?: InstanceType<typeof DateTimeNullableFilter>;
     participantId?: InstanceType<typeof StringFilter>;
-    fundingId?: InstanceType<typeof IntFilter>;
+    fundingId?: InstanceType<typeof IntNullableFilter>;
     programId?: InstanceType<typeof IntNullableFilter>;
 }
 export declare class ProgramParticipationSumAggregateInput {
@@ -16139,7 +16145,7 @@ export declare class ProgramParticipationUncheckedCreateWithoutParticipantInput 
     nonActiveReason?: string;
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
-    fundingId: number;
+    fundingId?: number;
     programId?: number;
 }
 export declare class ProgramParticipationUncheckedCreateWithoutProgramInput {
@@ -16149,7 +16155,7 @@ export declare class ProgramParticipationUncheckedCreateWithoutProgramInput {
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
     participantId: string;
-    fundingId: number;
+    fundingId?: number;
 }
 export declare class ProgramParticipationUncheckedCreateInput {
     id?: number;
@@ -16158,7 +16164,7 @@ export declare class ProgramParticipationUncheckedCreateInput {
     effectiveDate: Date | string;
     nonActiveDate?: Date | string;
     participantId: string;
-    fundingId: number;
+    fundingId?: number;
     programId?: number;
 }
 export declare class ProgramParticipationUncheckedUpdateManyWithoutFundingNestedInput {
@@ -16202,7 +16208,7 @@ export declare class ProgramParticipationUncheckedUpdateManyWithoutParticipantIn
     nonActiveReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    fundingId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    fundingId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationUncheckedUpdateManyWithoutProgramNestedInput {
@@ -16225,7 +16231,7 @@ export declare class ProgramParticipationUncheckedUpdateManyWithoutProgramInput 
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    fundingId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    fundingId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -16234,7 +16240,7 @@ export declare class ProgramParticipationUncheckedUpdateManyInput {
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    fundingId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    fundingId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationUncheckedUpdateWithoutFundingInput {
@@ -16252,7 +16258,7 @@ export declare class ProgramParticipationUncheckedUpdateWithoutParticipantInput 
     nonActiveReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    fundingId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    fundingId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationUncheckedUpdateWithoutProgramInput {
@@ -16262,7 +16268,7 @@ export declare class ProgramParticipationUncheckedUpdateWithoutProgramInput {
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    fundingId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    fundingId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -16271,7 +16277,7 @@ export declare class ProgramParticipationUncheckedUpdateInput {
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participantId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    fundingId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    fundingId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationUpdateManyMutationInput {
@@ -16356,7 +16362,7 @@ export declare class ProgramParticipationUpdateWithoutParticipantInput {
     nonActiveReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    funding?: InstanceType<typeof AccountUpdateOneRequiredWithoutProgramParticipationNestedInput>;
+    funding?: InstanceType<typeof AccountUpdateOneWithoutProgramParticipationNestedInput>;
     Program?: InstanceType<typeof ProgramUpdateOneWithoutProgramParticipationsNestedInput>;
 }
 export declare class ProgramParticipationUpdateWithoutProgramInput {
@@ -16365,7 +16371,7 @@ export declare class ProgramParticipationUpdateWithoutProgramInput {
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutProgramParticipationsNestedInput>;
-    funding?: InstanceType<typeof AccountUpdateOneRequiredWithoutProgramParticipationNestedInput>;
+    funding?: InstanceType<typeof AccountUpdateOneWithoutProgramParticipationNestedInput>;
 }
 export declare class ProgramParticipationUpdateInput {
     bpjsNumber?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -16373,7 +16379,7 @@ export declare class ProgramParticipationUpdateInput {
     effectiveDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     nonActiveDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutProgramParticipationsNestedInput>;
-    funding?: InstanceType<typeof AccountUpdateOneRequiredWithoutProgramParticipationNestedInput>;
+    funding?: InstanceType<typeof AccountUpdateOneWithoutProgramParticipationNestedInput>;
     Program?: InstanceType<typeof ProgramUpdateOneWithoutProgramParticipationsNestedInput>;
 }
 export declare class ProgramParticipationUpsertWithWhereUniqueWithoutFundingInput {
@@ -16401,10 +16407,10 @@ export declare class ProgramParticipationWhereUniqueInput {
     effectiveDate?: InstanceType<typeof DateTimeFilter>;
     nonActiveDate?: InstanceType<typeof DateTimeNullableFilter>;
     participantId?: InstanceType<typeof StringFilter>;
-    fundingId?: InstanceType<typeof IntFilter>;
+    fundingId?: InstanceType<typeof IntNullableFilter>;
     programId?: InstanceType<typeof IntNullableFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
-    funding?: InstanceType<typeof AccountRelationFilter>;
+    funding?: InstanceType<typeof AccountNullableRelationFilter>;
     Program?: InstanceType<typeof ProgramNullableRelationFilter>;
 }
 export declare class ProgramParticipationWhereInput {
@@ -16417,10 +16423,10 @@ export declare class ProgramParticipationWhereInput {
     effectiveDate?: InstanceType<typeof DateTimeFilter>;
     nonActiveDate?: InstanceType<typeof DateTimeNullableFilter>;
     participantId?: InstanceType<typeof StringFilter>;
-    fundingId?: InstanceType<typeof IntFilter>;
+    fundingId?: InstanceType<typeof IntNullableFilter>;
     programId?: InstanceType<typeof IntNullableFilter>;
     participant?: InstanceType<typeof ParticipantRelationFilter>;
-    funding?: InstanceType<typeof AccountRelationFilter>;
+    funding?: InstanceType<typeof AccountNullableRelationFilter>;
     Program?: InstanceType<typeof ProgramNullableRelationFilter>;
 }
 export declare class ProgramParticipation {
@@ -16430,10 +16436,10 @@ export declare class ProgramParticipation {
     effectiveDate: Date;
     nonActiveDate: Date | null;
     participantId: string;
-    fundingId: number;
+    fundingId: number | null;
     programId: number | null;
     participant?: InstanceType<typeof Participant>;
-    funding?: InstanceType<typeof Account>;
+    funding?: InstanceType<typeof Account> | null;
     Program?: InstanceType<typeof Program> | null;
 }
 export declare class UpdateManyProgramParticipationArgs {
@@ -19767,7 +19773,7 @@ export declare class UserGroupBy {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt: Date | string;
     updatedAt: Date | string;
@@ -19875,7 +19881,7 @@ export declare class UserOrderByWithAggregationInput {
     fullName?: keyof typeof SortOrder;
     email?: keyof typeof SortOrder;
     emailVerifiedAt?: InstanceType<typeof SortOrderInput>;
-    password?: keyof typeof SortOrder;
+    password?: InstanceType<typeof SortOrderInput>;
     profilePictureUrl?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
@@ -19893,7 +19899,7 @@ export declare class UserOrderByWithRelationInput {
     fullName?: keyof typeof SortOrder;
     email?: keyof typeof SortOrder;
     emailVerifiedAt?: InstanceType<typeof SortOrderInput>;
-    password?: keyof typeof SortOrder;
+    password?: InstanceType<typeof SortOrderInput>;
     profilePictureUrl?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
@@ -19921,7 +19927,7 @@ export declare class UserScalarWhereWithAggregatesInput {
     fullName?: InstanceType<typeof StringWithAggregatesFilter>;
     email?: InstanceType<typeof StringWithAggregatesFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    password?: InstanceType<typeof StringWithAggregatesFilter>;
+    password?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     profilePictureUrl?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
@@ -19937,7 +19943,7 @@ export declare class UserScalarWhereInput {
     fullName?: InstanceType<typeof StringFilter>;
     email?: InstanceType<typeof StringFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableFilter>;
-    password?: InstanceType<typeof StringFilter>;
+    password?: InstanceType<typeof StringNullableFilter>;
     profilePictureUrl?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
@@ -20157,7 +20163,7 @@ export declare class UserUncheckedUpdateManyWithoutDocumentPrintsInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20183,7 +20189,7 @@ export declare class UserUncheckedUpdateManyWithoutRoleInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20195,7 +20201,7 @@ export declare class UserUncheckedUpdateManyInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20208,7 +20214,7 @@ export declare class UserUncheckedUpdateWithoutAnnouncementCreatedInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20227,7 +20233,7 @@ export declare class UserUncheckedUpdateWithoutClaimActionsInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20246,7 +20252,7 @@ export declare class UserUncheckedUpdateWithoutClaimsInputInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20265,7 +20271,7 @@ export declare class UserUncheckedUpdateWithoutClaimsOnWaitInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20284,7 +20290,7 @@ export declare class UserUncheckedUpdateWithoutDocumentPrintsInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20303,7 +20309,7 @@ export declare class UserUncheckedUpdateWithoutNotificationInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20322,7 +20328,7 @@ export declare class UserUncheckedUpdateWithoutParticipantInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20341,7 +20347,7 @@ export declare class UserUncheckedUpdateWithoutRoleInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20360,7 +20366,7 @@ export declare class UserUncheckedUpdateInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20380,7 +20386,7 @@ export declare class UserUpdateManyMutationInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20503,7 +20509,7 @@ export declare class UserUpdateWithoutAnnouncementCreatedInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20522,7 +20528,7 @@ export declare class UserUpdateWithoutClaimActionsInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20541,7 +20547,7 @@ export declare class UserUpdateWithoutClaimsInputInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20560,7 +20566,7 @@ export declare class UserUpdateWithoutClaimsOnWaitInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20579,7 +20585,7 @@ export declare class UserUpdateWithoutDocumentPrintsInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20598,7 +20604,7 @@ export declare class UserUpdateWithoutNotificationInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20617,7 +20623,7 @@ export declare class UserUpdateWithoutParticipantInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20636,7 +20642,7 @@ export declare class UserUpdateWithoutRoleInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20655,7 +20661,7 @@ export declare class UserUpdateInput {
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     emailVerifiedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    password?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     profilePictureUrl?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -20718,7 +20724,7 @@ export declare class UserWhereUniqueInput {
     NOT?: Array<UserWhereInput>;
     fullName?: InstanceType<typeof StringFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableFilter>;
-    password?: InstanceType<typeof StringFilter>;
+    password?: InstanceType<typeof StringNullableFilter>;
     profilePictureUrl?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
@@ -20742,7 +20748,7 @@ export declare class UserWhereInput {
     fullName?: InstanceType<typeof StringFilter>;
     email?: InstanceType<typeof StringFilter>;
     emailVerifiedAt?: InstanceType<typeof DateTimeNullableFilter>;
-    password?: InstanceType<typeof StringFilter>;
+    password?: InstanceType<typeof StringNullableFilter>;
     profilePictureUrl?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
@@ -20763,7 +20769,7 @@ export declare class User {
     fullName: string;
     email: string;
     emailVerifiedAt: Date | null;
-    password: string;
+    password: string | null;
     profilePictureUrl: string | null;
     createdAt: Date;
     updatedAt: Date;

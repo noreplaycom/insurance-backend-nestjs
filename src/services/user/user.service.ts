@@ -9,9 +9,11 @@ export class UserService {
   private readonly logger = new Logger(UserService.name);
 
   async createOne(userCreateArgs: Prisma.UserCreateArgs) {
+    this.logger.log(userCreateArgs);
     try {
       return await this.prisma.user.create(userCreateArgs);
     } catch (err) {
+      this.logger.error(err);
       throw new IGraphQLError({ code: 123456, err: err });
     }
   }
