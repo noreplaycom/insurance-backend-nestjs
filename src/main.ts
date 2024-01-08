@@ -3,7 +3,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { IExceptionFilter } from './utils/exception/custom-exception-filter';
 import { ConfigService } from '@nestjs/config';
-// Ignore the import error
+// Ignore the import errors
 import { graphqlUploadExpress } from 'graphql-upload';
 import { postgresBackup } from './utils/database-import.function';
 import { InitializationService } from './services/initialization/initialization.service';
