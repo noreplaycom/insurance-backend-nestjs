@@ -3,8 +3,8 @@ import { ParticipantService } from './participant.service';
 import { ParticipantResolver } from './participant.resolver';
 import { PrismaService } from 'prisma/prisma.service';
 import { ParticipantController } from './participant.controller';
-import { AccountModule } from '../account/account.module';
 import { UserModule } from '../user/user.module';
+import { ProgramModule } from '../program/program.module';
 
 @Module({
   providers: [
@@ -14,6 +14,6 @@ import { UserModule } from '../user/user.module';
     ParticipantService,
   ],
   exports: [ParticipantController],
-  imports: [AccountModule, UserModule],
+  imports: [ProgramModule, UserModule],
 })
 export class ParticipantModule {}

@@ -4,6 +4,7 @@ import {
   Participant,
   Position,
   Prisma,
+  ProgramType,
   SantunanHarianRawatInapPlan,
   TransactionType,
 } from '@prisma/client';
@@ -17,18 +18,19 @@ import {
 } from 'src/utils/mime-types.function';
 import { FileType } from 'src/model/enums';
 import { ConfigService } from '@nestjs/config';
-import { AccountController } from '../account/account.controller';
+import { ProgramController } from '../program/program.controller';
 
 @Injectable()
 export class ParticipantController {
   constructor(
     private readonly participantService: ParticipantService,
+    private readonly programController: ProgramController,
     private readonly configService: ConfigService,
   ) {}
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
     if (participantCreateArgs?.data) {
-      //create funding account for participant
+      // ? create funding account for participant
       const initialBalance: number = 50000000;
       const createdDate: Date = new Date();
       //
@@ -47,43 +49,32 @@ export class ParticipantController {
         },
       };
 
-      //connect participant to certain programs
+      // ? connect participant to certain programs
+      const participantPlan: SantunanHarianRawatInapPlan =
+        participantCreateArgs.data.programParticipation.create
+          .santunanHarianRawatInapPlan;
 
-      //get employment position
+      // Execute both queries concurrently using Promise.all
+      const [programFindFirst, programFindMany] = await Promise.all([
+        // 1. Find program id where program name is 'Santunan Harian Rawat Inap' and plan is according to participant plan
+        this.programController.findFirst({
+          where: { santunanHarianRawatInapPlan: participantPlan },
+        }),
 
-      //Plan I (VP keatas)= Rp.1.250.000, Plan II (MGR -SAVP) = Rp.1.000.000, Plan III (PD - SAMGR) = Rp.750.000
-      /*
+        // 2. Find many programs excluding 'Santunan Harian Rawat Inap' program
+        this.programController.findMany({
+          where: {
+            type: { not: { equals: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP } },
+          },
+        }),
+      ]);
 
-Jabatan-jabatan tersebut dapat diurutkan berdasarkan struktur organisasi secara umum dari level tertinggi hingga terendah sebagai berikut:
+      //3 Extract program IDs from programFindMany
+      const programIds = programFindMany.map((program) => program.id);
 
-AVP (Assistant Vice President)
-VP (Vice President)
-SAVP (Senior Assistant Vice President)
-PGD (Program Director)
-AMGR (Assistant Manager)
-SMGR (Senior Manager)
-MGR (Manager)
-SAMGR (Senior Assistant Manager)
-SASST (Senior Assistant)
-      */
-      function getPlanByPosition(
-        position: Position,
-      ): SantunanHarianRawatInapPlan {
-        switch (position) {
-          case Position.AVP:
-          case Position.VP:
-          case Position.SAVP:
-            return SantunanHarianRawatInapPlan.I;
-          case Position.MGR:
-          case Position.SMGR:
-            return SantunanHarianRawatInapPlan.II;
-          default:
-            return SantunanHarianRawatInapPlan.III;
-        }
-      }
-
+      //4. add program ids to connect
       participantCreateArgs.data.programParticipation.create.programs.connect =
-        [{ id: 1 }, { id: 2 }];
+        [{ id: programFindFirst.id, ...programIds }];
     }
 
     return await this.participantService.createOne(participantCreateArgs);
