@@ -58,7 +58,6 @@ model User {
 
     //-------------------------- 1 relations --------------------------------
 
-    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     ///catatan untuk web frontend, jangan menggunakan role.name sebagai identifikasi role, melainkan gunakan role.rolepermissions untuk melihat izin apa aja yang diberikan kepada user
     role Role @relation(fields: [roleId], references: [id], onDelete: SetDefault)
 
