@@ -14,21 +14,29 @@ import {
   FindUniqueParticipantArgs,
   Participant,
   ParticipantAggregateArgs,
+  Permission,
   UpdateManyParticipantArgs,
   UpdateOneParticipantArgs,
 } from 'src/@generated';
 import { ParticipantController } from './participant.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RequiredPermission } from 'src/decorator/permission.decorator';
+import { PermissionGuard } from '../role-permission/role-permission.guard';
 
 interface ParticipantSelect {
   select: Prisma.ParticipantSelect;
 }
 
+@UseGuards(JwtAuthGuard)
 @Resolver(() => Participant)
 export class ParticipantResolver {
   constructor(private readonly participantController: ParticipantController) {}
 
+  @RequiredPermission(Permission.CREATE_PARTICIPANT)
+  @UseGuards(PermissionGuard)
   @Mutation(() => Participant, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -100,6 +108,8 @@ export class ParticipantResolver {
   //   });
   // }
 
+  @RequiredPermission(Permission.UPDATE_PARTICIPANT)
+  @UseGuards(PermissionGuard)
   @Mutation(() => Participant, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -162,6 +172,8 @@ export class ParticipantResolver {
     return this.participantController.count(participantCountAggregateInput);
   }
 
+  @RequiredPermission(Permission.IMPORT_PARTICIPANT)
+  @UseGuards(PermissionGuard)
   @Mutation(() => Boolean, {
     nullable: true,
     description: 'Import participant data from xlsx file',
@@ -173,6 +185,8 @@ export class ParticipantResolver {
     return await this.participantController.import(file);
   }
 
+  @RequiredPermission(Permission.EXPORT_PARTICIPANT)
+  @UseGuards(PermissionGuard)
   @Query(() => String, {
     description: 'Export participant data to excel file (xlsx)',
   })

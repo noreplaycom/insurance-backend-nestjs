@@ -4,9 +4,10 @@ import { ClaimResolver } from './claim.resolver';
 import { PrismaService } from 'prisma/prisma.service';
 import { ClaimController } from './claim.controller';
 import { ClaimFinancialModule } from '../claim-financial/claim-financial.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
-  imports: [ClaimFinancialModule],
+  imports: [ClaimFinancialModule, UserModule],
   providers: [PrismaService, ClaimResolver, ClaimController, ClaimService],
   exports: [ClaimController],
 })

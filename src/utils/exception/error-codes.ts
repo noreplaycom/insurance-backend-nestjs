@@ -5,6 +5,7 @@ export const errorCodes: Record<number, string> = {
   10006: 'Gagal melakukan permintaan reset password. Hubungi Administrator',
   10007:
     'Pengguna dengan email tersebut telah dihapus dari sistem. Gunakan email lain untuk mendaftar',
+  10008: 'Sesi login Anda berakhir, silahkan login ulang.',
   //User
   110001: 'Kode referral tidak ditemukan. Harap periksa kembali',
   //Account
@@ -100,4 +101,7 @@ export const errorCodes: Record<number, string> = {
   180001:
     'Headers file excel untuk import data claim tidak sesuai, mohon periksa kembali file excel Anda',
   180002: 'File claim untuk import harus XLSX, mohon periksa kembali file Anda',
+
+  // ? Permission
+  210001: 'Anda tidak memiliki akses untuk memproses permintaan ini.'
 };
