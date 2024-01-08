@@ -78,6 +78,7 @@ export class ParticipantResolver {
     @Args() participantFindManyArgs: FindManyParticipantArgs,
     @Relations() relations: ParticipantSelect,
   ) {
+    console.log(participantFindManyArgs);
     return this.participantController.findMany({
       ...replaceNullWithUndefined(participantFindManyArgs),
       select: relations.select,

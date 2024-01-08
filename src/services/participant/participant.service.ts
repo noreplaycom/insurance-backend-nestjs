@@ -41,6 +41,7 @@ export class ParticipantService {
   }
 
   async findMany(participantFindManyArgs: Prisma.ParticipantFindManyArgs) {
+    this.logger.debug(participantFindManyArgs);
     try {
       return await this.prisma.participant.findMany(participantFindManyArgs);
     } catch (err) {
