@@ -72,20 +72,20 @@ export class ClaimResolver {
   //   return await this.claimController.createMany(createManyClaimArgs);
   // }
 
-  // @Query(() => Claim, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // claimFindOne(
-  //   @Args()
-  //   claimFindUniqueArgs: FindUniqueClaimArgs,
-  //   @Relations() relations: ClaimSelect,
-  // ): Promise<Claim | void> {
-  //   return this.claimController.findOne({
-  //     ...claimFindUniqueArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Query(() => Claim, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  claimFindOne(
+    @Args()
+    claimFindUniqueArgs: FindUniqueClaimArgs,
+    @Relations() relations: ClaimSelect,
+  ): Promise<Claim | void> {
+    return this.claimController.findOne({
+      ...claimFindUniqueArgs,
+      select: relations.select,
+    });
+  }
 
   // @Query(() => [Claim], {
   //   nullable: true,
@@ -289,16 +289,6 @@ export class ClaimResolver {
   }
 
   // ? CLAIM DETAIL SCREEN
-  @Query(() => Claim, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  claimFindOne(
-    @Args('claimFindOneByIdArgs') claimFindOneByIdArgs: ClaimFindOneByIdArgs,
-    // @Relations() relations: ClaimSelect,
-  ) {
-    return this.claimController.findOneById(claimFindOneByIdArgs);
-  }
 
   @Mutation(() => Claim, {
     nullable: true,

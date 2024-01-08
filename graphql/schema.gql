@@ -2117,6 +2117,9 @@ type Query {
   userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 
   """Deskripsinya ada disini loh"""
+  claimFindOne(where: ClaimWhereUniqueInput!): Claim
+
+  """Deskripsinya ada disini loh"""
   claimCount(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
@@ -2139,9 +2142,6 @@ type Query {
 
   """deskripsi nya disini loh"""
   claimExport: String!
-
-  """Deskripsinya ada disini loh"""
-  claimFindOne(claimFindOneByIdArgs: ClaimFindOneByIdArgs!): Claim
 
   """Deskripsinya ada disini loh"""
   claimStatusFindOne(where: ClaimStatusWhereUniqueInput!): ClaimStatus
@@ -3761,6 +3761,31 @@ enum UserScalarFieldEnum {
   participantId
 }
 
+input ClaimWhereUniqueInput {
+  id: String
+  claimFinancialId: Int
+  claimProgramId: Int
+  AND: [ClaimWhereInput!]
+  OR: [ClaimWhereInput!]
+  NOT: [ClaimWhereInput!]
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
+  channel: EnumClaimChannelFilter
+  admedicaStatus: EnumAdmedicaStatusFilter
+  company: StringFilter
+  participantId: StringFilter
+  inputedById: StringNullableFilter
+  waitingForId: StringNullableFilter
+  participant: ParticipantRelationFilter
+  claimFinancials: ClaimFinancialRelationFilter
+  claimProgram: ClaimProgramRelationFilter
+  inputedBy: UserNullableRelationFilter
+  waitingFor: UserNullableRelationFilter
+  tags: TagListRelationFilter
+  claimStatuses: ClaimStatusListRelationFilter
+}
+
 input ClaimOrderByWithRelationInput {
   id: SortOrder
   createdAt: SortOrder
@@ -3908,31 +3933,6 @@ input TagOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input ClaimWhereUniqueInput {
-  id: String
-  claimFinancialId: Int
-  claimProgramId: Int
-  AND: [ClaimWhereInput!]
-  OR: [ClaimWhereInput!]
-  NOT: [ClaimWhereInput!]
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  deletedAt: DateTimeNullableFilter
-  channel: EnumClaimChannelFilter
-  admedicaStatus: EnumAdmedicaStatusFilter
-  company: StringFilter
-  participantId: StringFilter
-  inputedById: StringNullableFilter
-  waitingForId: StringNullableFilter
-  participant: ParticipantRelationFilter
-  claimFinancials: ClaimFinancialRelationFilter
-  claimProgram: ClaimProgramRelationFilter
-  inputedBy: UserNullableRelationFilter
-  waitingFor: UserNullableRelationFilter
-  tags: TagListRelationFilter
-  claimStatuses: ClaimStatusListRelationFilter
-}
-
 enum ClaimScalarFieldEnum {
   id
   createdAt
@@ -3962,10 +3962,6 @@ input ClaimCountTotalByCustomRangeAndPeriodArgs {
   start: DateTime!
   end: DateTime!
   period: Period!
-}
-
-input ClaimFindOneByIdArgs {
-  id: String!
 }
 
 input ClaimStatusWhereUniqueInput {
