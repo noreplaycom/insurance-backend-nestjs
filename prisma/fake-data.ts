@@ -11,7 +11,6 @@ export function fakeUser() {
     profilePictureUrl: undefined,
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    participantId: undefined,
   };
 }
 export function fakeUserComplete() {
@@ -26,7 +25,6 @@ export function fakeUserComplete() {
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     roleId: 0,
-    participantId: undefined,
   };
 }
 export function fakeRole() {

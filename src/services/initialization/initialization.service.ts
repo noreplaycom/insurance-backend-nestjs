@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import {
   Color,
   Period,
@@ -20,6 +20,8 @@ export class InitializationService {
     private readonly programController: ProgramController,
   ) {}
 
+  private readonly logger = new Logger(InitializationService.name);
+
   async initialize() {
     const subdistricts = await this.prisma.subdistrict.findMany();
 
@@ -35,7 +37,7 @@ export class InitializationService {
       // Check if roles is empty
       const roles = await this.prisma.role.findMany({});
       if (roles.length === 0) {
-        console.log(
+        this.logger.log(
           'fresh start?.. creating superuser, admin with roles and permissions',
         );
         await this.prisma.$transaction(async (prisma) => {
@@ -64,11 +66,11 @@ export class InitializationService {
           await this.programController.createManyProgram();
         });
 
-        console.log('Superuser, admin, role, program created');
+        this.logger.log('Superuser, admin, role, program created');
       }
     } catch (error) {
       // Handle the error here
-      console.error('Error creating superuser and admin:', error);
+      this.logger.error('Error creating superuser and admin:', error);
 
       // Optionally, you can destroy the NestJS application if there's an error.
       // Be cautious when using this, as it might have unintended consequences.

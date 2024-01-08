@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
@@ -6,18 +6,25 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class ParticipantService {
   constructor(private prisma: PrismaService) {}
+  private readonly logger = new Logger(ParticipantService.name);
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
     try {
+      this.logger.debug(participantCreateArgs);
       return await this.prisma.participant.create(participantCreateArgs);
     } catch (err) {
+      this.logger.error(err);
       throw new IGraphQLError({ code: 123456, err: err });
     }
   }
 
-  async createMany(participantCreateManyArgs: Prisma.ParticipantCreateManyArgs) {
+  async createMany(
+    participantCreateManyArgs: Prisma.ParticipantCreateManyArgs,
+  ) {
     try {
-      return await this.prisma.participant.createMany(participantCreateManyArgs);
+      return await this.prisma.participant.createMany(
+        participantCreateManyArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -25,7 +32,9 @@ export class ParticipantService {
 
   async findOne(participantFindUniqueArgs: Prisma.ParticipantFindUniqueArgs) {
     try {
-      return await this.prisma.participant.findUnique(participantFindUniqueArgs);
+      return await this.prisma.participant.findUnique(
+        participantFindUniqueArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -55,9 +64,13 @@ export class ParticipantService {
     }
   }
 
-  async updateMany(participantUpdateManyArgs: Prisma.ParticipantUpdateManyArgs) {
+  async updateMany(
+    participantUpdateManyArgs: Prisma.ParticipantUpdateManyArgs,
+  ) {
     try {
-      return await this.prisma.participant.updateMany(participantUpdateManyArgs);
+      return await this.prisma.participant.updateMany(
+        participantUpdateManyArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -72,7 +85,9 @@ export class ParticipantService {
     }
   }
 
-  async deleteMany(participantDeleteManyArgs: Prisma.ParticipantDeleteManyArgs) {
+  async deleteMany(
+    participantDeleteManyArgs: Prisma.ParticipantDeleteManyArgs,
+  ) {
     try {
       await this.prisma.participant.deleteMany(participantDeleteManyArgs);
       return true;

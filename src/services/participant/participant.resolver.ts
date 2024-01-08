@@ -28,20 +28,20 @@ interface ParticipantSelect {
 export class ParticipantResolver {
   constructor(private readonly participantController: ParticipantController) {}
 
-  // @Mutation(() => Participant, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async participantCreateOne(
-  //   @Args()
-  //   participantCreateArgs: CreateOneParticipantArgs,
-  //   @Relations() relations: ParticipantSelect,
-  // ): Promise<Participant | void> {
-  //   return await this.participantController.createOne({
-  //     ...participantCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Participant, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async participantCreateOne(
+    @Args()
+    participantCreateArgs: CreateOneParticipantArgs,
+    @Relations() relations: ParticipantSelect,
+  ): Promise<Participant | void> {
+    return await this.participantController.createOne({
+      ...participantCreateArgs,
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,

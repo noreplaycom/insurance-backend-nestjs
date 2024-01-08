@@ -15,7 +15,7 @@ export class UserController {
     //TODO: Auto create superuser when app first run. (username: superuser, password: superuser)
     //TODO: Auto assign role to participant when create user as participant
 
-    const { password, participant } = userCreateArgs.data;
+    const { password } = userCreateArgs.data;
 
     //encrypt user password
     //check if password is not null

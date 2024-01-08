@@ -1301,7 +1301,7 @@ type ParticipantCount {
   contactInfos: Int!
   programParticipations: Int!
   balances: Int!
-  Participant: Int!
+  participant: Int!
 }
 
 type ParticipantMaxAggregate {
@@ -1368,7 +1368,7 @@ type Participant {
   balances: [Account!]
 
   """Anggota keluarga dari"""
-  Participant: [Participant!]
+  participant: [Participant!]
   _count: ParticipantCount!
 }
 
@@ -1964,7 +1964,6 @@ type Transaction {
 
 type UserAvgAggregate {
   roleId: Float
-  participantId: Float
 }
 
 type UserCountAggregate {
@@ -1978,7 +1977,6 @@ type UserCountAggregate {
   updatedAt: Int!
   deletedAt: Int!
   roleId: Int!
-  participantId: Int!
   _all: Int!
 }
 
@@ -2002,7 +2000,6 @@ type UserMaxAggregate {
   updatedAt: DateTime
   deletedAt: DateTime
   roleId: Int
-  participantId: Int
 }
 
 type UserMinAggregate {
@@ -2016,12 +2013,10 @@ type UserMinAggregate {
   updatedAt: DateTime
   deletedAt: DateTime
   roleId: Int
-  participantId: Int
 }
 
 type UserSumAggregate {
   roleId: Int
-  participantId: Int
 }
 
 type User {
@@ -2039,7 +2034,6 @@ type User {
   updatedAt: DateTime!
   deletedAt: DateTime
   roleId: Int!
-  participantId: Int
 
   """
   catatan untuk web frontend, jangan menggunakan role.name sebagai identifikasi role, melainkan gunakan role.rolepermissions untuk melihat izin apa aja yang diberikan kepada user
@@ -2530,7 +2524,7 @@ input ParticipantWhereInput {
   contactInfos: ContactInfoListRelationFilter
   programParticipations: ProgramParticipationListRelationFilter
   balances: AccountListRelationFilter
-  Participant: ParticipantListRelationFilter
+  participant: ParticipantListRelationFilter
 }
 
 input EnumGenderFilter {
@@ -2590,7 +2584,6 @@ input UserWhereInput {
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
   roleId: IntFilter
-  participantId: IntNullableFilter
   role: RoleRelationFilter
   participant: ParticipantNullableRelationFilter
   claimsInput: ClaimListRelationFilter
@@ -3647,7 +3640,6 @@ input UserWhereUniqueInput {
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
   roleId: IntFilter
-  participantId: IntNullableFilter
   role: RoleRelationFilter
   participant: ParticipantNullableRelationFilter
   claimsInput: ClaimListRelationFilter
@@ -3669,7 +3661,6 @@ input UserOrderByWithRelationInput {
   updatedAt: SortOrder
   deletedAt: SortOrderInput
   roleId: SortOrder
-  participantId: SortOrderInput
   role: RoleOrderByWithRelationInput
   participant: ParticipantOrderByWithRelationInput
   claimsInput: ClaimOrderByRelationAggregateInput
@@ -3720,7 +3711,7 @@ input ParticipantOrderByWithRelationInput {
   contactInfos: ContactInfoOrderByRelationAggregateInput
   programParticipations: ProgramParticipationOrderByRelationAggregateInput
   balances: AccountOrderByRelationAggregateInput
-  Participant: ParticipantOrderByRelationAggregateInput
+  participant: ParticipantOrderByRelationAggregateInput
 }
 
 input EmploymentOrderByWithRelationInput {
@@ -3819,7 +3810,6 @@ enum UserScalarFieldEnum {
   updatedAt
   deletedAt
   roleId
-  participantId
 }
 
 input ClaimWhereUniqueInput {
@@ -4120,7 +4110,7 @@ input ParticipantWhereUniqueInput {
   contactInfos: ContactInfoListRelationFilter
   programParticipations: ProgramParticipationListRelationFilter
   balances: AccountListRelationFilter
-  Participant: ParticipantListRelationFilter
+  participant: ParticipantListRelationFilter
 }
 
 enum ParticipantScalarFieldEnum {
@@ -4370,6 +4360,9 @@ type Mutation {
   """Deskripsinya ada disini loh"""
   claimStatusDeleteMany(where: ClaimStatusWhereInput): Boolean!
 
+  """Deskripsinya ada disini loh"""
+  participantCreateOne(data: ParticipantCreateInput!): Participant
+
   """Import participant data from xlsx file"""
   participantImport(file: Upload): Boolean
 
@@ -4449,11 +4442,126 @@ input ParticipantCreateWithoutProgramParticipationsInput {
   birthDate: DateTime!
   isActive: Boolean!
   status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
+  participant: ParticipantCreateNestedManyWithoutRelationInput
+}
+
+input UserCreateNestedOneWithoutParticipantInput {
+  create: UserCreateWithoutParticipantInput
+  connectOrCreate: UserCreateOrConnectWithoutParticipantInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutParticipantInput {
+  fullName: String!
+  email: String!
+  password: String
+  profilePictureUrl: String
+  role: RoleCreateNestedOneWithoutUsersInput
+}
+
+input RoleCreateNestedOneWithoutUsersInput {
+  create: RoleCreateWithoutUsersInput
+  connectOrCreate: RoleCreateOrConnectWithoutUsersInput
+  connect: RoleWhereUniqueInput
+}
+
+input RoleCreateWithoutUsersInput {
+  name: String!
+  description: String
+  roleType: RoleType
+  higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
+  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
+}
+
+input RoleCreateNestedOneWithoutLowerLevelThanInput {
+  create: RoleCreateWithoutLowerLevelThanInput
+  connectOrCreate: RoleCreateOrConnectWithoutLowerLevelThanInput
+  connect: RoleWhereUniqueInput
+}
+
+input RoleCreateWithoutLowerLevelThanInput {
+  name: String!
+  description: String
+  roleType: RoleType
+  higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
+  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  users: UserCreateNestedManyWithoutRoleInput
+}
+
+input RolePermissionCreateNestedManyWithoutRoleInput {
+  create: [RolePermissionCreateWithoutRoleInput!]
+  connectOrCreate: [RolePermissionCreateOrConnectWithoutRoleInput!]
+  createMany: RolePermissionCreateManyRoleInputEnvelope
+  connect: [RolePermissionWhereUniqueInput!]
+}
+
+input RolePermissionCreateWithoutRoleInput {
+  permission: Permission!
+}
+
+input RolePermissionCreateOrConnectWithoutRoleInput {
+  where: RolePermissionWhereUniqueInput!
+  create: RolePermissionCreateWithoutRoleInput!
+}
+
+input RolePermissionWhereUniqueInput {
+  id: Int
+  AND: [RolePermissionWhereInput!]
+  OR: [RolePermissionWhereInput!]
+  NOT: [RolePermissionWhereInput!]
+  roleId: IntNullableFilter
+  permission: EnumPermissionFilter
+  role: RoleNullableRelationFilter
+}
+
+input RolePermissionCreateManyRoleInputEnvelope {
+  data: [RolePermissionCreateManyRoleInput!]!
+  skipDuplicates: Boolean
+}
+
+input RolePermissionCreateManyRoleInput {
+  id: Int
+  permission: Permission!
+}
+
+input UserCreateNestedManyWithoutRoleInput {
+  create: [UserCreateWithoutRoleInput!]
+  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
+  createMany: UserCreateManyRoleInputEnvelope
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateWithoutRoleInput {
+  fullName: String!
+  email: String!
+  password: String
+  profilePictureUrl: String
+  participant: ParticipantCreateNestedOneWithoutUserInput
+}
+
+input ParticipantCreateNestedOneWithoutUserInput {
+  create: ParticipantCreateWithoutUserInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutUserInput
+  connect: ParticipantWhereUniqueInput
+}
+
+input ParticipantCreateWithoutUserInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
+  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input ParticipantCreateNestedOneWithoutParticipantInput {
@@ -4467,6 +4575,7 @@ input ParticipantCreateWithoutParticipantInput {
   birthDate: DateTime!
   isActive: Boolean!
   status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
@@ -4543,12 +4652,13 @@ input ParticipantCreateWithoutClaimsInput {
   birthDate: DateTime!
   isActive: Boolean!
   status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
+  participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input BankAccountCreateNestedOneWithoutParticipantInput {
@@ -5076,209 +5186,6 @@ input UserCreateWithoutDocumentPrintsInput {
   profilePictureUrl: String
   role: RoleCreateNestedOneWithoutUsersInput
   participant: ParticipantCreateNestedOneWithoutUserInput
-}
-
-input RoleCreateNestedOneWithoutUsersInput {
-  create: RoleCreateWithoutUsersInput
-  connectOrCreate: RoleCreateOrConnectWithoutUsersInput
-  connect: RoleWhereUniqueInput
-}
-
-input RoleCreateWithoutUsersInput {
-  name: String!
-  description: String
-  roleType: RoleType
-  higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
-  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
-  lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
-}
-
-input RoleCreateNestedOneWithoutLowerLevelThanInput {
-  create: RoleCreateWithoutLowerLevelThanInput
-  connectOrCreate: RoleCreateOrConnectWithoutLowerLevelThanInput
-  connect: RoleWhereUniqueInput
-}
-
-input RoleCreateWithoutLowerLevelThanInput {
-  name: String!
-  description: String
-  roleType: RoleType
-  higherLevelThan: RoleCreateNestedOneWithoutLowerLevelThanInput
-  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
-  users: UserCreateNestedManyWithoutRoleInput
-}
-
-input RolePermissionCreateNestedManyWithoutRoleInput {
-  create: [RolePermissionCreateWithoutRoleInput!]
-  connectOrCreate: [RolePermissionCreateOrConnectWithoutRoleInput!]
-  createMany: RolePermissionCreateManyRoleInputEnvelope
-  connect: [RolePermissionWhereUniqueInput!]
-}
-
-input RolePermissionCreateWithoutRoleInput {
-  permission: Permission!
-}
-
-input RolePermissionCreateOrConnectWithoutRoleInput {
-  where: RolePermissionWhereUniqueInput!
-  create: RolePermissionCreateWithoutRoleInput!
-}
-
-input RolePermissionWhereUniqueInput {
-  id: Int
-  AND: [RolePermissionWhereInput!]
-  OR: [RolePermissionWhereInput!]
-  NOT: [RolePermissionWhereInput!]
-  roleId: IntNullableFilter
-  permission: EnumPermissionFilter
-  role: RoleNullableRelationFilter
-}
-
-input RolePermissionCreateManyRoleInputEnvelope {
-  data: [RolePermissionCreateManyRoleInput!]!
-  skipDuplicates: Boolean
-}
-
-input RolePermissionCreateManyRoleInput {
-  id: Int
-  permission: Permission!
-}
-
-input UserCreateNestedManyWithoutRoleInput {
-  create: [UserCreateWithoutRoleInput!]
-  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
-  createMany: UserCreateManyRoleInputEnvelope
-  connect: [UserWhereUniqueInput!]
-}
-
-input UserCreateWithoutRoleInput {
-  fullName: String!
-  email: String!
-  password: String
-  profilePictureUrl: String
-  participant: ParticipantCreateNestedOneWithoutUserInput
-}
-
-input ParticipantCreateNestedOneWithoutUserInput {
-  create: ParticipantCreateWithoutUserInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutUserInput
-  connect: ParticipantWhereUniqueInput
-}
-
-input ParticipantCreateWithoutUserInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
-  employment: EmploymentCreateNestedOneWithoutParticipantInput!
-  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
-  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
-}
-
-input ParticipantCreateNestedManyWithoutRelationInput {
-  create: [ParticipantCreateWithoutRelationInput!]
-  connectOrCreate: [ParticipantCreateOrConnectWithoutRelationInput!]
-  createMany: ParticipantCreateManyRelationInputEnvelope
-  connect: [ParticipantWhereUniqueInput!]
-}
-
-input ParticipantCreateWithoutRelationInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  employment: EmploymentCreateNestedOneWithoutParticipantInput!
-  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
-  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
-}
-
-input ParticipantCreateOrConnectWithoutRelationInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutRelationInput!
-}
-
-input ParticipantCreateManyRelationInputEnvelope {
-  data: [ParticipantCreateManyRelationInput!]!
-  skipDuplicates: Boolean
-}
-
-input ParticipantCreateManyRelationInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  userId: String!
-  employmentId: Int!
-}
-
-input ParticipantCreateOrConnectWithoutUserInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutUserInput!
-}
-
-input UserCreateOrConnectWithoutRoleInput {
-  where: UserWhereUniqueInput!
-  create: UserCreateWithoutRoleInput!
-}
-
-input UserCreateManyRoleInputEnvelope {
-  data: [UserCreateManyRoleInput!]!
-  skipDuplicates: Boolean
-}
-
-input UserCreateManyRoleInput {
-  fullName: String!
-  email: String!
-  password: String
-  profilePictureUrl: String
-}
-
-input RoleCreateOrConnectWithoutLowerLevelThanInput {
-  where: RoleWhereUniqueInput!
-  create: RoleCreateWithoutLowerLevelThanInput!
-}
-
-input RoleCreateNestedManyWithoutHigherLevelThanInput {
-  create: [RoleCreateWithoutHigherLevelThanInput!]
-  connectOrCreate: [RoleCreateOrConnectWithoutHigherLevelThanInput!]
-  createMany: RoleCreateManyHigherLevelThanInputEnvelope
-  connect: [RoleWhereUniqueInput!]
-}
-
-input RoleCreateWithoutHigherLevelThanInput {
-  name: String!
-  description: String
-  roleType: RoleType
-  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
-  users: UserCreateNestedManyWithoutRoleInput
-  lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
-}
-
-input RoleCreateOrConnectWithoutHigherLevelThanInput {
-  where: RoleWhereUniqueInput!
-  create: RoleCreateWithoutHigherLevelThanInput!
-}
-
-input RoleCreateManyHigherLevelThanInputEnvelope {
-  data: [RoleCreateManyHigherLevelThanInput!]!
-  skipDuplicates: Boolean
-}
-
-input RoleCreateManyHigherLevelThanInput {
-  id: Int
-  name: String!
-  description: String
-  roleType: RoleType
-}
-
-input RoleCreateOrConnectWithoutUsersInput {
-  where: RoleWhereUniqueInput!
-  create: RoleCreateWithoutUsersInput!
 }
 
 input UserCreateOrConnectWithoutDocumentPrintsInput {
@@ -5810,6 +5717,45 @@ input ProgramParticipationCreateManyParticipantInput {
   programId: Int
 }
 
+input ParticipantCreateNestedManyWithoutRelationInput {
+  create: [ParticipantCreateWithoutRelationInput!]
+  connectOrCreate: [ParticipantCreateOrConnectWithoutRelationInput!]
+  createMany: ParticipantCreateManyRelationInputEnvelope
+  connect: [ParticipantWhereUniqueInput!]
+}
+
+input ParticipantCreateWithoutRelationInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
+  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  participant: ParticipantCreateNestedManyWithoutRelationInput
+}
+
+input ParticipantCreateOrConnectWithoutRelationInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutRelationInput!
+}
+
+input ParticipantCreateManyRelationInputEnvelope {
+  data: [ParticipantCreateManyRelationInput!]!
+  skipDuplicates: Boolean
+}
+
+input ParticipantCreateManyRelationInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  userId: String!
+  employmentId: Int!
+}
+
 input ParticipantCreateOrConnectWithoutClaimsInput {
   where: ParticipantWhereUniqueInput!
   create: ParticipantCreateWithoutClaimsInput!
@@ -5880,6 +5826,76 @@ input EmploymentCreateOrConnectWithoutParticipantInput {
 input ParticipantCreateOrConnectWithoutParticipantInput {
   where: ParticipantWhereUniqueInput!
   create: ParticipantCreateWithoutParticipantInput!
+}
+
+input ParticipantCreateOrConnectWithoutUserInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutUserInput!
+}
+
+input UserCreateOrConnectWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutRoleInput!
+}
+
+input UserCreateManyRoleInputEnvelope {
+  data: [UserCreateManyRoleInput!]!
+  skipDuplicates: Boolean
+}
+
+input UserCreateManyRoleInput {
+  fullName: String!
+  email: String!
+  password: String
+  profilePictureUrl: String
+}
+
+input RoleCreateOrConnectWithoutLowerLevelThanInput {
+  where: RoleWhereUniqueInput!
+  create: RoleCreateWithoutLowerLevelThanInput!
+}
+
+input RoleCreateNestedManyWithoutHigherLevelThanInput {
+  create: [RoleCreateWithoutHigherLevelThanInput!]
+  connectOrCreate: [RoleCreateOrConnectWithoutHigherLevelThanInput!]
+  createMany: RoleCreateManyHigherLevelThanInputEnvelope
+  connect: [RoleWhereUniqueInput!]
+}
+
+input RoleCreateWithoutHigherLevelThanInput {
+  name: String!
+  description: String
+  roleType: RoleType
+  rolePermissions: RolePermissionCreateNestedManyWithoutRoleInput
+  users: UserCreateNestedManyWithoutRoleInput
+  lowerLevelThan: RoleCreateNestedManyWithoutHigherLevelThanInput
+}
+
+input RoleCreateOrConnectWithoutHigherLevelThanInput {
+  where: RoleWhereUniqueInput!
+  create: RoleCreateWithoutHigherLevelThanInput!
+}
+
+input RoleCreateManyHigherLevelThanInputEnvelope {
+  data: [RoleCreateManyHigherLevelThanInput!]!
+  skipDuplicates: Boolean
+}
+
+input RoleCreateManyHigherLevelThanInput {
+  id: Int
+  name: String!
+  description: String
+  roleType: RoleType
+}
+
+input RoleCreateOrConnectWithoutUsersInput {
+  where: RoleWhereUniqueInput!
+  create: RoleCreateWithoutUsersInput!
+}
+
+input UserCreateOrConnectWithoutParticipantInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutParticipantInput!
 }
 
 input ParticipantCreateOrConnectWithoutProgramParticipationsInput {
@@ -6026,11 +6042,12 @@ input ParticipantUpdateWithoutProgramParticipationsInput {
   birthDate: DateTimeFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutParticipantNestedInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  Participant: ParticipantUpdateManyWithoutRelationNestedInput
+  participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input EnumGenderFieldUpdateOperationsInput {
@@ -6043,6 +6060,192 @@ input BoolFieldUpdateOperationsInput {
 
 input EnumParticipantStatusFieldUpdateOperationsInput {
   set: ParticipantStatus
+}
+
+input UserUpdateOneRequiredWithoutParticipantNestedInput {
+  create: UserCreateWithoutParticipantInput
+  connectOrCreate: UserCreateOrConnectWithoutParticipantInput
+  upsert: UserUpsertWithoutParticipantInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateToOneWithWhereWithoutParticipantInput
+}
+
+input UserUpsertWithoutParticipantInput {
+  update: UserUpdateWithoutParticipantInput!
+  create: UserCreateWithoutParticipantInput!
+  where: UserWhereInput
+}
+
+input UserUpdateWithoutParticipantInput {
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  role: RoleUpdateOneRequiredWithoutUsersNestedInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input RoleUpdateOneRequiredWithoutUsersNestedInput {
+  create: RoleCreateWithoutUsersInput
+  connectOrCreate: RoleCreateOrConnectWithoutUsersInput
+  upsert: RoleUpsertWithoutUsersInput
+  connect: RoleWhereUniqueInput
+  update: RoleUpdateToOneWithWhereWithoutUsersInput
+}
+
+input RoleUpsertWithoutUsersInput {
+  update: RoleUpdateWithoutUsersInput!
+  create: RoleCreateWithoutUsersInput!
+  where: RoleWhereInput
+}
+
+input RoleUpdateWithoutUsersInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
+  higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
+  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
+}
+
+input NullableEnumRoleTypeFieldUpdateOperationsInput {
+  set: RoleType
+}
+
+input RoleUpdateOneWithoutLowerLevelThanNestedInput {
+  create: RoleCreateWithoutLowerLevelThanInput
+  connectOrCreate: RoleCreateOrConnectWithoutLowerLevelThanInput
+  upsert: RoleUpsertWithoutLowerLevelThanInput
+  disconnect: RoleWhereInput
+  delete: RoleWhereInput
+  connect: RoleWhereUniqueInput
+  update: RoleUpdateToOneWithWhereWithoutLowerLevelThanInput
+}
+
+input RoleUpsertWithoutLowerLevelThanInput {
+  update: RoleUpdateWithoutLowerLevelThanInput!
+  create: RoleCreateWithoutLowerLevelThanInput!
+  where: RoleWhereInput
+}
+
+input RoleUpdateWithoutLowerLevelThanInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
+  higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
+  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  users: UserUpdateManyWithoutRoleNestedInput
+}
+
+input RolePermissionUpdateManyWithoutRoleNestedInput {
+  create: [RolePermissionCreateWithoutRoleInput!]
+  connectOrCreate: [RolePermissionCreateOrConnectWithoutRoleInput!]
+  upsert: [RolePermissionUpsertWithWhereUniqueWithoutRoleInput!]
+  createMany: RolePermissionCreateManyRoleInputEnvelope
+  set: [RolePermissionWhereUniqueInput!]
+  disconnect: [RolePermissionWhereUniqueInput!]
+  delete: [RolePermissionWhereUniqueInput!]
+  connect: [RolePermissionWhereUniqueInput!]
+  update: [RolePermissionUpdateWithWhereUniqueWithoutRoleInput!]
+  updateMany: [RolePermissionUpdateManyWithWhereWithoutRoleInput!]
+  deleteMany: [RolePermissionScalarWhereInput!]
+}
+
+input RolePermissionUpsertWithWhereUniqueWithoutRoleInput {
+  where: RolePermissionWhereUniqueInput!
+  update: RolePermissionUpdateWithoutRoleInput!
+  create: RolePermissionCreateWithoutRoleInput!
+}
+
+input RolePermissionUpdateWithoutRoleInput {
+  permission: EnumPermissionFieldUpdateOperationsInput
+}
+
+input EnumPermissionFieldUpdateOperationsInput {
+  set: Permission
+}
+
+input RolePermissionUpdateWithWhereUniqueWithoutRoleInput {
+  where: RolePermissionWhereUniqueInput!
+  data: RolePermissionUpdateWithoutRoleInput!
+}
+
+input RolePermissionUpdateManyWithWhereWithoutRoleInput {
+  where: RolePermissionScalarWhereInput!
+  data: RolePermissionUpdateManyMutationInput!
+}
+
+input RolePermissionScalarWhereInput {
+  AND: [RolePermissionScalarWhereInput!]
+  OR: [RolePermissionScalarWhereInput!]
+  NOT: [RolePermissionScalarWhereInput!]
+  id: IntFilter
+  roleId: IntNullableFilter
+  permission: EnumPermissionFilter
+}
+
+input RolePermissionUpdateManyMutationInput {
+  permission: EnumPermissionFieldUpdateOperationsInput
+}
+
+input UserUpdateManyWithoutRoleNestedInput {
+  create: [UserCreateWithoutRoleInput!]
+  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutRoleInput!]
+  createMany: UserCreateManyRoleInputEnvelope
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutRoleInput!]
+  updateMany: [UserUpdateManyWithWhereWithoutRoleInput!]
+  deleteMany: [UserScalarWhereInput!]
+}
+
+input UserUpsertWithWhereUniqueWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutRoleInput!
+  create: UserCreateWithoutRoleInput!
+}
+
+input UserUpdateWithoutRoleInput {
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+}
+
+input ParticipantUpdateOneWithoutUserNestedInput {
+  create: ParticipantCreateWithoutUserInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutUserInput
+  upsert: ParticipantUpsertWithoutUserInput
+  disconnect: ParticipantWhereInput
+  delete: ParticipantWhereInput
+  connect: ParticipantWhereUniqueInput
+  update: ParticipantUpdateToOneWithWhereWithoutUserInput
+}
+
+input ParticipantUpsertWithoutUserInput {
+  update: ParticipantUpdateWithoutUserInput!
+  create: ParticipantCreateWithoutUserInput!
+  where: ParticipantWhereInput
+}
+
+input ParticipantUpdateWithoutUserInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  birthDate: DateTimeFieldUpdateOperationsInput
+  isActive: BoolFieldUpdateOperationsInput
+  status: EnumParticipantStatusFieldUpdateOperationsInput
+  relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
+  bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
+  contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
+  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input ParticipantUpdateOneWithoutParticipantNestedInput {
@@ -6066,6 +6269,7 @@ input ParticipantUpdateWithoutParticipantInput {
   birthDate: DateTimeFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutParticipantNestedInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
@@ -6115,10 +6319,6 @@ input BranchUpsertWithoutEmploymentInput {
 input BranchUpdateWithoutEmploymentInput {
   name: StringFieldUpdateOperationsInput
   claimFinancial: ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput
-}
-
-input StringFieldUpdateOperationsInput {
-  set: String
 }
 
 input ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput {
@@ -6213,12 +6413,13 @@ input ParticipantUpdateWithoutClaimsInput {
   birthDate: DateTimeFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutParticipantNestedInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
-  Participant: ParticipantUpdateManyWithoutRelationNestedInput
+  participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input BankAccountUpdateOneWithoutParticipantNestedInput {
@@ -6843,239 +7044,12 @@ input UserUpdateWithoutDocumentPrintsInput {
   participant: ParticipantUpdateOneWithoutUserNestedInput
 }
 
-input RoleUpdateOneRequiredWithoutUsersNestedInput {
-  create: RoleCreateWithoutUsersInput
-  connectOrCreate: RoleCreateOrConnectWithoutUsersInput
-  upsert: RoleUpsertWithoutUsersInput
-  connect: RoleWhereUniqueInput
-  update: RoleUpdateToOneWithWhereWithoutUsersInput
-}
-
-input RoleUpsertWithoutUsersInput {
-  update: RoleUpdateWithoutUsersInput!
-  create: RoleCreateWithoutUsersInput!
-  where: RoleWhereInput
-}
-
-input RoleUpdateWithoutUsersInput {
-  name: StringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
-  higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
-  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
-  lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
-}
-
-input NullableEnumRoleTypeFieldUpdateOperationsInput {
-  set: RoleType
-}
-
-input RoleUpdateOneWithoutLowerLevelThanNestedInput {
-  create: RoleCreateWithoutLowerLevelThanInput
-  connectOrCreate: RoleCreateOrConnectWithoutLowerLevelThanInput
-  upsert: RoleUpsertWithoutLowerLevelThanInput
-  disconnect: RoleWhereInput
-  delete: RoleWhereInput
-  connect: RoleWhereUniqueInput
-  update: RoleUpdateToOneWithWhereWithoutLowerLevelThanInput
-}
-
-input RoleUpsertWithoutLowerLevelThanInput {
-  update: RoleUpdateWithoutLowerLevelThanInput!
-  create: RoleCreateWithoutLowerLevelThanInput!
-  where: RoleWhereInput
-}
-
-input RoleUpdateWithoutLowerLevelThanInput {
-  name: StringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
-  higherLevelThan: RoleUpdateOneWithoutLowerLevelThanNestedInput
-  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
-  users: UserUpdateManyWithoutRoleNestedInput
-}
-
-input RolePermissionUpdateManyWithoutRoleNestedInput {
-  create: [RolePermissionCreateWithoutRoleInput!]
-  connectOrCreate: [RolePermissionCreateOrConnectWithoutRoleInput!]
-  upsert: [RolePermissionUpsertWithWhereUniqueWithoutRoleInput!]
-  createMany: RolePermissionCreateManyRoleInputEnvelope
-  set: [RolePermissionWhereUniqueInput!]
-  disconnect: [RolePermissionWhereUniqueInput!]
-  delete: [RolePermissionWhereUniqueInput!]
-  connect: [RolePermissionWhereUniqueInput!]
-  update: [RolePermissionUpdateWithWhereUniqueWithoutRoleInput!]
-  updateMany: [RolePermissionUpdateManyWithWhereWithoutRoleInput!]
-  deleteMany: [RolePermissionScalarWhereInput!]
-}
-
-input RolePermissionUpsertWithWhereUniqueWithoutRoleInput {
-  where: RolePermissionWhereUniqueInput!
-  update: RolePermissionUpdateWithoutRoleInput!
-  create: RolePermissionCreateWithoutRoleInput!
-}
-
-input RolePermissionUpdateWithoutRoleInput {
-  permission: EnumPermissionFieldUpdateOperationsInput
-}
-
-input EnumPermissionFieldUpdateOperationsInput {
-  set: Permission
-}
-
-input RolePermissionUpdateWithWhereUniqueWithoutRoleInput {
-  where: RolePermissionWhereUniqueInput!
-  data: RolePermissionUpdateWithoutRoleInput!
-}
-
-input RolePermissionUpdateManyWithWhereWithoutRoleInput {
-  where: RolePermissionScalarWhereInput!
-  data: RolePermissionUpdateManyMutationInput!
-}
-
-input RolePermissionScalarWhereInput {
-  AND: [RolePermissionScalarWhereInput!]
-  OR: [RolePermissionScalarWhereInput!]
-  NOT: [RolePermissionScalarWhereInput!]
-  id: IntFilter
-  roleId: IntNullableFilter
-  permission: EnumPermissionFilter
-}
-
-input RolePermissionUpdateManyMutationInput {
-  permission: EnumPermissionFieldUpdateOperationsInput
-}
-
-input UserUpdateManyWithoutRoleNestedInput {
-  create: [UserCreateWithoutRoleInput!]
-  connectOrCreate: [UserCreateOrConnectWithoutRoleInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutRoleInput!]
-  createMany: UserCreateManyRoleInputEnvelope
-  set: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  delete: [UserWhereUniqueInput!]
-  connect: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutRoleInput!]
-  updateMany: [UserUpdateManyWithWhereWithoutRoleInput!]
-  deleteMany: [UserScalarWhereInput!]
-}
-
-input UserUpsertWithWhereUniqueWithoutRoleInput {
+input UserUpdateWithWhereUniqueWithoutDocumentPrintsInput {
   where: UserWhereUniqueInput!
-  update: UserUpdateWithoutRoleInput!
-  create: UserCreateWithoutRoleInput!
+  data: UserUpdateWithoutDocumentPrintsInput!
 }
 
-input UserUpdateWithoutRoleInput {
-  fullName: StringFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  password: NullableStringFieldUpdateOperationsInput
-  profilePictureUrl: NullableStringFieldUpdateOperationsInput
-  participant: ParticipantUpdateOneWithoutUserNestedInput
-}
-
-input ParticipantUpdateOneWithoutUserNestedInput {
-  create: ParticipantCreateWithoutUserInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutUserInput
-  upsert: ParticipantUpsertWithoutUserInput
-  disconnect: ParticipantWhereInput
-  delete: ParticipantWhereInput
-  connect: ParticipantWhereUniqueInput
-  update: ParticipantUpdateToOneWithWhereWithoutUserInput
-}
-
-input ParticipantUpsertWithoutUserInput {
-  update: ParticipantUpdateWithoutUserInput!
-  create: ParticipantCreateWithoutUserInput!
-  where: ParticipantWhereInput
-}
-
-input ParticipantUpdateWithoutUserInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  birthDate: DateTimeFieldUpdateOperationsInput
-  isActive: BoolFieldUpdateOperationsInput
-  status: EnumParticipantStatusFieldUpdateOperationsInput
-  relation: ParticipantUpdateOneWithoutParticipantNestedInput
-  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
-  bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
-  contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
-  Participant: ParticipantUpdateManyWithoutRelationNestedInput
-}
-
-input ParticipantUpdateManyWithoutRelationNestedInput {
-  create: [ParticipantCreateWithoutRelationInput!]
-  connectOrCreate: [ParticipantCreateOrConnectWithoutRelationInput!]
-  upsert: [ParticipantUpsertWithWhereUniqueWithoutRelationInput!]
-  createMany: ParticipantCreateManyRelationInputEnvelope
-  set: [ParticipantWhereUniqueInput!]
-  disconnect: [ParticipantWhereUniqueInput!]
-  delete: [ParticipantWhereUniqueInput!]
-  connect: [ParticipantWhereUniqueInput!]
-  update: [ParticipantUpdateWithWhereUniqueWithoutRelationInput!]
-  updateMany: [ParticipantUpdateManyWithWhereWithoutRelationInput!]
-  deleteMany: [ParticipantScalarWhereInput!]
-}
-
-input ParticipantUpsertWithWhereUniqueWithoutRelationInput {
-  where: ParticipantWhereUniqueInput!
-  update: ParticipantUpdateWithoutRelationInput!
-  create: ParticipantCreateWithoutRelationInput!
-}
-
-input ParticipantUpdateWithoutRelationInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  birthDate: DateTimeFieldUpdateOperationsInput
-  isActive: BoolFieldUpdateOperationsInput
-  status: EnumParticipantStatusFieldUpdateOperationsInput
-  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
-  bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
-  contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
-  Participant: ParticipantUpdateManyWithoutRelationNestedInput
-}
-
-input ParticipantUpdateWithWhereUniqueWithoutRelationInput {
-  where: ParticipantWhereUniqueInput!
-  data: ParticipantUpdateWithoutRelationInput!
-}
-
-input ParticipantUpdateManyWithWhereWithoutRelationInput {
-  where: ParticipantScalarWhereInput!
-  data: ParticipantUpdateManyMutationInput!
-}
-
-input ParticipantScalarWhereInput {
-  AND: [ParticipantScalarWhereInput!]
-  OR: [ParticipantScalarWhereInput!]
-  NOT: [ParticipantScalarWhereInput!]
-  gender: EnumGenderFilter
-  birthDate: DateTimeFilter
-  isActive: BoolFilter
-  status: EnumParticipantStatusFilter
-  userId: StringFilter
-  relationId: StringNullableFilter
-  employmentId: IntFilter
-}
-
-input ParticipantUpdateManyMutationInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  birthDate: DateTimeFieldUpdateOperationsInput
-  isActive: BoolFieldUpdateOperationsInput
-  status: EnumParticipantStatusFieldUpdateOperationsInput
-}
-
-input ParticipantUpdateToOneWithWhereWithoutUserInput {
-  where: ParticipantWhereInput
-  data: ParticipantUpdateWithoutUserInput!
-}
-
-input UserUpdateWithWhereUniqueWithoutRoleInput {
-  where: UserWhereUniqueInput!
-  data: UserUpdateWithoutRoleInput!
-}
-
-input UserUpdateManyWithWhereWithoutRoleInput {
+input UserUpdateManyWithWhereWithoutDocumentPrintsInput {
   where: UserScalarWhereInput!
   data: UserUpdateManyMutationInput!
 }
@@ -7094,7 +7068,6 @@ input UserScalarWhereInput {
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
   roleId: IntFilter
-  participantId: IntNullableFilter
 }
 
 input UserUpdateManyMutationInput {
@@ -7102,82 +7075,6 @@ input UserUpdateManyMutationInput {
   email: StringFieldUpdateOperationsInput
   password: NullableStringFieldUpdateOperationsInput
   profilePictureUrl: NullableStringFieldUpdateOperationsInput
-}
-
-input RoleUpdateToOneWithWhereWithoutLowerLevelThanInput {
-  where: RoleWhereInput
-  data: RoleUpdateWithoutLowerLevelThanInput!
-}
-
-input RoleUpdateManyWithoutHigherLevelThanNestedInput {
-  create: [RoleCreateWithoutHigherLevelThanInput!]
-  connectOrCreate: [RoleCreateOrConnectWithoutHigherLevelThanInput!]
-  upsert: [RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput!]
-  createMany: RoleCreateManyHigherLevelThanInputEnvelope
-  set: [RoleWhereUniqueInput!]
-  disconnect: [RoleWhereUniqueInput!]
-  delete: [RoleWhereUniqueInput!]
-  connect: [RoleWhereUniqueInput!]
-  update: [RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput!]
-  updateMany: [RoleUpdateManyWithWhereWithoutHigherLevelThanInput!]
-  deleteMany: [RoleScalarWhereInput!]
-}
-
-input RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput {
-  where: RoleWhereUniqueInput!
-  update: RoleUpdateWithoutHigherLevelThanInput!
-  create: RoleCreateWithoutHigherLevelThanInput!
-}
-
-input RoleUpdateWithoutHigherLevelThanInput {
-  name: StringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
-  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
-  users: UserUpdateManyWithoutRoleNestedInput
-  lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
-}
-
-input RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput {
-  where: RoleWhereUniqueInput!
-  data: RoleUpdateWithoutHigherLevelThanInput!
-}
-
-input RoleUpdateManyWithWhereWithoutHigherLevelThanInput {
-  where: RoleScalarWhereInput!
-  data: RoleUpdateManyMutationInput!
-}
-
-input RoleScalarWhereInput {
-  AND: [RoleScalarWhereInput!]
-  OR: [RoleScalarWhereInput!]
-  NOT: [RoleScalarWhereInput!]
-  id: IntFilter
-  name: StringFilter
-  description: StringNullableFilter
-  higherLevelThanId: IntNullableFilter
-  roleType: EnumRoleTypeNullableFilter
-}
-
-input RoleUpdateManyMutationInput {
-  name: StringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
-}
-
-input RoleUpdateToOneWithWhereWithoutUsersInput {
-  where: RoleWhereInput
-  data: RoleUpdateWithoutUsersInput!
-}
-
-input UserUpdateWithWhereUniqueWithoutDocumentPrintsInput {
-  where: UserWhereUniqueInput!
-  data: UserUpdateWithoutDocumentPrintsInput!
-}
-
-input UserUpdateManyWithWhereWithoutDocumentPrintsInput {
-  where: UserScalarWhereInput!
-  data: UserUpdateManyMutationInput!
 }
 
 input ClaimStatusUpdateOneWithoutGuaranteeLetterNestedInput {
@@ -7843,6 +7740,69 @@ input ProgramParticipationUpdateManyMutationInput {
   nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
 }
 
+input ParticipantUpdateManyWithoutRelationNestedInput {
+  create: [ParticipantCreateWithoutRelationInput!]
+  connectOrCreate: [ParticipantCreateOrConnectWithoutRelationInput!]
+  upsert: [ParticipantUpsertWithWhereUniqueWithoutRelationInput!]
+  createMany: ParticipantCreateManyRelationInputEnvelope
+  set: [ParticipantWhereUniqueInput!]
+  disconnect: [ParticipantWhereUniqueInput!]
+  delete: [ParticipantWhereUniqueInput!]
+  connect: [ParticipantWhereUniqueInput!]
+  update: [ParticipantUpdateWithWhereUniqueWithoutRelationInput!]
+  updateMany: [ParticipantUpdateManyWithWhereWithoutRelationInput!]
+  deleteMany: [ParticipantScalarWhereInput!]
+}
+
+input ParticipantUpsertWithWhereUniqueWithoutRelationInput {
+  where: ParticipantWhereUniqueInput!
+  update: ParticipantUpdateWithoutRelationInput!
+  create: ParticipantCreateWithoutRelationInput!
+}
+
+input ParticipantUpdateWithoutRelationInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  birthDate: DateTimeFieldUpdateOperationsInput
+  isActive: BoolFieldUpdateOperationsInput
+  status: EnumParticipantStatusFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
+  bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
+  contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
+  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  participant: ParticipantUpdateManyWithoutRelationNestedInput
+}
+
+input ParticipantUpdateWithWhereUniqueWithoutRelationInput {
+  where: ParticipantWhereUniqueInput!
+  data: ParticipantUpdateWithoutRelationInput!
+}
+
+input ParticipantUpdateManyWithWhereWithoutRelationInput {
+  where: ParticipantScalarWhereInput!
+  data: ParticipantUpdateManyMutationInput!
+}
+
+input ParticipantScalarWhereInput {
+  AND: [ParticipantScalarWhereInput!]
+  OR: [ParticipantScalarWhereInput!]
+  NOT: [ParticipantScalarWhereInput!]
+  gender: EnumGenderFilter
+  birthDate: DateTimeFilter
+  isActive: BoolFilter
+  status: EnumParticipantStatusFilter
+  userId: StringFilter
+  relationId: StringNullableFilter
+  employmentId: IntFilter
+}
+
+input ParticipantUpdateManyMutationInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  birthDate: DateTimeFieldUpdateOperationsInput
+  isActive: BoolFieldUpdateOperationsInput
+  status: EnumParticipantStatusFieldUpdateOperationsInput
+}
+
 input ParticipantUpdateToOneWithWhereWithoutClaimsInput {
   where: ParticipantWhereInput
   data: ParticipantUpdateWithoutClaimsInput!
@@ -7934,6 +7894,92 @@ input EmploymentUpdateToOneWithWhereWithoutParticipantInput {
 input ParticipantUpdateToOneWithWhereWithoutParticipantInput {
   where: ParticipantWhereInput
   data: ParticipantUpdateWithoutParticipantInput!
+}
+
+input ParticipantUpdateToOneWithWhereWithoutUserInput {
+  where: ParticipantWhereInput
+  data: ParticipantUpdateWithoutUserInput!
+}
+
+input UserUpdateWithWhereUniqueWithoutRoleInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutRoleInput!
+}
+
+input UserUpdateManyWithWhereWithoutRoleInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyMutationInput!
+}
+
+input RoleUpdateToOneWithWhereWithoutLowerLevelThanInput {
+  where: RoleWhereInput
+  data: RoleUpdateWithoutLowerLevelThanInput!
+}
+
+input RoleUpdateManyWithoutHigherLevelThanNestedInput {
+  create: [RoleCreateWithoutHigherLevelThanInput!]
+  connectOrCreate: [RoleCreateOrConnectWithoutHigherLevelThanInput!]
+  upsert: [RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput!]
+  createMany: RoleCreateManyHigherLevelThanInputEnvelope
+  set: [RoleWhereUniqueInput!]
+  disconnect: [RoleWhereUniqueInput!]
+  delete: [RoleWhereUniqueInput!]
+  connect: [RoleWhereUniqueInput!]
+  update: [RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput!]
+  updateMany: [RoleUpdateManyWithWhereWithoutHigherLevelThanInput!]
+  deleteMany: [RoleScalarWhereInput!]
+}
+
+input RoleUpsertWithWhereUniqueWithoutHigherLevelThanInput {
+  where: RoleWhereUniqueInput!
+  update: RoleUpdateWithoutHigherLevelThanInput!
+  create: RoleCreateWithoutHigherLevelThanInput!
+}
+
+input RoleUpdateWithoutHigherLevelThanInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
+  rolePermissions: RolePermissionUpdateManyWithoutRoleNestedInput
+  users: UserUpdateManyWithoutRoleNestedInput
+  lowerLevelThan: RoleUpdateManyWithoutHigherLevelThanNestedInput
+}
+
+input RoleUpdateWithWhereUniqueWithoutHigherLevelThanInput {
+  where: RoleWhereUniqueInput!
+  data: RoleUpdateWithoutHigherLevelThanInput!
+}
+
+input RoleUpdateManyWithWhereWithoutHigherLevelThanInput {
+  where: RoleScalarWhereInput!
+  data: RoleUpdateManyMutationInput!
+}
+
+input RoleScalarWhereInput {
+  AND: [RoleScalarWhereInput!]
+  OR: [RoleScalarWhereInput!]
+  NOT: [RoleScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  description: StringNullableFilter
+  higherLevelThanId: IntNullableFilter
+  roleType: EnumRoleTypeNullableFilter
+}
+
+input RoleUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  roleType: NullableEnumRoleTypeFieldUpdateOperationsInput
+}
+
+input RoleUpdateToOneWithWhereWithoutUsersInput {
+  where: RoleWhereInput
+  data: RoleUpdateWithoutUsersInput!
+}
+
+input UserUpdateToOneWithWhereWithoutParticipantInput {
+  where: UserWhereInput
+  data: UserUpdateWithoutParticipantInput!
 }
 
 input ParticipantUpdateToOneWithWhereWithoutProgramParticipationsInput {
@@ -8066,6 +8112,20 @@ input ClaimStatusUpdateInput {
 input ClaimStatusUpdateManyMutationInput {
   description: NullableStringFieldUpdateOperationsInput
   rejectionReason: NullableStringFieldUpdateOperationsInput
+}
+
+input ParticipantCreateInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
+  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input RoleCreateInput {
