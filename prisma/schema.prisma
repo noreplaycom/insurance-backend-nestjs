@@ -245,7 +245,7 @@ model ContactInfo {
 
     id Int @id @default(autoincrement())
 
-    telp String
+    telp Float
 
     /// @HideField({ match: ['ContactInfoCreate*Input','ContactInfoUpdate*Input']})
     createdAt DateTime @default(now())
@@ -320,7 +320,7 @@ model Subdistrict {
 
 model Address {
     //-------------------------- scalars --------------------------------
-
+    /// @HideField({ match: ['AddressCreate*Input','AddressUpdate*Input']})
     id Int @id @default(autoincrement())
 
     ///Alamat
@@ -339,6 +339,7 @@ model Address {
 model BankAccount {
     //-------------------------- scalars --------------------------------
 
+    /// @HideField({ match: ['BankAccountCreate*Input','BankAccountUpdate*Input']})
     id Int @id @default(autoincrement())
 
     ///No. Rekening	Nomer Rekening Penerimaan Manfaat Pensiun
@@ -348,9 +349,10 @@ model BankAccount {
     accountName String
 
     //-------------------------- 1 relations --------------------------------
-
+    /// @HideField({ match: ['BankAccountCreate*Input','BankAccountUpdate*Input']})
     participant Participant @relation(fields: [participantId], references: [userId])
 
+    /// @HideField({ match: ['BankAccountCreate*Input','BankAccountUpdate*Input']})
     participantId String @unique
 }
 
@@ -364,6 +366,7 @@ model Employment {
     ///Jenjang Jabatan terakhir
     employmentPosition Position
 
+    /// @HideField({ match: ['EmploymentCreate*Input','EmploymentUpdate*Input']})
     participant Participant?
 
     branch Branch @relation(fields: [branchId], references: [id])
