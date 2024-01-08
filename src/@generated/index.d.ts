@@ -19484,7 +19484,7 @@ export declare class UserCreateManyRoleInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19496,7 +19496,7 @@ export declare class UserCreateManyInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19582,7 +19582,7 @@ export declare class UserCreateWithoutAnnouncementCreatedInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19601,7 +19601,7 @@ export declare class UserCreateWithoutClaimActionsInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19620,7 +19620,7 @@ export declare class UserCreateWithoutClaimsInputInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19639,7 +19639,7 @@ export declare class UserCreateWithoutClaimsOnWaitInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19658,7 +19658,7 @@ export declare class UserCreateWithoutDocumentPrintsInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19677,7 +19677,7 @@ export declare class UserCreateWithoutNotificationInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19696,7 +19696,7 @@ export declare class UserCreateWithoutParticipantInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19715,7 +19715,7 @@ export declare class UserCreateWithoutRoleInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19734,7 +19734,7 @@ export declare class UserCreateInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19973,7 +19973,7 @@ export declare class UserUncheckedCreateWithoutAnnouncementCreatedInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -19992,7 +19992,7 @@ export declare class UserUncheckedCreateWithoutClaimActionsInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -20011,7 +20011,7 @@ export declare class UserUncheckedCreateWithoutClaimsInputInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -20030,7 +20030,7 @@ export declare class UserUncheckedCreateWithoutClaimsOnWaitInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -20049,7 +20049,7 @@ export declare class UserUncheckedCreateWithoutDocumentPrintsInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -20068,7 +20068,7 @@ export declare class UserUncheckedCreateWithoutNotificationInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -20087,7 +20087,7 @@ export declare class UserUncheckedCreateWithoutParticipantInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -20106,7 +20106,7 @@ export declare class UserUncheckedCreateWithoutRoleInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -20125,7 +20125,7 @@ export declare class UserUncheckedCreateInput {
     fullName: string;
     email: string;
     emailVerifiedAt?: Date | string;
-    password: string;
+    password?: string;
     profilePictureUrl?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;

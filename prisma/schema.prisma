@@ -42,7 +42,7 @@ model User {
     /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     emailVerifiedAt DateTime?
 
-    password String @default("123456")
+    password String? @default("123456")
 
     profilePictureUrl String?
 

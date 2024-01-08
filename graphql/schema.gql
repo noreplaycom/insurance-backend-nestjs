@@ -5205,7 +5205,7 @@ input UserCreateNestedManyWithoutDocumentPrintsInput {
 input UserCreateWithoutDocumentPrintsInput {
   fullName: String!
   email: String!
-  password: String!
+  password: String
   profilePictureUrl: String
   role: RoleCreateNestedOneWithoutUsersInput
   participant: ParticipantCreateNestedOneWithoutUserInput
@@ -5287,7 +5287,7 @@ input UserCreateNestedManyWithoutRoleInput {
 input UserCreateWithoutRoleInput {
   fullName: String!
   email: String!
-  password: String!
+  password: String
   profilePictureUrl: String
   participant: ParticipantCreateNestedOneWithoutUserInput
 }
@@ -5329,7 +5329,7 @@ input UserCreateManyRoleInputEnvelope {
 input UserCreateManyRoleInput {
   fullName: String!
   email: String!
-  password: String!
+  password: String
   profilePictureUrl: String
 }
 
@@ -8223,7 +8223,7 @@ input LoginArgs {
 input UserCreateInput {
   fullName: String!
   email: String!
-  password: String!
+  password: String
   profilePictureUrl: String
   role: RoleCreateNestedOneWithoutUsersInput
   participant: ParticipantCreateNestedOneWithoutUserInput
@@ -8426,7 +8426,7 @@ input UserCreateNestedOneWithoutAnnouncementCreatedInput {
 input UserCreateWithoutAnnouncementCreatedInput {
   fullName: String!
   email: String!
-  password: String!
+  password: String
   profilePictureUrl: String
   role: RoleCreateNestedOneWithoutUsersInput
   participant: ParticipantCreateNestedOneWithoutUserInput

@@ -60630,7 +60630,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateManyRoleInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateManyRoleInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -60666,7 +60666,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateManyInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateManyInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -60965,7 +60965,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutAnnouncementCreatedInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutAnnouncementCreatedInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61022,7 +61022,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutClaimActionsInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutClaimActionsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61079,7 +61079,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutClaimsInputInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutClaimsInputInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61136,7 +61136,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutClaimsOnWaitInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutClaimsOnWaitInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61193,7 +61193,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutDocumentPrintsInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutDocumentPrintsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61250,7 +61250,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutNotificationInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutNotificationInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61307,7 +61307,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutParticipantInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutParticipantInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61364,7 +61364,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateWithoutRoleInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutRoleInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -61421,7 +61421,7 @@ __decorate([
     (0, graphql_8.HideField)()
 ], UserCreateInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62146,7 +62146,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutAnnouncementCreatedInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutAnnouncementCreatedInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62203,7 +62203,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutClaimActionsInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutClaimActionsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62260,7 +62260,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsInputInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsInputInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62317,7 +62317,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsOnWaitInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutClaimsOnWaitInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62374,7 +62374,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutDocumentPrintsInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutDocumentPrintsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62431,7 +62431,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutNotificationInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutNotificationInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62488,7 +62488,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutParticipantInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutParticipantInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62545,7 +62545,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutRoleInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutRoleInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -62602,7 +62602,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -64636,7 +64636,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], User.prototype, "emailVerifiedAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: false, defaultValue: '123456' })
 ], User.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
