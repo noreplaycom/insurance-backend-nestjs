@@ -306,11 +306,11 @@ export class ClaimController {
     });
   }
 
-  async countWhere(
-    claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
-  ): Promise<number> {
-    return await this.claimService.count(claimCountQuantityWhereArgs);
-  }
+  // async countWhere(
+  //   claimCountQuantityWhereArgs: ClaimCountQuantityWhereArgs,
+  // ): Promise<number> {
+  //   return await this.claimService.count(claimCountQuantityWhereArgs);
+  // }
 
   async import(file: FileUpload): Promise<boolean> {
     //TODO: Permission check. jika user tidak memiliki permission untuk import, maka throw error

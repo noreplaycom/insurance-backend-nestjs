@@ -73,6 +73,7 @@ export function fakeParticipantComplete() {
     status: faker.helpers.arrayElement([ParticipantStatus.PENSIUNAN, ParticipantStatus.PASANGAN, ParticipantStatus.YATIM, ParticipantStatus.JANDADUDA6BULAN] as const),
     userId: faker.datatype.uuid(),
     relationId: undefined,
+    employmentId: faker.datatype.number(),
   };
 }
 export function fakeContactInfo() {
@@ -177,7 +178,6 @@ export function fakeEmploymentComplete() {
   return {
     id: faker.datatype.number(),
     employmentPosition: faker.helpers.arrayElement([Position.AMGR, Position.AVP, Position.PGD, Position.MGR, Position.SASST, Position.VP, Position.SAVP, Position.SMGR, Position.SAMGR, Position.ASST] as const),
-    participantId: faker.datatype.uuid(),
     branchId: faker.datatype.number(),
     groupId: undefined,
     regionId: undefined,

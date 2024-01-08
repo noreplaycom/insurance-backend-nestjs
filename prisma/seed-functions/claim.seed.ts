@@ -120,30 +120,22 @@ export async function claimSeed() {
                 }),
               },
             },
-            employments: {
-              connectOrCreate: {
-                where:
-                  employments.length > 30
-                    ? {
-                        id: faker.helpers.arrayElement(employments).id,
-                      }
-                    : { id: 1001010 },
-                create: {
-                  employmentPosition: faker.helpers.arrayElement(
-                    Object.values(Position),
-                  ),
-                  branch: {
-                    connectOrCreate: {
-                      where:
-                        branches.length > 30
-                          ? {
-                              id: faker.helpers.arrayElement(branches).id,
-                            }
-                          : { id: 1001010 },
+            employment: {
+              create: {
+                employmentPosition: faker.helpers.arrayElement(
+                  Object.values(Position),
+                ),
+                branch: {
+                  connectOrCreate: {
+                    where:
+                      branches.length > 30
+                        ? {
+                            id: faker.helpers.arrayElement(branches).id,
+                          }
+                        : { id: 1001010 },
 
-                      create: {
-                        name: faker.company.name(),
-                      },
+                    create: {
+                      name: faker.company.name(),
                     },
                   },
                 },

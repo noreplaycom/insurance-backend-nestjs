@@ -1062,7 +1062,6 @@ type EmploymentAvgAggregate {
 type EmploymentCountAggregate {
   id: Int!
   employmentPosition: Int!
-  participantId: Int!
   branchId: Int!
   groupId: Int!
   regionId: Int!
@@ -1072,7 +1071,6 @@ type EmploymentCountAggregate {
 type EmploymentMaxAggregate {
   id: Int
   employmentPosition: Position
-  participantId: String
   branchId: Int
   groupId: Int
   regionId: Int
@@ -1094,7 +1092,6 @@ enum Position {
 type EmploymentMinAggregate {
   id: Int
   employmentPosition: Position
-  participantId: String
   branchId: Int
   groupId: Int
   regionId: Int
@@ -1112,11 +1109,10 @@ type Employment {
 
   """Jenjang Jabatan terakhir"""
   employmentPosition: Position!
-  participantId: String!
   branchId: Int!
   groupId: Int
   regionId: Int
-  participant: Participant!
+  participant: Participant
   branch: Branch!
   group: Group
   region: Region
@@ -1283,6 +1279,10 @@ type Notification {
   user: User!
 }
 
+type ParticipantAvgAggregate {
+  employmentId: Float
+}
+
 type ParticipantCountAggregate {
   gender: Int!
   birthDate: Int!
@@ -1290,12 +1290,12 @@ type ParticipantCountAggregate {
   status: Int!
   userId: Int!
   relationId: Int!
+  employmentId: Int!
   _all: Int!
 }
 
 type ParticipantCount {
   claims: Int!
-  employments: Int!
   contactInfos: Int!
   programParticipations: Int!
   balances: Int!
@@ -1309,6 +1309,7 @@ type ParticipantMaxAggregate {
   status: ParticipantStatus
   userId: String
   relationId: String
+  employmentId: Int
 }
 
 enum Gender {
@@ -1331,6 +1332,11 @@ type ParticipantMinAggregate {
   status: ParticipantStatus
   userId: String
   relationId: String
+  employmentId: Int
+}
+
+type ParticipantSumAggregate {
+  employmentId: Int
 }
 
 type Participant {
@@ -1347,13 +1353,14 @@ type Participant {
   status: ParticipantStatus!
   userId: String!
   relationId: String
+  employmentId: Int!
   user: User!
 
   """Anggota keluarga dari"""
   relation: Participant
+  employment: Employment!
   bankAccount: BankAccount
   claims: [Claim!]
-  employments: [Employment!]
   contactInfos: [ContactInfo!]
   programParticipations: [ProgramParticipation!]
   balances: [Account!]
@@ -2512,11 +2519,12 @@ input ParticipantWhereInput {
   status: EnumParticipantStatusFilter
   userId: StringFilter
   relationId: StringNullableFilter
+  employmentId: IntFilter
   user: UserRelationFilter
   relation: ParticipantNullableRelationFilter
+  employment: EmploymentRelationFilter
   bankAccount: BankAccountNullableRelationFilter
   claims: ClaimListRelationFilter
-  employments: EmploymentListRelationFilter
   contactInfos: ContactInfoListRelationFilter
   programParticipations: ProgramParticipationListRelationFilter
   balances: AccountListRelationFilter
@@ -2810,11 +2818,10 @@ input EmploymentWhereInput {
   NOT: [EmploymentWhereInput!]
   id: IntFilter
   employmentPosition: EnumPositionFilter
-  participantId: StringFilter
   branchId: IntFilter
   groupId: IntNullableFilter
   regionId: IntNullableFilter
-  participant: ParticipantRelationFilter
+  participant: ParticipantNullableRelationFilter
   branch: BranchRelationFilter
   group: GroupNullableRelationFilter
   region: RegionNullableRelationFilter
@@ -3183,6 +3190,11 @@ input NotificationWhereInput {
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   user: UserRelationFilter
+}
+
+input EmploymentRelationFilter {
+  is: EmploymentWhereInput
+  isNot: EmploymentWhereInput
 }
 
 input BankAccountNullableRelationFilter {
@@ -3692,15 +3704,61 @@ input ParticipantOrderByWithRelationInput {
   status: SortOrder
   userId: SortOrder
   relationId: SortOrderInput
+  employmentId: SortOrder
   user: UserOrderByWithRelationInput
   relation: ParticipantOrderByWithRelationInput
+  employment: EmploymentOrderByWithRelationInput
   bankAccount: BankAccountOrderByWithRelationInput
   claims: ClaimOrderByRelationAggregateInput
-  employments: EmploymentOrderByRelationAggregateInput
   contactInfos: ContactInfoOrderByRelationAggregateInput
   programParticipations: ProgramParticipationOrderByRelationAggregateInput
   balances: AccountOrderByRelationAggregateInput
   Participant: ParticipantOrderByRelationAggregateInput
+}
+
+input EmploymentOrderByWithRelationInput {
+  id: SortOrder
+  employmentPosition: SortOrder
+  branchId: SortOrder
+  groupId: SortOrderInput
+  regionId: SortOrderInput
+  participant: ParticipantOrderByWithRelationInput
+  branch: BranchOrderByWithRelationInput
+  group: GroupOrderByWithRelationInput
+  region: RegionOrderByWithRelationInput
+}
+
+input BranchOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  employment: EmploymentOrderByRelationAggregateInput
+  claimFinancial: ClaimFinancialOrderByRelationAggregateInput
+}
+
+input EmploymentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ClaimFinancialOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input GroupOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  employment: EmploymentOrderByRelationAggregateInput
+}
+
+input RegionOrderByWithRelationInput {
+  id: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  employment: EmploymentOrderByRelationAggregateInput
 }
 
 input BankAccountOrderByWithRelationInput {
@@ -3712,10 +3770,6 @@ input BankAccountOrderByWithRelationInput {
 }
 
 input ClaimOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input EmploymentOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -3821,19 +3875,6 @@ input ClaimFinancialOrderByWithRelationInput {
   branchPayee: BranchOrderByWithRelationInput
   claim: ClaimOrderByWithRelationInput
   claimStatus: ClaimStatusOrderByWithRelationInput
-}
-
-input BranchOrderByWithRelationInput {
-  id: SortOrder
-  name: SortOrder
-  createdAt: SortOrder
-  updatedAt: SortOrder
-  employment: EmploymentOrderByRelationAggregateInput
-  claimFinancial: ClaimFinancialOrderByRelationAggregateInput
-}
-
-input ClaimFinancialOrderByRelationAggregateInput {
-  _count: SortOrder
 }
 
 input ClaimStatusOrderByWithRelationInput {
@@ -4055,6 +4096,7 @@ input ClaimStatusMaxAggregateInput {
 
 input ParticipantWhereUniqueInput {
   userId: String
+  employmentId: Int
   AND: [ParticipantWhereInput!]
   OR: [ParticipantWhereInput!]
   NOT: [ParticipantWhereInput!]
@@ -4065,9 +4107,9 @@ input ParticipantWhereUniqueInput {
   relationId: StringNullableFilter
   user: UserRelationFilter
   relation: ParticipantNullableRelationFilter
+  employment: EmploymentRelationFilter
   bankAccount: BankAccountNullableRelationFilter
   claims: ClaimListRelationFilter
-  employments: EmploymentListRelationFilter
   contactInfos: ContactInfoListRelationFilter
   programParticipations: ProgramParticipationListRelationFilter
   balances: AccountListRelationFilter
@@ -4081,6 +4123,7 @@ enum ParticipantScalarFieldEnum {
   status
   userId
   relationId
+  employmentId
 }
 
 input RoleWhereUniqueInput {
@@ -4402,9 +4445,9 @@ input ParticipantCreateWithoutProgramParticipationsInput {
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   balances: AccountCreateNestedManyWithoutParticipantInput
   Participant: ParticipantCreateNestedManyWithoutRelationInput
@@ -4517,9 +4560,9 @@ input ParticipantCreateWithoutUserInput {
   isActive: Boolean!
   status: ParticipantStatus!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   balances: AccountCreateNestedManyWithoutParticipantInput
@@ -4539,12 +4582,91 @@ input ParticipantCreateWithoutParticipantInput {
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   balances: AccountCreateNestedManyWithoutParticipantInput
+}
+
+input EmploymentCreateNestedOneWithoutParticipantInput {
+  create: EmploymentCreateWithoutParticipantInput
+  connectOrCreate: EmploymentCreateOrConnectWithoutParticipantInput
+  connect: EmploymentWhereUniqueInput
+}
+
+input EmploymentCreateWithoutParticipantInput {
+  employmentPosition: Position!
+  branch: BranchCreateNestedOneWithoutEmploymentInput!
+  group: GroupCreateNestedOneWithoutEmploymentInput
+  region: RegionCreateNestedOneWithoutEmploymentInput
+}
+
+input BranchCreateNestedOneWithoutEmploymentInput {
+  create: BranchCreateWithoutEmploymentInput
+  connectOrCreate: BranchCreateOrConnectWithoutEmploymentInput
+  connect: BranchWhereUniqueInput
+}
+
+input BranchCreateWithoutEmploymentInput {
+  name: String!
+  claimFinancial: ClaimFinancialCreateNestedManyWithoutBranchPayeeInput
+}
+
+input ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
+  create: [ClaimFinancialCreateWithoutBranchPayeeInput!]
+  connectOrCreate: [ClaimFinancialCreateOrConnectWithoutBranchPayeeInput!]
+  createMany: ClaimFinancialCreateManyBranchPayeeInputEnvelope
+  connect: [ClaimFinancialWhereUniqueInput!]
+}
+
+input ClaimFinancialCreateWithoutBranchPayeeInput {
+  totalInvoiceProofAmount: Float!
+  requestedAmount: Float!
+  paidAmount: Float
+  rejectedAmount: Float
+  transactionProcessDate: DateTime
+  transferDate: DateTime
+  claim: ClaimCreateNestedOneWithoutClaimFinancialsInput
+  claimStatus: ClaimStatusCreateNestedOneWithoutClaimFinancialInput
+}
+
+input ClaimCreateNestedOneWithoutClaimFinancialsInput {
+  create: ClaimCreateWithoutClaimFinancialsInput
+  connectOrCreate: ClaimCreateOrConnectWithoutClaimFinancialsInput
+  connect: ClaimWhereUniqueInput
+}
+
+input ClaimCreateWithoutClaimFinancialsInput {
+  id: String
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimProgram: ClaimProgramCreateNestedOneWithoutClaimInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
+}
+
+input ParticipantCreateNestedOneWithoutClaimsInput {
+  create: ParticipantCreateWithoutClaimsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
+  connect: ParticipantWhereUniqueInput
+}
+
+input ParticipantCreateWithoutClaimsInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
+  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
+  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
+  balances: AccountCreateNestedManyWithoutParticipantInput
+  Participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input BankAccountCreateNestedOneWithoutParticipantInput {
@@ -4572,86 +4694,6 @@ input BankAccountWhereUniqueInput {
   accountNumber: FloatFilter
   accountName: StringFilter
   participant: ParticipantRelationFilter
-}
-
-input ClaimCreateNestedManyWithoutParticipantInput {
-  create: [ClaimCreateWithoutParticipantInput!]
-  connectOrCreate: [ClaimCreateOrConnectWithoutParticipantInput!]
-  createMany: ClaimCreateManyParticipantInputEnvelope
-  connect: [ClaimWhereUniqueInput!]
-}
-
-input ClaimCreateWithoutParticipantInput {
-  id: String
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
-  claimProgram: ClaimProgramCreateNestedOneWithoutClaimInput!
-  tags: TagCreateNestedManyWithoutClaimsInput
-}
-
-input ClaimFinancialCreateNestedOneWithoutClaimInput {
-  create: ClaimFinancialCreateWithoutClaimInput
-  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
-  connect: ClaimFinancialWhereUniqueInput
-}
-
-input ClaimFinancialCreateWithoutClaimInput {
-  totalInvoiceProofAmount: Float!
-  requestedAmount: Float!
-  paidAmount: Float
-  rejectedAmount: Float
-  transactionProcessDate: DateTime
-  transferDate: DateTime
-  branchPayee: BranchCreateNestedOneWithoutClaimFinancialInput
-  claimStatus: ClaimStatusCreateNestedOneWithoutClaimFinancialInput
-}
-
-input BranchCreateNestedOneWithoutClaimFinancialInput {
-  create: BranchCreateWithoutClaimFinancialInput
-  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
-  connect: BranchWhereUniqueInput
-}
-
-input BranchCreateWithoutClaimFinancialInput {
-  name: String!
-  employment: EmploymentCreateNestedManyWithoutBranchInput
-}
-
-input EmploymentCreateNestedManyWithoutBranchInput {
-  create: [EmploymentCreateWithoutBranchInput!]
-  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
-  createMany: EmploymentCreateManyBranchInputEnvelope
-  connect: [EmploymentWhereUniqueInput!]
-}
-
-input EmploymentCreateWithoutBranchInput {
-  employmentPosition: Position!
-  participant: ParticipantCreateNestedOneWithoutEmploymentsInput!
-  group: GroupCreateNestedOneWithoutEmploymentInput
-  region: RegionCreateNestedOneWithoutEmploymentInput
-}
-
-input ParticipantCreateNestedOneWithoutEmploymentsInput {
-  create: ParticipantCreateWithoutEmploymentsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutEmploymentsInput
-  connect: ParticipantWhereUniqueInput
-}
-
-input ParticipantCreateWithoutEmploymentsInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  user: UserCreateNestedOneWithoutParticipantInput!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
-  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
-  claims: ClaimCreateNestedManyWithoutParticipantInput
-  contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
-  programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
-  balances: AccountCreateNestedManyWithoutParticipantInput
-  Participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input ContactInfoCreateNestedManyWithoutParticipantInput {
@@ -4873,80 +4915,80 @@ input ParticipantCreateWithoutBalancesInput {
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   Participant: ParticipantCreateNestedManyWithoutRelationInput
 }
 
-input EmploymentCreateNestedManyWithoutParticipantInput {
-  create: [EmploymentCreateWithoutParticipantInput!]
-  connectOrCreate: [EmploymentCreateOrConnectWithoutParticipantInput!]
-  createMany: EmploymentCreateManyParticipantInputEnvelope
-  connect: [EmploymentWhereUniqueInput!]
+input ClaimCreateNestedManyWithoutParticipantInput {
+  create: [ClaimCreateWithoutParticipantInput!]
+  connectOrCreate: [ClaimCreateOrConnectWithoutParticipantInput!]
+  createMany: ClaimCreateManyParticipantInputEnvelope
+  connect: [ClaimWhereUniqueInput!]
 }
 
-input EmploymentCreateWithoutParticipantInput {
-  employmentPosition: Position!
-  branch: BranchCreateNestedOneWithoutEmploymentInput!
-  group: GroupCreateNestedOneWithoutEmploymentInput
-  region: RegionCreateNestedOneWithoutEmploymentInput
+input ClaimCreateWithoutParticipantInput {
+  id: String
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  claimProgram: ClaimProgramCreateNestedOneWithoutClaimInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
 }
 
-input BranchCreateNestedOneWithoutEmploymentInput {
-  create: BranchCreateWithoutEmploymentInput
-  connectOrCreate: BranchCreateOrConnectWithoutEmploymentInput
-  connect: BranchWhereUniqueInput
+input ClaimFinancialCreateNestedOneWithoutClaimInput {
+  create: ClaimFinancialCreateWithoutClaimInput
+  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
+  connect: ClaimFinancialWhereUniqueInput
 }
 
-input BranchCreateWithoutEmploymentInput {
-  name: String!
-  claimFinancial: ClaimFinancialCreateNestedManyWithoutBranchPayeeInput
-}
-
-input ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
-  create: [ClaimFinancialCreateWithoutBranchPayeeInput!]
-  connectOrCreate: [ClaimFinancialCreateOrConnectWithoutBranchPayeeInput!]
-  createMany: ClaimFinancialCreateManyBranchPayeeInputEnvelope
-  connect: [ClaimFinancialWhereUniqueInput!]
-}
-
-input ClaimFinancialCreateWithoutBranchPayeeInput {
+input ClaimFinancialCreateWithoutClaimInput {
   totalInvoiceProofAmount: Float!
   requestedAmount: Float!
   paidAmount: Float
   rejectedAmount: Float
   transactionProcessDate: DateTime
   transferDate: DateTime
-  claim: ClaimCreateNestedOneWithoutClaimFinancialsInput
+  branchPayee: BranchCreateNestedOneWithoutClaimFinancialInput
   claimStatus: ClaimStatusCreateNestedOneWithoutClaimFinancialInput
 }
 
-input ClaimCreateNestedOneWithoutClaimFinancialsInput {
-  create: ClaimCreateWithoutClaimFinancialsInput
-  connectOrCreate: ClaimCreateOrConnectWithoutClaimFinancialsInput
-  connect: ClaimWhereUniqueInput
+input BranchCreateNestedOneWithoutClaimFinancialInput {
+  create: BranchCreateWithoutClaimFinancialInput
+  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
+  connect: BranchWhereUniqueInput
 }
 
-input ClaimCreateWithoutClaimFinancialsInput {
-  id: String
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  participant: ParticipantCreateNestedOneWithoutClaimsInput!
-  claimProgram: ClaimProgramCreateNestedOneWithoutClaimInput!
-  tags: TagCreateNestedManyWithoutClaimsInput
+input BranchCreateWithoutClaimFinancialInput {
+  name: String!
+  employment: EmploymentCreateNestedManyWithoutBranchInput
 }
 
-input ParticipantCreateNestedOneWithoutClaimsInput {
-  create: ParticipantCreateWithoutClaimsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
+input EmploymentCreateNestedManyWithoutBranchInput {
+  create: [EmploymentCreateWithoutBranchInput!]
+  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
+  createMany: EmploymentCreateManyBranchInputEnvelope
+  connect: [EmploymentWhereUniqueInput!]
+}
+
+input EmploymentCreateWithoutBranchInput {
+  employmentPosition: Position!
+  participant: ParticipantCreateNestedOneWithoutEmploymentInput
+  group: GroupCreateNestedOneWithoutEmploymentInput
+  region: RegionCreateNestedOneWithoutEmploymentInput
+}
+
+input ParticipantCreateNestedOneWithoutEmploymentInput {
+  create: ParticipantCreateWithoutEmploymentInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutEmploymentInput
   connect: ParticipantWhereUniqueInput
 }
 
-input ParticipantCreateWithoutClaimsInput {
+input ParticipantCreateWithoutEmploymentInput {
   gender: Gender!
   birthDate: DateTime!
   isActive: Boolean!
@@ -4954,7 +4996,7 @@ input ParticipantCreateWithoutClaimsInput {
   user: UserCreateNestedOneWithoutParticipantInput!
   relation: ParticipantCreateNestedOneWithoutParticipantInput
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
+  claims: ClaimCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   balances: AccountCreateNestedManyWithoutParticipantInput
@@ -5747,9 +5789,9 @@ input ParticipantCreateWithoutRelationInput {
   isActive: Boolean!
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput
   claims: ClaimCreateNestedManyWithoutParticipantInput
-  employments: EmploymentCreateNestedManyWithoutParticipantInput
   contactInfos: ContactInfoCreateNestedManyWithoutParticipantInput
   programParticipations: ProgramParticipationCreateNestedManyWithoutParticipantInput
   balances: AccountCreateNestedManyWithoutParticipantInput
@@ -5772,100 +5814,12 @@ input ParticipantCreateManyRelationInput {
   isActive: Boolean!
   status: ParticipantStatus!
   userId: String!
+  employmentId: Int!
 }
 
-input ParticipantCreateOrConnectWithoutClaimsInput {
+input ParticipantCreateOrConnectWithoutEmploymentInput {
   where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutClaimsInput!
-}
-
-input ClaimProgramCreateNestedOneWithoutClaimInput {
-  create: ClaimProgramCreateWithoutClaimInput
-  connectOrCreate: ClaimProgramCreateOrConnectWithoutClaimInput
-  connect: ClaimProgramWhereUniqueInput
-}
-
-input ClaimProgramCreateWithoutClaimInput {
-  expeditionDate: DateTime
-  reclaim: String
-  submissionNote: String
-  description: String
-  additionalNote: String
-  startTreatment: DateTime
-  endTreatment: DateTime
-  kurisRodaOrWalkerSetoreName: String
-  disease: DiseaseCreateNestedOneWithoutClaimProgramInput
-  clinics: ClinicCreateNestedOneWithoutClaimProgramInput
-  documents: DocumentCreateNestedManyWithoutClaimProgrammInput
-  invoiceProofs: InvoiceProofCreateNestedManyWithoutClaimProgramInput
-}
-
-input ClaimProgramCreateOrConnectWithoutClaimInput {
-  where: ClaimProgramWhereUniqueInput!
-  create: ClaimProgramCreateWithoutClaimInput!
-}
-
-input ClaimCreateOrConnectWithoutClaimFinancialsInput {
-  where: ClaimWhereUniqueInput!
-  create: ClaimCreateWithoutClaimFinancialsInput!
-}
-
-input ClaimStatusCreateNestedOneWithoutClaimFinancialInput {
-  create: ClaimStatusCreateWithoutClaimFinancialInput
-  connectOrCreate: ClaimStatusCreateOrConnectWithoutClaimFinancialInput
-  connect: ClaimStatusWhereUniqueInput
-}
-
-input ClaimStatusCreateWithoutClaimFinancialInput {
-  description: String
-  rejectionReason: String
-  rejectionLetter: DocumentCreateNestedOneWithoutRejectionLetterOfInput
-  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
-  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
-  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
-}
-
-input ClaimStatusCreateOrConnectWithoutClaimFinancialInput {
-  where: ClaimStatusWhereUniqueInput!
-  create: ClaimStatusCreateWithoutClaimFinancialInput!
-}
-
-input ClaimFinancialCreateOrConnectWithoutBranchPayeeInput {
-  where: ClaimFinancialWhereUniqueInput!
-  create: ClaimFinancialCreateWithoutBranchPayeeInput!
-}
-
-input ClaimFinancialCreateManyBranchPayeeInputEnvelope {
-  data: [ClaimFinancialCreateManyBranchPayeeInput!]!
-  skipDuplicates: Boolean
-}
-
-input ClaimFinancialCreateManyBranchPayeeInput {
-  id: Int
-  totalInvoiceProofAmount: Float!
-  requestedAmount: Float!
-  paidAmount: Float
-  rejectedAmount: Float
-  transactionProcessDate: DateTime
-  transferDate: DateTime
-  claimStatusId: Int
-}
-
-input BranchCreateOrConnectWithoutEmploymentInput {
-  where: BranchWhereUniqueInput!
-  create: BranchCreateWithoutEmploymentInput!
-}
-
-input BranchWhereUniqueInput {
-  id: Int
-  AND: [BranchWhereInput!]
-  OR: [BranchWhereInput!]
-  NOT: [BranchWhereInput!]
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  employment: EmploymentListRelationFilter
-  claimFinancial: ClaimFinancialListRelationFilter
+  create: ParticipantCreateWithoutEmploymentInput!
 }
 
 input GroupCreateNestedOneWithoutEmploymentInput {
@@ -5920,9 +5874,9 @@ input RegionWhereUniqueInput {
   employment: EmploymentListRelationFilter
 }
 
-input EmploymentCreateOrConnectWithoutParticipantInput {
+input EmploymentCreateOrConnectWithoutBranchInput {
   where: EmploymentWhereUniqueInput!
-  create: EmploymentCreateWithoutParticipantInput!
+  create: EmploymentCreateWithoutBranchInput!
 }
 
 input EmploymentWhereUniqueInput {
@@ -5931,27 +5885,112 @@ input EmploymentWhereUniqueInput {
   OR: [EmploymentWhereInput!]
   NOT: [EmploymentWhereInput!]
   employmentPosition: EnumPositionFilter
-  participantId: StringFilter
   branchId: IntFilter
   groupId: IntNullableFilter
   regionId: IntNullableFilter
-  participant: ParticipantRelationFilter
+  participant: ParticipantNullableRelationFilter
   branch: BranchRelationFilter
   group: GroupNullableRelationFilter
   region: RegionNullableRelationFilter
 }
 
-input EmploymentCreateManyParticipantInputEnvelope {
-  data: [EmploymentCreateManyParticipantInput!]!
+input EmploymentCreateManyBranchInputEnvelope {
+  data: [EmploymentCreateManyBranchInput!]!
   skipDuplicates: Boolean
 }
 
-input EmploymentCreateManyParticipantInput {
+input EmploymentCreateManyBranchInput {
   id: Int
   employmentPosition: Position!
-  branchId: Int!
   groupId: Int
   regionId: Int
+}
+
+input BranchCreateOrConnectWithoutClaimFinancialInput {
+  where: BranchWhereUniqueInput!
+  create: BranchCreateWithoutClaimFinancialInput!
+}
+
+input BranchWhereUniqueInput {
+  id: Int
+  AND: [BranchWhereInput!]
+  OR: [BranchWhereInput!]
+  NOT: [BranchWhereInput!]
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+  claimFinancial: ClaimFinancialListRelationFilter
+}
+
+input ClaimStatusCreateNestedOneWithoutClaimFinancialInput {
+  create: ClaimStatusCreateWithoutClaimFinancialInput
+  connectOrCreate: ClaimStatusCreateOrConnectWithoutClaimFinancialInput
+  connect: ClaimStatusWhereUniqueInput
+}
+
+input ClaimStatusCreateWithoutClaimFinancialInput {
+  description: String
+  rejectionReason: String
+  rejectionLetter: DocumentCreateNestedOneWithoutRejectionLetterOfInput
+  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
+  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
+  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
+}
+
+input ClaimStatusCreateOrConnectWithoutClaimFinancialInput {
+  where: ClaimStatusWhereUniqueInput!
+  create: ClaimStatusCreateWithoutClaimFinancialInput!
+}
+
+input ClaimFinancialCreateOrConnectWithoutClaimInput {
+  where: ClaimFinancialWhereUniqueInput!
+  create: ClaimFinancialCreateWithoutClaimInput!
+}
+
+input ClaimProgramCreateNestedOneWithoutClaimInput {
+  create: ClaimProgramCreateWithoutClaimInput
+  connectOrCreate: ClaimProgramCreateOrConnectWithoutClaimInput
+  connect: ClaimProgramWhereUniqueInput
+}
+
+input ClaimProgramCreateWithoutClaimInput {
+  expeditionDate: DateTime
+  reclaim: String
+  submissionNote: String
+  description: String
+  additionalNote: String
+  startTreatment: DateTime
+  endTreatment: DateTime
+  kurisRodaOrWalkerSetoreName: String
+  disease: DiseaseCreateNestedOneWithoutClaimProgramInput
+  clinics: ClinicCreateNestedOneWithoutClaimProgramInput
+  documents: DocumentCreateNestedManyWithoutClaimProgrammInput
+  invoiceProofs: InvoiceProofCreateNestedManyWithoutClaimProgramInput
+}
+
+input ClaimProgramCreateOrConnectWithoutClaimInput {
+  where: ClaimProgramWhereUniqueInput!
+  create: ClaimProgramCreateWithoutClaimInput!
+}
+
+input ClaimCreateOrConnectWithoutParticipantInput {
+  where: ClaimWhereUniqueInput!
+  create: ClaimCreateWithoutParticipantInput!
+}
+
+input ClaimCreateManyParticipantInputEnvelope {
+  data: [ClaimCreateManyParticipantInput!]!
+  skipDuplicates: Boolean
+}
+
+input ClaimCreateManyParticipantInput {
+  id: String
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  claimFinancialId: Int!
+  claimProgramId: Int!
 }
 
 input ParticipantCreateOrConnectWithoutBalancesInput {
@@ -5984,56 +6023,45 @@ input ProgramParticipationCreateManyParticipantInput {
   programId: Int
 }
 
-input ParticipantCreateOrConnectWithoutEmploymentsInput {
+input ParticipantCreateOrConnectWithoutClaimsInput {
   where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutEmploymentsInput!
+  create: ParticipantCreateWithoutClaimsInput!
 }
 
-input EmploymentCreateOrConnectWithoutBranchInput {
-  where: EmploymentWhereUniqueInput!
-  create: EmploymentCreateWithoutBranchInput!
-}
-
-input EmploymentCreateManyBranchInputEnvelope {
-  data: [EmploymentCreateManyBranchInput!]!
-  skipDuplicates: Boolean
-}
-
-input EmploymentCreateManyBranchInput {
-  id: Int
-  employmentPosition: Position!
-  participantId: String!
-  groupId: Int
-  regionId: Int
-}
-
-input BranchCreateOrConnectWithoutClaimFinancialInput {
-  where: BranchWhereUniqueInput!
-  create: BranchCreateWithoutClaimFinancialInput!
-}
-
-input ClaimFinancialCreateOrConnectWithoutClaimInput {
-  where: ClaimFinancialWhereUniqueInput!
-  create: ClaimFinancialCreateWithoutClaimInput!
-}
-
-input ClaimCreateOrConnectWithoutParticipantInput {
+input ClaimCreateOrConnectWithoutClaimFinancialsInput {
   where: ClaimWhereUniqueInput!
-  create: ClaimCreateWithoutParticipantInput!
+  create: ClaimCreateWithoutClaimFinancialsInput!
 }
 
-input ClaimCreateManyParticipantInputEnvelope {
-  data: [ClaimCreateManyParticipantInput!]!
+input ClaimFinancialCreateOrConnectWithoutBranchPayeeInput {
+  where: ClaimFinancialWhereUniqueInput!
+  create: ClaimFinancialCreateWithoutBranchPayeeInput!
+}
+
+input ClaimFinancialCreateManyBranchPayeeInputEnvelope {
+  data: [ClaimFinancialCreateManyBranchPayeeInput!]!
   skipDuplicates: Boolean
 }
 
-input ClaimCreateManyParticipantInput {
-  id: String
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  claimFinancialId: Int!
-  claimProgramId: Int!
+input ClaimFinancialCreateManyBranchPayeeInput {
+  id: Int
+  totalInvoiceProofAmount: Float!
+  requestedAmount: Float!
+  paidAmount: Float
+  rejectedAmount: Float
+  transactionProcessDate: DateTime
+  transferDate: DateTime
+  claimStatusId: Int
+}
+
+input BranchCreateOrConnectWithoutEmploymentInput {
+  where: BranchWhereUniqueInput!
+  create: BranchCreateWithoutEmploymentInput!
+}
+
+input EmploymentCreateOrConnectWithoutParticipantInput {
+  where: EmploymentWhereUniqueInput!
+  create: EmploymentCreateWithoutParticipantInput!
 }
 
 input ParticipantCreateOrConnectWithoutParticipantInput {
@@ -6259,9 +6287,9 @@ input ParticipantUpdateWithoutProgramParticipationsInput {
   status: EnumParticipantStatusFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   claims: ClaimUpdateManyWithoutParticipantNestedInput
-  employments: EmploymentUpdateManyWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   balances: AccountUpdateManyWithoutParticipantNestedInput
   Participant: ParticipantUpdateManyWithoutRelationNestedInput
@@ -6458,9 +6486,9 @@ input ParticipantUpdateWithoutUserInput {
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   claims: ClaimUpdateManyWithoutParticipantNestedInput
-  employments: EmploymentUpdateManyWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
   balances: AccountUpdateManyWithoutParticipantNestedInput
@@ -6490,12 +6518,158 @@ input ParticipantUpdateWithoutParticipantInput {
   status: EnumParticipantStatusFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   claims: ClaimUpdateManyWithoutParticipantNestedInput
-  employments: EmploymentUpdateManyWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
   balances: AccountUpdateManyWithoutParticipantNestedInput
+}
+
+input EmploymentUpdateOneRequiredWithoutParticipantNestedInput {
+  create: EmploymentCreateWithoutParticipantInput
+  connectOrCreate: EmploymentCreateOrConnectWithoutParticipantInput
+  upsert: EmploymentUpsertWithoutParticipantInput
+  connect: EmploymentWhereUniqueInput
+  update: EmploymentUpdateToOneWithWhereWithoutParticipantInput
+}
+
+input EmploymentUpsertWithoutParticipantInput {
+  update: EmploymentUpdateWithoutParticipantInput!
+  create: EmploymentCreateWithoutParticipantInput!
+  where: EmploymentWhereInput
+}
+
+input EmploymentUpdateWithoutParticipantInput {
+  employmentPosition: EnumPositionFieldUpdateOperationsInput
+  branch: BranchUpdateOneRequiredWithoutEmploymentNestedInput
+  group: GroupUpdateOneWithoutEmploymentNestedInput
+  region: RegionUpdateOneWithoutEmploymentNestedInput
+}
+
+input EnumPositionFieldUpdateOperationsInput {
+  set: Position
+}
+
+input BranchUpdateOneRequiredWithoutEmploymentNestedInput {
+  create: BranchCreateWithoutEmploymentInput
+  connectOrCreate: BranchCreateOrConnectWithoutEmploymentInput
+  upsert: BranchUpsertWithoutEmploymentInput
+  connect: BranchWhereUniqueInput
+  update: BranchUpdateToOneWithWhereWithoutEmploymentInput
+}
+
+input BranchUpsertWithoutEmploymentInput {
+  update: BranchUpdateWithoutEmploymentInput!
+  create: BranchCreateWithoutEmploymentInput!
+  where: BranchWhereInput
+}
+
+input BranchUpdateWithoutEmploymentInput {
+  name: StringFieldUpdateOperationsInput
+  claimFinancial: ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput
+}
+
+input ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput {
+  create: [ClaimFinancialCreateWithoutBranchPayeeInput!]
+  connectOrCreate: [ClaimFinancialCreateOrConnectWithoutBranchPayeeInput!]
+  upsert: [ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput!]
+  createMany: ClaimFinancialCreateManyBranchPayeeInputEnvelope
+  set: [ClaimFinancialWhereUniqueInput!]
+  disconnect: [ClaimFinancialWhereUniqueInput!]
+  delete: [ClaimFinancialWhereUniqueInput!]
+  connect: [ClaimFinancialWhereUniqueInput!]
+  update: [ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput!]
+  updateMany: [ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput!]
+  deleteMany: [ClaimFinancialScalarWhereInput!]
+}
+
+input ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput {
+  where: ClaimFinancialWhereUniqueInput!
+  update: ClaimFinancialUpdateWithoutBranchPayeeInput!
+  create: ClaimFinancialCreateWithoutBranchPayeeInput!
+}
+
+input ClaimFinancialUpdateWithoutBranchPayeeInput {
+  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
+  requestedAmount: FloatFieldUpdateOperationsInput
+  paidAmount: NullableFloatFieldUpdateOperationsInput
+  rejectedAmount: NullableFloatFieldUpdateOperationsInput
+  transactionProcessDate: NullableDateTimeFieldUpdateOperationsInput
+  transferDate: NullableDateTimeFieldUpdateOperationsInput
+  claim: ClaimUpdateOneWithoutClaimFinancialsNestedInput
+  claimStatus: ClaimStatusUpdateOneWithoutClaimFinancialNestedInput
+}
+
+input NullableFloatFieldUpdateOperationsInput {
+  set: Float
+  increment: Float
+  decrement: Float
+  multiply: Float
+  divide: Float
+}
+
+input ClaimUpdateOneWithoutClaimFinancialsNestedInput {
+  create: ClaimCreateWithoutClaimFinancialsInput
+  connectOrCreate: ClaimCreateOrConnectWithoutClaimFinancialsInput
+  upsert: ClaimUpsertWithoutClaimFinancialsInput
+  disconnect: ClaimWhereInput
+  delete: ClaimWhereInput
+  connect: ClaimWhereUniqueInput
+  update: ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput
+}
+
+input ClaimUpsertWithoutClaimFinancialsInput {
+  update: ClaimUpdateWithoutClaimFinancialsInput!
+  create: ClaimCreateWithoutClaimFinancialsInput!
+  where: ClaimWhereInput
+}
+
+input ClaimUpdateWithoutClaimFinancialsInput {
+  id: StringFieldUpdateOperationsInput
+  channel: EnumClaimChannelFieldUpdateOperationsInput
+  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
+  company: StringFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneRequiredWithoutClaimsNestedInput
+  claimProgram: ClaimProgramUpdateOneRequiredWithoutClaimNestedInput
+  tags: TagUpdateManyWithoutClaimsNestedInput
+}
+
+input EnumClaimChannelFieldUpdateOperationsInput {
+  set: ClaimChannel
+}
+
+input EnumAdmedicaStatusFieldUpdateOperationsInput {
+  set: AdmedicaStatus
+}
+
+input ParticipantUpdateOneRequiredWithoutClaimsNestedInput {
+  create: ParticipantCreateWithoutClaimsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
+  upsert: ParticipantUpsertWithoutClaimsInput
+  connect: ParticipantWhereUniqueInput
+  update: ParticipantUpdateToOneWithWhereWithoutClaimsInput
+}
+
+input ParticipantUpsertWithoutClaimsInput {
+  update: ParticipantUpdateWithoutClaimsInput!
+  create: ParticipantCreateWithoutClaimsInput!
+  where: ParticipantWhereInput
+}
+
+input ParticipantUpdateWithoutClaimsInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  birthDate: DateTimeFieldUpdateOperationsInput
+  isActive: BoolFieldUpdateOperationsInput
+  status: EnumParticipantStatusFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutParticipantNestedInput
+  relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
+  bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
+  contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
+  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
+  balances: AccountUpdateManyWithoutParticipantNestedInput
+  Participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input BankAccountUpdateOneWithoutParticipantNestedInput {
@@ -6522,158 +6696,6 @@ input BankAccountUpdateWithoutParticipantInput {
 input BankAccountUpdateToOneWithWhereWithoutParticipantInput {
   where: BankAccountWhereInput
   data: BankAccountUpdateWithoutParticipantInput!
-}
-
-input ClaimUpdateManyWithoutParticipantNestedInput {
-  create: [ClaimCreateWithoutParticipantInput!]
-  connectOrCreate: [ClaimCreateOrConnectWithoutParticipantInput!]
-  upsert: [ClaimUpsertWithWhereUniqueWithoutParticipantInput!]
-  createMany: ClaimCreateManyParticipantInputEnvelope
-  set: [ClaimWhereUniqueInput!]
-  disconnect: [ClaimWhereUniqueInput!]
-  delete: [ClaimWhereUniqueInput!]
-  connect: [ClaimWhereUniqueInput!]
-  update: [ClaimUpdateWithWhereUniqueWithoutParticipantInput!]
-  updateMany: [ClaimUpdateManyWithWhereWithoutParticipantInput!]
-  deleteMany: [ClaimScalarWhereInput!]
-}
-
-input ClaimUpsertWithWhereUniqueWithoutParticipantInput {
-  where: ClaimWhereUniqueInput!
-  update: ClaimUpdateWithoutParticipantInput!
-  create: ClaimCreateWithoutParticipantInput!
-}
-
-input ClaimUpdateWithoutParticipantInput {
-  id: StringFieldUpdateOperationsInput
-  channel: EnumClaimChannelFieldUpdateOperationsInput
-  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
-  company: StringFieldUpdateOperationsInput
-  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
-  claimProgram: ClaimProgramUpdateOneRequiredWithoutClaimNestedInput
-  tags: TagUpdateManyWithoutClaimsNestedInput
-}
-
-input EnumClaimChannelFieldUpdateOperationsInput {
-  set: ClaimChannel
-}
-
-input EnumAdmedicaStatusFieldUpdateOperationsInput {
-  set: AdmedicaStatus
-}
-
-input ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput {
-  create: ClaimFinancialCreateWithoutClaimInput
-  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
-  upsert: ClaimFinancialUpsertWithoutClaimInput
-  connect: ClaimFinancialWhereUniqueInput
-  update: ClaimFinancialUpdateToOneWithWhereWithoutClaimInput
-}
-
-input ClaimFinancialUpsertWithoutClaimInput {
-  update: ClaimFinancialUpdateWithoutClaimInput!
-  create: ClaimFinancialCreateWithoutClaimInput!
-  where: ClaimFinancialWhereInput
-}
-
-input ClaimFinancialUpdateWithoutClaimInput {
-  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
-  requestedAmount: FloatFieldUpdateOperationsInput
-  paidAmount: NullableFloatFieldUpdateOperationsInput
-  rejectedAmount: NullableFloatFieldUpdateOperationsInput
-  transactionProcessDate: NullableDateTimeFieldUpdateOperationsInput
-  transferDate: NullableDateTimeFieldUpdateOperationsInput
-  branchPayee: BranchUpdateOneWithoutClaimFinancialNestedInput
-  claimStatus: ClaimStatusUpdateOneWithoutClaimFinancialNestedInput
-}
-
-input NullableFloatFieldUpdateOperationsInput {
-  set: Float
-  increment: Float
-  decrement: Float
-  multiply: Float
-  divide: Float
-}
-
-input BranchUpdateOneWithoutClaimFinancialNestedInput {
-  create: BranchCreateWithoutClaimFinancialInput
-  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
-  upsert: BranchUpsertWithoutClaimFinancialInput
-  disconnect: BranchWhereInput
-  delete: BranchWhereInput
-  connect: BranchWhereUniqueInput
-  update: BranchUpdateToOneWithWhereWithoutClaimFinancialInput
-}
-
-input BranchUpsertWithoutClaimFinancialInput {
-  update: BranchUpdateWithoutClaimFinancialInput!
-  create: BranchCreateWithoutClaimFinancialInput!
-  where: BranchWhereInput
-}
-
-input BranchUpdateWithoutClaimFinancialInput {
-  name: StringFieldUpdateOperationsInput
-  employment: EmploymentUpdateManyWithoutBranchNestedInput
-}
-
-input EmploymentUpdateManyWithoutBranchNestedInput {
-  create: [EmploymentCreateWithoutBranchInput!]
-  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
-  upsert: [EmploymentUpsertWithWhereUniqueWithoutBranchInput!]
-  createMany: EmploymentCreateManyBranchInputEnvelope
-  set: [EmploymentWhereUniqueInput!]
-  disconnect: [EmploymentWhereUniqueInput!]
-  delete: [EmploymentWhereUniqueInput!]
-  connect: [EmploymentWhereUniqueInput!]
-  update: [EmploymentUpdateWithWhereUniqueWithoutBranchInput!]
-  updateMany: [EmploymentUpdateManyWithWhereWithoutBranchInput!]
-  deleteMany: [EmploymentScalarWhereInput!]
-}
-
-input EmploymentUpsertWithWhereUniqueWithoutBranchInput {
-  where: EmploymentWhereUniqueInput!
-  update: EmploymentUpdateWithoutBranchInput!
-  create: EmploymentCreateWithoutBranchInput!
-}
-
-input EmploymentUpdateWithoutBranchInput {
-  employmentPosition: EnumPositionFieldUpdateOperationsInput
-  participant: ParticipantUpdateOneRequiredWithoutEmploymentsNestedInput
-  group: GroupUpdateOneWithoutEmploymentNestedInput
-  region: RegionUpdateOneWithoutEmploymentNestedInput
-}
-
-input EnumPositionFieldUpdateOperationsInput {
-  set: Position
-}
-
-input ParticipantUpdateOneRequiredWithoutEmploymentsNestedInput {
-  create: ParticipantCreateWithoutEmploymentsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutEmploymentsInput
-  upsert: ParticipantUpsertWithoutEmploymentsInput
-  connect: ParticipantWhereUniqueInput
-  update: ParticipantUpdateToOneWithWhereWithoutEmploymentsInput
-}
-
-input ParticipantUpsertWithoutEmploymentsInput {
-  update: ParticipantUpdateWithoutEmploymentsInput!
-  create: ParticipantCreateWithoutEmploymentsInput!
-  where: ParticipantWhereInput
-}
-
-input ParticipantUpdateWithoutEmploymentsInput {
-  gender: EnumGenderFieldUpdateOperationsInput
-  birthDate: DateTimeFieldUpdateOperationsInput
-  isActive: BoolFieldUpdateOperationsInput
-  status: EnumParticipantStatusFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutParticipantNestedInput
-  relation: ParticipantUpdateOneWithoutParticipantNestedInput
-  bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
-  claims: ClaimUpdateManyWithoutParticipantNestedInput
-  contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
-  programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
-  balances: AccountUpdateManyWithoutParticipantNestedInput
-  Participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input ContactInfoUpdateManyWithoutParticipantNestedInput {
@@ -6919,132 +6941,134 @@ input ParticipantUpdateWithoutBalancesInput {
   status: EnumParticipantStatusFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   claims: ClaimUpdateManyWithoutParticipantNestedInput
-  employments: EmploymentUpdateManyWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
   Participant: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
-input EmploymentUpdateManyWithoutParticipantNestedInput {
-  create: [EmploymentCreateWithoutParticipantInput!]
-  connectOrCreate: [EmploymentCreateOrConnectWithoutParticipantInput!]
-  upsert: [EmploymentUpsertWithWhereUniqueWithoutParticipantInput!]
-  createMany: EmploymentCreateManyParticipantInputEnvelope
-  set: [EmploymentWhereUniqueInput!]
-  disconnect: [EmploymentWhereUniqueInput!]
-  delete: [EmploymentWhereUniqueInput!]
-  connect: [EmploymentWhereUniqueInput!]
-  update: [EmploymentUpdateWithWhereUniqueWithoutParticipantInput!]
-  updateMany: [EmploymentUpdateManyWithWhereWithoutParticipantInput!]
-  deleteMany: [EmploymentScalarWhereInput!]
+input ClaimUpdateManyWithoutParticipantNestedInput {
+  create: [ClaimCreateWithoutParticipantInput!]
+  connectOrCreate: [ClaimCreateOrConnectWithoutParticipantInput!]
+  upsert: [ClaimUpsertWithWhereUniqueWithoutParticipantInput!]
+  createMany: ClaimCreateManyParticipantInputEnvelope
+  set: [ClaimWhereUniqueInput!]
+  disconnect: [ClaimWhereUniqueInput!]
+  delete: [ClaimWhereUniqueInput!]
+  connect: [ClaimWhereUniqueInput!]
+  update: [ClaimUpdateWithWhereUniqueWithoutParticipantInput!]
+  updateMany: [ClaimUpdateManyWithWhereWithoutParticipantInput!]
+  deleteMany: [ClaimScalarWhereInput!]
 }
 
-input EmploymentUpsertWithWhereUniqueWithoutParticipantInput {
-  where: EmploymentWhereUniqueInput!
-  update: EmploymentUpdateWithoutParticipantInput!
-  create: EmploymentCreateWithoutParticipantInput!
+input ClaimUpsertWithWhereUniqueWithoutParticipantInput {
+  where: ClaimWhereUniqueInput!
+  update: ClaimUpdateWithoutParticipantInput!
+  create: ClaimCreateWithoutParticipantInput!
 }
 
-input EmploymentUpdateWithoutParticipantInput {
-  employmentPosition: EnumPositionFieldUpdateOperationsInput
-  branch: BranchUpdateOneRequiredWithoutEmploymentNestedInput
-  group: GroupUpdateOneWithoutEmploymentNestedInput
-  region: RegionUpdateOneWithoutEmploymentNestedInput
+input ClaimUpdateWithoutParticipantInput {
+  id: StringFieldUpdateOperationsInput
+  channel: EnumClaimChannelFieldUpdateOperationsInput
+  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
+  company: StringFieldUpdateOperationsInput
+  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
+  claimProgram: ClaimProgramUpdateOneRequiredWithoutClaimNestedInput
+  tags: TagUpdateManyWithoutClaimsNestedInput
 }
 
-input BranchUpdateOneRequiredWithoutEmploymentNestedInput {
-  create: BranchCreateWithoutEmploymentInput
-  connectOrCreate: BranchCreateOrConnectWithoutEmploymentInput
-  upsert: BranchUpsertWithoutEmploymentInput
-  connect: BranchWhereUniqueInput
-  update: BranchUpdateToOneWithWhereWithoutEmploymentInput
+input ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput {
+  create: ClaimFinancialCreateWithoutClaimInput
+  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
+  upsert: ClaimFinancialUpsertWithoutClaimInput
+  connect: ClaimFinancialWhereUniqueInput
+  update: ClaimFinancialUpdateToOneWithWhereWithoutClaimInput
 }
 
-input BranchUpsertWithoutEmploymentInput {
-  update: BranchUpdateWithoutEmploymentInput!
-  create: BranchCreateWithoutEmploymentInput!
-  where: BranchWhereInput
+input ClaimFinancialUpsertWithoutClaimInput {
+  update: ClaimFinancialUpdateWithoutClaimInput!
+  create: ClaimFinancialCreateWithoutClaimInput!
+  where: ClaimFinancialWhereInput
 }
 
-input BranchUpdateWithoutEmploymentInput {
-  name: StringFieldUpdateOperationsInput
-  claimFinancial: ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput
-}
-
-input ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput {
-  create: [ClaimFinancialCreateWithoutBranchPayeeInput!]
-  connectOrCreate: [ClaimFinancialCreateOrConnectWithoutBranchPayeeInput!]
-  upsert: [ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput!]
-  createMany: ClaimFinancialCreateManyBranchPayeeInputEnvelope
-  set: [ClaimFinancialWhereUniqueInput!]
-  disconnect: [ClaimFinancialWhereUniqueInput!]
-  delete: [ClaimFinancialWhereUniqueInput!]
-  connect: [ClaimFinancialWhereUniqueInput!]
-  update: [ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput!]
-  updateMany: [ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput!]
-  deleteMany: [ClaimFinancialScalarWhereInput!]
-}
-
-input ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput {
-  where: ClaimFinancialWhereUniqueInput!
-  update: ClaimFinancialUpdateWithoutBranchPayeeInput!
-  create: ClaimFinancialCreateWithoutBranchPayeeInput!
-}
-
-input ClaimFinancialUpdateWithoutBranchPayeeInput {
+input ClaimFinancialUpdateWithoutClaimInput {
   totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
   requestedAmount: FloatFieldUpdateOperationsInput
   paidAmount: NullableFloatFieldUpdateOperationsInput
   rejectedAmount: NullableFloatFieldUpdateOperationsInput
   transactionProcessDate: NullableDateTimeFieldUpdateOperationsInput
   transferDate: NullableDateTimeFieldUpdateOperationsInput
-  claim: ClaimUpdateOneWithoutClaimFinancialsNestedInput
+  branchPayee: BranchUpdateOneWithoutClaimFinancialNestedInput
   claimStatus: ClaimStatusUpdateOneWithoutClaimFinancialNestedInput
 }
 
-input ClaimUpdateOneWithoutClaimFinancialsNestedInput {
-  create: ClaimCreateWithoutClaimFinancialsInput
-  connectOrCreate: ClaimCreateOrConnectWithoutClaimFinancialsInput
-  upsert: ClaimUpsertWithoutClaimFinancialsInput
-  disconnect: ClaimWhereInput
-  delete: ClaimWhereInput
-  connect: ClaimWhereUniqueInput
-  update: ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput
+input BranchUpdateOneWithoutClaimFinancialNestedInput {
+  create: BranchCreateWithoutClaimFinancialInput
+  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
+  upsert: BranchUpsertWithoutClaimFinancialInput
+  disconnect: BranchWhereInput
+  delete: BranchWhereInput
+  connect: BranchWhereUniqueInput
+  update: BranchUpdateToOneWithWhereWithoutClaimFinancialInput
 }
 
-input ClaimUpsertWithoutClaimFinancialsInput {
-  update: ClaimUpdateWithoutClaimFinancialsInput!
-  create: ClaimCreateWithoutClaimFinancialsInput!
-  where: ClaimWhereInput
+input BranchUpsertWithoutClaimFinancialInput {
+  update: BranchUpdateWithoutClaimFinancialInput!
+  create: BranchCreateWithoutClaimFinancialInput!
+  where: BranchWhereInput
 }
 
-input ClaimUpdateWithoutClaimFinancialsInput {
-  id: StringFieldUpdateOperationsInput
-  channel: EnumClaimChannelFieldUpdateOperationsInput
-  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
-  company: StringFieldUpdateOperationsInput
-  participant: ParticipantUpdateOneRequiredWithoutClaimsNestedInput
-  claimProgram: ClaimProgramUpdateOneRequiredWithoutClaimNestedInput
-  tags: TagUpdateManyWithoutClaimsNestedInput
+input BranchUpdateWithoutClaimFinancialInput {
+  name: StringFieldUpdateOperationsInput
+  employment: EmploymentUpdateManyWithoutBranchNestedInput
 }
 
-input ParticipantUpdateOneRequiredWithoutClaimsNestedInput {
-  create: ParticipantCreateWithoutClaimsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
-  upsert: ParticipantUpsertWithoutClaimsInput
+input EmploymentUpdateManyWithoutBranchNestedInput {
+  create: [EmploymentCreateWithoutBranchInput!]
+  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
+  upsert: [EmploymentUpsertWithWhereUniqueWithoutBranchInput!]
+  createMany: EmploymentCreateManyBranchInputEnvelope
+  set: [EmploymentWhereUniqueInput!]
+  disconnect: [EmploymentWhereUniqueInput!]
+  delete: [EmploymentWhereUniqueInput!]
+  connect: [EmploymentWhereUniqueInput!]
+  update: [EmploymentUpdateWithWhereUniqueWithoutBranchInput!]
+  updateMany: [EmploymentUpdateManyWithWhereWithoutBranchInput!]
+  deleteMany: [EmploymentScalarWhereInput!]
+}
+
+input EmploymentUpsertWithWhereUniqueWithoutBranchInput {
+  where: EmploymentWhereUniqueInput!
+  update: EmploymentUpdateWithoutBranchInput!
+  create: EmploymentCreateWithoutBranchInput!
+}
+
+input EmploymentUpdateWithoutBranchInput {
+  employmentPosition: EnumPositionFieldUpdateOperationsInput
+  participant: ParticipantUpdateOneWithoutEmploymentNestedInput
+  group: GroupUpdateOneWithoutEmploymentNestedInput
+  region: RegionUpdateOneWithoutEmploymentNestedInput
+}
+
+input ParticipantUpdateOneWithoutEmploymentNestedInput {
+  create: ParticipantCreateWithoutEmploymentInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutEmploymentInput
+  upsert: ParticipantUpsertWithoutEmploymentInput
+  disconnect: ParticipantWhereInput
+  delete: ParticipantWhereInput
   connect: ParticipantWhereUniqueInput
-  update: ParticipantUpdateToOneWithWhereWithoutClaimsInput
+  update: ParticipantUpdateToOneWithWhereWithoutEmploymentInput
 }
 
-input ParticipantUpsertWithoutClaimsInput {
-  update: ParticipantUpdateWithoutClaimsInput!
-  create: ParticipantCreateWithoutClaimsInput!
+input ParticipantUpsertWithoutEmploymentInput {
+  update: ParticipantUpdateWithoutEmploymentInput!
+  create: ParticipantCreateWithoutEmploymentInput!
   where: ParticipantWhereInput
 }
 
-input ParticipantUpdateWithoutClaimsInput {
+input ParticipantUpdateWithoutEmploymentInput {
   gender: EnumGenderFieldUpdateOperationsInput
   birthDate: DateTimeFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
@@ -7052,7 +7076,7 @@ input ParticipantUpdateWithoutClaimsInput {
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
   relation: ParticipantUpdateOneWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
-  employments: EmploymentUpdateManyWithoutParticipantNestedInput
+  claims: ClaimUpdateManyWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
   balances: AccountUpdateManyWithoutParticipantNestedInput
@@ -8130,9 +8154,9 @@ input ParticipantUpdateWithoutRelationInput {
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneWithoutParticipantNestedInput
   claims: ClaimUpdateManyWithoutParticipantNestedInput
-  employments: EmploymentUpdateManyWithoutParticipantNestedInput
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   programParticipations: ProgramParticipationUpdateManyWithoutParticipantNestedInput
   balances: AccountUpdateManyWithoutParticipantNestedInput
@@ -8159,6 +8183,7 @@ input ParticipantScalarWhereInput {
   status: EnumParticipantStatusFilter
   userId: StringFilter
   relationId: StringNullableFilter
+  employmentId: IntFilter
 }
 
 input ParticipantUpdateManyMutationInput {
@@ -8168,117 +8193,9 @@ input ParticipantUpdateManyMutationInput {
   status: EnumParticipantStatusFieldUpdateOperationsInput
 }
 
-input ParticipantUpdateToOneWithWhereWithoutClaimsInput {
+input ParticipantUpdateToOneWithWhereWithoutEmploymentInput {
   where: ParticipantWhereInput
-  data: ParticipantUpdateWithoutClaimsInput!
-}
-
-input ClaimProgramUpdateOneRequiredWithoutClaimNestedInput {
-  create: ClaimProgramCreateWithoutClaimInput
-  connectOrCreate: ClaimProgramCreateOrConnectWithoutClaimInput
-  upsert: ClaimProgramUpsertWithoutClaimInput
-  connect: ClaimProgramWhereUniqueInput
-  update: ClaimProgramUpdateToOneWithWhereWithoutClaimInput
-}
-
-input ClaimProgramUpsertWithoutClaimInput {
-  update: ClaimProgramUpdateWithoutClaimInput!
-  create: ClaimProgramCreateWithoutClaimInput!
-  where: ClaimProgramWhereInput
-}
-
-input ClaimProgramUpdateWithoutClaimInput {
-  expeditionDate: NullableDateTimeFieldUpdateOperationsInput
-  reclaim: NullableStringFieldUpdateOperationsInput
-  submissionNote: NullableStringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  additionalNote: NullableStringFieldUpdateOperationsInput
-  startTreatment: NullableDateTimeFieldUpdateOperationsInput
-  endTreatment: NullableDateTimeFieldUpdateOperationsInput
-  kurisRodaOrWalkerSetoreName: NullableStringFieldUpdateOperationsInput
-  disease: DiseaseUpdateOneWithoutClaimProgramNestedInput
-  clinics: ClinicUpdateOneWithoutClaimProgramNestedInput
-  documents: DocumentUpdateManyWithoutClaimProgrammNestedInput
-  invoiceProofs: InvoiceProofUpdateManyWithoutClaimProgramNestedInput
-}
-
-input ClaimProgramUpdateToOneWithWhereWithoutClaimInput {
-  where: ClaimProgramWhereInput
-  data: ClaimProgramUpdateWithoutClaimInput!
-}
-
-input ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput {
-  where: ClaimWhereInput
-  data: ClaimUpdateWithoutClaimFinancialsInput!
-}
-
-input ClaimStatusUpdateOneWithoutClaimFinancialNestedInput {
-  create: ClaimStatusCreateWithoutClaimFinancialInput
-  connectOrCreate: ClaimStatusCreateOrConnectWithoutClaimFinancialInput
-  upsert: ClaimStatusUpsertWithoutClaimFinancialInput
-  disconnect: ClaimStatusWhereInput
-  delete: ClaimStatusWhereInput
-  connect: ClaimStatusWhereUniqueInput
-  update: ClaimStatusUpdateToOneWithWhereWithoutClaimFinancialInput
-}
-
-input ClaimStatusUpsertWithoutClaimFinancialInput {
-  update: ClaimStatusUpdateWithoutClaimFinancialInput!
-  create: ClaimStatusCreateWithoutClaimFinancialInput!
-  where: ClaimStatusWhereInput
-}
-
-input ClaimStatusUpdateWithoutClaimFinancialInput {
-  description: NullableStringFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  rejectionLetter: DocumentUpdateOneWithoutRejectionLetterOfNestedInput
-  guaranteeLetter: DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput
-  transactionLetter: DocumentUpdateOneWithoutTransactionLetterOfNestedInput
-  bookKeepingOrder: DocumentUpdateOneWithoutBookKeepingOrderOfNestedInput
-}
-
-input ClaimStatusUpdateToOneWithWhereWithoutClaimFinancialInput {
-  where: ClaimStatusWhereInput
-  data: ClaimStatusUpdateWithoutClaimFinancialInput!
-}
-
-input ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput {
-  where: ClaimFinancialWhereUniqueInput!
-  data: ClaimFinancialUpdateWithoutBranchPayeeInput!
-}
-
-input ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput {
-  where: ClaimFinancialScalarWhereInput!
-  data: ClaimFinancialUpdateManyMutationInput!
-}
-
-input ClaimFinancialScalarWhereInput {
-  AND: [ClaimFinancialScalarWhereInput!]
-  OR: [ClaimFinancialScalarWhereInput!]
-  NOT: [ClaimFinancialScalarWhereInput!]
-  id: IntFilter
-  totalInvoiceProofAmount: FloatFilter
-  requestedAmount: FloatFilter
-  paidAmount: FloatNullableFilter
-  rejectedAmount: FloatNullableFilter
-  transactionProcessDate: DateTimeNullableFilter
-  transferDate: DateTimeNullableFilter
-  branchId: IntNullableFilter
-  claimStatusId: IntNullableFilter
-}
-
-input ClaimFinancialUpdateManyMutationInput {
-  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
-  requestedAmount: FloatFieldUpdateOperationsInput
-  paidAmount: NullableFloatFieldUpdateOperationsInput
-  rejectedAmount: NullableFloatFieldUpdateOperationsInput
-  transactionProcessDate: NullableDateTimeFieldUpdateOperationsInput
-  transferDate: NullableDateTimeFieldUpdateOperationsInput
-}
-
-input BranchUpdateToOneWithWhereWithoutEmploymentInput {
-  where: BranchWhereInput
-  data: BranchUpdateWithoutEmploymentInput!
+  data: ParticipantUpdateWithoutEmploymentInput!
 }
 
 input GroupUpdateOneWithoutEmploymentNestedInput {
@@ -8331,57 +8248,6 @@ input RegionUpdateToOneWithWhereWithoutEmploymentInput {
   data: RegionUpdateWithoutEmploymentInput!
 }
 
-input EmploymentUpdateWithWhereUniqueWithoutParticipantInput {
-  where: EmploymentWhereUniqueInput!
-  data: EmploymentUpdateWithoutParticipantInput!
-}
-
-input EmploymentUpdateManyWithWhereWithoutParticipantInput {
-  where: EmploymentScalarWhereInput!
-  data: EmploymentUpdateManyMutationInput!
-}
-
-input EmploymentScalarWhereInput {
-  AND: [EmploymentScalarWhereInput!]
-  OR: [EmploymentScalarWhereInput!]
-  NOT: [EmploymentScalarWhereInput!]
-  id: IntFilter
-  employmentPosition: EnumPositionFilter
-  participantId: StringFilter
-  branchId: IntFilter
-  groupId: IntNullableFilter
-  regionId: IntNullableFilter
-}
-
-input EmploymentUpdateManyMutationInput {
-  employmentPosition: EnumPositionFieldUpdateOperationsInput
-}
-
-input ParticipantUpdateToOneWithWhereWithoutBalancesInput {
-  where: ParticipantWhereInput
-  data: ParticipantUpdateWithoutBalancesInput!
-}
-
-input AccountUpdateToOneWithWhereWithoutProgramParticipationInput {
-  where: AccountWhereInput
-  data: AccountUpdateWithoutProgramParticipationInput!
-}
-
-input ProgramParticipationUpdateWithWhereUniqueWithoutParticipantInput {
-  where: ProgramParticipationWhereUniqueInput!
-  data: ProgramParticipationUpdateWithoutParticipantInput!
-}
-
-input ProgramParticipationUpdateManyWithWhereWithoutParticipantInput {
-  where: ProgramParticipationScalarWhereInput!
-  data: ProgramParticipationUpdateManyMutationInput!
-}
-
-input ParticipantUpdateToOneWithWhereWithoutEmploymentsInput {
-  where: ParticipantWhereInput
-  data: ParticipantUpdateWithoutEmploymentsInput!
-}
-
 input EmploymentUpdateWithWhereUniqueWithoutBranchInput {
   where: EmploymentWhereUniqueInput!
   data: EmploymentUpdateWithoutBranchInput!
@@ -8392,14 +8258,93 @@ input EmploymentUpdateManyWithWhereWithoutBranchInput {
   data: EmploymentUpdateManyMutationInput!
 }
 
+input EmploymentScalarWhereInput {
+  AND: [EmploymentScalarWhereInput!]
+  OR: [EmploymentScalarWhereInput!]
+  NOT: [EmploymentScalarWhereInput!]
+  id: IntFilter
+  employmentPosition: EnumPositionFilter
+  branchId: IntFilter
+  groupId: IntNullableFilter
+  regionId: IntNullableFilter
+}
+
+input EmploymentUpdateManyMutationInput {
+  employmentPosition: EnumPositionFieldUpdateOperationsInput
+}
+
 input BranchUpdateToOneWithWhereWithoutClaimFinancialInput {
   where: BranchWhereInput
   data: BranchUpdateWithoutClaimFinancialInput!
 }
 
+input ClaimStatusUpdateOneWithoutClaimFinancialNestedInput {
+  create: ClaimStatusCreateWithoutClaimFinancialInput
+  connectOrCreate: ClaimStatusCreateOrConnectWithoutClaimFinancialInput
+  upsert: ClaimStatusUpsertWithoutClaimFinancialInput
+  disconnect: ClaimStatusWhereInput
+  delete: ClaimStatusWhereInput
+  connect: ClaimStatusWhereUniqueInput
+  update: ClaimStatusUpdateToOneWithWhereWithoutClaimFinancialInput
+}
+
+input ClaimStatusUpsertWithoutClaimFinancialInput {
+  update: ClaimStatusUpdateWithoutClaimFinancialInput!
+  create: ClaimStatusCreateWithoutClaimFinancialInput!
+  where: ClaimStatusWhereInput
+}
+
+input ClaimStatusUpdateWithoutClaimFinancialInput {
+  description: NullableStringFieldUpdateOperationsInput
+  rejectionReason: NullableStringFieldUpdateOperationsInput
+  rejectionLetter: DocumentUpdateOneWithoutRejectionLetterOfNestedInput
+  guaranteeLetter: DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput
+  transactionLetter: DocumentUpdateOneWithoutTransactionLetterOfNestedInput
+  bookKeepingOrder: DocumentUpdateOneWithoutBookKeepingOrderOfNestedInput
+}
+
+input ClaimStatusUpdateToOneWithWhereWithoutClaimFinancialInput {
+  where: ClaimStatusWhereInput
+  data: ClaimStatusUpdateWithoutClaimFinancialInput!
+}
+
 input ClaimFinancialUpdateToOneWithWhereWithoutClaimInput {
   where: ClaimFinancialWhereInput
   data: ClaimFinancialUpdateWithoutClaimInput!
+}
+
+input ClaimProgramUpdateOneRequiredWithoutClaimNestedInput {
+  create: ClaimProgramCreateWithoutClaimInput
+  connectOrCreate: ClaimProgramCreateOrConnectWithoutClaimInput
+  upsert: ClaimProgramUpsertWithoutClaimInput
+  connect: ClaimProgramWhereUniqueInput
+  update: ClaimProgramUpdateToOneWithWhereWithoutClaimInput
+}
+
+input ClaimProgramUpsertWithoutClaimInput {
+  update: ClaimProgramUpdateWithoutClaimInput!
+  create: ClaimProgramCreateWithoutClaimInput!
+  where: ClaimProgramWhereInput
+}
+
+input ClaimProgramUpdateWithoutClaimInput {
+  expeditionDate: NullableDateTimeFieldUpdateOperationsInput
+  reclaim: NullableStringFieldUpdateOperationsInput
+  submissionNote: NullableStringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  additionalNote: NullableStringFieldUpdateOperationsInput
+  startTreatment: NullableDateTimeFieldUpdateOperationsInput
+  endTreatment: NullableDateTimeFieldUpdateOperationsInput
+  kurisRodaOrWalkerSetoreName: NullableStringFieldUpdateOperationsInput
+  disease: DiseaseUpdateOneWithoutClaimProgramNestedInput
+  clinics: ClinicUpdateOneWithoutClaimProgramNestedInput
+  documents: DocumentUpdateManyWithoutClaimProgrammNestedInput
+  invoiceProofs: InvoiceProofUpdateManyWithoutClaimProgramNestedInput
+}
+
+input ClaimProgramUpdateToOneWithWhereWithoutClaimInput {
+  where: ClaimProgramWhereInput
+  data: ClaimProgramUpdateWithoutClaimInput!
 }
 
 input ClaimUpdateWithWhereUniqueWithoutParticipantInput {
@@ -8435,6 +8380,80 @@ input ClaimUpdateManyMutationInput {
   channel: EnumClaimChannelFieldUpdateOperationsInput
   admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
   company: StringFieldUpdateOperationsInput
+}
+
+input ParticipantUpdateToOneWithWhereWithoutBalancesInput {
+  where: ParticipantWhereInput
+  data: ParticipantUpdateWithoutBalancesInput!
+}
+
+input AccountUpdateToOneWithWhereWithoutProgramParticipationInput {
+  where: AccountWhereInput
+  data: AccountUpdateWithoutProgramParticipationInput!
+}
+
+input ProgramParticipationUpdateWithWhereUniqueWithoutParticipantInput {
+  where: ProgramParticipationWhereUniqueInput!
+  data: ProgramParticipationUpdateWithoutParticipantInput!
+}
+
+input ProgramParticipationUpdateManyWithWhereWithoutParticipantInput {
+  where: ProgramParticipationScalarWhereInput!
+  data: ProgramParticipationUpdateManyMutationInput!
+}
+
+input ParticipantUpdateToOneWithWhereWithoutClaimsInput {
+  where: ParticipantWhereInput
+  data: ParticipantUpdateWithoutClaimsInput!
+}
+
+input ClaimUpdateToOneWithWhereWithoutClaimFinancialsInput {
+  where: ClaimWhereInput
+  data: ClaimUpdateWithoutClaimFinancialsInput!
+}
+
+input ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput {
+  where: ClaimFinancialWhereUniqueInput!
+  data: ClaimFinancialUpdateWithoutBranchPayeeInput!
+}
+
+input ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput {
+  where: ClaimFinancialScalarWhereInput!
+  data: ClaimFinancialUpdateManyMutationInput!
+}
+
+input ClaimFinancialScalarWhereInput {
+  AND: [ClaimFinancialScalarWhereInput!]
+  OR: [ClaimFinancialScalarWhereInput!]
+  NOT: [ClaimFinancialScalarWhereInput!]
+  id: IntFilter
+  totalInvoiceProofAmount: FloatFilter
+  requestedAmount: FloatFilter
+  paidAmount: FloatNullableFilter
+  rejectedAmount: FloatNullableFilter
+  transactionProcessDate: DateTimeNullableFilter
+  transferDate: DateTimeNullableFilter
+  branchId: IntNullableFilter
+  claimStatusId: IntNullableFilter
+}
+
+input ClaimFinancialUpdateManyMutationInput {
+  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
+  requestedAmount: FloatFieldUpdateOperationsInput
+  paidAmount: NullableFloatFieldUpdateOperationsInput
+  rejectedAmount: NullableFloatFieldUpdateOperationsInput
+  transactionProcessDate: NullableDateTimeFieldUpdateOperationsInput
+  transferDate: NullableDateTimeFieldUpdateOperationsInput
+}
+
+input BranchUpdateToOneWithWhereWithoutEmploymentInput {
+  where: BranchWhereInput
+  data: BranchUpdateWithoutEmploymentInput!
+}
+
+input EmploymentUpdateToOneWithWhereWithoutParticipantInput {
+  where: EmploymentWhereInput
+  data: EmploymentUpdateWithoutParticipantInput!
 }
 
 input ParticipantUpdateToOneWithWhereWithoutParticipantInput {
