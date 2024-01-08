@@ -273,6 +273,7 @@ export function fakeProgramParticipation() {
     nonActiveReason: undefined,
     effectiveDate: faker.datatype.datetime(),
     nonActiveDate: undefined,
+    santunanHarianRawatInapPlan: faker.helpers.arrayElement([SantunanHarianRawatInapPlan.I, SantunanHarianRawatInapPlan.II, SantunanHarianRawatInapPlan.III] as const),
   };
 }
 export function fakeProgramParticipationComplete() {
@@ -282,6 +283,7 @@ export function fakeProgramParticipationComplete() {
     nonActiveReason: undefined,
     effectiveDate: faker.datatype.datetime(),
     nonActiveDate: undefined,
+    santunanHarianRawatInapPlan: faker.helpers.arrayElement([SantunanHarianRawatInapPlan.I, SantunanHarianRawatInapPlan.II, SantunanHarianRawatInapPlan.III] as const),
     fundingId: undefined,
   };
 }
@@ -392,6 +394,8 @@ export function fakeClaimFinancial() {
     rejectedAmount: undefined,
     transactionProcessDate: undefined,
     transferDate: undefined,
+    previousBalance: faker.datatype.float(),
+    remainingBalance: faker.datatype.float(),
   };
 }
 export function fakeClaimFinancialComplete() {
@@ -403,6 +407,8 @@ export function fakeClaimFinancialComplete() {
     rejectedAmount: undefined,
     transactionProcessDate: undefined,
     transferDate: undefined,
+    previousBalance: faker.datatype.float(),
+    remainingBalance: faker.datatype.float(),
     branchId: undefined,
     claimStatusId: undefined,
   };

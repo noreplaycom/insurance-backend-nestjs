@@ -468,6 +468,8 @@ type ClaimFinancialAvgAggregate {
   requestedAmount: Float
   paidAmount: Float
   rejectedAmount: Float
+  previousBalance: Float
+  remainingBalance: Float
   branchId: Float
   claimStatusId: Float
 }
@@ -480,6 +482,8 @@ type ClaimFinancialCountAggregate {
   rejectedAmount: Int!
   transactionProcessDate: Int!
   transferDate: Int!
+  previousBalance: Int!
+  remainingBalance: Int!
   branchId: Int!
   claimStatusId: Int!
   _all: Int!
@@ -493,6 +497,8 @@ type ClaimFinancialMaxAggregate {
   rejectedAmount: Float
   transactionProcessDate: DateTime
   transferDate: DateTime
+  previousBalance: Float
+  remainingBalance: Float
   branchId: Int
   claimStatusId: Int
 }
@@ -505,6 +511,8 @@ type ClaimFinancialMinAggregate {
   rejectedAmount: Float
   transactionProcessDate: DateTime
   transferDate: DateTime
+  previousBalance: Float
+  remainingBalance: Float
   branchId: Int
   claimStatusId: Int
 }
@@ -515,6 +523,8 @@ type ClaimFinancialSumAggregate {
   requestedAmount: Float
   paidAmount: Float
   rejectedAmount: Float
+  previousBalance: Float
+  remainingBalance: Float
   branchId: Int
   claimStatusId: Int
 }
@@ -537,6 +547,12 @@ type ClaimFinancial {
 
   """Transfer:	Tanggal Transfer"""
   transferDate: DateTime
+
+  """Saldo sebelum klaim dibayarkan"""
+  previousBalance: Float!
+
+  """Saldo setelah klaim dibayarkan"""
+  remainingBalance: Float!
 
   """Cabang: Cabang Pembayar Pensiun"""
   branchId: Int
@@ -1551,6 +1567,7 @@ type ProgramParticipationCountAggregate {
   nonActiveReason: Int!
   effectiveDate: Int!
   nonActiveDate: Int!
+  santunanHarianRawatInapPlan: Int!
   fundingId: Int!
   _all: Int!
 }
@@ -1565,6 +1582,7 @@ type ProgramParticipationMaxAggregate {
   nonActiveReason: String
   effectiveDate: DateTime
   nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan
   fundingId: Int
 }
 
@@ -1574,6 +1592,7 @@ type ProgramParticipationMinAggregate {
   nonActiveReason: String
   effectiveDate: DateTime
   nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan
   fundingId: Int
 }
 
@@ -1597,6 +1616,7 @@ type ProgramParticipation {
 
   """Tgl Non Aktif:	tanggal penonaktifan peserta"""
   nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
 
   """Nomor Dana"""
   fundingId: Int
@@ -2450,6 +2470,7 @@ input ProgramParticipationWhereInput {
   nonActiveReason: StringNullableFilter
   effectiveDate: DateTimeFilter
   nonActiveDate: DateTimeNullableFilter
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFilter
   fundingId: IntNullableFilter
   participant: ParticipantNullableRelationFilter
   funding: AccountNullableRelationFilter
@@ -2488,6 +2509,20 @@ input NestedStringNullableFilter {
   startsWith: String
   endsWith: String
   not: NestedStringNullableFilter
+}
+
+input EnumSantunanHarianRawatInapPlanFilter {
+  equals: SantunanHarianRawatInapPlan
+  in: [SantunanHarianRawatInapPlan!]
+  notIn: [SantunanHarianRawatInapPlan!]
+  not: NestedEnumSantunanHarianRawatInapPlanFilter
+}
+
+input NestedEnumSantunanHarianRawatInapPlanFilter {
+  equals: SantunanHarianRawatInapPlan
+  in: [SantunanHarianRawatInapPlan!]
+  notIn: [SantunanHarianRawatInapPlan!]
+  not: NestedEnumSantunanHarianRawatInapPlanFilter
 }
 
 input ParticipantNullableRelationFilter {
@@ -2774,6 +2809,8 @@ input ClaimFinancialWhereInput {
   rejectedAmount: FloatNullableFilter
   transactionProcessDate: DateTimeNullableFilter
   transferDate: DateTimeNullableFilter
+  previousBalance: FloatFilter
+  remainingBalance: FloatFilter
   branchId: IntNullableFilter
   claimStatusId: IntNullableFilter
   branchPayee: BranchNullableRelationFilter
@@ -3812,6 +3849,7 @@ input ProgramParticipationOrderByWithRelationInput {
   nonActiveReason: SortOrderInput
   effectiveDate: SortOrder
   nonActiveDate: SortOrderInput
+  santunanHarianRawatInapPlan: SortOrder
   fundingId: SortOrderInput
   participant: ParticipantOrderByWithRelationInput
   funding: AccountOrderByWithRelationInput
@@ -3922,6 +3960,8 @@ input ClaimFinancialOrderByWithRelationInput {
   rejectedAmount: SortOrderInput
   transactionProcessDate: SortOrderInput
   transferDate: SortOrderInput
+  previousBalance: SortOrder
+  remainingBalance: SortOrder
   branchId: SortOrderInput
   claimStatusId: SortOrderInput
   branchPayee: BranchOrderByWithRelationInput
@@ -4550,6 +4590,7 @@ input ProgramParticipationCreateWithoutProgramsInput {
   nonActiveReason: String
   effectiveDate: DateTime!
   nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
   participant: ParticipantCreateNestedOneWithoutProgramParticipationInput
 }
 
@@ -4737,7 +4778,6 @@ input ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
 }
 
 input ClaimFinancialCreateWithoutBranchPayeeInput {
-  totalInvoiceProofAmount: Float!
   requestedAmount: Float!
   paidAmount: Float
   rejectedAmount: Float
@@ -4998,6 +5038,7 @@ input ProgramParticipationCreateWithoutParticipantInput {
   nonActiveReason: String
   effectiveDate: DateTime!
   nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
   programs: ProgramCreateNestedManyWithoutProgramParticipationsInput
 }
 
@@ -5123,7 +5164,6 @@ input ClaimFinancialCreateNestedOneWithoutClaimInput {
 }
 
 input ClaimFinancialCreateWithoutClaimInput {
-  totalInvoiceProofAmount: Float!
   requestedAmount: Float!
   paidAmount: Float
   rejectedAmount: Float
@@ -5499,7 +5539,6 @@ input ClaimFinancialCreateNestedOneWithoutClaimStatusInput {
 }
 
 input ClaimFinancialCreateWithoutClaimStatusInput {
-  totalInvoiceProofAmount: Float!
   requestedAmount: Float!
   paidAmount: Float
   rejectedAmount: Float
@@ -5526,6 +5565,8 @@ input ClaimFinancialWhereUniqueInput {
   rejectedAmount: FloatNullableFilter
   transactionProcessDate: DateTimeNullableFilter
   transferDate: DateTimeNullableFilter
+  previousBalance: FloatFilter
+  remainingBalance: FloatFilter
   branchId: IntNullableFilter
   branchPayee: BranchNullableRelationFilter
   claim: ClaimNullableRelationFilter
@@ -5816,6 +5857,7 @@ input ProgramParticipationWhereUniqueInput {
   nonActiveReason: StringNullableFilter
   effectiveDate: DateTimeFilter
   nonActiveDate: DateTimeNullableFilter
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFilter
   fundingId: IntNullableFilter
   participant: ParticipantNullableRelationFilter
   funding: AccountNullableRelationFilter
@@ -5910,7 +5952,6 @@ input ClaimFinancialCreateManyBranchPayeeInputEnvelope {
 
 input ClaimFinancialCreateManyBranchPayeeInput {
   id: Int
-  totalInvoiceProofAmount: Float!
   requestedAmount: Float!
   paidAmount: Float
   rejectedAmount: Float
@@ -6099,6 +6140,7 @@ input ProgramParticipationUpdateWithoutProgramsInput {
   nonActiveReason: NullableStringFieldUpdateOperationsInput
   effectiveDate: DateTimeFieldUpdateOperationsInput
   nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput
   participant: ParticipantUpdateOneWithoutProgramParticipationNestedInput
 }
 
@@ -6112,6 +6154,10 @@ input DateTimeFieldUpdateOperationsInput {
 
 input NullableDateTimeFieldUpdateOperationsInput {
   set: DateTime
+}
+
+input EnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput {
+  set: SantunanHarianRawatInapPlan
 }
 
 input ParticipantUpdateOneWithoutProgramParticipationNestedInput {
@@ -6435,7 +6481,6 @@ input ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput {
 }
 
 input ClaimFinancialUpdateWithoutBranchPayeeInput {
-  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
   requestedAmount: FloatFieldUpdateOperationsInput
   paidAmount: NullableFloatFieldUpdateOperationsInput
   rejectedAmount: NullableFloatFieldUpdateOperationsInput
@@ -6732,6 +6777,7 @@ input ProgramParticipationUpdateWithoutParticipantInput {
   nonActiveReason: NullableStringFieldUpdateOperationsInput
   effectiveDate: DateTimeFieldUpdateOperationsInput
   nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput
   programs: ProgramUpdateManyWithoutProgramParticipationsNestedInput
 }
 
@@ -6897,7 +6943,6 @@ input ClaimFinancialUpsertWithoutClaimInput {
 }
 
 input ClaimFinancialUpdateWithoutClaimInput {
-  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
   requestedAmount: FloatFieldUpdateOperationsInput
   paidAmount: NullableFloatFieldUpdateOperationsInput
   rejectedAmount: NullableFloatFieldUpdateOperationsInput
@@ -7463,7 +7508,6 @@ input ClaimFinancialUpsertWithoutClaimStatusInput {
 }
 
 input ClaimFinancialUpdateWithoutClaimStatusInput {
-  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
   requestedAmount: FloatFieldUpdateOperationsInput
   paidAmount: NullableFloatFieldUpdateOperationsInput
   rejectedAmount: NullableFloatFieldUpdateOperationsInput
@@ -7971,12 +8015,13 @@ input ClaimFinancialScalarWhereInput {
   rejectedAmount: FloatNullableFilter
   transactionProcessDate: DateTimeNullableFilter
   transferDate: DateTimeNullableFilter
+  previousBalance: FloatFilter
+  remainingBalance: FloatFilter
   branchId: IntNullableFilter
   claimStatusId: IntNullableFilter
 }
 
 input ClaimFinancialUpdateManyMutationInput {
-  totalInvoiceProofAmount: FloatFieldUpdateOperationsInput
   requestedAmount: FloatFieldUpdateOperationsInput
   paidAmount: NullableFloatFieldUpdateOperationsInput
   rejectedAmount: NullableFloatFieldUpdateOperationsInput
@@ -8109,6 +8154,7 @@ input ProgramParticipationScalarWhereInput {
   nonActiveReason: StringNullableFilter
   effectiveDate: DateTimeFilter
   nonActiveDate: DateTimeNullableFilter
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFilter
   fundingId: IntNullableFilter
 }
 
@@ -8117,6 +8163,7 @@ input ProgramParticipationUpdateManyMutationInput {
   nonActiveReason: NullableStringFieldUpdateOperationsInput
   effectiveDate: DateTimeFieldUpdateOperationsInput
   nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput
 }
 
 input BackupCreateInput {
@@ -8309,6 +8356,7 @@ input ProgramParticipationCreateWithoutFundingInput {
   nonActiveReason: String
   effectiveDate: DateTime!
   nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
   participant: ParticipantCreateNestedOneWithoutProgramParticipationInput
   programs: ProgramCreateNestedManyWithoutProgramParticipationsInput
 }
@@ -8329,6 +8377,7 @@ input ProgramParticipationCreateManyFundingInput {
   nonActiveReason: String
   effectiveDate: DateTime!
   nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
 }
 
 input AccountCreateManyInput {
@@ -8427,6 +8476,7 @@ input ProgramParticipationUpdateWithoutFundingInput {
   nonActiveReason: NullableStringFieldUpdateOperationsInput
   effectiveDate: DateTimeFieldUpdateOperationsInput
   nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput
   participant: ParticipantUpdateOneWithoutProgramParticipationNestedInput
   programs: ProgramUpdateManyWithoutProgramParticipationsNestedInput
 }

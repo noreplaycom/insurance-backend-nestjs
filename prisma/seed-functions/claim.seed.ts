@@ -160,6 +160,9 @@ export async function claimSeed() {
               create: {
                 bpjsNumber: '23432525',
                 effectiveDate: new Date(),
+                santunanHarianRawatInapPlan: faker.helpers.arrayElement(
+                  Object.values(SantunanHarianRawatInapPlan),
+                ),
               },
             },
           },
@@ -183,6 +186,14 @@ export async function claimSeed() {
           totalInvoiceProofAmount: faker.datatype.float({
             min: 300000,
             max: 3000000,
+          }),
+          previousBalance: faker.datatype.float({
+            min: 30000000,
+            max: 40000000,
+          }),
+          remainingBalance: faker.datatype.float({
+            min: 20000000,
+            max: 30000000,
           }),
         },
       },

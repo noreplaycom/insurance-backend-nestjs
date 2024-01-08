@@ -512,6 +512,8 @@ model ProgramParticipation {
     ///Tgl Non Aktif:	tanggal penonaktifan peserta
     nonActiveDate DateTime?
 
+    santunanHarianRawatInapPlan SantunanHarianRawatInapPlan
+
     //-------------------------- 1 relations --------------------------------
 
     participant Participant?
@@ -784,6 +786,7 @@ model ClaimFinancial {
 
     id Int @id @default(autoincrement())
 
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
     totalInvoiceProofAmount Float
 
     ///Aju:	Jumlah nominal klaim diajukan
@@ -800,6 +803,14 @@ model ClaimFinancial {
 
     ///Transfer:	Tanggal Transfer
     transferDate DateTime?
+
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
+    /// Saldo sebelum klaim dibayarkan
+    previousBalance Float
+
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
+    /// Saldo setelah klaim dibayarkan
+    remainingBalance Float
 
     //-------------------------- 1 relations --------------------------------
 

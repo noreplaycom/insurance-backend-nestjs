@@ -1,6 +1,12 @@
 import { FileUpload } from 'graphql-upload';
 import { Injectable } from '@nestjs/common';
-import { Participant, Prisma } from '@prisma/client';
+import {
+  Participant,
+  Position,
+  Prisma,
+  SantunanHarianRawatInapPlan,
+  TransactionType,
+} from '@prisma/client';
 import { ParticipantService } from './participant.service';
 import { ParticipantStatus } from 'src/@generated';
 import { createXLSX, readXLSX } from 'src/utils/excel.function';
@@ -17,18 +23,67 @@ import { AccountController } from '../account/account.controller';
 export class ParticipantController {
   constructor(
     private readonly participantService: ParticipantService,
-    private readonly accountController: AccountController,
     private readonly configService: ConfigService,
   ) {}
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
-    const { create } = participantCreateArgs?.data?.programParticipation;
-
-    //auto create funding account
-    if (create) {
+    if (participantCreateArgs?.data) {
+      //create funding account for participant
+      const initialBalance: number = 50000000;
+      const createdDate: Date = new Date();
+      //
       participantCreateArgs.data.programParticipation.create.funding = {
-        create: { currentBalance: 0 },
+        create: {
+          currentBalance: initialBalance,
+          currentBalanceLastUpdate: createdDate,
+          //create initial transaction for funding account
+          transactions: {
+            create: {
+              amount: initialBalance,
+              transactionType: TransactionType.CREDIT,
+              createdAt: createdDate,
+            },
+          },
+        },
       };
+
+      //connect participant to certain programs
+
+      //get employment position
+
+      //Plan I (VP keatas)= Rp.1.250.000, Plan II (MGR -SAVP) = Rp.1.000.000, Plan III (PD - SAMGR) = Rp.750.000
+      /*
+
+Jabatan-jabatan tersebut dapat diurutkan berdasarkan struktur organisasi secara umum dari level tertinggi hingga terendah sebagai berikut:
+
+AVP (Assistant Vice President)
+VP (Vice President)
+SAVP (Senior Assistant Vice President)
+PGD (Program Director)
+AMGR (Assistant Manager)
+SMGR (Senior Manager)
+MGR (Manager)
+SAMGR (Senior Assistant Manager)
+SASST (Senior Assistant)
+      */
+      function getPlanByPosition(
+        position: Position,
+      ): SantunanHarianRawatInapPlan {
+        switch (position) {
+          case Position.AVP:
+          case Position.VP:
+          case Position.SAVP:
+            return SantunanHarianRawatInapPlan.I;
+          case Position.MGR:
+          case Position.SMGR:
+            return SantunanHarianRawatInapPlan.II;
+          default:
+            return SantunanHarianRawatInapPlan.III;
+        }
+      }
+
+      participantCreateArgs.data.programParticipation.create.programs.connect =
+        [{ id: 1 }, { id: 2 }];
     }
 
     return await this.participantService.createOne(participantCreateArgs);
