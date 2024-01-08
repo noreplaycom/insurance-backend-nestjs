@@ -186,6 +186,7 @@ model Participant {
     ///Pensiunan,Pasangan, Yatim, Janda/duda 6 bulan
     status ParticipantStatus
 
+    /// @HideField({ match: ['ParticipantCreate*Input','ParticipantUpdate*Input']})
     user User @relation(fields: [userId], references: [id])
 
     userId String @id
@@ -203,12 +204,14 @@ model Participant {
 
     //-------------------------- m relations --------------------------------
 
+    /// @HideField({ match: ['ParticipantCreate*Input','ParticipantUpdate*Input']})
     claims Claim[]
 
     contactInfos ContactInfo[]
 
     programParticipations ProgramParticipation[]
 
+    /// @HideField({ match: ['ParticipantCreate*Input','ParticipantUpdate*Input']})
     balances Account[]
 
     ///Anggota keluarga dari
