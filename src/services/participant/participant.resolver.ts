@@ -1,5 +1,4 @@
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
-// @ts-nocheck
 import { Resolver, Query, Mutation, Args, Float } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Relations } from 'src/utils/relations.decorator';
@@ -163,19 +162,19 @@ export class ParticipantResolver {
 
   @Mutation(() => Boolean, {
     nullable: true,
-    description: 'Import participant data from xlsx file'
+    description: 'Import participant data from xlsx file',
   })
   async participantImport(
-    @Args({name: 'file', type: () => GraphQLUpload, nullable: true})
-    file: FileUpload
-  ): Promise<Boolean>{
+    @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
+    file: FileUpload,
+  ): Promise<Boolean> {
     return await this.participantController.import(file);
   }
 
-  @Query(() => String, {  
-    description: "Export participant data to excel file (xlsx)"
+  @Query(() => String, {
+    description: 'Export participant data to excel file (xlsx)',
   })
-  async participantExport(): Promise<String>{
+  async participantExport(): Promise<String> {
     return await this.participantController.export();
   }
 }

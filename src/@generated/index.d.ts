@@ -8116,14 +8116,17 @@ export declare class ContactInfoAggregateArgs {
 }
 export declare class ContactInfoAvgAggregateInput {
     id?: true;
+    telp?: true;
     addressId?: true;
 }
 export declare class ContactInfoAvgAggregate {
     id?: number;
+    telp?: number;
     addressId?: number;
 }
 export declare class ContactInfoAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    telp?: keyof typeof SortOrder;
     addressId?: keyof typeof SortOrder;
 }
 export declare class ContactInfoCountAggregateInput {
@@ -8161,7 +8164,7 @@ export declare class ContactInfoCreateManyAddressInputEnvelope {
 }
 export declare class ContactInfoCreateManyAddressInput {
     id?: number;
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8173,7 +8176,7 @@ export declare class ContactInfoCreateManyParticipantInputEnvelope {
 }
 export declare class ContactInfoCreateManyParticipantInput {
     id?: number;
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8181,7 +8184,7 @@ export declare class ContactInfoCreateManyParticipantInput {
 }
 export declare class ContactInfoCreateManyInput {
     id?: number;
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8209,21 +8212,21 @@ export declare class ContactInfoCreateOrConnectWithoutParticipantInput {
     create: InstanceType<typeof ContactInfoCreateWithoutParticipantInput>;
 }
 export declare class ContactInfoCreateWithoutAddressInput {
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participant: InstanceType<typeof ParticipantCreateNestedOneWithoutContactInfosInput>;
 }
 export declare class ContactInfoCreateWithoutParticipantInput {
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     address: InstanceType<typeof AddressCreateNestedOneWithoutContactInfoInput>;
 }
 export declare class ContactInfoCreateInput {
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8245,7 +8248,7 @@ export declare class ContactInfoGroupByArgs {
 }
 export declare class ContactInfoGroupBy {
     id: number;
-    telp: string;
+    telp: number;
     createdAt: Date | string;
     updatedAt: Date | string;
     deletedAt?: Date | string;
@@ -8273,7 +8276,7 @@ export declare class ContactInfoMaxAggregateInput {
 }
 export declare class ContactInfoMaxAggregate {
     id?: number;
-    telp?: string;
+    telp?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8300,7 +8303,7 @@ export declare class ContactInfoMinAggregateInput {
 }
 export declare class ContactInfoMinAggregate {
     id?: number;
-    telp?: string;
+    telp?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8349,7 +8352,7 @@ export declare class ContactInfoScalarWhereWithAggregatesInput {
     OR?: Array<ContactInfoScalarWhereWithAggregatesInput>;
     NOT?: Array<ContactInfoScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
-    telp?: InstanceType<typeof StringWithAggregatesFilter>;
+    telp?: InstanceType<typeof FloatWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
@@ -8361,7 +8364,7 @@ export declare class ContactInfoScalarWhereInput {
     OR?: Array<ContactInfoScalarWhereInput>;
     NOT?: Array<ContactInfoScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
-    telp?: InstanceType<typeof StringFilter>;
+    telp?: InstanceType<typeof FloatFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -8370,14 +8373,17 @@ export declare class ContactInfoScalarWhereInput {
 }
 export declare class ContactInfoSumAggregateInput {
     id?: true;
+    telp?: true;
     addressId?: true;
 }
 export declare class ContactInfoSumAggregate {
     id?: number;
+    telp?: number;
     addressId?: number;
 }
 export declare class ContactInfoSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    telp?: keyof typeof SortOrder;
     addressId?: keyof typeof SortOrder;
 }
 export declare class ContactInfoUncheckedCreateNestedManyWithoutAddressInput {
@@ -8394,7 +8400,7 @@ export declare class ContactInfoUncheckedCreateNestedManyWithoutParticipantInput
 }
 export declare class ContactInfoUncheckedCreateWithoutAddressInput {
     id?: number;
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8402,7 +8408,7 @@ export declare class ContactInfoUncheckedCreateWithoutAddressInput {
 }
 export declare class ContactInfoUncheckedCreateWithoutParticipantInput {
     id?: number;
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8410,7 +8416,7 @@ export declare class ContactInfoUncheckedCreateWithoutParticipantInput {
 }
 export declare class ContactInfoUncheckedCreateInput {
     id?: number;
-    telp: string;
+    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8432,7 +8438,7 @@ export declare class ContactInfoUncheckedUpdateManyWithoutAddressNestedInput {
 }
 export declare class ContactInfoUncheckedUpdateManyWithoutAddressInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8453,7 +8459,7 @@ export declare class ContactInfoUncheckedUpdateManyWithoutParticipantNestedInput
 }
 export declare class ContactInfoUncheckedUpdateManyWithoutParticipantInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8461,7 +8467,7 @@ export declare class ContactInfoUncheckedUpdateManyWithoutParticipantInput {
 }
 export declare class ContactInfoUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8470,7 +8476,7 @@ export declare class ContactInfoUncheckedUpdateManyInput {
 }
 export declare class ContactInfoUncheckedUpdateWithoutAddressInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8478,7 +8484,7 @@ export declare class ContactInfoUncheckedUpdateWithoutAddressInput {
 }
 export declare class ContactInfoUncheckedUpdateWithoutParticipantInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8486,7 +8492,7 @@ export declare class ContactInfoUncheckedUpdateWithoutParticipantInput {
 }
 export declare class ContactInfoUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8494,7 +8500,7 @@ export declare class ContactInfoUncheckedUpdateInput {
     addressId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ContactInfoUpdateManyMutationInput {
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8542,21 +8548,21 @@ export declare class ContactInfoUpdateWithWhereUniqueWithoutParticipantInput {
     data: InstanceType<typeof ContactInfoUpdateWithoutParticipantInput>;
 }
 export declare class ContactInfoUpdateWithoutAddressInput {
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneRequiredWithoutContactInfosNestedInput>;
 }
 export declare class ContactInfoUpdateWithoutParticipantInput {
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     address?: InstanceType<typeof AddressUpdateOneRequiredWithoutContactInfoNestedInput>;
 }
 export declare class ContactInfoUpdateInput {
-    telp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8578,7 +8584,7 @@ export declare class ContactInfoWhereUniqueInput {
     AND?: Array<ContactInfoWhereInput>;
     OR?: Array<ContactInfoWhereInput>;
     NOT?: Array<ContactInfoWhereInput>;
-    telp?: InstanceType<typeof StringFilter>;
+    telp?: InstanceType<typeof FloatFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -8592,7 +8598,7 @@ export declare class ContactInfoWhereInput {
     OR?: Array<ContactInfoWhereInput>;
     NOT?: Array<ContactInfoWhereInput>;
     id?: InstanceType<typeof IntFilter>;
-    telp?: InstanceType<typeof StringFilter>;
+    telp?: InstanceType<typeof FloatFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -8603,7 +8609,7 @@ export declare class ContactInfoWhereInput {
 }
 export declare class ContactInfo {
     id: number;
-    telp: string;
+    telp: number;
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;

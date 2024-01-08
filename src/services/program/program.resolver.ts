@@ -38,7 +38,7 @@ export class ProgramResolver {
     @Relations() relations: ProgramSelect,
   ): Promise<Program | void> {
     return await this.programController.createOne({
-      ...programCreateArgs,
+      ...replaceNullWithUndefined(programCreateArgs),
       select: relations.select,
     });
   }
@@ -116,7 +116,9 @@ export class ProgramResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  async programUpdateMany(@Args() updateManyProgramArgs: UpdateManyProgramArgs) {
+  async programUpdateMany(
+    @Args() updateManyProgramArgs: UpdateManyProgramArgs,
+  ) {
     return this.programController.updateMany(updateManyProgramArgs);
   }
 
@@ -138,7 +140,9 @@ export class ProgramResolver {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
-  async programDeleteMany(@Args() deleteManyProgramArgs: DeleteManyProgramArgs) {
+  async programDeleteMany(
+    @Args() deleteManyProgramArgs: DeleteManyProgramArgs,
+  ) {
     return this.programController.deleteMany(deleteManyProgramArgs);
   }
 

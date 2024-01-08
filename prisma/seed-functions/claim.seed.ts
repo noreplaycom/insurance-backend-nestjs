@@ -143,7 +143,7 @@ export async function claimSeed() {
             },
             contactInfos: {
               create: {
-                telp: faker.phone.number(),
+                telp: 67289294,
                 address: {
                   create: {
                     address: faker.address.streetAddress(),

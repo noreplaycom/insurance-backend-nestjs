@@ -78,7 +78,7 @@ export function fakeParticipantComplete() {
 }
 export function fakeContactInfo() {
   return {
-    telp: faker.lorem.words(5),
+    telp: faker.datatype.float(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
   };
@@ -86,7 +86,7 @@ export function fakeContactInfo() {
 export function fakeContactInfoComplete() {
   return {
     id: faker.datatype.number(),
-    telp: faker.lorem.words(5),
+    telp: faker.datatype.float(),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
