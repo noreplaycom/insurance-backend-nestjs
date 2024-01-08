@@ -36,6 +36,8 @@ import { UploaderModule } from './services/uploader/uploader.module';
 import { NotificationModule } from './services/notification/notification.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { InitializationModule } from './services/initialization/initialization.module';
+import { AnnouncementModule } from './services/announcement/announcement.module';
+import { AuthModule } from './services/auth/auth.module';
 // import { DashboardModule } from './services/Dashboard/dashboard.module';
 // import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
 // import { UploaderModule } from './services/uploader/uploader.module';
@@ -100,6 +102,7 @@ import { InitializationModule } from './services/initialization/initialization.m
     //for shceduler
     SchedulerModule,
     ConfigsModule,
+    AuthModule,
     //EmailModule,
     // UploaderModule,
     // AccountModule,
@@ -133,6 +136,7 @@ import { InitializationModule } from './services/initialization/initialization.m
     // ClaimManagementModule,
     NotificationModule,
     UploaderModule,
+    AnnouncementModule,
   ],
   controllers: [],
   providers: [

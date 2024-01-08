@@ -5,6 +5,7 @@ import { UserFindOneByIdArgs } from './dto/user_find_one';
 import { UserUpdateOneByIdArgs } from './dto/user_update_one';
 import { UserDeleteOneByIdArgs } from './dto/user_delete_one';
 import { UserCreateOneAsParticipantArgs } from './dto/user_create_one_as_participant';
+import { encryptUserPassword } from 'src/utils/bcrypt.function';
 
 @Injectable()
 export class UserController {
@@ -13,6 +14,12 @@ export class UserController {
   async createOne(userCreateArgs: Prisma.UserCreateArgs) {
     //TODO: Auto create superuser when app first run. (username: superuser, password: superuser)
     //TODO: Auto assign role to participant when create user as participant
+
+    const { password } = userCreateArgs.data;
+
+    //encrypt user password
+    userCreateArgs.data.password = await encryptUserPassword(password);
+
     return await this.userService.createOne(userCreateArgs);
   }
 
@@ -33,6 +40,18 @@ export class UserController {
   }
 
   async updateOne(userUpdateOneArgs: Prisma.UserUpdateArgs) {
+    const { password } = userUpdateOneArgs.data;
+
+    //encrypt user password
+    if (password) {
+      //check if client querying password
+      if (typeof password === 'object' && password.set) {
+        userUpdateOneArgs.data.password = {
+          set: await encryptUserPassword(password.set),
+        };
+      }
+    }
+
     return await this.userService.updateOne(userUpdateOneArgs);
   }
 

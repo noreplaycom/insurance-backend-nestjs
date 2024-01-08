@@ -450,6 +450,7 @@ type Claim {
   inputedBy: User
   waitingFor: User
   tags: [Tag!]
+  claimStatuses: [ClaimStatus!]
   _count: ClaimCount!
 }
 
@@ -2180,6 +2181,9 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   notificationCount(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
+  announcementFindMany(where: AnnouncementWhereInput, orderBy: [AnnouncementOrderByWithRelationInput!], cursor: AnnouncementWhereUniqueInput, take: Int, skip: Int, distinct: [AnnouncementScalarFieldEnum!]): [Announcement!]
 }
 
 input ProgramWhereUniqueInput {
@@ -2686,6 +2690,7 @@ input ClaimWhereInput {
   inputedBy: UserNullableRelationFilter
   waitingFor: UserNullableRelationFilter
   tags: TagListRelationFilter
+  claimStatuses: ClaimStatusListRelationFilter
 }
 
 input EnumClaimChannelFilter {
@@ -3613,6 +3618,7 @@ input ClaimOrderByWithRelationInput {
   inputedBy: UserOrderByWithRelationInput
   waitingFor: UserOrderByWithRelationInput
   tags: TagOrderByRelationAggregateInput
+  claimStatuses: ClaimStatusOrderByRelationAggregateInput
 }
 
 input ParticipantOrderByWithRelationInput {
@@ -3870,6 +3876,7 @@ input ClaimWhereUniqueInput {
   inputedBy: UserNullableRelationFilter
   waitingFor: UserNullableRelationFilter
   tags: TagListRelationFilter
+  claimStatuses: ClaimStatusListRelationFilter
 }
 
 enum ClaimScalarFieldEnum {
@@ -4188,6 +4195,41 @@ enum NotificationScalarFieldEnum {
   userId
 }
 
+input AnnouncementOrderByWithRelationInput {
+  id: SortOrder
+  title: SortOrder
+  content: SortOrder
+  imageUrl: SortOrderInput
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  createdById: SortOrder
+  createdBy: UserOrderByWithRelationInput
+}
+
+input AnnouncementWhereUniqueInput {
+  id: Int
+  AND: [AnnouncementWhereInput!]
+  OR: [AnnouncementWhereInput!]
+  NOT: [AnnouncementWhereInput!]
+  title: StringFilter
+  content: StringFilter
+  imageUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  createdById: StringFilter
+  createdBy: UserRelationFilter
+}
+
+enum AnnouncementScalarFieldEnum {
+  id
+  title
+  content
+  imageUrl
+  createdAt
+  updatedAt
+  createdById
+}
+
 type Mutation {
   """Deskripsinya ada disini loh"""
   programCreateOne(data: ProgramCreateInput!): Program
@@ -4292,6 +4334,9 @@ type Mutation {
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
   """
   uploadSingleFile(file: Upload): String
+
+  """Deskripsinya ada disini loh"""
+  announcementCreateOne(data: AnnouncementCreateInput!): Announcement
 }
 
 input ProgramCreateInput {
@@ -5694,20 +5739,6 @@ input AnnouncementCreateWithoutCreatedByInput {
 input AnnouncementCreateOrConnectWithoutCreatedByInput {
   where: AnnouncementWhereUniqueInput!
   create: AnnouncementCreateWithoutCreatedByInput!
-}
-
-input AnnouncementWhereUniqueInput {
-  id: Int
-  AND: [AnnouncementWhereInput!]
-  OR: [AnnouncementWhereInput!]
-  NOT: [AnnouncementWhereInput!]
-  title: StringFilter
-  content: StringFilter
-  imageUrl: StringNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  createdById: StringFilter
-  createdBy: UserRelationFilter
 }
 
 input AnnouncementCreateManyCreatedByInputEnvelope {
@@ -9232,4 +9263,39 @@ input ClaimUpdateManyWithWhereWithoutTagsInput {
 input NotificationUpdateInput {
   isRead: BoolFieldUpdateOperationsInput
   isCleared: BoolFieldUpdateOperationsInput
+}
+
+input AnnouncementCreateInput {
+  title: String!
+  content: String!
+  imageUrl: String
+  createdBy: UserCreateNestedOneWithoutAnnouncementCreatedInput!
+}
+
+input UserCreateNestedOneWithoutAnnouncementCreatedInput {
+  create: UserCreateWithoutAnnouncementCreatedInput
+  connectOrCreate: UserCreateOrConnectWithoutAnnouncementCreatedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutAnnouncementCreatedInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
+  claimsOnWait: ClaimCreateNestedManyWithoutWaitingForInput
+  documentPrints: DocumentCreateNestedManyWithoutPrintedbyInput
+}
+
+input UserCreateOrConnectWithoutAnnouncementCreatedInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutAnnouncementCreatedInput!
 }

@@ -652,7 +652,7 @@ model Claim {
 
     tags Tag[]
 
-    /// @HideField({ output: true, input: true })
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     claimStatuses ClaimStatus[]
 }
 

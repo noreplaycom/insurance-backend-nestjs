@@ -10992,7 +10992,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagOrderByRelationAggregateInput, { nullable: true })
 ], ClaimOrderByWithRelationInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusOrderByRelationAggregateInput, { nullable: true })
 ], ClaimOrderByWithRelationInput.prototype, "claimStatuses", void 0);
 ClaimOrderByWithRelationInput = __decorate([
     (0, graphql_4.InputType)()
@@ -11307,7 +11307,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedCreateNestedManyWithoutClaimsInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutClaimFinancialsInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedCreateNestedManyWithoutClaimInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutClaimFinancialsInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedCreateWithoutClaimFinancialsInput = __decorate([
     (0, graphql_4.InputType)()
@@ -11352,7 +11352,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedCreateNestedManyWithoutClaimsInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutClaimProgramInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedCreateNestedManyWithoutClaimInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutClaimProgramInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedCreateWithoutClaimProgramInput = __decorate([
     (0, graphql_4.InputType)()
@@ -11442,7 +11442,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedCreateNestedManyWithoutClaimsInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutInputedByInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedCreateNestedManyWithoutClaimInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutInputedByInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedCreateWithoutInputedByInput = __decorate([
     (0, graphql_4.InputType)()
@@ -11487,7 +11487,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedCreateNestedManyWithoutClaimsInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutParticipantInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedCreateNestedManyWithoutClaimInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutParticipantInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedCreateWithoutParticipantInput = __decorate([
     (0, graphql_4.InputType)()
@@ -11532,7 +11532,7 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimUncheckedCreateWithoutTagsInput.prototype, "waitingForId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedCreateNestedManyWithoutClaimInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutTagsInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedCreateWithoutTagsInput = __decorate([
     (0, graphql_4.InputType)()
@@ -11577,7 +11577,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedCreateNestedManyWithoutClaimsInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutWaitingForInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedCreateNestedManyWithoutClaimInput, { nullable: true })
 ], ClaimUncheckedCreateWithoutWaitingForInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedCreateWithoutWaitingForInput = __decorate([
     (0, graphql_4.InputType)()
@@ -11625,7 +11625,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedCreateNestedManyWithoutClaimsInput, { nullable: true })
 ], ClaimUncheckedCreateInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedCreateNestedManyWithoutClaimInput, { nullable: true })
 ], ClaimUncheckedCreateInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedCreateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -12135,7 +12135,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedUpdateManyWithoutClaimsNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutClaimFinancialsInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutClaimFinancialsInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedUpdateWithoutClaimFinancialsInput = __decorate([
     (0, graphql_4.InputType)()
@@ -12180,7 +12180,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedUpdateManyWithoutClaimsNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutClaimProgramInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutClaimProgramInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedUpdateWithoutClaimProgramInput = __decorate([
     (0, graphql_4.InputType)()
@@ -12270,7 +12270,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedUpdateManyWithoutClaimsNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutInputedByInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutInputedByInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedUpdateWithoutInputedByInput = __decorate([
     (0, graphql_4.InputType)()
@@ -12315,7 +12315,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedUpdateManyWithoutClaimsNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutParticipantInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutParticipantInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedUpdateWithoutParticipantInput = __decorate([
     (0, graphql_4.InputType)()
@@ -12360,7 +12360,7 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutTagsInput.prototype, "waitingForId", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutTagsInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedUpdateWithoutTagsInput = __decorate([
     (0, graphql_4.InputType)()
@@ -12405,7 +12405,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedUpdateManyWithoutClaimsNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutWaitingForInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateWithoutWaitingForInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedUpdateWithoutWaitingForInput = __decorate([
     (0, graphql_4.InputType)()
@@ -12453,7 +12453,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagUncheckedUpdateManyWithoutClaimsNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput, { nullable: true })
 ], ClaimUncheckedUpdateInput.prototype, "claimStatuses", void 0);
 ClaimUncheckedUpdateInput = __decorate([
     (0, graphql_4.InputType)()
@@ -13485,7 +13485,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagListRelationFilter, { nullable: true })
 ], ClaimWhereUniqueInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusListRelationFilter, { nullable: true })
 ], ClaimWhereUniqueInput.prototype, "claimStatuses", void 0);
 ClaimWhereUniqueInput = __decorate([
     (0, graphql_4.InputType)()
@@ -13557,7 +13557,7 @@ __decorate([
     (0, graphql_1.Field)(() => TagListRelationFilter, { nullable: true })
 ], ClaimWhereInput.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusListRelationFilter, { nullable: true })
 ], ClaimWhereInput.prototype, "claimStatuses", void 0);
 ClaimWhereInput = ClaimWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
@@ -13620,7 +13620,7 @@ __decorate([
     (0, graphql_1.Field)(() => [Tag], { nullable: true })
 ], Claim.prototype, "tags", void 0);
 __decorate([
-    (0, graphql_8.HideField)()
+    (0, graphql_1.Field)(() => [ClaimStatus], { nullable: true })
 ], Claim.prototype, "claimStatuses", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ClaimCount, { nullable: false })
