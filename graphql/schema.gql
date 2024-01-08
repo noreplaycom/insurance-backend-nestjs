@@ -2067,6 +2067,12 @@ type BatchPayload {
   count: Float
 }
 
+type LoginResponse {
+  """Akses token jwt"""
+  accessToken: String!
+  user: User!
+}
+
 type Query {
   """Deskripsinya ada disini loh"""
   programFindOne(where: ProgramWhereUniqueInput!): Program
@@ -2097,6 +2103,12 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   backupCount(where: BackupWhereInput, orderBy: [BackupOrderByWithRelationInput!], cursor: BackupWhereUniqueInput, take: Int, skip: Int, distinct: [BackupScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
+  userFindOne(where: UserWhereUniqueInput!): User
+
+  """Deskripsinya ada disini loh"""
+  userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 
   """Deskripsinya ada disini loh"""
   claimCount(where: ClaimWhereInput, orderBy: [ClaimOrderByWithRelationInput!], cursor: ClaimWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimScalarFieldEnum!]): Float
@@ -2169,12 +2181,6 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   tagFindMany(where: TagWhereInput, orderBy: [TagOrderByWithRelationInput!], cursor: TagWhereUniqueInput, take: Int, skip: Int, distinct: [TagScalarFieldEnum!]): [Tag!]
-
-  """Deskripsinya ada disini loh"""
-  userFindOne(where: UserWhereUniqueInput!): User
-
-  """Deskripsinya ada disini loh"""
-  userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 
   """Deskripsinya ada disini loh"""
   notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
@@ -3599,44 +3605,29 @@ input BackupMaxAggregateInput {
   createdAt: Boolean
 }
 
-input ClaimOrderByWithRelationInput {
-  id: SortOrder
-  createdAt: SortOrder
-  updatedAt: SortOrder
-  deletedAt: SortOrderInput
-  channel: SortOrder
-  admedicaStatus: SortOrder
-  company: SortOrder
-  participantId: SortOrder
-  claimFinancialId: SortOrder
-  claimProgramId: SortOrder
-  inputedById: SortOrderInput
-  waitingForId: SortOrderInput
-  participant: ParticipantOrderByWithRelationInput
-  claimFinancials: ClaimFinancialOrderByWithRelationInput
-  claimProgram: ClaimProgramOrderByWithRelationInput
-  inputedBy: UserOrderByWithRelationInput
-  waitingFor: UserOrderByWithRelationInput
-  tags: TagOrderByRelationAggregateInput
-  claimStatuses: ClaimStatusOrderByRelationAggregateInput
-}
-
-input ParticipantOrderByWithRelationInput {
-  gender: SortOrder
-  birthDate: SortOrder
-  isActive: SortOrder
-  status: SortOrder
-  userId: SortOrder
-  relationId: SortOrderInput
-  user: UserOrderByWithRelationInput
-  relation: ParticipantOrderByWithRelationInput
-  bankAccount: BankAccountOrderByWithRelationInput
-  claims: ClaimOrderByRelationAggregateInput
-  employments: EmploymentOrderByRelationAggregateInput
-  contactInfos: ContactInfoOrderByRelationAggregateInput
-  programParticipations: ProgramParticipationOrderByRelationAggregateInput
-  balances: AccountOrderByRelationAggregateInput
-  Participant: ParticipantOrderByRelationAggregateInput
+input UserWhereUniqueInput {
+  id: String
+  email: String
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  fullName: StringFilter
+  emailVerifiedAt: DateTimeNullableFilter
+  password: StringFilter
+  profilePictureUrl: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  deletedAt: DateTimeNullableFilter
+  roleId: IntFilter
+  participantId: IntNullableFilter
+  role: RoleRelationFilter
+  participant: ParticipantNullableRelationFilter
+  claimsInput: ClaimListRelationFilter
+  claimActions: ClaimStatusListRelationFilter
+  announcementCreated: AnnouncementListRelationFilter
+  notification: NotificationListRelationFilter
+  claimsOnWait: ClaimListRelationFilter
+  documentPrints: DocumentListRelationFilter
 }
 
 input UserOrderByWithRelationInput {
@@ -3685,7 +3676,49 @@ input RoleOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
+input ParticipantOrderByWithRelationInput {
+  gender: SortOrder
+  birthDate: SortOrder
+  isActive: SortOrder
+  status: SortOrder
+  userId: SortOrder
+  relationId: SortOrderInput
+  user: UserOrderByWithRelationInput
+  relation: ParticipantOrderByWithRelationInput
+  bankAccount: BankAccountOrderByWithRelationInput
+  claims: ClaimOrderByRelationAggregateInput
+  employments: EmploymentOrderByRelationAggregateInput
+  contactInfos: ContactInfoOrderByRelationAggregateInput
+  programParticipations: ProgramParticipationOrderByRelationAggregateInput
+  balances: AccountOrderByRelationAggregateInput
+  Participant: ParticipantOrderByRelationAggregateInput
+}
+
+input BankAccountOrderByWithRelationInput {
+  id: SortOrder
+  accountNumber: SortOrder
+  accountName: SortOrder
+  participantId: SortOrder
+  participant: ParticipantOrderByWithRelationInput
+}
+
 input ClaimOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input EmploymentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ContactInfoOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AccountOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ParticipantOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -3705,28 +3738,40 @@ input DocumentOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
-input BankAccountOrderByWithRelationInput {
+enum UserScalarFieldEnum {
+  id
+  fullName
+  email
+  emailVerifiedAt
+  password
+  profilePictureUrl
+  createdAt
+  updatedAt
+  deletedAt
+  roleId
+  participantId
+}
+
+input ClaimOrderByWithRelationInput {
   id: SortOrder
-  accountNumber: SortOrder
-  accountName: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  deletedAt: SortOrderInput
+  channel: SortOrder
+  admedicaStatus: SortOrder
+  company: SortOrder
   participantId: SortOrder
+  claimFinancialId: SortOrder
+  claimProgramId: SortOrder
+  inputedById: SortOrderInput
+  waitingForId: SortOrderInput
   participant: ParticipantOrderByWithRelationInput
-}
-
-input EmploymentOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input ContactInfoOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input AccountOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input ParticipantOrderByRelationAggregateInput {
-  _count: SortOrder
+  claimFinancials: ClaimFinancialOrderByWithRelationInput
+  claimProgram: ClaimProgramOrderByWithRelationInput
+  inputedBy: UserOrderByWithRelationInput
+  waitingFor: UserOrderByWithRelationInput
+  tags: TagOrderByRelationAggregateInput
+  claimStatuses: ClaimStatusOrderByRelationAggregateInput
 }
 
 input ClaimFinancialOrderByWithRelationInput {
@@ -4121,45 +4166,6 @@ enum TagScalarFieldEnum {
   updatedAt
 }
 
-input UserWhereUniqueInput {
-  id: String
-  email: String
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-  fullName: StringFilter
-  emailVerifiedAt: DateTimeNullableFilter
-  password: StringFilter
-  profilePictureUrl: StringNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  deletedAt: DateTimeNullableFilter
-  roleId: IntFilter
-  participantId: IntNullableFilter
-  role: RoleRelationFilter
-  participant: ParticipantNullableRelationFilter
-  claimsInput: ClaimListRelationFilter
-  claimActions: ClaimStatusListRelationFilter
-  announcementCreated: AnnouncementListRelationFilter
-  notification: NotificationListRelationFilter
-  claimsOnWait: ClaimListRelationFilter
-  documentPrints: DocumentListRelationFilter
-}
-
-enum UserScalarFieldEnum {
-  id
-  fullName
-  email
-  emailVerifiedAt
-  password
-  profilePictureUrl
-  createdAt
-  updatedAt
-  deletedAt
-  roleId
-  participantId
-}
-
 input NotificationOrderByWithRelationInput {
   id: SortOrder
   isRead: SortOrder
@@ -4266,6 +4272,10 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   backupDeleteMany(where: BackupWhereInput): Boolean!
+  authLogin(loginArgs: LoginArgs!): LoginResponse
+
+  """Deskripsinya ada disini loh"""
+  userCreateOne(data: UserCreateInput!): User
 
   """Deskripsinya ada disini loh"""
   claimCreateOne(data: ClaimCreateInput!): Claim
@@ -9117,6 +9127,32 @@ input BackupUpdateManyMutationInput {
   path: NullableStringFieldUpdateOperationsInput
   isSuccessful: BoolFieldUpdateOperationsInput
   type: EnumBackupTypeFieldUpdateOperationsInput
+}
+
+input LoginArgs {
+  """Masukkan email"""
+  email: String!
+
+  """Masukkan password"""
+  password: String!
+}
+
+input UserCreateInput {
+  id: String
+  fullName: String!
+  email: String!
+  emailVerifiedAt: DateTime
+  password: String!
+  profilePictureUrl: String
+  participantId: Int
+  role: RoleCreateNestedOneWithoutUsersInput
+  participant: ParticipantCreateNestedOneWithoutUserInput
+  claimsInput: ClaimCreateNestedManyWithoutInputedByInput
+  claimActions: ClaimStatusCreateNestedManyWithoutCreateByInput
+  announcementCreated: AnnouncementCreateNestedManyWithoutCreatedByInput
+  notification: NotificationCreateNestedManyWithoutUserInput
+  claimsOnWait: ClaimCreateNestedManyWithoutWaitingForInput
+  documentPrints: DocumentCreateNestedManyWithoutPrintedbyInput
 }
 
 input ClaimCreateInput {

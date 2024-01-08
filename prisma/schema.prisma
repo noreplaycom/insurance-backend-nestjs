@@ -31,6 +31,7 @@ generator nestgraphql {
 
 model User {
     //-----------------------------scalars-------------------------
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     id String @id @default(uuid())
 
     ///Nama Lengkap
@@ -38,6 +39,7 @@ model User {
 
     email String @unique
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     emailVerifiedAt DateTime?
 
     password String
@@ -56,27 +58,36 @@ model User {
 
     //-------------------------- 1 relations --------------------------------
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     role Role @relation(fields: [roleId], references: [id], onDelete: SetDefault)
 
-    roleId Int @default(0)
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
+    roleId Int @default(0) //default participant
 
     participant Participant?
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     participantId Int?
 
     //-------------------------- m relations --------------------------------
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     claimsInput Claim[]
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     claimActions ClaimStatus[] @relation("statusUpdatedBy")
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     announcementCreated Announcement[]
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     notification Notification[]
 
-    //claim-claim yang menunggu aksi dari user
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
+    ///claim-claim yang menunggu aksi dari user
     claimsOnWait Claim[] @relation("waitingfor")
 
+    /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     documentPrints Document[] @relation("printedby")
 
     @@map("users")

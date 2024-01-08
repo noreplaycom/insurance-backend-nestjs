@@ -28,20 +28,20 @@ interface UserSelect {
 export class UserResolver {
   constructor(private readonly userController: UserController) {}
 
-  // @Mutation(() => User, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async userCreateOne(
-  //   @Args()
-  //   userCreateArgs: CreateOneUserArgs,
-  //   @Relations() relations: UserSelect,
-  // ): Promise<User | void> {
-  //   return await this.userController.createOne({
-  //     ...userCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userCreateOne(
+    @Args()
+    userCreateArgs: CreateOneUserArgs,
+    @Relations() relations: UserSelect,
+  ): Promise<User | void> {
+    return await this.userController.createOne({
+      ...userCreateArgs,
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,
