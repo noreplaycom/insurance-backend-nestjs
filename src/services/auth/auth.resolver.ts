@@ -13,7 +13,11 @@ import { GqlAuthGuard } from './gpl-auth.guard';
 export class AuthResolver {
   constructor(private readonly authController: AuthController) {}
 
-  @Mutation(() => LoginResponse, { nullable: true })
+  @Mutation(() => LoginResponse, {
+    nullable: true,
+    description:
+      'catatan untuk web frontend, jangan menggunakan role.name sebagai identifikasi role, melainkan gunakan role.rolepermissions untuk melihat izin apa aja yang diberikan kepada user',
+  })
   @UseGuards(GqlAuthGuard)
   authLogin(@Args('loginArgs') loginArgs: LoginArgs, @Context() context) {
     return this.authController.login(context.user);

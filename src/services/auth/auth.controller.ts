@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { UserController } from '../user/user.controller';
 import { LoginArgs } from './dto/login.args';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
@@ -14,12 +14,15 @@ export class AuthController {
     private readonly jwtService: JwtService,
   ) {}
 
+  private readonly logger = new Logger(AuthController.name);
+
   async validate({ email, password }: LoginArgs): Promise<any> {
     //find user by email
     const user = await this.userController.findOne({
       where: {
         email: email,
       },
+      include: { role: { include: { rolePermissions: true } } },
     });
 
     if (user) {
@@ -42,7 +45,7 @@ export class AuthController {
     if (user && user.deletedAt) {
       throw new IGraphQLError({ code: 10007 });
     }
-    console.log('masuk login');
+    this.logger.log(user);
     return {
       accessToken: this.jwtService.sign({
         id: user.id,
