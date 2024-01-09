@@ -99,7 +99,7 @@ export class InitializationService {
                   { permission: Permission.EXPORT_PARTICIPANT },
                   { permission: Permission.UPDATE_CLAIM },
                   { permission: Permission.UPDATE_PARTICIPANT },
-                  { permission: Permission.UPDATE_CLAIM_STATUS },
+                  { permission: Permission.UPDATE_CLAIM },
                 ],
               },
             },

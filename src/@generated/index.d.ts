@@ -140,9 +140,12 @@ export declare enum PhoneScalarFieldEnum {
 export declare enum Permission {
     CREATE_CLAIM = "CREATE_CLAIM",
     UPDATE_CLAIM = "UPDATE_CLAIM",
-    UPDATE_CLAIM_STATUS = "UPDATE_CLAIM_STATUS",
-    UPDATE_STATUS_FINANCIAL = "UPDATE_STATUS_FINANCIAL",
-    RELEASE_CLAIM = "RELEASE_CLAIM",
+    UPDATE_CLAIM_STATUS_TO_APPROVED = "UPDATE_CLAIM_STATUS_TO_APPROVED",
+    UPDATE_CLAIM_STATUS_TO_CONDITIONAL_REJECT = "UPDATE_CLAIM_STATUS_TO_CONDITIONAL_REJECT",
+    UPDATE_CLAIM_STATUS_TO_UNCONDITIONAL_REJECT = "UPDATE_CLAIM_STATUS_TO_UNCONDITIONAL_REJECT",
+    UPDATE_CLAIM_STATUS_TO_RELEASED = "UPDATE_CLAIM_STATUS_TO_RELEASED",
+    UPDATE_CLAIM_STATUS_TO_PAID = "UPDATE_CLAIM_STATUS_TO_PAID",
+    UPDATE_CLAIM_STATUS_TO_COMPLETED = "UPDATE_CLAIM_STATUS_TO_COMPLETED",
     DELETE_CLAIM_DOCUMENT = "DELETE_CLAIM_DOCUMENT",
     CREATE_CLAIM_DOCUMENT = "CREATE_CLAIM_DOCUMENT",
     IMPORT_CLAIM = "IMPORT_CLAIM",
@@ -201,7 +204,6 @@ export declare enum Color {
     GREEN = "GREEN"
 }
 export declare enum ClaimStatusType {
-    DOCUMENT = "DOCUMENT",
     PENDING = "PENDING",
     APPROVED = "APPROVED",
     REJECTED = "REJECTED",
@@ -271,8 +273,8 @@ export declare enum EmploymentScalarFieldEnum {
 }
 export declare enum DocumentScalarFieldEnum {
     id = "id",
-    name = "name",
-    path = "path",
+    pdfPath = "pdfPath",
+    docxPath = "docxPath",
     size = "size",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
@@ -311,8 +313,8 @@ export declare enum ClaimStatusScalarFieldEnum {
     description = "description",
     rejectionReason = "rejectionReason",
     createdAt = "createdAt",
-    status = "status",
-    createById = "createById",
+    type = "type",
+    changedById = "changedById",
     claimId = "claimId",
     rejectionLetterId = "rejectionLetterId",
     guaranteeLetterId = "guaranteeLetterId",
@@ -322,7 +324,7 @@ export declare enum ClaimStatusScalarFieldEnum {
 export declare enum ClaimProgramScalarFieldEnum {
     id = "id",
     expeditionDate = "expeditionDate",
-    reclaim = "reclaim",
+    isReclaim = "isReclaim",
     submissionNote = "submissionNote",
     description = "description",
     additionalNote = "additionalNote",
@@ -5335,7 +5337,7 @@ export declare class ClaimProgramAvgOrderByAggregateInput {
 export declare class ClaimProgramCountAggregateInput {
     id?: true;
     expeditionDate?: true;
-    reclaim?: true;
+    isReclaim?: true;
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
@@ -5350,7 +5352,7 @@ export declare class ClaimProgramCountAggregateInput {
 export declare class ClaimProgramCountAggregate {
     id: number;
     expeditionDate: number;
-    reclaim: number;
+    isReclaim: number;
     submissionNote: number;
     description: number;
     additionalNote: number;
@@ -5365,7 +5367,7 @@ export declare class ClaimProgramCountAggregate {
 export declare class ClaimProgramCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: keyof typeof SortOrder;
-    reclaim?: keyof typeof SortOrder;
+    isReclaim?: keyof typeof SortOrder;
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
@@ -5387,7 +5389,7 @@ export declare class ClaimProgramCreateManyClinicsInputEnvelope {
 export declare class ClaimProgramCreateManyClinicsInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5404,7 +5406,7 @@ export declare class ClaimProgramCreateManyDiseaseInputEnvelope {
 export declare class ClaimProgramCreateManyDiseaseInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5421,7 +5423,7 @@ export declare class ClaimProgramCreateManyProgramInputEnvelope {
 export declare class ClaimProgramCreateManyProgramInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5434,7 +5436,7 @@ export declare class ClaimProgramCreateManyProgramInput {
 export declare class ClaimProgramCreateManyInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5504,7 +5506,7 @@ export declare class ClaimProgramCreateOrConnectWithoutProgramInput {
 }
 export declare class ClaimProgramCreateWithoutClaimInput {
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5519,7 +5521,7 @@ export declare class ClaimProgramCreateWithoutClaimInput {
 }
 export declare class ClaimProgramCreateWithoutClinicsInput {
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5534,7 +5536,7 @@ export declare class ClaimProgramCreateWithoutClinicsInput {
 }
 export declare class ClaimProgramCreateWithoutDiseaseInput {
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5549,7 +5551,7 @@ export declare class ClaimProgramCreateWithoutDiseaseInput {
 }
 export declare class ClaimProgramCreateWithoutDocumentsInput {
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5564,7 +5566,7 @@ export declare class ClaimProgramCreateWithoutDocumentsInput {
 }
 export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5579,7 +5581,7 @@ export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
 }
 export declare class ClaimProgramCreateWithoutProgramInput {
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5594,7 +5596,7 @@ export declare class ClaimProgramCreateWithoutProgramInput {
 }
 export declare class ClaimProgramCreateInput {
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5624,7 +5626,7 @@ export declare class ClaimProgramGroupByArgs {
 export declare class ClaimProgramGroupBy {
     id: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5648,7 +5650,7 @@ export declare class ClaimProgramListRelationFilter {
 export declare class ClaimProgramMaxAggregateInput {
     id?: true;
     expeditionDate?: true;
-    reclaim?: true;
+    isReclaim?: true;
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
@@ -5662,7 +5664,7 @@ export declare class ClaimProgramMaxAggregateInput {
 export declare class ClaimProgramMaxAggregate {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5676,7 +5678,7 @@ export declare class ClaimProgramMaxAggregate {
 export declare class ClaimProgramMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: keyof typeof SortOrder;
-    reclaim?: keyof typeof SortOrder;
+    isReclaim?: keyof typeof SortOrder;
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
@@ -5690,7 +5692,7 @@ export declare class ClaimProgramMaxOrderByAggregateInput {
 export declare class ClaimProgramMinAggregateInput {
     id?: true;
     expeditionDate?: true;
-    reclaim?: true;
+    isReclaim?: true;
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
@@ -5704,7 +5706,7 @@ export declare class ClaimProgramMinAggregateInput {
 export declare class ClaimProgramMinAggregate {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5718,7 +5720,7 @@ export declare class ClaimProgramMinAggregate {
 export declare class ClaimProgramMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: keyof typeof SortOrder;
-    reclaim?: keyof typeof SortOrder;
+    isReclaim?: keyof typeof SortOrder;
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
@@ -5739,7 +5741,7 @@ export declare class ClaimProgramOrderByRelationAggregateInput {
 export declare class ClaimProgramOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: InstanceType<typeof SortOrderInput>;
-    reclaim?: InstanceType<typeof SortOrderInput>;
+    isReclaim?: InstanceType<typeof SortOrderInput>;
     submissionNote?: InstanceType<typeof SortOrderInput>;
     description?: InstanceType<typeof SortOrderInput>;
     additionalNote?: InstanceType<typeof SortOrderInput>;
@@ -5758,7 +5760,7 @@ export declare class ClaimProgramOrderByWithAggregationInput {
 export declare class ClaimProgramOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: InstanceType<typeof SortOrderInput>;
-    reclaim?: InstanceType<typeof SortOrderInput>;
+    isReclaim?: InstanceType<typeof SortOrderInput>;
     submissionNote?: InstanceType<typeof SortOrderInput>;
     description?: InstanceType<typeof SortOrderInput>;
     additionalNote?: InstanceType<typeof SortOrderInput>;
@@ -5785,7 +5787,7 @@ export declare class ClaimProgramScalarWhereWithAggregatesInput {
     NOT?: Array<ClaimProgramScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     expeditionDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    reclaim?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    isReclaim?: InstanceType<typeof BoolNullableWithAggregatesFilter>;
     submissionNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     additionalNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
@@ -5802,7 +5804,7 @@ export declare class ClaimProgramScalarWhereInput {
     NOT?: Array<ClaimProgramScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
-    reclaim?: InstanceType<typeof StringNullableFilter>;
+    isReclaim?: InstanceType<typeof BoolNullableFilter>;
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
@@ -5852,7 +5854,7 @@ export declare class ClaimProgramUncheckedCreateNestedManyWithoutProgramInput {
 export declare class ClaimProgramUncheckedCreateWithoutClaimInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5868,7 +5870,7 @@ export declare class ClaimProgramUncheckedCreateWithoutClaimInput {
 export declare class ClaimProgramUncheckedCreateWithoutClinicsInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5884,7 +5886,7 @@ export declare class ClaimProgramUncheckedCreateWithoutClinicsInput {
 export declare class ClaimProgramUncheckedCreateWithoutDiseaseInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5900,7 +5902,7 @@ export declare class ClaimProgramUncheckedCreateWithoutDiseaseInput {
 export declare class ClaimProgramUncheckedCreateWithoutDocumentsInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5916,7 +5918,7 @@ export declare class ClaimProgramUncheckedCreateWithoutDocumentsInput {
 export declare class ClaimProgramUncheckedCreateWithoutInvoiceProofsInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5932,7 +5934,7 @@ export declare class ClaimProgramUncheckedCreateWithoutInvoiceProofsInput {
 export declare class ClaimProgramUncheckedCreateWithoutProgramInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5948,7 +5950,7 @@ export declare class ClaimProgramUncheckedCreateWithoutProgramInput {
 export declare class ClaimProgramUncheckedCreateInput {
     id?: number;
     expeditionDate?: Date | string;
-    reclaim?: string;
+    isReclaim?: boolean;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5978,7 +5980,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutClinicsNestedInput {
 export declare class ClaimProgramUncheckedUpdateManyWithoutClinicsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6004,7 +6006,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutDiseaseNestedInput {
 export declare class ClaimProgramUncheckedUpdateManyWithoutDiseaseInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6030,7 +6032,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutProgramNestedInput {
 export declare class ClaimProgramUncheckedUpdateManyWithoutProgramInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6043,7 +6045,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutProgramInput {
 export declare class ClaimProgramUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6057,7 +6059,7 @@ export declare class ClaimProgramUncheckedUpdateManyInput {
 export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6073,7 +6075,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
 export declare class ClaimProgramUncheckedUpdateWithoutClinicsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6089,7 +6091,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutClinicsInput {
 export declare class ClaimProgramUncheckedUpdateWithoutDiseaseInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6105,7 +6107,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutDiseaseInput {
 export declare class ClaimProgramUncheckedUpdateWithoutDocumentsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6121,7 +6123,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutDocumentsInput {
 export declare class ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6137,7 +6139,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput {
 export declare class ClaimProgramUncheckedUpdateWithoutProgramInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6153,7 +6155,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutProgramInput {
 export declare class ClaimProgramUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6169,7 +6171,7 @@ export declare class ClaimProgramUncheckedUpdateInput {
 }
 export declare class ClaimProgramUpdateManyMutationInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6279,7 +6281,7 @@ export declare class ClaimProgramUpdateWithWhereUniqueWithoutProgramInput {
 }
 export declare class ClaimProgramUpdateWithoutClaimInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6294,7 +6296,7 @@ export declare class ClaimProgramUpdateWithoutClaimInput {
 }
 export declare class ClaimProgramUpdateWithoutClinicsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6309,7 +6311,7 @@ export declare class ClaimProgramUpdateWithoutClinicsInput {
 }
 export declare class ClaimProgramUpdateWithoutDiseaseInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6324,7 +6326,7 @@ export declare class ClaimProgramUpdateWithoutDiseaseInput {
 }
 export declare class ClaimProgramUpdateWithoutDocumentsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6339,7 +6341,7 @@ export declare class ClaimProgramUpdateWithoutDocumentsInput {
 }
 export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6354,7 +6356,7 @@ export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
 }
 export declare class ClaimProgramUpdateWithoutProgramInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6369,7 +6371,7 @@ export declare class ClaimProgramUpdateWithoutProgramInput {
 }
 export declare class ClaimProgramUpdateInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    reclaim?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6419,7 +6421,7 @@ export declare class ClaimProgramWhereUniqueInput {
     OR?: Array<ClaimProgramWhereInput>;
     NOT?: Array<ClaimProgramWhereInput>;
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
-    reclaim?: InstanceType<typeof StringNullableFilter>;
+    isReclaim?: InstanceType<typeof BoolNullableFilter>;
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
@@ -6442,7 +6444,7 @@ export declare class ClaimProgramWhereInput {
     NOT?: Array<ClaimProgramWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
-    reclaim?: InstanceType<typeof StringNullableFilter>;
+    isReclaim?: InstanceType<typeof BoolNullableFilter>;
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
@@ -6462,7 +6464,7 @@ export declare class ClaimProgramWhereInput {
 export declare class ClaimProgram {
     id: number;
     expeditionDate: Date | null;
-    reclaim: string | null;
+    isReclaim: boolean | null;
     submissionNote: string | null;
     description: string | null;
     additionalNote: string | null;
@@ -6569,8 +6571,8 @@ export declare class ClaimStatusCountAggregateInput {
     description?: true;
     rejectionReason?: true;
     createdAt?: true;
-    status?: true;
-    createById?: true;
+    type?: true;
+    changedById?: true;
     claimId?: true;
     rejectionLetterId?: true;
     guaranteeLetterId?: true;
@@ -6583,8 +6585,8 @@ export declare class ClaimStatusCountAggregate {
     description: number;
     rejectionReason: number;
     createdAt: number;
-    status: number;
-    createById: number;
+    type: number;
+    changedById: number;
     claimId: number;
     rejectionLetterId: number;
     guaranteeLetterId: number;
@@ -6597,13 +6599,29 @@ export declare class ClaimStatusCountOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     rejectionReason?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    createById?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    changedById?: keyof typeof SortOrder;
     claimId?: keyof typeof SortOrder;
     rejectionLetterId?: keyof typeof SortOrder;
     guaranteeLetterId?: keyof typeof SortOrder;
     transactionLetterId?: keyof typeof SortOrder;
     bookKeepingOrderId?: keyof typeof SortOrder;
+}
+export declare class ClaimStatusCreateManyChangedByInputEnvelope {
+    data: Array<ClaimStatusCreateManyChangedByInput>;
+    skipDuplicates?: boolean;
+}
+export declare class ClaimStatusCreateManyChangedByInput {
+    id?: number;
+    description?: string;
+    rejectionReason?: string;
+    createdAt?: Date | string;
+    type: keyof typeof ClaimStatusType;
+    claimId: string;
+    rejectionLetterId?: string;
+    guaranteeLetterId?: string;
+    transactionLetterId?: string;
+    bookKeepingOrderId?: string;
 }
 export declare class ClaimStatusCreateManyClaimInputEnvelope {
     data: Array<ClaimStatusCreateManyClaimInput>;
@@ -6614,24 +6632,8 @@ export declare class ClaimStatusCreateManyClaimInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
-    rejectionLetterId?: string;
-    guaranteeLetterId?: string;
-    transactionLetterId?: string;
-    bookKeepingOrderId?: string;
-}
-export declare class ClaimStatusCreateManyCreateByInputEnvelope {
-    data: Array<ClaimStatusCreateManyCreateByInput>;
-    skipDuplicates?: boolean;
-}
-export declare class ClaimStatusCreateManyCreateByInput {
-    id?: number;
-    description?: string;
-    rejectionReason?: string;
-    createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    claimId: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
     transactionLetterId?: string;
@@ -6642,24 +6644,24 @@ export declare class ClaimStatusCreateManyInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
     transactionLetterId?: string;
     bookKeepingOrderId?: string;
 }
+export declare class ClaimStatusCreateNestedManyWithoutChangedByInput {
+    create?: Array<ClaimStatusCreateWithoutChangedByInput>;
+    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutChangedByInput>;
+    createMany?: InstanceType<typeof ClaimStatusCreateManyChangedByInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+}
 export declare class ClaimStatusCreateNestedManyWithoutClaimInput {
     create?: Array<ClaimStatusCreateWithoutClaimInput>;
     connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutClaimInput>;
     createMany?: InstanceType<typeof ClaimStatusCreateManyClaimInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-}
-export declare class ClaimStatusCreateNestedManyWithoutCreateByInput {
-    create?: Array<ClaimStatusCreateWithoutCreateByInput>;
-    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutCreateByInput>;
-    createMany?: InstanceType<typeof ClaimStatusCreateManyCreateByInputEnvelope>;
     connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
 }
 export declare class ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput {
@@ -6691,6 +6693,10 @@ export declare class ClaimStatusCreateOrConnectWithoutBookKeepingOrderInput {
     where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
     create: InstanceType<typeof ClaimStatusCreateWithoutBookKeepingOrderInput>;
 }
+export declare class ClaimStatusCreateOrConnectWithoutChangedByInput {
+    where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
+    create: InstanceType<typeof ClaimStatusCreateWithoutChangedByInput>;
+}
 export declare class ClaimStatusCreateOrConnectWithoutClaimFinancialInput {
     where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
     create: InstanceType<typeof ClaimStatusCreateWithoutClaimFinancialInput>;
@@ -6698,10 +6704,6 @@ export declare class ClaimStatusCreateOrConnectWithoutClaimFinancialInput {
 export declare class ClaimStatusCreateOrConnectWithoutClaimInput {
     where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
     create: InstanceType<typeof ClaimStatusCreateWithoutClaimInput>;
-}
-export declare class ClaimStatusCreateOrConnectWithoutCreateByInput {
-    where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
-    create: InstanceType<typeof ClaimStatusCreateWithoutCreateByInput>;
 }
 export declare class ClaimStatusCreateOrConnectWithoutGuaranteeLetterInput {
     where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
@@ -6719,20 +6721,32 @@ export declare class ClaimStatusCreateWithoutBookKeepingOrderInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
+    type: keyof typeof ClaimStatusType;
+    changedBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
     claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
     rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
     guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
     transactionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionLetterOfInput>;
     claimFinancial?: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimStatusInput>;
 }
+export declare class ClaimStatusCreateWithoutChangedByInput {
+    description?: string;
+    rejectionReason?: string;
+    createdAt?: Date | string;
+    type: keyof typeof ClaimStatusType;
+    claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
+    rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
+    guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
+    transactionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionLetterOfInput>;
+    bookKeepingOrder?: InstanceType<typeof DocumentCreateNestedOneWithoutBookKeepingOrderOfInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimStatusInput>;
+}
 export declare class ClaimStatusCreateWithoutClaimFinancialInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
+    type: keyof typeof ClaimStatusType;
+    changedBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
     claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
     rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
     guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
@@ -6743,20 +6757,8 @@ export declare class ClaimStatusCreateWithoutClaimInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
-    rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
-    guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
-    transactionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionLetterOfInput>;
-    bookKeepingOrder?: InstanceType<typeof DocumentCreateNestedOneWithoutBookKeepingOrderOfInput>;
-    claimFinancial?: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutClaimStatusInput>;
-}
-export declare class ClaimStatusCreateWithoutCreateByInput {
-    description?: string;
-    rejectionReason?: string;
-    createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
+    type: keyof typeof ClaimStatusType;
+    changedBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
     rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
     guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
     transactionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionLetterOfInput>;
@@ -6767,8 +6769,8 @@ export declare class ClaimStatusCreateWithoutGuaranteeLetterInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
+    type: keyof typeof ClaimStatusType;
+    changedBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
     claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
     rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
     transactionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionLetterOfInput>;
@@ -6779,8 +6781,8 @@ export declare class ClaimStatusCreateWithoutRejectionLetterInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
+    type: keyof typeof ClaimStatusType;
+    changedBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
     claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
     guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
     transactionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionLetterOfInput>;
@@ -6791,8 +6793,8 @@ export declare class ClaimStatusCreateWithoutTransactionLetterInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
+    type: keyof typeof ClaimStatusType;
+    changedBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
     claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
     rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
     guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
@@ -6803,8 +6805,8 @@ export declare class ClaimStatusCreateInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
+    type: keyof typeof ClaimStatusType;
+    changedBy: InstanceType<typeof UserCreateNestedOneWithoutClaimActionsInput>;
     claim: InstanceType<typeof ClaimCreateNestedOneWithoutClaimStatusesInput>;
     rejectionLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutRejectionLetterOfInput>;
     guaranteeLetter?: InstanceType<typeof DocumentCreateNestedOneWithoutGuaranteeLetterOfInput>;
@@ -6830,8 +6832,8 @@ export declare class ClaimStatusGroupBy {
     description?: string;
     rejectionReason?: string;
     createdAt: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
@@ -6853,8 +6855,8 @@ export declare class ClaimStatusMaxAggregateInput {
     description?: true;
     rejectionReason?: true;
     createdAt?: true;
-    status?: true;
-    createById?: true;
+    type?: true;
+    changedById?: true;
     claimId?: true;
     rejectionLetterId?: true;
     guaranteeLetterId?: true;
@@ -6866,8 +6868,8 @@ export declare class ClaimStatusMaxAggregate {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status?: keyof typeof ClaimStatusType;
-    createById?: string;
+    type?: keyof typeof ClaimStatusType;
+    changedById?: string;
     claimId?: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
@@ -6879,8 +6881,8 @@ export declare class ClaimStatusMaxOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     rejectionReason?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    createById?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    changedById?: keyof typeof SortOrder;
     claimId?: keyof typeof SortOrder;
     rejectionLetterId?: keyof typeof SortOrder;
     guaranteeLetterId?: keyof typeof SortOrder;
@@ -6892,8 +6894,8 @@ export declare class ClaimStatusMinAggregateInput {
     description?: true;
     rejectionReason?: true;
     createdAt?: true;
-    status?: true;
-    createById?: true;
+    type?: true;
+    changedById?: true;
     claimId?: true;
     rejectionLetterId?: true;
     guaranteeLetterId?: true;
@@ -6905,8 +6907,8 @@ export declare class ClaimStatusMinAggregate {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status?: keyof typeof ClaimStatusType;
-    createById?: string;
+    type?: keyof typeof ClaimStatusType;
+    changedById?: string;
     claimId?: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
@@ -6918,8 +6920,8 @@ export declare class ClaimStatusMinOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     rejectionReason?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    createById?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    changedById?: keyof typeof SortOrder;
     claimId?: keyof typeof SortOrder;
     rejectionLetterId?: keyof typeof SortOrder;
     guaranteeLetterId?: keyof typeof SortOrder;
@@ -6938,8 +6940,8 @@ export declare class ClaimStatusOrderByWithAggregationInput {
     description?: InstanceType<typeof SortOrderInput>;
     rejectionReason?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    createById?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    changedById?: keyof typeof SortOrder;
     claimId?: keyof typeof SortOrder;
     rejectionLetterId?: InstanceType<typeof SortOrderInput>;
     guaranteeLetterId?: InstanceType<typeof SortOrderInput>;
@@ -6956,14 +6958,14 @@ export declare class ClaimStatusOrderByWithRelationInput {
     description?: InstanceType<typeof SortOrderInput>;
     rejectionReason?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    createById?: keyof typeof SortOrder;
+    type?: keyof typeof SortOrder;
+    changedById?: keyof typeof SortOrder;
     claimId?: keyof typeof SortOrder;
     rejectionLetterId?: InstanceType<typeof SortOrderInput>;
     guaranteeLetterId?: InstanceType<typeof SortOrderInput>;
     transactionLetterId?: InstanceType<typeof SortOrderInput>;
     bookKeepingOrderId?: InstanceType<typeof SortOrderInput>;
-    createBy?: InstanceType<typeof UserOrderByWithRelationInput>;
+    changedBy?: InstanceType<typeof UserOrderByWithRelationInput>;
     claim?: InstanceType<typeof ClaimOrderByWithRelationInput>;
     rejectionLetter?: InstanceType<typeof DocumentOrderByWithRelationInput>;
     guaranteeLetter?: InstanceType<typeof DocumentOrderByWithRelationInput>;
@@ -6979,8 +6981,8 @@ export declare class ClaimStatusScalarWhereWithAggregatesInput {
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     rejectionReason?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    status?: InstanceType<typeof EnumClaimStatusTypeWithAggregatesFilter>;
-    createById?: InstanceType<typeof StringWithAggregatesFilter>;
+    type?: InstanceType<typeof EnumClaimStatusTypeWithAggregatesFilter>;
+    changedById?: InstanceType<typeof StringWithAggregatesFilter>;
     claimId?: InstanceType<typeof StringWithAggregatesFilter>;
     rejectionLetterId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     guaranteeLetterId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
@@ -6995,8 +6997,8 @@ export declare class ClaimStatusScalarWhereInput {
     description?: InstanceType<typeof StringNullableFilter>;
     rejectionReason?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFilter>;
-    createById?: InstanceType<typeof StringFilter>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFilter>;
+    changedById?: InstanceType<typeof StringFilter>;
     claimId?: InstanceType<typeof StringFilter>;
     rejectionLetterId?: InstanceType<typeof StringNullableFilter>;
     guaranteeLetterId?: InstanceType<typeof StringNullableFilter>;
@@ -7012,16 +7014,16 @@ export declare class ClaimStatusSumAggregate {
 export declare class ClaimStatusSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
 }
+export declare class ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput {
+    create?: Array<ClaimStatusCreateWithoutChangedByInput>;
+    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutChangedByInput>;
+    createMany?: InstanceType<typeof ClaimStatusCreateManyChangedByInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+}
 export declare class ClaimStatusUncheckedCreateNestedManyWithoutClaimInput {
     create?: Array<ClaimStatusCreateWithoutClaimInput>;
     connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutClaimInput>;
     createMany?: InstanceType<typeof ClaimStatusCreateManyClaimInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-}
-export declare class ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput {
-    create?: Array<ClaimStatusCreateWithoutCreateByInput>;
-    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutCreateByInput>;
-    createMany?: InstanceType<typeof ClaimStatusCreateManyCreateByInputEnvelope>;
     connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
 }
 export declare class ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput {
@@ -7049,12 +7051,25 @@ export declare class ClaimStatusUncheckedCreateWithoutBookKeepingOrderInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
     transactionLetterId?: string;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedCreateNestedOneWithoutClaimStatusInput>;
+}
+export declare class ClaimStatusUncheckedCreateWithoutChangedByInput {
+    id?: number;
+    description?: string;
+    rejectionReason?: string;
+    createdAt?: Date | string;
+    type: keyof typeof ClaimStatusType;
+    claimId: string;
+    rejectionLetterId?: string;
+    guaranteeLetterId?: string;
+    transactionLetterId?: string;
+    bookKeepingOrderId?: string;
     claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedCreateNestedOneWithoutClaimStatusInput>;
 }
 export declare class ClaimStatusUncheckedCreateWithoutClaimFinancialInput {
@@ -7062,8 +7077,8 @@ export declare class ClaimStatusUncheckedCreateWithoutClaimFinancialInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
@@ -7075,21 +7090,8 @@ export declare class ClaimStatusUncheckedCreateWithoutClaimInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
-    rejectionLetterId?: string;
-    guaranteeLetterId?: string;
-    transactionLetterId?: string;
-    bookKeepingOrderId?: string;
-    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedCreateNestedOneWithoutClaimStatusInput>;
-}
-export declare class ClaimStatusUncheckedCreateWithoutCreateByInput {
-    id?: number;
-    description?: string;
-    rejectionReason?: string;
-    createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    claimId: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
     transactionLetterId?: string;
@@ -7101,8 +7103,8 @@ export declare class ClaimStatusUncheckedCreateWithoutGuaranteeLetterInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId?: string;
     transactionLetterId?: string;
@@ -7114,8 +7116,8 @@ export declare class ClaimStatusUncheckedCreateWithoutRejectionLetterInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     guaranteeLetterId?: string;
     transactionLetterId?: string;
@@ -7127,8 +7129,8 @@ export declare class ClaimStatusUncheckedCreateWithoutTransactionLetterInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
@@ -7140,14 +7142,39 @@ export declare class ClaimStatusUncheckedCreateInput {
     description?: string;
     rejectionReason?: string;
     createdAt?: Date | string;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId?: string;
     guaranteeLetterId?: string;
     transactionLetterId?: string;
     bookKeepingOrderId?: string;
     claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedCreateNestedOneWithoutClaimStatusInput>;
+}
+export declare class ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput {
+    create?: Array<ClaimStatusCreateWithoutChangedByInput>;
+    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutChangedByInput>;
+    upsert?: Array<ClaimStatusUpsertWithWhereUniqueWithoutChangedByInput>;
+    createMany?: InstanceType<typeof ClaimStatusCreateManyChangedByInputEnvelope>;
+    set?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    update?: Array<ClaimStatusUpdateWithWhereUniqueWithoutChangedByInput>;
+    updateMany?: Array<ClaimStatusUpdateManyWithWhereWithoutChangedByInput>;
+    deleteMany?: Array<ClaimStatusScalarWhereInput>;
+}
+export declare class ClaimStatusUncheckedUpdateManyWithoutChangedByInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    bookKeepingOrderId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class ClaimStatusUncheckedUpdateManyWithoutClaimNestedInput {
     create?: Array<ClaimStatusCreateWithoutClaimInput>;
@@ -7167,33 +7194,8 @@ export declare class ClaimStatusUncheckedUpdateManyWithoutClaimInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bookKeepingOrderId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-}
-export declare class ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput {
-    create?: Array<ClaimStatusCreateWithoutCreateByInput>;
-    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutCreateByInput>;
-    upsert?: Array<ClaimStatusUpsertWithWhereUniqueWithoutCreateByInput>;
-    createMany?: InstanceType<typeof ClaimStatusCreateManyCreateByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    update?: Array<ClaimStatusUpdateWithWhereUniqueWithoutCreateByInput>;
-    updateMany?: Array<ClaimStatusUpdateManyWithWhereWithoutCreateByInput>;
-    deleteMany?: Array<ClaimStatusScalarWhereInput>;
-}
-export declare class ClaimStatusUncheckedUpdateManyWithoutCreateByInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7204,8 +7206,8 @@ export declare class ClaimStatusUncheckedUpdateManyInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7253,12 +7255,25 @@ export declare class ClaimStatusUncheckedUpdateWithoutBookKeepingOrderInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInput>;
+}
+export declare class ClaimStatusUncheckedUpdateWithoutChangedByInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    bookKeepingOrderId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInput>;
 }
 export declare class ClaimStatusUncheckedUpdateWithoutClaimFinancialInput {
@@ -7266,8 +7281,8 @@ export declare class ClaimStatusUncheckedUpdateWithoutClaimFinancialInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7279,21 +7294,8 @@ export declare class ClaimStatusUncheckedUpdateWithoutClaimInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    bookKeepingOrderId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInput>;
-}
-export declare class ClaimStatusUncheckedUpdateWithoutCreateByInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7305,8 +7307,8 @@ export declare class ClaimStatusUncheckedUpdateWithoutGuaranteeLetterInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7318,8 +7320,8 @@ export declare class ClaimStatusUncheckedUpdateWithoutRejectionLetterInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     transactionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7331,8 +7333,8 @@ export declare class ClaimStatusUncheckedUpdateWithoutTransactionLetterInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7344,8 +7346,8 @@ export declare class ClaimStatusUncheckedUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedById?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     rejectionLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guaranteeLetterId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -7357,15 +7359,28 @@ export declare class ClaimStatusUpdateManyMutationInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+}
+export declare class ClaimStatusUpdateManyWithWhereWithoutChangedByInput {
+    where: InstanceType<typeof ClaimStatusScalarWhereInput>;
+    data: InstanceType<typeof ClaimStatusUpdateManyMutationInput>;
 }
 export declare class ClaimStatusUpdateManyWithWhereWithoutClaimInput {
     where: InstanceType<typeof ClaimStatusScalarWhereInput>;
     data: InstanceType<typeof ClaimStatusUpdateManyMutationInput>;
 }
-export declare class ClaimStatusUpdateManyWithWhereWithoutCreateByInput {
-    where: InstanceType<typeof ClaimStatusScalarWhereInput>;
-    data: InstanceType<typeof ClaimStatusUpdateManyMutationInput>;
+export declare class ClaimStatusUpdateManyWithoutChangedByNestedInput {
+    create?: Array<ClaimStatusCreateWithoutChangedByInput>;
+    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutChangedByInput>;
+    upsert?: Array<ClaimStatusUpsertWithWhereUniqueWithoutChangedByInput>;
+    createMany?: InstanceType<typeof ClaimStatusCreateManyChangedByInputEnvelope>;
+    set?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
+    update?: Array<ClaimStatusUpdateWithWhereUniqueWithoutChangedByInput>;
+    updateMany?: Array<ClaimStatusUpdateManyWithWhereWithoutChangedByInput>;
+    deleteMany?: Array<ClaimStatusScalarWhereInput>;
 }
 export declare class ClaimStatusUpdateManyWithoutClaimNestedInput {
     create?: Array<ClaimStatusCreateWithoutClaimInput>;
@@ -7378,19 +7393,6 @@ export declare class ClaimStatusUpdateManyWithoutClaimNestedInput {
     connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
     update?: Array<ClaimStatusUpdateWithWhereUniqueWithoutClaimInput>;
     updateMany?: Array<ClaimStatusUpdateManyWithWhereWithoutClaimInput>;
-    deleteMany?: Array<ClaimStatusScalarWhereInput>;
-}
-export declare class ClaimStatusUpdateManyWithoutCreateByNestedInput {
-    create?: Array<ClaimStatusCreateWithoutCreateByInput>;
-    connectOrCreate?: Array<ClaimStatusCreateOrConnectWithoutCreateByInput>;
-    upsert?: Array<ClaimStatusUpsertWithWhereUniqueWithoutCreateByInput>;
-    createMany?: InstanceType<typeof ClaimStatusCreateManyCreateByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>>;
-    update?: Array<ClaimStatusUpdateWithWhereUniqueWithoutCreateByInput>;
-    updateMany?: Array<ClaimStatusUpdateManyWithWhereWithoutCreateByInput>;
     deleteMany?: Array<ClaimStatusScalarWhereInput>;
 }
 export declare class ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput {
@@ -7458,32 +7460,44 @@ export declare class ClaimStatusUpdateToOneWithWhereWithoutTransactionLetterInpu
     where?: InstanceType<typeof ClaimStatusWhereInput>;
     data: InstanceType<typeof ClaimStatusUpdateWithoutTransactionLetterInput>;
 }
+export declare class ClaimStatusUpdateWithWhereUniqueWithoutChangedByInput {
+    where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
+    data: InstanceType<typeof ClaimStatusUpdateWithoutChangedByInput>;
+}
 export declare class ClaimStatusUpdateWithWhereUniqueWithoutClaimInput {
     where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
     data: InstanceType<typeof ClaimStatusUpdateWithoutClaimInput>;
-}
-export declare class ClaimStatusUpdateWithWhereUniqueWithoutCreateByInput {
-    where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
-    data: InstanceType<typeof ClaimStatusUpdateWithoutCreateByInput>;
 }
 export declare class ClaimStatusUpdateWithoutBookKeepingOrderInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
     rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
     guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
     transactionLetter?: InstanceType<typeof DocumentUpdateOneWithoutTransactionLetterOfNestedInput>;
     claimFinancial?: InstanceType<typeof ClaimFinancialUpdateOneWithoutClaimStatusNestedInput>;
 }
+export declare class ClaimStatusUpdateWithoutChangedByInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
+    rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
+    guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
+    transactionLetter?: InstanceType<typeof DocumentUpdateOneWithoutTransactionLetterOfNestedInput>;
+    bookKeepingOrder?: InstanceType<typeof DocumentUpdateOneWithoutBookKeepingOrderOfNestedInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUpdateOneWithoutClaimStatusNestedInput>;
+}
 export declare class ClaimStatusUpdateWithoutClaimFinancialInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
     rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
     guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
@@ -7494,20 +7508,8 @@ export declare class ClaimStatusUpdateWithoutClaimInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
-    rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
-    guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
-    transactionLetter?: InstanceType<typeof DocumentUpdateOneWithoutTransactionLetterOfNestedInput>;
-    bookKeepingOrder?: InstanceType<typeof DocumentUpdateOneWithoutBookKeepingOrderOfNestedInput>;
-    claimFinancial?: InstanceType<typeof ClaimFinancialUpdateOneWithoutClaimStatusNestedInput>;
-}
-export declare class ClaimStatusUpdateWithoutCreateByInput {
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
     rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
     guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
     transactionLetter?: InstanceType<typeof DocumentUpdateOneWithoutTransactionLetterOfNestedInput>;
@@ -7518,8 +7520,8 @@ export declare class ClaimStatusUpdateWithoutGuaranteeLetterInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
     rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
     transactionLetter?: InstanceType<typeof DocumentUpdateOneWithoutTransactionLetterOfNestedInput>;
@@ -7530,8 +7532,8 @@ export declare class ClaimStatusUpdateWithoutRejectionLetterInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
     guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
     transactionLetter?: InstanceType<typeof DocumentUpdateOneWithoutTransactionLetterOfNestedInput>;
@@ -7542,8 +7544,8 @@ export declare class ClaimStatusUpdateWithoutTransactionLetterInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
     rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
     guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
@@ -7554,8 +7556,8 @@ export declare class ClaimStatusUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
-    createBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFieldUpdateOperationsInput>;
+    changedBy?: InstanceType<typeof UserUpdateOneRequiredWithoutClaimActionsNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneRequiredWithoutClaimStatusesNestedInput>;
     rejectionLetter?: InstanceType<typeof DocumentUpdateOneWithoutRejectionLetterOfNestedInput>;
     guaranteeLetter?: InstanceType<typeof DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput>;
@@ -7563,15 +7565,15 @@ export declare class ClaimStatusUpdateInput {
     bookKeepingOrder?: InstanceType<typeof DocumentUpdateOneWithoutBookKeepingOrderOfNestedInput>;
     claimFinancial?: InstanceType<typeof ClaimFinancialUpdateOneWithoutClaimStatusNestedInput>;
 }
+export declare class ClaimStatusUpsertWithWhereUniqueWithoutChangedByInput {
+    where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
+    update: InstanceType<typeof ClaimStatusUpdateWithoutChangedByInput>;
+    create: InstanceType<typeof ClaimStatusCreateWithoutChangedByInput>;
+}
 export declare class ClaimStatusUpsertWithWhereUniqueWithoutClaimInput {
     where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
     update: InstanceType<typeof ClaimStatusUpdateWithoutClaimInput>;
     create: InstanceType<typeof ClaimStatusCreateWithoutClaimInput>;
-}
-export declare class ClaimStatusUpsertWithWhereUniqueWithoutCreateByInput {
-    where: Prisma.AtLeast<ClaimStatusWhereUniqueInput, 'id' | 'rejectionLetterId' | 'guaranteeLetterId' | 'transactionLetterId' | 'bookKeepingOrderId'>;
-    update: InstanceType<typeof ClaimStatusUpdateWithoutCreateByInput>;
-    create: InstanceType<typeof ClaimStatusCreateWithoutCreateByInput>;
 }
 export declare class ClaimStatusUpsertWithoutBookKeepingOrderInput {
     update: InstanceType<typeof ClaimStatusUpdateWithoutBookKeepingOrderInput>;
@@ -7610,10 +7612,10 @@ export declare class ClaimStatusWhereUniqueInput {
     description?: InstanceType<typeof StringNullableFilter>;
     rejectionReason?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFilter>;
-    createById?: InstanceType<typeof StringFilter>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFilter>;
+    changedById?: InstanceType<typeof StringFilter>;
     claimId?: InstanceType<typeof StringFilter>;
-    createBy?: InstanceType<typeof UserRelationFilter>;
+    changedBy?: InstanceType<typeof UserRelationFilter>;
     claim?: InstanceType<typeof ClaimRelationFilter>;
     rejectionLetter?: InstanceType<typeof DocumentNullableRelationFilter>;
     guaranteeLetter?: InstanceType<typeof DocumentNullableRelationFilter>;
@@ -7629,14 +7631,14 @@ export declare class ClaimStatusWhereInput {
     description?: InstanceType<typeof StringNullableFilter>;
     rejectionReason?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    status?: InstanceType<typeof EnumClaimStatusTypeFilter>;
-    createById?: InstanceType<typeof StringFilter>;
+    type?: InstanceType<typeof EnumClaimStatusTypeFilter>;
+    changedById?: InstanceType<typeof StringFilter>;
     claimId?: InstanceType<typeof StringFilter>;
     rejectionLetterId?: InstanceType<typeof StringNullableFilter>;
     guaranteeLetterId?: InstanceType<typeof StringNullableFilter>;
     transactionLetterId?: InstanceType<typeof StringNullableFilter>;
     bookKeepingOrderId?: InstanceType<typeof StringNullableFilter>;
-    createBy?: InstanceType<typeof UserRelationFilter>;
+    changedBy?: InstanceType<typeof UserRelationFilter>;
     claim?: InstanceType<typeof ClaimRelationFilter>;
     rejectionLetter?: InstanceType<typeof DocumentNullableRelationFilter>;
     guaranteeLetter?: InstanceType<typeof DocumentNullableRelationFilter>;
@@ -7649,14 +7651,14 @@ export declare class ClaimStatus {
     description: string | null;
     rejectionReason: string | null;
     createdAt: Date;
-    status: keyof typeof ClaimStatusType;
-    createById: string;
+    type: keyof typeof ClaimStatusType;
+    changedById: string;
     claimId: string;
     rejectionLetterId: string | null;
     guaranteeLetterId: string | null;
     transactionLetterId: string | null;
     bookKeepingOrderId: string | null;
-    createBy?: InstanceType<typeof User>;
+    changedBy?: InstanceType<typeof User>;
     claim?: InstanceType<typeof Claim>;
     rejectionLetter?: InstanceType<typeof Document> | null;
     guaranteeLetter?: InstanceType<typeof Document> | null;
@@ -9429,8 +9431,8 @@ export declare class DocumentAvgOrderByAggregateInput {
 }
 export declare class DocumentCountAggregateInput {
     id?: true;
-    name?: true;
-    path?: true;
+    pdfPath?: true;
+    docxPath?: true;
     size?: true;
     createdAt?: true;
     updatedAt?: true;
@@ -9441,8 +9443,8 @@ export declare class DocumentCountAggregateInput {
 }
 export declare class DocumentCountAggregate {
     id: number;
-    name: number;
-    path: number;
+    pdfPath: number;
+    docxPath: number;
     size: number;
     createdAt: number;
     updatedAt: number;
@@ -9453,8 +9455,8 @@ export declare class DocumentCountAggregate {
 }
 export declare class DocumentCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    path?: keyof typeof SortOrder;
+    pdfPath?: keyof typeof SortOrder;
+    docxPath?: keyof typeof SortOrder;
     size?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
@@ -9471,8 +9473,8 @@ export declare class DocumentCreateManyClaimProgrammInputEnvelope {
 }
 export declare class DocumentCreateManyClaimProgrammInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9481,8 +9483,8 @@ export declare class DocumentCreateManyClaimProgrammInput {
 }
 export declare class DocumentCreateManyInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9565,8 +9567,8 @@ export declare class DocumentCreateOrConnectWithoutTransactionInput {
 }
 export declare class DocumentCreateWithoutBookKeepingOrderOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9582,8 +9584,8 @@ export declare class DocumentCreateWithoutBookKeepingOrderOfInput {
 }
 export declare class DocumentCreateWithoutClaimProgrammInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9599,8 +9601,8 @@ export declare class DocumentCreateWithoutClaimProgrammInput {
 }
 export declare class DocumentCreateWithoutGuaranteeLetterOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9616,8 +9618,8 @@ export declare class DocumentCreateWithoutGuaranteeLetterOfInput {
 }
 export declare class DocumentCreateWithoutInvoiceProofInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9633,8 +9635,8 @@ export declare class DocumentCreateWithoutInvoiceProofInput {
 }
 export declare class DocumentCreateWithoutPrintedbyInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9650,8 +9652,8 @@ export declare class DocumentCreateWithoutPrintedbyInput {
 }
 export declare class DocumentCreateWithoutRejectionLetterOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9667,8 +9669,8 @@ export declare class DocumentCreateWithoutRejectionLetterOfInput {
 }
 export declare class DocumentCreateWithoutTransactionLetterOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9684,8 +9686,8 @@ export declare class DocumentCreateWithoutTransactionLetterOfInput {
 }
 export declare class DocumentCreateWithoutTransactionInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9701,8 +9703,8 @@ export declare class DocumentCreateWithoutTransactionInput {
 }
 export declare class DocumentCreateInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9732,8 +9734,8 @@ export declare class DocumentGroupByArgs {
 }
 export declare class DocumentGroupBy {
     id: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt: Date | string;
     updatedAt: Date | string;
@@ -9753,8 +9755,8 @@ export declare class DocumentListRelationFilter {
 }
 export declare class DocumentMaxAggregateInput {
     id?: true;
-    name?: true;
-    path?: true;
+    pdfPath?: true;
+    docxPath?: true;
     size?: true;
     createdAt?: true;
     updatedAt?: true;
@@ -9764,8 +9766,8 @@ export declare class DocumentMaxAggregateInput {
 }
 export declare class DocumentMaxAggregate {
     id?: string;
-    name?: string;
-    path?: string;
+    pdfPath?: string;
+    docxPath?: string;
     size?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9775,8 +9777,8 @@ export declare class DocumentMaxAggregate {
 }
 export declare class DocumentMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    path?: keyof typeof SortOrder;
+    pdfPath?: keyof typeof SortOrder;
+    docxPath?: keyof typeof SortOrder;
     size?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
@@ -9786,8 +9788,8 @@ export declare class DocumentMaxOrderByAggregateInput {
 }
 export declare class DocumentMinAggregateInput {
     id?: true;
-    name?: true;
-    path?: true;
+    pdfPath?: true;
+    docxPath?: true;
     size?: true;
     createdAt?: true;
     updatedAt?: true;
@@ -9797,8 +9799,8 @@ export declare class DocumentMinAggregateInput {
 }
 export declare class DocumentMinAggregate {
     id?: string;
-    name?: string;
-    path?: string;
+    pdfPath?: string;
+    docxPath?: string;
     size?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9808,8 +9810,8 @@ export declare class DocumentMinAggregate {
 }
 export declare class DocumentMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    path?: keyof typeof SortOrder;
+    pdfPath?: keyof typeof SortOrder;
+    docxPath?: keyof typeof SortOrder;
     size?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
@@ -9826,8 +9828,8 @@ export declare class DocumentOrderByRelationAggregateInput {
 }
 export declare class DocumentOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    path?: keyof typeof SortOrder;
+    pdfPath?: keyof typeof SortOrder;
+    docxPath?: keyof typeof SortOrder;
     size?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
@@ -9842,8 +9844,8 @@ export declare class DocumentOrderByWithAggregationInput {
 }
 export declare class DocumentOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
-    name?: keyof typeof SortOrder;
-    path?: keyof typeof SortOrder;
+    pdfPath?: keyof typeof SortOrder;
+    docxPath?: keyof typeof SortOrder;
     size?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
@@ -9868,8 +9870,8 @@ export declare class DocumentScalarWhereWithAggregatesInput {
     OR?: Array<DocumentScalarWhereWithAggregatesInput>;
     NOT?: Array<DocumentScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof StringWithAggregatesFilter>;
-    name?: InstanceType<typeof StringWithAggregatesFilter>;
-    path?: InstanceType<typeof StringWithAggregatesFilter>;
+    pdfPath?: InstanceType<typeof StringWithAggregatesFilter>;
+    docxPath?: InstanceType<typeof StringWithAggregatesFilter>;
     size?: InstanceType<typeof IntWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
@@ -9882,8 +9884,8 @@ export declare class DocumentScalarWhereInput {
     OR?: Array<DocumentScalarWhereInput>;
     NOT?: Array<DocumentScalarWhereInput>;
     id?: InstanceType<typeof StringFilter>;
-    name?: InstanceType<typeof StringFilter>;
-    path?: InstanceType<typeof StringFilter>;
+    pdfPath?: InstanceType<typeof StringFilter>;
+    docxPath?: InstanceType<typeof StringFilter>;
     size?: InstanceType<typeof IntFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
@@ -9916,8 +9918,8 @@ export declare class DocumentUncheckedCreateNestedManyWithoutPrintedbyInput {
 }
 export declare class DocumentUncheckedCreateWithoutBookKeepingOrderOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9933,8 +9935,8 @@ export declare class DocumentUncheckedCreateWithoutBookKeepingOrderOfInput {
 }
 export declare class DocumentUncheckedCreateWithoutClaimProgrammInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9950,8 +9952,8 @@ export declare class DocumentUncheckedCreateWithoutClaimProgrammInput {
 }
 export declare class DocumentUncheckedCreateWithoutGuaranteeLetterOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9967,8 +9969,8 @@ export declare class DocumentUncheckedCreateWithoutGuaranteeLetterOfInput {
 }
 export declare class DocumentUncheckedCreateWithoutInvoiceProofInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -9984,8 +9986,8 @@ export declare class DocumentUncheckedCreateWithoutInvoiceProofInput {
 }
 export declare class DocumentUncheckedCreateWithoutPrintedbyInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -10001,8 +10003,8 @@ export declare class DocumentUncheckedCreateWithoutPrintedbyInput {
 }
 export declare class DocumentUncheckedCreateWithoutRejectionLetterOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -10018,8 +10020,8 @@ export declare class DocumentUncheckedCreateWithoutRejectionLetterOfInput {
 }
 export declare class DocumentUncheckedCreateWithoutTransactionLetterOfInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -10035,8 +10037,8 @@ export declare class DocumentUncheckedCreateWithoutTransactionLetterOfInput {
 }
 export declare class DocumentUncheckedCreateWithoutTransactionInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -10052,8 +10054,8 @@ export declare class DocumentUncheckedCreateWithoutTransactionInput {
 }
 export declare class DocumentUncheckedCreateInput {
     id?: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
@@ -10083,8 +10085,8 @@ export declare class DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput 
 }
 export declare class DocumentUncheckedUpdateManyWithoutClaimProgrammInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10105,8 +10107,8 @@ export declare class DocumentUncheckedUpdateManyWithoutPrintedbyNestedInput {
 }
 export declare class DocumentUncheckedUpdateManyWithoutPrintedbyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10116,8 +10118,8 @@ export declare class DocumentUncheckedUpdateManyWithoutPrintedbyInput {
 }
 export declare class DocumentUncheckedUpdateManyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10127,8 +10129,8 @@ export declare class DocumentUncheckedUpdateManyInput {
 }
 export declare class DocumentUncheckedUpdateWithoutBookKeepingOrderOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10144,8 +10146,8 @@ export declare class DocumentUncheckedUpdateWithoutBookKeepingOrderOfInput {
 }
 export declare class DocumentUncheckedUpdateWithoutClaimProgrammInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10161,8 +10163,8 @@ export declare class DocumentUncheckedUpdateWithoutClaimProgrammInput {
 }
 export declare class DocumentUncheckedUpdateWithoutGuaranteeLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10178,8 +10180,8 @@ export declare class DocumentUncheckedUpdateWithoutGuaranteeLetterOfInput {
 }
 export declare class DocumentUncheckedUpdateWithoutInvoiceProofInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10195,8 +10197,8 @@ export declare class DocumentUncheckedUpdateWithoutInvoiceProofInput {
 }
 export declare class DocumentUncheckedUpdateWithoutPrintedbyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10212,8 +10214,8 @@ export declare class DocumentUncheckedUpdateWithoutPrintedbyInput {
 }
 export declare class DocumentUncheckedUpdateWithoutRejectionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10229,8 +10231,8 @@ export declare class DocumentUncheckedUpdateWithoutRejectionLetterOfInput {
 }
 export declare class DocumentUncheckedUpdateWithoutTransactionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10246,8 +10248,8 @@ export declare class DocumentUncheckedUpdateWithoutTransactionLetterOfInput {
 }
 export declare class DocumentUncheckedUpdateWithoutTransactionInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10263,8 +10265,8 @@ export declare class DocumentUncheckedUpdateWithoutTransactionInput {
 }
 export declare class DocumentUncheckedUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10281,8 +10283,8 @@ export declare class DocumentUncheckedUpdateInput {
 }
 export declare class DocumentUpdateManyMutationInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10408,8 +10410,8 @@ export declare class DocumentUpdateWithWhereUniqueWithoutPrintedbyInput {
 }
 export declare class DocumentUpdateWithoutBookKeepingOrderOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10425,8 +10427,8 @@ export declare class DocumentUpdateWithoutBookKeepingOrderOfInput {
 }
 export declare class DocumentUpdateWithoutClaimProgrammInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10442,8 +10444,8 @@ export declare class DocumentUpdateWithoutClaimProgrammInput {
 }
 export declare class DocumentUpdateWithoutGuaranteeLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10459,8 +10461,8 @@ export declare class DocumentUpdateWithoutGuaranteeLetterOfInput {
 }
 export declare class DocumentUpdateWithoutInvoiceProofInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10476,8 +10478,8 @@ export declare class DocumentUpdateWithoutInvoiceProofInput {
 }
 export declare class DocumentUpdateWithoutPrintedbyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10493,8 +10495,8 @@ export declare class DocumentUpdateWithoutPrintedbyInput {
 }
 export declare class DocumentUpdateWithoutRejectionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10510,8 +10512,8 @@ export declare class DocumentUpdateWithoutRejectionLetterOfInput {
 }
 export declare class DocumentUpdateWithoutTransactionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10527,8 +10529,8 @@ export declare class DocumentUpdateWithoutTransactionLetterOfInput {
 }
 export declare class DocumentUpdateWithoutTransactionInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10544,8 +10546,8 @@ export declare class DocumentUpdateWithoutTransactionInput {
 }
 export declare class DocumentUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    pdfPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    docxPath?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
@@ -10605,8 +10607,8 @@ export declare class DocumentWhereUniqueInput {
     AND?: Array<DocumentWhereInput>;
     OR?: Array<DocumentWhereInput>;
     NOT?: Array<DocumentWhereInput>;
-    name?: InstanceType<typeof StringFilter>;
-    path?: InstanceType<typeof StringFilter>;
+    pdfPath?: InstanceType<typeof StringFilter>;
+    docxPath?: InstanceType<typeof StringFilter>;
     size?: InstanceType<typeof IntFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
@@ -10627,8 +10629,8 @@ export declare class DocumentWhereInput {
     OR?: Array<DocumentWhereInput>;
     NOT?: Array<DocumentWhereInput>;
     id?: InstanceType<typeof StringFilter>;
-    name?: InstanceType<typeof StringFilter>;
-    path?: InstanceType<typeof StringFilter>;
+    pdfPath?: InstanceType<typeof StringFilter>;
+    docxPath?: InstanceType<typeof StringFilter>;
     size?: InstanceType<typeof IntFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
@@ -10646,8 +10648,8 @@ export declare class DocumentWhereInput {
 }
 export declare class Document {
     id: string;
-    name: string;
-    path: string;
+    pdfPath: string;
+    docxPath: string;
     size: number;
     createdAt: Date;
     updatedAt: Date;
@@ -11976,7 +11978,7 @@ export declare class InvoiceProofScalarWhereWithAggregatesInput {
     NOT?: Array<InvoiceProofScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     issuedDate?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    amount?: InstanceType<typeof IntWithAggregatesFilter>;
+    amount?: InstanceType<typeof FloatWithAggregatesFilter>;
     documentProofId?: InstanceType<typeof StringWithAggregatesFilter>;
     claimProgramId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
 }
@@ -11986,7 +11988,7 @@ export declare class InvoiceProofScalarWhereInput {
     NOT?: Array<InvoiceProofScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     issuedDate?: InstanceType<typeof DateTimeFilter>;
-    amount?: InstanceType<typeof IntFilter>;
+    amount?: InstanceType<typeof FloatFilter>;
     documentProofId?: InstanceType<typeof StringFilter>;
     claimProgramId?: InstanceType<typeof IntNullableFilter>;
 }
@@ -12051,13 +12053,13 @@ export declare class InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInp
 export declare class InvoiceProofUncheckedUpdateManyWithoutClaimProgramInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     documentProofId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class InvoiceProofUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     documentProofId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
@@ -12073,25 +12075,25 @@ export declare class InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInp
 export declare class InvoiceProofUncheckedUpdateWithoutClaimProgramInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     documentProofId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class InvoiceProofUncheckedUpdateWithoutDocumentProofInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class InvoiceProofUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     documentProofId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class InvoiceProofUpdateManyMutationInput {
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
 }
 export declare class InvoiceProofUpdateManyWithWhereWithoutClaimProgramInput {
     where: InstanceType<typeof InvoiceProofScalarWhereInput>;
@@ -12129,17 +12131,17 @@ export declare class InvoiceProofUpdateWithWhereUniqueWithoutClaimProgramInput {
 }
 export declare class InvoiceProofUpdateWithoutClaimProgramInput {
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     documentProof?: InstanceType<typeof DocumentUpdateOneRequiredWithoutInvoiceProofNestedInput>;
 }
 export declare class InvoiceProofUpdateWithoutDocumentProofInput {
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     claimProgram?: InstanceType<typeof ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput>;
 }
 export declare class InvoiceProofUpdateInput {
     issuedDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    amount?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     documentProof?: InstanceType<typeof DocumentUpdateOneRequiredWithoutInvoiceProofNestedInput>;
     claimProgram?: InstanceType<typeof ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput>;
 }
@@ -12160,7 +12162,7 @@ export declare class InvoiceProofWhereUniqueInput {
     OR?: Array<InvoiceProofWhereInput>;
     NOT?: Array<InvoiceProofWhereInput>;
     issuedDate?: InstanceType<typeof DateTimeFilter>;
-    amount?: InstanceType<typeof IntFilter>;
+    amount?: InstanceType<typeof FloatFilter>;
     claimProgramId?: InstanceType<typeof IntNullableFilter>;
     documentProof?: InstanceType<typeof DocumentRelationFilter>;
     claimProgram?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
@@ -12171,7 +12173,7 @@ export declare class InvoiceProofWhereInput {
     NOT?: Array<InvoiceProofWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     issuedDate?: InstanceType<typeof DateTimeFilter>;
-    amount?: InstanceType<typeof IntFilter>;
+    amount?: InstanceType<typeof FloatFilter>;
     documentProofId?: InstanceType<typeof StringFilter>;
     claimProgramId?: InstanceType<typeof IntNullableFilter>;
     documentProof?: InstanceType<typeof DocumentRelationFilter>;
@@ -14287,6 +14289,17 @@ export declare class BoolFilter {
     equals?: boolean;
     not?: InstanceType<typeof NestedBoolFilter>;
 }
+export declare class BoolNullableFilter {
+    equals?: boolean;
+    not?: InstanceType<typeof NestedBoolNullableFilter>;
+}
+export declare class BoolNullableWithAggregatesFilter {
+    equals?: boolean;
+    not?: InstanceType<typeof NestedBoolNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedBoolNullableFilter>;
+    _max?: InstanceType<typeof NestedBoolNullableFilter>;
+}
 export declare class BoolWithAggregatesFilter {
     equals?: boolean;
     not?: InstanceType<typeof NestedBoolWithAggregatesFilter>;
@@ -14791,6 +14804,17 @@ export declare class NestedBoolFilter {
     equals?: boolean;
     not?: InstanceType<typeof NestedBoolFilter>;
 }
+export declare class NestedBoolNullableFilter {
+    equals?: boolean;
+    not?: InstanceType<typeof NestedBoolNullableFilter>;
+}
+export declare class NestedBoolNullableWithAggregatesFilter {
+    equals?: boolean;
+    not?: InstanceType<typeof NestedBoolNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedBoolNullableFilter>;
+    _max?: InstanceType<typeof NestedBoolNullableFilter>;
+}
 export declare class NestedBoolWithAggregatesFilter {
     equals?: boolean;
     not?: InstanceType<typeof NestedBoolWithAggregatesFilter>;
@@ -15286,6 +15310,9 @@ export declare class NestedStringWithAggregatesFilter {
     _count?: InstanceType<typeof NestedIntFilter>;
     _min?: InstanceType<typeof NestedStringFilter>;
     _max?: InstanceType<typeof NestedStringFilter>;
+}
+export declare class NullableBoolFieldUpdateOperationsInput {
+    set?: boolean;
 }
 export declare class NullableDateTimeFieldUpdateOperationsInput {
     set?: Date | string;
@@ -20197,7 +20224,7 @@ export declare class UserCreateWithoutAnnouncementCreatedInput {
     role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimCreateNestedManyWithoutWaitingForInput>;
     documentPrints?: InstanceType<typeof DocumentCreateNestedManyWithoutPrintedbyInput>;
@@ -20232,7 +20259,7 @@ export declare class UserCreateWithoutClaimsInputInput {
     deletedAt?: Date | string;
     role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimCreateNestedManyWithoutWaitingForInput>;
@@ -20251,7 +20278,7 @@ export declare class UserCreateWithoutClaimsOnWaitInput {
     role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
     documentPrints?: InstanceType<typeof DocumentCreateNestedManyWithoutPrintedbyInput>;
@@ -20269,7 +20296,7 @@ export declare class UserCreateWithoutDocumentPrintsInput {
     role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimCreateNestedManyWithoutWaitingForInput>;
@@ -20287,7 +20314,7 @@ export declare class UserCreateWithoutNotificationInput {
     role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
     claimsOnWait?: InstanceType<typeof ClaimCreateNestedManyWithoutWaitingForInput>;
     documentPrints?: InstanceType<typeof DocumentCreateNestedManyWithoutPrintedbyInput>;
@@ -20304,7 +20331,7 @@ export declare class UserCreateWithoutParticipantInput {
     deletedAt?: Date | string;
     role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimCreateNestedManyWithoutWaitingForInput>;
@@ -20322,7 +20349,7 @@ export declare class UserCreateWithoutRoleInput {
     deletedAt?: Date | string;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimCreateNestedManyWithoutWaitingForInput>;
@@ -20341,7 +20368,7 @@ export declare class UserCreateInput {
     role?: InstanceType<typeof RoleCreateNestedOneWithoutUsersInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimCreateNestedManyWithoutWaitingForInput>;
@@ -20565,7 +20592,7 @@ export declare class UserUncheckedCreateWithoutAnnouncementCreatedInput {
     roleId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutWaitingForInput>;
     documentPrints?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutPrintedbyInput>;
@@ -20600,7 +20627,7 @@ export declare class UserUncheckedCreateWithoutClaimsInputInput {
     deletedAt?: Date | string;
     roleId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutWaitingForInput>;
@@ -20619,7 +20646,7 @@ export declare class UserUncheckedCreateWithoutClaimsOnWaitInput {
     roleId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
     documentPrints?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutPrintedbyInput>;
@@ -20637,7 +20664,7 @@ export declare class UserUncheckedCreateWithoutDocumentPrintsInput {
     roleId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutWaitingForInput>;
@@ -20655,7 +20682,7 @@ export declare class UserUncheckedCreateWithoutNotificationInput {
     roleId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutWaitingForInput>;
     documentPrints?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutPrintedbyInput>;
@@ -20672,7 +20699,7 @@ export declare class UserUncheckedCreateWithoutParticipantInput {
     deletedAt?: Date | string;
     roleId?: number;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutWaitingForInput>;
@@ -20690,7 +20717,7 @@ export declare class UserUncheckedCreateWithoutRoleInput {
     deletedAt?: Date | string;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutWaitingForInput>;
@@ -20709,7 +20736,7 @@ export declare class UserUncheckedCreateInput {
     roleId?: number;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutUserInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutInputedByInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutCreateByInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedCreateNestedManyWithoutChangedByInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput>;
     notification?: InstanceType<typeof NotificationUncheckedCreateNestedManyWithoutUserInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutWaitingForInput>;
@@ -20788,7 +20815,7 @@ export declare class UserUncheckedUpdateWithoutAnnouncementCreatedInput {
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutWaitingForNestedInput>;
     documentPrints?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutPrintedbyNestedInput>;
@@ -20823,7 +20850,7 @@ export declare class UserUncheckedUpdateWithoutClaimsInputInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutWaitingForNestedInput>;
@@ -20842,7 +20869,7 @@ export declare class UserUncheckedUpdateWithoutClaimsOnWaitInput {
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
     documentPrints?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutPrintedbyNestedInput>;
@@ -20860,7 +20887,7 @@ export declare class UserUncheckedUpdateWithoutDocumentPrintsInput {
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutWaitingForNestedInput>;
@@ -20878,7 +20905,7 @@ export declare class UserUncheckedUpdateWithoutNotificationInput {
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutWaitingForNestedInput>;
     documentPrints?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutPrintedbyNestedInput>;
@@ -20895,7 +20922,7 @@ export declare class UserUncheckedUpdateWithoutParticipantInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutWaitingForNestedInput>;
@@ -20913,7 +20940,7 @@ export declare class UserUncheckedUpdateWithoutRoleInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutWaitingForNestedInput>;
@@ -20932,7 +20959,7 @@ export declare class UserUncheckedUpdateInput {
     roleId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUncheckedUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUncheckedUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutWaitingForNestedInput>;
@@ -21073,7 +21100,7 @@ export declare class UserUpdateWithoutAnnouncementCreatedInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUpdateManyWithoutWaitingForNestedInput>;
     documentPrints?: InstanceType<typeof DocumentUpdateManyWithoutPrintedbyNestedInput>;
@@ -21108,7 +21135,7 @@ export declare class UserUpdateWithoutClaimsInputInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUpdateManyWithoutWaitingForNestedInput>;
@@ -21127,7 +21154,7 @@ export declare class UserUpdateWithoutClaimsOnWaitInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
     documentPrints?: InstanceType<typeof DocumentUpdateManyWithoutPrintedbyNestedInput>;
@@ -21145,7 +21172,7 @@ export declare class UserUpdateWithoutDocumentPrintsInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUpdateManyWithoutWaitingForNestedInput>;
@@ -21163,7 +21190,7 @@ export declare class UserUpdateWithoutNotificationInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUpdateManyWithoutWaitingForNestedInput>;
     documentPrints?: InstanceType<typeof DocumentUpdateManyWithoutPrintedbyNestedInput>;
@@ -21180,7 +21207,7 @@ export declare class UserUpdateWithoutParticipantInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUpdateManyWithoutWaitingForNestedInput>;
@@ -21198,7 +21225,7 @@ export declare class UserUpdateWithoutRoleInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUpdateManyWithoutWaitingForNestedInput>;
@@ -21217,7 +21244,7 @@ export declare class UserUpdateInput {
     role?: InstanceType<typeof RoleUpdateOneRequiredWithoutUsersNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutUserNestedInput>;
     claimsInput?: InstanceType<typeof ClaimUpdateManyWithoutInputedByNestedInput>;
-    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutCreateByNestedInput>;
+    claimActions?: InstanceType<typeof ClaimStatusUpdateManyWithoutChangedByNestedInput>;
     announcementCreated?: InstanceType<typeof AnnouncementUpdateManyWithoutCreatedByNestedInput>;
     notification?: InstanceType<typeof NotificationUpdateManyWithoutUserNestedInput>;
     claimsOnWait?: InstanceType<typeof ClaimUpdateManyWithoutWaitingForNestedInput>;

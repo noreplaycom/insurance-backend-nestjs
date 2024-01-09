@@ -225,7 +225,7 @@ export async function claimSeed() {
       claimStatuses: {
         create: {
           status: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
-          createBy: {
+          changedBy: {
             create: {
               fullName: faker.name.firstName(),
               email: faker.internet.email(),

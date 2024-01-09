@@ -44,14 +44,14 @@ export function fakeRoleComplete() {
 }
 export function fakeRolePermission() {
   return {
-    permission: faker.helpers.arrayElement([Permission.CREATE_CLAIM, Permission.UPDATE_CLAIM, Permission.UPDATE_CLAIM_STATUS, Permission.UPDATE_STATUS_FINANCIAL, Permission.RELEASE_CLAIM, Permission.DELETE_CLAIM_DOCUMENT, Permission.CREATE_CLAIM_DOCUMENT, Permission.IMPORT_CLAIM, Permission.EXPORT_CLAIM, Permission.CREATE_PARTICIPANT, Permission.UPDATE_PARTICIPANT, Permission.IMPORT_PARTICIPANT, Permission.EXPORT_PARTICIPANT] as const),
+    permission: faker.helpers.arrayElement([Permission.CREATE_CLAIM, Permission.UPDATE_CLAIM, Permission.UPDATE_CLAIM_STATUS_TO_APPROVED, Permission.UPDATE_CLAIM_STATUS_TO_CONDITIONAL_REJECT, Permission.UPDATE_CLAIM_STATUS_TO_UNCONDITIONAL_REJECT, Permission.UPDATE_CLAIM_STATUS_TO_RELEASED, Permission.UPDATE_CLAIM_STATUS_TO_PAID, Permission.UPDATE_CLAIM_STATUS_TO_COMPLETED, Permission.DELETE_CLAIM_DOCUMENT, Permission.CREATE_CLAIM_DOCUMENT, Permission.IMPORT_CLAIM, Permission.EXPORT_CLAIM, Permission.CREATE_PARTICIPANT, Permission.UPDATE_PARTICIPANT, Permission.IMPORT_PARTICIPANT, Permission.EXPORT_PARTICIPANT] as const),
   };
 }
 export function fakeRolePermissionComplete() {
   return {
     id: faker.datatype.number(),
     roleId: undefined,
-    permission: faker.helpers.arrayElement([Permission.CREATE_CLAIM, Permission.UPDATE_CLAIM, Permission.UPDATE_CLAIM_STATUS, Permission.UPDATE_STATUS_FINANCIAL, Permission.RELEASE_CLAIM, Permission.DELETE_CLAIM_DOCUMENT, Permission.CREATE_CLAIM_DOCUMENT, Permission.IMPORT_CLAIM, Permission.EXPORT_CLAIM, Permission.CREATE_PARTICIPANT, Permission.UPDATE_PARTICIPANT, Permission.IMPORT_PARTICIPANT, Permission.EXPORT_PARTICIPANT] as const),
+    permission: faker.helpers.arrayElement([Permission.CREATE_CLAIM, Permission.UPDATE_CLAIM, Permission.UPDATE_CLAIM_STATUS_TO_APPROVED, Permission.UPDATE_CLAIM_STATUS_TO_CONDITIONAL_REJECT, Permission.UPDATE_CLAIM_STATUS_TO_UNCONDITIONAL_REJECT, Permission.UPDATE_CLAIM_STATUS_TO_RELEASED, Permission.UPDATE_CLAIM_STATUS_TO_PAID, Permission.UPDATE_CLAIM_STATUS_TO_COMPLETED, Permission.DELETE_CLAIM_DOCUMENT, Permission.CREATE_CLAIM_DOCUMENT, Permission.IMPORT_CLAIM, Permission.EXPORT_CLAIM, Permission.CREATE_PARTICIPANT, Permission.UPDATE_PARTICIPANT, Permission.IMPORT_PARTICIPANT, Permission.EXPORT_PARTICIPANT] as const),
   };
 }
 export function fakeParticipant() {
@@ -352,8 +352,8 @@ export function fakeClaimComplete() {
 }
 export function fakeDocument() {
   return {
-    name: faker.name.fullName(),
-    path: faker.lorem.words(5),
+    pdfPath: faker.lorem.words(5),
+    docxPath: faker.lorem.words(5),
     size: faker.datatype.number(),
     updatedAt: faker.datatype.datetime(),
     source: faker.helpers.arrayElement([DocumentSource.UPLOADED, DocumentSource.GENERATED] as const),
@@ -363,8 +363,8 @@ export function fakeDocument() {
 export function fakeDocumentComplete() {
   return {
     id: faker.datatype.uuid(),
-    name: faker.name.fullName(),
-    path: faker.lorem.words(5),
+    pdfPath: faker.lorem.words(5),
+    docxPath: faker.lorem.words(5),
     size: faker.datatype.number(),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
@@ -417,7 +417,7 @@ export function fakeClaimFinancialComplete() {
 export function fakeClaimProgram() {
   return {
     expeditionDate: undefined,
-    reclaim: undefined,
+    isReclaim: undefined,
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,
@@ -430,7 +430,7 @@ export function fakeClaimProgramComplete() {
   return {
     id: faker.datatype.number(),
     expeditionDate: undefined,
-    reclaim: undefined,
+    isReclaim: undefined,
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,
@@ -445,14 +445,14 @@ export function fakeClaimProgramComplete() {
 export function fakeInvoiceProof() {
   return {
     issuedDate: faker.datatype.datetime(),
-    amount: faker.datatype.number(),
+    amount: faker.datatype.float(),
   };
 }
 export function fakeInvoiceProofComplete() {
   return {
     id: faker.datatype.number(),
     issuedDate: faker.datatype.datetime(),
-    amount: faker.datatype.number(),
+    amount: faker.datatype.float(),
     documentProofId: faker.datatype.uuid(),
     claimProgramId: undefined,
   };
@@ -461,7 +461,7 @@ export function fakeClaimStatus() {
   return {
     description: undefined,
     rejectionReason: undefined,
-    status: faker.helpers.arrayElement([ClaimStatusType.DOCUMENT, ClaimStatusType.PENDING, ClaimStatusType.APPROVED, ClaimStatusType.REJECTED, ClaimStatusType.RELEASE, ClaimStatusType.PAID, ClaimStatusType.COMPLETED, ClaimStatusType.CANCELLED, ClaimStatusType.REOPEN] as const),
+    type: faker.helpers.arrayElement([ClaimStatusType.PENDING, ClaimStatusType.APPROVED, ClaimStatusType.REJECTED, ClaimStatusType.RELEASE, ClaimStatusType.PAID, ClaimStatusType.COMPLETED, ClaimStatusType.CANCELLED, ClaimStatusType.REOPEN] as const),
   };
 }
 export function fakeClaimStatusComplete() {
@@ -470,8 +470,8 @@ export function fakeClaimStatusComplete() {
     description: undefined,
     rejectionReason: undefined,
     createdAt: new Date(),
-    status: faker.helpers.arrayElement([ClaimStatusType.DOCUMENT, ClaimStatusType.PENDING, ClaimStatusType.APPROVED, ClaimStatusType.REJECTED, ClaimStatusType.RELEASE, ClaimStatusType.PAID, ClaimStatusType.COMPLETED, ClaimStatusType.CANCELLED, ClaimStatusType.REOPEN] as const),
-    createById: faker.datatype.uuid(),
+    type: faker.helpers.arrayElement([ClaimStatusType.PENDING, ClaimStatusType.APPROVED, ClaimStatusType.REJECTED, ClaimStatusType.RELEASE, ClaimStatusType.PAID, ClaimStatusType.COMPLETED, ClaimStatusType.CANCELLED, ClaimStatusType.REOPEN] as const),
+    changedById: faker.datatype.uuid(),
     claimId: faker.datatype.uuid(),
     rejectionLetterId: undefined,
     guaranteeLetterId: undefined,

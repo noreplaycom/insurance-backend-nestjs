@@ -953,7 +953,7 @@ model InvoiceProof {
     /// @HideField({ match: ['InvoiceProofCreate*Input','InvoiceProofUpdate*Input']})
     id Int @id @default(autoincrement())
 
-    /// @HideField({ match: ['InvoiceProofUpdate*Input'})
+    /// @HideField({ match: ['InvoiceProofUpdate*Input']})
     ///Tanggal saat kuitansi diterbitkan
     issuedDate DateTime
 
@@ -962,7 +962,7 @@ model InvoiceProof {
 
     //-------------------------- 1 relations --------------------------------
 
-    /// @HideField({ match: ['InvoiceProofUpdate*Input'})
+    /// @HideField({ match: ['InvoiceProofUpdate*Input']})
     /// Bukti Kuitansi
     documentProof Document @relation(fields: [documentProofId], references: [id])
 
@@ -993,7 +993,7 @@ model ClaimStatus {
     //-------------------------- 1 relations --------------------------------
 
     /// @HideField({ match: ['ClaimStatusCreate*Input']})
-    status ClaimStatusType
+    type ClaimStatusType
 
     /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     changedBy User @relation("statusUpdatedBy", fields: [changedById], references: [id])
