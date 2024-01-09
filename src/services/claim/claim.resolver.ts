@@ -47,7 +47,7 @@ interface ClaimSelect {
   select: Prisma.ClaimSelect;
 }
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Resolver(() => Claim)
 export class ClaimResolver {
   constructor(private readonly claimController: ClaimController) {}
