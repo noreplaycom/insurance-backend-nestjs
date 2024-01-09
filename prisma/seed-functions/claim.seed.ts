@@ -141,7 +141,7 @@ export async function claimSeed() {
                 },
               },
             },
-            contactInfos: {
+            contactInfo: {
               create: {
                 telp: 67289294,
                 address: {

@@ -197,18 +197,22 @@ model Participant {
 
     employmentId Int @unique
 
-    bankAccount BankAccount?
+    bankAccount BankAccount @relation(fields: [bankAccountId], references: [id])
+
+    bankAccountId Int @unique
+
+    contactInfo ContactInfo @relation(fields: [contactInfoId], references: [id])
+
+    contactInfoId Int @unique
+
+    programParticipation ProgramParticipation @relation(fields: [programParticipationId], references: [id])
+
+    programParticipationId Int @unique
 
     //-------------------------- m relations --------------------------------
 
     /// @HideField({ match: ['ParticipantCreate*Input','ParticipantUpdate*Input']})
     claims Claim[]
-
-    contactInfos ContactInfo[]
-
-    programParticipation ProgramParticipation @relation(fields: [programParticipationId], references: [id])
-
-    programParticipationId Int @unique
 
     ///Anggota keluarga dari
     participant Participant[] @relation("ParticipantRelation")
@@ -254,9 +258,7 @@ model ContactInfo {
 
     //-------------------------- 1 relations --------------------------------
 
-    participant Participant @relation(fields: [participantId], references: [userId])
-
-    participantId String
+    participant Participant?
 
     address Address @relation(fields: [addressId], references: [id])
 
@@ -346,10 +348,7 @@ model BankAccount {
 
     //-------------------------- 1 relations --------------------------------
     /// @HideField({ match: ['BankAccountCreate*Input','BankAccountUpdate*Input']})
-    participant Participant @relation(fields: [participantId], references: [userId])
-
-    /// @HideField({ match: ['BankAccountCreate*Input','BankAccountUpdate*Input']})
-    participantId String @unique
+    participant Participant?
 }
 
 model Employment {

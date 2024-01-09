@@ -108,8 +108,8 @@ export class ParticipantResolver {
   //   });
   // }
 
-  @RequiredPermission(Permission.UPDATE_PARTICIPANT)
-  @UseGuards(PermissionGuard)
+  // @RequiredPermission(Permission.UPDATE_PARTICIPANT)
+  // @UseGuards(PermissionGuard)
   @Mutation(() => Participant, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',

@@ -1,5 +1,5 @@
 import { FileUpload } from 'graphql-upload';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import {
   Participant,
   Position,
@@ -27,6 +27,7 @@ export class ParticipantController {
     private readonly programController: ProgramController,
     private readonly configService: ConfigService,
   ) {}
+  private readonly logger = new Logger(ParticipantController.name);
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
     if (participantCreateArgs?.data) {
@@ -69,16 +70,16 @@ export class ParticipantController {
         }),
       ]);
 
-      // Initialize programs if it's undefined
+      // 3. Initialize programs if it's undefined
       if (!participantCreateArgs.data.programParticipation.create.programs) {
         participantCreateArgs.data.programParticipation.create.programs = {};
       }
-      // Create an array of objects with "id" field
+      // 4. Create an array of objects with "id" field
       const programIdsArray = programFindMany.map((program) => ({
         id: program.id,
       }));
 
-      // Add program IDs to connect and insert the programFindFirst ID at the beginning
+      // 5. Add program IDs to connect and insert the programFindFirst ID at the beginning
       participantCreateArgs.data.programParticipation.create.programs.connect =
         [...programIdsArray, { id: programFindFirst.id }];
     }
@@ -105,6 +106,7 @@ export class ParticipantController {
   }
 
   async updateOne(participantUpdateOneArgs: Prisma.ParticipantUpdateArgs) {
+    this.logger.debug('participantUpdateOneArgs', participantUpdateOneArgs);
     return await this.participantService.updateOne(participantUpdateOneArgs);
   }
 

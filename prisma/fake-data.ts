@@ -71,6 +71,8 @@ export function fakeParticipantComplete() {
     userId: faker.datatype.uuid(),
     relationId: undefined,
     employmentId: faker.datatype.number(),
+    bankAccountId: faker.datatype.number(),
+    contactInfoId: faker.datatype.number(),
     programParticipationId: faker.datatype.number(),
   };
 }
@@ -88,7 +90,6 @@ export function fakeContactInfoComplete() {
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
-    participantId: faker.datatype.uuid(),
     addressId: faker.datatype.number(),
   };
 }
@@ -164,7 +165,6 @@ export function fakeBankAccountComplete() {
     id: faker.datatype.number(),
     accountNumber: faker.datatype.float(),
     accountName: faker.lorem.words(5),
-    participantId: faker.datatype.uuid(),
   };
 }
 export function fakeEmployment() {
