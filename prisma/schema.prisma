@@ -35,16 +35,25 @@ model User {
     /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     id String @id @default(uuid())
 
+    /// @Validator.MinLength(2)
+    /// @Validator.MaxLength(20)
+    /// @Validator.IsAlpha()
+    /// @Validator.IsNotEmpty()
     ///Nama Lengkap
     fullName String
 
+    /// @Validator.IsEmail()
     email String @unique
 
     /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
     emailVerifiedAt DateTime?
 
+    /// @Validator.MinLength(6)
+    /// @Validator.MaxLength(15)
+    /// @Validator.IsAlphanumeric()
     password String? @default("123456")
 
+    /// @Validator.IsUrl({ require_protocol: true })
     profilePictureUrl String?
 
     /// @HideField({ match: ['UserCreate*Input','UserUpdate*Input']})
@@ -245,7 +254,7 @@ model ContactInfo {
 
     id Int @id @default(autoincrement())
 
-    telp Float
+    phones phone[]
 
     /// @HideField({ match: ['ContactInfoCreate*Input','ContactInfoUpdate*Input']})
     createdAt DateTime @default(now())
@@ -263,6 +272,22 @@ model ContactInfo {
     address Address @relation(fields: [addressId], references: [id])
 
     addressId Int
+}
+
+model phone {
+    //-------------------------- scalars --------------------------------
+
+    /// @Validator.IsNotEmpty()
+    /// @Validator.MinLength(5)
+    number Float @id
+
+    //-------------------------- 1 relations --------------------------------
+
+    /// @HideField({ match: ['phoneNumberCreate*Input','phoneNumberUpdate*Input']})
+    contactInfo ContactInfo @relation(fields: [contactInfoId], references: [id])
+
+    /// @HideField({ match: ['phoneNumberCreate*Input','phoneNumberUpdate*Input']})
+    contactInfoId Int
 }
 
 ///Provinsi

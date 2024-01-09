@@ -818,13 +818,11 @@ type Clinic {
 
 type ContactInfoAvgAggregate {
   id: Float
-  telp: Float
   addressId: Float
 }
 
 type ContactInfoCountAggregate {
   id: Int!
-  telp: Int!
   createdAt: Int!
   updatedAt: Int!
   deletedAt: Int!
@@ -832,9 +830,12 @@ type ContactInfoCountAggregate {
   _all: Int!
 }
 
+type ContactInfoCount {
+  phones: Int!
+}
+
 type ContactInfoMaxAggregate {
   id: Int
-  telp: Float
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -843,7 +844,6 @@ type ContactInfoMaxAggregate {
 
 type ContactInfoMinAggregate {
   id: Int
-  telp: Float
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -852,19 +852,19 @@ type ContactInfoMinAggregate {
 
 type ContactInfoSumAggregate {
   id: Int
-  telp: Float
   addressId: Int
 }
 
 type ContactInfo {
   id: Int!
-  telp: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime
   addressId: Int!
+  phones: [phone!]
   participant: Participant
   address: Address!
+  _count: ContactInfoCount!
 }
 
 type DiseaseAvgAggregate {
@@ -1392,6 +1392,38 @@ type Participant {
   """Anggota keluarga dari"""
   participant: [Participant!]
   _count: ParticipantCount!
+}
+
+type phone {
+  number: Float!
+  contactInfoId: Int!
+  contactInfo: ContactInfo!
+}
+
+type PhoneAvgAggregate {
+  number: Float
+  contactInfoId: Float
+}
+
+type PhoneCountAggregate {
+  number: Int!
+  contactInfoId: Int!
+  _all: Int!
+}
+
+type PhoneMaxAggregate {
+  number: Float
+  contactInfoId: Int
+}
+
+type PhoneMinAggregate {
+  number: Float
+  contactInfoId: Int
+}
+
+type PhoneSumAggregate {
+  number: Float
+  contactInfoId: Int
 }
 
 type AggregateProgram {
@@ -3255,13 +3287,28 @@ input ContactInfoWhereInput {
   OR: [ContactInfoWhereInput!]
   NOT: [ContactInfoWhereInput!]
   id: IntFilter
-  telp: FloatFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
   addressId: IntFilter
+  phones: PhoneListRelationFilter
   participant: ParticipantNullableRelationFilter
   address: AddressRelationFilter
+}
+
+input PhoneListRelationFilter {
+  every: phoneWhereInput
+  some: phoneWhereInput
+  none: phoneWhereInput
+}
+
+input phoneWhereInput {
+  AND: [phoneWhereInput!]
+  OR: [phoneWhereInput!]
+  NOT: [phoneWhereInput!]
+  number: FloatFilter
+  contactInfoId: IntFilter
+  contactInfo: ContactInfoRelationFilter
 }
 
 input AddressRelationFilter {
@@ -3823,13 +3870,17 @@ input BankAccountOrderByWithRelationInput {
 
 input ContactInfoOrderByWithRelationInput {
   id: SortOrder
-  telp: SortOrder
   createdAt: SortOrder
   updatedAt: SortOrder
   deletedAt: SortOrderInput
   addressId: SortOrder
+  phones: phoneOrderByRelationAggregateInput
   participant: ParticipantOrderByWithRelationInput
   address: AddressOrderByWithRelationInput
+}
+
+input phoneOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input AddressOrderByWithRelationInput {
@@ -4848,8 +4899,42 @@ input ContactInfoCreateNestedOneWithoutParticipantInput {
 }
 
 input ContactInfoCreateWithoutParticipantInput {
-  telp: Float!
+  phones: phoneCreateNestedManyWithoutContactInfoInput
   address: AddressCreateNestedOneWithoutContactInfoInput!
+}
+
+input phoneCreateNestedManyWithoutContactInfoInput {
+  create: [phoneCreateWithoutContactInfoInput!]
+  connectOrCreate: [phoneCreateOrConnectWithoutContactInfoInput!]
+  createMany: phoneCreateManyContactInfoInputEnvelope
+  connect: [phoneWhereUniqueInput!]
+}
+
+input phoneCreateWithoutContactInfoInput {
+  number: Float!
+}
+
+input phoneCreateOrConnectWithoutContactInfoInput {
+  where: phoneWhereUniqueInput!
+  create: phoneCreateWithoutContactInfoInput!
+}
+
+input phoneWhereUniqueInput {
+  number: Float
+  AND: [phoneWhereInput!]
+  OR: [phoneWhereInput!]
+  NOT: [phoneWhereInput!]
+  contactInfoId: IntFilter
+  contactInfo: ContactInfoRelationFilter
+}
+
+input phoneCreateManyContactInfoInputEnvelope {
+  data: [phoneCreateManyContactInfoInput!]!
+  skipDuplicates: Boolean
+}
+
+input phoneCreateManyContactInfoInput {
+  number: Float!
 }
 
 input AddressCreateNestedOneWithoutContactInfoInput {
@@ -4996,11 +5081,11 @@ input ContactInfoWhereUniqueInput {
   AND: [ContactInfoWhereInput!]
   OR: [ContactInfoWhereInput!]
   NOT: [ContactInfoWhereInput!]
-  telp: FloatFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
   addressId: IntFilter
+  phones: PhoneListRelationFilter
   participant: ParticipantNullableRelationFilter
   address: AddressRelationFilter
 }
@@ -6553,8 +6638,54 @@ input ContactInfoUpsertWithoutParticipantInput {
 }
 
 input ContactInfoUpdateWithoutParticipantInput {
-  telp: FloatFieldUpdateOperationsInput
+  phones: phoneUpdateManyWithoutContactInfoNestedInput
   address: AddressUpdateOneRequiredWithoutContactInfoNestedInput
+}
+
+input phoneUpdateManyWithoutContactInfoNestedInput {
+  create: [phoneCreateWithoutContactInfoInput!]
+  connectOrCreate: [phoneCreateOrConnectWithoutContactInfoInput!]
+  upsert: [phoneUpsertWithWhereUniqueWithoutContactInfoInput!]
+  createMany: phoneCreateManyContactInfoInputEnvelope
+  set: [phoneWhereUniqueInput!]
+  disconnect: [phoneWhereUniqueInput!]
+  delete: [phoneWhereUniqueInput!]
+  connect: [phoneWhereUniqueInput!]
+  update: [phoneUpdateWithWhereUniqueWithoutContactInfoInput!]
+  updateMany: [phoneUpdateManyWithWhereWithoutContactInfoInput!]
+  deleteMany: [phoneScalarWhereInput!]
+}
+
+input phoneUpsertWithWhereUniqueWithoutContactInfoInput {
+  where: phoneWhereUniqueInput!
+  update: phoneUpdateWithoutContactInfoInput!
+  create: phoneCreateWithoutContactInfoInput!
+}
+
+input phoneUpdateWithoutContactInfoInput {
+  number: FloatFieldUpdateOperationsInput
+}
+
+input phoneUpdateWithWhereUniqueWithoutContactInfoInput {
+  where: phoneWhereUniqueInput!
+  data: phoneUpdateWithoutContactInfoInput!
+}
+
+input phoneUpdateManyWithWhereWithoutContactInfoInput {
+  where: phoneScalarWhereInput!
+  data: phoneUpdateManyMutationInput!
+}
+
+input phoneScalarWhereInput {
+  AND: [phoneScalarWhereInput!]
+  OR: [phoneScalarWhereInput!]
+  NOT: [phoneScalarWhereInput!]
+  number: FloatFilter
+  contactInfoId: IntFilter
+}
+
+input phoneUpdateManyMutationInput {
+  number: FloatFieldUpdateOperationsInput
 }
 
 input AddressUpdateOneRequiredWithoutContactInfoNestedInput {

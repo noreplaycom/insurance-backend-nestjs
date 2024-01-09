@@ -132,6 +132,10 @@ export declare enum Position {
     SAMGR = "SAMGR",
     ASST = "ASST"
 }
+export declare enum PhoneScalarFieldEnum {
+    number = "number",
+    contactInfoId = "contactInfoId"
+}
 export declare enum Permission {
     CREATE_CLAIM = "CREATE_CLAIM",
     UPDATE_CLAIM = "UPDATE_CLAIM",
@@ -289,7 +293,6 @@ export declare enum DiseaseScalarFieldEnum {
 }
 export declare enum ContactInfoScalarFieldEnum {
     id = "id",
-    telp = "telp",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     deletedAt = "deletedAt",
@@ -8034,22 +8037,18 @@ export declare class ContactInfoAggregateArgs {
 }
 export declare class ContactInfoAvgAggregateInput {
     id?: true;
-    telp?: true;
     addressId?: true;
 }
 export declare class ContactInfoAvgAggregate {
     id?: number;
-    telp?: number;
     addressId?: number;
 }
 export declare class ContactInfoAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    telp?: keyof typeof SortOrder;
     addressId?: keyof typeof SortOrder;
 }
 export declare class ContactInfoCountAggregateInput {
     id?: true;
-    telp?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
@@ -8058,7 +8057,6 @@ export declare class ContactInfoCountAggregateInput {
 }
 export declare class ContactInfoCountAggregate {
     id: number;
-    telp: number;
     createdAt: number;
     updatedAt: number;
     deletedAt: number;
@@ -8067,11 +8065,13 @@ export declare class ContactInfoCountAggregate {
 }
 export declare class ContactInfoCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    telp?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
     addressId?: keyof typeof SortOrder;
+}
+export declare class ContactInfoCount {
+    phones?: number;
 }
 export declare class ContactInfoCreateManyAddressInputEnvelope {
     data: Array<ContactInfoCreateManyAddressInput>;
@@ -8079,14 +8079,12 @@ export declare class ContactInfoCreateManyAddressInputEnvelope {
 }
 export declare class ContactInfoCreateManyAddressInput {
     id?: number;
-    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
 }
 export declare class ContactInfoCreateManyInput {
     id?: number;
-    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8103,6 +8101,11 @@ export declare class ContactInfoCreateNestedOneWithoutParticipantInput {
     connectOrCreate?: InstanceType<typeof ContactInfoCreateOrConnectWithoutParticipantInput>;
     connect?: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
 }
+export declare class ContactInfoCreateNestedOneWithoutPhonesInput {
+    create?: InstanceType<typeof ContactInfoCreateWithoutPhonesInput>;
+    connectOrCreate?: InstanceType<typeof ContactInfoCreateOrConnectWithoutPhonesInput>;
+    connect?: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
+}
 export declare class ContactInfoCreateOrConnectWithoutAddressInput {
     where: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
     create: InstanceType<typeof ContactInfoCreateWithoutAddressInput>;
@@ -8111,25 +8114,36 @@ export declare class ContactInfoCreateOrConnectWithoutParticipantInput {
     where: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
     create: InstanceType<typeof ContactInfoCreateWithoutParticipantInput>;
 }
+export declare class ContactInfoCreateOrConnectWithoutPhonesInput {
+    where: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof ContactInfoCreateWithoutPhonesInput>;
+}
 export declare class ContactInfoCreateWithoutAddressInput {
-    telp: number;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    phones?: InstanceType<typeof phoneCreateNestedManyWithoutContactInfoInput>;
+    participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutContactInfoInput>;
+}
+export declare class ContactInfoCreateWithoutParticipantInput {
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    phones?: InstanceType<typeof phoneCreateNestedManyWithoutContactInfoInput>;
+    address: InstanceType<typeof AddressCreateNestedOneWithoutContactInfoInput>;
+}
+export declare class ContactInfoCreateWithoutPhonesInput {
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutContactInfoInput>;
-}
-export declare class ContactInfoCreateWithoutParticipantInput {
-    telp: number;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
     address: InstanceType<typeof AddressCreateNestedOneWithoutContactInfoInput>;
 }
 export declare class ContactInfoCreateInput {
-    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
+    phones?: InstanceType<typeof phoneCreateNestedManyWithoutContactInfoInput>;
     participant?: InstanceType<typeof ParticipantCreateNestedOneWithoutContactInfoInput>;
     address: InstanceType<typeof AddressCreateNestedOneWithoutContactInfoInput>;
 }
@@ -8148,7 +8162,6 @@ export declare class ContactInfoGroupByArgs {
 }
 export declare class ContactInfoGroupBy {
     id: number;
-    telp: number;
     createdAt: Date | string;
     updatedAt: Date | string;
     deletedAt?: Date | string;
@@ -8166,7 +8179,6 @@ export declare class ContactInfoListRelationFilter {
 }
 export declare class ContactInfoMaxAggregateInput {
     id?: true;
-    telp?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
@@ -8174,7 +8186,6 @@ export declare class ContactInfoMaxAggregateInput {
 }
 export declare class ContactInfoMaxAggregate {
     id?: number;
-    telp?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8182,7 +8193,6 @@ export declare class ContactInfoMaxAggregate {
 }
 export declare class ContactInfoMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    telp?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
@@ -8190,7 +8200,6 @@ export declare class ContactInfoMaxOrderByAggregateInput {
 }
 export declare class ContactInfoMinAggregateInput {
     id?: true;
-    telp?: true;
     createdAt?: true;
     updatedAt?: true;
     deletedAt?: true;
@@ -8198,7 +8207,6 @@ export declare class ContactInfoMinAggregateInput {
 }
 export declare class ContactInfoMinAggregate {
     id?: number;
-    telp?: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -8206,7 +8214,6 @@ export declare class ContactInfoMinAggregate {
 }
 export declare class ContactInfoMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    telp?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
@@ -8217,7 +8224,6 @@ export declare class ContactInfoOrderByRelationAggregateInput {
 }
 export declare class ContactInfoOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
-    telp?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
@@ -8230,11 +8236,11 @@ export declare class ContactInfoOrderByWithAggregationInput {
 }
 export declare class ContactInfoOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
-    telp?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
     addressId?: keyof typeof SortOrder;
+    phones?: InstanceType<typeof phoneOrderByRelationAggregateInput>;
     participant?: InstanceType<typeof ParticipantOrderByWithRelationInput>;
     address?: InstanceType<typeof AddressOrderByWithRelationInput>;
 }
@@ -8247,7 +8253,6 @@ export declare class ContactInfoScalarWhereWithAggregatesInput {
     OR?: Array<ContactInfoScalarWhereWithAggregatesInput>;
     NOT?: Array<ContactInfoScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
-    telp?: InstanceType<typeof FloatWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
@@ -8258,7 +8263,6 @@ export declare class ContactInfoScalarWhereInput {
     OR?: Array<ContactInfoScalarWhereInput>;
     NOT?: Array<ContactInfoScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
-    telp?: InstanceType<typeof FloatFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -8266,17 +8270,14 @@ export declare class ContactInfoScalarWhereInput {
 }
 export declare class ContactInfoSumAggregateInput {
     id?: true;
-    telp?: true;
     addressId?: true;
 }
 export declare class ContactInfoSumAggregate {
     id?: number;
-    telp?: number;
     addressId?: number;
 }
 export declare class ContactInfoSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
-    telp?: keyof typeof SortOrder;
     addressId?: keyof typeof SortOrder;
 }
 export declare class ContactInfoUncheckedCreateNestedManyWithoutAddressInput {
@@ -8287,27 +8288,35 @@ export declare class ContactInfoUncheckedCreateNestedManyWithoutAddressInput {
 }
 export declare class ContactInfoUncheckedCreateWithoutAddressInput {
     id?: number;
-    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
+    phones?: InstanceType<typeof phoneUncheckedCreateNestedManyWithoutContactInfoInput>;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutContactInfoInput>;
 }
 export declare class ContactInfoUncheckedCreateWithoutParticipantInput {
     id?: number;
-    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     addressId: number;
+    phones?: InstanceType<typeof phoneUncheckedCreateNestedManyWithoutContactInfoInput>;
+}
+export declare class ContactInfoUncheckedCreateWithoutPhonesInput {
+    id?: number;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    addressId: number;
+    participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutContactInfoInput>;
 }
 export declare class ContactInfoUncheckedCreateInput {
     id?: number;
-    telp: number;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     addressId: number;
+    phones?: InstanceType<typeof phoneUncheckedCreateNestedManyWithoutContactInfoInput>;
     participant?: InstanceType<typeof ParticipantUncheckedCreateNestedOneWithoutContactInfoInput>;
 }
 export declare class ContactInfoUncheckedUpdateManyWithoutAddressNestedInput {
@@ -8325,14 +8334,12 @@ export declare class ContactInfoUncheckedUpdateManyWithoutAddressNestedInput {
 }
 export declare class ContactInfoUncheckedUpdateManyWithoutAddressInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
 }
 export declare class ContactInfoUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8340,31 +8347,38 @@ export declare class ContactInfoUncheckedUpdateManyInput {
 }
 export declare class ContactInfoUncheckedUpdateWithoutAddressInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    phones?: InstanceType<typeof phoneUncheckedUpdateManyWithoutContactInfoNestedInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutContactInfoNestedInput>;
 }
 export declare class ContactInfoUncheckedUpdateWithoutParticipantInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     addressId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    phones?: InstanceType<typeof phoneUncheckedUpdateManyWithoutContactInfoNestedInput>;
 }
-export declare class ContactInfoUncheckedUpdateInput {
+export declare class ContactInfoUncheckedUpdateWithoutPhonesInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     addressId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutContactInfoNestedInput>;
 }
+export declare class ContactInfoUncheckedUpdateInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    addressId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    phones?: InstanceType<typeof phoneUncheckedUpdateManyWithoutContactInfoNestedInput>;
+    participant?: InstanceType<typeof ParticipantUncheckedUpdateOneWithoutContactInfoNestedInput>;
+}
 export declare class ContactInfoUpdateManyMutationInput {
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -8393,33 +8407,51 @@ export declare class ContactInfoUpdateOneRequiredWithoutParticipantNestedInput {
     connect?: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof ContactInfoUpdateToOneWithWhereWithoutParticipantInput>;
 }
+export declare class ContactInfoUpdateOneRequiredWithoutPhonesNestedInput {
+    create?: InstanceType<typeof ContactInfoCreateWithoutPhonesInput>;
+    connectOrCreate?: InstanceType<typeof ContactInfoCreateOrConnectWithoutPhonesInput>;
+    upsert?: InstanceType<typeof ContactInfoUpsertWithoutPhonesInput>;
+    connect?: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
+    update?: InstanceType<typeof ContactInfoUpdateToOneWithWhereWithoutPhonesInput>;
+}
 export declare class ContactInfoUpdateToOneWithWhereWithoutParticipantInput {
     where?: InstanceType<typeof ContactInfoWhereInput>;
     data: InstanceType<typeof ContactInfoUpdateWithoutParticipantInput>;
+}
+export declare class ContactInfoUpdateToOneWithWhereWithoutPhonesInput {
+    where?: InstanceType<typeof ContactInfoWhereInput>;
+    data: InstanceType<typeof ContactInfoUpdateWithoutPhonesInput>;
 }
 export declare class ContactInfoUpdateWithWhereUniqueWithoutAddressInput {
     where: Prisma.AtLeast<ContactInfoWhereUniqueInput, 'id'>;
     data: InstanceType<typeof ContactInfoUpdateWithoutAddressInput>;
 }
 export declare class ContactInfoUpdateWithoutAddressInput {
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    phones?: InstanceType<typeof phoneUpdateManyWithoutContactInfoNestedInput>;
+    participant?: InstanceType<typeof ParticipantUpdateOneWithoutContactInfoNestedInput>;
+}
+export declare class ContactInfoUpdateWithoutParticipantInput {
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    phones?: InstanceType<typeof phoneUpdateManyWithoutContactInfoNestedInput>;
+    address?: InstanceType<typeof AddressUpdateOneRequiredWithoutContactInfoNestedInput>;
+}
+export declare class ContactInfoUpdateWithoutPhonesInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutContactInfoNestedInput>;
-}
-export declare class ContactInfoUpdateWithoutParticipantInput {
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     address?: InstanceType<typeof AddressUpdateOneRequiredWithoutContactInfoNestedInput>;
 }
 export declare class ContactInfoUpdateInput {
-    telp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    phones?: InstanceType<typeof phoneUpdateManyWithoutContactInfoNestedInput>;
     participant?: InstanceType<typeof ParticipantUpdateOneWithoutContactInfoNestedInput>;
     address?: InstanceType<typeof AddressUpdateOneRequiredWithoutContactInfoNestedInput>;
 }
@@ -8433,16 +8465,21 @@ export declare class ContactInfoUpsertWithoutParticipantInput {
     create: InstanceType<typeof ContactInfoCreateWithoutParticipantInput>;
     where?: InstanceType<typeof ContactInfoWhereInput>;
 }
+export declare class ContactInfoUpsertWithoutPhonesInput {
+    update: InstanceType<typeof ContactInfoUpdateWithoutPhonesInput>;
+    create: InstanceType<typeof ContactInfoCreateWithoutPhonesInput>;
+    where?: InstanceType<typeof ContactInfoWhereInput>;
+}
 export declare class ContactInfoWhereUniqueInput {
     id?: number;
     AND?: Array<ContactInfoWhereInput>;
     OR?: Array<ContactInfoWhereInput>;
     NOT?: Array<ContactInfoWhereInput>;
-    telp?: InstanceType<typeof FloatFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     addressId?: InstanceType<typeof IntFilter>;
+    phones?: InstanceType<typeof PhoneListRelationFilter>;
     participant?: InstanceType<typeof ParticipantNullableRelationFilter>;
     address?: InstanceType<typeof AddressRelationFilter>;
 }
@@ -8451,23 +8488,24 @@ export declare class ContactInfoWhereInput {
     OR?: Array<ContactInfoWhereInput>;
     NOT?: Array<ContactInfoWhereInput>;
     id?: InstanceType<typeof IntFilter>;
-    telp?: InstanceType<typeof FloatFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     addressId?: InstanceType<typeof IntFilter>;
+    phones?: InstanceType<typeof PhoneListRelationFilter>;
     participant?: InstanceType<typeof ParticipantNullableRelationFilter>;
     address?: InstanceType<typeof AddressRelationFilter>;
 }
 export declare class ContactInfo {
     id: number;
-    telp: number;
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;
     addressId: number;
+    phones?: Array<phone>;
     participant?: InstanceType<typeof Participant> | null;
     address?: InstanceType<typeof Address>;
+    _count?: InstanceType<typeof ContactInfoCount>;
 }
 export declare class CreateManyContactInfoArgs {
     data: Array<ContactInfoCreateManyInput>;
@@ -13796,8 +13834,262 @@ export declare class UpsertOneParticipantArgs {
     create: InstanceType<typeof ParticipantCreateInput>;
     update: InstanceType<typeof ParticipantUpdateInput>;
 }
+export declare class CreateManyphoneArgs {
+    data: Array<phoneCreateManyInput>;
+    skipDuplicates?: boolean;
+}
+export declare class CreateOnephoneArgs {
+    data: InstanceType<typeof phoneCreateInput>;
+}
+export declare class DeleteManyphoneArgs {
+    where?: InstanceType<typeof phoneWhereInput>;
+}
+export declare class DeleteOnephoneArgs {
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+}
+export declare class FindFirstphoneOrThrowArgs {
+    where?: InstanceType<typeof phoneWhereInput>;
+    orderBy?: Array<phoneOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof PhoneScalarFieldEnum>;
+}
+export declare class FindFirstphoneArgs {
+    where?: InstanceType<typeof phoneWhereInput>;
+    orderBy?: Array<phoneOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof PhoneScalarFieldEnum>;
+}
+export declare class FindManyphoneArgs {
+    where?: InstanceType<typeof phoneWhereInput>;
+    orderBy?: Array<phoneOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof PhoneScalarFieldEnum>;
+}
+export declare class FindUniquephoneOrThrowArgs {
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+}
+export declare class FindUniquephoneArgs {
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+}
+export declare class phoneAggregateArgs {
+    where?: InstanceType<typeof phoneWhereInput>;
+    orderBy?: Array<phoneOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    take?: number;
+    skip?: number;
+}
+export declare class phoneAvgOrderByAggregateInput {
+    number?: keyof typeof SortOrder;
+    contactInfoId?: keyof typeof SortOrder;
+}
+export declare class phoneCountOrderByAggregateInput {
+    number?: keyof typeof SortOrder;
+    contactInfoId?: keyof typeof SortOrder;
+}
+export declare class phoneCreateManyContactInfoInputEnvelope {
+    data: Array<phoneCreateManyContactInfoInput>;
+    skipDuplicates?: boolean;
+}
+export declare class phoneCreateManyContactInfoInput {
+    number: number;
+}
+export declare class phoneCreateManyInput {
+    number: number;
+    contactInfoId: number;
+}
+export declare class phoneCreateNestedManyWithoutContactInfoInput {
+    create?: Array<phoneCreateWithoutContactInfoInput>;
+    connectOrCreate?: Array<phoneCreateOrConnectWithoutContactInfoInput>;
+    createMany?: InstanceType<typeof phoneCreateManyContactInfoInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+}
+export declare class phoneCreateOrConnectWithoutContactInfoInput {
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    create: InstanceType<typeof phoneCreateWithoutContactInfoInput>;
+}
+export declare class phoneCreateWithoutContactInfoInput {
+    number: number;
+}
+export declare class phoneCreateInput {
+    number: number;
+    contactInfo: InstanceType<typeof ContactInfoCreateNestedOneWithoutPhonesInput>;
+}
+export declare class phoneGroupByArgs {
+    where?: InstanceType<typeof phoneWhereInput>;
+    orderBy?: Array<phoneOrderByWithAggregationInput>;
+    by: Array<keyof typeof PhoneScalarFieldEnum>;
+    having?: InstanceType<typeof phoneScalarWhereWithAggregatesInput>;
+    take?: number;
+    skip?: number;
+}
+export declare class phoneMaxOrderByAggregateInput {
+    number?: keyof typeof SortOrder;
+    contactInfoId?: keyof typeof SortOrder;
+}
+export declare class phoneMinOrderByAggregateInput {
+    number?: keyof typeof SortOrder;
+    contactInfoId?: keyof typeof SortOrder;
+}
+export declare class phoneOrderByRelationAggregateInput {
+    _count?: keyof typeof SortOrder;
+}
+export declare class phoneOrderByWithAggregationInput {
+    number?: keyof typeof SortOrder;
+    contactInfoId?: keyof typeof SortOrder;
+    _count?: InstanceType<typeof phoneCountOrderByAggregateInput>;
+    _avg?: InstanceType<typeof phoneAvgOrderByAggregateInput>;
+    _max?: InstanceType<typeof phoneMaxOrderByAggregateInput>;
+    _min?: InstanceType<typeof phoneMinOrderByAggregateInput>;
+    _sum?: InstanceType<typeof phoneSumOrderByAggregateInput>;
+}
+export declare class phoneOrderByWithRelationInput {
+    number?: keyof typeof SortOrder;
+    contactInfoId?: keyof typeof SortOrder;
+    contactInfo?: InstanceType<typeof ContactInfoOrderByWithRelationInput>;
+}
+export declare class phoneScalarWhereWithAggregatesInput {
+    AND?: Array<phoneScalarWhereWithAggregatesInput>;
+    OR?: Array<phoneScalarWhereWithAggregatesInput>;
+    NOT?: Array<phoneScalarWhereWithAggregatesInput>;
+    number?: InstanceType<typeof FloatWithAggregatesFilter>;
+    contactInfoId?: InstanceType<typeof IntWithAggregatesFilter>;
+}
+export declare class phoneScalarWhereInput {
+    AND?: Array<phoneScalarWhereInput>;
+    OR?: Array<phoneScalarWhereInput>;
+    NOT?: Array<phoneScalarWhereInput>;
+    number?: InstanceType<typeof FloatFilter>;
+    contactInfoId?: InstanceType<typeof IntFilter>;
+}
+export declare class phoneSumOrderByAggregateInput {
+    number?: keyof typeof SortOrder;
+    contactInfoId?: keyof typeof SortOrder;
+}
+export declare class phoneUncheckedCreateNestedManyWithoutContactInfoInput {
+    create?: Array<phoneCreateWithoutContactInfoInput>;
+    connectOrCreate?: Array<phoneCreateOrConnectWithoutContactInfoInput>;
+    createMany?: InstanceType<typeof phoneCreateManyContactInfoInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+}
+export declare class phoneUncheckedCreateWithoutContactInfoInput {
+    number: number;
+}
+export declare class phoneUncheckedCreateInput {
+    number: number;
+    contactInfoId: number;
+}
+export declare class phoneUncheckedUpdateManyWithoutContactInfoNestedInput {
+    create?: Array<phoneCreateWithoutContactInfoInput>;
+    connectOrCreate?: Array<phoneCreateOrConnectWithoutContactInfoInput>;
+    upsert?: Array<phoneUpsertWithWhereUniqueWithoutContactInfoInput>;
+    createMany?: InstanceType<typeof phoneCreateManyContactInfoInputEnvelope>;
+    set?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    disconnect?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    delete?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    connect?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    update?: Array<phoneUpdateWithWhereUniqueWithoutContactInfoInput>;
+    updateMany?: Array<phoneUpdateManyWithWhereWithoutContactInfoInput>;
+    deleteMany?: Array<phoneScalarWhereInput>;
+}
+export declare class phoneUncheckedUpdateManyWithoutContactInfoInput {
+    number?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+}
+export declare class phoneUncheckedUpdateManyInput {
+    number?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    contactInfoId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+}
+export declare class phoneUncheckedUpdateWithoutContactInfoInput {
+    number?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+}
+export declare class phoneUncheckedUpdateInput {
+    number?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    contactInfoId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+}
+export declare class phoneUpdateManyMutationInput {
+    number?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+}
+export declare class phoneUpdateManyWithWhereWithoutContactInfoInput {
+    where: InstanceType<typeof phoneScalarWhereInput>;
+    data: InstanceType<typeof phoneUpdateManyMutationInput>;
+}
+export declare class phoneUpdateManyWithoutContactInfoNestedInput {
+    create?: Array<phoneCreateWithoutContactInfoInput>;
+    connectOrCreate?: Array<phoneCreateOrConnectWithoutContactInfoInput>;
+    upsert?: Array<phoneUpsertWithWhereUniqueWithoutContactInfoInput>;
+    createMany?: InstanceType<typeof phoneCreateManyContactInfoInputEnvelope>;
+    set?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    disconnect?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    delete?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    connect?: Array<Prisma.AtLeast<phoneWhereUniqueInput, 'number'>>;
+    update?: Array<phoneUpdateWithWhereUniqueWithoutContactInfoInput>;
+    updateMany?: Array<phoneUpdateManyWithWhereWithoutContactInfoInput>;
+    deleteMany?: Array<phoneScalarWhereInput>;
+}
+export declare class phoneUpdateWithWhereUniqueWithoutContactInfoInput {
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    data: InstanceType<typeof phoneUpdateWithoutContactInfoInput>;
+}
+export declare class phoneUpdateWithoutContactInfoInput {
+    number?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+}
+export declare class phoneUpdateInput {
+    number?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    contactInfo?: InstanceType<typeof ContactInfoUpdateOneRequiredWithoutPhonesNestedInput>;
+}
+export declare class phoneUpsertWithWhereUniqueWithoutContactInfoInput {
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    update: InstanceType<typeof phoneUpdateWithoutContactInfoInput>;
+    create: InstanceType<typeof phoneCreateWithoutContactInfoInput>;
+}
+export declare class phoneWhereUniqueInput {
+    number?: number;
+    AND?: Array<phoneWhereInput>;
+    OR?: Array<phoneWhereInput>;
+    NOT?: Array<phoneWhereInput>;
+    contactInfoId?: InstanceType<typeof IntFilter>;
+    contactInfo?: InstanceType<typeof ContactInfoRelationFilter>;
+}
+export declare class phoneWhereInput {
+    AND?: Array<phoneWhereInput>;
+    OR?: Array<phoneWhereInput>;
+    NOT?: Array<phoneWhereInput>;
+    number?: InstanceType<typeof FloatFilter>;
+    contactInfoId?: InstanceType<typeof IntFilter>;
+    contactInfo?: InstanceType<typeof ContactInfoRelationFilter>;
+}
+export declare class phone {
+    number: number;
+    contactInfoId: number;
+    contactInfo?: InstanceType<typeof ContactInfo>;
+}
+export declare class UpdateManyphoneArgs {
+    data: InstanceType<typeof phoneUpdateManyMutationInput>;
+    where?: InstanceType<typeof phoneWhereInput>;
+}
+export declare class UpdateOnephoneArgs {
+    data: InstanceType<typeof phoneUpdateInput>;
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+}
+export declare class UpsertOnephoneArgs {
+    where: Prisma.AtLeast<phoneWhereUniqueInput, 'number'>;
+    create: InstanceType<typeof phoneCreateInput>;
+    update: InstanceType<typeof phoneUpdateInput>;
+}
 export declare class AffectedRows {
     count: number;
+}
+export declare class AggregatePhone {
+    _count?: InstanceType<typeof PhoneCountAggregate>;
+    _avg?: InstanceType<typeof PhoneAvgAggregate>;
+    _sum?: InstanceType<typeof PhoneSumAggregate>;
+    _min?: InstanceType<typeof PhoneMinAggregate>;
+    _max?: InstanceType<typeof PhoneMaxAggregate>;
 }
 export declare class BoolFieldUpdateOperationsInput {
     set?: boolean;
@@ -14837,6 +15129,41 @@ export declare class NullableIntFieldUpdateOperationsInput {
 }
 export declare class NullableStringFieldUpdateOperationsInput {
     set?: string;
+}
+export declare class PhoneAvgAggregate {
+    number?: number;
+    contactInfoId?: number;
+}
+export declare class PhoneCountAggregate {
+    number: number;
+    contactInfoId: number;
+    _all: number;
+}
+export declare class PhoneGroupBy {
+    number: number;
+    contactInfoId: number;
+    _count?: InstanceType<typeof PhoneCountAggregate>;
+    _avg?: InstanceType<typeof PhoneAvgAggregate>;
+    _sum?: InstanceType<typeof PhoneSumAggregate>;
+    _min?: InstanceType<typeof PhoneMinAggregate>;
+    _max?: InstanceType<typeof PhoneMaxAggregate>;
+}
+export declare class PhoneListRelationFilter {
+    every?: InstanceType<typeof phoneWhereInput>;
+    some?: InstanceType<typeof phoneWhereInput>;
+    none?: InstanceType<typeof phoneWhereInput>;
+}
+export declare class PhoneMaxAggregate {
+    number?: number;
+    contactInfoId?: number;
+}
+export declare class PhoneMinAggregate {
+    number?: number;
+    contactInfoId?: number;
+}
+export declare class PhoneSumAggregate {
+    number?: number;
+    contactInfoId?: number;
 }
 export declare class SortOrderInput {
     sort: keyof typeof SortOrder;
