@@ -105,7 +105,7 @@ import { AuthModule } from './services/auth/auth.module';
     AuthModule,
     //EmailModule,
     // UploaderModule,
-    // AccountModule,
+    AccountModule,
     // AddressModule,
     // BankAccountModule,
     // BranchModule,

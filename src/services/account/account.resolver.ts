@@ -28,31 +28,31 @@ interface AccountSelect {
 export class AccountResolver {
   constructor(private readonly accountController: AccountController) {}
 
-  @Mutation(() => Account, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async accountCreateOne(
-    @Args()
-    accountCreateArgs: CreateOneAccountArgs,
-    @Relations() relations: AccountSelect,
-  ): Promise<Account | void> {
-    return await this.accountController.createOne({
-      ...accountCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Account, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async accountCreateOne(
+  //   @Args()
+  //   accountCreateArgs: CreateOneAccountArgs,
+  //   @Relations() relations: AccountSelect,
+  // ): Promise<Account | void> {
+  //   return await this.accountController.createOne({
+  //     ...accountCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => BatchPayload, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async accountCreateMany(
-    @Args()
-    createManyAccountArgs: CreateManyAccountArgs,
-  ) {
-    return await this.accountController.createMany(createManyAccountArgs);
-  }
+  // @Mutation(() => BatchPayload, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async accountCreateMany(
+  //   @Args()
+  //   createManyAccountArgs: CreateManyAccountArgs,
+  // ) {
+  //   return await this.accountController.createMany(createManyAccountArgs);
+  // }
 
   @Query(() => Account, {
     nullable: true,
@@ -69,92 +69,92 @@ export class AccountResolver {
     });
   }
 
-  @Query(() => [Account], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  accountFindMany(
-    @Args() accountFindManyArgs: FindManyAccountArgs,
-    @Relations() relations: AccountSelect,
-  ) {
-    return this.accountController.findMany({
-      ...accountFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [Account], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // accountFindMany(
+  //   @Args() accountFindManyArgs: FindManyAccountArgs,
+  //   @Relations() relations: AccountSelect,
+  // ) {
+  //   return this.accountController.findMany({
+  //     ...accountFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Query(() => Account, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  accountFindFirst(
-    @Args()
-    findFirstAccountArgs: FindFirstAccountArgs,
-    @Relations() relations: AccountSelect,
-  ): Promise<Account | void> {
-    return this.accountController.findFirst({
-      ...findFirstAccountArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => Account, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // accountFindFirst(
+  //   @Args()
+  //   findFirstAccountArgs: FindFirstAccountArgs,
+  //   @Relations() relations: AccountSelect,
+  // ): Promise<Account | void> {
+  //   return this.accountController.findFirst({
+  //     ...findFirstAccountArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Account, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async accountUpdateOne(
-    @Args() accountUpdateOneArgs: UpdateOneAccountArgs,
-    @Relations() relations: AccountSelect,
-  ) {
-    return this.accountController.updateOne({
-      ...replaceNullWithUndefined(accountUpdateOneArgs),
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Account, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async accountUpdateOne(
+  //   @Args() accountUpdateOneArgs: UpdateOneAccountArgs,
+  //   @Relations() relations: AccountSelect,
+  // ) {
+  //   return this.accountController.updateOne({
+  //     ...replaceNullWithUndefined(accountUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Account, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async accountUpdateMany(@Args() updateManyAccountArgs: UpdateManyAccountArgs) {
-    return this.accountController.updateMany(updateManyAccountArgs);
-  }
+  // @Mutation(() => Account, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async accountUpdateMany(@Args() updateManyAccountArgs: UpdateManyAccountArgs) {
+  //   return this.accountController.updateMany(updateManyAccountArgs);
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async accountDelete(
-    @Args() deleteOneAccountArgs: DeleteOneAccountArgs,
-    @Relations() relations: AccountSelect,
-  ) {
-    return this.accountController.delete({
-      ...deleteOneAccountArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async accountDelete(
+  //   @Args() deleteOneAccountArgs: DeleteOneAccountArgs,
+  //   @Relations() relations: AccountSelect,
+  // ) {
+  //   return this.accountController.delete({
+  //     ...deleteOneAccountArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async accountDeleteMany(@Args() deleteManyAccountArgs: DeleteManyAccountArgs) {
-    return this.accountController.deleteMany(deleteManyAccountArgs);
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async accountDeleteMany(@Args() deleteManyAccountArgs: DeleteManyAccountArgs) {
+  //   return this.accountController.deleteMany(deleteManyAccountArgs);
+  // }
 
-  @Query(() => AggregateAccount, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  accountAggregate(@Args() accountAggregateArgs: AccountAggregateArgs) {
-    return this.accountController.aggregate(accountAggregateArgs);
-  }
+  // @Query(() => AggregateAccount, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // accountAggregate(@Args() accountAggregateArgs: AccountAggregateArgs) {
+  //   return this.accountController.aggregate(accountAggregateArgs);
+  // }
 
-  @Query(() => Float, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  accountCount(@Args() accountCountAggregateInput: FindManyAccountArgs) {
-    return this.accountController.count(accountCountAggregateInput);
-  }
+  // @Query(() => Float, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // accountCount(@Args() accountCountAggregateInput: FindManyAccountArgs) {
+  //   return this.accountController.count(accountCountAggregateInput);
+  // }
 }

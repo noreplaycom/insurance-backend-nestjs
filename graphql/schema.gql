@@ -2173,6 +2173,9 @@ type Query {
   userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 
   """Deskripsinya ada disini loh"""
+  accountFindOne(where: AccountWhereUniqueInput!): Account
+
+  """Deskripsinya ada disini loh"""
   claimFindOne(where: ClaimWhereUniqueInput!): Claim
 
   """Deskripsinya ada disini loh"""
@@ -4006,6 +4009,17 @@ enum UserScalarFieldEnum {
   updatedAt
   deletedAt
   roleId
+}
+
+input AccountWhereUniqueInput {
+  id: Int
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  currentBalance: FloatFilter
+  currentBalanceLastUpdate: DateTimeNullableFilter
+  transactions: TransactionListRelationFilter
+  programParticipation: ProgramParticipationListRelationFilter
 }
 
 input ClaimWhereUniqueInput {

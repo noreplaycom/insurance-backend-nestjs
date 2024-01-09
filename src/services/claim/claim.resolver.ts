@@ -52,8 +52,8 @@ interface ClaimSelect {
 export class ClaimResolver {
   constructor(private readonly claimController: ClaimController) {}
 
-  @RequiredPermission(Permission.CREATE_CLAIM)
-  @UseGuards(PermissionGuard)
+  // @RequiredPermission(Permission.CREATE_CLAIM)
+  // @UseGuards(PermissionGuard)
   @Mutation(() => Claim, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
@@ -256,8 +256,8 @@ export class ClaimResolver {
     return this.claimController.getClaimChannels();
   }
 
-  @RequiredPermission(Permission.IMPORT_CLAIM)
-  @UseGuards(PermissionGuard)
+  // @RequiredPermission(Permission.IMPORT_CLAIM)
+  // @UseGuards(PermissionGuard)
   @Mutation(() => Boolean, {
     nullable: true,
     description:
@@ -291,8 +291,8 @@ export class ClaimResolver {
     //     return true;
   }
 
-  @RequiredPermission(Permission.EXPORT_CLAIM)
-  @UseGuards(PermissionGuard)
+  // @RequiredPermission(Permission.EXPORT_CLAIM)
+  // @UseGuards(PermissionGuard)
   @Query(() => String, {
     description: 'deskripsi nya disini loh',
   })
@@ -302,8 +302,8 @@ export class ClaimResolver {
 
   // ? CLAIM DETAIL SCREEN
 
-  @RequiredPermission(Permission.UPDATE_CLAIM)
-  @UseGuards(PermissionGuard)
+  // @RequiredPermission(Permission.UPDATE_CLAIM)
+  // @UseGuards(PermissionGuard)
   @Mutation(() => Claim, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
