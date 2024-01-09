@@ -396,8 +396,6 @@ export function fakeClaimFinancial() {
     requestedAmount: faker.datatype.float(),
     paidAmount: undefined,
     rejectedAmount: undefined,
-    transactionProcessDate: undefined,
-    transferDate: undefined,
     previousBalance: faker.datatype.float(),
     remainingBalance: faker.datatype.float(),
   };
@@ -409,12 +407,11 @@ export function fakeClaimFinancialComplete() {
     requestedAmount: faker.datatype.float(),
     paidAmount: undefined,
     rejectedAmount: undefined,
-    transactionProcessDate: undefined,
-    transferDate: undefined,
     previousBalance: faker.datatype.float(),
     remainingBalance: faker.datatype.float(),
     branchId: undefined,
     claimStatusId: undefined,
+    transactionId: undefined,
   };
 }
 export function fakeClaimProgram() {
@@ -542,6 +539,7 @@ export function fakeTransactionComplete() {
     description: undefined,
     createdAt: new Date(),
     accountId: faker.datatype.number(),
+    proofId: undefined,
   };
 }
 export function fakeBackup() {

@@ -662,8 +662,10 @@ model Claim {
     // ///Prsh:	Perusahaan
     // companyId Int
 
+    /// @HideField({ match: ['ClaimUpdate*Input']})
     participant Participant @relation(fields: [participantId], references: [userId])
 
+    /// @HideField({ match: ['ClaimUpdate*Input']})
     participantId String
 
     claimFinancials ClaimFinancial @relation(fields: [claimFinancialId], references: [id])
@@ -733,7 +735,6 @@ model Document {
 
     guaranteeLetterOf ClaimStatus? @relation("guaranteeLetter")
 
-    ///Surat transaksi
     transactionLetterOf ClaimStatus? @relation("transactionLetter")
 
     ///Perintah Pembukuan
@@ -744,6 +745,8 @@ model Document {
     claimProgramId Int?
 
     invoiceProof InvoiceProof?
+
+    transaction Transaction?
 }
 
 enum DocumentSource {
@@ -781,7 +784,7 @@ model Tag {
 
     //-------------------------- m relations --------------------------------
 
-    Claims Claim[]
+    claims Claim[]
 }
 
 enum Color {
@@ -808,7 +811,7 @@ enum AdmedicaStatus {
 
 model ClaimFinancial {
     //-------------------------- scalars --------------------------------
-
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
     id Int @id @default(autoincrement())
 
     /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
@@ -817,17 +820,13 @@ model ClaimFinancial {
     ///Aju:	Jumlah nominal klaim diajukan
     requestedAmount Float
 
+    /// @HideField({ match: ['ClaimFinancialCreate*Input']})
     ///Bayar:	Jumlah nominal klaim dibayar
     paidAmount Float?
 
+    /// @HideField({ match: ['ClaimFinancialCreate*Input']})
     ///Tolak:	Jumlah Nominal Klaim ditolak
     rejectedAmount Float?
-
-    ///TProses Transaksi:	Tanggal Proses Transaksi
-    transactionProcessDate DateTime?
-
-    ///Transfer:	Tanggal Transfer
-    transferDate DateTime?
 
     /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
     /// Saldo sebelum klaim dibayarkan
@@ -842,14 +841,23 @@ model ClaimFinancial {
     ///Cabang: Cabang Pembayar Pensiun
     branchPayee Branch? @relation(fields: [branchId], references: [id])
 
-    claim Claim?
-
     ///Cabang: Cabang Pembayar Pensiun
     branchId Int?
 
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
+    claim Claim?
+
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
     claimStatus ClaimStatus? @relation(fields: [claimStatusId], references: [id])
 
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
     claimStatusId Int? @unique
+
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
+    transaction Transaction? @relation(fields: [transactionId], references: [id])
+
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
+    transactionId Int? @unique
 }
 
 model ClaimProgram {
@@ -979,8 +987,10 @@ model ClaimStatus {
     //Tanggal Surjam:	Tanggal Surat Jaminan
     guaranteeLetterId String? @unique
 
+    ///Surat transaksi
     transactionLetter Document? @relation("transactionLetter", fields: [transactionLetterId], references: [id])
 
+    ///Surat transaksi
     transactionLetterId String? @unique
 
     //Perintah Pembukuan
@@ -1060,6 +1070,7 @@ model Transaction {
 
     description String?
 
+    ///TProses Transaksi:	Tanggal Proses Transaksi | ransfer:	Tanggal Transfer
     /// @HideField({ match: ['TransactionCreate*Input','TransactionUpdate*Input']})
     createdAt DateTime @default(now())
 
@@ -1068,6 +1079,12 @@ model Transaction {
     account Account @relation(fields: [accountId], references: [id])
 
     accountId Int
+
+    proof Document? @relation(fields: [proofId], references: [id])
+
+    proofId String? @unique
+
+    claimFinancial ClaimFinancial?
 }
 
 enum Gender {

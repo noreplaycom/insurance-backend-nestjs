@@ -17,7 +17,8 @@ export declare enum TransactionScalarFieldEnum {
     transactionType = "transactionType",
     description = "description",
     createdAt = "createdAt",
-    accountId = "accountId"
+    accountId = "accountId",
+    proofId = "proofId"
 }
 export declare enum TagScalarFieldEnum {
     id = "id",
@@ -338,12 +339,11 @@ export declare enum ClaimFinancialScalarFieldEnum {
     requestedAmount = "requestedAmount",
     paidAmount = "paidAmount",
     rejectedAmount = "rejectedAmount",
-    transactionProcessDate = "transactionProcessDate",
-    transferDate = "transferDate",
     previousBalance = "previousBalance",
     remainingBalance = "remainingBalance",
     branchId = "branchId",
-    claimStatusId = "claimStatusId"
+    claimStatusId = "claimStatusId",
+    transactionId = "transactionId"
 }
 export declare enum ClaimScalarFieldEnum {
     id = "id",
@@ -4431,7 +4431,7 @@ export declare class AggregateClaimFinancial {
 export declare class ClaimFinancialAggregateArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ClaimFinancialCountAggregateInput>;
@@ -4450,6 +4450,7 @@ export declare class ClaimFinancialAvgAggregateInput {
     remainingBalance?: true;
     branchId?: true;
     claimStatusId?: true;
+    transactionId?: true;
 }
 export declare class ClaimFinancialAvgAggregate {
     id?: number;
@@ -4461,6 +4462,7 @@ export declare class ClaimFinancialAvgAggregate {
     remainingBalance?: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
 }
 export declare class ClaimFinancialAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -4472,6 +4474,7 @@ export declare class ClaimFinancialAvgOrderByAggregateInput {
     remainingBalance?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
+    transactionId?: keyof typeof SortOrder;
 }
 export declare class ClaimFinancialCountAggregateInput {
     id?: true;
@@ -4479,12 +4482,11 @@ export declare class ClaimFinancialCountAggregateInput {
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
-    transactionProcessDate?: true;
-    transferDate?: true;
     previousBalance?: true;
     remainingBalance?: true;
     branchId?: true;
     claimStatusId?: true;
+    transactionId?: true;
     _all?: true;
 }
 export declare class ClaimFinancialCountAggregate {
@@ -4493,12 +4495,11 @@ export declare class ClaimFinancialCountAggregate {
     requestedAmount: number;
     paidAmount: number;
     rejectedAmount: number;
-    transactionProcessDate: number;
-    transferDate: number;
     previousBalance: number;
     remainingBalance: number;
     branchId: number;
     claimStatusId: number;
+    transactionId: number;
     _all: number;
 }
 export declare class ClaimFinancialCountOrderByAggregateInput {
@@ -4507,12 +4508,11 @@ export declare class ClaimFinancialCountOrderByAggregateInput {
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
-    transactionProcessDate?: keyof typeof SortOrder;
-    transferDate?: keyof typeof SortOrder;
     previousBalance?: keyof typeof SortOrder;
     remainingBalance?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
+    transactionId?: keyof typeof SortOrder;
 }
 export declare class ClaimFinancialCreateManyBranchPayeeInputEnvelope {
     data: Array<ClaimFinancialCreateManyBranchPayeeInput>;
@@ -4524,11 +4524,10 @@ export declare class ClaimFinancialCreateManyBranchPayeeInput {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     claimStatusId?: number;
+    transactionId?: number;
 }
 export declare class ClaimFinancialCreateManyInput {
     id?: number;
@@ -4536,75 +4535,91 @@ export declare class ClaimFinancialCreateManyInput {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
 }
 export declare class ClaimFinancialCreateNestedManyWithoutBranchPayeeInput {
     create?: Array<ClaimFinancialCreateWithoutBranchPayeeInput>;
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
 }
 export declare class ClaimFinancialCreateNestedOneWithoutClaimStatusInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimStatusInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
 }
 export declare class ClaimFinancialCreateNestedOneWithoutClaimInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
+}
+export declare class ClaimFinancialCreateNestedOneWithoutTransactionInput {
+    create?: InstanceType<typeof ClaimFinancialCreateWithoutTransactionInput>;
+    connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutTransactionInput>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
 }
 export declare class ClaimFinancialCreateOrConnectWithoutBranchPayeeInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutBranchPayeeInput>;
 }
 export declare class ClaimFinancialCreateOrConnectWithoutClaimStatusInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
 }
 export declare class ClaimFinancialCreateOrConnectWithoutClaimInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
+}
+export declare class ClaimFinancialCreateOrConnectWithoutTransactionInput {
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
+    create: InstanceType<typeof ClaimFinancialCreateWithoutTransactionInput>;
 }
 export declare class ClaimFinancialCreateWithoutBranchPayeeInput {
     totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
     claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialCreateWithoutClaimStatusInput {
     totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchPayee?: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialCreateWithoutClaimInput {
     totalInvoiceProofAmount: number;
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchPayee?: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutClaimFinancialInput>;
+}
+export declare class ClaimFinancialCreateWithoutTransactionInput {
+    totalInvoiceProofAmount: number;
+    requestedAmount: number;
+    paidAmount?: number;
+    rejectedAmount?: number;
+    previousBalance: number;
+    remainingBalance: number;
+    branchPayee?: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
+    claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
     claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialCreateInput {
@@ -4612,13 +4627,12 @@ export declare class ClaimFinancialCreateInput {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchPayee?: InstanceType<typeof BranchCreateNestedOneWithoutClaimFinancialInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimFinancialsInput>;
     claimStatus?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutClaimFinancialInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutClaimFinancialInput>;
 }
 export declare class ClaimFinancialGroupByArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
@@ -4639,12 +4653,11 @@ export declare class ClaimFinancialGroupBy {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
     _count?: InstanceType<typeof ClaimFinancialCountAggregate>;
     _avg?: InstanceType<typeof ClaimFinancialAvgAggregate>;
     _sum?: InstanceType<typeof ClaimFinancialSumAggregate>;
@@ -4662,12 +4675,11 @@ export declare class ClaimFinancialMaxAggregateInput {
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
-    transactionProcessDate?: true;
-    transferDate?: true;
     previousBalance?: true;
     remainingBalance?: true;
     branchId?: true;
     claimStatusId?: true;
+    transactionId?: true;
 }
 export declare class ClaimFinancialMaxAggregate {
     id?: number;
@@ -4675,12 +4687,11 @@ export declare class ClaimFinancialMaxAggregate {
     requestedAmount?: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance?: number;
     remainingBalance?: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
 }
 export declare class ClaimFinancialMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -4688,12 +4699,11 @@ export declare class ClaimFinancialMaxOrderByAggregateInput {
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
-    transactionProcessDate?: keyof typeof SortOrder;
-    transferDate?: keyof typeof SortOrder;
     previousBalance?: keyof typeof SortOrder;
     remainingBalance?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
+    transactionId?: keyof typeof SortOrder;
 }
 export declare class ClaimFinancialMinAggregateInput {
     id?: true;
@@ -4701,12 +4711,11 @@ export declare class ClaimFinancialMinAggregateInput {
     requestedAmount?: true;
     paidAmount?: true;
     rejectedAmount?: true;
-    transactionProcessDate?: true;
-    transferDate?: true;
     previousBalance?: true;
     remainingBalance?: true;
     branchId?: true;
     claimStatusId?: true;
+    transactionId?: true;
 }
 export declare class ClaimFinancialMinAggregate {
     id?: number;
@@ -4714,12 +4723,11 @@ export declare class ClaimFinancialMinAggregate {
     requestedAmount?: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance?: number;
     remainingBalance?: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
 }
 export declare class ClaimFinancialMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -4727,12 +4735,11 @@ export declare class ClaimFinancialMinOrderByAggregateInput {
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: keyof typeof SortOrder;
     rejectedAmount?: keyof typeof SortOrder;
-    transactionProcessDate?: keyof typeof SortOrder;
-    transferDate?: keyof typeof SortOrder;
     previousBalance?: keyof typeof SortOrder;
     remainingBalance?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
+    transactionId?: keyof typeof SortOrder;
 }
 export declare class ClaimFinancialNullableRelationFilter {
     is?: InstanceType<typeof ClaimFinancialWhereInput>;
@@ -4747,12 +4754,11 @@ export declare class ClaimFinancialOrderByWithAggregationInput {
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: InstanceType<typeof SortOrderInput>;
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
-    transactionProcessDate?: InstanceType<typeof SortOrderInput>;
-    transferDate?: InstanceType<typeof SortOrderInput>;
     previousBalance?: keyof typeof SortOrder;
     remainingBalance?: keyof typeof SortOrder;
     branchId?: InstanceType<typeof SortOrderInput>;
     claimStatusId?: InstanceType<typeof SortOrderInput>;
+    transactionId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof ClaimFinancialCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ClaimFinancialAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ClaimFinancialMaxOrderByAggregateInput>;
@@ -4765,15 +4771,15 @@ export declare class ClaimFinancialOrderByWithRelationInput {
     requestedAmount?: keyof typeof SortOrder;
     paidAmount?: InstanceType<typeof SortOrderInput>;
     rejectedAmount?: InstanceType<typeof SortOrderInput>;
-    transactionProcessDate?: InstanceType<typeof SortOrderInput>;
-    transferDate?: InstanceType<typeof SortOrderInput>;
     previousBalance?: keyof typeof SortOrder;
     remainingBalance?: keyof typeof SortOrder;
     branchId?: InstanceType<typeof SortOrderInput>;
     claimStatusId?: InstanceType<typeof SortOrderInput>;
+    transactionId?: InstanceType<typeof SortOrderInput>;
     branchPayee?: InstanceType<typeof BranchOrderByWithRelationInput>;
     claim?: InstanceType<typeof ClaimOrderByWithRelationInput>;
     claimStatus?: InstanceType<typeof ClaimStatusOrderByWithRelationInput>;
+    transaction?: InstanceType<typeof TransactionOrderByWithRelationInput>;
 }
 export declare class ClaimFinancialRelationFilter {
     is?: InstanceType<typeof ClaimFinancialWhereInput>;
@@ -4788,12 +4794,11 @@ export declare class ClaimFinancialScalarWhereWithAggregatesInput {
     requestedAmount?: InstanceType<typeof FloatWithAggregatesFilter>;
     paidAmount?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
-    transactionProcessDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
-    transferDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     previousBalance?: InstanceType<typeof FloatWithAggregatesFilter>;
     remainingBalance?: InstanceType<typeof FloatWithAggregatesFilter>;
     branchId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     claimStatusId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
+    transactionId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
 }
 export declare class ClaimFinancialScalarWhereInput {
     AND?: Array<ClaimFinancialScalarWhereInput>;
@@ -4804,12 +4809,11 @@ export declare class ClaimFinancialScalarWhereInput {
     requestedAmount?: InstanceType<typeof FloatFilter>;
     paidAmount?: InstanceType<typeof FloatNullableFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
-    transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
-    transferDate?: InstanceType<typeof DateTimeNullableFilter>;
     previousBalance?: InstanceType<typeof FloatFilter>;
     remainingBalance?: InstanceType<typeof FloatFilter>;
     branchId?: InstanceType<typeof IntNullableFilter>;
     claimStatusId?: InstanceType<typeof IntNullableFilter>;
+    transactionId?: InstanceType<typeof IntNullableFilter>;
 }
 export declare class ClaimFinancialSumAggregateInput {
     id?: true;
@@ -4821,6 +4825,7 @@ export declare class ClaimFinancialSumAggregateInput {
     remainingBalance?: true;
     branchId?: true;
     claimStatusId?: true;
+    transactionId?: true;
 }
 export declare class ClaimFinancialSumAggregate {
     id?: number;
@@ -4832,6 +4837,7 @@ export declare class ClaimFinancialSumAggregate {
     remainingBalance?: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
 }
 export declare class ClaimFinancialSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -4843,17 +4849,23 @@ export declare class ClaimFinancialSumOrderByAggregateInput {
     remainingBalance?: keyof typeof SortOrder;
     branchId?: keyof typeof SortOrder;
     claimStatusId?: keyof typeof SortOrder;
+    transactionId?: keyof typeof SortOrder;
 }
 export declare class ClaimFinancialUncheckedCreateNestedManyWithoutBranchPayeeInput {
     create?: Array<ClaimFinancialCreateWithoutBranchPayeeInput>;
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
 }
 export declare class ClaimFinancialUncheckedCreateNestedOneWithoutClaimStatusInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimStatusInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
+}
+export declare class ClaimFinancialUncheckedCreateNestedOneWithoutTransactionInput {
+    create?: InstanceType<typeof ClaimFinancialCreateWithoutTransactionInput>;
+    connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutTransactionInput>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
 }
 export declare class ClaimFinancialUncheckedCreateWithoutBranchPayeeInput {
     id?: number;
@@ -4861,11 +4873,10 @@ export declare class ClaimFinancialUncheckedCreateWithoutBranchPayeeInput {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     claimStatusId?: number;
+    transactionId?: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialUncheckedCreateWithoutClaimStatusInput {
@@ -4874,11 +4885,10 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimStatusInput {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchId?: number;
+    transactionId?: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
@@ -4887,12 +4897,23 @@ export declare class ClaimFinancialUncheckedCreateWithoutClaimInput {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
+}
+export declare class ClaimFinancialUncheckedCreateWithoutTransactionInput {
+    id?: number;
+    totalInvoiceProofAmount: number;
+    requestedAmount: number;
+    paidAmount?: number;
+    rejectedAmount?: number;
+    previousBalance: number;
+    remainingBalance: number;
+    branchId?: number;
+    claimStatusId?: number;
+    claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialUncheckedCreateInput {
     id?: number;
@@ -4900,12 +4921,11 @@ export declare class ClaimFinancialUncheckedCreateInput {
     requestedAmount: number;
     paidAmount?: number;
     rejectedAmount?: number;
-    transactionProcessDate?: Date | string;
-    transferDate?: Date | string;
     previousBalance: number;
     remainingBalance: number;
     branchId?: number;
     claimStatusId?: number;
+    transactionId?: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimFinancialsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeNestedInput {
@@ -4913,10 +4933,10 @@ export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeNestedIn
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     upsert?: Array<ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
     update?: Array<ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput>;
     updateMany?: Array<ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput>;
     deleteMany?: Array<ClaimFinancialScalarWhereInput>;
@@ -4927,11 +4947,10 @@ export declare class ClaimFinancialUncheckedUpdateManyWithoutBranchPayeeInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    transactionId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4939,12 +4958,11 @@ export declare class ClaimFinancialUncheckedUpdateManyInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    transactionId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimStatusInput>;
@@ -4952,8 +4970,17 @@ export declare class ClaimFinancialUncheckedUpdateOneWithoutClaimStatusNestedInp
     upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutClaimStatusInput>;
     disconnect?: InstanceType<typeof ClaimFinancialWhereInput>;
     delete?: InstanceType<typeof ClaimFinancialWhereInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutClaimStatusInput>;
+}
+export declare class ClaimFinancialUncheckedUpdateOneWithoutTransactionNestedInput {
+    create?: InstanceType<typeof ClaimFinancialCreateWithoutTransactionInput>;
+    connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutTransactionInput>;
+    upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutTransactionInput>;
+    disconnect?: InstanceType<typeof ClaimFinancialWhereInput>;
+    delete?: InstanceType<typeof ClaimFinancialWhereInput>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
+    update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutTransactionInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -4961,11 +4988,10 @@ export declare class ClaimFinancialUncheckedUpdateWithoutBranchPayeeInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    transactionId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutClaimStatusInput {
@@ -4974,11 +5000,10 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimStatusInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    transactionId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
@@ -4987,12 +5012,23 @@ export declare class ClaimFinancialUncheckedUpdateWithoutClaimInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    transactionId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+}
+export declare class ClaimFinancialUncheckedUpdateWithoutTransactionInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -5000,12 +5036,11 @@ export declare class ClaimFinancialUncheckedUpdateInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     branchId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claimStatusId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    transactionId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimFinancialsNestedInput>;
 }
 export declare class ClaimFinancialUpdateManyMutationInput {
@@ -5013,8 +5048,6 @@ export declare class ClaimFinancialUpdateManyMutationInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
 }
@@ -5027,10 +5060,10 @@ export declare class ClaimFinancialUpdateManyWithoutBranchPayeeNestedInput {
     connectOrCreate?: Array<ClaimFinancialCreateOrConnectWithoutBranchPayeeInput>;
     upsert?: Array<ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput>;
     createMany?: InstanceType<typeof ClaimFinancialCreateManyBranchPayeeInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
-    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
-    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
-    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>>;
+    set?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
+    delete?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
+    connect?: Array<Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>>;
     update?: Array<ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput>;
     updateMany?: Array<ClaimFinancialUpdateManyWithWhereWithoutBranchPayeeInput>;
     deleteMany?: Array<ClaimFinancialScalarWhereInput>;
@@ -5039,7 +5072,7 @@ export declare class ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput {
     create?: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
     connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutClaimInput>;
     upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutClaimInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutClaimInput>;
 }
 export declare class ClaimFinancialUpdateOneWithoutClaimStatusNestedInput {
@@ -5048,8 +5081,17 @@ export declare class ClaimFinancialUpdateOneWithoutClaimStatusNestedInput {
     upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutClaimStatusInput>;
     disconnect?: InstanceType<typeof ClaimFinancialWhereInput>;
     delete?: InstanceType<typeof ClaimFinancialWhereInput>;
-    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutClaimStatusInput>;
+}
+export declare class ClaimFinancialUpdateOneWithoutTransactionNestedInput {
+    create?: InstanceType<typeof ClaimFinancialCreateWithoutTransactionInput>;
+    connectOrCreate?: InstanceType<typeof ClaimFinancialCreateOrConnectWithoutTransactionInput>;
+    upsert?: InstanceType<typeof ClaimFinancialUpsertWithoutTransactionInput>;
+    disconnect?: InstanceType<typeof ClaimFinancialWhereInput>;
+    delete?: InstanceType<typeof ClaimFinancialWhereInput>;
+    connect?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
+    update?: InstanceType<typeof ClaimFinancialUpdateToOneWithWhereWithoutTransactionInput>;
 }
 export declare class ClaimFinancialUpdateToOneWithWhereWithoutClaimStatusInput {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
@@ -5059,8 +5101,12 @@ export declare class ClaimFinancialUpdateToOneWithWhereWithoutClaimInput {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     data: InstanceType<typeof ClaimFinancialUpdateWithoutClaimInput>;
 }
+export declare class ClaimFinancialUpdateToOneWithWhereWithoutTransactionInput {
+    where?: InstanceType<typeof ClaimFinancialWhereInput>;
+    data: InstanceType<typeof ClaimFinancialUpdateWithoutTransactionInput>;
+}
 export declare class ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     data: InstanceType<typeof ClaimFinancialUpdateWithoutBranchPayeeInput>;
 }
 export declare class ClaimFinancialUpdateWithoutBranchPayeeInput {
@@ -5068,35 +5114,43 @@ export declare class ClaimFinancialUpdateWithoutBranchPayeeInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
     claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpdateWithoutClaimStatusInput {
     totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     branchPayee?: InstanceType<typeof BranchUpdateOneWithoutClaimFinancialNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpdateWithoutClaimInput {
     totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     branchPayee?: InstanceType<typeof BranchUpdateOneWithoutClaimFinancialNestedInput>;
+    claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutClaimFinancialNestedInput>;
+}
+export declare class ClaimFinancialUpdateWithoutTransactionInput {
+    totalInvoiceProofAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    branchPayee?: InstanceType<typeof BranchUpdateOneWithoutClaimFinancialNestedInput>;
+    claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
     claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpdateInput {
@@ -5104,16 +5158,15 @@ export declare class ClaimFinancialUpdateInput {
     requestedAmount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     paidAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     rejectedAmount?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    transactionProcessDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    transferDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     previousBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     remainingBalance?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     branchPayee?: InstanceType<typeof BranchUpdateOneWithoutClaimFinancialNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimFinancialsNestedInput>;
     claimStatus?: InstanceType<typeof ClaimStatusUpdateOneWithoutClaimFinancialNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutClaimFinancialNestedInput>;
 }
 export declare class ClaimFinancialUpsertWithWhereUniqueWithoutBranchPayeeInput {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     update: InstanceType<typeof ClaimFinancialUpdateWithoutBranchPayeeInput>;
     create: InstanceType<typeof ClaimFinancialCreateWithoutBranchPayeeInput>;
 }
@@ -5127,9 +5180,15 @@ export declare class ClaimFinancialUpsertWithoutClaimInput {
     create: InstanceType<typeof ClaimFinancialCreateWithoutClaimInput>;
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
 }
+export declare class ClaimFinancialUpsertWithoutTransactionInput {
+    update: InstanceType<typeof ClaimFinancialUpdateWithoutTransactionInput>;
+    create: InstanceType<typeof ClaimFinancialCreateWithoutTransactionInput>;
+    where?: InstanceType<typeof ClaimFinancialWhereInput>;
+}
 export declare class ClaimFinancialWhereUniqueInput {
     id?: number;
     claimStatusId?: number;
+    transactionId?: number;
     AND?: Array<ClaimFinancialWhereInput>;
     OR?: Array<ClaimFinancialWhereInput>;
     NOT?: Array<ClaimFinancialWhereInput>;
@@ -5137,14 +5196,13 @@ export declare class ClaimFinancialWhereUniqueInput {
     requestedAmount?: InstanceType<typeof FloatFilter>;
     paidAmount?: InstanceType<typeof FloatNullableFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
-    transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
-    transferDate?: InstanceType<typeof DateTimeNullableFilter>;
     previousBalance?: InstanceType<typeof FloatFilter>;
     remainingBalance?: InstanceType<typeof FloatFilter>;
     branchId?: InstanceType<typeof IntNullableFilter>;
     branchPayee?: InstanceType<typeof BranchNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     claimStatus?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
+    transaction?: InstanceType<typeof TransactionNullableRelationFilter>;
 }
 export declare class ClaimFinancialWhereInput {
     AND?: Array<ClaimFinancialWhereInput>;
@@ -5155,15 +5213,15 @@ export declare class ClaimFinancialWhereInput {
     requestedAmount?: InstanceType<typeof FloatFilter>;
     paidAmount?: InstanceType<typeof FloatNullableFilter>;
     rejectedAmount?: InstanceType<typeof FloatNullableFilter>;
-    transactionProcessDate?: InstanceType<typeof DateTimeNullableFilter>;
-    transferDate?: InstanceType<typeof DateTimeNullableFilter>;
     previousBalance?: InstanceType<typeof FloatFilter>;
     remainingBalance?: InstanceType<typeof FloatFilter>;
     branchId?: InstanceType<typeof IntNullableFilter>;
     claimStatusId?: InstanceType<typeof IntNullableFilter>;
+    transactionId?: InstanceType<typeof IntNullableFilter>;
     branchPayee?: InstanceType<typeof BranchNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
     claimStatus?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
+    transaction?: InstanceType<typeof TransactionNullableRelationFilter>;
 }
 export declare class ClaimFinancial {
     id: number;
@@ -5171,15 +5229,15 @@ export declare class ClaimFinancial {
     requestedAmount: number;
     paidAmount: number | null;
     rejectedAmount: number | null;
-    transactionProcessDate: Date | null;
-    transferDate: Date | null;
     previousBalance: number;
     remainingBalance: number;
     branchId: number | null;
     claimStatusId: number | null;
+    transactionId: number | null;
     branchPayee?: InstanceType<typeof Branch> | null;
     claim?: InstanceType<typeof Claim> | null;
     claimStatus?: InstanceType<typeof ClaimStatus> | null;
+    transaction?: InstanceType<typeof Transaction> | null;
 }
 export declare class CreateManyClaimFinancialArgs {
     data: Array<ClaimFinancialCreateManyInput>;
@@ -5192,12 +5250,12 @@ export declare class DeleteManyClaimFinancialArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
 }
 export declare class DeleteOneClaimFinancialArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
 }
 export declare class FindFirstClaimFinancialOrThrowArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimFinancialScalarFieldEnum>;
@@ -5205,7 +5263,7 @@ export declare class FindFirstClaimFinancialOrThrowArgs {
 export declare class FindFirstClaimFinancialArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimFinancialScalarFieldEnum>;
@@ -5213,16 +5271,16 @@ export declare class FindFirstClaimFinancialArgs {
 export declare class FindManyClaimFinancialArgs {
     where?: InstanceType<typeof ClaimFinancialWhereInput>;
     orderBy?: Array<ClaimFinancialOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    cursor?: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ClaimFinancialScalarFieldEnum>;
 }
 export declare class FindUniqueClaimFinancialOrThrowArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
 }
 export declare class FindUniqueClaimFinancialArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
 }
 export declare class UpdateManyClaimFinancialArgs {
     data: InstanceType<typeof ClaimFinancialUpdateManyMutationInput>;
@@ -5230,10 +5288,10 @@ export declare class UpdateManyClaimFinancialArgs {
 }
 export declare class UpdateOneClaimFinancialArgs {
     data: InstanceType<typeof ClaimFinancialUpdateInput>;
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
 }
 export declare class UpsertOneClaimFinancialArgs {
-    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId'>;
+    where: Prisma.AtLeast<ClaimFinancialWhereUniqueInput, 'id' | 'claimStatusId' | 'transactionId'>;
     create: InstanceType<typeof ClaimFinancialCreateInput>;
     update: InstanceType<typeof ClaimFinancialUpdateInput>;
 }
@@ -9468,6 +9526,11 @@ export declare class DocumentCreateNestedOneWithoutTransactionLetterOfInput {
     connectOrCreate?: InstanceType<typeof DocumentCreateOrConnectWithoutTransactionLetterOfInput>;
     connect?: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
 }
+export declare class DocumentCreateNestedOneWithoutTransactionInput {
+    create?: InstanceType<typeof DocumentCreateWithoutTransactionInput>;
+    connectOrCreate?: InstanceType<typeof DocumentCreateOrConnectWithoutTransactionInput>;
+    connect?: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
+}
 export declare class DocumentCreateOrConnectWithoutBookKeepingOrderOfInput {
     where: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
     create: InstanceType<typeof DocumentCreateWithoutBookKeepingOrderOfInput>;
@@ -9496,6 +9559,10 @@ export declare class DocumentCreateOrConnectWithoutTransactionLetterOfInput {
     where: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
     create: InstanceType<typeof DocumentCreateWithoutTransactionLetterOfInput>;
 }
+export declare class DocumentCreateOrConnectWithoutTransactionInput {
+    where: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof DocumentCreateWithoutTransactionInput>;
+}
 export declare class DocumentCreateWithoutBookKeepingOrderOfInput {
     id?: string;
     name: string;
@@ -9511,6 +9578,7 @@ export declare class DocumentCreateWithoutBookKeepingOrderOfInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutTransactionLetterInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentCreateWithoutClaimProgrammInput {
     id?: string;
@@ -9527,6 +9595,7 @@ export declare class DocumentCreateWithoutClaimProgrammInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentCreateWithoutGuaranteeLetterOfInput {
     id?: string;
@@ -9543,6 +9612,7 @@ export declare class DocumentCreateWithoutGuaranteeLetterOfInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentCreateWithoutInvoiceProofInput {
     id?: string;
@@ -9559,6 +9629,7 @@ export declare class DocumentCreateWithoutInvoiceProofInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentCreateWithoutPrintedbyInput {
     id?: string;
@@ -9575,6 +9646,7 @@ export declare class DocumentCreateWithoutPrintedbyInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentCreateWithoutRejectionLetterOfInput {
     id?: string;
@@ -9591,6 +9663,7 @@ export declare class DocumentCreateWithoutRejectionLetterOfInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentCreateWithoutTransactionLetterOfInput {
     id?: string;
@@ -9604,6 +9677,24 @@ export declare class DocumentCreateWithoutTransactionLetterOfInput {
     printedby?: InstanceType<typeof UserCreateNestedManyWithoutDocumentPrintsInput>;
     rejectionLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutRejectionLetterInput>;
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutGuaranteeLetterInput>;
+    bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
+    claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
+    invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
+}
+export declare class DocumentCreateWithoutTransactionInput {
+    id?: string;
+    name: string;
+    path: string;
+    size: number;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    source: keyof typeof DocumentSource;
+    type: keyof typeof DocumentType;
+    printedby?: InstanceType<typeof UserCreateNestedManyWithoutDocumentPrintsInput>;
+    rejectionLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutRejectionLetterInput>;
+    guaranteeLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutGuaranteeLetterInput>;
+    transactionLetterOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
@@ -9624,6 +9715,7 @@ export declare class DocumentCreateInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusCreateNestedOneWithoutBookKeepingOrderInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutDocumentsInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentGroupByArgs {
     where?: InstanceType<typeof DocumentWhereInput>;
@@ -9765,6 +9857,7 @@ export declare class DocumentOrderByWithRelationInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusOrderByWithRelationInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramOrderByWithRelationInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofOrderByWithRelationInput>;
+    transaction?: InstanceType<typeof TransactionOrderByWithRelationInput>;
 }
 export declare class DocumentRelationFilter {
     is?: InstanceType<typeof DocumentWhereInput>;
@@ -9836,6 +9929,7 @@ export declare class DocumentUncheckedCreateWithoutBookKeepingOrderOfInput {
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutGuaranteeLetterInput>;
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentUncheckedCreateWithoutClaimProgrammInput {
     id?: string;
@@ -9852,6 +9946,7 @@ export declare class DocumentUncheckedCreateWithoutClaimProgrammInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentUncheckedCreateWithoutGuaranteeLetterOfInput {
     id?: string;
@@ -9868,6 +9963,7 @@ export declare class DocumentUncheckedCreateWithoutGuaranteeLetterOfInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentUncheckedCreateWithoutInvoiceProofInput {
     id?: string;
@@ -9884,6 +9980,7 @@ export declare class DocumentUncheckedCreateWithoutInvoiceProofInput {
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutGuaranteeLetterInput>;
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentUncheckedCreateWithoutPrintedbyInput {
     id?: string;
@@ -9900,6 +9997,7 @@ export declare class DocumentUncheckedCreateWithoutPrintedbyInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentUncheckedCreateWithoutRejectionLetterOfInput {
     id?: string;
@@ -9916,6 +10014,7 @@ export declare class DocumentUncheckedCreateWithoutRejectionLetterOfInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentUncheckedCreateWithoutTransactionLetterOfInput {
     id?: string;
@@ -9930,6 +10029,24 @@ export declare class DocumentUncheckedCreateWithoutTransactionLetterOfInput {
     printedby?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutDocumentPrintsInput>;
     rejectionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutRejectionLetterInput>;
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutGuaranteeLetterInput>;
+    bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
+    invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
+}
+export declare class DocumentUncheckedCreateWithoutTransactionInput {
+    id?: string;
+    name: string;
+    path: string;
+    size: number;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    source: keyof typeof DocumentSource;
+    type: keyof typeof DocumentType;
+    claimProgramId?: number;
+    printedby?: InstanceType<typeof UserUncheckedCreateNestedManyWithoutDocumentPrintsInput>;
+    rejectionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutRejectionLetterInput>;
+    guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutGuaranteeLetterInput>;
+    transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
 }
@@ -9949,6 +10066,7 @@ export declare class DocumentUncheckedCreateInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutTransactionLetterInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedCreateNestedOneWithoutBookKeepingOrderInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedCreateNestedOneWithoutProofInput>;
 }
 export declare class DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput {
     create?: Array<DocumentCreateWithoutClaimProgrammInput>;
@@ -10022,6 +10140,7 @@ export declare class DocumentUncheckedUpdateWithoutBookKeepingOrderOfInput {
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutGuaranteeLetterNestedInput>;
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUncheckedUpdateWithoutClaimProgrammInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10038,6 +10157,7 @@ export declare class DocumentUncheckedUpdateWithoutClaimProgrammInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUncheckedUpdateWithoutGuaranteeLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10054,6 +10174,7 @@ export declare class DocumentUncheckedUpdateWithoutGuaranteeLetterOfInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUncheckedUpdateWithoutInvoiceProofInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10070,6 +10191,7 @@ export declare class DocumentUncheckedUpdateWithoutInvoiceProofInput {
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutGuaranteeLetterNestedInput>;
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUncheckedUpdateWithoutPrintedbyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10086,6 +10208,7 @@ export declare class DocumentUncheckedUpdateWithoutPrintedbyInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUncheckedUpdateWithoutRejectionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10102,6 +10225,7 @@ export declare class DocumentUncheckedUpdateWithoutRejectionLetterOfInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUncheckedUpdateWithoutTransactionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10116,6 +10240,24 @@ export declare class DocumentUncheckedUpdateWithoutTransactionLetterOfInput {
     printedby?: InstanceType<typeof UserUncheckedUpdateManyWithoutDocumentPrintsNestedInput>;
     rejectionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutRejectionLetterNestedInput>;
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutGuaranteeLetterNestedInput>;
+    bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
+    invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
+}
+export declare class DocumentUncheckedUpdateWithoutTransactionInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof EnumDocumentSourceFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumDocumentTypeFieldUpdateOperationsInput>;
+    claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    printedby?: InstanceType<typeof UserUncheckedUpdateManyWithoutDocumentPrintsNestedInput>;
+    rejectionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutRejectionLetterNestedInput>;
+    guaranteeLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutGuaranteeLetterNestedInput>;
+    transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
 }
@@ -10135,6 +10277,7 @@ export declare class DocumentUncheckedUpdateInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUncheckedUpdateOneWithoutBookKeepingOrderNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUncheckedUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpdateManyMutationInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10222,6 +10365,15 @@ export declare class DocumentUpdateOneWithoutTransactionLetterOfNestedInput {
     connect?: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof DocumentUpdateToOneWithWhereWithoutTransactionLetterOfInput>;
 }
+export declare class DocumentUpdateOneWithoutTransactionNestedInput {
+    create?: InstanceType<typeof DocumentCreateWithoutTransactionInput>;
+    connectOrCreate?: InstanceType<typeof DocumentCreateOrConnectWithoutTransactionInput>;
+    upsert?: InstanceType<typeof DocumentUpsertWithoutTransactionInput>;
+    disconnect?: InstanceType<typeof DocumentWhereInput>;
+    delete?: InstanceType<typeof DocumentWhereInput>;
+    connect?: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
+    update?: InstanceType<typeof DocumentUpdateToOneWithWhereWithoutTransactionInput>;
+}
 export declare class DocumentUpdateToOneWithWhereWithoutBookKeepingOrderOfInput {
     where?: InstanceType<typeof DocumentWhereInput>;
     data: InstanceType<typeof DocumentUpdateWithoutBookKeepingOrderOfInput>;
@@ -10241,6 +10393,10 @@ export declare class DocumentUpdateToOneWithWhereWithoutRejectionLetterOfInput {
 export declare class DocumentUpdateToOneWithWhereWithoutTransactionLetterOfInput {
     where?: InstanceType<typeof DocumentWhereInput>;
     data: InstanceType<typeof DocumentUpdateWithoutTransactionLetterOfInput>;
+}
+export declare class DocumentUpdateToOneWithWhereWithoutTransactionInput {
+    where?: InstanceType<typeof DocumentWhereInput>;
+    data: InstanceType<typeof DocumentUpdateWithoutTransactionInput>;
 }
 export declare class DocumentUpdateWithWhereUniqueWithoutClaimProgrammInput {
     where: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
@@ -10265,6 +10421,7 @@ export declare class DocumentUpdateWithoutBookKeepingOrderOfInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutTransactionLetterNestedInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpdateWithoutClaimProgrammInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10281,6 +10438,7 @@ export declare class DocumentUpdateWithoutClaimProgrammInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpdateWithoutGuaranteeLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10297,6 +10455,7 @@ export declare class DocumentUpdateWithoutGuaranteeLetterOfInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpdateWithoutInvoiceProofInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10313,6 +10472,7 @@ export declare class DocumentUpdateWithoutInvoiceProofInput {
     transactionLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpdateWithoutPrintedbyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10329,6 +10489,7 @@ export declare class DocumentUpdateWithoutPrintedbyInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpdateWithoutRejectionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10345,6 +10506,7 @@ export declare class DocumentUpdateWithoutRejectionLetterOfInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpdateWithoutTransactionLetterOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -10358,6 +10520,24 @@ export declare class DocumentUpdateWithoutTransactionLetterOfInput {
     printedby?: InstanceType<typeof UserUpdateManyWithoutDocumentPrintsNestedInput>;
     rejectionLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutRejectionLetterNestedInput>;
     guaranteeLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutGuaranteeLetterNestedInput>;
+    bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
+    claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
+    invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
+}
+export declare class DocumentUpdateWithoutTransactionInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    size?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof EnumDocumentSourceFieldUpdateOperationsInput>;
+    type?: InstanceType<typeof EnumDocumentTypeFieldUpdateOperationsInput>;
+    printedby?: InstanceType<typeof UserUpdateManyWithoutDocumentPrintsNestedInput>;
+    rejectionLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutRejectionLetterNestedInput>;
+    guaranteeLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutGuaranteeLetterNestedInput>;
+    transactionLetterOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutTransactionLetterNestedInput>;
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
@@ -10378,6 +10558,7 @@ export declare class DocumentUpdateInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusUpdateOneWithoutBookKeepingOrderNestedInput>;
     claimProgramm?: InstanceType<typeof ClaimProgramUpdateOneWithoutDocumentsNestedInput>;
     invoiceProof?: InstanceType<typeof InvoiceProofUpdateOneWithoutDocumentProofNestedInput>;
+    transaction?: InstanceType<typeof TransactionUpdateOneWithoutProofNestedInput>;
 }
 export declare class DocumentUpsertWithWhereUniqueWithoutClaimProgrammInput {
     where: Prisma.AtLeast<DocumentWhereUniqueInput, 'id'>;
@@ -10414,6 +10595,11 @@ export declare class DocumentUpsertWithoutTransactionLetterOfInput {
     create: InstanceType<typeof DocumentCreateWithoutTransactionLetterOfInput>;
     where?: InstanceType<typeof DocumentWhereInput>;
 }
+export declare class DocumentUpsertWithoutTransactionInput {
+    update: InstanceType<typeof DocumentUpdateWithoutTransactionInput>;
+    create: InstanceType<typeof DocumentCreateWithoutTransactionInput>;
+    where?: InstanceType<typeof DocumentWhereInput>;
+}
 export declare class DocumentWhereUniqueInput {
     id?: string;
     AND?: Array<DocumentWhereInput>;
@@ -10434,6 +10620,7 @@ export declare class DocumentWhereUniqueInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
     claimProgramm?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
     invoiceProof?: InstanceType<typeof InvoiceProofNullableRelationFilter>;
+    transaction?: InstanceType<typeof TransactionNullableRelationFilter>;
 }
 export declare class DocumentWhereInput {
     AND?: Array<DocumentWhereInput>;
@@ -10455,6 +10642,7 @@ export declare class DocumentWhereInput {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatusNullableRelationFilter>;
     claimProgramm?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
     invoiceProof?: InstanceType<typeof InvoiceProofNullableRelationFilter>;
+    transaction?: InstanceType<typeof TransactionNullableRelationFilter>;
 }
 export declare class Document {
     id: string;
@@ -10473,6 +10661,7 @@ export declare class Document {
     bookKeepingOrderOf?: InstanceType<typeof ClaimStatus> | null;
     claimProgramm?: InstanceType<typeof ClaimProgram> | null;
     invoiceProof?: InstanceType<typeof InvoiceProof> | null;
+    transaction?: InstanceType<typeof Transaction> | null;
     _count?: InstanceType<typeof DocumentCount>;
 }
 export declare class FindFirstDocumentOrThrowArgs {
@@ -18809,7 +18998,7 @@ export declare class TagCountOrderByAggregateInput {
     updatedAt?: keyof typeof SortOrder;
 }
 export declare class TagCount {
-    Claims?: number;
+    claims?: number;
 }
 export declare class TagCreateManyInput {
     id?: number;
@@ -18841,7 +19030,7 @@ export declare class TagCreateInput {
     isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    Claims?: InstanceType<typeof ClaimCreateNestedManyWithoutTagsInput>;
+    claims?: InstanceType<typeof ClaimCreateNestedManyWithoutTagsInput>;
 }
 export declare class TagGroupByArgs {
     where?: InstanceType<typeof TagWhereInput>;
@@ -18945,7 +19134,7 @@ export declare class TagOrderByWithRelationInput {
     isException?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
-    Claims?: InstanceType<typeof ClaimOrderByRelationAggregateInput>;
+    claims?: InstanceType<typeof ClaimOrderByRelationAggregateInput>;
 }
 export declare class TagScalarWhereWithAggregatesInput {
     AND?: Array<TagScalarWhereWithAggregatesInput>;
@@ -18998,7 +19187,7 @@ export declare class TagUncheckedCreateInput {
     isException?: boolean;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    Claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutTagsInput>;
+    claims?: InstanceType<typeof ClaimUncheckedCreateNestedManyWithoutTagsInput>;
 }
 export declare class TagUncheckedUpdateManyWithoutClaimsNestedInput {
     create?: Array<TagCreateWithoutClaimsInput>;
@@ -19043,7 +19232,7 @@ export declare class TagUncheckedUpdateInput {
     isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    Claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutTagsNestedInput>;
+    claims?: InstanceType<typeof ClaimUncheckedUpdateManyWithoutTagsNestedInput>;
 }
 export declare class TagUpdateManyMutationInput {
     name?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -19085,7 +19274,7 @@ export declare class TagUpdateInput {
     isException?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    Claims?: InstanceType<typeof ClaimUpdateManyWithoutTagsNestedInput>;
+    claims?: InstanceType<typeof ClaimUpdateManyWithoutTagsNestedInput>;
 }
 export declare class TagUpsertWithWhereUniqueWithoutClaimsInput {
     where: Prisma.AtLeast<TagWhereUniqueInput, 'id'>;
@@ -19102,7 +19291,7 @@ export declare class TagWhereUniqueInput {
     isException?: InstanceType<typeof BoolFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    Claims?: InstanceType<typeof ClaimListRelationFilter>;
+    claims?: InstanceType<typeof ClaimListRelationFilter>;
 }
 export declare class TagWhereInput {
     AND?: Array<TagWhereInput>;
@@ -19114,7 +19303,7 @@ export declare class TagWhereInput {
     isException?: InstanceType<typeof BoolFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    Claims?: InstanceType<typeof ClaimListRelationFilter>;
+    claims?: InstanceType<typeof ClaimListRelationFilter>;
 }
 export declare class Tag {
     id: number;
@@ -19123,7 +19312,7 @@ export declare class Tag {
     isException: boolean;
     createdAt: Date;
     updatedAt: Date;
-    Claims?: Array<Claim>;
+    claims?: Array<Claim>;
     _count?: InstanceType<typeof TagCount>;
 }
 export declare class UpdateManyTagArgs {
@@ -19157,12 +19346,12 @@ export declare class DeleteManyTransactionArgs {
     where?: InstanceType<typeof TransactionWhereInput>;
 }
 export declare class DeleteOneTransactionArgs {
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
 }
 export declare class FindFirstTransactionOrThrowArgs {
     where?: InstanceType<typeof TransactionWhereInput>;
     orderBy?: Array<TransactionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof TransactionScalarFieldEnum>;
@@ -19170,7 +19359,7 @@ export declare class FindFirstTransactionOrThrowArgs {
 export declare class FindFirstTransactionArgs {
     where?: InstanceType<typeof TransactionWhereInput>;
     orderBy?: Array<TransactionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof TransactionScalarFieldEnum>;
@@ -19178,21 +19367,21 @@ export declare class FindFirstTransactionArgs {
 export declare class FindManyTransactionArgs {
     where?: InstanceType<typeof TransactionWhereInput>;
     orderBy?: Array<TransactionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof TransactionScalarFieldEnum>;
 }
 export declare class FindUniqueTransactionOrThrowArgs {
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
 }
 export declare class FindUniqueTransactionArgs {
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
 }
 export declare class TransactionAggregateArgs {
     where?: InstanceType<typeof TransactionWhereInput>;
     orderBy?: Array<TransactionOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    cursor?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof TransactionCountAggregateInput>;
@@ -19223,6 +19412,7 @@ export declare class TransactionCountAggregateInput {
     description?: true;
     createdAt?: true;
     accountId?: true;
+    proofId?: true;
     _all?: true;
 }
 export declare class TransactionCountAggregate {
@@ -19232,6 +19422,7 @@ export declare class TransactionCountAggregate {
     description: number;
     createdAt: number;
     accountId: number;
+    proofId: number;
     _all: number;
 }
 export declare class TransactionCountOrderByAggregateInput {
@@ -19241,6 +19432,7 @@ export declare class TransactionCountOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     accountId?: keyof typeof SortOrder;
+    proofId?: keyof typeof SortOrder;
 }
 export declare class TransactionCreateManyAccountInputEnvelope {
     data: Array<TransactionCreateManyAccountInput>;
@@ -19252,6 +19444,7 @@ export declare class TransactionCreateManyAccountInput {
     transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
+    proofId?: string;
 }
 export declare class TransactionCreateManyInput {
     id?: number;
@@ -19260,22 +19453,59 @@ export declare class TransactionCreateManyInput {
     description?: string;
     createdAt?: Date | string;
     accountId: number;
+    proofId?: string;
 }
 export declare class TransactionCreateNestedManyWithoutAccountInput {
     create?: Array<TransactionCreateWithoutAccountInput>;
     connectOrCreate?: Array<TransactionCreateOrConnectWithoutAccountInput>;
     createMany?: InstanceType<typeof TransactionCreateManyAccountInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+}
+export declare class TransactionCreateNestedOneWithoutClaimFinancialInput {
+    create?: InstanceType<typeof TransactionCreateWithoutClaimFinancialInput>;
+    connectOrCreate?: InstanceType<typeof TransactionCreateOrConnectWithoutClaimFinancialInput>;
+    connect?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
+}
+export declare class TransactionCreateNestedOneWithoutProofInput {
+    create?: InstanceType<typeof TransactionCreateWithoutProofInput>;
+    connectOrCreate?: InstanceType<typeof TransactionCreateOrConnectWithoutProofInput>;
+    connect?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
 }
 export declare class TransactionCreateOrConnectWithoutAccountInput {
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     create: InstanceType<typeof TransactionCreateWithoutAccountInput>;
+}
+export declare class TransactionCreateOrConnectWithoutClaimFinancialInput {
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
+    create: InstanceType<typeof TransactionCreateWithoutClaimFinancialInput>;
+}
+export declare class TransactionCreateOrConnectWithoutProofInput {
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
+    create: InstanceType<typeof TransactionCreateWithoutProofInput>;
 }
 export declare class TransactionCreateWithoutAccountInput {
     amount: number;
     transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
+    proof?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutTransactionInput>;
+}
+export declare class TransactionCreateWithoutClaimFinancialInput {
+    amount: number;
+    transactionType: keyof typeof TransactionType;
+    description?: string;
+    createdAt?: Date | string;
+    account: InstanceType<typeof AccountCreateNestedOneWithoutTransactionsInput>;
+    proof?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionInput>;
+}
+export declare class TransactionCreateWithoutProofInput {
+    amount: number;
+    transactionType: keyof typeof TransactionType;
+    description?: string;
+    createdAt?: Date | string;
+    account: InstanceType<typeof AccountCreateNestedOneWithoutTransactionsInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutTransactionInput>;
 }
 export declare class TransactionCreateInput {
     amount: number;
@@ -19283,6 +19513,8 @@ export declare class TransactionCreateInput {
     description?: string;
     createdAt?: Date | string;
     account: InstanceType<typeof AccountCreateNestedOneWithoutTransactionsInput>;
+    proof?: InstanceType<typeof DocumentCreateNestedOneWithoutTransactionInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialCreateNestedOneWithoutTransactionInput>;
 }
 export declare class TransactionGroupByArgs {
     where?: InstanceType<typeof TransactionWhereInput>;
@@ -19304,6 +19536,7 @@ export declare class TransactionGroupBy {
     description?: string;
     createdAt: Date | string;
     accountId: number;
+    proofId?: string;
     _count?: InstanceType<typeof TransactionCountAggregate>;
     _avg?: InstanceType<typeof TransactionAvgAggregate>;
     _sum?: InstanceType<typeof TransactionSumAggregate>;
@@ -19322,6 +19555,7 @@ export declare class TransactionMaxAggregateInput {
     description?: true;
     createdAt?: true;
     accountId?: true;
+    proofId?: true;
 }
 export declare class TransactionMaxAggregate {
     id?: number;
@@ -19330,6 +19564,7 @@ export declare class TransactionMaxAggregate {
     description?: string;
     createdAt?: Date | string;
     accountId?: number;
+    proofId?: string;
 }
 export declare class TransactionMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -19338,6 +19573,7 @@ export declare class TransactionMaxOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     accountId?: keyof typeof SortOrder;
+    proofId?: keyof typeof SortOrder;
 }
 export declare class TransactionMinAggregateInput {
     id?: true;
@@ -19346,6 +19582,7 @@ export declare class TransactionMinAggregateInput {
     description?: true;
     createdAt?: true;
     accountId?: true;
+    proofId?: true;
 }
 export declare class TransactionMinAggregate {
     id?: number;
@@ -19354,6 +19591,7 @@ export declare class TransactionMinAggregate {
     description?: string;
     createdAt?: Date | string;
     accountId?: number;
+    proofId?: string;
 }
 export declare class TransactionMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -19362,6 +19600,11 @@ export declare class TransactionMinOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     accountId?: keyof typeof SortOrder;
+    proofId?: keyof typeof SortOrder;
+}
+export declare class TransactionNullableRelationFilter {
+    is?: InstanceType<typeof TransactionWhereInput>;
+    isNot?: InstanceType<typeof TransactionWhereInput>;
 }
 export declare class TransactionOrderByRelationAggregateInput {
     _count?: keyof typeof SortOrder;
@@ -19373,6 +19616,7 @@ export declare class TransactionOrderByWithAggregationInput {
     description?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     accountId?: keyof typeof SortOrder;
+    proofId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof TransactionCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof TransactionAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof TransactionMaxOrderByAggregateInput>;
@@ -19386,7 +19630,10 @@ export declare class TransactionOrderByWithRelationInput {
     description?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     accountId?: keyof typeof SortOrder;
+    proofId?: InstanceType<typeof SortOrderInput>;
     account?: InstanceType<typeof AccountOrderByWithRelationInput>;
+    proof?: InstanceType<typeof DocumentOrderByWithRelationInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialOrderByWithRelationInput>;
 }
 export declare class TransactionScalarWhereWithAggregatesInput {
     AND?: Array<TransactionScalarWhereWithAggregatesInput>;
@@ -19398,6 +19645,7 @@ export declare class TransactionScalarWhereWithAggregatesInput {
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     accountId?: InstanceType<typeof IntWithAggregatesFilter>;
+    proofId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
 }
 export declare class TransactionScalarWhereInput {
     AND?: Array<TransactionScalarWhereInput>;
@@ -19409,6 +19657,7 @@ export declare class TransactionScalarWhereInput {
     description?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     accountId?: InstanceType<typeof IntFilter>;
+    proofId?: InstanceType<typeof StringNullableFilter>;
 }
 export declare class TransactionSumAggregateInput {
     id?: true;
@@ -19429,7 +19678,12 @@ export declare class TransactionUncheckedCreateNestedManyWithoutAccountInput {
     create?: Array<TransactionCreateWithoutAccountInput>;
     connectOrCreate?: Array<TransactionCreateOrConnectWithoutAccountInput>;
     createMany?: InstanceType<typeof TransactionCreateManyAccountInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+}
+export declare class TransactionUncheckedCreateNestedOneWithoutProofInput {
+    create?: InstanceType<typeof TransactionCreateWithoutProofInput>;
+    connectOrCreate?: InstanceType<typeof TransactionCreateOrConnectWithoutProofInput>;
+    connect?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
 }
 export declare class TransactionUncheckedCreateWithoutAccountInput {
     id?: number;
@@ -19437,6 +19691,26 @@ export declare class TransactionUncheckedCreateWithoutAccountInput {
     transactionType: keyof typeof TransactionType;
     description?: string;
     createdAt?: Date | string;
+    proofId?: string;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedCreateNestedOneWithoutTransactionInput>;
+}
+export declare class TransactionUncheckedCreateWithoutClaimFinancialInput {
+    id?: number;
+    amount: number;
+    transactionType: keyof typeof TransactionType;
+    description?: string;
+    createdAt?: Date | string;
+    accountId: number;
+    proofId?: string;
+}
+export declare class TransactionUncheckedCreateWithoutProofInput {
+    id?: number;
+    amount: number;
+    transactionType: keyof typeof TransactionType;
+    description?: string;
+    createdAt?: Date | string;
+    accountId: number;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedCreateNestedOneWithoutTransactionInput>;
 }
 export declare class TransactionUncheckedCreateInput {
     id?: number;
@@ -19445,16 +19719,18 @@ export declare class TransactionUncheckedCreateInput {
     description?: string;
     createdAt?: Date | string;
     accountId: number;
+    proofId?: string;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedCreateNestedOneWithoutTransactionInput>;
 }
 export declare class TransactionUncheckedUpdateManyWithoutAccountNestedInput {
     create?: Array<TransactionCreateWithoutAccountInput>;
     connectOrCreate?: Array<TransactionCreateOrConnectWithoutAccountInput>;
     upsert?: Array<TransactionUpsertWithWhereUniqueWithoutAccountInput>;
     createMany?: InstanceType<typeof TransactionCreateManyAccountInputEnvelope>;
-    set?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
+    set?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+    disconnect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+    delete?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
     update?: Array<TransactionUpdateWithWhereUniqueWithoutAccountInput>;
     updateMany?: Array<TransactionUpdateManyWithWhereWithoutAccountInput>;
     deleteMany?: Array<TransactionScalarWhereInput>;
@@ -19465,6 +19741,7 @@ export declare class TransactionUncheckedUpdateManyWithoutAccountInput {
     transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    proofId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class TransactionUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -19473,6 +19750,16 @@ export declare class TransactionUncheckedUpdateManyInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     accountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    proofId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+}
+export declare class TransactionUncheckedUpdateOneWithoutProofNestedInput {
+    create?: InstanceType<typeof TransactionCreateWithoutProofInput>;
+    connectOrCreate?: InstanceType<typeof TransactionCreateOrConnectWithoutProofInput>;
+    upsert?: InstanceType<typeof TransactionUpsertWithoutProofInput>;
+    disconnect?: InstanceType<typeof TransactionWhereInput>;
+    delete?: InstanceType<typeof TransactionWhereInput>;
+    connect?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
+    update?: InstanceType<typeof TransactionUpdateToOneWithWhereWithoutProofInput>;
 }
 export declare class TransactionUncheckedUpdateWithoutAccountInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -19480,6 +19767,26 @@ export declare class TransactionUncheckedUpdateWithoutAccountInput {
     transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    proofId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedUpdateOneWithoutTransactionNestedInput>;
+}
+export declare class TransactionUncheckedUpdateWithoutClaimFinancialInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    accountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    proofId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+}
+export declare class TransactionUncheckedUpdateWithoutProofInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    accountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedUpdateOneWithoutTransactionNestedInput>;
 }
 export declare class TransactionUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -19488,6 +19795,8 @@ export declare class TransactionUncheckedUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     accountId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    proofId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUncheckedUpdateOneWithoutTransactionNestedInput>;
 }
 export declare class TransactionUpdateManyMutationInput {
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
@@ -19504,16 +19813,42 @@ export declare class TransactionUpdateManyWithoutAccountNestedInput {
     connectOrCreate?: Array<TransactionCreateOrConnectWithoutAccountInput>;
     upsert?: Array<TransactionUpsertWithWhereUniqueWithoutAccountInput>;
     createMany?: InstanceType<typeof TransactionCreateManyAccountInputEnvelope>;
-    set?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>>;
+    set?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+    disconnect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+    delete?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
+    connect?: Array<Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>>;
     update?: Array<TransactionUpdateWithWhereUniqueWithoutAccountInput>;
     updateMany?: Array<TransactionUpdateManyWithWhereWithoutAccountInput>;
     deleteMany?: Array<TransactionScalarWhereInput>;
 }
+export declare class TransactionUpdateOneWithoutClaimFinancialNestedInput {
+    create?: InstanceType<typeof TransactionCreateWithoutClaimFinancialInput>;
+    connectOrCreate?: InstanceType<typeof TransactionCreateOrConnectWithoutClaimFinancialInput>;
+    upsert?: InstanceType<typeof TransactionUpsertWithoutClaimFinancialInput>;
+    disconnect?: InstanceType<typeof TransactionWhereInput>;
+    delete?: InstanceType<typeof TransactionWhereInput>;
+    connect?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
+    update?: InstanceType<typeof TransactionUpdateToOneWithWhereWithoutClaimFinancialInput>;
+}
+export declare class TransactionUpdateOneWithoutProofNestedInput {
+    create?: InstanceType<typeof TransactionCreateWithoutProofInput>;
+    connectOrCreate?: InstanceType<typeof TransactionCreateOrConnectWithoutProofInput>;
+    upsert?: InstanceType<typeof TransactionUpsertWithoutProofInput>;
+    disconnect?: InstanceType<typeof TransactionWhereInput>;
+    delete?: InstanceType<typeof TransactionWhereInput>;
+    connect?: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
+    update?: InstanceType<typeof TransactionUpdateToOneWithWhereWithoutProofInput>;
+}
+export declare class TransactionUpdateToOneWithWhereWithoutClaimFinancialInput {
+    where?: InstanceType<typeof TransactionWhereInput>;
+    data: InstanceType<typeof TransactionUpdateWithoutClaimFinancialInput>;
+}
+export declare class TransactionUpdateToOneWithWhereWithoutProofInput {
+    where?: InstanceType<typeof TransactionWhereInput>;
+    data: InstanceType<typeof TransactionUpdateWithoutProofInput>;
+}
 export declare class TransactionUpdateWithWhereUniqueWithoutAccountInput {
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     data: InstanceType<typeof TransactionUpdateWithoutAccountInput>;
 }
 export declare class TransactionUpdateWithoutAccountInput {
@@ -19521,6 +19856,24 @@ export declare class TransactionUpdateWithoutAccountInput {
     transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    proof?: InstanceType<typeof DocumentUpdateOneWithoutTransactionNestedInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUpdateOneWithoutTransactionNestedInput>;
+}
+export declare class TransactionUpdateWithoutClaimFinancialInput {
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    account?: InstanceType<typeof AccountUpdateOneRequiredWithoutTransactionsNestedInput>;
+    proof?: InstanceType<typeof DocumentUpdateOneWithoutTransactionNestedInput>;
+}
+export declare class TransactionUpdateWithoutProofInput {
+    amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    transactionType?: InstanceType<typeof EnumTransactionTypeFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    account?: InstanceType<typeof AccountUpdateOneRequiredWithoutTransactionsNestedInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUpdateOneWithoutTransactionNestedInput>;
 }
 export declare class TransactionUpdateInput {
     amount?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
@@ -19528,14 +19881,27 @@ export declare class TransactionUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     account?: InstanceType<typeof AccountUpdateOneRequiredWithoutTransactionsNestedInput>;
+    proof?: InstanceType<typeof DocumentUpdateOneWithoutTransactionNestedInput>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialUpdateOneWithoutTransactionNestedInput>;
 }
 export declare class TransactionUpsertWithWhereUniqueWithoutAccountInput {
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     update: InstanceType<typeof TransactionUpdateWithoutAccountInput>;
     create: InstanceType<typeof TransactionCreateWithoutAccountInput>;
 }
+export declare class TransactionUpsertWithoutClaimFinancialInput {
+    update: InstanceType<typeof TransactionUpdateWithoutClaimFinancialInput>;
+    create: InstanceType<typeof TransactionCreateWithoutClaimFinancialInput>;
+    where?: InstanceType<typeof TransactionWhereInput>;
+}
+export declare class TransactionUpsertWithoutProofInput {
+    update: InstanceType<typeof TransactionUpdateWithoutProofInput>;
+    create: InstanceType<typeof TransactionCreateWithoutProofInput>;
+    where?: InstanceType<typeof TransactionWhereInput>;
+}
 export declare class TransactionWhereUniqueInput {
     id?: number;
+    proofId?: string;
     AND?: Array<TransactionWhereInput>;
     OR?: Array<TransactionWhereInput>;
     NOT?: Array<TransactionWhereInput>;
@@ -19545,6 +19911,8 @@ export declare class TransactionWhereUniqueInput {
     createdAt?: InstanceType<typeof DateTimeFilter>;
     accountId?: InstanceType<typeof IntFilter>;
     account?: InstanceType<typeof AccountRelationFilter>;
+    proof?: InstanceType<typeof DocumentNullableRelationFilter>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialNullableRelationFilter>;
 }
 export declare class TransactionWhereInput {
     AND?: Array<TransactionWhereInput>;
@@ -19556,7 +19924,10 @@ export declare class TransactionWhereInput {
     description?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     accountId?: InstanceType<typeof IntFilter>;
+    proofId?: InstanceType<typeof StringNullableFilter>;
     account?: InstanceType<typeof AccountRelationFilter>;
+    proof?: InstanceType<typeof DocumentNullableRelationFilter>;
+    claimFinancial?: InstanceType<typeof ClaimFinancialNullableRelationFilter>;
 }
 export declare class Transaction {
     id: number;
@@ -19565,7 +19936,10 @@ export declare class Transaction {
     description: string | null;
     createdAt: Date;
     accountId: number;
+    proofId: string | null;
     account?: InstanceType<typeof Account>;
+    proof?: InstanceType<typeof Document> | null;
+    claimFinancial?: InstanceType<typeof ClaimFinancial> | null;
 }
 export declare class UpdateManyTransactionArgs {
     data: InstanceType<typeof TransactionUpdateManyMutationInput>;
@@ -19573,10 +19947,10 @@ export declare class UpdateManyTransactionArgs {
 }
 export declare class UpdateOneTransactionArgs {
     data: InstanceType<typeof TransactionUpdateInput>;
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
 }
 export declare class UpsertOneTransactionArgs {
-    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id'>;
+    where: Prisma.AtLeast<TransactionWhereUniqueInput, 'id' | 'proofId'>;
     create: InstanceType<typeof TransactionCreateInput>;
     update: InstanceType<typeof TransactionUpdateInput>;
 }
