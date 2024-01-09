@@ -1,4 +1,11 @@
-import { CanActivate, ExecutionContext, HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  HttpException,
+  HttpStatus,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { GqlExecutionContext } from '@nestjs/graphql';
@@ -17,10 +24,10 @@ export class PermissionGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const requiredPermission = this.reflector.getAllAndOverride<Permission>(PERMISSION, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    const requiredPermission = this.reflector.getAllAndOverride<Permission>(
+      PERMISSION,
+      [context.getHandler(), context.getClass()],
+    );
     const gqlCtx = GqlExecutionContext.create(context);
     const req = gqlCtx.getContext().req;
     const user = req['user'];
@@ -29,16 +36,18 @@ export class PermissionGuard implements CanActivate {
       where: { id: user.userId },
       include: {
         role: {
-          include: { rolePermissions: true }
-        }
-      }
-    })
-    
-    const permissions = selectedUser.role.rolePermissions.map(rolePermission => rolePermission.permission);
+          include: { rolePermissions: true },
+        },
+      },
+    });
+
+    const permissions = selectedUser.role.rolePermissions.map(
+      (rolePermission) => rolePermission.permission,
+    );
     const isAllowed = permissions.includes(requiredPermission);
 
     if (!isAllowed) {
-      throw new IGraphQLError({ code: 210001 })
+      throw new IGraphQLError({ code: 210001 });
     }
     return true;
   }

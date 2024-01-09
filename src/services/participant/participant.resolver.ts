@@ -30,13 +30,13 @@ interface ParticipantSelect {
   select: Prisma.ParticipantSelect;
 }
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Resolver(() => Participant)
 export class ParticipantResolver {
   constructor(private readonly participantController: ParticipantController) {}
 
-  @RequiredPermission(Permission.CREATE_PARTICIPANT)
-  @UseGuards(PermissionGuard)
+  // @RequiredPermission(Permission.CREATE_PARTICIPANT)
+  // @UseGuards(PermissionGuard)
   @Mutation(() => Participant, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',

@@ -10,7 +10,6 @@ export class ParticipantService {
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
     try {
-      this.logger.debug(participantCreateArgs);
       return await this.prisma.participant.create(participantCreateArgs);
     } catch (err) {
       this.logger.error(err);

@@ -69,12 +69,18 @@ export class ParticipantController {
         }),
       ]);
 
-      //3 Extract program IDs from programFindMany
-      const programIds = programFindMany.map((program) => program.id);
+      // Initialize programs if it's undefined
+      if (!participantCreateArgs.data.programParticipation.create.programs) {
+        participantCreateArgs.data.programParticipation.create.programs = {};
+      }
+      // Create an array of objects with "id" field
+      const programIdsArray = programFindMany.map((program) => ({
+        id: program.id,
+      }));
 
-      //4. add program ids to connect
+      // Add program IDs to connect and insert the programFindFirst ID at the beginning
       participantCreateArgs.data.programParticipation.create.programs.connect =
-        [{ id: programFindFirst.id, ...programIds }];
+        [...programIdsArray, { id: programFindFirst.id }];
     }
 
     return await this.participantService.createOne(participantCreateArgs);

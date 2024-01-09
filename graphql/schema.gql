@@ -52,14 +52,6 @@ type Account {
   _count: AccountCount!
 }
 
-type AggregateAccount {
-  _count: AccountCountAggregate
-  _avg: AccountAvgAggregate
-  _sum: AccountSumAggregate
-  _min: AccountMinAggregate
-  _max: AccountMaxAggregate
-}
-
 type AddressAvgAggregate {
   id: Float
   subdistrictId: Float
@@ -2203,21 +2195,6 @@ type Query {
   participantExport: String!
 
   """Deskripsinya ada disini loh"""
-  accountFindOne(where: AccountWhereUniqueInput!): Account
-
-  """Deskripsinya ada disini loh"""
-  accountFindMany(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, distinct: [AccountScalarFieldEnum!]): [Account!]
-
-  """Deskripsinya ada disini loh"""
-  accountFindFirst(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, distinct: [AccountScalarFieldEnum!]): Account
-
-  """Deskripsinya ada disini loh"""
-  accountAggregate(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, _count: AccountCountAggregateInput, _avg: AccountAvgAggregateInput, _sum: AccountSumAggregateInput, _min: AccountMinAggregateInput, _max: AccountMaxAggregateInput): AggregateAccount
-
-  """Deskripsinya ada disini loh"""
-  accountCount(where: AccountWhereInput, orderBy: [AccountOrderByWithRelationInput!], cursor: AccountWhereUniqueInput, take: Int, skip: Int, distinct: [AccountScalarFieldEnum!]): Float
-
-  """Deskripsinya ada disini loh"""
   roleFindOne(where: RoleWhereUniqueInput!): Role
 
   """Deskripsinya ada disini loh"""
@@ -4219,52 +4196,6 @@ enum ParticipantScalarFieldEnum {
   programParticipationId
 }
 
-input AccountWhereUniqueInput {
-  id: Int
-  AND: [AccountWhereInput!]
-  OR: [AccountWhereInput!]
-  NOT: [AccountWhereInput!]
-  currentBalance: FloatFilter
-  currentBalanceLastUpdate: DateTimeNullableFilter
-  transactions: TransactionListRelationFilter
-  programParticipation: ProgramParticipationListRelationFilter
-}
-
-enum AccountScalarFieldEnum {
-  id
-  currentBalance
-  currentBalanceLastUpdate
-}
-
-input AccountCountAggregateInput {
-  id: Boolean
-  currentBalance: Boolean
-  currentBalanceLastUpdate: Boolean
-  _all: Boolean
-}
-
-input AccountAvgAggregateInput {
-  id: Boolean
-  currentBalance: Boolean
-}
-
-input AccountSumAggregateInput {
-  id: Boolean
-  currentBalance: Boolean
-}
-
-input AccountMinAggregateInput {
-  id: Boolean
-  currentBalance: Boolean
-  currentBalanceLastUpdate: Boolean
-}
-
-input AccountMaxAggregateInput {
-  id: Boolean
-  currentBalance: Boolean
-  currentBalanceLastUpdate: Boolean
-}
-
 input RoleWhereUniqueInput {
   id: Int
   AND: [RoleWhereInput!]
@@ -4510,24 +4441,6 @@ type Mutation {
 
   """Import participant data from xlsx file"""
   participantImport(file: Upload): Boolean
-
-  """Deskripsinya ada disini loh"""
-  accountCreateOne(data: AccountCreateInput!): Account
-
-  """Deskripsinya ada disini loh"""
-  accountCreateMany(data: [AccountCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
-
-  """Deskripsinya ada disini loh"""
-  accountUpdateOne(data: AccountUpdateInput!, where: AccountWhereUniqueInput!): Account
-
-  """Deskripsinya ada disini loh"""
-  accountUpdateMany(data: AccountUpdateManyMutationInput!, where: AccountWhereInput): Account
-
-  """Deskripsinya ada disini loh"""
-  accountDelete(where: AccountWhereUniqueInput!): Boolean!
-
-  """Deskripsinya ada disini loh"""
-  accountDeleteMany(where: AccountWhereInput): Boolean!
 
   """Deskripsinya ada disini loh"""
   roleCreateOne(data: RoleCreateInput!): Role
@@ -8292,208 +8205,6 @@ input ParticipantUpdateInput {
   contactInfos: ContactInfoUpdateManyWithoutParticipantNestedInput
   programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
   participant: ParticipantUpdateManyWithoutRelationNestedInput
-}
-
-input AccountCreateInput {
-  currentBalance: Float!
-  currentBalanceLastUpdate: DateTime
-  transactions: TransactionCreateNestedManyWithoutAccountInput
-  programParticipation: ProgramParticipationCreateNestedManyWithoutFundingInput
-}
-
-input TransactionCreateNestedManyWithoutAccountInput {
-  create: [TransactionCreateWithoutAccountInput!]
-  connectOrCreate: [TransactionCreateOrConnectWithoutAccountInput!]
-  createMany: TransactionCreateManyAccountInputEnvelope
-  connect: [TransactionWhereUniqueInput!]
-}
-
-input TransactionCreateWithoutAccountInput {
-  amount: Float!
-  transactionType: TransactionType!
-  description: String
-}
-
-input TransactionCreateOrConnectWithoutAccountInput {
-  where: TransactionWhereUniqueInput!
-  create: TransactionCreateWithoutAccountInput!
-}
-
-input TransactionWhereUniqueInput {
-  id: Int
-  AND: [TransactionWhereInput!]
-  OR: [TransactionWhereInput!]
-  NOT: [TransactionWhereInput!]
-  amount: FloatFilter
-  transactionType: EnumTransactionTypeFilter
-  description: StringNullableFilter
-  createdAt: DateTimeFilter
-  accountId: IntFilter
-  account: AccountRelationFilter
-}
-
-input TransactionCreateManyAccountInputEnvelope {
-  data: [TransactionCreateManyAccountInput!]!
-  skipDuplicates: Boolean
-}
-
-input TransactionCreateManyAccountInput {
-  id: Int
-  amount: Float!
-  transactionType: TransactionType!
-  description: String
-}
-
-input ProgramParticipationCreateNestedManyWithoutFundingInput {
-  create: [ProgramParticipationCreateWithoutFundingInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutFundingInput!]
-  createMany: ProgramParticipationCreateManyFundingInputEnvelope
-  connect: [ProgramParticipationWhereUniqueInput!]
-}
-
-input ProgramParticipationCreateWithoutFundingInput {
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
-  participant: ParticipantCreateNestedOneWithoutProgramParticipationInput
-  programs: ProgramCreateNestedManyWithoutProgramParticipationsInput
-}
-
-input ProgramParticipationCreateOrConnectWithoutFundingInput {
-  where: ProgramParticipationWhereUniqueInput!
-  create: ProgramParticipationCreateWithoutFundingInput!
-}
-
-input ProgramParticipationCreateManyFundingInputEnvelope {
-  data: [ProgramParticipationCreateManyFundingInput!]!
-  skipDuplicates: Boolean
-}
-
-input ProgramParticipationCreateManyFundingInput {
-  id: Int
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
-}
-
-input AccountCreateManyInput {
-  id: Int
-  currentBalance: Float!
-  currentBalanceLastUpdate: DateTime
-}
-
-input AccountUpdateInput {
-  currentBalance: FloatFieldUpdateOperationsInput
-  currentBalanceLastUpdate: NullableDateTimeFieldUpdateOperationsInput
-  transactions: TransactionUpdateManyWithoutAccountNestedInput
-  programParticipation: ProgramParticipationUpdateManyWithoutFundingNestedInput
-}
-
-input TransactionUpdateManyWithoutAccountNestedInput {
-  create: [TransactionCreateWithoutAccountInput!]
-  connectOrCreate: [TransactionCreateOrConnectWithoutAccountInput!]
-  upsert: [TransactionUpsertWithWhereUniqueWithoutAccountInput!]
-  createMany: TransactionCreateManyAccountInputEnvelope
-  set: [TransactionWhereUniqueInput!]
-  disconnect: [TransactionWhereUniqueInput!]
-  delete: [TransactionWhereUniqueInput!]
-  connect: [TransactionWhereUniqueInput!]
-  update: [TransactionUpdateWithWhereUniqueWithoutAccountInput!]
-  updateMany: [TransactionUpdateManyWithWhereWithoutAccountInput!]
-  deleteMany: [TransactionScalarWhereInput!]
-}
-
-input TransactionUpsertWithWhereUniqueWithoutAccountInput {
-  where: TransactionWhereUniqueInput!
-  update: TransactionUpdateWithoutAccountInput!
-  create: TransactionCreateWithoutAccountInput!
-}
-
-input TransactionUpdateWithoutAccountInput {
-  amount: FloatFieldUpdateOperationsInput
-  transactionType: EnumTransactionTypeFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-}
-
-input EnumTransactionTypeFieldUpdateOperationsInput {
-  set: TransactionType
-}
-
-input TransactionUpdateWithWhereUniqueWithoutAccountInput {
-  where: TransactionWhereUniqueInput!
-  data: TransactionUpdateWithoutAccountInput!
-}
-
-input TransactionUpdateManyWithWhereWithoutAccountInput {
-  where: TransactionScalarWhereInput!
-  data: TransactionUpdateManyMutationInput!
-}
-
-input TransactionScalarWhereInput {
-  AND: [TransactionScalarWhereInput!]
-  OR: [TransactionScalarWhereInput!]
-  NOT: [TransactionScalarWhereInput!]
-  id: IntFilter
-  amount: FloatFilter
-  transactionType: EnumTransactionTypeFilter
-  description: StringNullableFilter
-  createdAt: DateTimeFilter
-  accountId: IntFilter
-}
-
-input TransactionUpdateManyMutationInput {
-  amount: FloatFieldUpdateOperationsInput
-  transactionType: EnumTransactionTypeFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-}
-
-input ProgramParticipationUpdateManyWithoutFundingNestedInput {
-  create: [ProgramParticipationCreateWithoutFundingInput!]
-  connectOrCreate: [ProgramParticipationCreateOrConnectWithoutFundingInput!]
-  upsert: [ProgramParticipationUpsertWithWhereUniqueWithoutFundingInput!]
-  createMany: ProgramParticipationCreateManyFundingInputEnvelope
-  set: [ProgramParticipationWhereUniqueInput!]
-  disconnect: [ProgramParticipationWhereUniqueInput!]
-  delete: [ProgramParticipationWhereUniqueInput!]
-  connect: [ProgramParticipationWhereUniqueInput!]
-  update: [ProgramParticipationUpdateWithWhereUniqueWithoutFundingInput!]
-  updateMany: [ProgramParticipationUpdateManyWithWhereWithoutFundingInput!]
-  deleteMany: [ProgramParticipationScalarWhereInput!]
-}
-
-input ProgramParticipationUpsertWithWhereUniqueWithoutFundingInput {
-  where: ProgramParticipationWhereUniqueInput!
-  update: ProgramParticipationUpdateWithoutFundingInput!
-  create: ProgramParticipationCreateWithoutFundingInput!
-}
-
-input ProgramParticipationUpdateWithoutFundingInput {
-  bpjsNumber: NullableStringFieldUpdateOperationsInput
-  nonActiveReason: NullableStringFieldUpdateOperationsInput
-  effectiveDate: DateTimeFieldUpdateOperationsInput
-  nonActiveDate: NullableDateTimeFieldUpdateOperationsInput
-  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput
-  participant: ParticipantUpdateOneWithoutProgramParticipationNestedInput
-  programs: ProgramUpdateManyWithoutProgramParticipationsNestedInput
-}
-
-input ProgramParticipationUpdateWithWhereUniqueWithoutFundingInput {
-  where: ProgramParticipationWhereUniqueInput!
-  data: ProgramParticipationUpdateWithoutFundingInput!
-}
-
-input ProgramParticipationUpdateManyWithWhereWithoutFundingInput {
-  where: ProgramParticipationScalarWhereInput!
-  data: ProgramParticipationUpdateManyMutationInput!
-}
-
-input AccountUpdateManyMutationInput {
-  currentBalance: FloatFieldUpdateOperationsInput
-  currentBalanceLastUpdate: NullableDateTimeFieldUpdateOperationsInput
 }
 
 input RoleCreateInput {

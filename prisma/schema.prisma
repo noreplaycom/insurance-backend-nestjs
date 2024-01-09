@@ -526,6 +526,7 @@ model ProgramParticipation {
     ///Nomor Dana
     fundingId Int?
 
+    /// @HideField({ match: ['ProgramParticipationCreate*Input','ProgramParticipationUpdate*Input']})
     programs Program[]
 }
 
