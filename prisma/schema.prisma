@@ -149,9 +149,12 @@ model RolePermission {
 enum Permission {
     CREATE_CLAIM
     UPDATE_CLAIM
-    UPDATE_CLAIM_STATUS
-    UPDATE_STATUS_FINANCIAL
-    RELEASE_CLAIM
+    UPDATE_CLAIM_STATUS_TO_APPROVED
+    UPDATE_CLAIM_STATUS_TO_CONDITIONAL_REJECT
+    UPDATE_CLAIM_STATUS_TO_UNCONDITIONAL_REJECT
+    UPDATE_CLAIM_STATUS_TO_RELEASED
+    UPDATE_CLAIM_STATUS_TO_PAID
+    UPDATE_CLAIM_STATUS_TO_COMPLETED
     DELETE_CLAIM_DOCUMENT
     CREATE_CLAIM_DOCUMENT
     IMPORT_CLAIM
@@ -705,15 +708,19 @@ enum ClaimChannel {
 model Document {
     //-------------------------- scalars --------------------------------
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     ///Nodok:	Nomer Dokumen
     id String @id @default(cuid())
 
-    ///Nama Dokumen
-    name String
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
+    ///Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
+    pdfPath String
 
-    ///Path:	Path file dokumen
-    path String
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
+    ///Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
+    docxPath String
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     ///Ukuran:	Ukuran dokumen
     size Int
 
@@ -724,28 +731,39 @@ model Document {
     updatedAt DateTime @updatedAt
     //-------------------------- 1 relations --------------------------------
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
+    /// Sumber Dokumen
     source DocumentSource
 
     type DocumentType
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     ///Siapa saja yang telah mencetak dokumen ini
     printedby User[] @relation("printedby")
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     rejectionLetterOf ClaimStatus? @relation("rejectionLetter")
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     guaranteeLetterOf ClaimStatus? @relation("guaranteeLetter")
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     transactionLetterOf ClaimStatus? @relation("transactionLetter")
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     ///Perintah Pembukuan
     bookKeepingOrderOf ClaimStatus? @relation("bookKeepingOrder")
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     claimProgramm ClaimProgram? @relation(fields: [claimProgramId], references: [id])
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     claimProgramId Int?
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     invoiceProof InvoiceProof?
 
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     transaction Transaction?
 }
 
@@ -767,13 +785,14 @@ enum DocumentType {
 model Tag {
     //-------------------------- scalars --------------------------------
 
+    /// @HideField({ match: ['TagCreate*Input','TagUpdate*Input']})
     id Int @id @default(autoincrement())
 
     name String
 
     color Color
 
-    /// @HideField({ output: true, input: true })
+    /// Apakah pengecualian
     isException Boolean @default(false)
 
     /// @HideField({ match: ['TagCreate*Input','TagUpdate*Input']})
@@ -784,6 +803,7 @@ model Tag {
 
     //-------------------------- m relations --------------------------------
 
+    /// @HideField({ match: ['TagCreate*Input','TagUpdate*Input']})
     claims Claim[]
 }
 
@@ -841,6 +861,7 @@ model ClaimFinancial {
     ///Cabang: Cabang Pembayar Pensiun
     branchPayee Branch? @relation(fields: [branchId], references: [id])
 
+    /// @HideField({ match: ['ClaimFinancialCreate*Input','ClaimFinancialUpdate*Input']})
     ///Cabang: Cabang Pembayar Pensiun
     branchId Int?
 
@@ -862,13 +883,15 @@ model ClaimFinancial {
 
 model ClaimProgram {
     //-------------------------- scalars --------------------------------
+    /// @HideField({ match: ['ClaimProgramCreate*Input','ClaimProgramUpdate*Input']})
     id Int @id @default(autoincrement())
 
+    /// @HideField({ match: ['ClaimProgramCreate*Input']})
     ///Tekspedisi	Tanggal ekspedisi
     expeditionDate DateTime?
 
     ///Reklaim:	Keterangan untuk klaim ulang
-    reclaim String?
+    isReclaim Boolean?
 
     ///Ket.Pengajuan:	Keterangan konfirmasi
     submissionNote String?
@@ -889,9 +912,12 @@ model ClaimProgram {
     kurisRodaOrWalkerSetoreName String?
 
     //-------------------------- 1 relations --------------------------------
-
+    /// @HideField({ match: ['ClaimProgramUpdate*Input']})
+    /// Penyakit:	Penyakit yang diderita
     disease Disease? @relation(fields: [diseaseId], references: [id])
 
+    /// @HideField({ match: ['ClaimProgramCreate*Input','ClaimProgramUpdate*Input']})
+    /// Penyakit:	Penyakit yang diderita
     diseaseId Int?
 
     clinics Clinic? @relation(fields: [clinicId], references: [id])
@@ -900,7 +926,7 @@ model ClaimProgram {
 
     claim Claim?
 
-    /// @HideField({ match: ['ClaimProgramCreate*Input','ClaimProgramUpdate*Input']})
+    /// @HideField({ match: ['ClaimProgramUpdate*Input']})
     program Program @relation(fields: [programId], references: [id])
 
     /// @HideField({ match: ['ClaimProgramCreate*Input','ClaimProgramUpdate*Input']})
@@ -924,28 +950,37 @@ enum SantunanHarianRawatInapPlan {
 ///Kuitansi bukti pembayaran klinik atau rumah sakit
 model InvoiceProof {
     //-------------------------- scalars --------------------------------
+    /// @HideField({ match: ['InvoiceProofCreate*Input','InvoiceProofUpdate*Input']})
     id Int @id @default(autoincrement())
 
+    /// @HideField({ match: ['InvoiceProofUpdate*Input'})
     ///Tanggal saat kuitansi diterbitkan
     issuedDate DateTime
 
-    ///Nominal biaya hemodialisa sesuai dengan kuitansi
-    amount Int
+    ///Nominal biaya sesuai dengan kuitansi
+    amount Float
 
     //-------------------------- 1 relations --------------------------------
 
+    /// @HideField({ match: ['InvoiceProofUpdate*Input'})
+    /// Bukti Kuitansi
     documentProof Document @relation(fields: [documentProofId], references: [id])
 
+    /// @HideField({ match: ['InvoiceProofCreate*Input','InvoiceProofUpdate*Input']})
+    /// Bukti Kuitansi
     documentProofId String @unique
 
+    /// @HideField({ match: ['InvoiceProofCreate*Input','InvoiceProofUpdate*Input']})
     claimProgram ClaimProgram? @relation(fields: [claimProgramId], references: [id])
 
+    /// @HideField({ match: ['InvoiceProofCreate*Input','InvoiceProofUpdate*Input']})
     claimProgramId Int?
 }
 
 model ClaimStatus {
     //-------------------------- scalars --------------------------------
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     id Int @id @default(autoincrement())
 
     description String?
@@ -957,14 +992,14 @@ model ClaimStatus {
 
     //-------------------------- 1 relations --------------------------------
 
-    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
+    /// @HideField({ match: ['ClaimStatusCreate*Input']})
     status ClaimStatusType
 
     /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
-    createBy User @relation("statusUpdatedBy", fields: [createById], references: [id])
+    changedBy User @relation("statusUpdatedBy", fields: [changedById], references: [id])
 
     /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
-    createById String
+    changedById String
 
     /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     claim Claim @relation(fields: [claimId], references: [id])
@@ -976,6 +1011,7 @@ model ClaimStatus {
     ///Tanggal surat tolak
     rejectionLetter Document? @relation("rejectionLetter", fields: [rejectionLetterId], references: [id])
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     ///Nomor surat tolak
     ///Tanggal surat tolak
     rejectionLetterId String? @unique
@@ -983,6 +1019,7 @@ model ClaimStatus {
     ///No SurJam:	Nomer Surat jaminan
     guaranteeLetter Document? @relation("guaranteeLetter", fields: [guaranteeLetterId], references: [id])
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     ///No SurJam:	Nomer Surat jaminan
     //Tanggal Surjam:	Tanggal Surat Jaminan
     guaranteeLetterId String? @unique
@@ -990,20 +1027,24 @@ model ClaimStatus {
     ///Surat transaksi
     transactionLetter Document? @relation("transactionLetter", fields: [transactionLetterId], references: [id])
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     ///Surat transaksi
     transactionLetterId String? @unique
 
     //Perintah Pembukuan
     bookKeepingOrder Document? @relation("bookKeepingOrder", fields: [bookKeepingOrderId], references: [id])
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     bookKeepingOrderId String? @unique
 
+    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     ///apabila status paid maka berelasi ke bukti pembayaran di claimFinancial
     claimFinancial ClaimFinancial?
 }
 
 model Disease {
     //-------------------------- scalars --------------------------------
+    /// @HideField({ match: ['DiseaseCreate*Input','DiseaseUpdate*Input']})
     id Int @id @default(autoincrement())
 
     ///KodePenyakit: kode jenis penyakit
@@ -1025,6 +1066,7 @@ model Disease {
 
 model Clinic {
     //-------------------------- scalars --------------------------------
+    /// @HideField({ match: ['ClinicCreate*Input','ClinicUpdate*Input']})
     id Int @id @default(autoincrement())
 
     code String
@@ -1039,33 +1081,41 @@ model Clinic {
 
     //-------------------------- m relations --------------------------------
 
+    /// @HideField({ match: ['ClinicCreate*Input','ClinicUpdate*Input']})
     claimProgram ClaimProgram[]
 }
 
 model Account {
     //-------------------------- scalars --------------------------------
 
-    //Nomer Dana
+    /// @HideField({ match: ['AccountCreate*Input','AccountUpdate*Input']})
+    ///Nomer Dana
     id Int @id @default(autoincrement())
 
+    /// @HideField({ match: ['AccountCreate*Input','AccountUpdate*Input']})
     ///Sisa Plafon:	Sisa Plafon Santunan Harian Rawat Inap
     currentBalance Float
 
+    /// @HideField({ match: ['AccountCreate*Input','AccountUpdate*Input']})
     currentBalanceLastUpdate DateTime?
 
     //-------------------------- m relations --------------------------------
 
+    /// @HideField({ match: ['AccountCreate*Input','AccountUpdate*Input']})
     transactions Transaction[]
 
+    /// @HideField({ match: ['AccountCreate*Input','AccountUpdate*Input']})
     programParticipation ProgramParticipation[]
 }
 
 model Transaction {
     //-------------------------- scalars --------------------------------
+    /// @HideField({ match: ['TransactionCreate*Input','TransactionUpdate*Input']})
     id Int @id @default(autoincrement())
 
     amount Float
 
+    /// @HideField({ match: ['TransactionCreate*Input','TransactionUpdate*Input']})
     transactionType TransactionType
 
     description String?
@@ -1076,12 +1126,16 @@ model Transaction {
 
     //-------------------------- 1 relations --------------------------------
 
+    /// Transfer ke Tujuan nomor dana mana?
     account Account @relation(fields: [accountId], references: [id])
 
+    /// @HideField({ match: ['TransactionCreate*Input','TransactionUpdate*Input']})
     accountId Int
 
+    /// Bukti Transfer
     proof Document? @relation(fields: [proofId], references: [id])
 
+    /// @HideField({ match: ['TransactionCreate*Input','TransactionUpdate*Input']})
     proofId String? @unique
 
     claimFinancial ClaimFinancial?
@@ -1094,7 +1148,6 @@ enum Gender {
 }
 
 enum ClaimStatusType {
-    DOCUMENT
     PENDING
     APPROVED
     REJECTED
