@@ -2341,6 +2341,9 @@ type Query {
   claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
+  branchFindMany(where: BranchWhereInput, orderBy: [BranchOrderByWithRelationInput!], cursor: BranchWhereUniqueInput, take: Int, skip: Int, distinct: [BranchScalarFieldEnum!]): [Branch!]
+
+  """Deskripsinya ada disini loh"""
   participantFindOne(where: ParticipantWhereUniqueInput!): Participant
 
   """Deskripsinya ada disini loh"""
@@ -2351,6 +2354,9 @@ type Query {
 
   """Export participant data to excel file (xlsx)"""
   participantExport: String!
+
+  """Deskripsinya ada disini loh"""
+  regionFindMany(where: RegionWhereInput, orderBy: [RegionOrderByWithRelationInput!], cursor: RegionWhereUniqueInput, take: Int, skip: Int, distinct: [RegionScalarFieldEnum!]): [Region!]
 
   """Deskripsinya ada disini loh"""
   roleFindOne(where: RoleWhereUniqueInput!): Role
@@ -4478,6 +4484,25 @@ input ClaimStatusMaxAggregateInput {
   bookKeepingOrderId: Boolean
 }
 
+input BranchWhereUniqueInput {
+  id: Int
+  AND: [BranchWhereInput!]
+  OR: [BranchWhereInput!]
+  NOT: [BranchWhereInput!]
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+  claimFinancial: ClaimFinancialListRelationFilter
+}
+
+enum BranchScalarFieldEnum {
+  id
+  name
+  createdAt
+  updatedAt
+}
+
 input ParticipantWhereUniqueInput {
   userId: String
   employmentId: Int
@@ -4513,6 +4538,24 @@ enum ParticipantScalarFieldEnum {
   bankAccountId
   contactInfoId
   programParticipationId
+}
+
+input RegionWhereUniqueInput {
+  id: Int
+  AND: [RegionWhereInput!]
+  OR: [RegionWhereInput!]
+  NOT: [RegionWhereInput!]
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+}
+
+enum RegionScalarFieldEnum {
+  id
+  name
+  createdAt
+  updatedAt
 }
 
 input RoleWhereUniqueInput {
@@ -5134,18 +5177,6 @@ input BranchCreateOrConnectWithoutEmploymentInput {
   create: BranchCreateWithoutEmploymentInput!
 }
 
-input BranchWhereUniqueInput {
-  id: Int
-  AND: [BranchWhereInput!]
-  OR: [BranchWhereInput!]
-  NOT: [BranchWhereInput!]
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  employment: EmploymentListRelationFilter
-  claimFinancial: ClaimFinancialListRelationFilter
-}
-
 input GroupCreateNestedOneWithoutEmploymentInput {
   create: GroupCreateWithoutEmploymentInput
   connectOrCreate: GroupCreateOrConnectWithoutEmploymentInput
@@ -5185,17 +5216,6 @@ input RegionCreateWithoutEmploymentInput {
 input RegionCreateOrConnectWithoutEmploymentInput {
   where: RegionWhereUniqueInput!
   create: RegionCreateWithoutEmploymentInput!
-}
-
-input RegionWhereUniqueInput {
-  id: Int
-  AND: [RegionWhereInput!]
-  OR: [RegionWhereInput!]
-  NOT: [RegionWhereInput!]
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  employment: EmploymentListRelationFilter
 }
 
 input EmploymentCreateOrConnectWithoutParticipantInput {
