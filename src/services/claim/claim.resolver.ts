@@ -253,7 +253,7 @@ export class ClaimResolver {
     description: 'Deskripsinya ada disini loh',
   })
   claimChannelFindMany() {
-    return this.claimController.getClaimChannels();
+    return this.claimController.claimChannelFindMany();
   }
 
   // @RequiredPermission(Permission.IMPORT_CLAIM)

@@ -2341,6 +2341,9 @@ type Query {
   claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
+  employmentPositionFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
   branchFindMany(where: BranchWhereInput, orderBy: [BranchOrderByWithRelationInput!], cursor: BranchWhereUniqueInput, take: Int, skip: Int, distinct: [BranchScalarFieldEnum!]): [Branch!]
 
   """Deskripsinya ada disini loh"""

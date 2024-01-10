@@ -287,7 +287,7 @@ export class ClaimController {
     return countedQuantitiesByStatus;
   }
 
-  async getClaimChannels(): Promise<string[]> {
+  async claimChannelFindMany(): Promise<string[]> {
     return Object.keys(ClaimChannel);
   }
 

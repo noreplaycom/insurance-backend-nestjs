@@ -121,7 +121,7 @@ import { AuthModule } from './services/auth/auth.module';
     // DiseaseClusterModule,
     // DiseaseGroupModule,
     // DocumentModule,
-    // EmploymentModule,
+    EmploymentModule,
     BranchModule,
     GroupModule,
     ParticipantModule,
