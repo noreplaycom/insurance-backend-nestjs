@@ -16,7 +16,9 @@ export class UserController {
 
     //? Event 0000: encrypt user password
     //check if password is not null
-    await encryptUserPasswordEvent(password, userCreateArgs);
+    if (password) {
+      userCreateArgs.data.password = await encryptUserPassword(password);
+    }
 
     return await this.userService.createOne(userCreateArgs);
   }
@@ -97,13 +99,5 @@ export class UserController {
     userDeleteOneByIdArgs: UserDeleteOneByIdArgs,
   ): Promise<boolean> {
     return true;
-  }
-}
-export async function encryptUserPasswordEvent(
-  password: string,
-  userCreateArgs,
-) {
-  if (password) {
-    userCreateArgs.data.password = await encryptUserPassword(password);
   }
 }

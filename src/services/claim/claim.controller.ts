@@ -43,6 +43,7 @@ export class ClaimController {
   async createOne(claimCreateArgs: Prisma.ClaimCreateArgs) {
     //TODO: Auto assign claim status to new claim on claimCreateArgs
     //TODO: send notification to higher user role when new claim created
+    //TODO: prevent participant doing new claim from unparticipated program and unavailable program
     return await this.claimService.createOne(claimCreateArgs);
   }
 

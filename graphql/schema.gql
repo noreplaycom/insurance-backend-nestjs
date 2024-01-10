@@ -2344,6 +2344,9 @@ type Query {
   branchFindMany(where: BranchWhereInput, orderBy: [BranchOrderByWithRelationInput!], cursor: BranchWhereUniqueInput, take: Int, skip: Int, distinct: [BranchScalarFieldEnum!]): [Branch!]
 
   """Deskripsinya ada disini loh"""
+  groupFindMany(where: GroupWhereInput, orderBy: [GroupOrderByWithRelationInput!], cursor: GroupWhereUniqueInput, take: Int, skip: Int, distinct: [GroupScalarFieldEnum!]): [Group!]
+
+  """Deskripsinya ada disini loh"""
   participantFindOne(where: ParticipantWhereUniqueInput!): Participant
 
   """Deskripsinya ada disini loh"""
@@ -4503,6 +4506,24 @@ enum BranchScalarFieldEnum {
   updatedAt
 }
 
+input GroupWhereUniqueInput {
+  id: Int
+  AND: [GroupWhereInput!]
+  OR: [GroupWhereInput!]
+  NOT: [GroupWhereInput!]
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  employment: EmploymentListRelationFilter
+}
+
+enum GroupScalarFieldEnum {
+  id
+  name
+  createdAt
+  updatedAt
+}
+
 input ParticipantWhereUniqueInput {
   userId: String
   employmentId: Int
@@ -5190,17 +5211,6 @@ input GroupCreateWithoutEmploymentInput {
 input GroupCreateOrConnectWithoutEmploymentInput {
   where: GroupWhereUniqueInput!
   create: GroupCreateWithoutEmploymentInput!
-}
-
-input GroupWhereUniqueInput {
-  id: Int
-  AND: [GroupWhereInput!]
-  OR: [GroupWhereInput!]
-  NOT: [GroupWhereInput!]
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  employment: EmploymentListRelationFilter
 }
 
 input RegionCreateNestedOneWithoutEmploymentInput {

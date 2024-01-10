@@ -35,7 +35,6 @@ export class ParticipantController {
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
     //? Event 0000: auto create participant password and encrypt it
-    //check if password is not null
 
     participantCreateArgs.data.user.create.password =
       await encryptUserPassword('123456');
