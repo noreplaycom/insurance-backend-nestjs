@@ -559,6 +559,8 @@ model ProgramParticipation {
 
 model ProgramParticipationToPrograms {
     //-------------------------- scalars --------------------------------
+    description String?
+
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
     isAvailable Boolean
 
@@ -578,7 +580,6 @@ model ProgramParticipationToPrograms {
     nextResetDate DateTime
 
     //-------------------------- 1 relations --------------------------------
-    /// @HideField({ match: ['ProgramParticipationToProgramsUpdate*Input']})
     programParticipation ProgramParticipation @relation(fields: [programParticipationId], references: [id])
 
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})

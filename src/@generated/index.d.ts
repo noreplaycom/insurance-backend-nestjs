@@ -57,6 +57,7 @@ export declare enum ProvinceScalarFieldEnum {
     name = "name"
 }
 export declare enum ProgramParticipationToProgramsScalarFieldEnum {
+    description = "description",
     isAvailable = "isAvailable",
     allowanceCeilingRemaining = "allowanceCeilingRemaining",
     allowanceQuotaRemaining = "allowanceQuotaRemaining",
@@ -16952,6 +16953,7 @@ export declare class ProgramParticipationToProgramsAvgOrderByAggregateInput {
     programId?: keyof typeof SortOrder;
 }
 export declare class ProgramParticipationToProgramsCountAggregateInput {
+    description?: true;
     isAvailable?: true;
     allowanceCeilingRemaining?: true;
     allowanceQuotaRemaining?: true;
@@ -16962,6 +16964,7 @@ export declare class ProgramParticipationToProgramsCountAggregateInput {
     _all?: true;
 }
 export declare class ProgramParticipationToProgramsCountAggregate {
+    description: number;
     isAvailable: number;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -16972,6 +16975,7 @@ export declare class ProgramParticipationToProgramsCountAggregate {
     _all: number;
 }
 export declare class ProgramParticipationToProgramsCountOrderByAggregateInput {
+    description?: keyof typeof SortOrder;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
@@ -16989,6 +16993,7 @@ export declare class ProgramParticipationToProgramsCreateManyProgramParticipatio
     skipDuplicates?: boolean;
 }
 export declare class ProgramParticipationToProgramsCreateManyProgramParticipationInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -16997,6 +17002,7 @@ export declare class ProgramParticipationToProgramsCreateManyProgramParticipatio
     programId: number;
 }
 export declare class ProgramParticipationToProgramsCreateManyProgramInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17005,6 +17011,7 @@ export declare class ProgramParticipationToProgramsCreateManyProgramInput {
     programParticipationId: number;
 }
 export declare class ProgramParticipationToProgramsCreateManyInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17034,6 +17041,7 @@ export declare class ProgramParticipationToProgramsCreateOrConnectWithoutProgram
     create: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutProgramInput>;
 }
 export declare class ProgramParticipationToProgramsCreateWithoutProgramParticipationInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17042,6 +17050,7 @@ export declare class ProgramParticipationToProgramsCreateWithoutProgramParticipa
     program: InstanceType<typeof ProgramCreateNestedOneWithoutProgramParticipationsInput>;
 }
 export declare class ProgramParticipationToProgramsCreateWithoutProgramInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17050,6 +17059,7 @@ export declare class ProgramParticipationToProgramsCreateWithoutProgramInput {
     programParticipation: InstanceType<typeof ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput>;
 }
 export declare class ProgramParticipationToProgramsCreateInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17072,6 +17082,7 @@ export declare class ProgramParticipationToProgramsGroupByArgs {
     _max?: InstanceType<typeof ProgramParticipationToProgramsMaxAggregateInput>;
 }
 export declare class ProgramParticipationToProgramsGroupBy {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17091,6 +17102,7 @@ export declare class ProgramParticipationToProgramsListRelationFilter {
     none?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
 }
 export declare class ProgramParticipationToProgramsMaxAggregateInput {
+    description?: true;
     isAvailable?: true;
     allowanceCeilingRemaining?: true;
     allowanceQuotaRemaining?: true;
@@ -17100,6 +17112,7 @@ export declare class ProgramParticipationToProgramsMaxAggregateInput {
     programId?: true;
 }
 export declare class ProgramParticipationToProgramsMaxAggregate {
+    description?: string;
     isAvailable?: boolean;
     allowanceCeilingRemaining?: number;
     allowanceQuotaRemaining?: number;
@@ -17109,6 +17122,7 @@ export declare class ProgramParticipationToProgramsMaxAggregate {
     programId?: number;
 }
 export declare class ProgramParticipationToProgramsMaxOrderByAggregateInput {
+    description?: keyof typeof SortOrder;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
@@ -17118,6 +17132,7 @@ export declare class ProgramParticipationToProgramsMaxOrderByAggregateInput {
     programId?: keyof typeof SortOrder;
 }
 export declare class ProgramParticipationToProgramsMinAggregateInput {
+    description?: true;
     isAvailable?: true;
     allowanceCeilingRemaining?: true;
     allowanceQuotaRemaining?: true;
@@ -17127,6 +17142,7 @@ export declare class ProgramParticipationToProgramsMinAggregateInput {
     programId?: true;
 }
 export declare class ProgramParticipationToProgramsMinAggregate {
+    description?: string;
     isAvailable?: boolean;
     allowanceCeilingRemaining?: number;
     allowanceQuotaRemaining?: number;
@@ -17136,6 +17152,7 @@ export declare class ProgramParticipationToProgramsMinAggregate {
     programId?: number;
 }
 export declare class ProgramParticipationToProgramsMinOrderByAggregateInput {
+    description?: keyof typeof SortOrder;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
@@ -17148,6 +17165,7 @@ export declare class ProgramParticipationToProgramsOrderByRelationAggregateInput
     _count?: keyof typeof SortOrder;
 }
 export declare class ProgramParticipationToProgramsOrderByWithAggregationInput {
+    description?: InstanceType<typeof SortOrderInput>;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
@@ -17162,6 +17180,7 @@ export declare class ProgramParticipationToProgramsOrderByWithAggregationInput {
     _sum?: InstanceType<typeof ProgramParticipationToProgramsSumOrderByAggregateInput>;
 }
 export declare class ProgramParticipationToProgramsOrderByWithRelationInput {
+    description?: InstanceType<typeof SortOrderInput>;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
@@ -17180,6 +17199,7 @@ export declare class ProgramParticipationToProgramsScalarWhereWithAggregatesInpu
     AND?: Array<ProgramParticipationToProgramsScalarWhereWithAggregatesInput>;
     OR?: Array<ProgramParticipationToProgramsScalarWhereWithAggregatesInput>;
     NOT?: Array<ProgramParticipationToProgramsScalarWhereWithAggregatesInput>;
+    description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     isAvailable?: InstanceType<typeof BoolWithAggregatesFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatWithAggregatesFilter>;
     allowanceQuotaRemaining?: InstanceType<typeof IntWithAggregatesFilter>;
@@ -17192,6 +17212,7 @@ export declare class ProgramParticipationToProgramsScalarWhereInput {
     AND?: Array<ProgramParticipationToProgramsScalarWhereInput>;
     OR?: Array<ProgramParticipationToProgramsScalarWhereInput>;
     NOT?: Array<ProgramParticipationToProgramsScalarWhereInput>;
+    description?: InstanceType<typeof StringNullableFilter>;
     isAvailable?: InstanceType<typeof BoolFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFilter>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFilter>;
@@ -17231,6 +17252,7 @@ export declare class ProgramParticipationToProgramsUncheckedCreateNestedManyWith
     connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17239,6 +17261,7 @@ export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgram
     programId: number;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17247,6 +17270,7 @@ export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgram
     programParticipationId: number;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateInput {
+    description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;
@@ -17282,6 +17306,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutPro
     deleteMany?: Array<ProgramParticipationToProgramsScalarWhereInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17290,6 +17315,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutPro
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17298,6 +17324,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutPro
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17307,6 +17334,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyInput {
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17315,6 +17343,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgram
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17323,6 +17352,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgram
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17332,6 +17362,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateInput {
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateManyMutationInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17381,6 +17412,7 @@ export declare class ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutP
     data: InstanceType<typeof ProgramParticipationToProgramsUpdateWithoutProgramInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17389,6 +17421,7 @@ export declare class ProgramParticipationToProgramsUpdateWithoutProgramParticipa
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutProgramParticipationsNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateWithoutProgramInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17397,6 +17430,7 @@ export declare class ProgramParticipationToProgramsUpdateWithoutProgramInput {
     programParticipation?: InstanceType<typeof ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateInput {
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -17420,6 +17454,7 @@ export declare class ProgramParticipationToProgramsWhereUniqueInput {
     AND?: Array<ProgramParticipationToProgramsWhereInput>;
     OR?: Array<ProgramParticipationToProgramsWhereInput>;
     NOT?: Array<ProgramParticipationToProgramsWhereInput>;
+    description?: InstanceType<typeof StringNullableFilter>;
     isAvailable?: InstanceType<typeof BoolFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFilter>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFilter>;
@@ -17434,6 +17469,7 @@ export declare class ProgramParticipationToProgramsWhereInput {
     AND?: Array<ProgramParticipationToProgramsWhereInput>;
     OR?: Array<ProgramParticipationToProgramsWhereInput>;
     NOT?: Array<ProgramParticipationToProgramsWhereInput>;
+    description?: InstanceType<typeof StringNullableFilter>;
     isAvailable?: InstanceType<typeof BoolFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFilter>;
     allowanceQuotaRemaining?: InstanceType<typeof IntFilter>;
@@ -17445,6 +17481,7 @@ export declare class ProgramParticipationToProgramsWhereInput {
     program?: InstanceType<typeof ProgramRelationFilter>;
 }
 export declare class ProgramParticipationToPrograms {
+    description: string | null;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
     allowanceQuotaRemaining: number;

@@ -141,6 +141,7 @@ var ProvinceScalarFieldEnum;
 })(ProvinceScalarFieldEnum = exports.ProvinceScalarFieldEnum || (exports.ProvinceScalarFieldEnum = {}));
 var ProgramParticipationToProgramsScalarFieldEnum;
 (function (ProgramParticipationToProgramsScalarFieldEnum) {
+    ProgramParticipationToProgramsScalarFieldEnum["description"] = "description";
     ProgramParticipationToProgramsScalarFieldEnum["isAvailable"] = "isAvailable";
     ProgramParticipationToProgramsScalarFieldEnum["allowanceCeilingRemaining"] = "allowanceCeilingRemaining";
     ProgramParticipationToProgramsScalarFieldEnum["allowanceQuotaRemaining"] = "allowanceQuotaRemaining";
@@ -52578,6 +52579,9 @@ let ProgramParticipationToProgramsCountAggregateInput = class ProgramParticipati
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ProgramParticipationToProgramsCountAggregateInput.prototype, "description", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsCountAggregateInput.prototype, "isAvailable", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -52608,6 +52612,9 @@ let ProgramParticipationToProgramsCountAggregate = class ProgramParticipationToP
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], ProgramParticipationToProgramsCountAggregate.prototype, "description", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToProgramsCountAggregate.prototype, "isAvailable", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
@@ -52636,6 +52643,9 @@ ProgramParticipationToProgramsCountAggregate = __decorate([
 exports.ProgramParticipationToProgramsCountAggregate = ProgramParticipationToProgramsCountAggregate;
 let ProgramParticipationToProgramsCountOrderByAggregateInput = class ProgramParticipationToProgramsCountOrderByAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "isAvailable", void 0);
@@ -52690,6 +52700,9 @@ exports.ProgramParticipationToProgramsCreateManyProgramParticipationInputEnvelop
 let ProgramParticipationToProgramsCreateManyProgramParticipationInput = class ProgramParticipationToProgramsCreateManyProgramParticipationInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -52714,6 +52727,9 @@ exports.ProgramParticipationToProgramsCreateManyProgramParticipationInput = Prog
 let ProgramParticipationToProgramsCreateManyProgramInput = class ProgramParticipationToProgramsCreateManyProgramInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -52737,6 +52753,9 @@ ProgramParticipationToProgramsCreateManyProgramInput = __decorate([
 exports.ProgramParticipationToProgramsCreateManyProgramInput = ProgramParticipationToProgramsCreateManyProgramInput;
 let ProgramParticipationToProgramsCreateManyInput = class ProgramParticipationToProgramsCreateManyInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsCreateManyInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyInput.prototype, "isAvailable", void 0);
@@ -52837,6 +52856,9 @@ exports.ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput = Progr
 let ProgramParticipationToProgramsCreateWithoutProgramParticipationInput = class ProgramParticipationToProgramsCreateWithoutProgramParticipationInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -52861,6 +52883,9 @@ exports.ProgramParticipationToProgramsCreateWithoutProgramParticipationInput = P
 let ProgramParticipationToProgramsCreateWithoutProgramInput = class ProgramParticipationToProgramsCreateWithoutProgramInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -52884,6 +52909,9 @@ ProgramParticipationToProgramsCreateWithoutProgramInput = __decorate([
 exports.ProgramParticipationToProgramsCreateWithoutProgramInput = ProgramParticipationToProgramsCreateWithoutProgramInput;
 let ProgramParticipationToProgramsCreateInput = class ProgramParticipationToProgramsCreateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsCreateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateInput.prototype, "isAvailable", void 0);
@@ -52952,6 +52980,9 @@ exports.ProgramParticipationToProgramsGroupByArgs = ProgramParticipationToProgra
 let ProgramParticipationToProgramsGroupBy = class ProgramParticipationToProgramsGroupBy {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsGroupBy.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: false })
 ], ProgramParticipationToProgramsGroupBy.prototype, "isAvailable", void 0);
 __decorate([
@@ -53010,6 +53041,9 @@ let ProgramParticipationToProgramsMaxAggregateInput = class ProgramParticipation
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ProgramParticipationToProgramsMaxAggregateInput.prototype, "description", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMaxAggregateInput.prototype, "isAvailable", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -53035,6 +53069,9 @@ ProgramParticipationToProgramsMaxAggregateInput = __decorate([
 exports.ProgramParticipationToProgramsMaxAggregateInput = ProgramParticipationToProgramsMaxAggregateInput;
 let ProgramParticipationToProgramsMaxAggregate = class ProgramParticipationToProgramsMaxAggregate {
 };
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsMaxAggregate.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMaxAggregate.prototype, "isAvailable", void 0);
@@ -53064,6 +53101,9 @@ let ProgramParticipationToProgramsMaxOrderByAggregateInput = class ProgramPartic
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "description", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "isAvailable", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -53089,6 +53129,9 @@ ProgramParticipationToProgramsMaxOrderByAggregateInput = __decorate([
 exports.ProgramParticipationToProgramsMaxOrderByAggregateInput = ProgramParticipationToProgramsMaxOrderByAggregateInput;
 let ProgramParticipationToProgramsMinAggregateInput = class ProgramParticipationToProgramsMinAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ProgramParticipationToProgramsMinAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMinAggregateInput.prototype, "isAvailable", void 0);
@@ -53117,6 +53160,9 @@ exports.ProgramParticipationToProgramsMinAggregateInput = ProgramParticipationTo
 let ProgramParticipationToProgramsMinAggregate = class ProgramParticipationToProgramsMinAggregate {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsMinAggregate.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMinAggregate.prototype, "isAvailable", void 0);
 __decorate([
@@ -53143,6 +53189,9 @@ ProgramParticipationToProgramsMinAggregate = __decorate([
 exports.ProgramParticipationToProgramsMinAggregate = ProgramParticipationToProgramsMinAggregate;
 let ProgramParticipationToProgramsMinOrderByAggregateInput = class ProgramParticipationToProgramsMinOrderByAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "isAvailable", void 0);
@@ -53179,6 +53228,9 @@ ProgramParticipationToProgramsOrderByRelationAggregateInput = __decorate([
 exports.ProgramParticipationToProgramsOrderByRelationAggregateInput = ProgramParticipationToProgramsOrderByRelationAggregateInput;
 let ProgramParticipationToProgramsOrderByWithAggregationInput = class ProgramParticipationToProgramsOrderByWithAggregationInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "isAvailable", void 0);
@@ -53221,6 +53273,9 @@ ProgramParticipationToProgramsOrderByWithAggregationInput = __decorate([
 exports.ProgramParticipationToProgramsOrderByWithAggregationInput = ProgramParticipationToProgramsOrderByWithAggregationInput;
 let ProgramParticipationToProgramsOrderByWithRelationInput = class ProgramParticipationToProgramsOrderByWithRelationInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "isAvailable", void 0);
@@ -53276,6 +53331,9 @@ __decorate([
     (0, graphql_1.Field)(() => [ProgramParticipationToProgramsScalarWhereWithAggregatesInput_1], { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "NOT", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
+], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => BoolWithAggregatesFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53311,6 +53369,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => [ProgramParticipationToProgramsScalarWhereInput_1], { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereInput.prototype, "NOT", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsScalarWhereInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereInput.prototype, "isAvailable", void 0);
@@ -53437,6 +53498,9 @@ exports.ProgramParticipationToProgramsUncheckedCreateNestedManyWithoutProgramInp
 let ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput = class ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53461,6 +53525,9 @@ exports.ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipation
 let ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput = class ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53484,6 +53551,9 @@ ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput = __decorate([
 exports.ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput = ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput;
 let ProgramParticipationToProgramsUncheckedCreateInput = class ProgramParticipationToProgramsUncheckedCreateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "isAvailable", void 0);
@@ -53612,6 +53682,9 @@ exports.ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipa
 let ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput = class ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53636,6 +53709,9 @@ exports.ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipa
 let ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput = class ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53659,6 +53735,9 @@ ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput = __decorat
 exports.ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput = ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput;
 let ProgramParticipationToProgramsUncheckedUpdateManyInput = class ProgramParticipationToProgramsUncheckedUpdateManyInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "isAvailable", void 0);
@@ -53687,6 +53766,9 @@ exports.ProgramParticipationToProgramsUncheckedUpdateManyInput = ProgramParticip
 let ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput = class ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53711,6 +53793,9 @@ exports.ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipation
 let ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput = class ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53734,6 +53819,9 @@ ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput = __decorate([
 exports.ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput = ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput;
 let ProgramParticipationToProgramsUncheckedUpdateInput = class ProgramParticipationToProgramsUncheckedUpdateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "isAvailable", void 0);
@@ -53761,6 +53849,9 @@ ProgramParticipationToProgramsUncheckedUpdateInput = __decorate([
 exports.ProgramParticipationToProgramsUncheckedUpdateInput = ProgramParticipationToProgramsUncheckedUpdateInput;
 let ProgramParticipationToProgramsUpdateManyMutationInput = class ProgramParticipationToProgramsUpdateManyMutationInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "isAvailable", void 0);
@@ -53939,6 +54030,9 @@ exports.ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramInput =
 let ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput = class ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53963,6 +54057,9 @@ exports.ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput = P
 let ProgramParticipationToProgramsUpdateWithoutProgramInput = class ProgramParticipationToProgramsUpdateWithoutProgramInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -53978,7 +54075,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "nextResetDate", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput, { nullable: true })
 ], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "programParticipation", void 0);
 ProgramParticipationToProgramsUpdateWithoutProgramInput = __decorate([
     (0, graphql_4.InputType)()
@@ -53986,6 +54083,9 @@ ProgramParticipationToProgramsUpdateWithoutProgramInput = __decorate([
 exports.ProgramParticipationToProgramsUpdateWithoutProgramInput = ProgramParticipationToProgramsUpdateWithoutProgramInput;
 let ProgramParticipationToProgramsUpdateInput = class ProgramParticipationToProgramsUpdateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUpdateInput.prototype, "description", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateInput.prototype, "isAvailable", void 0);
@@ -54002,7 +54102,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateInput.prototype, "nextResetDate", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput, { nullable: true })
 ], ProgramParticipationToProgramsUpdateInput.prototype, "programParticipation", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -54062,6 +54162,9 @@ __decorate([
     (0, graphql_1.Field)(() => [ProgramParticipationToProgramsWhereInput], { nullable: true })
 ], ProgramParticipationToProgramsWhereUniqueInput.prototype, "NOT", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsWhereUniqueInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereUniqueInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -54104,6 +54207,9 @@ __decorate([
     (0, graphql_1.Field)(() => [ProgramParticipationToProgramsWhereInput_1], { nullable: true })
 ], ProgramParticipationToProgramsWhereInput.prototype, "NOT", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsWhereInput.prototype, "description", void 0);
+__decorate([
     (0, graphql_1.Field)(() => BoolFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereInput.prototype, "isAvailable", void 0);
 __decorate([
@@ -54136,6 +54242,9 @@ ProgramParticipationToProgramsWhereInput = ProgramParticipationToProgramsWhereIn
 exports.ProgramParticipationToProgramsWhereInput = ProgramParticipationToProgramsWhereInput;
 let ProgramParticipationToPrograms = class ProgramParticipationToPrograms {
 };
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ProgramParticipationToPrograms.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: false })
 ], ProgramParticipationToPrograms.prototype, "isAvailable", void 0);

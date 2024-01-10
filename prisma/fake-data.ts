@@ -293,6 +293,7 @@ export function fakeProgramParticipationComplete() {
 }
 export function fakeProgramParticipationToPrograms() {
   return {
+    description: undefined,
     isAvailable: faker.datatype.boolean(),
     allowanceCeilingRemaining: faker.datatype.float(),
     allowanceQuotaRemaining: faker.datatype.number(),
@@ -302,6 +303,7 @@ export function fakeProgramParticipationToPrograms() {
 }
 export function fakeProgramParticipationToProgramsComplete() {
   return {
+    description: undefined,
     isAvailable: faker.datatype.boolean(),
     allowanceCeilingRemaining: faker.datatype.float(),
     allowanceQuotaRemaining: faker.datatype.number(),
