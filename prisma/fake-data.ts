@@ -296,9 +296,10 @@ export function fakeProgramParticipationToPrograms() {
     description: undefined,
     isAvailable: faker.datatype.boolean(),
     allowanceCeilingRemaining: faker.datatype.float(),
-    allowanceQuotaRemaining: faker.datatype.number(),
+    allowanceCeilingRemainingLastResetDate: undefined,
+    allowanceQuotaRemaining: undefined,
+    allowanceQuotaRemainingLastResetDate: undefined,
     updatedAt: faker.datatype.datetime(),
-    nextResetDate: faker.datatype.datetime(),
   };
 }
 export function fakeProgramParticipationToProgramsComplete() {
@@ -306,9 +307,10 @@ export function fakeProgramParticipationToProgramsComplete() {
     description: undefined,
     isAvailable: faker.datatype.boolean(),
     allowanceCeilingRemaining: faker.datatype.float(),
-    allowanceQuotaRemaining: faker.datatype.number(),
+    allowanceCeilingRemainingLastResetDate: undefined,
+    allowanceQuotaRemaining: undefined,
+    allowanceQuotaRemainingLastResetDate: undefined,
     updatedAt: faker.datatype.datetime(),
-    nextResetDate: faker.datatype.datetime(),
     programParticipationId: faker.datatype.number(),
     programId: faker.datatype.number(),
   };
@@ -443,6 +445,7 @@ export function fakeClaimProgram() {
   return {
     expeditionDate: undefined,
     isReclaim: undefined,
+    isReclaimNoticeLetterDate: undefined,
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,
@@ -456,6 +459,7 @@ export function fakeClaimProgramComplete() {
     id: faker.datatype.number(),
     expeditionDate: undefined,
     isReclaim: undefined,
+    isReclaimNoticeLetterDate: undefined,
     submissionNote: undefined,
     description: undefined,
     additionalNote: undefined,

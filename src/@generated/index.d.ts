@@ -60,9 +60,10 @@ export declare enum ProgramParticipationToProgramsScalarFieldEnum {
     description = "description",
     isAvailable = "isAvailable",
     allowanceCeilingRemaining = "allowanceCeilingRemaining",
+    allowanceCeilingRemainingLastResetDate = "allowanceCeilingRemainingLastResetDate",
     allowanceQuotaRemaining = "allowanceQuotaRemaining",
+    allowanceQuotaRemainingLastResetDate = "allowanceQuotaRemainingLastResetDate",
     updatedAt = "updatedAt",
-    nextResetDate = "nextResetDate",
     programParticipationId = "programParticipationId",
     programId = "programId"
 }
@@ -336,6 +337,7 @@ export declare enum ClaimProgramScalarFieldEnum {
     id = "id",
     expeditionDate = "expeditionDate",
     isReclaim = "isReclaim",
+    isReclaimNoticeLetterDate = "isReclaimNoticeLetterDate",
     submissionNote = "submissionNote",
     description = "description",
     additionalNote = "additionalNote",
@@ -5349,6 +5351,7 @@ export declare class ClaimProgramCountAggregateInput {
     id?: true;
     expeditionDate?: true;
     isReclaim?: true;
+    isReclaimNoticeLetterDate?: true;
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
@@ -5364,6 +5367,7 @@ export declare class ClaimProgramCountAggregate {
     id: number;
     expeditionDate: number;
     isReclaim: number;
+    isReclaimNoticeLetterDate: number;
     submissionNote: number;
     description: number;
     additionalNote: number;
@@ -5379,6 +5383,7 @@ export declare class ClaimProgramCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: keyof typeof SortOrder;
     isReclaim?: keyof typeof SortOrder;
+    isReclaimNoticeLetterDate?: keyof typeof SortOrder;
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
@@ -5401,6 +5406,7 @@ export declare class ClaimProgramCreateManyClinicsInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5418,6 +5424,7 @@ export declare class ClaimProgramCreateManyDiseaseInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5435,6 +5442,7 @@ export declare class ClaimProgramCreateManyProgramInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5448,6 +5456,7 @@ export declare class ClaimProgramCreateManyInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5518,6 +5527,7 @@ export declare class ClaimProgramCreateOrConnectWithoutProgramInput {
 export declare class ClaimProgramCreateWithoutClaimInput {
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5533,6 +5543,7 @@ export declare class ClaimProgramCreateWithoutClaimInput {
 export declare class ClaimProgramCreateWithoutClinicsInput {
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5548,6 +5559,7 @@ export declare class ClaimProgramCreateWithoutClinicsInput {
 export declare class ClaimProgramCreateWithoutDiseaseInput {
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5563,6 +5575,7 @@ export declare class ClaimProgramCreateWithoutDiseaseInput {
 export declare class ClaimProgramCreateWithoutDocumentsInput {
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5578,6 +5591,7 @@ export declare class ClaimProgramCreateWithoutDocumentsInput {
 export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5593,6 +5607,7 @@ export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
 export declare class ClaimProgramCreateWithoutProgramInput {
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5608,6 +5623,7 @@ export declare class ClaimProgramCreateWithoutProgramInput {
 export declare class ClaimProgramCreateInput {
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5638,6 +5654,7 @@ export declare class ClaimProgramGroupBy {
     id: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5662,6 +5679,7 @@ export declare class ClaimProgramMaxAggregateInput {
     id?: true;
     expeditionDate?: true;
     isReclaim?: true;
+    isReclaimNoticeLetterDate?: true;
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
@@ -5676,6 +5694,7 @@ export declare class ClaimProgramMaxAggregate {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5690,6 +5709,7 @@ export declare class ClaimProgramMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: keyof typeof SortOrder;
     isReclaim?: keyof typeof SortOrder;
+    isReclaimNoticeLetterDate?: keyof typeof SortOrder;
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
@@ -5704,6 +5724,7 @@ export declare class ClaimProgramMinAggregateInput {
     id?: true;
     expeditionDate?: true;
     isReclaim?: true;
+    isReclaimNoticeLetterDate?: true;
     submissionNote?: true;
     description?: true;
     additionalNote?: true;
@@ -5718,6 +5739,7 @@ export declare class ClaimProgramMinAggregate {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5732,6 +5754,7 @@ export declare class ClaimProgramMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: keyof typeof SortOrder;
     isReclaim?: keyof typeof SortOrder;
+    isReclaimNoticeLetterDate?: keyof typeof SortOrder;
     submissionNote?: keyof typeof SortOrder;
     description?: keyof typeof SortOrder;
     additionalNote?: keyof typeof SortOrder;
@@ -5753,6 +5776,7 @@ export declare class ClaimProgramOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: InstanceType<typeof SortOrderInput>;
     isReclaim?: InstanceType<typeof SortOrderInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof SortOrderInput>;
     submissionNote?: InstanceType<typeof SortOrderInput>;
     description?: InstanceType<typeof SortOrderInput>;
     additionalNote?: InstanceType<typeof SortOrderInput>;
@@ -5772,6 +5796,7 @@ export declare class ClaimProgramOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     expeditionDate?: InstanceType<typeof SortOrderInput>;
     isReclaim?: InstanceType<typeof SortOrderInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof SortOrderInput>;
     submissionNote?: InstanceType<typeof SortOrderInput>;
     description?: InstanceType<typeof SortOrderInput>;
     additionalNote?: InstanceType<typeof SortOrderInput>;
@@ -5799,6 +5824,7 @@ export declare class ClaimProgramScalarWhereWithAggregatesInput {
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     expeditionDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     isReclaim?: InstanceType<typeof BoolNullableWithAggregatesFilter>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     submissionNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     additionalNote?: InstanceType<typeof StringNullableWithAggregatesFilter>;
@@ -5816,6 +5842,7 @@ export declare class ClaimProgramScalarWhereInput {
     id?: InstanceType<typeof IntFilter>;
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
     isReclaim?: InstanceType<typeof BoolNullableFilter>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof DateTimeNullableFilter>;
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
@@ -5866,6 +5893,7 @@ export declare class ClaimProgramUncheckedCreateWithoutClaimInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5882,6 +5910,7 @@ export declare class ClaimProgramUncheckedCreateWithoutClinicsInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5898,6 +5927,7 @@ export declare class ClaimProgramUncheckedCreateWithoutDiseaseInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5914,6 +5944,7 @@ export declare class ClaimProgramUncheckedCreateWithoutDocumentsInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5930,6 +5961,7 @@ export declare class ClaimProgramUncheckedCreateWithoutInvoiceProofsInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5946,6 +5978,7 @@ export declare class ClaimProgramUncheckedCreateWithoutProgramInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5962,6 +5995,7 @@ export declare class ClaimProgramUncheckedCreateInput {
     id?: number;
     expeditionDate?: Date | string;
     isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
     submissionNote?: string;
     description?: string;
     additionalNote?: string;
@@ -5992,6 +6026,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutClinicsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6018,6 +6053,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutDiseaseInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6044,6 +6080,7 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutProgramInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6057,6 +6094,7 @@ export declare class ClaimProgramUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6071,6 +6109,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6087,6 +6126,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutClinicsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6103,6 +6143,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutDiseaseInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6119,6 +6160,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutDocumentsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6135,6 +6177,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6151,6 +6194,7 @@ export declare class ClaimProgramUncheckedUpdateWithoutProgramInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6167,6 +6211,7 @@ export declare class ClaimProgramUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6183,6 +6228,7 @@ export declare class ClaimProgramUncheckedUpdateInput {
 export declare class ClaimProgramUpdateManyMutationInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6293,6 +6339,7 @@ export declare class ClaimProgramUpdateWithWhereUniqueWithoutProgramInput {
 export declare class ClaimProgramUpdateWithoutClaimInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6308,6 +6355,7 @@ export declare class ClaimProgramUpdateWithoutClaimInput {
 export declare class ClaimProgramUpdateWithoutClinicsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6323,6 +6371,7 @@ export declare class ClaimProgramUpdateWithoutClinicsInput {
 export declare class ClaimProgramUpdateWithoutDiseaseInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6338,6 +6387,7 @@ export declare class ClaimProgramUpdateWithoutDiseaseInput {
 export declare class ClaimProgramUpdateWithoutDocumentsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6353,6 +6403,7 @@ export declare class ClaimProgramUpdateWithoutDocumentsInput {
 export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6368,6 +6419,7 @@ export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
 export declare class ClaimProgramUpdateWithoutProgramInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6383,6 +6435,7 @@ export declare class ClaimProgramUpdateWithoutProgramInput {
 export declare class ClaimProgramUpdateInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -6433,6 +6486,7 @@ export declare class ClaimProgramWhereUniqueInput {
     NOT?: Array<ClaimProgramWhereInput>;
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
     isReclaim?: InstanceType<typeof BoolNullableFilter>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof DateTimeNullableFilter>;
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
@@ -6456,6 +6510,7 @@ export declare class ClaimProgramWhereInput {
     id?: InstanceType<typeof IntFilter>;
     expeditionDate?: InstanceType<typeof DateTimeNullableFilter>;
     isReclaim?: InstanceType<typeof BoolNullableFilter>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof DateTimeNullableFilter>;
     submissionNote?: InstanceType<typeof StringNullableFilter>;
     description?: InstanceType<typeof StringNullableFilter>;
     additionalNote?: InstanceType<typeof StringNullableFilter>;
@@ -6476,6 +6531,7 @@ export declare class ClaimProgram {
     id: number;
     expeditionDate: Date | null;
     isReclaim: boolean | null;
+    isReclaimNoticeLetterDate: Date | null;
     submissionNote: string | null;
     description: string | null;
     additionalNote: string | null;
@@ -16956,9 +17012,10 @@ export declare class ProgramParticipationToProgramsCountAggregateInput {
     description?: true;
     isAvailable?: true;
     allowanceCeilingRemaining?: true;
+    allowanceCeilingRemainingLastResetDate?: true;
     allowanceQuotaRemaining?: true;
+    allowanceQuotaRemainingLastResetDate?: true;
     updatedAt?: true;
-    nextResetDate?: true;
     programParticipationId?: true;
     programId?: true;
     _all?: true;
@@ -16967,9 +17024,10 @@ export declare class ProgramParticipationToProgramsCountAggregate {
     description: number;
     isAvailable: number;
     allowanceCeilingRemaining: number;
+    allowanceCeilingRemainingLastResetDate: number;
     allowanceQuotaRemaining: number;
+    allowanceQuotaRemainingLastResetDate: number;
     updatedAt: number;
-    nextResetDate: number;
     programParticipationId: number;
     programId: number;
     _all: number;
@@ -16978,9 +17036,10 @@ export declare class ProgramParticipationToProgramsCountOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
+    allowanceCeilingRemainingLastResetDate?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
+    allowanceQuotaRemainingLastResetDate?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
-    nextResetDate?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
 }
@@ -16996,27 +17055,30 @@ export declare class ProgramParticipationToProgramsCreateManyProgramParticipatio
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programId: number;
 }
 export declare class ProgramParticipationToProgramsCreateManyProgramInput {
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programParticipationId: number;
 }
 export declare class ProgramParticipationToProgramsCreateManyInput {
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programParticipationId: number;
     programId: number;
 }
@@ -17044,27 +17106,30 @@ export declare class ProgramParticipationToProgramsCreateWithoutProgramParticipa
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutProgramParticipationsInput>;
 }
 export declare class ProgramParticipationToProgramsCreateWithoutProgramInput {
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programParticipation: InstanceType<typeof ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput>;
 }
 export declare class ProgramParticipationToProgramsCreateInput {
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programParticipation: InstanceType<typeof ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutProgramParticipationsInput>;
 }
@@ -17085,9 +17150,10 @@ export declare class ProgramParticipationToProgramsGroupBy {
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt: Date | string;
-    nextResetDate: Date | string;
     programParticipationId: number;
     programId: number;
     _count?: InstanceType<typeof ProgramParticipationToProgramsCountAggregate>;
@@ -17105,9 +17171,10 @@ export declare class ProgramParticipationToProgramsMaxAggregateInput {
     description?: true;
     isAvailable?: true;
     allowanceCeilingRemaining?: true;
+    allowanceCeilingRemainingLastResetDate?: true;
     allowanceQuotaRemaining?: true;
+    allowanceQuotaRemainingLastResetDate?: true;
     updatedAt?: true;
-    nextResetDate?: true;
     programParticipationId?: true;
     programId?: true;
 }
@@ -17115,9 +17182,10 @@ export declare class ProgramParticipationToProgramsMaxAggregate {
     description?: string;
     isAvailable?: boolean;
     allowanceCeilingRemaining?: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
     allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate?: Date | string;
     programParticipationId?: number;
     programId?: number;
 }
@@ -17125,9 +17193,10 @@ export declare class ProgramParticipationToProgramsMaxOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
+    allowanceCeilingRemainingLastResetDate?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
+    allowanceQuotaRemainingLastResetDate?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
-    nextResetDate?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
 }
@@ -17135,9 +17204,10 @@ export declare class ProgramParticipationToProgramsMinAggregateInput {
     description?: true;
     isAvailable?: true;
     allowanceCeilingRemaining?: true;
+    allowanceCeilingRemainingLastResetDate?: true;
     allowanceQuotaRemaining?: true;
+    allowanceQuotaRemainingLastResetDate?: true;
     updatedAt?: true;
-    nextResetDate?: true;
     programParticipationId?: true;
     programId?: true;
 }
@@ -17145,9 +17215,10 @@ export declare class ProgramParticipationToProgramsMinAggregate {
     description?: string;
     isAvailable?: boolean;
     allowanceCeilingRemaining?: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
     allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate?: Date | string;
     programParticipationId?: number;
     programId?: number;
 }
@@ -17155,9 +17226,10 @@ export declare class ProgramParticipationToProgramsMinOrderByAggregateInput {
     description?: keyof typeof SortOrder;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
+    allowanceCeilingRemainingLastResetDate?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
+    allowanceQuotaRemainingLastResetDate?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
-    nextResetDate?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
 }
@@ -17168,9 +17240,10 @@ export declare class ProgramParticipationToProgramsOrderByWithAggregationInput {
     description?: InstanceType<typeof SortOrderInput>;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
-    allowanceQuotaRemaining?: keyof typeof SortOrder;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof SortOrderInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof SortOrderInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof SortOrderInput>;
     updatedAt?: keyof typeof SortOrder;
-    nextResetDate?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ProgramParticipationToProgramsCountOrderByAggregateInput>;
@@ -17183,9 +17256,10 @@ export declare class ProgramParticipationToProgramsOrderByWithRelationInput {
     description?: InstanceType<typeof SortOrderInput>;
     isAvailable?: keyof typeof SortOrder;
     allowanceCeilingRemaining?: keyof typeof SortOrder;
-    allowanceQuotaRemaining?: keyof typeof SortOrder;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof SortOrderInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof SortOrderInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof SortOrderInput>;
     updatedAt?: keyof typeof SortOrder;
-    nextResetDate?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
     programParticipation?: InstanceType<typeof ProgramParticipationOrderByWithRelationInput>;
@@ -17202,9 +17276,10 @@ export declare class ProgramParticipationToProgramsScalarWhereWithAggregatesInpu
     description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     isAvailable?: InstanceType<typeof BoolWithAggregatesFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatWithAggregatesFilter>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntWithAggregatesFilter>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
+    allowanceQuotaRemaining?: InstanceType<typeof IntNullableWithAggregatesFilter>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    nextResetDate?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     programParticipationId?: InstanceType<typeof IntWithAggregatesFilter>;
     programId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
@@ -17215,9 +17290,10 @@ export declare class ProgramParticipationToProgramsScalarWhereInput {
     description?: InstanceType<typeof StringNullableFilter>;
     isAvailable?: InstanceType<typeof BoolFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFilter>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFilter>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof DateTimeNullableFilter>;
+    allowanceQuotaRemaining?: InstanceType<typeof IntNullableFilter>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof DateTimeNullableFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    nextResetDate?: InstanceType<typeof DateTimeFilter>;
     programParticipationId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
 }
@@ -17255,27 +17331,30 @@ export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgram
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programId: number;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput {
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programParticipationId: number;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateInput {
     description?: string;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate?: Date | string;
+    allowanceQuotaRemaining?: number;
+    allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
-    nextResetDate: Date | string;
     programParticipationId: number;
     programId: number;
 }
@@ -17309,27 +17388,30 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutPro
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -17337,27 +17419,30 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgram
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
@@ -17365,9 +17450,10 @@ export declare class ProgramParticipationToProgramsUpdateManyMutationInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateManyWithWhereWithoutProgramParticipationInput {
     where: InstanceType<typeof ProgramParticipationToProgramsScalarWhereInput>;
@@ -17415,27 +17501,30 @@ export declare class ProgramParticipationToProgramsUpdateWithoutProgramParticipa
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutProgramParticipationsNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateWithoutProgramInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipation?: InstanceType<typeof ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     isAvailable?: InstanceType<typeof BoolFieldUpdateOperationsInput>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    allowanceQuotaRemaining?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    nextResetDate?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipation?: InstanceType<typeof ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutProgramParticipationsNestedInput>;
 }
@@ -17457,9 +17546,10 @@ export declare class ProgramParticipationToProgramsWhereUniqueInput {
     description?: InstanceType<typeof StringNullableFilter>;
     isAvailable?: InstanceType<typeof BoolFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFilter>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFilter>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof DateTimeNullableFilter>;
+    allowanceQuotaRemaining?: InstanceType<typeof IntNullableFilter>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof DateTimeNullableFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    nextResetDate?: InstanceType<typeof DateTimeFilter>;
     programParticipationId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
     programParticipation?: InstanceType<typeof ProgramParticipationRelationFilter>;
@@ -17472,9 +17562,10 @@ export declare class ProgramParticipationToProgramsWhereInput {
     description?: InstanceType<typeof StringNullableFilter>;
     isAvailable?: InstanceType<typeof BoolFilter>;
     allowanceCeilingRemaining?: InstanceType<typeof FloatFilter>;
-    allowanceQuotaRemaining?: InstanceType<typeof IntFilter>;
+    allowanceCeilingRemainingLastResetDate?: InstanceType<typeof DateTimeNullableFilter>;
+    allowanceQuotaRemaining?: InstanceType<typeof IntNullableFilter>;
+    allowanceQuotaRemainingLastResetDate?: InstanceType<typeof DateTimeNullableFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
-    nextResetDate?: InstanceType<typeof DateTimeFilter>;
     programParticipationId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
     programParticipation?: InstanceType<typeof ProgramParticipationRelationFilter>;
@@ -17484,9 +17575,10 @@ export declare class ProgramParticipationToPrograms {
     description: string | null;
     isAvailable: boolean;
     allowanceCeilingRemaining: number;
-    allowanceQuotaRemaining: number;
+    allowanceCeilingRemainingLastResetDate: Date | null;
+    allowanceQuotaRemaining: number | null;
+    allowanceQuotaRemainingLastResetDate: Date | null;
     updatedAt: Date;
-    nextResetDate: Date;
     programParticipationId: number;
     programId: number;
     programParticipation?: InstanceType<typeof ProgramParticipation>;

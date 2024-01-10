@@ -569,15 +569,18 @@ model ProgramParticipationToPrograms {
     allowanceCeilingRemaining Float
 
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
-    ///Sisa kesempatan klaim saat ini
-    allowanceQuotaRemaining Int
+    allowanceCeilingRemainingLastResetDate DateTime?
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    ///Sisa kesempatan klaim saat ini, namun tidak semua program memberlakukan quota penggunaan klaim
+    allowanceQuotaRemaining Int?
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    allowanceQuotaRemainingLastResetDate DateTime?
 
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
     /// allowanceCeiling & Quota Remaining LastUpdate
     updatedAt DateTime @updatedAt
-
-    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
-    nextResetDate DateTime
 
     //-------------------------- 1 relations --------------------------------
     programParticipation ProgramParticipation @relation(fields: [programParticipationId], references: [id])
@@ -935,6 +938,8 @@ model ClaimProgram {
 
     ///Reklaim:	Keterangan untuk klaim ulang
     isReclaim Boolean?
+
+    isReclaimNoticeLetterDate DateTime?
 
     ///Ket.Pengajuan:	Keterangan konfirmasi
     submissionNote String?

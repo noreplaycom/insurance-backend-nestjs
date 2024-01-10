@@ -144,9 +144,10 @@ var ProgramParticipationToProgramsScalarFieldEnum;
     ProgramParticipationToProgramsScalarFieldEnum["description"] = "description";
     ProgramParticipationToProgramsScalarFieldEnum["isAvailable"] = "isAvailable";
     ProgramParticipationToProgramsScalarFieldEnum["allowanceCeilingRemaining"] = "allowanceCeilingRemaining";
+    ProgramParticipationToProgramsScalarFieldEnum["allowanceCeilingRemainingLastResetDate"] = "allowanceCeilingRemainingLastResetDate";
     ProgramParticipationToProgramsScalarFieldEnum["allowanceQuotaRemaining"] = "allowanceQuotaRemaining";
+    ProgramParticipationToProgramsScalarFieldEnum["allowanceQuotaRemainingLastResetDate"] = "allowanceQuotaRemainingLastResetDate";
     ProgramParticipationToProgramsScalarFieldEnum["updatedAt"] = "updatedAt";
-    ProgramParticipationToProgramsScalarFieldEnum["nextResetDate"] = "nextResetDate";
     ProgramParticipationToProgramsScalarFieldEnum["programParticipationId"] = "programParticipationId";
     ProgramParticipationToProgramsScalarFieldEnum["programId"] = "programId";
 })(ProgramParticipationToProgramsScalarFieldEnum = exports.ProgramParticipationToProgramsScalarFieldEnum || (exports.ProgramParticipationToProgramsScalarFieldEnum = {}));
@@ -457,6 +458,7 @@ var ClaimProgramScalarFieldEnum;
     ClaimProgramScalarFieldEnum["id"] = "id";
     ClaimProgramScalarFieldEnum["expeditionDate"] = "expeditionDate";
     ClaimProgramScalarFieldEnum["isReclaim"] = "isReclaim";
+    ClaimProgramScalarFieldEnum["isReclaimNoticeLetterDate"] = "isReclaimNoticeLetterDate";
     ClaimProgramScalarFieldEnum["submissionNote"] = "submissionNote";
     ClaimProgramScalarFieldEnum["description"] = "description";
     ClaimProgramScalarFieldEnum["additionalNote"] = "additionalNote";
@@ -16144,6 +16146,9 @@ __decorate([
 ], ClaimProgramCountAggregateInput.prototype, "isReclaim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ClaimProgramCountAggregateInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCountAggregateInput.prototype, "submissionNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -16189,6 +16194,9 @@ __decorate([
 ], ClaimProgramCountAggregate.prototype, "isReclaim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], ClaimProgramCountAggregate.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ClaimProgramCountAggregate.prototype, "submissionNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
@@ -16232,6 +16240,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramCountOrderByAggregateInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ClaimProgramCountOrderByAggregateInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramCountOrderByAggregateInput.prototype, "submissionNote", void 0);
@@ -16300,6 +16311,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateManyClinicsInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateManyClinicsInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyClinicsInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -16351,6 +16365,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateManyDiseaseInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateManyDiseaseInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyDiseaseInput.prototype, "submissionNote", void 0);
@@ -16404,6 +16421,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateManyProgramInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateManyProgramInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyProgramInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -16442,6 +16462,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateManyInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateManyInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateManyInput.prototype, "submissionNote", void 0);
@@ -16686,6 +16709,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateWithoutClaimInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateWithoutClaimInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutClaimInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -16730,6 +16756,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateWithoutClinicsInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateWithoutClinicsInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutClinicsInput.prototype, "submissionNote", void 0);
@@ -16776,6 +16805,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateWithoutDiseaseInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateWithoutDiseaseInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutDiseaseInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -16820,6 +16852,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateWithoutDocumentsInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateWithoutDocumentsInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutDocumentsInput.prototype, "submissionNote", void 0);
@@ -16866,6 +16901,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutInvoiceProofsInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -16911,6 +16949,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateWithoutProgramInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateWithoutProgramInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateWithoutProgramInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -16955,6 +16996,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramCreateInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramCreateInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramCreateInput.prototype, "submissionNote", void 0);
@@ -17047,6 +17091,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramGroupBy.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramGroupBy.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramGroupBy.prototype, "submissionNote", void 0);
 __decorate([
@@ -17120,6 +17167,9 @@ __decorate([
 ], ClaimProgramMaxAggregateInput.prototype, "isReclaim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ClaimProgramMaxAggregateInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMaxAggregateInput.prototype, "submissionNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -17160,6 +17210,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMaxAggregate.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramMaxAggregate.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramMaxAggregate.prototype, "submissionNote", void 0);
@@ -17204,6 +17257,9 @@ __decorate([
 ], ClaimProgramMaxOrderByAggregateInput.prototype, "isReclaim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ClaimProgramMaxOrderByAggregateInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMaxOrderByAggregateInput.prototype, "submissionNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -17244,6 +17300,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMinAggregateInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ClaimProgramMinAggregateInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMinAggregateInput.prototype, "submissionNote", void 0);
@@ -17287,6 +17346,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramMinAggregate.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramMinAggregate.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramMinAggregate.prototype, "submissionNote", void 0);
 __decorate([
@@ -17328,6 +17390,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMinOrderByAggregateInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ClaimProgramMinOrderByAggregateInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ClaimProgramMinOrderByAggregateInput.prototype, "submissionNote", void 0);
@@ -17393,6 +17458,9 @@ __decorate([
 ], ClaimProgramOrderByWithAggregationInput.prototype, "isReclaim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ClaimProgramOrderByWithAggregationInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithAggregationInput.prototype, "submissionNote", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
@@ -17448,6 +17516,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithRelationInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ClaimProgramOrderByWithRelationInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ClaimProgramOrderByWithRelationInput.prototype, "submissionNote", void 0);
@@ -17530,6 +17601,9 @@ __decorate([
     (0, graphql_1.Field)(() => BoolNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProgramScalarWhereWithAggregatesInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
+], ClaimProgramScalarWhereWithAggregatesInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], ClaimProgramScalarWhereWithAggregatesInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -17580,6 +17654,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => BoolNullableFilter, { nullable: true })
 ], ClaimProgramScalarWhereInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ClaimProgramScalarWhereInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProgramScalarWhereInput.prototype, "submissionNote", void 0);
@@ -17743,6 +17820,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClaimInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -17790,6 +17870,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutClinicsInput.prototype, "submissionNote", void 0);
@@ -17839,6 +17922,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDiseaseInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -17886,6 +17972,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutDocumentsInput.prototype, "submissionNote", void 0);
@@ -17935,6 +18024,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutInvoiceProofsInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -17983,6 +18075,9 @@ __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateWithoutProgramInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -18030,6 +18125,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ClaimProgramUncheckedCreateInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgramUncheckedCreateInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], ClaimProgramUncheckedCreateInput.prototype, "submissionNote", void 0);
@@ -18132,6 +18230,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutClinicsInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -18220,6 +18321,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutDiseaseInput.prototype, "submissionNote", void 0);
@@ -18310,6 +18414,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyWithoutProgramInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -18348,6 +18455,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateManyInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateManyInput.prototype, "submissionNote", void 0);
@@ -18390,6 +18500,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClaimInput.prototype, "submissionNote", void 0);
@@ -18439,6 +18552,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutClinicsInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -18486,6 +18602,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDiseaseInput.prototype, "submissionNote", void 0);
@@ -18535,6 +18654,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutDocumentsInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -18582,6 +18704,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput.prototype, "submissionNote", void 0);
@@ -18631,6 +18756,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateWithoutProgramInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -18679,6 +18807,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUncheckedUpdateInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUncheckedUpdateInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -18726,6 +18857,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateManyMutationInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateManyMutationInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateManyMutationInput.prototype, "submissionNote", void 0);
@@ -19127,6 +19261,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClaimInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateWithoutClaimInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClaimInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -19171,6 +19308,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClinicsInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateWithoutClinicsInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutClinicsInput.prototype, "submissionNote", void 0);
@@ -19217,6 +19357,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDiseaseInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateWithoutDiseaseInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDiseaseInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -19261,6 +19404,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDocumentsInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateWithoutDocumentsInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutDocumentsInput.prototype, "submissionNote", void 0);
@@ -19307,6 +19453,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutInvoiceProofsInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -19352,6 +19501,9 @@ __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutProgramInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateWithoutProgramInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateWithoutProgramInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -19396,6 +19548,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableBoolFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateInput.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ClaimProgramUpdateInput.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], ClaimProgramUpdateInput.prototype, "submissionNote", void 0);
@@ -19565,6 +19720,9 @@ __decorate([
     (0, graphql_1.Field)(() => BoolNullableFilter, { nullable: true })
 ], ClaimProgramWhereUniqueInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ClaimProgramWhereUniqueInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProgramWhereUniqueInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -19634,6 +19792,9 @@ __decorate([
     (0, graphql_1.Field)(() => BoolNullableFilter, { nullable: true })
 ], ClaimProgramWhereInput.prototype, "isReclaim", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ClaimProgramWhereInput.prototype, "isReclaimNoticeLetterDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], ClaimProgramWhereInput.prototype, "submissionNote", void 0);
 __decorate([
@@ -19693,6 +19854,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true, description: 'Reklaim:\tKeterangan untuk klaim ulang' })
 ], ClaimProgram.prototype, "isReclaim", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ClaimProgram.prototype, "isReclaimNoticeLetterDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true, description: 'Ket.Pengajuan:\tKeterangan konfirmasi' })
 ], ClaimProgram.prototype, "submissionNote", void 0);
@@ -52588,13 +52752,16 @@ __decorate([
 ], ProgramParticipationToProgramsCountAggregateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ProgramParticipationToProgramsCountAggregateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsCountAggregateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ProgramParticipationToProgramsCountAggregateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCountAggregateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ProgramParticipationToProgramsCountAggregateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCountAggregateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsCountAggregateInput.prototype, "programParticipationId", void 0);
@@ -52621,13 +52788,16 @@ __decorate([
 ], ProgramParticipationToProgramsCountAggregate.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], ProgramParticipationToProgramsCountAggregate.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToProgramsCountAggregate.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ProgramParticipationToProgramsCountAggregate.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCountAggregate.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ProgramParticipationToProgramsCountAggregate.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCountAggregate.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToProgramsCountAggregate.prototype, "programParticipationId", void 0);
@@ -52654,13 +52824,16 @@ __decorate([
 ], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsCountOrderByAggregateInput.prototype, "programParticipationId", void 0);
@@ -52710,13 +52883,16 @@ __decorate([
 ], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyProgramParticipationInput.prototype, "programId", void 0);
@@ -52737,13 +52913,16 @@ __decorate([
 ], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyProgramInput.prototype, "programParticipationId", void 0);
@@ -52764,13 +52943,16 @@ __decorate([
 ], ProgramParticipationToProgramsCreateManyInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsCreateManyInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateManyInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCreateManyInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateManyInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCreateManyInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateManyInput.prototype, "programParticipationId", void 0);
@@ -52866,13 +53048,16 @@ __decorate([
 ], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateWithoutProgramParticipationInput.prototype, "program", void 0);
@@ -52893,13 +53078,16 @@ __decorate([
 ], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput, { nullable: false })
 ], ProgramParticipationToProgramsCreateWithoutProgramInput.prototype, "programParticipation", void 0);
@@ -52920,13 +53108,16 @@ __decorate([
 ], ProgramParticipationToProgramsCreateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsCreateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsCreateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsCreateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsCreateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsCreateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput, { nullable: false })
 ], ProgramParticipationToProgramsCreateInput.prototype, "programParticipation", void 0);
@@ -52989,14 +53180,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: false })
 ], ProgramParticipationToProgramsGroupBy.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsGroupBy.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsGroupBy.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsGroupBy.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
 ], ProgramParticipationToProgramsGroupBy.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], ProgramParticipationToProgramsGroupBy.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToProgramsGroupBy.prototype, "programParticipationId", void 0);
@@ -53050,13 +53244,16 @@ __decorate([
 ], ProgramParticipationToProgramsMaxAggregateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ProgramParticipationToProgramsMaxAggregateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMaxAggregateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ProgramParticipationToProgramsMaxAggregateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsMaxAggregateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ProgramParticipationToProgramsMaxAggregateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsMaxAggregateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMaxAggregateInput.prototype, "programParticipationId", void 0);
@@ -53079,14 +53276,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], ProgramParticipationToProgramsMaxAggregate.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsMaxAggregate.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsMaxAggregate.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
-], ProgramParticipationToProgramsMaxAggregate.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsMaxAggregate.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
-], ProgramParticipationToProgramsMaxAggregate.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsMaxAggregate.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsMaxAggregate.prototype, "programParticipationId", void 0);
@@ -53110,13 +53310,16 @@ __decorate([
 ], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsMaxOrderByAggregateInput.prototype, "programParticipationId", void 0);
@@ -53140,13 +53343,16 @@ __decorate([
 ], ProgramParticipationToProgramsMinAggregateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], ProgramParticipationToProgramsMinAggregateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMinAggregateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ProgramParticipationToProgramsMinAggregateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsMinAggregateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], ProgramParticipationToProgramsMinAggregateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsMinAggregateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], ProgramParticipationToProgramsMinAggregateInput.prototype, "programParticipationId", void 0);
@@ -53169,14 +53375,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], ProgramParticipationToProgramsMinAggregate.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsMinAggregate.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsMinAggregate.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
-], ProgramParticipationToProgramsMinAggregate.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsMinAggregate.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
-], ProgramParticipationToProgramsMinAggregate.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsMinAggregate.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsMinAggregate.prototype, "programParticipationId", void 0);
@@ -53200,13 +53409,16 @@ __decorate([
 ], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsMinOrderByAggregateInput.prototype, "programParticipationId", void 0);
@@ -53238,14 +53450,17 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithAggregationInput.prototype, "programParticipationId", void 0);
@@ -53283,14 +53498,17 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], ProgramParticipationToProgramsOrderByWithRelationInput.prototype, "programParticipationId", void 0);
@@ -53340,14 +53558,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatWithAggregatesFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
+], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
+], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
-], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereWithAggregatesInput.prototype, "programParticipationId", void 0);
@@ -53379,14 +53600,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsScalarWhereInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsScalarWhereInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
-], ProgramParticipationToProgramsScalarWhereInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], ProgramParticipationToProgramsScalarWhereInput.prototype, "programParticipationId", void 0);
@@ -53507,14 +53731,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
-], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "nextResetDate", void 0);
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramParticipationInput.prototype, "programId", void 0);
@@ -53534,14 +53761,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
-], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "nextResetDate", void 0);
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput.prototype, "programParticipationId", void 0);
@@ -53561,14 +53791,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
-], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "nextResetDate", void 0);
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToProgramsUncheckedCreateInput.prototype, "programParticipationId", void 0);
@@ -53691,14 +53924,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramParticipationInput.prototype, "programId", void 0);
@@ -53718,14 +53954,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput.prototype, "programParticipationId", void 0);
@@ -53745,14 +53984,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateManyInput.prototype, "programParticipationId", void 0);
@@ -53775,14 +54017,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramParticipationInput.prototype, "programId", void 0);
@@ -53802,14 +54047,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput.prototype, "programParticipationId", void 0);
@@ -53829,14 +54077,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], ProgramParticipationToProgramsUncheckedUpdateInput.prototype, "programParticipationId", void 0);
@@ -53860,13 +54111,16 @@ __decorate([
 ], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsUpdateManyMutationInput.prototype, "updatedAt", void 0);
 ProgramParticipationToProgramsUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ProgramParticipationToProgramsUpdateManyMutationInput);
@@ -54040,13 +54294,16 @@ __decorate([
 ], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput.prototype, "program", void 0);
@@ -54067,13 +54324,16 @@ __decorate([
 ], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput, { nullable: true })
 ], ProgramParticipationToProgramsUpdateWithoutProgramInput.prototype, "programParticipation", void 0);
@@ -54094,13 +54354,16 @@ __decorate([
 ], ProgramParticipationToProgramsUpdateInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
+], ProgramParticipationToProgramsUpdateInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
 ], ProgramParticipationToProgramsUpdateInput.prototype, "allowanceQuotaRemaining", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateInput.prototype, "updatedAt", void 0);
+], ProgramParticipationToProgramsUpdateInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_7.HideField)()
-], ProgramParticipationToProgramsUpdateInput.prototype, "nextResetDate", void 0);
+], ProgramParticipationToProgramsUpdateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput, { nullable: true })
 ], ProgramParticipationToProgramsUpdateInput.prototype, "programParticipation", void 0);
@@ -54171,14 +54434,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereUniqueInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsWhereUniqueInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereUniqueInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsWhereUniqueInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereUniqueInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
-], ProgramParticipationToProgramsWhereUniqueInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereUniqueInput.prototype, "programParticipationId", void 0);
@@ -54216,14 +54482,17 @@ __decorate([
     (0, graphql_1.Field)(() => FloatFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereInput.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsWhereInput.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereInput.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], ProgramParticipationToProgramsWhereInput.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
-], ProgramParticipationToProgramsWhereInput.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], ProgramParticipationToProgramsWhereInput.prototype, "programParticipationId", void 0);
@@ -54252,14 +54521,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: false, description: 'Sisa penggunaan plafon saat ini' })
 ], ProgramParticipationToPrograms.prototype, "allowanceCeilingRemaining", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false, description: 'Sisa kesempatan klaim saat ini' })
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToPrograms.prototype, "allowanceCeilingRemainingLastResetDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: true, description: 'Sisa kesempatan klaim saat ini, namun tidak semua program memberlakukan quota penggunaan klaim' })
 ], ProgramParticipationToPrograms.prototype, "allowanceQuotaRemaining", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], ProgramParticipationToPrograms.prototype, "allowanceQuotaRemainingLastResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false, description: 'allowanceCeiling & Quota Remaining LastUpdate' })
 ], ProgramParticipationToPrograms.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], ProgramParticipationToPrograms.prototype, "nextResetDate", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
 ], ProgramParticipationToPrograms.prototype, "programParticipationId", void 0);

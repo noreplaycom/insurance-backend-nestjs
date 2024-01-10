@@ -37,7 +37,6 @@ async function bootstrap() {
   const initializationService = app.get(InitializationService);
   try {
     await initializationService.initialize();
-    console.log('Initialization complete');
   } catch (error) {
     console.error('Initialization failed:', error);
   }
