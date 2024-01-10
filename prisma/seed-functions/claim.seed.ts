@@ -222,21 +222,21 @@ export async function claimSeed() {
           role: { connect: { id: faker.helpers.arrayElement(newRoles).id } },
         },
       },
-      claimStatuses: {
-        create: {
-          status: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
-          changedBy: {
-            create: {
-              fullName: faker.name.firstName(),
-              email: faker.internet.email(),
-              password: faker.internet.password(),
-              role: {
-                connect: { id: faker.helpers.arrayElement(newRoles).id },
-              },
-            },
-          },
-        },
-      },
+      // claimStatuses: {
+      //   create: {
+      //     status: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
+      //     changedBy: {
+      //       create: {
+      //         fullName: faker.name.firstName(),
+      //         email: faker.internet.email(),
+      //         password: faker.internet.password(),
+      //         role: {
+      //           connect: { id: faker.helpers.arrayElement(newRoles).id },
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
     };
 
     // Create claim

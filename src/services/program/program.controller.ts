@@ -68,6 +68,7 @@ export class ProgramController {
         {
           type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
           santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan.I,
+          maxAllowancePercentage: 100,
           allowanceCeiling: 1250000,
           allowanceCeilingPeriod: Period.DAILY,
           allowanceQuota: 60,
@@ -84,6 +85,7 @@ export class ProgramController {
         {
           type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
           santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan.II,
+          maxAllowancePercentage: 100,
           allowanceCeiling: 1000000,
           allowanceCeilingPeriod: Period.DAILY,
           allowanceQuota: 60,
@@ -101,6 +103,7 @@ export class ProgramController {
         {
           type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
           santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan.III,
+          maxAllowancePercentage: 100,
           allowanceCeiling: 750000,
           allowanceCeilingPeriod: Period.DAILY,
           allowanceQuota: 60,
@@ -115,6 +118,7 @@ export class ProgramController {
         */
         {
           type: ProgramType.BANTUAN_BIAYA_CUCI_DARAH,
+          maxAllowancePercentage: 100,
           allowanceCeiling: 700000, //per invoice by default
           allowanceCeilingPeriod: Period.EVENT,
           allowanceQuota: 2,
@@ -129,6 +133,7 @@ export class ProgramController {
         */
         {
           type: ProgramType.BANTUAN_KURSI_RODA,
+          maxAllowancePercentage: 100,
           allowanceCeiling: 2000000,
           allowanceCeilingPeriod: Period.ALLTIME,
           claimPeriodMax: 60,
@@ -141,6 +146,7 @@ export class ProgramController {
         */
         {
           type: ProgramType.BANTUAN_WALKER,
+          maxAllowancePercentage: 100,
           allowanceCeiling: 350000,
           allowanceCeilingPeriod: Period.BIENNIALLY,
           claimPeriodMax: 60,

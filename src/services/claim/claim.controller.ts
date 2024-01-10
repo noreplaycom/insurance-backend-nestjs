@@ -267,7 +267,7 @@ export class ClaimController {
           where: {
             claimStatuses: {
               some: {
-                status: key as ClaimStatusType,
+                type: key as ClaimStatusType,
               },
             },
           },

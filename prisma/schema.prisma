@@ -635,6 +635,7 @@ enum Period {
 model Claim {
     //-------------------------- scalars --------------------------------
 
+    /// @HideField({ match: ['ClaimCreate*Input','ClaimUpdate*Input']})
     ///Nok:	Nomer Register Klaim
     ///Nomor Sm	nomer register Surat masuk (Klaim melalui WA/Reguler/Exception/Email)
     id String @id @default(cuid())
