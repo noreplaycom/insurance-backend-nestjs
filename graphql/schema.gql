@@ -1336,7 +1336,7 @@ type ParticipantCountAggregate {
 
 type ParticipantCount {
   claims: Int!
-  participant: Int!
+  relations: Int!
 }
 
 type ParticipantMaxAggregate {
@@ -1414,7 +1414,7 @@ type Participant {
   claims: [Claim!]
 
   """Anggota keluarga dari"""
-  participant: [Participant!]
+  relations: [Participant!]
   _count: ParticipantCount!
 }
 
@@ -2812,7 +2812,7 @@ input ParticipantWhereInput {
   contactInfo: ContactInfoRelationFilter
   programParticipation: ProgramParticipationRelationFilter
   claims: ClaimListRelationFilter
-  participant: ParticipantListRelationFilter
+  relations: ParticipantListRelationFilter
 }
 
 input EnumGenderFilter {
@@ -3975,7 +3975,7 @@ input ParticipantOrderByWithRelationInput {
   contactInfo: ContactInfoOrderByWithRelationInput
   programParticipation: ProgramParticipationOrderByWithRelationInput
   claims: ClaimOrderByRelationAggregateInput
-  participant: ParticipantOrderByRelationAggregateInput
+  relations: ParticipantOrderByRelationAggregateInput
 }
 
 input EmploymentOrderByWithRelationInput {
@@ -4499,7 +4499,7 @@ input ParticipantWhereUniqueInput {
   contactInfo: ContactInfoRelationFilter
   programParticipation: ProgramParticipationRelationFilter
   claims: ClaimListRelationFilter
-  participant: ParticipantListRelationFilter
+  relations: ParticipantListRelationFilter
 }
 
 enum ParticipantScalarFieldEnum {
@@ -4919,12 +4919,12 @@ input ParticipantCreateWithoutClaimsInput {
   isActive: Boolean!
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  relation: ParticipantCreateNestedOneWithoutRelationsInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
   contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
   programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
-  participant: ParticipantCreateNestedManyWithoutRelationInput
+  relations: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input UserCreateNestedOneWithoutParticipantInput {
@@ -5033,27 +5033,27 @@ input ParticipantCreateWithoutUserInput {
   birthDate: DateTime!
   isActive: Boolean!
   status: ParticipantStatus!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  relation: ParticipantCreateNestedOneWithoutRelationsInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
   contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
   programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
-  participant: ParticipantCreateNestedManyWithoutRelationInput
+  relations: ParticipantCreateNestedManyWithoutRelationInput
 }
 
-input ParticipantCreateNestedOneWithoutParticipantInput {
-  create: ParticipantCreateWithoutParticipantInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutParticipantInput
+input ParticipantCreateNestedOneWithoutRelationsInput {
+  create: ParticipantCreateWithoutRelationsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutRelationsInput
   connect: ParticipantWhereUniqueInput
 }
 
-input ParticipantCreateWithoutParticipantInput {
+input ParticipantCreateWithoutRelationsInput {
   gender: Gender!
   birthDate: DateTime!
   isActive: Boolean!
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  relation: ParticipantCreateNestedOneWithoutRelationsInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
   contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
@@ -5477,9 +5477,9 @@ input ProgramParticipationWhereUniqueInput {
   programParticipationToPrograms: ProgramParticipationToProgramsListRelationFilter
 }
 
-input ParticipantCreateOrConnectWithoutParticipantInput {
+input ParticipantCreateOrConnectWithoutRelationsInput {
   where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutParticipantInput!
+  create: ParticipantCreateWithoutRelationsInput!
 }
 
 input ParticipantCreateNestedManyWithoutRelationInput {
@@ -5499,7 +5499,7 @@ input ParticipantCreateWithoutRelationInput {
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
   contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
   programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
-  participant: ParticipantCreateNestedManyWithoutRelationInput
+  relations: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input ParticipantCreateOrConnectWithoutRelationInput {
@@ -5876,11 +5876,11 @@ input ParticipantCreateWithoutProgramParticipationInput {
   isActive: Boolean!
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  relation: ParticipantCreateNestedOneWithoutRelationsInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
   contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
-  participant: ParticipantCreateNestedManyWithoutRelationInput
+  relations: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input ParticipantCreateOrConnectWithoutProgramParticipationInput {
@@ -6554,11 +6554,11 @@ input ParticipantUpdateWithoutProgramParticipationInput {
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
-  relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  relation: ParticipantUpdateOneWithoutRelationsNestedInput
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneRequiredWithoutParticipantNestedInput
   contactInfo: ContactInfoUpdateOneRequiredWithoutParticipantNestedInput
-  participant: ParticipantUpdateManyWithoutRelationNestedInput
+  relations: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input EnumGenderFieldUpdateOperationsInput {
@@ -6747,37 +6747,37 @@ input ParticipantUpdateWithoutUserInput {
   birthDate: DateTimeFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
-  relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  relation: ParticipantUpdateOneWithoutRelationsNestedInput
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneRequiredWithoutParticipantNestedInput
   contactInfo: ContactInfoUpdateOneRequiredWithoutParticipantNestedInput
   programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
-  participant: ParticipantUpdateManyWithoutRelationNestedInput
+  relations: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
-input ParticipantUpdateOneWithoutParticipantNestedInput {
-  create: ParticipantCreateWithoutParticipantInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutParticipantInput
-  upsert: ParticipantUpsertWithoutParticipantInput
+input ParticipantUpdateOneWithoutRelationsNestedInput {
+  create: ParticipantCreateWithoutRelationsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutRelationsInput
+  upsert: ParticipantUpsertWithoutRelationsInput
   disconnect: ParticipantWhereInput
   delete: ParticipantWhereInput
   connect: ParticipantWhereUniqueInput
-  update: ParticipantUpdateToOneWithWhereWithoutParticipantInput
+  update: ParticipantUpdateToOneWithWhereWithoutRelationsInput
 }
 
-input ParticipantUpsertWithoutParticipantInput {
-  update: ParticipantUpdateWithoutParticipantInput!
-  create: ParticipantCreateWithoutParticipantInput!
+input ParticipantUpsertWithoutRelationsInput {
+  update: ParticipantUpdateWithoutRelationsInput!
+  create: ParticipantCreateWithoutRelationsInput!
   where: ParticipantWhereInput
 }
 
-input ParticipantUpdateWithoutParticipantInput {
+input ParticipantUpdateWithoutRelationsInput {
   gender: EnumGenderFieldUpdateOperationsInput
   birthDate: DateTimeFieldUpdateOperationsInput
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
-  relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  relation: ParticipantUpdateOneWithoutRelationsNestedInput
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneRequiredWithoutParticipantNestedInput
   contactInfo: ContactInfoUpdateOneRequiredWithoutParticipantNestedInput
@@ -7133,9 +7133,9 @@ input ProgramParticipationUpdateToOneWithWhereWithoutParticipantInput {
   data: ProgramParticipationUpdateWithoutParticipantInput!
 }
 
-input ParticipantUpdateToOneWithWhereWithoutParticipantInput {
+input ParticipantUpdateToOneWithWhereWithoutRelationsInput {
   where: ParticipantWhereInput
-  data: ParticipantUpdateWithoutParticipantInput!
+  data: ParticipantUpdateWithoutRelationsInput!
 }
 
 input ParticipantUpdateManyWithoutRelationNestedInput {
@@ -7168,7 +7168,7 @@ input ParticipantUpdateWithoutRelationInput {
   bankAccount: BankAccountUpdateOneRequiredWithoutParticipantNestedInput
   contactInfo: ContactInfoUpdateOneRequiredWithoutParticipantNestedInput
   programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
-  participant: ParticipantUpdateManyWithoutRelationNestedInput
+  relations: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input ParticipantUpdateWithWhereUniqueWithoutRelationInput {
@@ -7689,12 +7689,12 @@ input ParticipantCreateInput {
   isActive: Boolean!
   status: ParticipantStatus!
   user: UserCreateNestedOneWithoutParticipantInput!
-  relation: ParticipantCreateNestedOneWithoutParticipantInput
+  relation: ParticipantCreateNestedOneWithoutRelationsInput
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
   contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
   programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
-  participant: ParticipantCreateNestedManyWithoutRelationInput
+  relations: ParticipantCreateNestedManyWithoutRelationInput
 }
 
 input ParticipantUpdateInput {
@@ -7703,12 +7703,12 @@ input ParticipantUpdateInput {
   isActive: BoolFieldUpdateOperationsInput
   status: EnumParticipantStatusFieldUpdateOperationsInput
   user: UserUpdateOneRequiredWithoutParticipantNestedInput
-  relation: ParticipantUpdateOneWithoutParticipantNestedInput
+  relation: ParticipantUpdateOneWithoutRelationsNestedInput
   employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
   bankAccount: BankAccountUpdateOneRequiredWithoutParticipantNestedInput
   contactInfo: ContactInfoUpdateOneRequiredWithoutParticipantNestedInput
   programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
-  participant: ParticipantUpdateManyWithoutRelationNestedInput
+  relations: ParticipantUpdateManyWithoutRelationNestedInput
 }
 
 input RoleCreateInput {

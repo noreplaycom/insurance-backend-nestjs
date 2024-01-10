@@ -40,9 +40,9 @@ exports.GroupCreateInput = exports.GroupCreateWithoutEmploymentInput = exports.G
 exports.InvoiceProofCreateManyClaimProgramInputEnvelope = exports.InvoiceProofCountOrderByAggregateInput = exports.InvoiceProofCountAggregate = exports.InvoiceProofCountAggregateInput = exports.InvoiceProofAvgOrderByAggregateInput = exports.InvoiceProofAvgAggregate = exports.InvoiceProofAvgAggregateInput = exports.InvoiceProofAggregateArgs = exports.FindUniqueInvoiceProofArgs = exports.FindUniqueInvoiceProofOrThrowArgs = exports.FindManyInvoiceProofArgs = exports.FindFirstInvoiceProofArgs = exports.FindFirstInvoiceProofOrThrowArgs = exports.DeleteOneInvoiceProofArgs = exports.DeleteManyInvoiceProofArgs = exports.CreateOneInvoiceProofArgs = exports.CreateManyInvoiceProofArgs = exports.AggregateInvoiceProof = exports.UpsertOneGroupArgs = exports.UpdateOneGroupArgs = exports.UpdateManyGroupArgs = exports.Group = exports.GroupWhereInput = exports.GroupWhereUniqueInput = exports.GroupUpsertWithoutEmploymentInput = exports.GroupUpdateInput = exports.GroupUpdateWithoutEmploymentInput = exports.GroupUpdateToOneWithWhereWithoutEmploymentInput = exports.GroupUpdateOneWithoutEmploymentNestedInput = exports.GroupUpdateManyMutationInput = exports.GroupUncheckedUpdateInput = exports.GroupUncheckedUpdateWithoutEmploymentInput = exports.GroupUncheckedUpdateManyInput = exports.GroupUncheckedCreateInput = exports.GroupUncheckedCreateWithoutEmploymentInput = exports.GroupSumOrderByAggregateInput = exports.GroupSumAggregate = exports.GroupSumAggregateInput = exports.GroupScalarWhereWithAggregatesInput = exports.GroupOrderByWithRelationInput = exports.GroupOrderByWithAggregationInput = exports.GroupNullableRelationFilter = exports.GroupMinOrderByAggregateInput = exports.GroupMinAggregate = exports.GroupMinAggregateInput = exports.GroupMaxOrderByAggregateInput = exports.GroupMaxAggregate = exports.GroupMaxAggregateInput = exports.GroupGroupBy = exports.GroupGroupByArgs = void 0;
 exports.InvoiceProofUpsertWithoutDocumentProofInput = exports.InvoiceProofUpsertWithWhereUniqueWithoutClaimProgramInput = exports.InvoiceProofUpdateInput = exports.InvoiceProofUpdateWithoutDocumentProofInput = exports.InvoiceProofUpdateWithoutClaimProgramInput = exports.InvoiceProofUpdateWithWhereUniqueWithoutClaimProgramInput = exports.InvoiceProofUpdateToOneWithWhereWithoutDocumentProofInput = exports.InvoiceProofUpdateOneWithoutDocumentProofNestedInput = exports.InvoiceProofUpdateManyWithoutClaimProgramNestedInput = exports.InvoiceProofUpdateManyWithWhereWithoutClaimProgramInput = exports.InvoiceProofUpdateManyMutationInput = exports.InvoiceProofUncheckedUpdateInput = exports.InvoiceProofUncheckedUpdateWithoutDocumentProofInput = exports.InvoiceProofUncheckedUpdateWithoutClaimProgramInput = exports.InvoiceProofUncheckedUpdateOneWithoutDocumentProofNestedInput = exports.InvoiceProofUncheckedUpdateManyInput = exports.InvoiceProofUncheckedUpdateManyWithoutClaimProgramInput = exports.InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput = exports.InvoiceProofUncheckedCreateInput = exports.InvoiceProofUncheckedCreateWithoutDocumentProofInput = exports.InvoiceProofUncheckedCreateWithoutClaimProgramInput = exports.InvoiceProofUncheckedCreateNestedOneWithoutDocumentProofInput = exports.InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput = exports.InvoiceProofSumOrderByAggregateInput = exports.InvoiceProofSumAggregate = exports.InvoiceProofSumAggregateInput = exports.InvoiceProofScalarWhereInput = exports.InvoiceProofScalarWhereWithAggregatesInput = exports.InvoiceProofOrderByWithRelationInput = exports.InvoiceProofOrderByWithAggregationInput = exports.InvoiceProofOrderByRelationAggregateInput = exports.InvoiceProofNullableRelationFilter = exports.InvoiceProofMinOrderByAggregateInput = exports.InvoiceProofMinAggregate = exports.InvoiceProofMinAggregateInput = exports.InvoiceProofMaxOrderByAggregateInput = exports.InvoiceProofMaxAggregate = exports.InvoiceProofMaxAggregateInput = exports.InvoiceProofListRelationFilter = exports.InvoiceProofGroupBy = exports.InvoiceProofGroupByArgs = exports.InvoiceProofCreateInput = exports.InvoiceProofCreateWithoutDocumentProofInput = exports.InvoiceProofCreateWithoutClaimProgramInput = exports.InvoiceProofCreateOrConnectWithoutDocumentProofInput = exports.InvoiceProofCreateOrConnectWithoutClaimProgramInput = exports.InvoiceProofCreateNestedOneWithoutDocumentProofInput = exports.InvoiceProofCreateNestedManyWithoutClaimProgramInput = exports.InvoiceProofCreateManyInput = exports.InvoiceProofCreateManyClaimProgramInput = void 0;
 exports.NotificationUncheckedCreateInput = exports.NotificationUncheckedCreateWithoutUserInput = exports.NotificationUncheckedCreateNestedManyWithoutUserInput = exports.NotificationSumOrderByAggregateInput = exports.NotificationSumAggregate = exports.NotificationSumAggregateInput = exports.NotificationScalarWhereInput = exports.NotificationScalarWhereWithAggregatesInput = exports.NotificationOrderByWithRelationInput = exports.NotificationOrderByWithAggregationInput = exports.NotificationOrderByRelationAggregateInput = exports.NotificationMinOrderByAggregateInput = exports.NotificationMinAggregate = exports.NotificationMinAggregateInput = exports.NotificationMaxOrderByAggregateInput = exports.NotificationMaxAggregate = exports.NotificationMaxAggregateInput = exports.NotificationListRelationFilter = exports.NotificationGroupBy = exports.NotificationGroupByArgs = exports.NotificationCreateInput = exports.NotificationCreateWithoutUserInput = exports.NotificationCreateOrConnectWithoutUserInput = exports.NotificationCreateNestedManyWithoutUserInput = exports.NotificationCreateManyInput = exports.NotificationCreateManyUserInput = exports.NotificationCreateManyUserInputEnvelope = exports.NotificationCountOrderByAggregateInput = exports.NotificationCountAggregate = exports.NotificationCountAggregateInput = exports.NotificationAvgOrderByAggregateInput = exports.NotificationAvgAggregate = exports.NotificationAvgAggregateInput = exports.NotificationAggregateArgs = exports.FindUniqueNotificationArgs = exports.FindUniqueNotificationOrThrowArgs = exports.FindManyNotificationArgs = exports.FindFirstNotificationArgs = exports.FindFirstNotificationOrThrowArgs = exports.DeleteOneNotificationArgs = exports.DeleteManyNotificationArgs = exports.CreateOneNotificationArgs = exports.CreateManyNotificationArgs = exports.AggregateNotification = exports.UpsertOneInvoiceProofArgs = exports.UpdateOneInvoiceProofArgs = exports.UpdateManyInvoiceProofArgs = exports.InvoiceProof = exports.InvoiceProofWhereInput = exports.InvoiceProofWhereUniqueInput = void 0;
-exports.ParticipantCreateOrConnectWithoutContactInfoInput = exports.ParticipantCreateOrConnectWithoutClaimsInput = exports.ParticipantCreateOrConnectWithoutBankAccountInput = exports.ParticipantCreateNestedOneWithoutUserInput = exports.ParticipantCreateNestedOneWithoutProgramParticipationInput = exports.ParticipantCreateNestedOneWithoutParticipantInput = exports.ParticipantCreateNestedOneWithoutEmploymentInput = exports.ParticipantCreateNestedOneWithoutContactInfoInput = exports.ParticipantCreateNestedOneWithoutClaimsInput = exports.ParticipantCreateNestedOneWithoutBankAccountInput = exports.ParticipantCreateNestedManyWithoutRelationInput = exports.ParticipantCreateManyInput = exports.ParticipantCreateManyRelationInput = exports.ParticipantCreateManyRelationInputEnvelope = exports.ParticipantCount = exports.ParticipantCountOrderByAggregateInput = exports.ParticipantCountAggregate = exports.ParticipantCountAggregateInput = exports.ParticipantAvgOrderByAggregateInput = exports.ParticipantAvgAggregate = exports.ParticipantAvgAggregateInput = exports.ParticipantAggregateArgs = exports.FindUniqueParticipantArgs = exports.FindUniqueParticipantOrThrowArgs = exports.FindManyParticipantArgs = exports.FindFirstParticipantArgs = exports.FindFirstParticipantOrThrowArgs = exports.DeleteOneParticipantArgs = exports.DeleteManyParticipantArgs = exports.CreateOneParticipantArgs = exports.CreateManyParticipantArgs = exports.AggregateParticipant = exports.UpsertOneNotificationArgs = exports.UpdateOneNotificationArgs = exports.UpdateManyNotificationArgs = exports.Notification = exports.NotificationWhereInput = exports.NotificationWhereUniqueInput = exports.NotificationUpsertWithWhereUniqueWithoutUserInput = exports.NotificationUpdateInput = exports.NotificationUpdateWithoutUserInput = exports.NotificationUpdateWithWhereUniqueWithoutUserInput = exports.NotificationUpdateManyWithoutUserNestedInput = exports.NotificationUpdateManyWithWhereWithoutUserInput = exports.NotificationUpdateManyMutationInput = exports.NotificationUncheckedUpdateInput = exports.NotificationUncheckedUpdateWithoutUserInput = exports.NotificationUncheckedUpdateManyInput = exports.NotificationUncheckedUpdateManyWithoutUserInput = exports.NotificationUncheckedUpdateManyWithoutUserNestedInput = void 0;
-exports.ParticipantUncheckedUpdateManyWithoutRelationInput = exports.ParticipantUncheckedUpdateManyWithoutRelationNestedInput = exports.ParticipantUncheckedCreateInput = exports.ParticipantUncheckedCreateWithoutUserInput = exports.ParticipantUncheckedCreateWithoutRelationInput = exports.ParticipantUncheckedCreateWithoutProgramParticipationInput = exports.ParticipantUncheckedCreateWithoutParticipantInput = exports.ParticipantUncheckedCreateWithoutEmploymentInput = exports.ParticipantUncheckedCreateWithoutContactInfoInput = exports.ParticipantUncheckedCreateWithoutClaimsInput = exports.ParticipantUncheckedCreateWithoutBankAccountInput = exports.ParticipantUncheckedCreateNestedOneWithoutUserInput = exports.ParticipantUncheckedCreateNestedOneWithoutProgramParticipationInput = exports.ParticipantUncheckedCreateNestedOneWithoutEmploymentInput = exports.ParticipantUncheckedCreateNestedOneWithoutContactInfoInput = exports.ParticipantUncheckedCreateNestedOneWithoutBankAccountInput = exports.ParticipantUncheckedCreateNestedManyWithoutRelationInput = exports.ParticipantSumOrderByAggregateInput = exports.ParticipantSumAggregate = exports.ParticipantSumAggregateInput = exports.ParticipantScalarWhereInput = exports.ParticipantScalarWhereWithAggregatesInput = exports.ParticipantRelationFilter = exports.ParticipantOrderByWithRelationInput = exports.ParticipantOrderByWithAggregationInput = exports.ParticipantOrderByRelationAggregateInput = exports.ParticipantNullableRelationFilter = exports.ParticipantMinOrderByAggregateInput = exports.ParticipantMinAggregate = exports.ParticipantMinAggregateInput = exports.ParticipantMaxOrderByAggregateInput = exports.ParticipantMaxAggregate = exports.ParticipantMaxAggregateInput = exports.ParticipantListRelationFilter = exports.ParticipantGroupBy = exports.ParticipantGroupByArgs = exports.ParticipantCreateInput = exports.ParticipantCreateWithoutUserInput = exports.ParticipantCreateWithoutRelationInput = exports.ParticipantCreateWithoutProgramParticipationInput = exports.ParticipantCreateWithoutParticipantInput = exports.ParticipantCreateWithoutEmploymentInput = exports.ParticipantCreateWithoutContactInfoInput = exports.ParticipantCreateWithoutClaimsInput = exports.ParticipantCreateWithoutBankAccountInput = exports.ParticipantCreateOrConnectWithoutUserInput = exports.ParticipantCreateOrConnectWithoutRelationInput = exports.ParticipantCreateOrConnectWithoutProgramParticipationInput = exports.ParticipantCreateOrConnectWithoutParticipantInput = exports.ParticipantCreateOrConnectWithoutEmploymentInput = void 0;
-exports.ParticipantUpsertWithoutUserInput = exports.ParticipantUpsertWithoutProgramParticipationInput = exports.ParticipantUpsertWithoutParticipantInput = exports.ParticipantUpsertWithoutEmploymentInput = exports.ParticipantUpsertWithoutContactInfoInput = exports.ParticipantUpsertWithoutClaimsInput = exports.ParticipantUpsertWithoutBankAccountInput = exports.ParticipantUpsertWithWhereUniqueWithoutRelationInput = exports.ParticipantUpdateInput = exports.ParticipantUpdateWithoutUserInput = exports.ParticipantUpdateWithoutRelationInput = exports.ParticipantUpdateWithoutProgramParticipationInput = exports.ParticipantUpdateWithoutParticipantInput = exports.ParticipantUpdateWithoutEmploymentInput = exports.ParticipantUpdateWithoutContactInfoInput = exports.ParticipantUpdateWithoutClaimsInput = exports.ParticipantUpdateWithoutBankAccountInput = exports.ParticipantUpdateWithWhereUniqueWithoutRelationInput = exports.ParticipantUpdateToOneWithWhereWithoutUserInput = exports.ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput = exports.ParticipantUpdateToOneWithWhereWithoutParticipantInput = exports.ParticipantUpdateToOneWithWhereWithoutEmploymentInput = exports.ParticipantUpdateToOneWithWhereWithoutContactInfoInput = exports.ParticipantUpdateToOneWithWhereWithoutClaimsInput = exports.ParticipantUpdateToOneWithWhereWithoutBankAccountInput = exports.ParticipantUpdateOneWithoutUserNestedInput = exports.ParticipantUpdateOneWithoutProgramParticipationNestedInput = exports.ParticipantUpdateOneWithoutParticipantNestedInput = exports.ParticipantUpdateOneWithoutEmploymentNestedInput = exports.ParticipantUpdateOneWithoutContactInfoNestedInput = exports.ParticipantUpdateOneWithoutBankAccountNestedInput = exports.ParticipantUpdateOneRequiredWithoutClaimsNestedInput = exports.ParticipantUpdateManyWithoutRelationNestedInput = exports.ParticipantUpdateManyWithWhereWithoutRelationInput = exports.ParticipantUpdateManyMutationInput = exports.ParticipantUncheckedUpdateInput = exports.ParticipantUncheckedUpdateWithoutUserInput = exports.ParticipantUncheckedUpdateWithoutRelationInput = exports.ParticipantUncheckedUpdateWithoutProgramParticipationInput = exports.ParticipantUncheckedUpdateWithoutParticipantInput = exports.ParticipantUncheckedUpdateWithoutEmploymentInput = exports.ParticipantUncheckedUpdateWithoutContactInfoInput = exports.ParticipantUncheckedUpdateWithoutClaimsInput = exports.ParticipantUncheckedUpdateWithoutBankAccountInput = exports.ParticipantUncheckedUpdateOneWithoutUserNestedInput = exports.ParticipantUncheckedUpdateOneWithoutProgramParticipationNestedInput = exports.ParticipantUncheckedUpdateOneWithoutEmploymentNestedInput = exports.ParticipantUncheckedUpdateOneWithoutContactInfoNestedInput = exports.ParticipantUncheckedUpdateOneWithoutBankAccountNestedInput = exports.ParticipantUncheckedUpdateManyInput = void 0;
+exports.ParticipantCreateOrConnectWithoutContactInfoInput = exports.ParticipantCreateOrConnectWithoutClaimsInput = exports.ParticipantCreateOrConnectWithoutBankAccountInput = exports.ParticipantCreateNestedOneWithoutUserInput = exports.ParticipantCreateNestedOneWithoutRelationsInput = exports.ParticipantCreateNestedOneWithoutProgramParticipationInput = exports.ParticipantCreateNestedOneWithoutEmploymentInput = exports.ParticipantCreateNestedOneWithoutContactInfoInput = exports.ParticipantCreateNestedOneWithoutClaimsInput = exports.ParticipantCreateNestedOneWithoutBankAccountInput = exports.ParticipantCreateNestedManyWithoutRelationInput = exports.ParticipantCreateManyInput = exports.ParticipantCreateManyRelationInput = exports.ParticipantCreateManyRelationInputEnvelope = exports.ParticipantCount = exports.ParticipantCountOrderByAggregateInput = exports.ParticipantCountAggregate = exports.ParticipantCountAggregateInput = exports.ParticipantAvgOrderByAggregateInput = exports.ParticipantAvgAggregate = exports.ParticipantAvgAggregateInput = exports.ParticipantAggregateArgs = exports.FindUniqueParticipantArgs = exports.FindUniqueParticipantOrThrowArgs = exports.FindManyParticipantArgs = exports.FindFirstParticipantArgs = exports.FindFirstParticipantOrThrowArgs = exports.DeleteOneParticipantArgs = exports.DeleteManyParticipantArgs = exports.CreateOneParticipantArgs = exports.CreateManyParticipantArgs = exports.AggregateParticipant = exports.UpsertOneNotificationArgs = exports.UpdateOneNotificationArgs = exports.UpdateManyNotificationArgs = exports.Notification = exports.NotificationWhereInput = exports.NotificationWhereUniqueInput = exports.NotificationUpsertWithWhereUniqueWithoutUserInput = exports.NotificationUpdateInput = exports.NotificationUpdateWithoutUserInput = exports.NotificationUpdateWithWhereUniqueWithoutUserInput = exports.NotificationUpdateManyWithoutUserNestedInput = exports.NotificationUpdateManyWithWhereWithoutUserInput = exports.NotificationUpdateManyMutationInput = exports.NotificationUncheckedUpdateInput = exports.NotificationUncheckedUpdateWithoutUserInput = exports.NotificationUncheckedUpdateManyInput = exports.NotificationUncheckedUpdateManyWithoutUserInput = exports.NotificationUncheckedUpdateManyWithoutUserNestedInput = void 0;
+exports.ParticipantUncheckedUpdateManyWithoutRelationInput = exports.ParticipantUncheckedUpdateManyWithoutRelationNestedInput = exports.ParticipantUncheckedCreateInput = exports.ParticipantUncheckedCreateWithoutUserInput = exports.ParticipantUncheckedCreateWithoutRelationsInput = exports.ParticipantUncheckedCreateWithoutRelationInput = exports.ParticipantUncheckedCreateWithoutProgramParticipationInput = exports.ParticipantUncheckedCreateWithoutEmploymentInput = exports.ParticipantUncheckedCreateWithoutContactInfoInput = exports.ParticipantUncheckedCreateWithoutClaimsInput = exports.ParticipantUncheckedCreateWithoutBankAccountInput = exports.ParticipantUncheckedCreateNestedOneWithoutUserInput = exports.ParticipantUncheckedCreateNestedOneWithoutProgramParticipationInput = exports.ParticipantUncheckedCreateNestedOneWithoutEmploymentInput = exports.ParticipantUncheckedCreateNestedOneWithoutContactInfoInput = exports.ParticipantUncheckedCreateNestedOneWithoutBankAccountInput = exports.ParticipantUncheckedCreateNestedManyWithoutRelationInput = exports.ParticipantSumOrderByAggregateInput = exports.ParticipantSumAggregate = exports.ParticipantSumAggregateInput = exports.ParticipantScalarWhereInput = exports.ParticipantScalarWhereWithAggregatesInput = exports.ParticipantRelationFilter = exports.ParticipantOrderByWithRelationInput = exports.ParticipantOrderByWithAggregationInput = exports.ParticipantOrderByRelationAggregateInput = exports.ParticipantNullableRelationFilter = exports.ParticipantMinOrderByAggregateInput = exports.ParticipantMinAggregate = exports.ParticipantMinAggregateInput = exports.ParticipantMaxOrderByAggregateInput = exports.ParticipantMaxAggregate = exports.ParticipantMaxAggregateInput = exports.ParticipantListRelationFilter = exports.ParticipantGroupBy = exports.ParticipantGroupByArgs = exports.ParticipantCreateInput = exports.ParticipantCreateWithoutUserInput = exports.ParticipantCreateWithoutRelationsInput = exports.ParticipantCreateWithoutRelationInput = exports.ParticipantCreateWithoutProgramParticipationInput = exports.ParticipantCreateWithoutEmploymentInput = exports.ParticipantCreateWithoutContactInfoInput = exports.ParticipantCreateWithoutClaimsInput = exports.ParticipantCreateWithoutBankAccountInput = exports.ParticipantCreateOrConnectWithoutUserInput = exports.ParticipantCreateOrConnectWithoutRelationsInput = exports.ParticipantCreateOrConnectWithoutRelationInput = exports.ParticipantCreateOrConnectWithoutProgramParticipationInput = exports.ParticipantCreateOrConnectWithoutEmploymentInput = void 0;
+exports.ParticipantUpsertWithoutUserInput = exports.ParticipantUpsertWithoutRelationsInput = exports.ParticipantUpsertWithoutProgramParticipationInput = exports.ParticipantUpsertWithoutEmploymentInput = exports.ParticipantUpsertWithoutContactInfoInput = exports.ParticipantUpsertWithoutClaimsInput = exports.ParticipantUpsertWithoutBankAccountInput = exports.ParticipantUpsertWithWhereUniqueWithoutRelationInput = exports.ParticipantUpdateInput = exports.ParticipantUpdateWithoutUserInput = exports.ParticipantUpdateWithoutRelationsInput = exports.ParticipantUpdateWithoutRelationInput = exports.ParticipantUpdateWithoutProgramParticipationInput = exports.ParticipantUpdateWithoutEmploymentInput = exports.ParticipantUpdateWithoutContactInfoInput = exports.ParticipantUpdateWithoutClaimsInput = exports.ParticipantUpdateWithoutBankAccountInput = exports.ParticipantUpdateWithWhereUniqueWithoutRelationInput = exports.ParticipantUpdateToOneWithWhereWithoutUserInput = exports.ParticipantUpdateToOneWithWhereWithoutRelationsInput = exports.ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput = exports.ParticipantUpdateToOneWithWhereWithoutEmploymentInput = exports.ParticipantUpdateToOneWithWhereWithoutContactInfoInput = exports.ParticipantUpdateToOneWithWhereWithoutClaimsInput = exports.ParticipantUpdateToOneWithWhereWithoutBankAccountInput = exports.ParticipantUpdateOneWithoutUserNestedInput = exports.ParticipantUpdateOneWithoutRelationsNestedInput = exports.ParticipantUpdateOneWithoutProgramParticipationNestedInput = exports.ParticipantUpdateOneWithoutEmploymentNestedInput = exports.ParticipantUpdateOneWithoutContactInfoNestedInput = exports.ParticipantUpdateOneWithoutBankAccountNestedInput = exports.ParticipantUpdateOneRequiredWithoutClaimsNestedInput = exports.ParticipantUpdateManyWithoutRelationNestedInput = exports.ParticipantUpdateManyWithWhereWithoutRelationInput = exports.ParticipantUpdateManyMutationInput = exports.ParticipantUncheckedUpdateInput = exports.ParticipantUncheckedUpdateWithoutUserInput = exports.ParticipantUncheckedUpdateWithoutRelationsInput = exports.ParticipantUncheckedUpdateWithoutRelationInput = exports.ParticipantUncheckedUpdateWithoutProgramParticipationInput = exports.ParticipantUncheckedUpdateWithoutEmploymentInput = exports.ParticipantUncheckedUpdateWithoutContactInfoInput = exports.ParticipantUncheckedUpdateWithoutClaimsInput = exports.ParticipantUncheckedUpdateWithoutBankAccountInput = exports.ParticipantUncheckedUpdateOneWithoutUserNestedInput = exports.ParticipantUncheckedUpdateOneWithoutProgramParticipationNestedInput = exports.ParticipantUncheckedUpdateOneWithoutEmploymentNestedInput = exports.ParticipantUncheckedUpdateOneWithoutContactInfoNestedInput = exports.ParticipantUncheckedUpdateOneWithoutBankAccountNestedInput = exports.ParticipantUncheckedUpdateManyInput = void 0;
 exports.phoneWhereUniqueInput = exports.phoneUpsertWithWhereUniqueWithoutContactInfoInput = exports.phoneUpdateInput = exports.phoneUpdateWithoutContactInfoInput = exports.phoneUpdateWithWhereUniqueWithoutContactInfoInput = exports.phoneUpdateManyWithoutContactInfoNestedInput = exports.phoneUpdateManyWithWhereWithoutContactInfoInput = exports.phoneUpdateManyMutationInput = exports.phoneUncheckedUpdateInput = exports.phoneUncheckedUpdateWithoutContactInfoInput = exports.phoneUncheckedUpdateManyInput = exports.phoneUncheckedUpdateManyWithoutContactInfoInput = exports.phoneUncheckedUpdateManyWithoutContactInfoNestedInput = exports.phoneUncheckedCreateInput = exports.phoneUncheckedCreateWithoutContactInfoInput = exports.phoneUncheckedCreateNestedManyWithoutContactInfoInput = exports.phoneSumOrderByAggregateInput = exports.phoneScalarWhereInput = exports.phoneScalarWhereWithAggregatesInput = exports.phoneOrderByWithRelationInput = exports.phoneOrderByWithAggregationInput = exports.phoneOrderByRelationAggregateInput = exports.phoneMinOrderByAggregateInput = exports.phoneMaxOrderByAggregateInput = exports.phoneGroupByArgs = exports.phoneCreateInput = exports.phoneCreateWithoutContactInfoInput = exports.phoneCreateOrConnectWithoutContactInfoInput = exports.phoneCreateNestedManyWithoutContactInfoInput = exports.phoneCreateManyInput = exports.phoneCreateManyContactInfoInput = exports.phoneCreateManyContactInfoInputEnvelope = exports.phoneCountOrderByAggregateInput = exports.phoneAvgOrderByAggregateInput = exports.phoneAggregateArgs = exports.FindUniquephoneArgs = exports.FindUniquephoneOrThrowArgs = exports.FindManyphoneArgs = exports.FindFirstphoneArgs = exports.FindFirstphoneOrThrowArgs = exports.DeleteOnephoneArgs = exports.DeleteManyphoneArgs = exports.CreateOnephoneArgs = exports.CreateManyphoneArgs = exports.UpsertOneParticipantArgs = exports.UpdateOneParticipantArgs = exports.UpdateManyParticipantArgs = exports.Participant = exports.ParticipantWhereInput = exports.ParticipantWhereUniqueInput = void 0;
 exports.EnumPermissionFieldUpdateOperationsInput = exports.EnumPeriodNullableWithAggregatesFilter = exports.EnumPeriodNullableFilter = exports.EnumParticipantStatusWithAggregatesFilter = exports.EnumParticipantStatusFilter = exports.EnumParticipantStatusFieldUpdateOperationsInput = exports.EnumGenderWithAggregatesFilter = exports.EnumGenderFilter = exports.EnumGenderFieldUpdateOperationsInput = exports.EnumExecutionTypeWithAggregatesFilter = exports.EnumExecutionTypeFilter = exports.EnumExecutionTypeFieldUpdateOperationsInput = exports.EnumDocumentTypeWithAggregatesFilter = exports.EnumDocumentTypeFilter = exports.EnumDocumentTypeFieldUpdateOperationsInput = exports.EnumDocumentSourceWithAggregatesFilter = exports.EnumDocumentSourceFilter = exports.EnumDocumentSourceFieldUpdateOperationsInput = exports.EnumColorWithAggregatesFilter = exports.EnumColorFilter = exports.EnumColorFieldUpdateOperationsInput = exports.EnumClaimStatusTypeWithAggregatesFilter = exports.EnumClaimStatusTypeFilter = exports.EnumClaimStatusTypeFieldUpdateOperationsInput = exports.EnumClaimChannelWithAggregatesFilter = exports.EnumClaimChannelFilter = exports.EnumClaimChannelFieldUpdateOperationsInput = exports.EnumBackupTypeWithAggregatesFilter = exports.EnumBackupTypeFilter = exports.EnumBackupTypeFieldUpdateOperationsInput = exports.EnumAdmedicaStatusWithAggregatesFilter = exports.EnumAdmedicaStatusFilter = exports.EnumAdmedicaStatusFieldUpdateOperationsInput = exports.DateTimeWithAggregatesFilter = exports.DateTimeNullableWithAggregatesFilter = exports.DateTimeNullableFilter = exports.DateTimeFilter = exports.DateTimeFieldUpdateOperationsInput = exports.BoolWithAggregatesFilter = exports.BoolNullableWithAggregatesFilter = exports.BoolNullableFilter = exports.BoolFilter = exports.BoolFieldUpdateOperationsInput = exports.AggregatePhone = exports.AffectedRows = exports.UpsertOnephoneArgs = exports.UpdateOnephoneArgs = exports.UpdateManyphoneArgs = exports.phone = exports.phoneWhereInput = void 0;
 exports.NestedEnumDocumentSourceWithAggregatesFilter = exports.NestedEnumDocumentSourceFilter = exports.NestedEnumColorWithAggregatesFilter = exports.NestedEnumColorFilter = exports.NestedEnumClaimStatusTypeWithAggregatesFilter = exports.NestedEnumClaimStatusTypeFilter = exports.NestedEnumClaimChannelWithAggregatesFilter = exports.NestedEnumClaimChannelFilter = exports.NestedEnumBackupTypeWithAggregatesFilter = exports.NestedEnumBackupTypeFilter = exports.NestedEnumAdmedicaStatusWithAggregatesFilter = exports.NestedEnumAdmedicaStatusFilter = exports.NestedDateTimeWithAggregatesFilter = exports.NestedDateTimeNullableWithAggregatesFilter = exports.NestedDateTimeNullableFilter = exports.NestedDateTimeFilter = exports.NestedBoolWithAggregatesFilter = exports.NestedBoolNullableWithAggregatesFilter = exports.NestedBoolNullableFilter = exports.NestedBoolFilter = exports.IntWithAggregatesFilter = exports.IntNullableWithAggregatesFilter = exports.IntNullableFilter = exports.IntFilter = exports.IntFieldUpdateOperationsInput = exports.FloatWithAggregatesFilter = exports.FloatNullableWithAggregatesFilter = exports.FloatNullableFilter = exports.FloatFilter = exports.FloatFieldUpdateOperationsInput = exports.EnumTransactionTypeWithAggregatesFilter = exports.EnumTransactionTypeFilter = exports.EnumTransactionTypeFieldUpdateOperationsInput = exports.EnumTambahanBantuanRawatInapTypeNullableWithAggregatesFilter = exports.EnumTambahanBantuanRawatInapTypeNullableFilter = exports.EnumSantunanHarianRawatInapPlanWithAggregatesFilter = exports.EnumSantunanHarianRawatInapPlanNullableWithAggregatesFilter = exports.EnumSantunanHarianRawatInapPlanNullableFilter = exports.EnumSantunanHarianRawatInapPlanFilter = exports.EnumSantunanHarianRawatInapPlanFieldUpdateOperationsInput = exports.EnumRoleTypeNullableWithAggregatesFilter = exports.EnumRoleTypeNullableFilter = exports.EnumProgramTypeWithAggregatesFilter = exports.EnumProgramTypeFilter = exports.EnumProgramTypeFieldUpdateOperationsInput = exports.EnumPositionWithAggregatesFilter = exports.EnumPositionFilter = exports.EnumPositionFieldUpdateOperationsInput = exports.EnumPermissionWithAggregatesFilter = exports.EnumPermissionFilter = void 0;
@@ -40361,7 +40361,7 @@ __decorate([
 ], ParticipantCount.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ParticipantCount.prototype, "participant", void 0);
+], ParticipantCount.prototype, "relations", void 0);
 ParticipantCount = __decorate([
     (0, graphql_5.ObjectType)()
 ], ParticipantCount);
@@ -40542,24 +40542,6 @@ ParticipantCreateNestedOneWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateNestedOneWithoutEmploymentInput);
 exports.ParticipantCreateNestedOneWithoutEmploymentInput = ParticipantCreateNestedOneWithoutEmploymentInput;
-let ParticipantCreateNestedOneWithoutParticipantInput = class ParticipantCreateNestedOneWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateWithoutParticipantInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutParticipantInput)
-], ParticipantCreateNestedOneWithoutParticipantInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateOrConnectWithoutParticipantInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantCreateOrConnectWithoutParticipantInput)
-], ParticipantCreateNestedOneWithoutParticipantInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantWhereUniqueInput)
-], ParticipantCreateNestedOneWithoutParticipantInput.prototype, "connect", void 0);
-ParticipantCreateNestedOneWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantCreateNestedOneWithoutParticipantInput);
-exports.ParticipantCreateNestedOneWithoutParticipantInput = ParticipantCreateNestedOneWithoutParticipantInput;
 let ParticipantCreateNestedOneWithoutProgramParticipationInput = class ParticipantCreateNestedOneWithoutProgramParticipationInput {
 };
 __decorate([
@@ -40578,6 +40560,24 @@ ParticipantCreateNestedOneWithoutProgramParticipationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateNestedOneWithoutProgramParticipationInput);
 exports.ParticipantCreateNestedOneWithoutProgramParticipationInput = ParticipantCreateNestedOneWithoutProgramParticipationInput;
+let ParticipantCreateNestedOneWithoutRelationsInput = class ParticipantCreateNestedOneWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantCreateWithoutRelationsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutRelationsInput)
+], ParticipantCreateNestedOneWithoutRelationsInput.prototype, "create", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantCreateOrConnectWithoutRelationsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantCreateOrConnectWithoutRelationsInput)
+], ParticipantCreateNestedOneWithoutRelationsInput.prototype, "connectOrCreate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantWhereUniqueInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantWhereUniqueInput)
+], ParticipantCreateNestedOneWithoutRelationsInput.prototype, "connect", void 0);
+ParticipantCreateNestedOneWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantCreateNestedOneWithoutRelationsInput);
+exports.ParticipantCreateNestedOneWithoutRelationsInput = ParticipantCreateNestedOneWithoutRelationsInput;
 let ParticipantCreateNestedOneWithoutUserInput = class ParticipantCreateNestedOneWithoutUserInput {
 };
 __decorate([
@@ -40652,20 +40652,6 @@ ParticipantCreateOrConnectWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateOrConnectWithoutEmploymentInput);
 exports.ParticipantCreateOrConnectWithoutEmploymentInput = ParticipantCreateOrConnectWithoutEmploymentInput;
-let ParticipantCreateOrConnectWithoutParticipantInput = class ParticipantCreateOrConnectWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantWhereUniqueInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => ParticipantWhereUniqueInput)
-], ParticipantCreateOrConnectWithoutParticipantInput.prototype, "where", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateWithoutParticipantInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutParticipantInput)
-], ParticipantCreateOrConnectWithoutParticipantInput.prototype, "create", void 0);
-ParticipantCreateOrConnectWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantCreateOrConnectWithoutParticipantInput);
-exports.ParticipantCreateOrConnectWithoutParticipantInput = ParticipantCreateOrConnectWithoutParticipantInput;
 let ParticipantCreateOrConnectWithoutProgramParticipationInput = class ParticipantCreateOrConnectWithoutProgramParticipationInput {
 };
 __decorate([
@@ -40694,6 +40680,20 @@ ParticipantCreateOrConnectWithoutRelationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateOrConnectWithoutRelationInput);
 exports.ParticipantCreateOrConnectWithoutRelationInput = ParticipantCreateOrConnectWithoutRelationInput;
+let ParticipantCreateOrConnectWithoutRelationsInput = class ParticipantCreateOrConnectWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantWhereUniqueInput, { nullable: false }),
+    (0, class_transformer_1.Type)(() => ParticipantWhereUniqueInput)
+], ParticipantCreateOrConnectWithoutRelationsInput.prototype, "where", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantCreateWithoutRelationsInput, { nullable: false }),
+    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutRelationsInput)
+], ParticipantCreateOrConnectWithoutRelationsInput.prototype, "create", void 0);
+ParticipantCreateOrConnectWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantCreateOrConnectWithoutRelationsInput);
+exports.ParticipantCreateOrConnectWithoutRelationsInput = ParticipantCreateOrConnectWithoutRelationsInput;
 let ParticipantCreateOrConnectWithoutUserInput = class ParticipantCreateOrConnectWithoutUserInput {
 };
 __decorate([
@@ -40726,7 +40726,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
 ], ParticipantCreateWithoutBankAccountInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
 ], ParticipantCreateWithoutBankAccountInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
@@ -40742,7 +40742,7 @@ __decorate([
 ], ParticipantCreateWithoutBankAccountInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateWithoutBankAccountInput.prototype, "participant", void 0);
+], ParticipantCreateWithoutBankAccountInput.prototype, "relations", void 0);
 ParticipantCreateWithoutBankAccountInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateWithoutBankAccountInput);
@@ -40765,7 +40765,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
 ], ParticipantCreateWithoutClaimsInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
 ], ParticipantCreateWithoutClaimsInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
@@ -40781,7 +40781,7 @@ __decorate([
 ], ParticipantCreateWithoutClaimsInput.prototype, "programParticipation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateWithoutClaimsInput.prototype, "participant", void 0);
+], ParticipantCreateWithoutClaimsInput.prototype, "relations", void 0);
 ParticipantCreateWithoutClaimsInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateWithoutClaimsInput);
@@ -40804,7 +40804,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
 ], ParticipantCreateWithoutContactInfoInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
 ], ParticipantCreateWithoutContactInfoInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
@@ -40820,7 +40820,7 @@ __decorate([
 ], ParticipantCreateWithoutContactInfoInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateWithoutContactInfoInput.prototype, "participant", void 0);
+], ParticipantCreateWithoutContactInfoInput.prototype, "relations", void 0);
 ParticipantCreateWithoutContactInfoInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateWithoutContactInfoInput);
@@ -40843,7 +40843,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
 ], ParticipantCreateWithoutEmploymentInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
 ], ParticipantCreateWithoutEmploymentInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BankAccountCreateNestedOneWithoutParticipantInput, { nullable: false })
@@ -40859,50 +40859,11 @@ __decorate([
 ], ParticipantCreateWithoutEmploymentInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateWithoutEmploymentInput.prototype, "participant", void 0);
+], ParticipantCreateWithoutEmploymentInput.prototype, "relations", void 0);
 ParticipantCreateWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateWithoutEmploymentInput);
 exports.ParticipantCreateWithoutEmploymentInput = ParticipantCreateWithoutEmploymentInput;
-let ParticipantCreateWithoutParticipantInput = class ParticipantCreateWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => Gender, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "gender", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "birthDate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "isActive", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantStatus, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "status", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "user", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
-], ParticipantCreateWithoutParticipantInput.prototype, "relation", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "employment", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => BankAccountCreateNestedOneWithoutParticipantInput, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "bankAccount", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ContactInfoCreateNestedOneWithoutParticipantInput, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "contactInfo", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ProgramParticipationCreateNestedOneWithoutParticipantInput, { nullable: false })
-], ParticipantCreateWithoutParticipantInput.prototype, "programParticipation", void 0);
-__decorate([
-    (0, graphql_7.HideField)()
-], ParticipantCreateWithoutParticipantInput.prototype, "claims", void 0);
-ParticipantCreateWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantCreateWithoutParticipantInput);
-exports.ParticipantCreateWithoutParticipantInput = ParticipantCreateWithoutParticipantInput;
 let ParticipantCreateWithoutProgramParticipationInput = class ParticipantCreateWithoutProgramParticipationInput {
 };
 __decorate([
@@ -40921,7 +40882,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
 ], ParticipantCreateWithoutProgramParticipationInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
 ], ParticipantCreateWithoutProgramParticipationInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
@@ -40937,7 +40898,7 @@ __decorate([
 ], ParticipantCreateWithoutProgramParticipationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateWithoutProgramParticipationInput.prototype, "participant", void 0);
+], ParticipantCreateWithoutProgramParticipationInput.prototype, "relations", void 0);
 ParticipantCreateWithoutProgramParticipationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateWithoutProgramParticipationInput);
@@ -40976,11 +40937,50 @@ __decorate([
 ], ParticipantCreateWithoutRelationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateWithoutRelationInput.prototype, "participant", void 0);
+], ParticipantCreateWithoutRelationInput.prototype, "relations", void 0);
 ParticipantCreateWithoutRelationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateWithoutRelationInput);
 exports.ParticipantCreateWithoutRelationInput = ParticipantCreateWithoutRelationInput;
+let ParticipantCreateWithoutRelationsInput = class ParticipantCreateWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => Gender, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "gender", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "birthDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "isActive", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantStatus, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "status", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "user", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
+], ParticipantCreateWithoutRelationsInput.prototype, "relation", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "employment", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => BankAccountCreateNestedOneWithoutParticipantInput, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "bankAccount", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ContactInfoCreateNestedOneWithoutParticipantInput, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "contactInfo", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ProgramParticipationCreateNestedOneWithoutParticipantInput, { nullable: false })
+], ParticipantCreateWithoutRelationsInput.prototype, "programParticipation", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
+], ParticipantCreateWithoutRelationsInput.prototype, "claims", void 0);
+ParticipantCreateWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantCreateWithoutRelationsInput);
+exports.ParticipantCreateWithoutRelationsInput = ParticipantCreateWithoutRelationsInput;
 let ParticipantCreateWithoutUserInput = class ParticipantCreateWithoutUserInput {
 };
 __decorate([
@@ -40996,7 +40996,7 @@ __decorate([
     (0, graphql_1.Field)(() => ParticipantStatus, { nullable: false })
 ], ParticipantCreateWithoutUserInput.prototype, "status", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
 ], ParticipantCreateWithoutUserInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
@@ -41015,7 +41015,7 @@ __decorate([
 ], ParticipantCreateWithoutUserInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateWithoutUserInput.prototype, "participant", void 0);
+], ParticipantCreateWithoutUserInput.prototype, "relations", void 0);
 ParticipantCreateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateWithoutUserInput);
@@ -41038,7 +41038,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserCreateNestedOneWithoutParticipantInput, { nullable: false })
 ], ParticipantCreateInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutParticipantInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantCreateNestedOneWithoutRelationsInput, { nullable: true })
 ], ParticipantCreateInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentCreateNestedOneWithoutParticipantInput, { nullable: false })
@@ -41057,7 +41057,7 @@ __decorate([
 ], ParticipantCreateInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantCreateInput.prototype, "participant", void 0);
+], ParticipantCreateInput.prototype, "relations", void 0);
 ParticipantCreateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantCreateInput);
@@ -41511,7 +41511,7 @@ __decorate([
 ], ParticipantOrderByWithRelationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantOrderByRelationAggregateInput, { nullable: true })
-], ParticipantOrderByWithRelationInput.prototype, "participant", void 0);
+], ParticipantOrderByWithRelationInput.prototype, "relations", void 0);
 ParticipantOrderByWithRelationInput = ParticipantOrderByWithRelationInput_1 = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantOrderByWithRelationInput);
@@ -41818,7 +41818,7 @@ __decorate([
 ], ParticipantUncheckedCreateWithoutBankAccountInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutBankAccountInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateWithoutBankAccountInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateWithoutBankAccountInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateWithoutBankAccountInput);
@@ -41857,7 +41857,7 @@ __decorate([
 ], ParticipantUncheckedCreateWithoutClaimsInput.prototype, "programParticipationId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutClaimsInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateWithoutClaimsInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateWithoutClaimsInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateWithoutClaimsInput);
@@ -41896,7 +41896,7 @@ __decorate([
 ], ParticipantUncheckedCreateWithoutContactInfoInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutContactInfoInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateWithoutContactInfoInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateWithoutContactInfoInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateWithoutContactInfoInput);
@@ -41935,50 +41935,11 @@ __decorate([
 ], ParticipantUncheckedCreateWithoutEmploymentInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutEmploymentInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateWithoutEmploymentInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateWithoutEmploymentInput);
 exports.ParticipantUncheckedCreateWithoutEmploymentInput = ParticipantUncheckedCreateWithoutEmploymentInput;
-let ParticipantUncheckedCreateWithoutParticipantInput = class ParticipantUncheckedCreateWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => Gender, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "gender", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "birthDate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "isActive", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantStatus, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "status", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "userId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "relationId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "employmentId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "bankAccountId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "contactInfoId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "programParticipationId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ClaimUncheckedCreateNestedManyWithoutParticipantInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutParticipantInput.prototype, "claims", void 0);
-ParticipantUncheckedCreateWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantUncheckedCreateWithoutParticipantInput);
-exports.ParticipantUncheckedCreateWithoutParticipantInput = ParticipantUncheckedCreateWithoutParticipantInput;
 let ParticipantUncheckedCreateWithoutProgramParticipationInput = class ParticipantUncheckedCreateWithoutProgramParticipationInput {
 };
 __decorate([
@@ -42013,7 +41974,7 @@ __decorate([
 ], ParticipantUncheckedCreateWithoutProgramParticipationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutProgramParticipationInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateWithoutProgramParticipationInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateWithoutProgramParticipationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateWithoutProgramParticipationInput);
@@ -42052,11 +42013,50 @@ __decorate([
 ], ParticipantUncheckedCreateWithoutRelationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutRelationInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateWithoutRelationInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateWithoutRelationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateWithoutRelationInput);
 exports.ParticipantUncheckedCreateWithoutRelationInput = ParticipantUncheckedCreateWithoutRelationInput;
+let ParticipantUncheckedCreateWithoutRelationsInput = class ParticipantUncheckedCreateWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => Gender, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "gender", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "birthDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "isActive", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantStatus, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "status", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "userId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "relationId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "employmentId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "bankAccountId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "contactInfoId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_3.Int, { nullable: false })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "programParticipationId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ClaimUncheckedCreateNestedManyWithoutParticipantInput, { nullable: true })
+], ParticipantUncheckedCreateWithoutRelationsInput.prototype, "claims", void 0);
+ParticipantUncheckedCreateWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantUncheckedCreateWithoutRelationsInput);
+exports.ParticipantUncheckedCreateWithoutRelationsInput = ParticipantUncheckedCreateWithoutRelationsInput;
 let ParticipantUncheckedCreateWithoutUserInput = class ParticipantUncheckedCreateWithoutUserInput {
 };
 __decorate([
@@ -42091,7 +42091,7 @@ __decorate([
 ], ParticipantUncheckedCreateWithoutUserInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateWithoutUserInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateWithoutUserInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateWithoutUserInput);
@@ -42133,7 +42133,7 @@ __decorate([
 ], ParticipantUncheckedCreateInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedCreateNestedManyWithoutRelationInput, { nullable: true })
-], ParticipantUncheckedCreateInput.prototype, "participant", void 0);
+], ParticipantUncheckedCreateInput.prototype, "relations", void 0);
 ParticipantUncheckedCreateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedCreateInput);
@@ -42461,7 +42461,7 @@ __decorate([
 ], ParticipantUncheckedUpdateWithoutBankAccountInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutBankAccountInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateWithoutBankAccountInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateWithoutBankAccountInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateWithoutBankAccountInput);
@@ -42500,7 +42500,7 @@ __decorate([
 ], ParticipantUncheckedUpdateWithoutClaimsInput.prototype, "programParticipationId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutClaimsInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateWithoutClaimsInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateWithoutClaimsInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateWithoutClaimsInput);
@@ -42539,7 +42539,7 @@ __decorate([
 ], ParticipantUncheckedUpdateWithoutContactInfoInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutContactInfoInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateWithoutContactInfoInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateWithoutContactInfoInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateWithoutContactInfoInput);
@@ -42578,50 +42578,11 @@ __decorate([
 ], ParticipantUncheckedUpdateWithoutEmploymentInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutEmploymentInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateWithoutEmploymentInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateWithoutEmploymentInput);
 exports.ParticipantUncheckedUpdateWithoutEmploymentInput = ParticipantUncheckedUpdateWithoutEmploymentInput;
-let ParticipantUncheckedUpdateWithoutParticipantInput = class ParticipantUncheckedUpdateWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => EnumGenderFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "gender", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "birthDate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "isActive", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EnumParticipantStatusFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "status", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "userId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "relationId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "employmentId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "bankAccountId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "contactInfoId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "programParticipationId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ClaimUncheckedUpdateManyWithoutParticipantNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutParticipantInput.prototype, "claims", void 0);
-ParticipantUncheckedUpdateWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantUncheckedUpdateWithoutParticipantInput);
-exports.ParticipantUncheckedUpdateWithoutParticipantInput = ParticipantUncheckedUpdateWithoutParticipantInput;
 let ParticipantUncheckedUpdateWithoutProgramParticipationInput = class ParticipantUncheckedUpdateWithoutProgramParticipationInput {
 };
 __decorate([
@@ -42656,7 +42617,7 @@ __decorate([
 ], ParticipantUncheckedUpdateWithoutProgramParticipationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutProgramParticipationInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateWithoutProgramParticipationInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateWithoutProgramParticipationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateWithoutProgramParticipationInput);
@@ -42695,11 +42656,50 @@ __decorate([
 ], ParticipantUncheckedUpdateWithoutRelationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutRelationInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateWithoutRelationInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateWithoutRelationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateWithoutRelationInput);
 exports.ParticipantUncheckedUpdateWithoutRelationInput = ParticipantUncheckedUpdateWithoutRelationInput;
+let ParticipantUncheckedUpdateWithoutRelationsInput = class ParticipantUncheckedUpdateWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => EnumGenderFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "gender", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "birthDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "isActive", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EnumParticipantStatusFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "status", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "userId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "relationId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "employmentId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "bankAccountId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "contactInfoId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "programParticipationId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ClaimUncheckedUpdateManyWithoutParticipantNestedInput, { nullable: true })
+], ParticipantUncheckedUpdateWithoutRelationsInput.prototype, "claims", void 0);
+ParticipantUncheckedUpdateWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantUncheckedUpdateWithoutRelationsInput);
+exports.ParticipantUncheckedUpdateWithoutRelationsInput = ParticipantUncheckedUpdateWithoutRelationsInput;
 let ParticipantUncheckedUpdateWithoutUserInput = class ParticipantUncheckedUpdateWithoutUserInput {
 };
 __decorate([
@@ -42734,7 +42734,7 @@ __decorate([
 ], ParticipantUncheckedUpdateWithoutUserInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateWithoutUserInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateWithoutUserInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateWithoutUserInput);
@@ -42776,7 +42776,7 @@ __decorate([
 ], ParticipantUncheckedUpdateInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUncheckedUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUncheckedUpdateInput.prototype, "participant", void 0);
+], ParticipantUncheckedUpdateInput.prototype, "relations", void 0);
 ParticipantUncheckedUpdateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUncheckedUpdateInput);
@@ -42991,40 +42991,6 @@ ParticipantUpdateOneWithoutEmploymentNestedInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateOneWithoutEmploymentNestedInput);
 exports.ParticipantUpdateOneWithoutEmploymentNestedInput = ParticipantUpdateOneWithoutEmploymentNestedInput;
-let ParticipantUpdateOneWithoutParticipantNestedInput = class ParticipantUpdateOneWithoutParticipantNestedInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateWithoutParticipantInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutParticipantInput)
-], ParticipantUpdateOneWithoutParticipantNestedInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateOrConnectWithoutParticipantInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantCreateOrConnectWithoutParticipantInput)
-], ParticipantUpdateOneWithoutParticipantNestedInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantUpsertWithoutParticipantInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantUpsertWithoutParticipantInput)
-], ParticipantUpdateOneWithoutParticipantNestedInput.prototype, "upsert", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
-], ParticipantUpdateOneWithoutParticipantNestedInput.prototype, "disconnect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
-], ParticipantUpdateOneWithoutParticipantNestedInput.prototype, "delete", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantWhereUniqueInput)
-], ParticipantUpdateOneWithoutParticipantNestedInput.prototype, "connect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateToOneWithWhereWithoutParticipantInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantUpdateToOneWithWhereWithoutParticipantInput)
-], ParticipantUpdateOneWithoutParticipantNestedInput.prototype, "update", void 0);
-ParticipantUpdateOneWithoutParticipantNestedInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantUpdateOneWithoutParticipantNestedInput);
-exports.ParticipantUpdateOneWithoutParticipantNestedInput = ParticipantUpdateOneWithoutParticipantNestedInput;
 let ParticipantUpdateOneWithoutProgramParticipationNestedInput = class ParticipantUpdateOneWithoutProgramParticipationNestedInput {
 };
 __decorate([
@@ -43059,6 +43025,40 @@ ParticipantUpdateOneWithoutProgramParticipationNestedInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateOneWithoutProgramParticipationNestedInput);
 exports.ParticipantUpdateOneWithoutProgramParticipationNestedInput = ParticipantUpdateOneWithoutProgramParticipationNestedInput;
+let ParticipantUpdateOneWithoutRelationsNestedInput = class ParticipantUpdateOneWithoutRelationsNestedInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantCreateWithoutRelationsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutRelationsInput)
+], ParticipantUpdateOneWithoutRelationsNestedInput.prototype, "create", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantCreateOrConnectWithoutRelationsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantCreateOrConnectWithoutRelationsInput)
+], ParticipantUpdateOneWithoutRelationsNestedInput.prototype, "connectOrCreate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantUpsertWithoutRelationsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantUpsertWithoutRelationsInput)
+], ParticipantUpdateOneWithoutRelationsNestedInput.prototype, "upsert", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
+], ParticipantUpdateOneWithoutRelationsNestedInput.prototype, "disconnect", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
+], ParticipantUpdateOneWithoutRelationsNestedInput.prototype, "delete", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantWhereUniqueInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantWhereUniqueInput)
+], ParticipantUpdateOneWithoutRelationsNestedInput.prototype, "connect", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantUpdateToOneWithWhereWithoutRelationsInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantUpdateToOneWithWhereWithoutRelationsInput)
+], ParticipantUpdateOneWithoutRelationsNestedInput.prototype, "update", void 0);
+ParticipantUpdateOneWithoutRelationsNestedInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantUpdateOneWithoutRelationsNestedInput);
+exports.ParticipantUpdateOneWithoutRelationsNestedInput = ParticipantUpdateOneWithoutRelationsNestedInput;
 let ParticipantUpdateOneWithoutUserNestedInput = class ParticipantUpdateOneWithoutUserNestedInput {
 };
 __decorate([
@@ -43149,20 +43149,6 @@ ParticipantUpdateToOneWithWhereWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateToOneWithWhereWithoutEmploymentInput);
 exports.ParticipantUpdateToOneWithWhereWithoutEmploymentInput = ParticipantUpdateToOneWithWhereWithoutEmploymentInput;
-let ParticipantUpdateToOneWithWhereWithoutParticipantInput = class ParticipantUpdateToOneWithWhereWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
-], ParticipantUpdateToOneWithWhereWithoutParticipantInput.prototype, "where", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateWithoutParticipantInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => ParticipantUpdateWithoutParticipantInput)
-], ParticipantUpdateToOneWithWhereWithoutParticipantInput.prototype, "data", void 0);
-ParticipantUpdateToOneWithWhereWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantUpdateToOneWithWhereWithoutParticipantInput);
-exports.ParticipantUpdateToOneWithWhereWithoutParticipantInput = ParticipantUpdateToOneWithWhereWithoutParticipantInput;
 let ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput = class ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput {
 };
 __decorate([
@@ -43177,6 +43163,20 @@ ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput);
 exports.ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput = ParticipantUpdateToOneWithWhereWithoutProgramParticipationInput;
+let ParticipantUpdateToOneWithWhereWithoutRelationsInput = class ParticipantUpdateToOneWithWhereWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
+], ParticipantUpdateToOneWithWhereWithoutRelationsInput.prototype, "where", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantUpdateWithoutRelationsInput, { nullable: false }),
+    (0, class_transformer_1.Type)(() => ParticipantUpdateWithoutRelationsInput)
+], ParticipantUpdateToOneWithWhereWithoutRelationsInput.prototype, "data", void 0);
+ParticipantUpdateToOneWithWhereWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantUpdateToOneWithWhereWithoutRelationsInput);
+exports.ParticipantUpdateToOneWithWhereWithoutRelationsInput = ParticipantUpdateToOneWithWhereWithoutRelationsInput;
 let ParticipantUpdateToOneWithWhereWithoutUserInput = class ParticipantUpdateToOneWithWhereWithoutUserInput {
 };
 __decorate([
@@ -43223,7 +43223,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutBankAccountInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutBankAccountInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
@@ -43239,7 +43239,7 @@ __decorate([
 ], ParticipantUpdateWithoutBankAccountInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateWithoutBankAccountInput.prototype, "participant", void 0);
+], ParticipantUpdateWithoutBankAccountInput.prototype, "relations", void 0);
 ParticipantUpdateWithoutBankAccountInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateWithoutBankAccountInput);
@@ -43262,7 +43262,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutClaimsInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutClaimsInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
@@ -43278,7 +43278,7 @@ __decorate([
 ], ParticipantUpdateWithoutClaimsInput.prototype, "programParticipation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateWithoutClaimsInput.prototype, "participant", void 0);
+], ParticipantUpdateWithoutClaimsInput.prototype, "relations", void 0);
 ParticipantUpdateWithoutClaimsInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateWithoutClaimsInput);
@@ -43301,7 +43301,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutContactInfoInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutContactInfoInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
@@ -43317,7 +43317,7 @@ __decorate([
 ], ParticipantUpdateWithoutContactInfoInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateWithoutContactInfoInput.prototype, "participant", void 0);
+], ParticipantUpdateWithoutContactInfoInput.prototype, "relations", void 0);
 ParticipantUpdateWithoutContactInfoInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateWithoutContactInfoInput);
@@ -43340,7 +43340,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutEmploymentInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutEmploymentInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => BankAccountUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
@@ -43356,50 +43356,11 @@ __decorate([
 ], ParticipantUpdateWithoutEmploymentInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateWithoutEmploymentInput.prototype, "participant", void 0);
+], ParticipantUpdateWithoutEmploymentInput.prototype, "relations", void 0);
 ParticipantUpdateWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateWithoutEmploymentInput);
 exports.ParticipantUpdateWithoutEmploymentInput = ParticipantUpdateWithoutEmploymentInput;
-let ParticipantUpdateWithoutParticipantInput = class ParticipantUpdateWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => EnumGenderFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "gender", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "birthDate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "isActive", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EnumParticipantStatusFieldUpdateOperationsInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "status", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "user", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "relation", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "employment", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => BankAccountUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "bankAccount", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ContactInfoUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "contactInfo", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
-], ParticipantUpdateWithoutParticipantInput.prototype, "programParticipation", void 0);
-__decorate([
-    (0, graphql_7.HideField)()
-], ParticipantUpdateWithoutParticipantInput.prototype, "claims", void 0);
-ParticipantUpdateWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantUpdateWithoutParticipantInput);
-exports.ParticipantUpdateWithoutParticipantInput = ParticipantUpdateWithoutParticipantInput;
 let ParticipantUpdateWithoutProgramParticipationInput = class ParticipantUpdateWithoutProgramParticipationInput {
 };
 __decorate([
@@ -43418,7 +43379,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutProgramParticipationInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutProgramParticipationInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
@@ -43434,7 +43395,7 @@ __decorate([
 ], ParticipantUpdateWithoutProgramParticipationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateWithoutProgramParticipationInput.prototype, "participant", void 0);
+], ParticipantUpdateWithoutProgramParticipationInput.prototype, "relations", void 0);
 ParticipantUpdateWithoutProgramParticipationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateWithoutProgramParticipationInput);
@@ -43473,11 +43434,50 @@ __decorate([
 ], ParticipantUpdateWithoutRelationInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateWithoutRelationInput.prototype, "participant", void 0);
+], ParticipantUpdateWithoutRelationInput.prototype, "relations", void 0);
 ParticipantUpdateWithoutRelationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateWithoutRelationInput);
 exports.ParticipantUpdateWithoutRelationInput = ParticipantUpdateWithoutRelationInput;
+let ParticipantUpdateWithoutRelationsInput = class ParticipantUpdateWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => EnumGenderFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "gender", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "birthDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => BoolFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "isActive", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EnumParticipantStatusFieldUpdateOperationsInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "status", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "user", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "relation", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "employment", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => BankAccountUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "bankAccount", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ContactInfoUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "contactInfo", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
+], ParticipantUpdateWithoutRelationsInput.prototype, "programParticipation", void 0);
+__decorate([
+    (0, graphql_7.HideField)()
+], ParticipantUpdateWithoutRelationsInput.prototype, "claims", void 0);
+ParticipantUpdateWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantUpdateWithoutRelationsInput);
+exports.ParticipantUpdateWithoutRelationsInput = ParticipantUpdateWithoutRelationsInput;
 let ParticipantUpdateWithoutUserInput = class ParticipantUpdateWithoutUserInput {
 };
 __decorate([
@@ -43493,7 +43493,7 @@ __decorate([
     (0, graphql_1.Field)(() => EnumParticipantStatusFieldUpdateOperationsInput, { nullable: true })
 ], ParticipantUpdateWithoutUserInput.prototype, "status", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
 ], ParticipantUpdateWithoutUserInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
@@ -43512,7 +43512,7 @@ __decorate([
 ], ParticipantUpdateWithoutUserInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateWithoutUserInput.prototype, "participant", void 0);
+], ParticipantUpdateWithoutUserInput.prototype, "relations", void 0);
 ParticipantUpdateWithoutUserInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateWithoutUserInput);
@@ -43535,7 +43535,7 @@ __decorate([
     (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
 ], ParticipantUpdateInput.prototype, "user", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutParticipantNestedInput, { nullable: true })
+    (0, graphql_1.Field)(() => ParticipantUpdateOneWithoutRelationsNestedInput, { nullable: true })
 ], ParticipantUpdateInput.prototype, "relation", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmploymentUpdateOneRequiredWithoutParticipantNestedInput, { nullable: true })
@@ -43554,7 +43554,7 @@ __decorate([
 ], ParticipantUpdateInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantUpdateManyWithoutRelationNestedInput, { nullable: true })
-], ParticipantUpdateInput.prototype, "participant", void 0);
+], ParticipantUpdateInput.prototype, "relations", void 0);
 ParticipantUpdateInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpdateInput);
@@ -43649,24 +43649,6 @@ ParticipantUpsertWithoutEmploymentInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpsertWithoutEmploymentInput);
 exports.ParticipantUpsertWithoutEmploymentInput = ParticipantUpsertWithoutEmploymentInput;
-let ParticipantUpsertWithoutParticipantInput = class ParticipantUpsertWithoutParticipantInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantUpdateWithoutParticipantInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => ParticipantUpdateWithoutParticipantInput)
-], ParticipantUpsertWithoutParticipantInput.prototype, "update", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantCreateWithoutParticipantInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutParticipantInput)
-], ParticipantUpsertWithoutParticipantInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
-], ParticipantUpsertWithoutParticipantInput.prototype, "where", void 0);
-ParticipantUpsertWithoutParticipantInput = __decorate([
-    (0, graphql_4.InputType)()
-], ParticipantUpsertWithoutParticipantInput);
-exports.ParticipantUpsertWithoutParticipantInput = ParticipantUpsertWithoutParticipantInput;
 let ParticipantUpsertWithoutProgramParticipationInput = class ParticipantUpsertWithoutProgramParticipationInput {
 };
 __decorate([
@@ -43685,6 +43667,24 @@ ParticipantUpsertWithoutProgramParticipationInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantUpsertWithoutProgramParticipationInput);
 exports.ParticipantUpsertWithoutProgramParticipationInput = ParticipantUpsertWithoutProgramParticipationInput;
+let ParticipantUpsertWithoutRelationsInput = class ParticipantUpsertWithoutRelationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantUpdateWithoutRelationsInput, { nullable: false }),
+    (0, class_transformer_1.Type)(() => ParticipantUpdateWithoutRelationsInput)
+], ParticipantUpsertWithoutRelationsInput.prototype, "update", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantCreateWithoutRelationsInput, { nullable: false }),
+    (0, class_transformer_1.Type)(() => ParticipantCreateWithoutRelationsInput)
+], ParticipantUpsertWithoutRelationsInput.prototype, "create", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ParticipantWhereInput, { nullable: true }),
+    (0, class_transformer_1.Type)(() => ParticipantWhereInput)
+], ParticipantUpsertWithoutRelationsInput.prototype, "where", void 0);
+ParticipantUpsertWithoutRelationsInput = __decorate([
+    (0, graphql_4.InputType)()
+], ParticipantUpsertWithoutRelationsInput);
+exports.ParticipantUpsertWithoutRelationsInput = ParticipantUpsertWithoutRelationsInput;
 let ParticipantUpsertWithoutUserInput = class ParticipantUpsertWithoutUserInput {
 };
 __decorate([
@@ -43767,7 +43767,7 @@ __decorate([
 ], ParticipantWhereUniqueInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantListRelationFilter, { nullable: true })
-], ParticipantWhereUniqueInput.prototype, "participant", void 0);
+], ParticipantWhereUniqueInput.prototype, "relations", void 0);
 ParticipantWhereUniqueInput = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantWhereUniqueInput);
@@ -43836,7 +43836,7 @@ __decorate([
 ], ParticipantWhereInput.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantListRelationFilter, { nullable: true })
-], ParticipantWhereInput.prototype, "participant", void 0);
+], ParticipantWhereInput.prototype, "relations", void 0);
 ParticipantWhereInput = ParticipantWhereInput_1 = __decorate([
     (0, graphql_4.InputType)()
 ], ParticipantWhereInput);
@@ -43896,7 +43896,7 @@ __decorate([
 ], Participant.prototype, "claims", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [Participant_1], { nullable: true, description: 'Anggota keluarga dari' })
-], Participant.prototype, "participant", void 0);
+], Participant.prototype, "relations", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ParticipantCount, { nullable: false })
 ], Participant.prototype, "_count", void 0);

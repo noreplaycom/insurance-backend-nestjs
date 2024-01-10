@@ -227,7 +227,7 @@ model Participant {
     claims Claim[]
 
     ///Anggota keluarga dari
-    participant Participant[] @relation("ParticipantRelation")
+    relations Participant[] @relation("ParticipantRelation")
 
     @@map("participants")
 }
