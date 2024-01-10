@@ -559,6 +559,7 @@ type ClaimProgramCountAggregate {
   id: Int!
   expeditionDate: Int!
   isReclaim: Int!
+  isReclaimNoticeLetterDate: Int!
   submissionNote: Int!
   description: Int!
   additionalNote: Int!
@@ -580,6 +581,7 @@ type ClaimProgramMaxAggregate {
   id: Int
   expeditionDate: DateTime
   isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
   submissionNote: String
   description: String
   additionalNote: String
@@ -595,6 +597,7 @@ type ClaimProgramMinAggregate {
   id: Int
   expeditionDate: DateTime
   isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
   submissionNote: String
   description: String
   additionalNote: String
@@ -621,6 +624,7 @@ type ClaimProgram {
 
   """Reklaim:	Keterangan untuk klaim ulang"""
   isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
 
   """Ket.Pengajuan:	Keterangan konfirmasi"""
   submissionNote: String
@@ -1686,9 +1690,10 @@ type ProgramParticipationToProgramsCountAggregate {
   description: Int!
   isAvailable: Int!
   allowanceCeilingRemaining: Int!
+  allowanceCeilingRemainingLastResetDate: Int!
   allowanceQuotaRemaining: Int!
+  allowanceQuotaRemainingLastResetDate: Int!
   updatedAt: Int!
-  nextResetDate: Int!
   programParticipationId: Int!
   programId: Int!
   _all: Int!
@@ -1698,9 +1703,10 @@ type ProgramParticipationToProgramsMaxAggregate {
   description: String
   isAvailable: Boolean
   allowanceCeilingRemaining: Float
+  allowanceCeilingRemainingLastResetDate: DateTime
   allowanceQuotaRemaining: Int
+  allowanceQuotaRemainingLastResetDate: DateTime
   updatedAt: DateTime
-  nextResetDate: DateTime
   programParticipationId: Int
   programId: Int
 }
@@ -1709,9 +1715,10 @@ type ProgramParticipationToProgramsMinAggregate {
   description: String
   isAvailable: Boolean
   allowanceCeilingRemaining: Float
+  allowanceCeilingRemainingLastResetDate: DateTime
   allowanceQuotaRemaining: Int
+  allowanceQuotaRemainingLastResetDate: DateTime
   updatedAt: DateTime
-  nextResetDate: DateTime
   programParticipationId: Int
   programId: Int
 }
@@ -1729,13 +1736,16 @@ type ProgramParticipationToPrograms {
 
   """Sisa penggunaan plafon saat ini"""
   allowanceCeilingRemaining: Float!
+  allowanceCeilingRemainingLastResetDate: DateTime
 
-  """Sisa kesempatan klaim saat ini"""
-  allowanceQuotaRemaining: Int!
+  """
+  Sisa kesempatan klaim saat ini, namun tidak semua program memberlakukan quota penggunaan klaim
+  """
+  allowanceQuotaRemaining: Int
+  allowanceQuotaRemainingLastResetDate: DateTime
 
   """allowanceCeiling & Quota Remaining LastUpdate"""
   updatedAt: DateTime!
-  nextResetDate: DateTime!
   programParticipationId: Int!
   programId: Int!
   programParticipation: ProgramParticipation!
@@ -2593,6 +2603,7 @@ input ClaimProgramWhereInput {
   id: IntFilter
   expeditionDate: DateTimeNullableFilter
   isReclaim: BoolNullableFilter
+  isReclaimNoticeLetterDate: DateTimeNullableFilter
   submissionNote: StringNullableFilter
   description: StringNullableFilter
   additionalNote: StringNullableFilter
@@ -3213,9 +3224,10 @@ input ProgramParticipationToProgramsWhereInput {
   description: StringNullableFilter
   isAvailable: BoolFilter
   allowanceCeilingRemaining: FloatFilter
-  allowanceQuotaRemaining: IntFilter
+  allowanceCeilingRemainingLastResetDate: DateTimeNullableFilter
+  allowanceQuotaRemaining: IntNullableFilter
+  allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
   updatedAt: DateTimeFilter
-  nextResetDate: DateTimeFilter
   programParticipationId: IntFilter
   programId: IntFilter
   programParticipation: ProgramParticipationRelationFilter
@@ -4279,6 +4291,7 @@ input ClaimProgramOrderByWithRelationInput {
   id: SortOrder
   expeditionDate: SortOrderInput
   isReclaim: SortOrderInput
+  isReclaimNoticeLetterDate: SortOrderInput
   submissionNote: SortOrderInput
   description: SortOrderInput
   additionalNote: SortOrderInput
@@ -4809,6 +4822,7 @@ input ClaimProgramCreateNestedManyWithoutProgramInput {
 
 input ClaimProgramCreateWithoutProgramInput {
   isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
   submissionNote: String
   description: String
   additionalNote: String
@@ -5788,6 +5802,7 @@ input ClaimProgramWhereUniqueInput {
   NOT: [ClaimProgramWhereInput!]
   expeditionDate: DateTimeNullableFilter
   isReclaim: BoolNullableFilter
+  isReclaimNoticeLetterDate: DateTimeNullableFilter
   submissionNote: StringNullableFilter
   description: StringNullableFilter
   additionalNote: StringNullableFilter
@@ -5812,6 +5827,7 @@ input ClaimProgramCreateManyProgramInputEnvelope {
 
 input ClaimProgramCreateManyProgramInput {
   isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
   submissionNote: String
   description: String
   additionalNote: String
@@ -5890,9 +5906,10 @@ input ProgramParticipationToProgramsWhereUniqueInput {
   description: StringNullableFilter
   isAvailable: BoolFilter
   allowanceCeilingRemaining: FloatFilter
-  allowanceQuotaRemaining: IntFilter
+  allowanceCeilingRemainingLastResetDate: DateTimeNullableFilter
+  allowanceQuotaRemaining: IntNullableFilter
+  allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
   updatedAt: DateTimeFilter
-  nextResetDate: DateTimeFilter
   programParticipationId: IntFilter
   programId: IntFilter
   programParticipation: ProgramParticipationRelationFilter
@@ -5997,6 +6014,7 @@ input ClaimProgramUpsertWithWhereUniqueWithoutProgramInput {
 input ClaimProgramUpdateWithoutProgramInput {
   expeditionDate: NullableDateTimeFieldUpdateOperationsInput
   isReclaim: NullableBoolFieldUpdateOperationsInput
+  isReclaimNoticeLetterDate: NullableDateTimeFieldUpdateOperationsInput
   submissionNote: NullableStringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
   additionalNote: NullableStringFieldUpdateOperationsInput
@@ -6434,6 +6452,7 @@ input ClaimProgramScalarWhereInput {
   id: IntFilter
   expeditionDate: DateTimeNullableFilter
   isReclaim: BoolNullableFilter
+  isReclaimNoticeLetterDate: DateTimeNullableFilter
   submissionNote: StringNullableFilter
   description: StringNullableFilter
   additionalNote: StringNullableFilter
@@ -6448,6 +6467,7 @@ input ClaimProgramScalarWhereInput {
 input ClaimProgramUpdateManyMutationInput {
   expeditionDate: NullableDateTimeFieldUpdateOperationsInput
   isReclaim: NullableBoolFieldUpdateOperationsInput
+  isReclaimNoticeLetterDate: NullableDateTimeFieldUpdateOperationsInput
   submissionNote: NullableStringFieldUpdateOperationsInput
   description: NullableStringFieldUpdateOperationsInput
   additionalNote: NullableStringFieldUpdateOperationsInput
@@ -7320,9 +7340,10 @@ input ProgramParticipationToProgramsScalarWhereInput {
   description: StringNullableFilter
   isAvailable: BoolFilter
   allowanceCeilingRemaining: FloatFilter
-  allowanceQuotaRemaining: IntFilter
+  allowanceCeilingRemainingLastResetDate: DateTimeNullableFilter
+  allowanceQuotaRemaining: IntNullableFilter
+  allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
   updatedAt: DateTimeFilter
-  nextResetDate: DateTimeFilter
   programParticipationId: IntFilter
   programId: IntFilter
 }
@@ -7408,6 +7429,7 @@ input ClaimProgramCreateNestedOneWithoutClaimInput {
 
 input ClaimProgramCreateWithoutClaimInput {
   isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
   submissionNote: String
   description: String
   additionalNote: String
