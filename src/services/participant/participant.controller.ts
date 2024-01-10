@@ -22,6 +22,7 @@ import {
 import { FileType } from 'src/model/enums';
 import { ConfigService } from '@nestjs/config';
 import { ProgramController } from '../program/program.controller';
+import { encryptUserPassword } from 'src/utils/bcrypt.function';
 
 @Injectable()
 export class ParticipantController {
@@ -33,6 +34,12 @@ export class ParticipantController {
   private readonly logger = new Logger(ParticipantController.name);
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
+    //? Event 0000: auto create participant password and encrypt it
+    //check if password is not null
+
+    participantCreateArgs.data.user.create.password =
+      await encryptUserPassword('123456');
+
     if (participantCreateArgs?.data) {
       // ? event 00000: create funding account for participant
       const initialBalance: number = 50000000;

@@ -12,18 +12,11 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   async createOne(userCreateArgs: Prisma.UserCreateArgs) {
-    //TODO: Auto create superuser when app first run. (username: superuser, password: superuser)
-    //TODO: Auto assign role to participant when create user as participant
-
     const { password } = userCreateArgs.data;
 
-    //encrypt user password
+    //? Event 0000: encrypt user password
     //check if password is not null
-    if (password) {
-      userCreateArgs.data.password = await encryptUserPassword(password);
-    }
-
-    //TODO: if participant create, then create funding account
+    await encryptUserPasswordEvent(password, userCreateArgs);
 
     return await this.userService.createOne(userCreateArgs);
   }
@@ -104,5 +97,13 @@ export class UserController {
     userDeleteOneByIdArgs: UserDeleteOneByIdArgs,
   ): Promise<boolean> {
     return true;
+  }
+}
+export async function encryptUserPasswordEvent(
+  password: string,
+  userCreateArgs,
+) {
+  if (password) {
+    userCreateArgs.data.password = await encryptUserPassword(password);
   }
 }
