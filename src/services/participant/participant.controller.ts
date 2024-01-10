@@ -88,8 +88,6 @@ export class ParticipantController {
           isAvailable: true,
           allowanceCeilingRemaining: program.allowanceCeiling,
           allowanceQuotaRemaining: program.allowanceQuota,
-          // next reset date is next new year
-          nextResetDate: new Date(new Date().getFullYear() + 1, 0, 1),
           updatedAt: new Date(),
         }));
 
