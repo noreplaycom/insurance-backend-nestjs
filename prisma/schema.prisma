@@ -554,7 +554,43 @@ model ProgramParticipation {
     fundingId Int?
 
     /// @HideField({ match: ['ProgramParticipationCreate*Input','ProgramParticipationUpdate*Input']})
-    programs Program[]
+    programParticipationToPrograms ProgramParticipationToPrograms[]
+}
+
+model ProgramParticipationToPrograms {
+    //-------------------------- scalars --------------------------------
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    isAvailable Boolean
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    ///Sisa penggunaan plafon saat ini
+    allowanceCeilingRemaining Float
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    ///Sisa kesempatan klaim saat ini
+    allowanceQuotaRemaining Int
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    /// allowanceCeiling & Quota Remaining LastUpdate
+    updatedAt DateTime @updatedAt
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    nextResetDate DateTime
+
+    //-------------------------- 1 relations --------------------------------
+    /// @HideField({ match: ['ProgramParticipationToProgramsUpdate*Input']})
+    programParticipation ProgramParticipation @relation(fields: [programParticipationId], references: [id])
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    programParticipationId Int
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    program Program @relation(fields: [programId], references: [id])
+
+    /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
+    programId Int
+
+    @@id([programParticipationId, programId])
 }
 
 ///Reference Document: https://rebrand.ly/d6i9uem
@@ -611,9 +647,9 @@ model Program {
 
     //-------------------------- m relations --------------------------------
 
-    programParticipations ProgramParticipation[]
-
     claimProgram ClaimProgram[]
+
+    programParticipations ProgramParticipationToPrograms[]
 }
 
 enum TambahanBantuanRawatInapType {
@@ -713,13 +749,16 @@ model Document {
     ///Nodok:	Nomer Dokumen
     id String @id @default(cuid())
 
-    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
-    ///Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
-    pdfPath String
+    ///Masukkan url file dokumen yang telah diupload
+    uploadedFileUrl String?
 
     /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     ///Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
-    docxPath String
+    pdfPath String?
+
+    /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
+    ///Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
+    docxPath String?
 
     /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
     ///Ukuran:	Ukuran dokumen
@@ -736,10 +775,11 @@ model Document {
     /// Sumber Dokumen
     source DocumentSource
 
+    /// Jenis dokumen
     type DocumentType
 
     /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
-    ///Siapa saja yang telah mencetak dokumen ini
+    /// Siapa saja yang telah mencetak dokumen ini
     printedby User[] @relation("printedby")
 
     /// @HideField({ match: ['DocumentCreate*Input','DocumentUpdate*Input']})
@@ -794,7 +834,8 @@ model Tag {
     color Color
 
     /// Apakah pengecualian
-    isException Boolean @default(false)
+    /// @HideField({ match: ['TagCreate*Input','TagUpdate*Input']})
+    isException Boolean?
 
     /// @HideField({ match: ['TagCreate*Input','TagUpdate*Input']})
     createdAt DateTime @default(now())
@@ -910,7 +951,7 @@ model ClaimProgram {
     endTreatment DateTime?
 
     ///Nama toko atau tempat pembelian kursi roda
-    kurisRodaOrWalkerSetoreName String?
+    kurisRodaOrWalkerStoreName String?
 
     //-------------------------- 1 relations --------------------------------
     /// @HideField({ match: ['ClaimProgramUpdate*Input']})

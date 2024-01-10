@@ -291,6 +291,26 @@ export function fakeProgramParticipationComplete() {
     fundingId: undefined,
   };
 }
+export function fakeProgramParticipationToPrograms() {
+  return {
+    isAvailable: faker.datatype.boolean(),
+    allowanceCeilingRemaining: faker.datatype.float(),
+    allowanceQuotaRemaining: faker.datatype.number(),
+    updatedAt: faker.datatype.datetime(),
+    nextResetDate: faker.datatype.datetime(),
+  };
+}
+export function fakeProgramParticipationToProgramsComplete() {
+  return {
+    isAvailable: faker.datatype.boolean(),
+    allowanceCeilingRemaining: faker.datatype.float(),
+    allowanceQuotaRemaining: faker.datatype.number(),
+    updatedAt: faker.datatype.datetime(),
+    nextResetDate: faker.datatype.datetime(),
+    programParticipationId: faker.datatype.number(),
+    programId: faker.datatype.number(),
+  };
+}
 export function fakeProgram() {
   return {
     type: faker.helpers.arrayElement([ProgramType.SANTUNAN_HARIAN_RAWAT_INAP, ProgramType.BANTUAN_BIAYA_CUCI_DARAH, ProgramType.BANTUAN_KURSI_RODA, ProgramType.BANTUAN_WALKER, ProgramType.BANTUAN_IGD_UGD, ProgramType.BANTUAN_RAWAT_INAP] as const),
@@ -352,8 +372,9 @@ export function fakeClaimComplete() {
 }
 export function fakeDocument() {
   return {
-    pdfPath: faker.lorem.words(5),
-    docxPath: faker.lorem.words(5),
+    uploadedFileUrl: undefined,
+    pdfPath: undefined,
+    docxPath: undefined,
     size: faker.datatype.number(),
     updatedAt: faker.datatype.datetime(),
     source: faker.helpers.arrayElement([DocumentSource.UPLOADED, DocumentSource.GENERATED] as const),
@@ -363,8 +384,9 @@ export function fakeDocument() {
 export function fakeDocumentComplete() {
   return {
     id: faker.datatype.uuid(),
-    pdfPath: faker.lorem.words(5),
-    docxPath: faker.lorem.words(5),
+    uploadedFileUrl: undefined,
+    pdfPath: undefined,
+    docxPath: undefined,
     size: faker.datatype.number(),
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
@@ -377,6 +399,7 @@ export function fakeTag() {
   return {
     name: faker.name.fullName(),
     color: faker.helpers.arrayElement([Color.WHITE, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN] as const),
+    isException: undefined,
     updatedAt: faker.datatype.datetime(),
   };
 }
@@ -385,7 +408,7 @@ export function fakeTagComplete() {
     id: faker.datatype.number(),
     name: faker.name.fullName(),
     color: faker.helpers.arrayElement([Color.WHITE, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN] as const),
-    isException: false,
+    isException: undefined,
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
   };
@@ -423,7 +446,7 @@ export function fakeClaimProgram() {
     additionalNote: undefined,
     startTreatment: undefined,
     endTreatment: undefined,
-    kurisRodaOrWalkerSetoreName: undefined,
+    kurisRodaOrWalkerStoreName: undefined,
   };
 }
 export function fakeClaimProgramComplete() {
@@ -436,7 +459,7 @@ export function fakeClaimProgramComplete() {
     additionalNote: undefined,
     startTreatment: undefined,
     endTreatment: undefined,
-    kurisRodaOrWalkerSetoreName: undefined,
+    kurisRodaOrWalkerStoreName: undefined,
     diseaseId: undefined,
     clinicId: undefined,
     programId: faker.datatype.number(),

@@ -564,7 +564,7 @@ type ClaimProgramCountAggregate {
   additionalNote: Int!
   startTreatment: Int!
   endTreatment: Int!
-  kurisRodaOrWalkerSetoreName: Int!
+  kurisRodaOrWalkerStoreName: Int!
   diseaseId: Int!
   clinicId: Int!
   programId: Int!
@@ -585,7 +585,7 @@ type ClaimProgramMaxAggregate {
   additionalNote: String
   startTreatment: DateTime
   endTreatment: DateTime
-  kurisRodaOrWalkerSetoreName: String
+  kurisRodaOrWalkerStoreName: String
   diseaseId: Int
   clinicId: Int
   programId: Int
@@ -600,7 +600,7 @@ type ClaimProgramMinAggregate {
   additionalNote: String
   startTreatment: DateTime
   endTreatment: DateTime
-  kurisRodaOrWalkerSetoreName: String
+  kurisRodaOrWalkerStoreName: String
   diseaseId: Int
   clinicId: Int
   programId: Int
@@ -638,7 +638,7 @@ type ClaimProgram {
   endTreatment: DateTime
 
   """Nama toko atau tempat pembelian kursi roda"""
-  kurisRodaOrWalkerSetoreName: String
+  kurisRodaOrWalkerStoreName: String
 
   """Penyakit:	Penyakit yang diderita"""
   diseaseId: Int
@@ -973,6 +973,7 @@ type DocumentAvgAggregate {
 
 type DocumentCountAggregate {
   id: Int!
+  uploadedFileUrl: Int!
   pdfPath: Int!
   docxPath: Int!
   size: Int!
@@ -990,6 +991,7 @@ type DocumentCount {
 
 type DocumentMaxAggregate {
   id: String
+  uploadedFileUrl: String
   pdfPath: String
   docxPath: String
   size: Int
@@ -1017,6 +1019,7 @@ enum DocumentType {
 
 type DocumentMinAggregate {
   id: String
+  uploadedFileUrl: String
   pdfPath: String
   docxPath: String
   size: Int
@@ -1036,15 +1039,18 @@ type Document {
   """Nodok:	Nomer Dokumen"""
   id: String!
 
-  """
-  Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
-  """
-  pdfPath: String!
+  """Masukkan url file dokumen yang telah diupload"""
+  uploadedFileUrl: String
 
   """
   Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
   """
-  docxPath: String!
+  pdfPath: String
+
+  """
+  Path:	Path file dokumen versi pdf, Hanya bisa satu kali input path tidak bisa diupdate
+  """
+  docxPath: String
 
   """Ukuran:	Ukuran dokumen"""
   size: Int!
@@ -1053,6 +1059,8 @@ type Document {
 
   """Sumber Dokumen"""
   source: DocumentSource!
+
+  """Jenis dokumen"""
   type: DocumentType!
   claimProgramId: Int
 
@@ -1974,7 +1982,7 @@ type Tag {
   color: Color!
 
   """Apakah pengecualian"""
-  isException: Boolean!
+  isException: Boolean
   createdAt: DateTime!
   updatedAt: DateTime!
   claims: [Claim!]
@@ -3050,8 +3058,9 @@ input DocumentWhereInput {
   OR: [DocumentWhereInput!]
   NOT: [DocumentWhereInput!]
   id: StringFilter
-  pdfPath: StringFilter
-  docxPath: StringFilter
+  uploadedFileUrl: StringNullableFilter
+  pdfPath: StringNullableFilter
+  docxPath: StringNullableFilter
   size: IntFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
@@ -3113,7 +3122,7 @@ input ClaimProgramWhereInput {
   additionalNote: StringNullableFilter
   startTreatment: DateTimeNullableFilter
   endTreatment: DateTimeNullableFilter
-  kurisRodaOrWalkerSetoreName: StringNullableFilter
+  kurisRodaOrWalkerStoreName: StringNullableFilter
   diseaseId: IntNullableFilter
   clinicId: IntNullableFilter
   programId: IntFilter
@@ -3300,7 +3309,7 @@ input TagWhereInput {
   id: IntFilter
   name: StringFilter
   color: EnumColorFilter
-  isException: BoolFilter
+  isException: BoolNullableFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   claims: ClaimListRelationFilter
@@ -4164,8 +4173,9 @@ input ClaimStatusOrderByWithRelationInput {
 
 input DocumentOrderByWithRelationInput {
   id: SortOrder
-  pdfPath: SortOrder
-  docxPath: SortOrder
+  uploadedFileUrl: SortOrderInput
+  pdfPath: SortOrderInput
+  docxPath: SortOrderInput
   size: SortOrder
   createdAt: SortOrder
   updatedAt: SortOrder
@@ -4191,7 +4201,7 @@ input ClaimProgramOrderByWithRelationInput {
   additionalNote: SortOrderInput
   startTreatment: SortOrderInput
   endTreatment: SortOrderInput
-  kurisRodaOrWalkerSetoreName: SortOrderInput
+  kurisRodaOrWalkerStoreName: SortOrderInput
   diseaseId: SortOrderInput
   clinicId: SortOrderInput
   programId: SortOrder
@@ -4471,7 +4481,7 @@ input TagOrderByWithRelationInput {
   id: SortOrder
   name: SortOrder
   color: SortOrder
-  isException: SortOrder
+  isException: SortOrderInput
   createdAt: SortOrder
   updatedAt: SortOrder
   claims: ClaimOrderByRelationAggregateInput
@@ -4484,7 +4494,7 @@ input TagWhereUniqueInput {
   NOT: [TagWhereInput!]
   name: StringFilter
   color: EnumColorFilter
-  isException: BoolFilter
+  isException: BoolNullableFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   claims: ClaimListRelationFilter
@@ -5432,7 +5442,7 @@ input ClaimProgramCreateWithoutProgramInput {
   additionalNote: String
   startTreatment: DateTime
   endTreatment: DateTime
-  kurisRodaOrWalkerSetoreName: String
+  kurisRodaOrWalkerStoreName: String
   disease: DiseaseCreateNestedOneWithoutClaimProgramInput
   clinics: ClinicCreateNestedOneWithoutClaimProgramInput
   claim: ClaimCreateNestedOneWithoutClaimProgramInput
@@ -5503,7 +5513,6 @@ input ClaimCreateNestedOneWithoutClaimProgramInput {
 }
 
 input ClaimCreateWithoutClaimProgramInput {
-  id: String
   channel: ClaimChannel!
   admedicaStatus: AdmedicaStatus!
   company: String!
@@ -5608,7 +5617,6 @@ input TagCreateNestedManyWithoutClaimsInput {
 input TagCreateWithoutClaimsInput {
   name: String!
   color: Color!
-  isException: Boolean
 }
 
 input TagCreateOrConnectWithoutClaimsInput {
@@ -5629,6 +5637,7 @@ input DocumentCreateNestedManyWithoutClaimProgrammInput {
 }
 
 input DocumentCreateWithoutClaimProgrammInput {
+  uploadedFileUrl: String
   type: DocumentType!
 }
 
@@ -5642,8 +5651,9 @@ input DocumentWhereUniqueInput {
   AND: [DocumentWhereInput!]
   OR: [DocumentWhereInput!]
   NOT: [DocumentWhereInput!]
-  pdfPath: StringFilter
-  docxPath: StringFilter
+  uploadedFileUrl: StringNullableFilter
+  pdfPath: StringNullableFilter
+  docxPath: StringNullableFilter
   size: IntFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
@@ -5666,6 +5676,7 @@ input DocumentCreateManyClaimProgrammInputEnvelope {
 }
 
 input DocumentCreateManyClaimProgrammInput {
+  uploadedFileUrl: String
   type: DocumentType!
 }
 
@@ -5689,6 +5700,7 @@ input DocumentCreateNestedOneWithoutInvoiceProofInput {
 }
 
 input DocumentCreateWithoutInvoiceProofInput {
+  uploadedFileUrl: String
   type: DocumentType!
 }
 
@@ -5742,7 +5754,7 @@ input ClaimProgramWhereUniqueInput {
   additionalNote: StringNullableFilter
   startTreatment: DateTimeNullableFilter
   endTreatment: DateTimeNullableFilter
-  kurisRodaOrWalkerSetoreName: StringNullableFilter
+  kurisRodaOrWalkerStoreName: StringNullableFilter
   diseaseId: IntNullableFilter
   clinicId: IntNullableFilter
   programId: IntFilter
@@ -5766,7 +5778,7 @@ input ClaimProgramCreateManyProgramInput {
   additionalNote: String
   startTreatment: DateTime
   endTreatment: DateTime
-  kurisRodaOrWalkerSetoreName: String
+  kurisRodaOrWalkerStoreName: String
   clinicId: Int
 }
 
@@ -6786,7 +6798,7 @@ input ClaimProgramUpdateWithoutProgramInput {
   additionalNote: NullableStringFieldUpdateOperationsInput
   startTreatment: NullableDateTimeFieldUpdateOperationsInput
   endTreatment: NullableDateTimeFieldUpdateOperationsInput
-  kurisRodaOrWalkerSetoreName: NullableStringFieldUpdateOperationsInput
+  kurisRodaOrWalkerStoreName: NullableStringFieldUpdateOperationsInput
   clinics: ClinicUpdateOneWithoutClaimProgramNestedInput
   claim: ClaimUpdateOneWithoutClaimProgramNestedInput
   documents: DocumentUpdateManyWithoutClaimProgrammNestedInput
@@ -6840,7 +6852,6 @@ input ClaimUpsertWithoutClaimProgramInput {
 }
 
 input ClaimUpdateWithoutClaimProgramInput {
-  id: StringFieldUpdateOperationsInput
   channel: EnumClaimChannelFieldUpdateOperationsInput
   admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
   company: StringFieldUpdateOperationsInput
@@ -6981,7 +6992,6 @@ input TagUpsertWithWhereUniqueWithoutClaimsInput {
 input TagUpdateWithoutClaimsInput {
   name: StringFieldUpdateOperationsInput
   color: EnumColorFieldUpdateOperationsInput
-  isException: BoolFieldUpdateOperationsInput
 }
 
 input EnumColorFieldUpdateOperationsInput {
@@ -7005,7 +7015,7 @@ input TagScalarWhereInput {
   id: IntFilter
   name: StringFilter
   color: EnumColorFilter
-  isException: BoolFilter
+  isException: BoolNullableFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
 }
@@ -7013,7 +7023,6 @@ input TagScalarWhereInput {
 input TagUpdateManyMutationInput {
   name: StringFieldUpdateOperationsInput
   color: EnumColorFieldUpdateOperationsInput
-  isException: BoolFieldUpdateOperationsInput
 }
 
 input ClaimUpdateToOneWithWhereWithoutClaimProgramInput {
@@ -7042,6 +7051,7 @@ input DocumentUpsertWithWhereUniqueWithoutClaimProgrammInput {
 }
 
 input DocumentUpdateWithoutClaimProgrammInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
   type: EnumDocumentTypeFieldUpdateOperationsInput
 }
 
@@ -7064,8 +7074,9 @@ input DocumentScalarWhereInput {
   OR: [DocumentScalarWhereInput!]
   NOT: [DocumentScalarWhereInput!]
   id: StringFilter
-  pdfPath: StringFilter
-  docxPath: StringFilter
+  uploadedFileUrl: StringNullableFilter
+  pdfPath: StringNullableFilter
+  docxPath: StringNullableFilter
   size: IntFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
@@ -7075,6 +7086,7 @@ input DocumentScalarWhereInput {
 }
 
 input DocumentUpdateManyMutationInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
   type: EnumDocumentTypeFieldUpdateOperationsInput
 }
 
@@ -7149,7 +7161,7 @@ input ClaimProgramScalarWhereInput {
   additionalNote: StringNullableFilter
   startTreatment: DateTimeNullableFilter
   endTreatment: DateTimeNullableFilter
-  kurisRodaOrWalkerSetoreName: StringNullableFilter
+  kurisRodaOrWalkerStoreName: StringNullableFilter
   diseaseId: IntNullableFilter
   clinicId: IntNullableFilter
   programId: IntFilter
@@ -7163,7 +7175,7 @@ input ClaimProgramUpdateManyMutationInput {
   additionalNote: NullableStringFieldUpdateOperationsInput
   startTreatment: NullableDateTimeFieldUpdateOperationsInput
   endTreatment: NullableDateTimeFieldUpdateOperationsInput
-  kurisRodaOrWalkerSetoreName: NullableStringFieldUpdateOperationsInput
+  kurisRodaOrWalkerStoreName: NullableStringFieldUpdateOperationsInput
 }
 
 input ProgramUpdateManyMutationInput {
@@ -7226,7 +7238,6 @@ input UserCreateInput {
 }
 
 input ClaimCreateInput {
-  id: String
   channel: ClaimChannel!
   admedicaStatus: AdmedicaStatus!
   company: String!
@@ -7249,7 +7260,7 @@ input ClaimProgramCreateWithoutClaimInput {
   additionalNote: String
   startTreatment: DateTime
   endTreatment: DateTime
-  kurisRodaOrWalkerSetoreName: String
+  kurisRodaOrWalkerStoreName: String
   disease: DiseaseCreateNestedOneWithoutClaimProgramInput
   clinics: ClinicCreateNestedOneWithoutClaimProgramInput
   program: ProgramCreateNestedOneWithoutClaimProgramInput!
@@ -7311,6 +7322,7 @@ input DocumentCreateNestedOneWithoutRejectionLetterOfInput {
 }
 
 input DocumentCreateWithoutRejectionLetterOfInput {
+  uploadedFileUrl: String
   type: DocumentType!
 }
 
@@ -7326,6 +7338,7 @@ input DocumentCreateNestedOneWithoutGuaranteeLetterOfInput {
 }
 
 input DocumentCreateWithoutGuaranteeLetterOfInput {
+  uploadedFileUrl: String
   type: DocumentType!
 }
 
@@ -7341,6 +7354,7 @@ input DocumentCreateNestedOneWithoutTransactionLetterOfInput {
 }
 
 input DocumentCreateWithoutTransactionLetterOfInput {
+  uploadedFileUrl: String
   type: DocumentType!
 }
 
@@ -7356,6 +7370,7 @@ input DocumentCreateNestedOneWithoutBookKeepingOrderOfInput {
 }
 
 input DocumentCreateWithoutBookKeepingOrderOfInput {
+  uploadedFileUrl: String
   type: DocumentType!
 }
 
@@ -7400,6 +7415,7 @@ input DocumentUpsertWithoutRejectionLetterOfInput {
 }
 
 input DocumentUpdateWithoutRejectionLetterOfInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
   type: EnumDocumentTypeFieldUpdateOperationsInput
 }
 
@@ -7425,6 +7441,7 @@ input DocumentUpsertWithoutGuaranteeLetterOfInput {
 }
 
 input DocumentUpdateWithoutGuaranteeLetterOfInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
   type: EnumDocumentTypeFieldUpdateOperationsInput
 }
 
@@ -7450,6 +7467,7 @@ input DocumentUpsertWithoutTransactionLetterOfInput {
 }
 
 input DocumentUpdateWithoutTransactionLetterOfInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
   type: EnumDocumentTypeFieldUpdateOperationsInput
 }
 
@@ -7475,6 +7493,7 @@ input DocumentUpsertWithoutBookKeepingOrderOfInput {
 }
 
 input DocumentUpdateWithoutBookKeepingOrderOfInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
   type: EnumDocumentTypeFieldUpdateOperationsInput
 }
 
@@ -7540,13 +7559,11 @@ input RoleUpdateInput {
 input TagCreateInput {
   name: String!
   color: Color!
-  isException: Boolean
 }
 
 input TagUpdateInput {
   name: StringFieldUpdateOperationsInput
   color: EnumColorFieldUpdateOperationsInput
-  isException: BoolFieldUpdateOperationsInput
 }
 
 input NotificationUpdateInput {

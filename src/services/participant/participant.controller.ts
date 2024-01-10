@@ -9,7 +9,10 @@ import {
   TransactionType,
 } from '@prisma/client';
 import { ParticipantService } from './participant.service';
-import { ParticipantStatus } from 'src/@generated';
+import {
+  ParticipantStatus,
+  ProgramParticipationToProgramsCreateManyProgramParticipationInput,
+} from 'src/@generated';
 import { createXLSX, readXLSX } from 'src/utils/excel.function';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import {
@@ -31,7 +34,7 @@ export class ParticipantController {
 
   async createOne(participantCreateArgs: Prisma.ParticipantCreateArgs) {
     if (participantCreateArgs?.data) {
-      // ? create funding account for participant
+      // ? event 00000: create funding account for participant
       const initialBalance: number = 50000000;
       const createdDate: Date = new Date();
       //
@@ -50,7 +53,7 @@ export class ParticipantController {
         },
       };
 
-      // ? connect participant to certain programs
+      // ? event 0000: connect participant to certain programs
       const participantPlan: SantunanHarianRawatInapPlan =
         participantCreateArgs.data.programParticipation.create
           .santunanHarianRawatInapPlan;
@@ -71,17 +74,43 @@ export class ParticipantController {
       ]);
 
       // 3. Initialize programs if it's undefined
-      if (!participantCreateArgs.data.programParticipation.create.programs) {
-        participantCreateArgs.data.programParticipation.create.programs = {};
+      if (
+        !participantCreateArgs.data.programParticipation.create
+          .programParticipationToPrograms
+      ) {
+        participantCreateArgs.data.programParticipation.create.programParticipationToPrograms =
+          {};
       }
       // 4. Create an array of objects with "id" field
-      const programIdsArray = programFindMany.map((program) => ({
-        id: program.id,
-      }));
+      const programParticipationToProgramsCreateManyProgramParticipationInput: ProgramParticipationToProgramsCreateManyProgramParticipationInput[] =
+        programFindMany.map((program) => ({
+          programId: program.id,
+          isAvailable: true,
+          allowanceCeilingRemaining: program.allowanceCeiling,
+          allowanceQuotaRemaining: program.allowanceQuota,
+          // next reset date is next new year
+          nextResetDate: new Date(new Date().getFullYear() + 1, 0, 1),
+          updatedAt: new Date(),
+        }));
+
+      // 4.1. Add programFindFirst ID to the beginning of the array
+      programParticipationToProgramsCreateManyProgramParticipationInput.push({
+        programId: programFindFirst.id,
+        isAvailable: true,
+        allowanceCeilingRemaining: programFindFirst.allowanceCeiling,
+        allowanceQuotaRemaining: programFindFirst.allowanceQuota,
+        // next reset date is next new year
+        nextResetDate: new Date(new Date().getFullYear() + 1, 0, 1),
+        updatedAt: new Date(),
+      });
 
       // 5. Add program IDs to connect and insert the programFindFirst ID at the beginning
-      participantCreateArgs.data.programParticipation.create.programs.connect =
-        [...programIdsArray, { id: programFindFirst.id }];
+      participantCreateArgs.data.programParticipation.create.programParticipationToPrograms.createMany =
+        {
+          data: [
+            ...programParticipationToProgramsCreateManyProgramParticipationInput,
+          ],
+        };
     }
 
     return await this.participantService.createOne(participantCreateArgs);
