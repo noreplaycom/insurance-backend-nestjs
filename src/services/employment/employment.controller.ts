@@ -51,7 +51,7 @@ export class EmploymentController {
     return await this.employmentService.count(employmentCountArgs);
   }
 
-  async getEmploymentPosition(): Promise<string[]> {
+  async employmentPositionFindMany(): Promise<string[]> {
     return Object.keys(Position);
   }
 }
