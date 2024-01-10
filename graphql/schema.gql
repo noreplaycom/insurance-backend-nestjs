@@ -663,14 +663,6 @@ type ClaimProgram {
   _count: ClaimProgramCount!
 }
 
-type AggregateClaimStatus {
-  _count: ClaimStatusCountAggregate
-  _avg: ClaimStatusAvgAggregate
-  _sum: ClaimStatusSumAggregate
-  _min: ClaimStatusMinAggregate
-  _max: ClaimStatusMaxAggregate
-}
-
 type ClaimStatusAvgAggregate {
   id: Float
 }
@@ -2323,19 +2315,7 @@ type Query {
   claimExport: String!
 
   """Deskripsinya ada disini loh"""
-  claimStatusFindOne(where: ClaimStatusWhereUniqueInput!): ClaimStatus
-
-  """Deskripsinya ada disini loh"""
   claimStatusFindMany(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): [ClaimStatus!]
-
-  """Deskripsinya ada disini loh"""
-  claimStatusFindFirst(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): ClaimStatus
-
-  """Deskripsinya ada disini loh"""
-  claimStatusAggregate(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, _count: ClaimStatusCountAggregateInput, _avg: ClaimStatusAvgAggregateInput, _sum: ClaimStatusSumAggregateInput, _min: ClaimStatusMinAggregateInput, _max: ClaimStatusMaxAggregateInput): AggregateClaimStatus
-
-  """Deskripsinya ada disini loh"""
-  claimStatusCount(where: ClaimStatusWhereInput, orderBy: [ClaimStatusOrderByWithRelationInput!], cursor: ClaimStatusWhereUniqueInput, take: Int, skip: Int, distinct: [ClaimStatusScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
   claimStatusTypeFindMany: [String!]
@@ -4439,57 +4419,6 @@ enum ClaimStatusScalarFieldEnum {
   bookKeepingOrderId
 }
 
-input ClaimStatusCountAggregateInput {
-  id: Boolean
-  description: Boolean
-  rejectionReason: Boolean
-  createdAt: Boolean
-  type: Boolean
-  changedById: Boolean
-  claimId: Boolean
-  rejectionLetterId: Boolean
-  guaranteeLetterId: Boolean
-  transactionLetterId: Boolean
-  bookKeepingOrderId: Boolean
-  _all: Boolean
-}
-
-input ClaimStatusAvgAggregateInput {
-  id: Boolean
-}
-
-input ClaimStatusSumAggregateInput {
-  id: Boolean
-}
-
-input ClaimStatusMinAggregateInput {
-  id: Boolean
-  description: Boolean
-  rejectionReason: Boolean
-  createdAt: Boolean
-  type: Boolean
-  changedById: Boolean
-  claimId: Boolean
-  rejectionLetterId: Boolean
-  guaranteeLetterId: Boolean
-  transactionLetterId: Boolean
-  bookKeepingOrderId: Boolean
-}
-
-input ClaimStatusMaxAggregateInput {
-  id: Boolean
-  description: Boolean
-  rejectionReason: Boolean
-  createdAt: Boolean
-  type: Boolean
-  changedById: Boolean
-  claimId: Boolean
-  rejectionLetterId: Boolean
-  guaranteeLetterId: Boolean
-  transactionLetterId: Boolean
-  bookKeepingOrderId: Boolean
-}
-
 input BranchWhereUniqueInput {
   id: Int
   AND: [BranchWhereInput!]
@@ -4802,24 +4731,6 @@ type Mutation {
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
   """
   claimFileUpload(file: Upload): String
-
-  """Deskripsinya ada disini loh"""
-  claimStatusCreateOne(data: ClaimStatusCreateInput!): ClaimStatus
-
-  """Deskripsinya ada disini loh"""
-  claimStatusCreateMany(data: [ClaimStatusCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
-
-  """Deskripsinya ada disini loh"""
-  claimStatusUpdateOne(data: ClaimStatusUpdateInput!, where: ClaimStatusWhereUniqueInput!): ClaimStatus
-
-  """Deskripsinya ada disini loh"""
-  claimStatusUpdateMany(data: ClaimStatusUpdateManyMutationInput!, where: ClaimStatusWhereInput): ClaimStatus
-
-  """Deskripsinya ada disini loh"""
-  claimStatusDelete(where: ClaimStatusWhereUniqueInput!): Boolean!
-
-  """Deskripsinya ada disini loh"""
-  claimStatusDeleteMany(where: ClaimStatusWhereInput): Boolean!
 
   """Deskripsinya ada disini loh"""
   participantCreateOne(data: ParticipantCreateInput!): Participant
@@ -7512,208 +7423,6 @@ scalar Upload
 input ClaimUpdateOneOfStatusArgs {
   id: String!
   status: ClaimStatusType!
-}
-
-input ClaimStatusCreateInput {
-  description: String
-  rejectionReason: String
-  rejectionLetter: DocumentCreateNestedOneWithoutRejectionLetterOfInput
-  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
-  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
-  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
-}
-
-input DocumentCreateNestedOneWithoutRejectionLetterOfInput {
-  create: DocumentCreateWithoutRejectionLetterOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutRejectionLetterOfInput
-  connect: DocumentWhereUniqueInput
-}
-
-input DocumentCreateWithoutRejectionLetterOfInput {
-  uploadedFileUrl: String
-  type: DocumentType!
-}
-
-input DocumentCreateOrConnectWithoutRejectionLetterOfInput {
-  where: DocumentWhereUniqueInput!
-  create: DocumentCreateWithoutRejectionLetterOfInput!
-}
-
-input DocumentCreateNestedOneWithoutGuaranteeLetterOfInput {
-  create: DocumentCreateWithoutGuaranteeLetterOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutGuaranteeLetterOfInput
-  connect: DocumentWhereUniqueInput
-}
-
-input DocumentCreateWithoutGuaranteeLetterOfInput {
-  uploadedFileUrl: String
-  type: DocumentType!
-}
-
-input DocumentCreateOrConnectWithoutGuaranteeLetterOfInput {
-  where: DocumentWhereUniqueInput!
-  create: DocumentCreateWithoutGuaranteeLetterOfInput!
-}
-
-input DocumentCreateNestedOneWithoutTransactionLetterOfInput {
-  create: DocumentCreateWithoutTransactionLetterOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutTransactionLetterOfInput
-  connect: DocumentWhereUniqueInput
-}
-
-input DocumentCreateWithoutTransactionLetterOfInput {
-  uploadedFileUrl: String
-  type: DocumentType!
-}
-
-input DocumentCreateOrConnectWithoutTransactionLetterOfInput {
-  where: DocumentWhereUniqueInput!
-  create: DocumentCreateWithoutTransactionLetterOfInput!
-}
-
-input DocumentCreateNestedOneWithoutBookKeepingOrderOfInput {
-  create: DocumentCreateWithoutBookKeepingOrderOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutBookKeepingOrderOfInput
-  connect: DocumentWhereUniqueInput
-}
-
-input DocumentCreateWithoutBookKeepingOrderOfInput {
-  uploadedFileUrl: String
-  type: DocumentType!
-}
-
-input DocumentCreateOrConnectWithoutBookKeepingOrderOfInput {
-  where: DocumentWhereUniqueInput!
-  create: DocumentCreateWithoutBookKeepingOrderOfInput!
-}
-
-input ClaimStatusCreateManyInput {
-  description: String
-  rejectionReason: String
-}
-
-input ClaimStatusUpdateInput {
-  description: NullableStringFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  type: EnumClaimStatusTypeFieldUpdateOperationsInput
-  rejectionLetter: DocumentUpdateOneWithoutRejectionLetterOfNestedInput
-  guaranteeLetter: DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput
-  transactionLetter: DocumentUpdateOneWithoutTransactionLetterOfNestedInput
-  bookKeepingOrder: DocumentUpdateOneWithoutBookKeepingOrderOfNestedInput
-}
-
-input EnumClaimStatusTypeFieldUpdateOperationsInput {
-  set: ClaimStatusType
-}
-
-input DocumentUpdateOneWithoutRejectionLetterOfNestedInput {
-  create: DocumentCreateWithoutRejectionLetterOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutRejectionLetterOfInput
-  upsert: DocumentUpsertWithoutRejectionLetterOfInput
-  disconnect: DocumentWhereInput
-  delete: DocumentWhereInput
-  connect: DocumentWhereUniqueInput
-  update: DocumentUpdateToOneWithWhereWithoutRejectionLetterOfInput
-}
-
-input DocumentUpsertWithoutRejectionLetterOfInput {
-  update: DocumentUpdateWithoutRejectionLetterOfInput!
-  create: DocumentCreateWithoutRejectionLetterOfInput!
-  where: DocumentWhereInput
-}
-
-input DocumentUpdateWithoutRejectionLetterOfInput {
-  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
-  type: EnumDocumentTypeFieldUpdateOperationsInput
-}
-
-input DocumentUpdateToOneWithWhereWithoutRejectionLetterOfInput {
-  where: DocumentWhereInput
-  data: DocumentUpdateWithoutRejectionLetterOfInput!
-}
-
-input DocumentUpdateOneWithoutGuaranteeLetterOfNestedInput {
-  create: DocumentCreateWithoutGuaranteeLetterOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutGuaranteeLetterOfInput
-  upsert: DocumentUpsertWithoutGuaranteeLetterOfInput
-  disconnect: DocumentWhereInput
-  delete: DocumentWhereInput
-  connect: DocumentWhereUniqueInput
-  update: DocumentUpdateToOneWithWhereWithoutGuaranteeLetterOfInput
-}
-
-input DocumentUpsertWithoutGuaranteeLetterOfInput {
-  update: DocumentUpdateWithoutGuaranteeLetterOfInput!
-  create: DocumentCreateWithoutGuaranteeLetterOfInput!
-  where: DocumentWhereInput
-}
-
-input DocumentUpdateWithoutGuaranteeLetterOfInput {
-  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
-  type: EnumDocumentTypeFieldUpdateOperationsInput
-}
-
-input DocumentUpdateToOneWithWhereWithoutGuaranteeLetterOfInput {
-  where: DocumentWhereInput
-  data: DocumentUpdateWithoutGuaranteeLetterOfInput!
-}
-
-input DocumentUpdateOneWithoutTransactionLetterOfNestedInput {
-  create: DocumentCreateWithoutTransactionLetterOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutTransactionLetterOfInput
-  upsert: DocumentUpsertWithoutTransactionLetterOfInput
-  disconnect: DocumentWhereInput
-  delete: DocumentWhereInput
-  connect: DocumentWhereUniqueInput
-  update: DocumentUpdateToOneWithWhereWithoutTransactionLetterOfInput
-}
-
-input DocumentUpsertWithoutTransactionLetterOfInput {
-  update: DocumentUpdateWithoutTransactionLetterOfInput!
-  create: DocumentCreateWithoutTransactionLetterOfInput!
-  where: DocumentWhereInput
-}
-
-input DocumentUpdateWithoutTransactionLetterOfInput {
-  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
-  type: EnumDocumentTypeFieldUpdateOperationsInput
-}
-
-input DocumentUpdateToOneWithWhereWithoutTransactionLetterOfInput {
-  where: DocumentWhereInput
-  data: DocumentUpdateWithoutTransactionLetterOfInput!
-}
-
-input DocumentUpdateOneWithoutBookKeepingOrderOfNestedInput {
-  create: DocumentCreateWithoutBookKeepingOrderOfInput
-  connectOrCreate: DocumentCreateOrConnectWithoutBookKeepingOrderOfInput
-  upsert: DocumentUpsertWithoutBookKeepingOrderOfInput
-  disconnect: DocumentWhereInput
-  delete: DocumentWhereInput
-  connect: DocumentWhereUniqueInput
-  update: DocumentUpdateToOneWithWhereWithoutBookKeepingOrderOfInput
-}
-
-input DocumentUpsertWithoutBookKeepingOrderOfInput {
-  update: DocumentUpdateWithoutBookKeepingOrderOfInput!
-  create: DocumentCreateWithoutBookKeepingOrderOfInput!
-  where: DocumentWhereInput
-}
-
-input DocumentUpdateWithoutBookKeepingOrderOfInput {
-  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
-  type: EnumDocumentTypeFieldUpdateOperationsInput
-}
-
-input DocumentUpdateToOneWithWhereWithoutBookKeepingOrderOfInput {
-  where: DocumentWhereInput
-  data: DocumentUpdateWithoutBookKeepingOrderOfInput!
-}
-
-input ClaimStatusUpdateManyMutationInput {
-  description: NullableStringFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  type: EnumClaimStatusTypeFieldUpdateOperationsInput
 }
 
 input ParticipantCreateInput {

@@ -58,7 +58,7 @@ export class ClaimStatusController {
     return await this.claimStatusService.count(claimStatusCountArgs);
   }
 
-  async claimStatusTypesFindMany(): Promise<string[]> {
+  async claimStatusTypeFindMany(): Promise<string[]> {
     return Object.keys(ClaimStatusType);
   }
 }
