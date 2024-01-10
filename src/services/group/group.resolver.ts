@@ -69,19 +69,19 @@ export class GroupResolver {
   //   });
   // }
 
-  // @Query(() => [Group], {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // groupFindMany(
-  //   @Args() groupFindManyArgs: FindManyGroupArgs,
-  //   @Relations() relations: GroupSelect,
-  // ) {
-  //   return this.groupController.findMany({
-  //     ...groupFindManyArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Query(() => [Group], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  groupFindMany(
+    @Args() groupFindManyArgs: FindManyGroupArgs,
+    @Relations() relations: GroupSelect,
+  ) {
+    return this.groupController.findMany({
+      ...groupFindManyArgs,
+      select: relations.select,
+    });
+  }
 
   // @Query(() => Group, {
   //   nullable: true,
