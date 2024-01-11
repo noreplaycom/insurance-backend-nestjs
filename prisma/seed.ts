@@ -1,4 +1,8 @@
-import { Permission, PrismaClient } from '@prisma/client';
+import {
+  Permission,
+  PrismaClient,
+  SantunanHarianRawatInapPlan,
+} from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { claimSeed } from './seed-functions/claim.seed';
 import { faker } from '@faker-js/faker';
@@ -15,6 +19,15 @@ async function main() {
   console.log('Start seeding ...');
 
   await claimSeed();
+
+  // console.log(
+  //   await prisma.programParticipation.create({
+  //     data: {
+  //       effectiveDate: new Date(),
+  //       santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan.I,
+  //     },
+  //   }),
+  // );
 
   // async function findGuestsSharingSameShowTime() {
   //   const guestsWithSharedSeats = await prisma.guest.findMany({

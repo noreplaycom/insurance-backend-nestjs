@@ -21,7 +21,7 @@ import {
 import { ParticipantController } from './participant.controller';
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
-import { UseGuards } from '@nestjs/common';
+import { Logger, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RequiredPermission } from 'src/decorator/permission.decorator';
 import { PermissionGuard } from '../role-permission/role-permission.guard';
@@ -34,6 +34,8 @@ interface ParticipantSelect {
 @Resolver(() => Participant)
 export class ParticipantResolver {
   constructor(private readonly participantController: ParticipantController) {}
+
+  private readonly logger = new Logger(ParticipantResolver.name);
 
   // @RequiredPermission(Permission.CREATE_PARTICIPANT)
   // @UseGuards(PermissionGuard)

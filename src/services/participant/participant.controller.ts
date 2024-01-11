@@ -23,6 +23,7 @@ import { FileType } from 'src/model/enums';
 import { ConfigService } from '@nestjs/config';
 import { ProgramController } from '../program/program.controller';
 import { encryptUserPassword } from 'src/utils/bcrypt.function';
+import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 
 @Injectable()
 export class ParticipantController {
@@ -114,6 +115,8 @@ export class ParticipantController {
           ],
         };
     }
+
+    this.logger.debug('participantCreateArgs', participantCreateArgs);
 
     return await this.participantService.createOne(participantCreateArgs);
   }

@@ -29,7 +29,6 @@ export async function claimSeed() {
     await populateProvinceCityDistricSubdistric();
     subdistricts = await prisma.subdistrict.findMany({ take: 100 });
   }
-  ``;
   const records: number = 1000;
 
   // let [roles, rolePermissions, programs, employments, branches, participants] =
@@ -52,7 +51,6 @@ export async function claimSeed() {
   const roleCreateManyInput: Prisma.RoleCreateManyInput[] = Array.from({
     length: 8,
   }).map((_, index) => ({
-    id: index + 1,
     roleType: faker.helpers.arrayElement(Object.values(RoleType)),
     name: faker.name.jobTitle(),
     description: faker.lorem.paragraph(),
@@ -63,8 +61,10 @@ export async function claimSeed() {
     Array.from({
       length: Object.values(Permission).length,
     }).map((_, index) => ({
-      id: index + 1,
-      roleId: faker.helpers.arrayElement(roleCreateManyInput).id,
+      roleId: faker.datatype.number({
+        min: 1,
+        max: roleCreateManyInput.length,
+      }),
       permission: Object.values(Permission)[index],
     }));
 
@@ -76,7 +76,6 @@ export async function claimSeed() {
     Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 1,
       type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
       santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan.I,
       allowanceCeiling: 1250000,
@@ -93,7 +92,6 @@ export async function claimSeed() {
     Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 2,
       type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
       santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan.II,
       allowanceCeiling: 1000000,
@@ -111,7 +109,6 @@ export async function claimSeed() {
     Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 3,
       type: ProgramType.SANTUNAN_HARIAN_RAWAT_INAP,
       santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan.III,
       allowanceCeiling: 750000,
@@ -127,7 +124,6 @@ export async function claimSeed() {
     Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 4,
       type: ProgramType.BANTUAN_BIAYA_CUCI_DARAH,
       allowanceCeiling: 700000, //per invoice by default
       allowanceCeilingPeriod: Period.EVENT,
@@ -142,7 +138,6 @@ export async function claimSeed() {
     Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 5,
       type: ProgramType.BANTUAN_KURSI_RODA,
       allowanceCeiling: 2000000,
       allowanceCeilingPeriod: Period.ALLTIME,
@@ -155,7 +150,6 @@ export async function claimSeed() {
   Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 6,
       type: ProgramType.BANTUAN_WALKER,
       allowanceCeiling: 350000,
       allowanceCeilingPeriod: Period.BIENNIALLY,
@@ -168,7 +162,6 @@ export async function claimSeed() {
   Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 7,
       type: ProgramType.BANTUAN_IGD_UGD,
       maxAllowancePercentage: 50,
       allowanceCeiling: 1500000,
@@ -187,7 +180,6 @@ RI Non BPJS Kesehatan
 3 Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 8,
       type: ProgramType.BANTUAN_RAWAT_INAP,
       tambahanBantuanRawatInapType: TambahanBantuanRawatInapType.BPJS,
       maxAllowancePercentage: 50,
@@ -207,7 +199,6 @@ RI Non BPJS Kesehatan
 3 Klaim ulang maksimal 60 hari sejak tanggal pemberitahuan
     */
     {
-      id: 9,
       type: ProgramType.BANTUAN_RAWAT_INAP,
       tambahanBantuanRawatInapType: TambahanBantuanRawatInapType.NON_BPJS,
       maxAllowancePercentage: 50,
@@ -225,14 +216,16 @@ RI Non BPJS Kesehatan
     fullName: faker.name.firstName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-    roleId: faker.helpers.arrayElement(roleCreateManyInput).id,
+    roleId: faker.datatype.number({
+      min: 1,
+      max: roleCreateManyInput.length,
+    }),
   }));
 
   const bankAccountCreateManyInput: Prisma.BankAccountCreateManyInput[] =
     Array.from({
       length: userCreateManyInput.length,
     }).map((_, index) => ({
-      id: index + 1,
       accountName: faker.finance.creditCardIssuer(),
       accountNumber: faker.datatype.number({
         min: 300000,
@@ -243,7 +236,6 @@ RI Non BPJS Kesehatan
   const branchCreateManyInput: Prisma.BranchCreateManyInput[] = Array.from({
     length: records,
   }).map((_, index) => ({
-    id: index + 1,
     name: faker.company.name(),
   }));
 
@@ -251,25 +243,28 @@ RI Non BPJS Kesehatan
     Array.from({
       length: userCreateManyInput.length,
     }).map((_, index) => ({
-      id: index + 1,
       employmentPosition: faker.helpers.arrayElement(Object.values(Position)),
-      branchId: faker.helpers.arrayElement(branchCreateManyInput).id,
+      branchId: faker.datatype.number({
+        min: 1,
+        max: branchCreateManyInput.length,
+      }),
     }));
 
   const addressCreateManyInput: Prisma.AddressCreateManyInput[] = Array.from({
     length: userCreateManyInput.length,
   }).map((_, index) => ({
-    id: index + 1,
     address: faker.address.streetAddress(),
-    subdistrictId: faker.helpers.arrayElement(subdistricts).id,
+    subdistrictId: faker.datatype.number({
+      min: 1,
+      max: subdistricts.length,
+    }),
   }));
 
   const contactInfoCreateManyInput: Prisma.ContactInfoCreateManyInput[] =
     Array.from({
       length: userCreateManyInput.length,
     }).map((_, index) => ({
-      id: index + 1,
-      addressId: addressCreateManyInput[index].id,
+      addressId: index + 1,
     }));
 
   const phoneCreateManyInput: Prisma.phoneCreateManyInput[] = Array.from({
@@ -279,13 +274,12 @@ RI Non BPJS Kesehatan
       min: 100000,
       max: 5000000,
     }),
-    contactInfoId: contactInfoCreateManyInput[index].id,
+    contactInfoId: index + 1,
   }));
 
   const accountCreateManyInput: Prisma.AccountCreateManyInput[] = Array.from({
     length: userCreateManyInput.length,
   }).map((_, index) => ({
-    id: index + 1,
     currentBalance: 50000000,
   }));
 
@@ -293,13 +287,12 @@ RI Non BPJS Kesehatan
     Array.from({
       length: userCreateManyInput.length,
     }).map((_, index) => ({
-      id: index + 1,
       bpjsNumber: '23432525',
       effectiveDate: new Date(),
       santunanHarianRawatInapPlan: faker.helpers.arrayElement(
         Object.values(SantunanHarianRawatInapPlan),
       ),
-      fundingId: accountCreateManyInput[index].id,
+      fundingId: index + 1,
     }));
 
   const participantCreateManyInput: Prisma.ParticipantCreateManyInput[] =
@@ -311,23 +304,22 @@ RI Non BPJS Kesehatan
       birthDate: faker.date.past(),
       isActive: faker.datatype.boolean(),
       status: faker.helpers.arrayElement(Object.values(ParticipantStatus)),
-      bankAccountId: bankAccountCreateManyInput[index].id,
-      employmentId: employmentCreateManyInput[index].id,
-      contactInfoId: contactInfoCreateManyInput[index].id,
-      programParticipationId: programParticipationCreateManyInput[index].id,
+      bankAccountId: index + 1,
+      employmentId: index + 1,
+      contactInfoId: index + 1,
+      programParticipationId: index + 1,
     }));
 
   const transactionCreateManyInput: Prisma.TransactionCreateManyInput[] =
     Array.from({
       length: accountCreateManyInput.length,
     }).map((_, index) => ({
-      id: index + 1,
       amount: faker.datatype.float({
         min: 300000,
         max: 3000000,
       }),
       transactionType: TransactionType.DEBIT,
-      accountId: accountCreateManyInput[index].id,
+      accountId: index + 1,
       description: faker.lorem.lines(),
     }));
 
@@ -335,7 +327,6 @@ RI Non BPJS Kesehatan
     Array.from({
       length: userCreateManyInput.length,
     }).map((_, index) => ({
-      id: index + 1,
       requestedAmount: faker.datatype.float({
         min: 300000,
         max: 3000000,
@@ -352,13 +343,12 @@ RI Non BPJS Kesehatan
         min: 20000000,
         max: 30000000,
       }),
-      transactionId: transactionCreateManyInput[index].id,
+      transactionId: index + 1,
     }));
 
   const clinicCreateManyInput: Prisma.ClinicCreateManyInput[] = Array.from({
     length: records,
   }).map((_, index) => ({
-    id: index + 1,
     name: faker.company.name(),
     code: faker.random.numeric(5),
   }));
@@ -366,15 +356,17 @@ RI Non BPJS Kesehatan
   const diseaseCreateManyInput: Prisma.DiseaseCreateManyInput[] = Array.from({
     length: records,
   }).map((_, index) => ({
-    id: index + 1,
     name: faker.lorem.word(),
     code: faker.random.numeric(5),
   }));
 
   let programParticipationToProgramsCreateManyInput: Prisma.ProgramParticipationToProgramsCreateManyInput[] =
     Array.from({ length: userCreateManyInput.length }).map((_, index) => ({
-      programParticipationId: programParticipationCreateManyInput[index].id,
-      programId: faker.helpers.arrayElement(programCreateManyInput).id,
+      programParticipationId: index + 1,
+      programId: faker.datatype.number({
+        min: 1,
+        max: programCreateManyInput.length,
+      }),
       isAvailable: faker.datatype.boolean(),
       allowanceCeilingRemaining: faker.datatype.float({}),
       allowanceQuotaRemaining: faker.datatype.float({}),
@@ -398,18 +390,21 @@ RI Non BPJS Kesehatan
 
   const claimProgramCreateManyInput: Prisma.ClaimProgramCreateManyInput[] =
     Array.from({ length: userCreateManyInput.length }).map((_, index) => ({
-      id: index + 1,
       startTreatment: faker.date.past(),
       endTreatment: faker.date.recent(),
       submissionNote: faker.lorem.lines(),
       description: faker.lorem.lines(),
       additionalNote: faker.lorem.lines(),
-      clinicId: faker.helpers.arrayElement(clinicCreateManyInput).id,
-      diseaseId: faker.helpers.arrayElement(diseaseCreateManyInput).id,
+      clinicId: faker.datatype.number({
+        min: 1,
+        max: clinicCreateManyInput.length,
+      }),
+      diseaseId: faker.datatype.number({
+        min: 1,
+        max: diseaseCreateManyInput.length,
+      }),
       isReclaim: faker.datatype.boolean(),
-      programParticipationToProgramsId:
-        programParticipationToProgramsCreateManyInput[index]
-          .programParticipationId,
+      programParticipationToProgramsId: index + 1,
     }));
 
   // let claimProgramCreateManyInput: Prisma.ClaimProgramCreateManyInput[];
@@ -461,8 +456,8 @@ RI Non BPJS Kesehatan
     admedicaStatus: faker.helpers.arrayElement(Object.values(AdmedicaStatus)),
     company: faker.company.name(),
     participantId: participantCreateManyInput[index].userId,
-    claimFinancialId: claimFinancialCreateManyInput[index].id,
-    claimProgramId: claimProgramCreateManyInput[index].id,
+    claimFinancialId: index + 1,
+    claimProgramId: index + 1,
     inputedById: faker.helpers.arrayElement(userCreateManyInput).id,
     waitingForId: faker.helpers.arrayElement(userCreateManyInput).id,
   }));
@@ -480,17 +475,6 @@ RI Non BPJS Kesehatan
       changedById: faker.helpers.arrayElement(userCreateManyInput).id,
       type: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
     }));
-
-  const documentCreateManyInput: Prisma.DocumentCreateManyInput[] = Array.from({
-    length: records * 5,
-  }).map((_, index) => ({
-    size: faker.datatype.number(3),
-    source: faker.helpers.arrayElement(Object.values(DocumentSource)),
-    type: faker.helpers.arrayElement(Object.values(DocumentType)),
-    docxPath: faker.system.filePath(),
-    pdfPath: faker.system.filePath(),
-    claimProgramId: faker.helpers.arrayElement(claimProgramCreateManyInput).id,
-  }));
 
   await prisma.role
     .createMany({
@@ -618,6 +602,19 @@ RI Non BPJS Kesehatan
       data: [...claimStatusCreateManyInput, ...claimStatusCreateManyInput2],
     })
     .then((i) => console.log(i.count, ' Claim statuses seeded.'));
+
+  const claimProgramFindMany = await prisma.claimProgram.findMany();
+
+  const documentCreateManyInput: Prisma.DocumentCreateManyInput[] = Array.from({
+    length: records * 5,
+  }).map((_, index) => ({
+    size: faker.datatype.number(3),
+    source: faker.helpers.arrayElement(Object.values(DocumentSource)),
+    type: faker.helpers.arrayElement(Object.values(DocumentType)),
+    docxPath: faker.system.filePath(),
+    pdfPath: faker.system.filePath(),
+    claimProgramId: faker.helpers.arrayElement(claimProgramFindMany).id,
+  }));
 
   await prisma.document
     .createMany({
