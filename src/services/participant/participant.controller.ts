@@ -116,8 +116,6 @@ export class ParticipantController {
         };
     }
 
-    this.logger.debug('participantCreateArgs', participantCreateArgs);
-
     return await this.participantService.createOne(participantCreateArgs);
   }
 
