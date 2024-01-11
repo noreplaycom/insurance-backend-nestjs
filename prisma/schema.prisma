@@ -1014,7 +1014,6 @@ model InvoiceProof {
     /// Bukti Kuitansi
     documentProof Document @relation(fields: [documentProofId], references: [id])
 
-    /// @HideField({ match: ['InvoiceProofCreate*Input','InvoiceProofUpdate*Input']})
     /// Bukti Kuitansi
     documentProofId String @unique
 

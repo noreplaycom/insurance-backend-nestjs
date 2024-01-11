@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { claimSeed } from './seed-functions/claim.seed';
 import { faker } from '@faker-js/faker';
 import { participantCreateOne } from './seed-functions/participant-create-one.seed';
+import { claimCreateOne } from './seed-functions/claim-create-one.seed';
 
 const prisma = new PrismaClient();
 
@@ -22,7 +23,7 @@ async function main() {
 
   // await claimSeed();
 
-  await participantCreateOne();
+  await claimCreateOne();
 
   // console.log(
   //   await prisma.programParticipation.create({
