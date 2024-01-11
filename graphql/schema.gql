@@ -552,7 +552,7 @@ type ClaimProgramAvgAggregate {
   id: Float
   diseaseId: Float
   clinicId: Float
-  programId: Float
+  programParticipationToProgramsId: Float
 }
 
 type ClaimProgramCountAggregate {
@@ -568,7 +568,7 @@ type ClaimProgramCountAggregate {
   kurisRodaOrWalkerStoreName: Int!
   diseaseId: Int!
   clinicId: Int!
-  programId: Int!
+  programParticipationToProgramsId: Int!
   _all: Int!
 }
 
@@ -590,7 +590,7 @@ type ClaimProgramMaxAggregate {
   kurisRodaOrWalkerStoreName: String
   diseaseId: Int
   clinicId: Int
-  programId: Int
+  programParticipationToProgramsId: Int
 }
 
 type ClaimProgramMinAggregate {
@@ -606,14 +606,14 @@ type ClaimProgramMinAggregate {
   kurisRodaOrWalkerStoreName: String
   diseaseId: Int
   clinicId: Int
-  programId: Int
+  programParticipationToProgramsId: Int
 }
 
 type ClaimProgramSumAggregate {
   id: Int
   diseaseId: Int
   clinicId: Int
-  programId: Int
+  programParticipationToProgramsId: Int
 }
 
 type ClaimProgram {
@@ -647,13 +647,13 @@ type ClaimProgram {
   """Penyakit:	Penyakit yang diderita"""
   diseaseId: Int
   clinicId: Int
-  programId: Int!
+  programParticipationToProgramsId: Int!
 
   """Penyakit:	Penyakit yang diderita"""
   disease: Disease
   clinics: Clinic
   claim: Claim
-  program: Program!
+  programParticipationToProgram: ProgramParticipationToPrograms!
 
   """Kwitansi, data, dll: Bukti Pembayaran/Invoice Rumah Sakit oleh Peserta"""
   documents: [Document!]
@@ -1478,7 +1478,6 @@ type ProgramCountAggregate {
 }
 
 type ProgramCount {
-  claimProgram: Int!
   programParticipations: Int!
 }
 
@@ -1594,7 +1593,6 @@ type Program {
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime
-  claimProgram: [ClaimProgram!]
   programParticipations: [ProgramParticipationToPrograms!]
   _count: ProgramCount!
 }
@@ -1742,6 +1740,7 @@ type ProgramParticipationToPrograms {
   programId: Int!
   programParticipation: ProgramParticipation!
   program: Program!
+  claimPrograms: ClaimProgram
 }
 
 type ProvinceAvgAggregate {
@@ -2390,7 +2389,6 @@ input ProgramWhereUniqueInput {
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
-  claimProgram: ClaimProgramListRelationFilter
   programParticipations: ProgramParticipationToProgramsListRelationFilter
 }
 
@@ -2412,7 +2410,6 @@ input ProgramWhereInput {
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   deletedAt: DateTimeNullableFilter
-  claimProgram: ClaimProgramListRelationFilter
   programParticipations: ProgramParticipationToProgramsListRelationFilter
 }
 
@@ -2582,45 +2579,28 @@ input NestedDateTimeNullableFilter {
   not: NestedDateTimeNullableFilter
 }
 
-input ClaimProgramListRelationFilter {
-  every: ClaimProgramWhereInput
-  some: ClaimProgramWhereInput
-  none: ClaimProgramWhereInput
+input ProgramParticipationToProgramsListRelationFilter {
+  every: ProgramParticipationToProgramsWhereInput
+  some: ProgramParticipationToProgramsWhereInput
+  none: ProgramParticipationToProgramsWhereInput
 }
 
-input ClaimProgramWhereInput {
-  AND: [ClaimProgramWhereInput!]
-  OR: [ClaimProgramWhereInput!]
-  NOT: [ClaimProgramWhereInput!]
-  id: IntFilter
-  expeditionDate: DateTimeNullableFilter
-  isReclaim: BoolNullableFilter
-  isReclaimNoticeLetterDate: DateTimeNullableFilter
-  submissionNote: StringNullableFilter
+input ProgramParticipationToProgramsWhereInput {
+  AND: [ProgramParticipationToProgramsWhereInput!]
+  OR: [ProgramParticipationToProgramsWhereInput!]
+  NOT: [ProgramParticipationToProgramsWhereInput!]
   description: StringNullableFilter
-  additionalNote: StringNullableFilter
-  startTreatment: DateTimeNullableFilter
-  endTreatment: DateTimeNullableFilter
-  kurisRodaOrWalkerStoreName: StringNullableFilter
-  diseaseId: IntNullableFilter
-  clinicId: IntNullableFilter
+  isAvailable: BoolFilter
+  allowanceCeilingRemaining: FloatFilter
+  allowanceCeilingRemainingLastResetDate: DateTimeNullableFilter
+  allowanceQuotaRemaining: IntNullableFilter
+  allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
+  updatedAt: DateTimeFilter
+  programParticipationId: IntFilter
   programId: IntFilter
-  disease: DiseaseNullableRelationFilter
-  clinics: ClinicNullableRelationFilter
-  claim: ClaimNullableRelationFilter
+  programParticipation: ProgramParticipationRelationFilter
   program: ProgramRelationFilter
-  documents: DocumentListRelationFilter
-  invoiceProofs: InvoiceProofListRelationFilter
-}
-
-input BoolNullableFilter {
-  equals: Boolean
-  not: NestedBoolNullableFilter
-}
-
-input NestedBoolNullableFilter {
-  equals: Boolean
-  not: NestedBoolNullableFilter
+  claimPrograms: ClaimProgramNullableRelationFilter
 }
 
 input StringNullableFilter {
@@ -2657,128 +2637,52 @@ input NestedStringNullableFilter {
   not: NestedStringNullableFilter
 }
 
-input DiseaseNullableRelationFilter {
-  is: DiseaseWhereInput
-  isNot: DiseaseWhereInput
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
 }
 
-input DiseaseWhereInput {
-  AND: [DiseaseWhereInput!]
-  OR: [DiseaseWhereInput!]
-  NOT: [DiseaseWhereInput!]
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input ProgramParticipationRelationFilter {
+  is: ProgramParticipationWhereInput
+  isNot: ProgramParticipationWhereInput
+}
+
+input ProgramParticipationWhereInput {
+  AND: [ProgramParticipationWhereInput!]
+  OR: [ProgramParticipationWhereInput!]
+  NOT: [ProgramParticipationWhereInput!]
   id: IntFilter
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claimProgram: ClaimProgramListRelationFilter
+  bpjsNumber: StringNullableFilter
+  nonActiveReason: StringNullableFilter
+  effectiveDate: DateTimeFilter
+  nonActiveDate: DateTimeNullableFilter
+  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFilter
+  fundingId: IntNullableFilter
+  participant: ParticipantNullableRelationFilter
+  funding: AccountNullableRelationFilter
+  programParticipationToPrograms: ProgramParticipationToProgramsListRelationFilter
 }
 
-input StringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  mode: QueryMode
-  not: NestedStringFilter
+input EnumSantunanHarianRawatInapPlanFilter {
+  equals: SantunanHarianRawatInapPlan
+  in: [SantunanHarianRawatInapPlan!]
+  notIn: [SantunanHarianRawatInapPlan!]
+  not: NestedEnumSantunanHarianRawatInapPlanFilter
 }
 
-input NestedStringFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringFilter
+input NestedEnumSantunanHarianRawatInapPlanFilter {
+  equals: SantunanHarianRawatInapPlan
+  in: [SantunanHarianRawatInapPlan!]
+  notIn: [SantunanHarianRawatInapPlan!]
+  not: NestedEnumSantunanHarianRawatInapPlanFilter
 }
 
-input ClinicNullableRelationFilter {
-  is: ClinicWhereInput
-  isNot: ClinicWhereInput
-}
-
-input ClinicWhereInput {
-  AND: [ClinicWhereInput!]
-  OR: [ClinicWhereInput!]
-  NOT: [ClinicWhereInput!]
-  id: IntFilter
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claimProgram: ClaimProgramListRelationFilter
-}
-
-input ClaimNullableRelationFilter {
-  is: ClaimWhereInput
-  isNot: ClaimWhereInput
-}
-
-input ClaimWhereInput {
-  AND: [ClaimWhereInput!]
-  OR: [ClaimWhereInput!]
-  NOT: [ClaimWhereInput!]
-  id: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  deletedAt: DateTimeNullableFilter
-  channel: EnumClaimChannelFilter
-  admedicaStatus: EnumAdmedicaStatusFilter
-  company: StringFilter
-  participantId: StringFilter
-  claimFinancialId: IntFilter
-  claimProgramId: IntFilter
-  inputedById: StringNullableFilter
-  waitingForId: StringNullableFilter
-  participant: ParticipantRelationFilter
-  claimFinancials: ClaimFinancialRelationFilter
-  claimProgram: ClaimProgramRelationFilter
-  inputedBy: UserNullableRelationFilter
-  waitingFor: UserNullableRelationFilter
-  tags: TagListRelationFilter
-  claimStatuses: ClaimStatusListRelationFilter
-}
-
-input EnumClaimChannelFilter {
-  equals: ClaimChannel
-  in: [ClaimChannel!]
-  notIn: [ClaimChannel!]
-  not: NestedEnumClaimChannelFilter
-}
-
-input NestedEnumClaimChannelFilter {
-  equals: ClaimChannel
-  in: [ClaimChannel!]
-  notIn: [ClaimChannel!]
-  not: NestedEnumClaimChannelFilter
-}
-
-input EnumAdmedicaStatusFilter {
-  equals: AdmedicaStatus
-  in: [AdmedicaStatus!]
-  notIn: [AdmedicaStatus!]
-  not: NestedEnumAdmedicaStatusFilter
-}
-
-input NestedEnumAdmedicaStatusFilter {
-  equals: AdmedicaStatus
-  in: [AdmedicaStatus!]
-  notIn: [AdmedicaStatus!]
-  not: NestedEnumAdmedicaStatusFilter
-}
-
-input ParticipantRelationFilter {
+input ParticipantNullableRelationFilter {
   is: ParticipantWhereInput
   isNot: ParticipantWhereInput
 }
@@ -2821,16 +2725,6 @@ input NestedEnumGenderFilter {
   not: NestedEnumGenderFilter
 }
 
-input BoolFilter {
-  equals: Boolean
-  not: NestedBoolFilter
-}
-
-input NestedBoolFilter {
-  equals: Boolean
-  not: NestedBoolFilter
-}
-
 input EnumParticipantStatusFilter {
   equals: ParticipantStatus
   in: [ParticipantStatus!]
@@ -2843,6 +2737,35 @@ input NestedEnumParticipantStatusFilter {
   in: [ParticipantStatus!]
   notIn: [ParticipantStatus!]
   not: NestedEnumParticipantStatusFilter
+}
+
+input StringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: NestedStringFilter
+}
+
+input NestedStringFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: NestedStringFilter
 }
 
 input UserRelationFilter {
@@ -2955,288 +2878,71 @@ input RoleListRelationFilter {
   none: RoleWhereInput
 }
 
-input ParticipantNullableRelationFilter {
-  is: ParticipantWhereInput
-  isNot: ParticipantWhereInput
-}
-
 input ClaimListRelationFilter {
   every: ClaimWhereInput
   some: ClaimWhereInput
   none: ClaimWhereInput
 }
 
-input ClaimStatusListRelationFilter {
-  every: ClaimStatusWhereInput
-  some: ClaimStatusWhereInput
-  none: ClaimStatusWhereInput
-}
-
-input ClaimStatusWhereInput {
-  AND: [ClaimStatusWhereInput!]
-  OR: [ClaimStatusWhereInput!]
-  NOT: [ClaimStatusWhereInput!]
-  id: IntFilter
-  description: StringNullableFilter
-  rejectionReason: StringNullableFilter
-  createdAt: DateTimeFilter
-  type: EnumClaimStatusTypeFilter
-  changedById: StringFilter
-  claimId: StringFilter
-  rejectionLetterId: StringNullableFilter
-  guaranteeLetterId: StringNullableFilter
-  transactionLetterId: StringNullableFilter
-  bookKeepingOrderId: StringNullableFilter
-  changedBy: UserRelationFilter
-  claim: ClaimRelationFilter
-  rejectionLetter: DocumentNullableRelationFilter
-  guaranteeLetter: DocumentNullableRelationFilter
-  transactionLetter: DocumentNullableRelationFilter
-  bookKeepingOrder: DocumentNullableRelationFilter
-  claimFinancial: ClaimFinancialNullableRelationFilter
-}
-
-input EnumClaimStatusTypeFilter {
-  equals: ClaimStatusType
-  in: [ClaimStatusType!]
-  notIn: [ClaimStatusType!]
-  not: NestedEnumClaimStatusTypeFilter
-}
-
-input NestedEnumClaimStatusTypeFilter {
-  equals: ClaimStatusType
-  in: [ClaimStatusType!]
-  notIn: [ClaimStatusType!]
-  not: NestedEnumClaimStatusTypeFilter
-}
-
-input ClaimRelationFilter {
-  is: ClaimWhereInput
-  isNot: ClaimWhereInput
-}
-
-input DocumentNullableRelationFilter {
-  is: DocumentWhereInput
-  isNot: DocumentWhereInput
-}
-
-input DocumentWhereInput {
-  AND: [DocumentWhereInput!]
-  OR: [DocumentWhereInput!]
-  NOT: [DocumentWhereInput!]
+input ClaimWhereInput {
+  AND: [ClaimWhereInput!]
+  OR: [ClaimWhereInput!]
+  NOT: [ClaimWhereInput!]
   id: StringFilter
-  uploadedFileUrl: StringNullableFilter
-  pdfPath: StringNullableFilter
-  docxPath: StringNullableFilter
-  size: IntFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
-  source: EnumDocumentSourceFilter
-  type: EnumDocumentTypeFilter
-  claimProgramId: IntNullableFilter
-  printedby: UserListRelationFilter
-  rejectionLetterOf: ClaimStatusNullableRelationFilter
-  guaranteeLetterOf: ClaimStatusNullableRelationFilter
-  transactionLetterOf: ClaimStatusNullableRelationFilter
-  bookKeepingOrderOf: ClaimStatusNullableRelationFilter
-  claimProgramm: ClaimProgramNullableRelationFilter
-  invoiceProof: InvoiceProofNullableRelationFilter
-  transaction: TransactionNullableRelationFilter
+  deletedAt: DateTimeNullableFilter
+  channel: EnumClaimChannelFilter
+  admedicaStatus: EnumAdmedicaStatusFilter
+  company: StringFilter
+  participantId: StringFilter
+  claimFinancialId: IntFilter
+  claimProgramId: IntFilter
+  inputedById: StringNullableFilter
+  waitingForId: StringNullableFilter
+  participant: ParticipantRelationFilter
+  claimFinancials: ClaimFinancialRelationFilter
+  claimProgram: ClaimProgramRelationFilter
+  inputedBy: UserNullableRelationFilter
+  waitingFor: UserNullableRelationFilter
+  tags: TagListRelationFilter
+  claimStatuses: ClaimStatusListRelationFilter
 }
 
-input EnumDocumentSourceFilter {
-  equals: DocumentSource
-  in: [DocumentSource!]
-  notIn: [DocumentSource!]
-  not: NestedEnumDocumentSourceFilter
+input EnumClaimChannelFilter {
+  equals: ClaimChannel
+  in: [ClaimChannel!]
+  notIn: [ClaimChannel!]
+  not: NestedEnumClaimChannelFilter
 }
 
-input NestedEnumDocumentSourceFilter {
-  equals: DocumentSource
-  in: [DocumentSource!]
-  notIn: [DocumentSource!]
-  not: NestedEnumDocumentSourceFilter
+input NestedEnumClaimChannelFilter {
+  equals: ClaimChannel
+  in: [ClaimChannel!]
+  notIn: [ClaimChannel!]
+  not: NestedEnumClaimChannelFilter
 }
 
-input EnumDocumentTypeFilter {
-  equals: DocumentType
-  in: [DocumentType!]
-  notIn: [DocumentType!]
-  not: NestedEnumDocumentTypeFilter
+input EnumAdmedicaStatusFilter {
+  equals: AdmedicaStatus
+  in: [AdmedicaStatus!]
+  notIn: [AdmedicaStatus!]
+  not: NestedEnumAdmedicaStatusFilter
 }
 
-input NestedEnumDocumentTypeFilter {
-  equals: DocumentType
-  in: [DocumentType!]
-  notIn: [DocumentType!]
-  not: NestedEnumDocumentTypeFilter
+input NestedEnumAdmedicaStatusFilter {
+  equals: AdmedicaStatus
+  in: [AdmedicaStatus!]
+  notIn: [AdmedicaStatus!]
+  not: NestedEnumAdmedicaStatusFilter
 }
 
-input ClaimStatusNullableRelationFilter {
-  is: ClaimStatusWhereInput
-  isNot: ClaimStatusWhereInput
+input ParticipantRelationFilter {
+  is: ParticipantWhereInput
+  isNot: ParticipantWhereInput
 }
 
-input ClaimProgramNullableRelationFilter {
-  is: ClaimProgramWhereInput
-  isNot: ClaimProgramWhereInput
-}
-
-input InvoiceProofNullableRelationFilter {
-  is: InvoiceProofWhereInput
-  isNot: InvoiceProofWhereInput
-}
-
-input InvoiceProofWhereInput {
-  AND: [InvoiceProofWhereInput!]
-  OR: [InvoiceProofWhereInput!]
-  NOT: [InvoiceProofWhereInput!]
-  id: IntFilter
-  issuedDate: DateTimeFilter
-  amount: FloatFilter
-  documentProofId: StringFilter
-  claimProgramId: IntNullableFilter
-  documentProof: DocumentRelationFilter
-  claimProgram: ClaimProgramNullableRelationFilter
-}
-
-input DocumentRelationFilter {
-  is: DocumentWhereInput
-  isNot: DocumentWhereInput
-}
-
-input TransactionNullableRelationFilter {
-  is: TransactionWhereInput
-  isNot: TransactionWhereInput
-}
-
-input TransactionWhereInput {
-  AND: [TransactionWhereInput!]
-  OR: [TransactionWhereInput!]
-  NOT: [TransactionWhereInput!]
-  id: IntFilter
-  amount: FloatFilter
-  transactionType: EnumTransactionTypeFilter
-  description: StringNullableFilter
-  createdAt: DateTimeFilter
-  accountId: IntFilter
-  proofId: StringNullableFilter
-  account: AccountRelationFilter
-  proof: DocumentNullableRelationFilter
-  claimFinancial: ClaimFinancialNullableRelationFilter
-}
-
-input EnumTransactionTypeFilter {
-  equals: TransactionType
-  in: [TransactionType!]
-  notIn: [TransactionType!]
-  not: NestedEnumTransactionTypeFilter
-}
-
-input NestedEnumTransactionTypeFilter {
-  equals: TransactionType
-  in: [TransactionType!]
-  notIn: [TransactionType!]
-  not: NestedEnumTransactionTypeFilter
-}
-
-input AccountRelationFilter {
-  is: AccountWhereInput
-  isNot: AccountWhereInput
-}
-
-input AccountWhereInput {
-  AND: [AccountWhereInput!]
-  OR: [AccountWhereInput!]
-  NOT: [AccountWhereInput!]
-  id: IntFilter
-  currentBalance: FloatFilter
-  currentBalanceLastUpdate: DateTimeNullableFilter
-  transactions: TransactionListRelationFilter
-  programParticipation: ProgramParticipationListRelationFilter
-}
-
-input TransactionListRelationFilter {
-  every: TransactionWhereInput
-  some: TransactionWhereInput
-  none: TransactionWhereInput
-}
-
-input ProgramParticipationListRelationFilter {
-  every: ProgramParticipationWhereInput
-  some: ProgramParticipationWhereInput
-  none: ProgramParticipationWhereInput
-}
-
-input ProgramParticipationWhereInput {
-  AND: [ProgramParticipationWhereInput!]
-  OR: [ProgramParticipationWhereInput!]
-  NOT: [ProgramParticipationWhereInput!]
-  id: IntFilter
-  bpjsNumber: StringNullableFilter
-  nonActiveReason: StringNullableFilter
-  effectiveDate: DateTimeFilter
-  nonActiveDate: DateTimeNullableFilter
-  santunanHarianRawatInapPlan: EnumSantunanHarianRawatInapPlanFilter
-  fundingId: IntNullableFilter
-  participant: ParticipantNullableRelationFilter
-  funding: AccountNullableRelationFilter
-  programParticipationToPrograms: ProgramParticipationToProgramsListRelationFilter
-}
-
-input EnumSantunanHarianRawatInapPlanFilter {
-  equals: SantunanHarianRawatInapPlan
-  in: [SantunanHarianRawatInapPlan!]
-  notIn: [SantunanHarianRawatInapPlan!]
-  not: NestedEnumSantunanHarianRawatInapPlanFilter
-}
-
-input NestedEnumSantunanHarianRawatInapPlanFilter {
-  equals: SantunanHarianRawatInapPlan
-  in: [SantunanHarianRawatInapPlan!]
-  notIn: [SantunanHarianRawatInapPlan!]
-  not: NestedEnumSantunanHarianRawatInapPlanFilter
-}
-
-input AccountNullableRelationFilter {
-  is: AccountWhereInput
-  isNot: AccountWhereInput
-}
-
-input ProgramParticipationToProgramsListRelationFilter {
-  every: ProgramParticipationToProgramsWhereInput
-  some: ProgramParticipationToProgramsWhereInput
-  none: ProgramParticipationToProgramsWhereInput
-}
-
-input ProgramParticipationToProgramsWhereInput {
-  AND: [ProgramParticipationToProgramsWhereInput!]
-  OR: [ProgramParticipationToProgramsWhereInput!]
-  NOT: [ProgramParticipationToProgramsWhereInput!]
-  description: StringNullableFilter
-  isAvailable: BoolFilter
-  allowanceCeilingRemaining: FloatFilter
-  allowanceCeilingRemainingLastResetDate: DateTimeNullableFilter
-  allowanceQuotaRemaining: IntNullableFilter
-  allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
-  updatedAt: DateTimeFilter
-  programParticipationId: IntFilter
-  programId: IntFilter
-  programParticipation: ProgramParticipationRelationFilter
-  program: ProgramRelationFilter
-}
-
-input ProgramParticipationRelationFilter {
-  is: ProgramParticipationWhereInput
-  isNot: ProgramParticipationWhereInput
-}
-
-input ProgramRelationFilter {
-  is: ProgramWhereInput
-  isNot: ProgramWhereInput
-}
-
-input ClaimFinancialNullableRelationFilter {
+input ClaimFinancialRelationFilter {
   is: ClaimFinancialWhereInput
   isNot: ClaimFinancialWhereInput
 }
@@ -3378,6 +3084,353 @@ input ClaimFinancialListRelationFilter {
   none: ClaimFinancialWhereInput
 }
 
+input ClaimNullableRelationFilter {
+  is: ClaimWhereInput
+  isNot: ClaimWhereInput
+}
+
+input ClaimStatusNullableRelationFilter {
+  is: ClaimStatusWhereInput
+  isNot: ClaimStatusWhereInput
+}
+
+input ClaimStatusWhereInput {
+  AND: [ClaimStatusWhereInput!]
+  OR: [ClaimStatusWhereInput!]
+  NOT: [ClaimStatusWhereInput!]
+  id: IntFilter
+  description: StringNullableFilter
+  rejectionReason: StringNullableFilter
+  createdAt: DateTimeFilter
+  type: EnumClaimStatusTypeFilter
+  changedById: StringFilter
+  claimId: StringFilter
+  rejectionLetterId: StringNullableFilter
+  guaranteeLetterId: StringNullableFilter
+  transactionLetterId: StringNullableFilter
+  bookKeepingOrderId: StringNullableFilter
+  changedBy: UserRelationFilter
+  claim: ClaimRelationFilter
+  rejectionLetter: DocumentNullableRelationFilter
+  guaranteeLetter: DocumentNullableRelationFilter
+  transactionLetter: DocumentNullableRelationFilter
+  bookKeepingOrder: DocumentNullableRelationFilter
+  claimFinancial: ClaimFinancialNullableRelationFilter
+}
+
+input EnumClaimStatusTypeFilter {
+  equals: ClaimStatusType
+  in: [ClaimStatusType!]
+  notIn: [ClaimStatusType!]
+  not: NestedEnumClaimStatusTypeFilter
+}
+
+input NestedEnumClaimStatusTypeFilter {
+  equals: ClaimStatusType
+  in: [ClaimStatusType!]
+  notIn: [ClaimStatusType!]
+  not: NestedEnumClaimStatusTypeFilter
+}
+
+input ClaimRelationFilter {
+  is: ClaimWhereInput
+  isNot: ClaimWhereInput
+}
+
+input DocumentNullableRelationFilter {
+  is: DocumentWhereInput
+  isNot: DocumentWhereInput
+}
+
+input DocumentWhereInput {
+  AND: [DocumentWhereInput!]
+  OR: [DocumentWhereInput!]
+  NOT: [DocumentWhereInput!]
+  id: StringFilter
+  uploadedFileUrl: StringNullableFilter
+  pdfPath: StringNullableFilter
+  docxPath: StringNullableFilter
+  size: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  source: EnumDocumentSourceFilter
+  type: EnumDocumentTypeFilter
+  claimProgramId: IntNullableFilter
+  printedby: UserListRelationFilter
+  rejectionLetterOf: ClaimStatusNullableRelationFilter
+  guaranteeLetterOf: ClaimStatusNullableRelationFilter
+  transactionLetterOf: ClaimStatusNullableRelationFilter
+  bookKeepingOrderOf: ClaimStatusNullableRelationFilter
+  claimProgramm: ClaimProgramNullableRelationFilter
+  invoiceProof: InvoiceProofNullableRelationFilter
+  transaction: TransactionNullableRelationFilter
+}
+
+input EnumDocumentSourceFilter {
+  equals: DocumentSource
+  in: [DocumentSource!]
+  notIn: [DocumentSource!]
+  not: NestedEnumDocumentSourceFilter
+}
+
+input NestedEnumDocumentSourceFilter {
+  equals: DocumentSource
+  in: [DocumentSource!]
+  notIn: [DocumentSource!]
+  not: NestedEnumDocumentSourceFilter
+}
+
+input EnumDocumentTypeFilter {
+  equals: DocumentType
+  in: [DocumentType!]
+  notIn: [DocumentType!]
+  not: NestedEnumDocumentTypeFilter
+}
+
+input NestedEnumDocumentTypeFilter {
+  equals: DocumentType
+  in: [DocumentType!]
+  notIn: [DocumentType!]
+  not: NestedEnumDocumentTypeFilter
+}
+
+input ClaimProgramNullableRelationFilter {
+  is: ClaimProgramWhereInput
+  isNot: ClaimProgramWhereInput
+}
+
+input ClaimProgramWhereInput {
+  AND: [ClaimProgramWhereInput!]
+  OR: [ClaimProgramWhereInput!]
+  NOT: [ClaimProgramWhereInput!]
+  id: IntFilter
+  expeditionDate: DateTimeNullableFilter
+  isReclaim: BoolNullableFilter
+  isReclaimNoticeLetterDate: DateTimeNullableFilter
+  submissionNote: StringNullableFilter
+  description: StringNullableFilter
+  additionalNote: StringNullableFilter
+  startTreatment: DateTimeNullableFilter
+  endTreatment: DateTimeNullableFilter
+  kurisRodaOrWalkerStoreName: StringNullableFilter
+  diseaseId: IntNullableFilter
+  clinicId: IntNullableFilter
+  programParticipationToProgramsId: IntFilter
+  disease: DiseaseNullableRelationFilter
+  clinics: ClinicNullableRelationFilter
+  claim: ClaimNullableRelationFilter
+  programParticipationToProgram: ProgramParticipationToProgramsRelationFilter
+  documents: DocumentListRelationFilter
+  invoiceProofs: InvoiceProofListRelationFilter
+}
+
+input BoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
+}
+
+input NestedBoolNullableFilter {
+  equals: Boolean
+  not: NestedBoolNullableFilter
+}
+
+input DiseaseNullableRelationFilter {
+  is: DiseaseWhereInput
+  isNot: DiseaseWhereInput
+}
+
+input DiseaseWhereInput {
+  AND: [DiseaseWhereInput!]
+  OR: [DiseaseWhereInput!]
+  NOT: [DiseaseWhereInput!]
+  id: IntFilter
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claimProgram: ClaimProgramListRelationFilter
+}
+
+input ClaimProgramListRelationFilter {
+  every: ClaimProgramWhereInput
+  some: ClaimProgramWhereInput
+  none: ClaimProgramWhereInput
+}
+
+input ClinicNullableRelationFilter {
+  is: ClinicWhereInput
+  isNot: ClinicWhereInput
+}
+
+input ClinicWhereInput {
+  AND: [ClinicWhereInput!]
+  OR: [ClinicWhereInput!]
+  NOT: [ClinicWhereInput!]
+  id: IntFilter
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claimProgram: ClaimProgramListRelationFilter
+}
+
+input ProgramParticipationToProgramsRelationFilter {
+  is: ProgramParticipationToProgramsWhereInput
+  isNot: ProgramParticipationToProgramsWhereInput
+}
+
+input DocumentListRelationFilter {
+  every: DocumentWhereInput
+  some: DocumentWhereInput
+  none: DocumentWhereInput
+}
+
+input InvoiceProofListRelationFilter {
+  every: InvoiceProofWhereInput
+  some: InvoiceProofWhereInput
+  none: InvoiceProofWhereInput
+}
+
+input InvoiceProofWhereInput {
+  AND: [InvoiceProofWhereInput!]
+  OR: [InvoiceProofWhereInput!]
+  NOT: [InvoiceProofWhereInput!]
+  id: IntFilter
+  issuedDate: DateTimeFilter
+  amount: FloatFilter
+  documentProofId: StringFilter
+  claimProgramId: IntNullableFilter
+  documentProof: DocumentRelationFilter
+  claimProgram: ClaimProgramNullableRelationFilter
+}
+
+input DocumentRelationFilter {
+  is: DocumentWhereInput
+  isNot: DocumentWhereInput
+}
+
+input InvoiceProofNullableRelationFilter {
+  is: InvoiceProofWhereInput
+  isNot: InvoiceProofWhereInput
+}
+
+input TransactionNullableRelationFilter {
+  is: TransactionWhereInput
+  isNot: TransactionWhereInput
+}
+
+input TransactionWhereInput {
+  AND: [TransactionWhereInput!]
+  OR: [TransactionWhereInput!]
+  NOT: [TransactionWhereInput!]
+  id: IntFilter
+  amount: FloatFilter
+  transactionType: EnumTransactionTypeFilter
+  description: StringNullableFilter
+  createdAt: DateTimeFilter
+  accountId: IntFilter
+  proofId: StringNullableFilter
+  account: AccountRelationFilter
+  proof: DocumentNullableRelationFilter
+  claimFinancial: ClaimFinancialNullableRelationFilter
+}
+
+input EnumTransactionTypeFilter {
+  equals: TransactionType
+  in: [TransactionType!]
+  notIn: [TransactionType!]
+  not: NestedEnumTransactionTypeFilter
+}
+
+input NestedEnumTransactionTypeFilter {
+  equals: TransactionType
+  in: [TransactionType!]
+  notIn: [TransactionType!]
+  not: NestedEnumTransactionTypeFilter
+}
+
+input AccountRelationFilter {
+  is: AccountWhereInput
+  isNot: AccountWhereInput
+}
+
+input AccountWhereInput {
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  NOT: [AccountWhereInput!]
+  id: IntFilter
+  currentBalance: FloatFilter
+  currentBalanceLastUpdate: DateTimeNullableFilter
+  transactions: TransactionListRelationFilter
+  programParticipation: ProgramParticipationListRelationFilter
+}
+
+input TransactionListRelationFilter {
+  every: TransactionWhereInput
+  some: TransactionWhereInput
+  none: TransactionWhereInput
+}
+
+input ProgramParticipationListRelationFilter {
+  every: ProgramParticipationWhereInput
+  some: ProgramParticipationWhereInput
+  none: ProgramParticipationWhereInput
+}
+
+input ClaimFinancialNullableRelationFilter {
+  is: ClaimFinancialWhereInput
+  isNot: ClaimFinancialWhereInput
+}
+
+input ClaimProgramRelationFilter {
+  is: ClaimProgramWhereInput
+  isNot: ClaimProgramWhereInput
+}
+
+input UserNullableRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+input TagListRelationFilter {
+  every: TagWhereInput
+  some: TagWhereInput
+  none: TagWhereInput
+}
+
+input TagWhereInput {
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  NOT: [TagWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  color: EnumColorFilter
+  isException: BoolNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claims: ClaimListRelationFilter
+}
+
+input EnumColorFilter {
+  equals: Color
+  in: [Color!]
+  notIn: [Color!]
+  not: NestedEnumColorFilter
+}
+
+input NestedEnumColorFilter {
+  equals: Color
+  in: [Color!]
+  notIn: [Color!]
+  not: NestedEnumColorFilter
+}
+
+input ClaimStatusListRelationFilter {
+  every: ClaimStatusWhereInput
+  some: ClaimStatusWhereInput
+  none: ClaimStatusWhereInput
+}
+
 input AnnouncementListRelationFilter {
   every: AnnouncementWhereInput
   some: AnnouncementWhereInput
@@ -3414,12 +3467,6 @@ input NotificationWhereInput {
   createdAt: DateTimeFilter
   updatedAt: DateTimeFilter
   user: UserRelationFilter
-}
-
-input DocumentListRelationFilter {
-  every: DocumentWhereInput
-  some: DocumentWhereInput
-  none: DocumentWhereInput
 }
 
 input EmploymentRelationFilter {
@@ -3591,58 +3638,14 @@ input ParticipantListRelationFilter {
   none: ParticipantWhereInput
 }
 
-input ClaimFinancialRelationFilter {
-  is: ClaimFinancialWhereInput
-  isNot: ClaimFinancialWhereInput
+input AccountNullableRelationFilter {
+  is: AccountWhereInput
+  isNot: AccountWhereInput
 }
 
-input ClaimProgramRelationFilter {
-  is: ClaimProgramWhereInput
-  isNot: ClaimProgramWhereInput
-}
-
-input UserNullableRelationFilter {
-  is: UserWhereInput
-  isNot: UserWhereInput
-}
-
-input TagListRelationFilter {
-  every: TagWhereInput
-  some: TagWhereInput
-  none: TagWhereInput
-}
-
-input TagWhereInput {
-  AND: [TagWhereInput!]
-  OR: [TagWhereInput!]
-  NOT: [TagWhereInput!]
-  id: IntFilter
-  name: StringFilter
-  color: EnumColorFilter
-  isException: BoolNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claims: ClaimListRelationFilter
-}
-
-input EnumColorFilter {
-  equals: Color
-  in: [Color!]
-  notIn: [Color!]
-  not: NestedEnumColorFilter
-}
-
-input NestedEnumColorFilter {
-  equals: Color
-  in: [Color!]
-  notIn: [Color!]
-  not: NestedEnumColorFilter
-}
-
-input InvoiceProofListRelationFilter {
-  every: InvoiceProofWhereInput
-  some: InvoiceProofWhereInput
-  none: InvoiceProofWhereInput
+input ProgramRelationFilter {
+  is: ProgramWhereInput
+  isNot: ProgramWhereInput
 }
 
 input ProgramOrderByWithRelationInput {
@@ -3660,7 +3663,6 @@ input ProgramOrderByWithRelationInput {
   createdAt: SortOrder
   updatedAt: SortOrder
   deletedAt: SortOrderInput
-  claimProgram: ClaimProgramOrderByRelationAggregateInput
   programParticipations: ProgramParticipationToProgramsOrderByRelationAggregateInput
 }
 
@@ -3677,10 +3679,6 @@ input SortOrderInput {
 enum NullsOrder {
   first
   last
-}
-
-input ClaimProgramOrderByRelationAggregateInput {
-  _count: SortOrder
 }
 
 input ProgramParticipationToProgramsOrderByRelationAggregateInput {
@@ -4292,11 +4290,11 @@ input ClaimProgramOrderByWithRelationInput {
   kurisRodaOrWalkerStoreName: SortOrderInput
   diseaseId: SortOrderInput
   clinicId: SortOrderInput
-  programId: SortOrder
+  programParticipationToProgramsId: SortOrder
   disease: DiseaseOrderByWithRelationInput
   clinics: ClinicOrderByWithRelationInput
   claim: ClaimOrderByWithRelationInput
-  program: ProgramOrderByWithRelationInput
+  programParticipationToProgram: ProgramParticipationToProgramsOrderByWithRelationInput
   documents: DocumentOrderByRelationAggregateInput
   invoiceProofs: InvoiceProofOrderByRelationAggregateInput
 }
@@ -4310,6 +4308,10 @@ input DiseaseOrderByWithRelationInput {
   claimProgram: ClaimProgramOrderByRelationAggregateInput
 }
 
+input ClaimProgramOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 input ClinicOrderByWithRelationInput {
   id: SortOrder
   code: SortOrder
@@ -4317,6 +4319,21 @@ input ClinicOrderByWithRelationInput {
   createdAt: SortOrder
   updatedAt: SortOrder
   claimProgram: ClaimProgramOrderByRelationAggregateInput
+}
+
+input ProgramParticipationToProgramsOrderByWithRelationInput {
+  description: SortOrderInput
+  isAvailable: SortOrder
+  allowanceCeilingRemaining: SortOrder
+  allowanceCeilingRemainingLastResetDate: SortOrderInput
+  allowanceQuotaRemaining: SortOrderInput
+  allowanceQuotaRemainingLastResetDate: SortOrderInput
+  updatedAt: SortOrder
+  programParticipationId: SortOrder
+  programId: SortOrder
+  programParticipation: ProgramParticipationOrderByWithRelationInput
+  program: ProgramOrderByWithRelationInput
+  claimPrograms: ClaimProgramOrderByWithRelationInput
 }
 
 input InvoiceProofOrderByRelationAggregateInput {
@@ -4787,111 +4804,44 @@ input ProgramCreateInput {
   allowanceQuotaPeriod: Period
   claimPeriodMax: Int
   reclaimPeriodMax: Int
-  claimProgram: ClaimProgramCreateNestedManyWithoutProgramInput
   programParticipations: ProgramParticipationToProgramsCreateNestedManyWithoutProgramInput
 }
 
-input ClaimProgramCreateNestedManyWithoutProgramInput {
-  create: [ClaimProgramCreateWithoutProgramInput!]
-  connectOrCreate: [ClaimProgramCreateOrConnectWithoutProgramInput!]
-  createMany: ClaimProgramCreateManyProgramInputEnvelope
-  connect: [ClaimProgramWhereUniqueInput!]
+input ProgramParticipationToProgramsCreateNestedManyWithoutProgramInput {
+  create: [ProgramParticipationToProgramsCreateWithoutProgramInput!]
+  connectOrCreate: [ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput!]
+  createMany: ProgramParticipationToProgramsCreateManyProgramInputEnvelope
+  connect: [ProgramParticipationToProgramsWhereUniqueInput!]
 }
 
-input ClaimProgramCreateWithoutProgramInput {
-  isReclaim: Boolean
-  isReclaimNoticeLetterDate: DateTime
-  submissionNote: String
+input ProgramParticipationToProgramsCreateWithoutProgramInput {
   description: String
-  additionalNote: String
-  startTreatment: DateTime
-  endTreatment: DateTime
-  kurisRodaOrWalkerStoreName: String
-  disease: DiseaseCreateNestedOneWithoutClaimProgramInput
-  clinics: ClinicCreateNestedOneWithoutClaimProgramInput
-  claim: ClaimCreateNestedOneWithoutClaimProgramInput
-  documents: DocumentCreateNestedManyWithoutClaimProgrammInput
-  invoiceProofs: InvoiceProofCreateNestedManyWithoutClaimProgramInput
+  programParticipation: ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput!
+  claimPrograms: ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput
 }
 
-input DiseaseCreateNestedOneWithoutClaimProgramInput {
-  create: DiseaseCreateWithoutClaimProgramInput
-  connectOrCreate: DiseaseCreateOrConnectWithoutClaimProgramInput
-  connect: DiseaseWhereUniqueInput
+input ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput {
+  create: ProgramParticipationCreateWithoutProgramParticipationToProgramsInput
+  connectOrCreate: ProgramParticipationCreateOrConnectWithoutProgramParticipationToProgramsInput
+  connect: ProgramParticipationWhereUniqueInput
 }
 
-input DiseaseCreateWithoutClaimProgramInput {
-  code: String!
-  name: String!
+input ProgramParticipationCreateWithoutProgramParticipationToProgramsInput {
+  bpjsNumber: String
+  nonActiveReason: String
+  effectiveDate: DateTime!
+  nonActiveDate: DateTime
+  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
+  participant: ParticipantCreateNestedOneWithoutProgramParticipationInput
 }
 
-input DiseaseCreateOrConnectWithoutClaimProgramInput {
-  where: DiseaseWhereUniqueInput!
-  create: DiseaseCreateWithoutClaimProgramInput!
-}
-
-input DiseaseWhereUniqueInput {
-  id: Int
-  AND: [DiseaseWhereInput!]
-  OR: [DiseaseWhereInput!]
-  NOT: [DiseaseWhereInput!]
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claimProgram: ClaimProgramListRelationFilter
-}
-
-input ClinicCreateNestedOneWithoutClaimProgramInput {
-  create: ClinicCreateWithoutClaimProgramInput
-  connectOrCreate: ClinicCreateOrConnectWithoutClaimProgramInput
-  connect: ClinicWhereUniqueInput
-}
-
-input ClinicCreateWithoutClaimProgramInput {
-  code: String!
-  name: String!
-}
-
-input ClinicCreateOrConnectWithoutClaimProgramInput {
-  where: ClinicWhereUniqueInput!
-  create: ClinicCreateWithoutClaimProgramInput!
-}
-
-input ClinicWhereUniqueInput {
-  id: Int
-  AND: [ClinicWhereInput!]
-  OR: [ClinicWhereInput!]
-  NOT: [ClinicWhereInput!]
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claimProgram: ClaimProgramListRelationFilter
-}
-
-input ClaimCreateNestedOneWithoutClaimProgramInput {
-  create: ClaimCreateWithoutClaimProgramInput
-  connectOrCreate: ClaimCreateOrConnectWithoutClaimProgramInput
-  connect: ClaimWhereUniqueInput
-}
-
-input ClaimCreateWithoutClaimProgramInput {
-  channel: ClaimChannel!
-  admedicaStatus: AdmedicaStatus!
-  company: String!
-  participant: ParticipantCreateNestedOneWithoutClaimsInput!
-  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
-  tags: TagCreateNestedManyWithoutClaimsInput
-}
-
-input ParticipantCreateNestedOneWithoutClaimsInput {
-  create: ParticipantCreateWithoutClaimsInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
+input ParticipantCreateNestedOneWithoutProgramParticipationInput {
+  create: ParticipantCreateWithoutProgramParticipationInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationInput
   connect: ParticipantWhereUniqueInput
 }
 
-input ParticipantCreateWithoutClaimsInput {
+input ParticipantCreateWithoutProgramParticipationInput {
   gender: Gender!
   birthDate: DateTime!
   isActive: Boolean!
@@ -4901,7 +4851,6 @@ input ParticipantCreateWithoutClaimsInput {
   employment: EmploymentCreateNestedOneWithoutParticipantInput!
   bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
   contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
-  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
   relations: ParticipantCreateNestedManyWithoutRelationInput
 }
 
@@ -5538,6 +5487,129 @@ input UserCreateOrConnectWithoutParticipantInput {
   create: UserCreateWithoutParticipantInput!
 }
 
+input ParticipantCreateOrConnectWithoutProgramParticipationInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutProgramParticipationInput!
+}
+
+input ProgramParticipationCreateOrConnectWithoutProgramParticipationToProgramsInput {
+  where: ProgramParticipationWhereUniqueInput!
+  create: ProgramParticipationCreateWithoutProgramParticipationToProgramsInput!
+}
+
+input ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput {
+  create: ClaimProgramCreateWithoutProgramParticipationToProgramInput
+  connectOrCreate: ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput
+  connect: ClaimProgramWhereUniqueInput
+}
+
+input ClaimProgramCreateWithoutProgramParticipationToProgramInput {
+  isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
+  submissionNote: String
+  description: String
+  additionalNote: String
+  startTreatment: DateTime
+  endTreatment: DateTime
+  kurisRodaOrWalkerStoreName: String
+  disease: DiseaseCreateNestedOneWithoutClaimProgramInput
+  clinics: ClinicCreateNestedOneWithoutClaimProgramInput
+  claim: ClaimCreateNestedOneWithoutClaimProgramInput
+  documents: DocumentCreateNestedManyWithoutClaimProgrammInput
+  invoiceProofs: InvoiceProofCreateNestedManyWithoutClaimProgramInput
+}
+
+input DiseaseCreateNestedOneWithoutClaimProgramInput {
+  create: DiseaseCreateWithoutClaimProgramInput
+  connectOrCreate: DiseaseCreateOrConnectWithoutClaimProgramInput
+  connect: DiseaseWhereUniqueInput
+}
+
+input DiseaseCreateWithoutClaimProgramInput {
+  code: String!
+  name: String!
+}
+
+input DiseaseCreateOrConnectWithoutClaimProgramInput {
+  where: DiseaseWhereUniqueInput!
+  create: DiseaseCreateWithoutClaimProgramInput!
+}
+
+input DiseaseWhereUniqueInput {
+  id: Int
+  AND: [DiseaseWhereInput!]
+  OR: [DiseaseWhereInput!]
+  NOT: [DiseaseWhereInput!]
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claimProgram: ClaimProgramListRelationFilter
+}
+
+input ClinicCreateNestedOneWithoutClaimProgramInput {
+  create: ClinicCreateWithoutClaimProgramInput
+  connectOrCreate: ClinicCreateOrConnectWithoutClaimProgramInput
+  connect: ClinicWhereUniqueInput
+}
+
+input ClinicCreateWithoutClaimProgramInput {
+  code: String!
+  name: String!
+}
+
+input ClinicCreateOrConnectWithoutClaimProgramInput {
+  where: ClinicWhereUniqueInput!
+  create: ClinicCreateWithoutClaimProgramInput!
+}
+
+input ClinicWhereUniqueInput {
+  id: Int
+  AND: [ClinicWhereInput!]
+  OR: [ClinicWhereInput!]
+  NOT: [ClinicWhereInput!]
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claimProgram: ClaimProgramListRelationFilter
+}
+
+input ClaimCreateNestedOneWithoutClaimProgramInput {
+  create: ClaimCreateWithoutClaimProgramInput
+  connectOrCreate: ClaimCreateOrConnectWithoutClaimProgramInput
+  connect: ClaimWhereUniqueInput
+}
+
+input ClaimCreateWithoutClaimProgramInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
+}
+
+input ParticipantCreateNestedOneWithoutClaimsInput {
+  create: ParticipantCreateWithoutClaimsInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutClaimsInput
+  connect: ParticipantWhereUniqueInput
+}
+
+input ParticipantCreateWithoutClaimsInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  relation: ParticipantCreateNestedOneWithoutRelationsInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
+  contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
+  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
+  relations: ParticipantCreateNestedManyWithoutRelationInput
+}
+
 input ParticipantCreateOrConnectWithoutClaimsInput {
   where: ParticipantWhereUniqueInput!
   create: ParticipantCreateWithoutClaimsInput!
@@ -5734,13 +5806,14 @@ input InvoiceProofCreateManyClaimProgramInput {
   amount: Float!
 }
 
-input ClaimProgramCreateOrConnectWithoutProgramInput {
+input ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput {
   where: ClaimProgramWhereUniqueInput!
-  create: ClaimProgramCreateWithoutProgramInput!
+  create: ClaimProgramCreateWithoutProgramParticipationToProgramInput!
 }
 
 input ClaimProgramWhereUniqueInput {
   id: Int
+  programParticipationToProgramsId: Int
   AND: [ClaimProgramWhereInput!]
   OR: [ClaimProgramWhereInput!]
   NOT: [ClaimProgramWhereInput!]
@@ -5755,86 +5828,12 @@ input ClaimProgramWhereUniqueInput {
   kurisRodaOrWalkerStoreName: StringNullableFilter
   diseaseId: IntNullableFilter
   clinicId: IntNullableFilter
-  programId: IntFilter
   disease: DiseaseNullableRelationFilter
   clinics: ClinicNullableRelationFilter
   claim: ClaimNullableRelationFilter
-  program: ProgramRelationFilter
+  programParticipationToProgram: ProgramParticipationToProgramsRelationFilter
   documents: DocumentListRelationFilter
   invoiceProofs: InvoiceProofListRelationFilter
-}
-
-input ClaimProgramCreateManyProgramInputEnvelope {
-  data: [ClaimProgramCreateManyProgramInput!]!
-  skipDuplicates: Boolean
-}
-
-input ClaimProgramCreateManyProgramInput {
-  isReclaim: Boolean
-  isReclaimNoticeLetterDate: DateTime
-  submissionNote: String
-  description: String
-  additionalNote: String
-  startTreatment: DateTime
-  endTreatment: DateTime
-  kurisRodaOrWalkerStoreName: String
-  clinicId: Int
-}
-
-input ProgramParticipationToProgramsCreateNestedManyWithoutProgramInput {
-  create: [ProgramParticipationToProgramsCreateWithoutProgramInput!]
-  connectOrCreate: [ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput!]
-  createMany: ProgramParticipationToProgramsCreateManyProgramInputEnvelope
-  connect: [ProgramParticipationToProgramsWhereUniqueInput!]
-}
-
-input ProgramParticipationToProgramsCreateWithoutProgramInput {
-  description: String
-  programParticipation: ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput!
-}
-
-input ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput {
-  create: ProgramParticipationCreateWithoutProgramParticipationToProgramsInput
-  connectOrCreate: ProgramParticipationCreateOrConnectWithoutProgramParticipationToProgramsInput
-  connect: ProgramParticipationWhereUniqueInput
-}
-
-input ProgramParticipationCreateWithoutProgramParticipationToProgramsInput {
-  bpjsNumber: String
-  nonActiveReason: String
-  effectiveDate: DateTime!
-  nonActiveDate: DateTime
-  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan!
-  participant: ParticipantCreateNestedOneWithoutProgramParticipationInput
-}
-
-input ParticipantCreateNestedOneWithoutProgramParticipationInput {
-  create: ParticipantCreateWithoutProgramParticipationInput
-  connectOrCreate: ParticipantCreateOrConnectWithoutProgramParticipationInput
-  connect: ParticipantWhereUniqueInput
-}
-
-input ParticipantCreateWithoutProgramParticipationInput {
-  gender: Gender!
-  birthDate: DateTime!
-  isActive: Boolean!
-  status: ParticipantStatus!
-  user: UserCreateNestedOneWithoutParticipantInput!
-  relation: ParticipantCreateNestedOneWithoutRelationsInput
-  employment: EmploymentCreateNestedOneWithoutParticipantInput!
-  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
-  contactInfo: ContactInfoCreateNestedOneWithoutParticipantInput!
-  relations: ParticipantCreateNestedManyWithoutRelationInput
-}
-
-input ParticipantCreateOrConnectWithoutProgramParticipationInput {
-  where: ParticipantWhereUniqueInput!
-  create: ParticipantCreateWithoutProgramParticipationInput!
-}
-
-input ProgramParticipationCreateOrConnectWithoutProgramParticipationToProgramsInput {
-  where: ProgramParticipationWhereUniqueInput!
-  create: ProgramParticipationCreateWithoutProgramParticipationToProgramsInput!
 }
 
 input ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput {
@@ -5843,6 +5842,7 @@ input ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput {
 }
 
 input ProgramParticipationToProgramsWhereUniqueInput {
+  programId: Int
   programParticipationId_programId: ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput
   AND: [ProgramParticipationToProgramsWhereInput!]
   OR: [ProgramParticipationToProgramsWhereInput!]
@@ -5855,9 +5855,9 @@ input ProgramParticipationToProgramsWhereUniqueInput {
   allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
   updatedAt: DateTimeFilter
   programParticipationId: IntFilter
-  programId: IntFilter
   programParticipation: ProgramParticipationRelationFilter
   program: ProgramRelationFilter
+  claimPrograms: ClaimProgramNullableRelationFilter
 }
 
 input ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput {
@@ -5899,7 +5899,6 @@ input ProgramUpdateInput {
   allowanceQuotaPeriod: NullableEnumPeriodFieldUpdateOperationsInput
   claimPeriodMax: NullableIntFieldUpdateOperationsInput
   reclaimPeriodMax: NullableIntFieldUpdateOperationsInput
-  claimProgram: ClaimProgramUpdateManyWithoutProgramNestedInput
   programParticipations: ProgramParticipationToProgramsUpdateManyWithoutProgramNestedInput
 }
 
@@ -5935,491 +5934,6 @@ input NullableEnumPeriodFieldUpdateOperationsInput {
   set: Period
 }
 
-input ClaimProgramUpdateManyWithoutProgramNestedInput {
-  create: [ClaimProgramCreateWithoutProgramInput!]
-  connectOrCreate: [ClaimProgramCreateOrConnectWithoutProgramInput!]
-  upsert: [ClaimProgramUpsertWithWhereUniqueWithoutProgramInput!]
-  createMany: ClaimProgramCreateManyProgramInputEnvelope
-  set: [ClaimProgramWhereUniqueInput!]
-  disconnect: [ClaimProgramWhereUniqueInput!]
-  delete: [ClaimProgramWhereUniqueInput!]
-  connect: [ClaimProgramWhereUniqueInput!]
-  update: [ClaimProgramUpdateWithWhereUniqueWithoutProgramInput!]
-  updateMany: [ClaimProgramUpdateManyWithWhereWithoutProgramInput!]
-  deleteMany: [ClaimProgramScalarWhereInput!]
-}
-
-input ClaimProgramUpsertWithWhereUniqueWithoutProgramInput {
-  where: ClaimProgramWhereUniqueInput!
-  update: ClaimProgramUpdateWithoutProgramInput!
-  create: ClaimProgramCreateWithoutProgramInput!
-}
-
-input ClaimProgramUpdateWithoutProgramInput {
-  expeditionDate: NullableDateTimeFieldUpdateOperationsInput
-  isReclaim: NullableBoolFieldUpdateOperationsInput
-  isReclaimNoticeLetterDate: NullableDateTimeFieldUpdateOperationsInput
-  submissionNote: NullableStringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  additionalNote: NullableStringFieldUpdateOperationsInput
-  startTreatment: NullableDateTimeFieldUpdateOperationsInput
-  endTreatment: NullableDateTimeFieldUpdateOperationsInput
-  kurisRodaOrWalkerStoreName: NullableStringFieldUpdateOperationsInput
-  clinics: ClinicUpdateOneWithoutClaimProgramNestedInput
-  claim: ClaimUpdateOneWithoutClaimProgramNestedInput
-  documents: DocumentUpdateManyWithoutClaimProgrammNestedInput
-  invoiceProofs: InvoiceProofUpdateManyWithoutClaimProgramNestedInput
-}
-
-input NullableDateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
-
-input NullableBoolFieldUpdateOperationsInput {
-  set: Boolean
-}
-
-input NullableStringFieldUpdateOperationsInput {
-  set: String
-}
-
-input ClinicUpdateOneWithoutClaimProgramNestedInput {
-  create: ClinicCreateWithoutClaimProgramInput
-  connectOrCreate: ClinicCreateOrConnectWithoutClaimProgramInput
-  upsert: ClinicUpsertWithoutClaimProgramInput
-  disconnect: ClinicWhereInput
-  delete: ClinicWhereInput
-  connect: ClinicWhereUniqueInput
-  update: ClinicUpdateToOneWithWhereWithoutClaimProgramInput
-}
-
-input ClinicUpsertWithoutClaimProgramInput {
-  update: ClinicUpdateWithoutClaimProgramInput!
-  create: ClinicCreateWithoutClaimProgramInput!
-  where: ClinicWhereInput
-}
-
-input ClinicUpdateWithoutClaimProgramInput {
-  code: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input StringFieldUpdateOperationsInput {
-  set: String
-}
-
-input ClinicUpdateToOneWithWhereWithoutClaimProgramInput {
-  where: ClinicWhereInput
-  data: ClinicUpdateWithoutClaimProgramInput!
-}
-
-input ClaimUpdateOneWithoutClaimProgramNestedInput {
-  create: ClaimCreateWithoutClaimProgramInput
-  connectOrCreate: ClaimCreateOrConnectWithoutClaimProgramInput
-  upsert: ClaimUpsertWithoutClaimProgramInput
-  disconnect: ClaimWhereInput
-  delete: ClaimWhereInput
-  connect: ClaimWhereUniqueInput
-  update: ClaimUpdateToOneWithWhereWithoutClaimProgramInput
-}
-
-input ClaimUpsertWithoutClaimProgramInput {
-  update: ClaimUpdateWithoutClaimProgramInput!
-  create: ClaimCreateWithoutClaimProgramInput!
-  where: ClaimWhereInput
-}
-
-input ClaimUpdateWithoutClaimProgramInput {
-  channel: EnumClaimChannelFieldUpdateOperationsInput
-  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
-  company: StringFieldUpdateOperationsInput
-  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
-  tags: TagUpdateManyWithoutClaimsNestedInput
-}
-
-input EnumClaimChannelFieldUpdateOperationsInput {
-  set: ClaimChannel
-}
-
-input EnumAdmedicaStatusFieldUpdateOperationsInput {
-  set: AdmedicaStatus
-}
-
-input ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput {
-  create: ClaimFinancialCreateWithoutClaimInput
-  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
-  upsert: ClaimFinancialUpsertWithoutClaimInput
-  connect: ClaimFinancialWhereUniqueInput
-  update: ClaimFinancialUpdateToOneWithWhereWithoutClaimInput
-}
-
-input ClaimFinancialUpsertWithoutClaimInput {
-  update: ClaimFinancialUpdateWithoutClaimInput!
-  create: ClaimFinancialCreateWithoutClaimInput!
-  where: ClaimFinancialWhereInput
-}
-
-input ClaimFinancialUpdateWithoutClaimInput {
-  requestedAmount: FloatFieldUpdateOperationsInput
-  paidAmount: NullableFloatFieldUpdateOperationsInput
-  rejectedAmount: NullableFloatFieldUpdateOperationsInput
-  branchPayee: BranchUpdateOneWithoutClaimFinancialNestedInput
-}
-
-input NullableFloatFieldUpdateOperationsInput {
-  set: Float
-  increment: Float
-  decrement: Float
-  multiply: Float
-  divide: Float
-}
-
-input BranchUpdateOneWithoutClaimFinancialNestedInput {
-  create: BranchCreateWithoutClaimFinancialInput
-  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
-  upsert: BranchUpsertWithoutClaimFinancialInput
-  disconnect: BranchWhereInput
-  delete: BranchWhereInput
-  connect: BranchWhereUniqueInput
-  update: BranchUpdateToOneWithWhereWithoutClaimFinancialInput
-}
-
-input BranchUpsertWithoutClaimFinancialInput {
-  update: BranchUpdateWithoutClaimFinancialInput!
-  create: BranchCreateWithoutClaimFinancialInput!
-  where: BranchWhereInput
-}
-
-input BranchUpdateWithoutClaimFinancialInput {
-  name: StringFieldUpdateOperationsInput
-  employment: EmploymentUpdateManyWithoutBranchNestedInput
-}
-
-input EmploymentUpdateManyWithoutBranchNestedInput {
-  create: [EmploymentCreateWithoutBranchInput!]
-  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
-  upsert: [EmploymentUpsertWithWhereUniqueWithoutBranchInput!]
-  createMany: EmploymentCreateManyBranchInputEnvelope
-  set: [EmploymentWhereUniqueInput!]
-  disconnect: [EmploymentWhereUniqueInput!]
-  delete: [EmploymentWhereUniqueInput!]
-  connect: [EmploymentWhereUniqueInput!]
-  update: [EmploymentUpdateWithWhereUniqueWithoutBranchInput!]
-  updateMany: [EmploymentUpdateManyWithWhereWithoutBranchInput!]
-  deleteMany: [EmploymentScalarWhereInput!]
-}
-
-input EmploymentUpsertWithWhereUniqueWithoutBranchInput {
-  where: EmploymentWhereUniqueInput!
-  update: EmploymentUpdateWithoutBranchInput!
-  create: EmploymentCreateWithoutBranchInput!
-}
-
-input EmploymentUpdateWithoutBranchInput {
-  employmentPosition: EnumPositionFieldUpdateOperationsInput
-  group: GroupUpdateOneWithoutEmploymentNestedInput
-  region: RegionUpdateOneWithoutEmploymentNestedInput
-}
-
-input EnumPositionFieldUpdateOperationsInput {
-  set: Position
-}
-
-input GroupUpdateOneWithoutEmploymentNestedInput {
-  create: GroupCreateWithoutEmploymentInput
-  connectOrCreate: GroupCreateOrConnectWithoutEmploymentInput
-  upsert: GroupUpsertWithoutEmploymentInput
-  disconnect: GroupWhereInput
-  delete: GroupWhereInput
-  connect: GroupWhereUniqueInput
-  update: GroupUpdateToOneWithWhereWithoutEmploymentInput
-}
-
-input GroupUpsertWithoutEmploymentInput {
-  update: GroupUpdateWithoutEmploymentInput!
-  create: GroupCreateWithoutEmploymentInput!
-  where: GroupWhereInput
-}
-
-input GroupUpdateWithoutEmploymentInput {
-  name: StringFieldUpdateOperationsInput
-}
-
-input GroupUpdateToOneWithWhereWithoutEmploymentInput {
-  where: GroupWhereInput
-  data: GroupUpdateWithoutEmploymentInput!
-}
-
-input RegionUpdateOneWithoutEmploymentNestedInput {
-  create: RegionCreateWithoutEmploymentInput
-  connectOrCreate: RegionCreateOrConnectWithoutEmploymentInput
-  upsert: RegionUpsertWithoutEmploymentInput
-  disconnect: RegionWhereInput
-  delete: RegionWhereInput
-  connect: RegionWhereUniqueInput
-  update: RegionUpdateToOneWithWhereWithoutEmploymentInput
-}
-
-input RegionUpsertWithoutEmploymentInput {
-  update: RegionUpdateWithoutEmploymentInput!
-  create: RegionCreateWithoutEmploymentInput!
-  where: RegionWhereInput
-}
-
-input RegionUpdateWithoutEmploymentInput {
-  name: StringFieldUpdateOperationsInput
-}
-
-input RegionUpdateToOneWithWhereWithoutEmploymentInput {
-  where: RegionWhereInput
-  data: RegionUpdateWithoutEmploymentInput!
-}
-
-input EmploymentUpdateWithWhereUniqueWithoutBranchInput {
-  where: EmploymentWhereUniqueInput!
-  data: EmploymentUpdateWithoutBranchInput!
-}
-
-input EmploymentUpdateManyWithWhereWithoutBranchInput {
-  where: EmploymentScalarWhereInput!
-  data: EmploymentUpdateManyMutationInput!
-}
-
-input EmploymentScalarWhereInput {
-  AND: [EmploymentScalarWhereInput!]
-  OR: [EmploymentScalarWhereInput!]
-  NOT: [EmploymentScalarWhereInput!]
-  id: IntFilter
-  employmentPosition: EnumPositionFilter
-  branchId: IntFilter
-  groupId: IntNullableFilter
-  regionId: IntNullableFilter
-}
-
-input EmploymentUpdateManyMutationInput {
-  employmentPosition: EnumPositionFieldUpdateOperationsInput
-}
-
-input BranchUpdateToOneWithWhereWithoutClaimFinancialInput {
-  where: BranchWhereInput
-  data: BranchUpdateWithoutClaimFinancialInput!
-}
-
-input ClaimFinancialUpdateToOneWithWhereWithoutClaimInput {
-  where: ClaimFinancialWhereInput
-  data: ClaimFinancialUpdateWithoutClaimInput!
-}
-
-input TagUpdateManyWithoutClaimsNestedInput {
-  create: [TagCreateWithoutClaimsInput!]
-  connectOrCreate: [TagCreateOrConnectWithoutClaimsInput!]
-  upsert: [TagUpsertWithWhereUniqueWithoutClaimsInput!]
-  set: [TagWhereUniqueInput!]
-  disconnect: [TagWhereUniqueInput!]
-  delete: [TagWhereUniqueInput!]
-  connect: [TagWhereUniqueInput!]
-  update: [TagUpdateWithWhereUniqueWithoutClaimsInput!]
-  updateMany: [TagUpdateManyWithWhereWithoutClaimsInput!]
-  deleteMany: [TagScalarWhereInput!]
-}
-
-input TagUpsertWithWhereUniqueWithoutClaimsInput {
-  where: TagWhereUniqueInput!
-  update: TagUpdateWithoutClaimsInput!
-  create: TagCreateWithoutClaimsInput!
-}
-
-input TagUpdateWithoutClaimsInput {
-  name: StringFieldUpdateOperationsInput
-  color: EnumColorFieldUpdateOperationsInput
-}
-
-input EnumColorFieldUpdateOperationsInput {
-  set: Color
-}
-
-input TagUpdateWithWhereUniqueWithoutClaimsInput {
-  where: TagWhereUniqueInput!
-  data: TagUpdateWithoutClaimsInput!
-}
-
-input TagUpdateManyWithWhereWithoutClaimsInput {
-  where: TagScalarWhereInput!
-  data: TagUpdateManyMutationInput!
-}
-
-input TagScalarWhereInput {
-  AND: [TagScalarWhereInput!]
-  OR: [TagScalarWhereInput!]
-  NOT: [TagScalarWhereInput!]
-  id: IntFilter
-  name: StringFilter
-  color: EnumColorFilter
-  isException: BoolNullableFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-}
-
-input TagUpdateManyMutationInput {
-  name: StringFieldUpdateOperationsInput
-  color: EnumColorFieldUpdateOperationsInput
-}
-
-input ClaimUpdateToOneWithWhereWithoutClaimProgramInput {
-  where: ClaimWhereInput
-  data: ClaimUpdateWithoutClaimProgramInput!
-}
-
-input DocumentUpdateManyWithoutClaimProgrammNestedInput {
-  create: [DocumentCreateWithoutClaimProgrammInput!]
-  connectOrCreate: [DocumentCreateOrConnectWithoutClaimProgrammInput!]
-  upsert: [DocumentUpsertWithWhereUniqueWithoutClaimProgrammInput!]
-  createMany: DocumentCreateManyClaimProgrammInputEnvelope
-  set: [DocumentWhereUniqueInput!]
-  disconnect: [DocumentWhereUniqueInput!]
-  delete: [DocumentWhereUniqueInput!]
-  connect: [DocumentWhereUniqueInput!]
-  update: [DocumentUpdateWithWhereUniqueWithoutClaimProgrammInput!]
-  updateMany: [DocumentUpdateManyWithWhereWithoutClaimProgrammInput!]
-  deleteMany: [DocumentScalarWhereInput!]
-}
-
-input DocumentUpsertWithWhereUniqueWithoutClaimProgrammInput {
-  where: DocumentWhereUniqueInput!
-  update: DocumentUpdateWithoutClaimProgrammInput!
-  create: DocumentCreateWithoutClaimProgrammInput!
-}
-
-input DocumentUpdateWithoutClaimProgrammInput {
-  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
-  type: EnumDocumentTypeFieldUpdateOperationsInput
-}
-
-input EnumDocumentTypeFieldUpdateOperationsInput {
-  set: DocumentType
-}
-
-input DocumentUpdateWithWhereUniqueWithoutClaimProgrammInput {
-  where: DocumentWhereUniqueInput!
-  data: DocumentUpdateWithoutClaimProgrammInput!
-}
-
-input DocumentUpdateManyWithWhereWithoutClaimProgrammInput {
-  where: DocumentScalarWhereInput!
-  data: DocumentUpdateManyMutationInput!
-}
-
-input DocumentScalarWhereInput {
-  AND: [DocumentScalarWhereInput!]
-  OR: [DocumentScalarWhereInput!]
-  NOT: [DocumentScalarWhereInput!]
-  id: StringFilter
-  uploadedFileUrl: StringNullableFilter
-  pdfPath: StringNullableFilter
-  docxPath: StringNullableFilter
-  size: IntFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  source: EnumDocumentSourceFilter
-  type: EnumDocumentTypeFilter
-  claimProgramId: IntNullableFilter
-}
-
-input DocumentUpdateManyMutationInput {
-  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
-  type: EnumDocumentTypeFieldUpdateOperationsInput
-}
-
-input InvoiceProofUpdateManyWithoutClaimProgramNestedInput {
-  create: [InvoiceProofCreateWithoutClaimProgramInput!]
-  connectOrCreate: [InvoiceProofCreateOrConnectWithoutClaimProgramInput!]
-  upsert: [InvoiceProofUpsertWithWhereUniqueWithoutClaimProgramInput!]
-  createMany: InvoiceProofCreateManyClaimProgramInputEnvelope
-  set: [InvoiceProofWhereUniqueInput!]
-  disconnect: [InvoiceProofWhereUniqueInput!]
-  delete: [InvoiceProofWhereUniqueInput!]
-  connect: [InvoiceProofWhereUniqueInput!]
-  update: [InvoiceProofUpdateWithWhereUniqueWithoutClaimProgramInput!]
-  updateMany: [InvoiceProofUpdateManyWithWhereWithoutClaimProgramInput!]
-  deleteMany: [InvoiceProofScalarWhereInput!]
-}
-
-input InvoiceProofUpsertWithWhereUniqueWithoutClaimProgramInput {
-  where: InvoiceProofWhereUniqueInput!
-  update: InvoiceProofUpdateWithoutClaimProgramInput!
-  create: InvoiceProofCreateWithoutClaimProgramInput!
-}
-
-input InvoiceProofUpdateWithoutClaimProgramInput {
-  amount: FloatFieldUpdateOperationsInput
-}
-
-input InvoiceProofUpdateWithWhereUniqueWithoutClaimProgramInput {
-  where: InvoiceProofWhereUniqueInput!
-  data: InvoiceProofUpdateWithoutClaimProgramInput!
-}
-
-input InvoiceProofUpdateManyWithWhereWithoutClaimProgramInput {
-  where: InvoiceProofScalarWhereInput!
-  data: InvoiceProofUpdateManyMutationInput!
-}
-
-input InvoiceProofScalarWhereInput {
-  AND: [InvoiceProofScalarWhereInput!]
-  OR: [InvoiceProofScalarWhereInput!]
-  NOT: [InvoiceProofScalarWhereInput!]
-  id: IntFilter
-  issuedDate: DateTimeFilter
-  amount: FloatFilter
-  documentProofId: StringFilter
-  claimProgramId: IntNullableFilter
-}
-
-input InvoiceProofUpdateManyMutationInput {
-  amount: FloatFieldUpdateOperationsInput
-}
-
-input ClaimProgramUpdateWithWhereUniqueWithoutProgramInput {
-  where: ClaimProgramWhereUniqueInput!
-  data: ClaimProgramUpdateWithoutProgramInput!
-}
-
-input ClaimProgramUpdateManyWithWhereWithoutProgramInput {
-  where: ClaimProgramScalarWhereInput!
-  data: ClaimProgramUpdateManyMutationInput!
-}
-
-input ClaimProgramScalarWhereInput {
-  AND: [ClaimProgramScalarWhereInput!]
-  OR: [ClaimProgramScalarWhereInput!]
-  NOT: [ClaimProgramScalarWhereInput!]
-  id: IntFilter
-  expeditionDate: DateTimeNullableFilter
-  isReclaim: BoolNullableFilter
-  isReclaimNoticeLetterDate: DateTimeNullableFilter
-  submissionNote: StringNullableFilter
-  description: StringNullableFilter
-  additionalNote: StringNullableFilter
-  startTreatment: DateTimeNullableFilter
-  endTreatment: DateTimeNullableFilter
-  kurisRodaOrWalkerStoreName: StringNullableFilter
-  diseaseId: IntNullableFilter
-  clinicId: IntNullableFilter
-  programId: IntFilter
-}
-
-input ClaimProgramUpdateManyMutationInput {
-  expeditionDate: NullableDateTimeFieldUpdateOperationsInput
-  isReclaim: NullableBoolFieldUpdateOperationsInput
-  isReclaimNoticeLetterDate: NullableDateTimeFieldUpdateOperationsInput
-  submissionNote: NullableStringFieldUpdateOperationsInput
-  description: NullableStringFieldUpdateOperationsInput
-  additionalNote: NullableStringFieldUpdateOperationsInput
-  startTreatment: NullableDateTimeFieldUpdateOperationsInput
-  endTreatment: NullableDateTimeFieldUpdateOperationsInput
-  kurisRodaOrWalkerStoreName: NullableStringFieldUpdateOperationsInput
-}
-
 input ProgramParticipationToProgramsUpdateManyWithoutProgramNestedInput {
   create: [ProgramParticipationToProgramsCreateWithoutProgramInput!]
   connectOrCreate: [ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput!]
@@ -6443,6 +5957,11 @@ input ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramInput {
 input ProgramParticipationToProgramsUpdateWithoutProgramInput {
   description: NullableStringFieldUpdateOperationsInput
   programParticipation: ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput
+  claimPrograms: ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
 }
 
 input ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput {
@@ -6469,6 +5988,10 @@ input ProgramParticipationUpdateWithoutProgramParticipationToProgramsInput {
 }
 
 input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input NullableDateTimeFieldUpdateOperationsInput {
   set: DateTime
 }
 
@@ -6537,6 +6060,10 @@ input UserUpdateWithoutParticipantInput {
   password: NullableStringFieldUpdateOperationsInput
   profilePictureUrl: NullableStringFieldUpdateOperationsInput
   role: RoleUpdateOneRequiredWithoutUsersNestedInput
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
 }
 
 input RoleUpdateOneRequiredWithoutUsersNestedInput {
@@ -6749,6 +6276,10 @@ input EmploymentUpdateWithoutParticipantInput {
   region: RegionUpdateOneWithoutEmploymentNestedInput
 }
 
+input EnumPositionFieldUpdateOperationsInput {
+  set: Position
+}
+
 input BranchUpdateOneRequiredWithoutEmploymentNestedInput {
   create: BranchCreateWithoutEmploymentInput
   connectOrCreate: BranchCreateOrConnectWithoutEmploymentInput
@@ -6794,6 +6325,14 @@ input ClaimFinancialUpdateWithoutBranchPayeeInput {
   rejectedAmount: NullableFloatFieldUpdateOperationsInput
 }
 
+input NullableFloatFieldUpdateOperationsInput {
+  set: Float
+  increment: Float
+  decrement: Float
+  multiply: Float
+  divide: Float
+}
+
 input ClaimFinancialUpdateWithWhereUniqueWithoutBranchPayeeInput {
   where: ClaimFinancialWhereUniqueInput!
   data: ClaimFinancialUpdateWithoutBranchPayeeInput!
@@ -6829,6 +6368,56 @@ input ClaimFinancialUpdateManyMutationInput {
 input BranchUpdateToOneWithWhereWithoutEmploymentInput {
   where: BranchWhereInput
   data: BranchUpdateWithoutEmploymentInput!
+}
+
+input GroupUpdateOneWithoutEmploymentNestedInput {
+  create: GroupCreateWithoutEmploymentInput
+  connectOrCreate: GroupCreateOrConnectWithoutEmploymentInput
+  upsert: GroupUpsertWithoutEmploymentInput
+  disconnect: GroupWhereInput
+  delete: GroupWhereInput
+  connect: GroupWhereUniqueInput
+  update: GroupUpdateToOneWithWhereWithoutEmploymentInput
+}
+
+input GroupUpsertWithoutEmploymentInput {
+  update: GroupUpdateWithoutEmploymentInput!
+  create: GroupCreateWithoutEmploymentInput!
+  where: GroupWhereInput
+}
+
+input GroupUpdateWithoutEmploymentInput {
+  name: StringFieldUpdateOperationsInput
+}
+
+input GroupUpdateToOneWithWhereWithoutEmploymentInput {
+  where: GroupWhereInput
+  data: GroupUpdateWithoutEmploymentInput!
+}
+
+input RegionUpdateOneWithoutEmploymentNestedInput {
+  create: RegionCreateWithoutEmploymentInput
+  connectOrCreate: RegionCreateOrConnectWithoutEmploymentInput
+  upsert: RegionUpsertWithoutEmploymentInput
+  disconnect: RegionWhereInput
+  delete: RegionWhereInput
+  connect: RegionWhereUniqueInput
+  update: RegionUpdateToOneWithWhereWithoutEmploymentInput
+}
+
+input RegionUpsertWithoutEmploymentInput {
+  update: RegionUpdateWithoutEmploymentInput!
+  create: RegionCreateWithoutEmploymentInput!
+  where: RegionWhereInput
+}
+
+input RegionUpdateWithoutEmploymentInput {
+  name: StringFieldUpdateOperationsInput
+}
+
+input RegionUpdateToOneWithWhereWithoutEmploymentInput {
+  where: RegionWhereInput
+  data: RegionUpdateWithoutEmploymentInput!
 }
 
 input EmploymentUpdateToOneWithWhereWithoutParticipantInput {
@@ -7267,6 +6856,377 @@ input ProgramParticipationUpdateToOneWithWhereWithoutProgramParticipationToProgr
   data: ProgramParticipationUpdateWithoutProgramParticipationToProgramsInput!
 }
 
+input ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput {
+  create: ClaimProgramCreateWithoutProgramParticipationToProgramInput
+  connectOrCreate: ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput
+  upsert: ClaimProgramUpsertWithoutProgramParticipationToProgramInput
+  disconnect: ClaimProgramWhereInput
+  delete: ClaimProgramWhereInput
+  connect: ClaimProgramWhereUniqueInput
+  update: ClaimProgramUpdateToOneWithWhereWithoutProgramParticipationToProgramInput
+}
+
+input ClaimProgramUpsertWithoutProgramParticipationToProgramInput {
+  update: ClaimProgramUpdateWithoutProgramParticipationToProgramInput!
+  create: ClaimProgramCreateWithoutProgramParticipationToProgramInput!
+  where: ClaimProgramWhereInput
+}
+
+input ClaimProgramUpdateWithoutProgramParticipationToProgramInput {
+  expeditionDate: NullableDateTimeFieldUpdateOperationsInput
+  isReclaim: NullableBoolFieldUpdateOperationsInput
+  isReclaimNoticeLetterDate: NullableDateTimeFieldUpdateOperationsInput
+  submissionNote: NullableStringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  additionalNote: NullableStringFieldUpdateOperationsInput
+  startTreatment: NullableDateTimeFieldUpdateOperationsInput
+  endTreatment: NullableDateTimeFieldUpdateOperationsInput
+  kurisRodaOrWalkerStoreName: NullableStringFieldUpdateOperationsInput
+  clinics: ClinicUpdateOneWithoutClaimProgramNestedInput
+  claim: ClaimUpdateOneWithoutClaimProgramNestedInput
+  documents: DocumentUpdateManyWithoutClaimProgrammNestedInput
+  invoiceProofs: InvoiceProofUpdateManyWithoutClaimProgramNestedInput
+}
+
+input NullableBoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input ClinicUpdateOneWithoutClaimProgramNestedInput {
+  create: ClinicCreateWithoutClaimProgramInput
+  connectOrCreate: ClinicCreateOrConnectWithoutClaimProgramInput
+  upsert: ClinicUpsertWithoutClaimProgramInput
+  disconnect: ClinicWhereInput
+  delete: ClinicWhereInput
+  connect: ClinicWhereUniqueInput
+  update: ClinicUpdateToOneWithWhereWithoutClaimProgramInput
+}
+
+input ClinicUpsertWithoutClaimProgramInput {
+  update: ClinicUpdateWithoutClaimProgramInput!
+  create: ClinicCreateWithoutClaimProgramInput!
+  where: ClinicWhereInput
+}
+
+input ClinicUpdateWithoutClaimProgramInput {
+  code: StringFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+}
+
+input ClinicUpdateToOneWithWhereWithoutClaimProgramInput {
+  where: ClinicWhereInput
+  data: ClinicUpdateWithoutClaimProgramInput!
+}
+
+input ClaimUpdateOneWithoutClaimProgramNestedInput {
+  create: ClaimCreateWithoutClaimProgramInput
+  connectOrCreate: ClaimCreateOrConnectWithoutClaimProgramInput
+  upsert: ClaimUpsertWithoutClaimProgramInput
+  disconnect: ClaimWhereInput
+  delete: ClaimWhereInput
+  connect: ClaimWhereUniqueInput
+  update: ClaimUpdateToOneWithWhereWithoutClaimProgramInput
+}
+
+input ClaimUpsertWithoutClaimProgramInput {
+  update: ClaimUpdateWithoutClaimProgramInput!
+  create: ClaimCreateWithoutClaimProgramInput!
+  where: ClaimWhereInput
+}
+
+input ClaimUpdateWithoutClaimProgramInput {
+  channel: EnumClaimChannelFieldUpdateOperationsInput
+  admedicaStatus: EnumAdmedicaStatusFieldUpdateOperationsInput
+  company: StringFieldUpdateOperationsInput
+  claimFinancials: ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput
+  tags: TagUpdateManyWithoutClaimsNestedInput
+}
+
+input EnumClaimChannelFieldUpdateOperationsInput {
+  set: ClaimChannel
+}
+
+input EnumAdmedicaStatusFieldUpdateOperationsInput {
+  set: AdmedicaStatus
+}
+
+input ClaimFinancialUpdateOneRequiredWithoutClaimNestedInput {
+  create: ClaimFinancialCreateWithoutClaimInput
+  connectOrCreate: ClaimFinancialCreateOrConnectWithoutClaimInput
+  upsert: ClaimFinancialUpsertWithoutClaimInput
+  connect: ClaimFinancialWhereUniqueInput
+  update: ClaimFinancialUpdateToOneWithWhereWithoutClaimInput
+}
+
+input ClaimFinancialUpsertWithoutClaimInput {
+  update: ClaimFinancialUpdateWithoutClaimInput!
+  create: ClaimFinancialCreateWithoutClaimInput!
+  where: ClaimFinancialWhereInput
+}
+
+input ClaimFinancialUpdateWithoutClaimInput {
+  requestedAmount: FloatFieldUpdateOperationsInput
+  paidAmount: NullableFloatFieldUpdateOperationsInput
+  rejectedAmount: NullableFloatFieldUpdateOperationsInput
+  branchPayee: BranchUpdateOneWithoutClaimFinancialNestedInput
+}
+
+input BranchUpdateOneWithoutClaimFinancialNestedInput {
+  create: BranchCreateWithoutClaimFinancialInput
+  connectOrCreate: BranchCreateOrConnectWithoutClaimFinancialInput
+  upsert: BranchUpsertWithoutClaimFinancialInput
+  disconnect: BranchWhereInput
+  delete: BranchWhereInput
+  connect: BranchWhereUniqueInput
+  update: BranchUpdateToOneWithWhereWithoutClaimFinancialInput
+}
+
+input BranchUpsertWithoutClaimFinancialInput {
+  update: BranchUpdateWithoutClaimFinancialInput!
+  create: BranchCreateWithoutClaimFinancialInput!
+  where: BranchWhereInput
+}
+
+input BranchUpdateWithoutClaimFinancialInput {
+  name: StringFieldUpdateOperationsInput
+  employment: EmploymentUpdateManyWithoutBranchNestedInput
+}
+
+input EmploymentUpdateManyWithoutBranchNestedInput {
+  create: [EmploymentCreateWithoutBranchInput!]
+  connectOrCreate: [EmploymentCreateOrConnectWithoutBranchInput!]
+  upsert: [EmploymentUpsertWithWhereUniqueWithoutBranchInput!]
+  createMany: EmploymentCreateManyBranchInputEnvelope
+  set: [EmploymentWhereUniqueInput!]
+  disconnect: [EmploymentWhereUniqueInput!]
+  delete: [EmploymentWhereUniqueInput!]
+  connect: [EmploymentWhereUniqueInput!]
+  update: [EmploymentUpdateWithWhereUniqueWithoutBranchInput!]
+  updateMany: [EmploymentUpdateManyWithWhereWithoutBranchInput!]
+  deleteMany: [EmploymentScalarWhereInput!]
+}
+
+input EmploymentUpsertWithWhereUniqueWithoutBranchInput {
+  where: EmploymentWhereUniqueInput!
+  update: EmploymentUpdateWithoutBranchInput!
+  create: EmploymentCreateWithoutBranchInput!
+}
+
+input EmploymentUpdateWithoutBranchInput {
+  employmentPosition: EnumPositionFieldUpdateOperationsInput
+  group: GroupUpdateOneWithoutEmploymentNestedInput
+  region: RegionUpdateOneWithoutEmploymentNestedInput
+}
+
+input EmploymentUpdateWithWhereUniqueWithoutBranchInput {
+  where: EmploymentWhereUniqueInput!
+  data: EmploymentUpdateWithoutBranchInput!
+}
+
+input EmploymentUpdateManyWithWhereWithoutBranchInput {
+  where: EmploymentScalarWhereInput!
+  data: EmploymentUpdateManyMutationInput!
+}
+
+input EmploymentScalarWhereInput {
+  AND: [EmploymentScalarWhereInput!]
+  OR: [EmploymentScalarWhereInput!]
+  NOT: [EmploymentScalarWhereInput!]
+  id: IntFilter
+  employmentPosition: EnumPositionFilter
+  branchId: IntFilter
+  groupId: IntNullableFilter
+  regionId: IntNullableFilter
+}
+
+input EmploymentUpdateManyMutationInput {
+  employmentPosition: EnumPositionFieldUpdateOperationsInput
+}
+
+input BranchUpdateToOneWithWhereWithoutClaimFinancialInput {
+  where: BranchWhereInput
+  data: BranchUpdateWithoutClaimFinancialInput!
+}
+
+input ClaimFinancialUpdateToOneWithWhereWithoutClaimInput {
+  where: ClaimFinancialWhereInput
+  data: ClaimFinancialUpdateWithoutClaimInput!
+}
+
+input TagUpdateManyWithoutClaimsNestedInput {
+  create: [TagCreateWithoutClaimsInput!]
+  connectOrCreate: [TagCreateOrConnectWithoutClaimsInput!]
+  upsert: [TagUpsertWithWhereUniqueWithoutClaimsInput!]
+  set: [TagWhereUniqueInput!]
+  disconnect: [TagWhereUniqueInput!]
+  delete: [TagWhereUniqueInput!]
+  connect: [TagWhereUniqueInput!]
+  update: [TagUpdateWithWhereUniqueWithoutClaimsInput!]
+  updateMany: [TagUpdateManyWithWhereWithoutClaimsInput!]
+  deleteMany: [TagScalarWhereInput!]
+}
+
+input TagUpsertWithWhereUniqueWithoutClaimsInput {
+  where: TagWhereUniqueInput!
+  update: TagUpdateWithoutClaimsInput!
+  create: TagCreateWithoutClaimsInput!
+}
+
+input TagUpdateWithoutClaimsInput {
+  name: StringFieldUpdateOperationsInput
+  color: EnumColorFieldUpdateOperationsInput
+}
+
+input EnumColorFieldUpdateOperationsInput {
+  set: Color
+}
+
+input TagUpdateWithWhereUniqueWithoutClaimsInput {
+  where: TagWhereUniqueInput!
+  data: TagUpdateWithoutClaimsInput!
+}
+
+input TagUpdateManyWithWhereWithoutClaimsInput {
+  where: TagScalarWhereInput!
+  data: TagUpdateManyMutationInput!
+}
+
+input TagScalarWhereInput {
+  AND: [TagScalarWhereInput!]
+  OR: [TagScalarWhereInput!]
+  NOT: [TagScalarWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  color: EnumColorFilter
+  isException: BoolNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+}
+
+input TagUpdateManyMutationInput {
+  name: StringFieldUpdateOperationsInput
+  color: EnumColorFieldUpdateOperationsInput
+}
+
+input ClaimUpdateToOneWithWhereWithoutClaimProgramInput {
+  where: ClaimWhereInput
+  data: ClaimUpdateWithoutClaimProgramInput!
+}
+
+input DocumentUpdateManyWithoutClaimProgrammNestedInput {
+  create: [DocumentCreateWithoutClaimProgrammInput!]
+  connectOrCreate: [DocumentCreateOrConnectWithoutClaimProgrammInput!]
+  upsert: [DocumentUpsertWithWhereUniqueWithoutClaimProgrammInput!]
+  createMany: DocumentCreateManyClaimProgrammInputEnvelope
+  set: [DocumentWhereUniqueInput!]
+  disconnect: [DocumentWhereUniqueInput!]
+  delete: [DocumentWhereUniqueInput!]
+  connect: [DocumentWhereUniqueInput!]
+  update: [DocumentUpdateWithWhereUniqueWithoutClaimProgrammInput!]
+  updateMany: [DocumentUpdateManyWithWhereWithoutClaimProgrammInput!]
+  deleteMany: [DocumentScalarWhereInput!]
+}
+
+input DocumentUpsertWithWhereUniqueWithoutClaimProgrammInput {
+  where: DocumentWhereUniqueInput!
+  update: DocumentUpdateWithoutClaimProgrammInput!
+  create: DocumentCreateWithoutClaimProgrammInput!
+}
+
+input DocumentUpdateWithoutClaimProgrammInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
+  type: EnumDocumentTypeFieldUpdateOperationsInput
+}
+
+input EnumDocumentTypeFieldUpdateOperationsInput {
+  set: DocumentType
+}
+
+input DocumentUpdateWithWhereUniqueWithoutClaimProgrammInput {
+  where: DocumentWhereUniqueInput!
+  data: DocumentUpdateWithoutClaimProgrammInput!
+}
+
+input DocumentUpdateManyWithWhereWithoutClaimProgrammInput {
+  where: DocumentScalarWhereInput!
+  data: DocumentUpdateManyMutationInput!
+}
+
+input DocumentScalarWhereInput {
+  AND: [DocumentScalarWhereInput!]
+  OR: [DocumentScalarWhereInput!]
+  NOT: [DocumentScalarWhereInput!]
+  id: StringFilter
+  uploadedFileUrl: StringNullableFilter
+  pdfPath: StringNullableFilter
+  docxPath: StringNullableFilter
+  size: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  source: EnumDocumentSourceFilter
+  type: EnumDocumentTypeFilter
+  claimProgramId: IntNullableFilter
+}
+
+input DocumentUpdateManyMutationInput {
+  uploadedFileUrl: NullableStringFieldUpdateOperationsInput
+  type: EnumDocumentTypeFieldUpdateOperationsInput
+}
+
+input InvoiceProofUpdateManyWithoutClaimProgramNestedInput {
+  create: [InvoiceProofCreateWithoutClaimProgramInput!]
+  connectOrCreate: [InvoiceProofCreateOrConnectWithoutClaimProgramInput!]
+  upsert: [InvoiceProofUpsertWithWhereUniqueWithoutClaimProgramInput!]
+  createMany: InvoiceProofCreateManyClaimProgramInputEnvelope
+  set: [InvoiceProofWhereUniqueInput!]
+  disconnect: [InvoiceProofWhereUniqueInput!]
+  delete: [InvoiceProofWhereUniqueInput!]
+  connect: [InvoiceProofWhereUniqueInput!]
+  update: [InvoiceProofUpdateWithWhereUniqueWithoutClaimProgramInput!]
+  updateMany: [InvoiceProofUpdateManyWithWhereWithoutClaimProgramInput!]
+  deleteMany: [InvoiceProofScalarWhereInput!]
+}
+
+input InvoiceProofUpsertWithWhereUniqueWithoutClaimProgramInput {
+  where: InvoiceProofWhereUniqueInput!
+  update: InvoiceProofUpdateWithoutClaimProgramInput!
+  create: InvoiceProofCreateWithoutClaimProgramInput!
+}
+
+input InvoiceProofUpdateWithoutClaimProgramInput {
+  amount: FloatFieldUpdateOperationsInput
+}
+
+input InvoiceProofUpdateWithWhereUniqueWithoutClaimProgramInput {
+  where: InvoiceProofWhereUniqueInput!
+  data: InvoiceProofUpdateWithoutClaimProgramInput!
+}
+
+input InvoiceProofUpdateManyWithWhereWithoutClaimProgramInput {
+  where: InvoiceProofScalarWhereInput!
+  data: InvoiceProofUpdateManyMutationInput!
+}
+
+input InvoiceProofScalarWhereInput {
+  AND: [InvoiceProofScalarWhereInput!]
+  OR: [InvoiceProofScalarWhereInput!]
+  NOT: [InvoiceProofScalarWhereInput!]
+  id: IntFilter
+  issuedDate: DateTimeFilter
+  amount: FloatFilter
+  documentProofId: StringFilter
+  claimProgramId: IntNullableFilter
+}
+
+input InvoiceProofUpdateManyMutationInput {
+  amount: FloatFieldUpdateOperationsInput
+}
+
+input ClaimProgramUpdateToOneWithWhereWithoutProgramParticipationToProgramInput {
+  where: ClaimProgramWhereInput
+  data: ClaimProgramUpdateWithoutProgramParticipationToProgramInput!
+}
+
 input ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramInput {
   where: ProgramParticipationToProgramsWhereUniqueInput!
   data: ProgramParticipationToProgramsUpdateWithoutProgramInput!
@@ -7382,34 +7342,25 @@ input ClaimProgramCreateWithoutClaimInput {
   kurisRodaOrWalkerStoreName: String
   disease: DiseaseCreateNestedOneWithoutClaimProgramInput
   clinics: ClinicCreateNestedOneWithoutClaimProgramInput
-  program: ProgramCreateNestedOneWithoutClaimProgramInput!
+  programParticipationToProgram: ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput!
   documents: DocumentCreateNestedManyWithoutClaimProgrammInput
   invoiceProofs: InvoiceProofCreateNestedManyWithoutClaimProgramInput
 }
 
-input ProgramCreateNestedOneWithoutClaimProgramInput {
-  create: ProgramCreateWithoutClaimProgramInput
-  connectOrCreate: ProgramCreateOrConnectWithoutClaimProgramInput
-  connect: ProgramWhereUniqueInput
+input ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput {
+  create: ProgramParticipationToProgramsCreateWithoutClaimProgramsInput
+  connectOrCreate: ProgramParticipationToProgramsCreateOrConnectWithoutClaimProgramsInput
+  connect: ProgramParticipationToProgramsWhereUniqueInput
 }
 
-input ProgramCreateWithoutClaimProgramInput {
-  type: ProgramType!
-  santunanHarianRawatInapPlan: SantunanHarianRawatInapPlan
-  tambahanBantuanRawatInapType: TambahanBantuanRawatInapType
-  maxAllowancePercentage: Int
-  allowanceCeiling: Float!
-  allowanceCeilingPeriod: Period
-  allowanceQuota: Int
-  allowanceQuotaPeriod: Period
-  claimPeriodMax: Int
-  reclaimPeriodMax: Int
-  programParticipations: ProgramParticipationToProgramsCreateNestedManyWithoutProgramInput
+input ProgramParticipationToProgramsCreateWithoutClaimProgramsInput {
+  description: String
+  programParticipation: ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput!
 }
 
-input ProgramCreateOrConnectWithoutClaimProgramInput {
-  where: ProgramWhereUniqueInput!
-  create: ProgramCreateWithoutClaimProgramInput!
+input ProgramParticipationToProgramsCreateOrConnectWithoutClaimProgramsInput {
+  where: ProgramParticipationToProgramsWhereUniqueInput!
+  create: ProgramParticipationToProgramsCreateWithoutClaimProgramsInput!
 }
 
 input ClaimProgramCreateOrConnectWithoutClaimInput {

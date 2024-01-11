@@ -586,13 +586,13 @@ model ProgramParticipationToPrograms {
     programParticipation ProgramParticipation @relation(fields: [programParticipationId], references: [id])
 
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
-    programParticipationId Int
+    programParticipationId Int @unique
 
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
     program Program @relation(fields: [programId], references: [id])
 
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
-    programId Int @unique
+    programId Int
 
     claimPrograms ClaimProgram?
 
@@ -976,9 +976,9 @@ model ClaimProgram {
 
     claim Claim?
 
-    program ProgramParticipationToPrograms @relation(fields: [programId], references: [programId])
+    programParticipationToProgram ProgramParticipationToPrograms @relation(fields: [programParticipationToProgramsId], references: [programParticipationId])
 
-    programId Int @unique
+    programParticipationToProgramsId Int @unique
 
     //-------------------------- m relations --------------------------------
 

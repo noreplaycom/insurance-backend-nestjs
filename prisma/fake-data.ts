@@ -468,7 +468,7 @@ export function fakeClaimProgramComplete() {
     kurisRodaOrWalkerStoreName: undefined,
     diseaseId: undefined,
     clinicId: undefined,
-    programId: faker.datatype.number(),
+    programParticipationToProgramsId: faker.datatype.number(),
   };
 }
 export function fakeInvoiceProof() {
