@@ -2320,6 +2320,9 @@ type Query {
   claimStatusTypeFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
+  subdistrictFindMany(where: SubdistrictWhereInput, orderBy: [SubdistrictOrderByWithRelationInput!], cursor: SubdistrictWhereUniqueInput, take: Int, skip: Int, distinct: [SubdistrictScalarFieldEnum!]): [Subdistrict!]
+
+  """Deskripsinya ada disini loh"""
   employmentPositionFindMany: [String!]
 
   """Deskripsinya ada disini loh"""
@@ -4436,6 +4439,25 @@ enum ClaimStatusScalarFieldEnum {
   bookKeepingOrderId
 }
 
+input SubdistrictWhereUniqueInput {
+  id: Int
+  AND: [SubdistrictWhereInput!]
+  OR: [SubdistrictWhereInput!]
+  NOT: [SubdistrictWhereInput!]
+  name: StringFilter
+  districtId: IntFilter
+  postalCode: StringFilter
+  district: DistrictRelationFilter
+  address: AddressListRelationFilter
+}
+
+enum SubdistrictScalarFieldEnum {
+  id
+  name
+  districtId
+  postalCode
+}
+
 input BranchWhereUniqueInput {
   id: Int
   AND: [BranchWhereInput!]
@@ -5288,18 +5310,6 @@ input SubdistrictCreateOrConnectWithoutAddressInput {
   create: SubdistrictCreateWithoutAddressInput!
 }
 
-input SubdistrictWhereUniqueInput {
-  id: Int
-  AND: [SubdistrictWhereInput!]
-  OR: [SubdistrictWhereInput!]
-  NOT: [SubdistrictWhereInput!]
-  name: StringFilter
-  districtId: IntFilter
-  postalCode: StringFilter
-  district: DistrictRelationFilter
-  address: AddressListRelationFilter
-}
-
 input AddressCreateOrConnectWithoutContactInfoInput {
   where: AddressWhereUniqueInput!
   create: AddressCreateWithoutContactInfoInput!
@@ -5842,7 +5852,7 @@ input ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput {
 }
 
 input ProgramParticipationToProgramsWhereUniqueInput {
-  programId: Int
+  programParticipationId: Int
   programParticipationId_programId: ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput
   AND: [ProgramParticipationToProgramsWhereInput!]
   OR: [ProgramParticipationToProgramsWhereInput!]
@@ -5854,7 +5864,7 @@ input ProgramParticipationToProgramsWhereUniqueInput {
   allowanceQuotaRemaining: IntNullableFilter
   allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
   updatedAt: DateTimeFilter
-  programParticipationId: IntFilter
+  programId: IntFilter
   programParticipation: ProgramParticipationRelationFilter
   program: ProgramRelationFilter
   claimPrograms: ClaimProgramNullableRelationFilter

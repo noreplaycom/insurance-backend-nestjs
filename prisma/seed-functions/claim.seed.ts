@@ -2,6 +2,8 @@ import {
   AdmedicaStatus,
   ClaimChannel,
   ClaimStatusType,
+  DocumentSource,
+  DocumentType,
   Gender,
   ParticipantStatus,
   Period,
@@ -465,6 +467,31 @@ RI Non BPJS Kesehatan
     waitingForId: faker.helpers.arrayElement(userCreateManyInput).id,
   }));
 
+  const claimStatusCreateManyInput: Prisma.ClaimStatusCreateManyInput[] =
+    Array.from({ length: claimCreateManyInput.length }).map((_, index) => ({
+      claimId: claimCreateManyInput[index].id,
+      changedById: faker.helpers.arrayElement(userCreateManyInput).id,
+      type: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
+    }));
+
+  const claimStatusCreateManyInput2: Prisma.ClaimStatusCreateManyInput[] =
+    Array.from({ length: records * 5 }).map((_, index) => ({
+      claimId: faker.helpers.arrayElement(claimCreateManyInput).id,
+      changedById: faker.helpers.arrayElement(userCreateManyInput).id,
+      type: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
+    }));
+
+  const documentCreateManyInput: Prisma.DocumentCreateManyInput[] = Array.from({
+    length: records * 5,
+  }).map((_, index) => ({
+    size: faker.datatype.number(3),
+    source: faker.helpers.arrayElement(Object.values(DocumentSource)),
+    type: faker.helpers.arrayElement(Object.values(DocumentType)),
+    docxPath: faker.system.filePath(),
+    pdfPath: faker.system.filePath(),
+    claimProgramId: faker.helpers.arrayElement(claimProgramCreateManyInput).id,
+  }));
+
   await prisma.role
     .createMany({
       data: roleCreateManyInput,
@@ -585,6 +612,18 @@ RI Non BPJS Kesehatan
       data: claimCreateManyInput,
     })
     .then((i) => console.log(i.count, ' Claims seeded.'));
+
+  await prisma.claimStatus
+    .createMany({
+      data: [...claimStatusCreateManyInput, ...claimStatusCreateManyInput2],
+    })
+    .then((i) => console.log(i.count, ' Claim statuses seeded.'));
+
+  await prisma.document
+    .createMany({
+      data: documentCreateManyInput,
+    })
+    .then((i) => console.log(i.count, ' Documents seeded.'));
 
   // employment: {
   //   create: {
