@@ -21,9 +21,10 @@ export enum Period {
 async function main() {
   console.log('Start seeding ...');
 
-  await claimSeed();
+  // await claimSeed();
 
-  // await claimCreateOne();
+  // await participantCreateOne();
+  await claimCreateOne();
 
   // console.log(
   //   await prisma.programParticipation.create({

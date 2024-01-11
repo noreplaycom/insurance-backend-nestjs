@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { DocumentSource, Prisma } from '@prisma/client';
 import { DocumentService } from './document.service';
 
 @Injectable()
@@ -7,6 +7,10 @@ export class DocumentController {
   constructor(private readonly documentService: DocumentService) {}
 
   async createOne(documentCreateArgs: Prisma.DocumentCreateArgs) {
+    documentCreateArgs.data.size = 2;
+    documentCreateArgs.data.source = DocumentSource.UPLOADED;
+    documentCreateArgs.data.docxPath = 'https://exmaple.com';
+    documentCreateArgs.data.pdfPath = 'https://exmaple.com';
     return await this.documentService.createOne(documentCreateArgs);
   }
 

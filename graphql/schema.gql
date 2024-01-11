@@ -2297,6 +2297,12 @@ type Query {
   userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 
   """Deskripsinya ada disini loh"""
+  clinicFindMany(where: ClinicWhereInput, orderBy: [ClinicOrderByWithRelationInput!], cursor: ClinicWhereUniqueInput, take: Int, skip: Int, distinct: [ClinicScalarFieldEnum!]): [Clinic!]
+
+  """Deskripsinya ada disini loh"""
+  diseaseFindMany(where: DiseaseWhereInput, orderBy: [DiseaseOrderByWithRelationInput!], cursor: DiseaseWhereUniqueInput, take: Int, skip: Int, distinct: [DiseaseScalarFieldEnum!]): [Disease!]
+
+  """Deskripsinya ada disini loh"""
   accountFindOne(where: AccountWhereUniqueInput!): Account
 
   """Deskripsinya ada disini loh"""
@@ -4186,6 +4192,68 @@ enum UserScalarFieldEnum {
   roleId
 }
 
+input ClinicOrderByWithRelationInput {
+  id: SortOrder
+  code: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  claimProgram: ClaimProgramOrderByRelationAggregateInput
+}
+
+input ClaimProgramOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input ClinicWhereUniqueInput {
+  id: Int
+  AND: [ClinicWhereInput!]
+  OR: [ClinicWhereInput!]
+  NOT: [ClinicWhereInput!]
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claimProgram: ClaimProgramListRelationFilter
+}
+
+enum ClinicScalarFieldEnum {
+  id
+  code
+  name
+  createdAt
+  updatedAt
+}
+
+input DiseaseOrderByWithRelationInput {
+  id: SortOrder
+  code: SortOrder
+  name: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrder
+  claimProgram: ClaimProgramOrderByRelationAggregateInput
+}
+
+input DiseaseWhereUniqueInput {
+  id: Int
+  AND: [DiseaseWhereInput!]
+  OR: [DiseaseWhereInput!]
+  NOT: [DiseaseWhereInput!]
+  code: StringFilter
+  name: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  claimProgram: ClaimProgramListRelationFilter
+}
+
+enum DiseaseScalarFieldEnum {
+  id
+  code
+  name
+  createdAt
+  updatedAt
+}
+
 input AccountWhereUniqueInput {
   id: Int
   AND: [AccountWhereInput!]
@@ -4324,28 +4392,6 @@ input ClaimProgramOrderByWithRelationInput {
   programParticipationToProgram: ProgramParticipationToProgramsOrderByWithRelationInput
   documents: DocumentOrderByRelationAggregateInput
   invoiceProofs: InvoiceProofOrderByRelationAggregateInput
-}
-
-input DiseaseOrderByWithRelationInput {
-  id: SortOrder
-  code: SortOrder
-  name: SortOrder
-  createdAt: SortOrder
-  updatedAt: SortOrder
-  claimProgram: ClaimProgramOrderByRelationAggregateInput
-}
-
-input ClaimProgramOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input ClinicOrderByWithRelationInput {
-  id: SortOrder
-  code: SortOrder
-  name: SortOrder
-  createdAt: SortOrder
-  updatedAt: SortOrder
-  claimProgram: ClaimProgramOrderByRelationAggregateInput
 }
 
 input ProgramParticipationToProgramsOrderByWithRelationInput {
@@ -4814,6 +4860,9 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   userCreateOne(data: UserCreateInput!): User
+
+  """Deskripsinya ada disini loh"""
+  documentCreateOne(data: DocumentCreateInput!): Document
 
   """Deskripsinya ada disini loh"""
   claimCreateOne(data: ClaimCreateInput!): Claim
@@ -5606,18 +5655,6 @@ input DiseaseCreateOrConnectWithoutClaimProgramInput {
   create: DiseaseCreateWithoutClaimProgramInput!
 }
 
-input DiseaseWhereUniqueInput {
-  id: Int
-  AND: [DiseaseWhereInput!]
-  OR: [DiseaseWhereInput!]
-  NOT: [DiseaseWhereInput!]
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claimProgram: ClaimProgramListRelationFilter
-}
-
 input ClinicCreateNestedOneWithoutClaimProgramInput {
   create: ClinicCreateWithoutClaimProgramInput
   connectOrCreate: ClinicCreateOrConnectWithoutClaimProgramInput
@@ -5632,18 +5669,6 @@ input ClinicCreateWithoutClaimProgramInput {
 input ClinicCreateOrConnectWithoutClaimProgramInput {
   where: ClinicWhereUniqueInput!
   create: ClinicCreateWithoutClaimProgramInput!
-}
-
-input ClinicWhereUniqueInput {
-  id: Int
-  AND: [ClinicWhereInput!]
-  OR: [ClinicWhereInput!]
-  NOT: [ClinicWhereInput!]
-  code: StringFilter
-  name: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  claimProgram: ClaimProgramListRelationFilter
 }
 
 input ClaimCreateNestedOneWithoutClaimProgramInput {
@@ -7420,6 +7445,11 @@ input UserCreateInput {
   profilePictureUrl: String
   role: RoleCreateNestedOneWithoutUsersInput
   participant: ParticipantCreateNestedOneWithoutUserInput
+}
+
+input DocumentCreateInput {
+  uploadedFileUrl: String
+  type: DocumentType!
 }
 
 input ClaimCreateInput {

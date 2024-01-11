@@ -28,46 +28,46 @@ interface DiseaseSelect {
 export class DiseaseResolver {
   constructor(private readonly diseaseController: DiseaseController) {}
 
-  @Mutation(() => Disease, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async diseaseCreateOne(
-    @Args()
-    diseaseCreateArgs: CreateOneDiseaseArgs,
-    @Relations() relations: DiseaseSelect,
-  ): Promise<Disease | void> {
-    return await this.diseaseController.createOne({
-      ...diseaseCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Disease, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async diseaseCreateOne(
+  //   @Args()
+  //   diseaseCreateArgs: CreateOneDiseaseArgs,
+  //   @Relations() relations: DiseaseSelect,
+  // ): Promise<Disease | void> {
+  //   return await this.diseaseController.createOne({
+  //     ...diseaseCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => BatchPayload, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async diseaseCreateMany(
-    @Args()
-    createManyDiseaseArgs: CreateManyDiseaseArgs,
-  ) {
-    return await this.diseaseController.createMany(createManyDiseaseArgs);
-  }
+  // @Mutation(() => BatchPayload, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async diseaseCreateMany(
+  //   @Args()
+  //   createManyDiseaseArgs: CreateManyDiseaseArgs,
+  // ) {
+  //   return await this.diseaseController.createMany(createManyDiseaseArgs);
+  // }
 
-  @Query(() => Disease, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  diseaseFindOne(
-    @Args()
-    diseaseFindUniqueArgs: FindUniqueDiseaseArgs,
-    @Relations() relations: DiseaseSelect,
-  ): Promise<Disease | void> {
-    return this.diseaseController.findOne({
-      ...diseaseFindUniqueArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => Disease, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // diseaseFindOne(
+  //   @Args()
+  //   diseaseFindUniqueArgs: FindUniqueDiseaseArgs,
+  //   @Relations() relations: DiseaseSelect,
+  // ): Promise<Disease | void> {
+  //   return this.diseaseController.findOne({
+  //     ...diseaseFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   @Query(() => [Disease], {
     nullable: true,
@@ -83,78 +83,78 @@ export class DiseaseResolver {
     });
   }
 
-  @Query(() => Disease, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  diseaseFindFirst(
-    @Args()
-    findFirstDiseaseArgs: FindFirstDiseaseArgs,
-    @Relations() relations: DiseaseSelect,
-  ): Promise<Disease | void> {
-    return this.diseaseController.findFirst({
-      ...findFirstDiseaseArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => Disease, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // diseaseFindFirst(
+  //   @Args()
+  //   findFirstDiseaseArgs: FindFirstDiseaseArgs,
+  //   @Relations() relations: DiseaseSelect,
+  // ): Promise<Disease | void> {
+  //   return this.diseaseController.findFirst({
+  //     ...findFirstDiseaseArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Disease, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async diseaseUpdateOne(
-    @Args() diseaseUpdateOneArgs: UpdateOneDiseaseArgs,
-    @Relations() relations: DiseaseSelect,
-  ) {
-    return this.diseaseController.updateOne({
-      ...replaceNullWithUndefined(diseaseUpdateOneArgs),
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Disease, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async diseaseUpdateOne(
+  //   @Args() diseaseUpdateOneArgs: UpdateOneDiseaseArgs,
+  //   @Relations() relations: DiseaseSelect,
+  // ) {
+  //   return this.diseaseController.updateOne({
+  //     ...replaceNullWithUndefined(diseaseUpdateOneArgs),
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Disease, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async diseaseUpdateMany(@Args() updateManyDiseaseArgs: UpdateManyDiseaseArgs) {
-    return this.diseaseController.updateMany(updateManyDiseaseArgs);
-  }
+  // @Mutation(() => Disease, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async diseaseUpdateMany(@Args() updateManyDiseaseArgs: UpdateManyDiseaseArgs) {
+  //   return this.diseaseController.updateMany(updateManyDiseaseArgs);
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async diseaseDelete(
-    @Args() deleteOneDiseaseArgs: DeleteOneDiseaseArgs,
-    @Relations() relations: DiseaseSelect,
-  ) {
-    return this.diseaseController.delete({
-      ...deleteOneDiseaseArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async diseaseDelete(
+  //   @Args() deleteOneDiseaseArgs: DeleteOneDiseaseArgs,
+  //   @Relations() relations: DiseaseSelect,
+  // ) {
+  //   return this.diseaseController.delete({
+  //     ...deleteOneDiseaseArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async diseaseDeleteMany(@Args() deleteManyDiseaseArgs: DeleteManyDiseaseArgs) {
-    return this.diseaseController.deleteMany(deleteManyDiseaseArgs);
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async diseaseDeleteMany(@Args() deleteManyDiseaseArgs: DeleteManyDiseaseArgs) {
+  //   return this.diseaseController.deleteMany(deleteManyDiseaseArgs);
+  // }
 
-  @Query(() => AggregateDisease, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  diseaseAggregate(@Args() diseaseAggregateArgs: DiseaseAggregateArgs) {
-    return this.diseaseController.aggregate(diseaseAggregateArgs);
-  }
+  // @Query(() => AggregateDisease, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // diseaseAggregate(@Args() diseaseAggregateArgs: DiseaseAggregateArgs) {
+  //   return this.diseaseController.aggregate(diseaseAggregateArgs);
+  // }
 
-  @Query(() => Float, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  diseaseCount(@Args() diseaseCountAggregateInput: FindManyDiseaseArgs) {
-    return this.diseaseController.count(diseaseCountAggregateInput);
-  }
+  // @Query(() => Float, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // diseaseCount(@Args() diseaseCountAggregateInput: FindManyDiseaseArgs) {
+  //   return this.diseaseController.count(diseaseCountAggregateInput);
+  // }
 }
