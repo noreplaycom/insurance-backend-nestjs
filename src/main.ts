@@ -18,12 +18,12 @@ async function bootstrap() {
   const environment = configService.get<string>('NODE_ENV');
 
   //supaya client bisa download file
-  // app.enableCors({
-  //   origin: '*', // You can specify the allowed origins here (e.g., 'http://example.com')
-  //   methods: 'GET,PUT,PATCH,POST,DELETE',
-  //   allowedHeaders:
-  //     'Origin, X-Requested-With, Content-Type, Accept, Content-Disposition', // Add Content-Disposition
-  // });
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,PUT,PATCH,POST,DELETE',
+    allowedHeaders:
+      'Origin, X-Requested-With, Content-Type, Accept, Content-Disposition',
+  });
 
   //Supaya bisa upload file
   app.use(
