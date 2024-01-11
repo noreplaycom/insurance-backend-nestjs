@@ -65,8 +65,7 @@ export declare enum ProgramParticipationToProgramsScalarFieldEnum {
     allowanceQuotaRemainingLastResetDate = "allowanceQuotaRemainingLastResetDate",
     updatedAt = "updatedAt",
     programParticipationId = "programParticipationId",
-    programId = "programId",
-    claimProgramId = "claimProgramId"
+    programId = "programId"
 }
 export declare enum ProgramParticipationScalarFieldEnum {
     id = "id",
@@ -346,7 +345,9 @@ export declare enum ClaimProgramScalarFieldEnum {
     endTreatment = "endTreatment",
     kurisRodaOrWalkerStoreName = "kurisRodaOrWalkerStoreName",
     diseaseId = "diseaseId",
-    clinicId = "clinicId"
+    clinicId = "clinicId",
+    programParticipationToProgramsProgramParticipationId = "programParticipationToProgramsProgramParticipationId",
+    programParticipationToProgramsProgramId = "programParticipationToProgramsProgramId"
 }
 export declare enum ClaimFinancialScalarFieldEnum {
     id = "id",
@@ -5333,16 +5334,22 @@ export declare class ClaimProgramAvgAggregateInput {
     id?: true;
     diseaseId?: true;
     clinicId?: true;
+    programParticipationToProgramsProgramParticipationId?: true;
+    programParticipationToProgramsProgramId?: true;
 }
 export declare class ClaimProgramAvgAggregate {
     id?: number;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId?: number;
+    programParticipationToProgramsProgramId?: number;
 }
 export declare class ClaimProgramAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramParticipationId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramId?: keyof typeof SortOrder;
 }
 export declare class ClaimProgramCountAggregateInput {
     id?: true;
@@ -5357,6 +5364,8 @@ export declare class ClaimProgramCountAggregateInput {
     kurisRodaOrWalkerStoreName?: true;
     diseaseId?: true;
     clinicId?: true;
+    programParticipationToProgramsProgramParticipationId?: true;
+    programParticipationToProgramsProgramId?: true;
     _all?: true;
 }
 export declare class ClaimProgramCountAggregate {
@@ -5372,6 +5381,8 @@ export declare class ClaimProgramCountAggregate {
     kurisRodaOrWalkerStoreName: number;
     diseaseId: number;
     clinicId: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     _all: number;
 }
 export declare class ClaimProgramCountOrderByAggregateInput {
@@ -5387,6 +5398,8 @@ export declare class ClaimProgramCountOrderByAggregateInput {
     kurisRodaOrWalkerStoreName?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramParticipationId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramId?: keyof typeof SortOrder;
 }
 export declare class ClaimProgramCount {
     documents?: number;
@@ -5408,6 +5421,8 @@ export declare class ClaimProgramCreateManyClinicsInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
 }
 export declare class ClaimProgramCreateManyDiseaseInputEnvelope {
     data: Array<ClaimProgramCreateManyDiseaseInput>;
@@ -5425,6 +5440,26 @@ export declare class ClaimProgramCreateManyDiseaseInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerStoreName?: string;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
+}
+export declare class ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope {
+    data: Array<ClaimProgramCreateManyProgramParticipationToProgramInput>;
+    skipDuplicates?: boolean;
+}
+export declare class ClaimProgramCreateManyProgramParticipationToProgramInput {
+    id?: number;
+    expeditionDate?: Date | string;
+    isReclaim?: boolean;
+    isReclaimNoticeLetterDate?: Date | string;
+    submissionNote?: string;
+    description?: string;
+    additionalNote?: string;
+    startTreatment?: Date | string;
+    endTreatment?: Date | string;
+    kurisRodaOrWalkerStoreName?: string;
+    diseaseId?: number;
+    clinicId?: number;
 }
 export declare class ClaimProgramCreateManyInput {
     id?: number;
@@ -5439,6 +5474,8 @@ export declare class ClaimProgramCreateManyInput {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
 }
 export declare class ClaimProgramCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimProgramCreateWithoutClinicsInput>;
@@ -5450,6 +5487,12 @@ export declare class ClaimProgramCreateNestedManyWithoutDiseaseInput {
     create?: Array<ClaimProgramCreateWithoutDiseaseInput>;
     connectOrCreate?: Array<ClaimProgramCreateOrConnectWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimProgramCreateManyDiseaseInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+}
+export declare class ClaimProgramCreateNestedManyWithoutProgramParticipationToProgramInput {
+    create?: Array<ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
+    connectOrCreate?: Array<ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput>;
+    createMany?: InstanceType<typeof ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope>;
     connect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
 }
 export declare class ClaimProgramCreateNestedOneWithoutClaimInput {
@@ -5465,11 +5508,6 @@ export declare class ClaimProgramCreateNestedOneWithoutDocumentsInput {
 export declare class ClaimProgramCreateNestedOneWithoutInvoiceProofsInput {
     create?: InstanceType<typeof ClaimProgramCreateWithoutInvoiceProofsInput>;
     connectOrCreate?: InstanceType<typeof ClaimProgramCreateOrConnectWithoutInvoiceProofsInput>;
-    connect?: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
-}
-export declare class ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput {
-    create?: InstanceType<typeof ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
-    connectOrCreate?: InstanceType<typeof ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput>;
     connect?: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
 }
 export declare class ClaimProgramCreateOrConnectWithoutClaimInput {
@@ -5508,7 +5546,7 @@ export declare class ClaimProgramCreateWithoutClaimInput {
     kurisRodaOrWalkerStoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
+    programParticipationToProgram: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5524,7 +5562,7 @@ export declare class ClaimProgramCreateWithoutClinicsInput {
     kurisRodaOrWalkerStoreName?: string;
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
+    programParticipationToProgram: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5540,7 +5578,7 @@ export declare class ClaimProgramCreateWithoutDiseaseInput {
     kurisRodaOrWalkerStoreName?: string;
     clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
+    programParticipationToProgram: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5557,7 +5595,7 @@ export declare class ClaimProgramCreateWithoutDocumentsInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
+    programParticipationToProgram: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
 }
 export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
@@ -5573,7 +5611,7 @@ export declare class ClaimProgramCreateWithoutInvoiceProofsInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
+    programParticipationToProgram: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
 }
 export declare class ClaimProgramCreateWithoutProgramParticipationToProgramInput {
@@ -5605,7 +5643,7 @@ export declare class ClaimProgramCreateInput {
     disease?: InstanceType<typeof DiseaseCreateNestedOneWithoutClaimProgramInput>;
     clinics?: InstanceType<typeof ClinicCreateNestedOneWithoutClaimProgramInput>;
     claim?: InstanceType<typeof ClaimCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
+    programParticipationToProgram: InstanceType<typeof ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5635,6 +5673,8 @@ export declare class ClaimProgramGroupBy {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     _count?: InstanceType<typeof ClaimProgramCountAggregate>;
     _avg?: InstanceType<typeof ClaimProgramAvgAggregate>;
     _sum?: InstanceType<typeof ClaimProgramSumAggregate>;
@@ -5659,6 +5699,8 @@ export declare class ClaimProgramMaxAggregateInput {
     kurisRodaOrWalkerStoreName?: true;
     diseaseId?: true;
     clinicId?: true;
+    programParticipationToProgramsProgramParticipationId?: true;
+    programParticipationToProgramsProgramId?: true;
 }
 export declare class ClaimProgramMaxAggregate {
     id?: number;
@@ -5673,6 +5715,8 @@ export declare class ClaimProgramMaxAggregate {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId?: number;
+    programParticipationToProgramsProgramId?: number;
 }
 export declare class ClaimProgramMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -5687,6 +5731,8 @@ export declare class ClaimProgramMaxOrderByAggregateInput {
     kurisRodaOrWalkerStoreName?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramParticipationId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramId?: keyof typeof SortOrder;
 }
 export declare class ClaimProgramMinAggregateInput {
     id?: true;
@@ -5701,6 +5747,8 @@ export declare class ClaimProgramMinAggregateInput {
     kurisRodaOrWalkerStoreName?: true;
     diseaseId?: true;
     clinicId?: true;
+    programParticipationToProgramsProgramParticipationId?: true;
+    programParticipationToProgramsProgramId?: true;
 }
 export declare class ClaimProgramMinAggregate {
     id?: number;
@@ -5715,6 +5763,8 @@ export declare class ClaimProgramMinAggregate {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId?: number;
+    programParticipationToProgramsProgramId?: number;
 }
 export declare class ClaimProgramMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -5729,6 +5779,8 @@ export declare class ClaimProgramMinOrderByAggregateInput {
     kurisRodaOrWalkerStoreName?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramParticipationId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramId?: keyof typeof SortOrder;
 }
 export declare class ClaimProgramNullableRelationFilter {
     is?: InstanceType<typeof ClaimProgramWhereInput>;
@@ -5750,6 +5802,8 @@ export declare class ClaimProgramOrderByWithAggregationInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof SortOrderInput>;
     diseaseId?: InstanceType<typeof SortOrderInput>;
     clinicId?: InstanceType<typeof SortOrderInput>;
+    programParticipationToProgramsProgramParticipationId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof ClaimProgramCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ClaimProgramAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ClaimProgramMaxOrderByAggregateInput>;
@@ -5769,6 +5823,8 @@ export declare class ClaimProgramOrderByWithRelationInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof SortOrderInput>;
     diseaseId?: InstanceType<typeof SortOrderInput>;
     clinicId?: InstanceType<typeof SortOrderInput>;
+    programParticipationToProgramsProgramParticipationId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramId?: keyof typeof SortOrder;
     disease?: InstanceType<typeof DiseaseOrderByWithRelationInput>;
     clinics?: InstanceType<typeof ClinicOrderByWithRelationInput>;
     claim?: InstanceType<typeof ClaimOrderByWithRelationInput>;
@@ -5796,6 +5852,8 @@ export declare class ClaimProgramScalarWhereWithAggregatesInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     diseaseId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     clinicId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntWithAggregatesFilter>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntWithAggregatesFilter>;
 }
 export declare class ClaimProgramScalarWhereInput {
     AND?: Array<ClaimProgramScalarWhereInput>;
@@ -5813,21 +5871,29 @@ export declare class ClaimProgramScalarWhereInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntNullableFilter>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFilter>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFilter>;
 }
 export declare class ClaimProgramSumAggregateInput {
     id?: true;
     diseaseId?: true;
     clinicId?: true;
+    programParticipationToProgramsProgramParticipationId?: true;
+    programParticipationToProgramsProgramId?: true;
 }
 export declare class ClaimProgramSumAggregate {
     id?: number;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId?: number;
+    programParticipationToProgramsProgramId?: number;
 }
 export declare class ClaimProgramSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     diseaseId?: keyof typeof SortOrder;
     clinicId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramParticipationId?: keyof typeof SortOrder;
+    programParticipationToProgramsProgramId?: keyof typeof SortOrder;
 }
 export declare class ClaimProgramUncheckedCreateNestedManyWithoutClinicsInput {
     create?: Array<ClaimProgramCreateWithoutClinicsInput>;
@@ -5839,6 +5905,12 @@ export declare class ClaimProgramUncheckedCreateNestedManyWithoutDiseaseInput {
     create?: Array<ClaimProgramCreateWithoutDiseaseInput>;
     connectOrCreate?: Array<ClaimProgramCreateOrConnectWithoutDiseaseInput>;
     createMany?: InstanceType<typeof ClaimProgramCreateManyDiseaseInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+}
+export declare class ClaimProgramUncheckedCreateNestedManyWithoutProgramParticipationToProgramInput {
+    create?: Array<ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
+    connectOrCreate?: Array<ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput>;
+    createMany?: InstanceType<typeof ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope>;
     connect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
 }
 export declare class ClaimProgramUncheckedCreateWithoutClaimInput {
@@ -5854,7 +5926,8 @@ export declare class ClaimProgramUncheckedCreateWithoutClaimInput {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedCreateNestedOneWithoutClaimProgramsInput>;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5870,8 +5943,9 @@ export declare class ClaimProgramUncheckedCreateWithoutClinicsInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5887,8 +5961,9 @@ export declare class ClaimProgramUncheckedCreateWithoutDiseaseInput {
     endTreatment?: Date | string;
     kurisRodaOrWalkerStoreName?: string;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5905,8 +5980,9 @@ export declare class ClaimProgramUncheckedCreateWithoutDocumentsInput {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedCreateNestedOneWithoutClaimProgramsInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
 }
 export declare class ClaimProgramUncheckedCreateWithoutInvoiceProofsInput {
@@ -5922,8 +5998,9 @@ export declare class ClaimProgramUncheckedCreateWithoutInvoiceProofsInput {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
 }
 export declare class ClaimProgramUncheckedCreateWithoutProgramParticipationToProgramInput {
@@ -5956,8 +6033,9 @@ export declare class ClaimProgramUncheckedCreateInput {
     kurisRodaOrWalkerStoreName?: string;
     diseaseId?: number;
     clinicId?: number;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     claim?: InstanceType<typeof ClaimUncheckedCreateNestedOneWithoutClaimProgramInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedCreateNestedOneWithoutClaimProgramsInput>;
     documents?: InstanceType<typeof DocumentUncheckedCreateNestedManyWithoutClaimProgrammInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedCreateNestedManyWithoutClaimProgramInput>;
 }
@@ -5986,6 +6064,8 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutClinicsInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimProgramUncheckedUpdateManyWithoutDiseaseNestedInput {
     create?: Array<ClaimProgramCreateWithoutDiseaseInput>;
@@ -6012,6 +6092,35 @@ export declare class ClaimProgramUncheckedUpdateManyWithoutDiseaseInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+}
+export declare class ClaimProgramUncheckedUpdateManyWithoutProgramParticipationToProgramNestedInput {
+    create?: Array<ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
+    connectOrCreate?: Array<ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput>;
+    upsert?: Array<ClaimProgramUpsertWithWhereUniqueWithoutProgramParticipationToProgramInput>;
+    createMany?: InstanceType<typeof ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope>;
+    set?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    update?: Array<ClaimProgramUpdateWithWhereUniqueWithoutProgramParticipationToProgramInput>;
+    updateMany?: Array<ClaimProgramUpdateManyWithWhereWithoutProgramParticipationToProgramInput>;
+    deleteMany?: Array<ClaimProgramScalarWhereInput>;
+}
+export declare class ClaimProgramUncheckedUpdateManyWithoutProgramParticipationToProgramInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    isReclaim?: InstanceType<typeof NullableBoolFieldUpdateOperationsInput>;
+    isReclaimNoticeLetterDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    submissionNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    additionalNote?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    startTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ClaimProgramUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6026,6 +6135,8 @@ export declare class ClaimProgramUncheckedUpdateManyInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
@@ -6040,7 +6151,8 @@ export declare class ClaimProgramUncheckedUpdateWithoutClaimInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedUpdateOneWithoutClaimProgramsNestedInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6056,8 +6168,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutClinicsInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedUpdateOneWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6073,8 +6186,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutDiseaseInput {
     endTreatment?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedUpdateOneWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6091,8 +6205,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutDocumentsInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedUpdateOneWithoutClaimProgramsNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
 }
 export declare class ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput {
@@ -6108,8 +6223,9 @@ export declare class ClaimProgramUncheckedUpdateWithoutInvoiceProofsInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedUpdateOneWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
 }
 export declare class ClaimProgramUncheckedUpdateWithoutProgramParticipationToProgramInput {
@@ -6142,8 +6258,9 @@ export declare class ClaimProgramUncheckedUpdateInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     diseaseId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     clinicId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     claim?: InstanceType<typeof ClaimUncheckedUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUncheckedUpdateOneWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUncheckedUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUncheckedUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6163,6 +6280,10 @@ export declare class ClaimProgramUpdateManyWithWhereWithoutClinicsInput {
     data: InstanceType<typeof ClaimProgramUpdateManyMutationInput>;
 }
 export declare class ClaimProgramUpdateManyWithWhereWithoutDiseaseInput {
+    where: InstanceType<typeof ClaimProgramScalarWhereInput>;
+    data: InstanceType<typeof ClaimProgramUpdateManyMutationInput>;
+}
+export declare class ClaimProgramUpdateManyWithWhereWithoutProgramParticipationToProgramInput {
     where: InstanceType<typeof ClaimProgramScalarWhereInput>;
     data: InstanceType<typeof ClaimProgramUpdateManyMutationInput>;
 }
@@ -6192,6 +6313,19 @@ export declare class ClaimProgramUpdateManyWithoutDiseaseNestedInput {
     updateMany?: Array<ClaimProgramUpdateManyWithWhereWithoutDiseaseInput>;
     deleteMany?: Array<ClaimProgramScalarWhereInput>;
 }
+export declare class ClaimProgramUpdateManyWithoutProgramParticipationToProgramNestedInput {
+    create?: Array<ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
+    connectOrCreate?: Array<ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput>;
+    upsert?: Array<ClaimProgramUpsertWithWhereUniqueWithoutProgramParticipationToProgramInput>;
+    createMany?: InstanceType<typeof ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope>;
+    set?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>>;
+    update?: Array<ClaimProgramUpdateWithWhereUniqueWithoutProgramParticipationToProgramInput>;
+    updateMany?: Array<ClaimProgramUpdateManyWithWhereWithoutProgramParticipationToProgramInput>;
+    deleteMany?: Array<ClaimProgramScalarWhereInput>;
+}
 export declare class ClaimProgramUpdateOneRequiredWithoutClaimNestedInput {
     create?: InstanceType<typeof ClaimProgramCreateWithoutClaimInput>;
     connectOrCreate?: InstanceType<typeof ClaimProgramCreateOrConnectWithoutClaimInput>;
@@ -6217,15 +6351,6 @@ export declare class ClaimProgramUpdateOneWithoutInvoiceProofsNestedInput {
     connect?: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof ClaimProgramUpdateToOneWithWhereWithoutInvoiceProofsInput>;
 }
-export declare class ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput {
-    create?: InstanceType<typeof ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
-    connectOrCreate?: InstanceType<typeof ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput>;
-    upsert?: InstanceType<typeof ClaimProgramUpsertWithoutProgramParticipationToProgramInput>;
-    disconnect?: InstanceType<typeof ClaimProgramWhereInput>;
-    delete?: InstanceType<typeof ClaimProgramWhereInput>;
-    connect?: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof ClaimProgramUpdateToOneWithWhereWithoutProgramParticipationToProgramInput>;
-}
 export declare class ClaimProgramUpdateToOneWithWhereWithoutClaimInput {
     where?: InstanceType<typeof ClaimProgramWhereInput>;
     data: InstanceType<typeof ClaimProgramUpdateWithoutClaimInput>;
@@ -6238,10 +6363,6 @@ export declare class ClaimProgramUpdateToOneWithWhereWithoutInvoiceProofsInput {
     where?: InstanceType<typeof ClaimProgramWhereInput>;
     data: InstanceType<typeof ClaimProgramUpdateWithoutInvoiceProofsInput>;
 }
-export declare class ClaimProgramUpdateToOneWithWhereWithoutProgramParticipationToProgramInput {
-    where?: InstanceType<typeof ClaimProgramWhereInput>;
-    data: InstanceType<typeof ClaimProgramUpdateWithoutProgramParticipationToProgramInput>;
-}
 export declare class ClaimProgramUpdateWithWhereUniqueWithoutClinicsInput {
     where: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
     data: InstanceType<typeof ClaimProgramUpdateWithoutClinicsInput>;
@@ -6249,6 +6370,10 @@ export declare class ClaimProgramUpdateWithWhereUniqueWithoutClinicsInput {
 export declare class ClaimProgramUpdateWithWhereUniqueWithoutDiseaseInput {
     where: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
     data: InstanceType<typeof ClaimProgramUpdateWithoutDiseaseInput>;
+}
+export declare class ClaimProgramUpdateWithWhereUniqueWithoutProgramParticipationToProgramInput {
+    where: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
+    data: InstanceType<typeof ClaimProgramUpdateWithoutProgramParticipationToProgramInput>;
 }
 export declare class ClaimProgramUpdateWithoutClaimInput {
     expeditionDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -6262,7 +6387,7 @@ export declare class ClaimProgramUpdateWithoutClaimInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneWithoutClaimProgramsNestedInput>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneRequiredWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6278,7 +6403,7 @@ export declare class ClaimProgramUpdateWithoutClinicsInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneWithoutClaimProgramsNestedInput>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneRequiredWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6294,7 +6419,7 @@ export declare class ClaimProgramUpdateWithoutDiseaseInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneWithoutClaimProgramsNestedInput>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneRequiredWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6311,7 +6436,7 @@ export declare class ClaimProgramUpdateWithoutDocumentsInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneWithoutClaimProgramsNestedInput>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneRequiredWithoutClaimProgramsNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
 }
 export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
@@ -6327,7 +6452,7 @@ export declare class ClaimProgramUpdateWithoutInvoiceProofsInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneWithoutClaimProgramsNestedInput>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneRequiredWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
 }
 export declare class ClaimProgramUpdateWithoutProgramParticipationToProgramInput {
@@ -6359,7 +6484,7 @@ export declare class ClaimProgramUpdateInput {
     disease?: InstanceType<typeof DiseaseUpdateOneWithoutClaimProgramNestedInput>;
     clinics?: InstanceType<typeof ClinicUpdateOneWithoutClaimProgramNestedInput>;
     claim?: InstanceType<typeof ClaimUpdateOneWithoutClaimProgramNestedInput>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneWithoutClaimProgramsNestedInput>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsUpdateOneRequiredWithoutClaimProgramsNestedInput>;
     documents?: InstanceType<typeof DocumentUpdateManyWithoutClaimProgrammNestedInput>;
     invoiceProofs?: InstanceType<typeof InvoiceProofUpdateManyWithoutClaimProgramNestedInput>;
 }
@@ -6372,6 +6497,11 @@ export declare class ClaimProgramUpsertWithWhereUniqueWithoutDiseaseInput {
     where: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
     update: InstanceType<typeof ClaimProgramUpdateWithoutDiseaseInput>;
     create: InstanceType<typeof ClaimProgramCreateWithoutDiseaseInput>;
+}
+export declare class ClaimProgramUpsertWithWhereUniqueWithoutProgramParticipationToProgramInput {
+    where: Prisma.AtLeast<ClaimProgramWhereUniqueInput, 'id'>;
+    update: InstanceType<typeof ClaimProgramUpdateWithoutProgramParticipationToProgramInput>;
+    create: InstanceType<typeof ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
 }
 export declare class ClaimProgramUpsertWithoutClaimInput {
     update: InstanceType<typeof ClaimProgramUpdateWithoutClaimInput>;
@@ -6386,11 +6516,6 @@ export declare class ClaimProgramUpsertWithoutDocumentsInput {
 export declare class ClaimProgramUpsertWithoutInvoiceProofsInput {
     update: InstanceType<typeof ClaimProgramUpdateWithoutInvoiceProofsInput>;
     create: InstanceType<typeof ClaimProgramCreateWithoutInvoiceProofsInput>;
-    where?: InstanceType<typeof ClaimProgramWhereInput>;
-}
-export declare class ClaimProgramUpsertWithoutProgramParticipationToProgramInput {
-    update: InstanceType<typeof ClaimProgramUpdateWithoutProgramParticipationToProgramInput>;
-    create: InstanceType<typeof ClaimProgramCreateWithoutProgramParticipationToProgramInput>;
     where?: InstanceType<typeof ClaimProgramWhereInput>;
 }
 export declare class ClaimProgramWhereUniqueInput {
@@ -6409,10 +6534,12 @@ export declare class ClaimProgramWhereUniqueInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntNullableFilter>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFilter>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFilter>;
     disease?: InstanceType<typeof DiseaseNullableRelationFilter>;
     clinics?: InstanceType<typeof ClinicNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsNullableRelationFilter>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsRelationFilter>;
     documents?: InstanceType<typeof DocumentListRelationFilter>;
     invoiceProofs?: InstanceType<typeof InvoiceProofListRelationFilter>;
 }
@@ -6432,10 +6559,12 @@ export declare class ClaimProgramWhereInput {
     kurisRodaOrWalkerStoreName?: InstanceType<typeof StringNullableFilter>;
     diseaseId?: InstanceType<typeof IntNullableFilter>;
     clinicId?: InstanceType<typeof IntNullableFilter>;
+    programParticipationToProgramsProgramParticipationId?: InstanceType<typeof IntFilter>;
+    programParticipationToProgramsProgramId?: InstanceType<typeof IntFilter>;
     disease?: InstanceType<typeof DiseaseNullableRelationFilter>;
     clinics?: InstanceType<typeof ClinicNullableRelationFilter>;
     claim?: InstanceType<typeof ClaimNullableRelationFilter>;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsNullableRelationFilter>;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToProgramsRelationFilter>;
     documents?: InstanceType<typeof DocumentListRelationFilter>;
     invoiceProofs?: InstanceType<typeof InvoiceProofListRelationFilter>;
 }
@@ -6452,10 +6581,12 @@ export declare class ClaimProgram {
     kurisRodaOrWalkerStoreName: string | null;
     diseaseId: number | null;
     clinicId: number | null;
+    programParticipationToProgramsProgramParticipationId: number;
+    programParticipationToProgramsProgramId: number;
     disease?: InstanceType<typeof Disease> | null;
     clinics?: InstanceType<typeof Clinic> | null;
     claim?: InstanceType<typeof Claim> | null;
-    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToPrograms> | null;
+    programParticipationToProgram?: InstanceType<typeof ProgramParticipationToPrograms>;
     documents?: Array<Document>;
     invoiceProofs?: Array<InvoiceProof>;
     _count?: InstanceType<typeof ClaimProgramCount>;
@@ -6465,7 +6596,7 @@ export declare class CreateManyClaimProgramArgs {
     skipDuplicates?: boolean;
 }
 export declare class CreateOneClaimProgramArgs {
-    data?: InstanceType<typeof ClaimProgramCreateInput>;
+    data: InstanceType<typeof ClaimProgramCreateInput>;
 }
 export declare class DeleteManyClaimProgramArgs {
     where?: InstanceType<typeof ClaimProgramWhereInput>;
@@ -16753,12 +16884,12 @@ export declare class DeleteManyProgramParticipationToProgramsArgs {
     where?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
 }
 export declare class DeleteOneProgramParticipationToProgramsArgs {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
 }
 export declare class FindFirstProgramParticipationToProgramsOrThrowArgs {
     where?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
     orderBy?: Array<ProgramParticipationToProgramsOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ProgramParticipationToProgramsScalarFieldEnum>;
@@ -16766,7 +16897,7 @@ export declare class FindFirstProgramParticipationToProgramsOrThrowArgs {
 export declare class FindFirstProgramParticipationToProgramsArgs {
     where?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
     orderBy?: Array<ProgramParticipationToProgramsOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ProgramParticipationToProgramsScalarFieldEnum>;
@@ -16774,21 +16905,21 @@ export declare class FindFirstProgramParticipationToProgramsArgs {
 export declare class FindManyProgramParticipationToProgramsArgs {
     where?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
     orderBy?: Array<ProgramParticipationToProgramsOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof ProgramParticipationToProgramsScalarFieldEnum>;
 }
 export declare class FindUniqueProgramParticipationToProgramsOrThrowArgs {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
 }
 export declare class FindUniqueProgramParticipationToProgramsArgs {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
 }
 export declare class ProgramParticipationToProgramsAggregateArgs {
     where?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
     orderBy?: Array<ProgramParticipationToProgramsOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    cursor?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof ProgramParticipationToProgramsCountAggregateInput>;
@@ -16802,21 +16933,18 @@ export declare class ProgramParticipationToProgramsAvgAggregateInput {
     allowanceQuotaRemaining?: true;
     programParticipationId?: true;
     programId?: true;
-    claimProgramId?: true;
 }
 export declare class ProgramParticipationToProgramsAvgAggregate {
     allowanceCeilingRemaining?: number;
     allowanceQuotaRemaining?: number;
     programParticipationId?: number;
     programId?: number;
-    claimProgramId?: number;
 }
 export declare class ProgramParticipationToProgramsAvgOrderByAggregateInput {
     allowanceCeilingRemaining?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
-    claimProgramId?: keyof typeof SortOrder;
 }
 export declare class ProgramParticipationToProgramsCountAggregateInput {
     description?: true;
@@ -16828,7 +16956,6 @@ export declare class ProgramParticipationToProgramsCountAggregateInput {
     updatedAt?: true;
     programParticipationId?: true;
     programId?: true;
-    claimProgramId?: true;
     _all?: true;
 }
 export declare class ProgramParticipationToProgramsCountAggregate {
@@ -16841,7 +16968,6 @@ export declare class ProgramParticipationToProgramsCountAggregate {
     updatedAt: number;
     programParticipationId: number;
     programId: number;
-    claimProgramId: number;
     _all: number;
 }
 export declare class ProgramParticipationToProgramsCountOrderByAggregateInput {
@@ -16854,7 +16980,9 @@ export declare class ProgramParticipationToProgramsCountOrderByAggregateInput {
     updatedAt?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
-    claimProgramId?: keyof typeof SortOrder;
+}
+export declare class ProgramParticipationToProgramsCount {
+    claimPrograms?: number;
 }
 export declare class ProgramParticipationToProgramsCreateManyProgramInputEnvelope {
     data: Array<ProgramParticipationToProgramsCreateManyProgramInput>;
@@ -16873,7 +17001,6 @@ export declare class ProgramParticipationToProgramsCreateManyProgramParticipatio
     allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
     programId: number;
-    claimProgramId?: number;
 }
 export declare class ProgramParticipationToProgramsCreateManyProgramInput {
     description?: string;
@@ -16884,7 +17011,6 @@ export declare class ProgramParticipationToProgramsCreateManyProgramInput {
     allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
     programParticipationId: number;
-    claimProgramId?: number;
 }
 export declare class ProgramParticipationToProgramsCreateManyInput {
     description?: string;
@@ -16896,35 +17022,34 @@ export declare class ProgramParticipationToProgramsCreateManyInput {
     updatedAt?: Date | string;
     programParticipationId: number;
     programId: number;
-    claimProgramId?: number;
 }
 export declare class ProgramParticipationToProgramsCreateNestedManyWithoutProgramParticipationInput {
     create?: Array<ProgramParticipationToProgramsCreateWithoutProgramParticipationInput>;
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramParticipationInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramParticipationInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
 }
 export declare class ProgramParticipationToProgramsCreateNestedManyWithoutProgramInput {
     create?: Array<ProgramParticipationToProgramsCreateWithoutProgramInput>;
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
 }
 export declare class ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput {
     create?: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutClaimProgramsInput>;
     connectOrCreate?: InstanceType<typeof ProgramParticipationToProgramsCreateOrConnectWithoutClaimProgramsInput>;
-    connect?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    connect?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
 }
 export declare class ProgramParticipationToProgramsCreateOrConnectWithoutClaimProgramsInput {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     create: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutClaimProgramsInput>;
 }
 export declare class ProgramParticipationToProgramsCreateOrConnectWithoutProgramParticipationInput {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     create: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutProgramParticipationInput>;
 }
 export declare class ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     create: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutProgramInput>;
 }
 export declare class ProgramParticipationToProgramsCreateWithoutClaimProgramsInput {
@@ -16947,7 +17072,7 @@ export declare class ProgramParticipationToProgramsCreateWithoutProgramParticipa
     allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutProgramParticipationsInput>;
-    claimPrograms?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramCreateNestedManyWithoutProgramParticipationToProgramInput>;
 }
 export declare class ProgramParticipationToProgramsCreateWithoutProgramInput {
     description?: string;
@@ -16958,7 +17083,7 @@ export declare class ProgramParticipationToProgramsCreateWithoutProgramInput {
     allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
     programParticipation: InstanceType<typeof ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput>;
-    claimPrograms?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramCreateNestedManyWithoutProgramParticipationToProgramInput>;
 }
 export declare class ProgramParticipationToProgramsCreateInput {
     description?: string;
@@ -16970,7 +17095,7 @@ export declare class ProgramParticipationToProgramsCreateInput {
     updatedAt?: Date | string;
     programParticipation: InstanceType<typeof ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput>;
     program: InstanceType<typeof ProgramCreateNestedOneWithoutProgramParticipationsInput>;
-    claimPrograms?: InstanceType<typeof ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramCreateNestedManyWithoutProgramParticipationToProgramInput>;
 }
 export declare class ProgramParticipationToProgramsGroupByArgs {
     where?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
@@ -16995,7 +17120,6 @@ export declare class ProgramParticipationToProgramsGroupBy {
     updatedAt: Date | string;
     programParticipationId: number;
     programId: number;
-    claimProgramId?: number;
     _count?: InstanceType<typeof ProgramParticipationToProgramsCountAggregate>;
     _avg?: InstanceType<typeof ProgramParticipationToProgramsAvgAggregate>;
     _sum?: InstanceType<typeof ProgramParticipationToProgramsSumAggregate>;
@@ -17017,7 +17141,6 @@ export declare class ProgramParticipationToProgramsMaxAggregateInput {
     updatedAt?: true;
     programParticipationId?: true;
     programId?: true;
-    claimProgramId?: true;
 }
 export declare class ProgramParticipationToProgramsMaxAggregate {
     description?: string;
@@ -17029,7 +17152,6 @@ export declare class ProgramParticipationToProgramsMaxAggregate {
     updatedAt?: Date | string;
     programParticipationId?: number;
     programId?: number;
-    claimProgramId?: number;
 }
 export declare class ProgramParticipationToProgramsMaxOrderByAggregateInput {
     description?: keyof typeof SortOrder;
@@ -17041,7 +17163,6 @@ export declare class ProgramParticipationToProgramsMaxOrderByAggregateInput {
     updatedAt?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
-    claimProgramId?: keyof typeof SortOrder;
 }
 export declare class ProgramParticipationToProgramsMinAggregateInput {
     description?: true;
@@ -17053,7 +17174,6 @@ export declare class ProgramParticipationToProgramsMinAggregateInput {
     updatedAt?: true;
     programParticipationId?: true;
     programId?: true;
-    claimProgramId?: true;
 }
 export declare class ProgramParticipationToProgramsMinAggregate {
     description?: string;
@@ -17065,7 +17185,6 @@ export declare class ProgramParticipationToProgramsMinAggregate {
     updatedAt?: Date | string;
     programParticipationId?: number;
     programId?: number;
-    claimProgramId?: number;
 }
 export declare class ProgramParticipationToProgramsMinOrderByAggregateInput {
     description?: keyof typeof SortOrder;
@@ -17077,11 +17196,6 @@ export declare class ProgramParticipationToProgramsMinOrderByAggregateInput {
     updatedAt?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
-    claimProgramId?: keyof typeof SortOrder;
-}
-export declare class ProgramParticipationToProgramsNullableRelationFilter {
-    is?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
-    isNot?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
 }
 export declare class ProgramParticipationToProgramsOrderByRelationAggregateInput {
     _count?: keyof typeof SortOrder;
@@ -17096,7 +17210,6 @@ export declare class ProgramParticipationToProgramsOrderByWithAggregationInput {
     updatedAt?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
-    claimProgramId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof ProgramParticipationToProgramsCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof ProgramParticipationToProgramsAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof ProgramParticipationToProgramsMaxOrderByAggregateInput>;
@@ -17113,14 +17226,17 @@ export declare class ProgramParticipationToProgramsOrderByWithRelationInput {
     updatedAt?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
-    claimProgramId?: InstanceType<typeof SortOrderInput>;
     programParticipation?: InstanceType<typeof ProgramParticipationOrderByWithRelationInput>;
     program?: InstanceType<typeof ProgramOrderByWithRelationInput>;
-    claimPrograms?: InstanceType<typeof ClaimProgramOrderByWithRelationInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramOrderByRelationAggregateInput>;
 }
 export declare class ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput {
     programParticipationId: number;
     programId: number;
+}
+export declare class ProgramParticipationToProgramsRelationFilter {
+    is?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
+    isNot?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
 }
 export declare class ProgramParticipationToProgramsScalarWhereWithAggregatesInput {
     AND?: Array<ProgramParticipationToProgramsScalarWhereWithAggregatesInput>;
@@ -17135,7 +17251,6 @@ export declare class ProgramParticipationToProgramsScalarWhereWithAggregatesInpu
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     programParticipationId?: InstanceType<typeof IntWithAggregatesFilter>;
     programId?: InstanceType<typeof IntWithAggregatesFilter>;
-    claimProgramId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
 }
 export declare class ProgramParticipationToProgramsScalarWhereInput {
     AND?: Array<ProgramParticipationToProgramsScalarWhereInput>;
@@ -17150,45 +17265,36 @@ export declare class ProgramParticipationToProgramsScalarWhereInput {
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     programParticipationId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
-    claimProgramId?: InstanceType<typeof IntNullableFilter>;
 }
 export declare class ProgramParticipationToProgramsSumAggregateInput {
     allowanceCeilingRemaining?: true;
     allowanceQuotaRemaining?: true;
     programParticipationId?: true;
     programId?: true;
-    claimProgramId?: true;
 }
 export declare class ProgramParticipationToProgramsSumAggregate {
     allowanceCeilingRemaining?: number;
     allowanceQuotaRemaining?: number;
     programParticipationId?: number;
     programId?: number;
-    claimProgramId?: number;
 }
 export declare class ProgramParticipationToProgramsSumOrderByAggregateInput {
     allowanceCeilingRemaining?: keyof typeof SortOrder;
     allowanceQuotaRemaining?: keyof typeof SortOrder;
     programParticipationId?: keyof typeof SortOrder;
     programId?: keyof typeof SortOrder;
-    claimProgramId?: keyof typeof SortOrder;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateNestedManyWithoutProgramParticipationInput {
     create?: Array<ProgramParticipationToProgramsCreateWithoutProgramParticipationInput>;
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramParticipationInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramParticipationInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateNestedManyWithoutProgramInput {
     create?: Array<ProgramParticipationToProgramsCreateWithoutProgramInput>;
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-}
-export declare class ProgramParticipationToProgramsUncheckedCreateNestedOneWithoutClaimProgramsInput {
-    create?: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutClaimProgramsInput>;
-    connectOrCreate?: InstanceType<typeof ProgramParticipationToProgramsCreateOrConnectWithoutClaimProgramsInput>;
-    connect?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateWithoutClaimProgramsInput {
     description?: string;
@@ -17210,7 +17316,7 @@ export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgram
     allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
     programId: number;
-    claimProgramId?: number;
+    claimPrograms?: InstanceType<typeof ClaimProgramUncheckedCreateNestedManyWithoutProgramParticipationToProgramInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgramInput {
     description?: string;
@@ -17221,7 +17327,7 @@ export declare class ProgramParticipationToProgramsUncheckedCreateWithoutProgram
     allowanceQuotaRemainingLastResetDate?: Date | string;
     updatedAt?: Date | string;
     programParticipationId: number;
-    claimProgramId?: number;
+    claimPrograms?: InstanceType<typeof ClaimProgramUncheckedCreateNestedManyWithoutProgramParticipationToProgramInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedCreateInput {
     description?: string;
@@ -17233,17 +17339,17 @@ export declare class ProgramParticipationToProgramsUncheckedCreateInput {
     updatedAt?: Date | string;
     programParticipationId: number;
     programId: number;
-    claimProgramId?: number;
+    claimPrograms?: InstanceType<typeof ClaimProgramUncheckedCreateNestedManyWithoutProgramParticipationToProgramInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramNestedInput {
     create?: Array<ProgramParticipationToProgramsCreateWithoutProgramInput>;
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput>;
     upsert?: Array<ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
+    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
     update?: Array<ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramInput>;
     updateMany?: Array<ProgramParticipationToProgramsUpdateManyWithWhereWithoutProgramInput>;
     deleteMany?: Array<ProgramParticipationToProgramsScalarWhereInput>;
@@ -17253,10 +17359,10 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutPro
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramParticipationInput>;
     upsert?: Array<ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramParticipationInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramParticipationInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
+    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
     update?: Array<ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramParticipationInput>;
     updateMany?: Array<ProgramParticipationToProgramsUpdateManyWithWhereWithoutProgramParticipationInput>;
     deleteMany?: Array<ProgramParticipationToProgramsScalarWhereInput>;
@@ -17270,7 +17376,6 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutPro
     allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutProgramInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17281,7 +17386,6 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyWithoutPro
     allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateManyInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17293,16 +17397,6 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateManyInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-}
-export declare class ProgramParticipationToProgramsUncheckedUpdateOneWithoutClaimProgramsNestedInput {
-    create?: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutClaimProgramsInput>;
-    connectOrCreate?: InstanceType<typeof ProgramParticipationToProgramsCreateOrConnectWithoutClaimProgramsInput>;
-    upsert?: InstanceType<typeof ProgramParticipationToProgramsUpsertWithoutClaimProgramsInput>;
-    disconnect?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
-    delete?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
-    connect?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
-    update?: InstanceType<typeof ProgramParticipationToProgramsUpdateToOneWithWhereWithoutClaimProgramsInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutClaimProgramsInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17324,7 +17418,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgram
     allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramUncheckedUpdateManyWithoutProgramParticipationToProgramNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgramInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17335,7 +17429,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateWithoutProgram
     allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramUncheckedUpdateManyWithoutProgramParticipationToProgramNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUncheckedUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17347,7 +17441,7 @@ export declare class ProgramParticipationToProgramsUncheckedUpdateInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipationId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     programId?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    claimProgramId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramUncheckedUpdateManyWithoutProgramParticipationToProgramNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateManyMutationInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17371,10 +17465,10 @@ export declare class ProgramParticipationToProgramsUpdateManyWithoutProgramNeste
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput>;
     upsert?: Array<ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
+    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
     update?: Array<ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramInput>;
     updateMany?: Array<ProgramParticipationToProgramsUpdateManyWithWhereWithoutProgramInput>;
     deleteMany?: Array<ProgramParticipationToProgramsScalarWhereInput>;
@@ -17384,21 +17478,19 @@ export declare class ProgramParticipationToProgramsUpdateManyWithoutProgramParti
     connectOrCreate?: Array<ProgramParticipationToProgramsCreateOrConnectWithoutProgramParticipationInput>;
     upsert?: Array<ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramParticipationInput>;
     createMany?: InstanceType<typeof ProgramParticipationToProgramsCreateManyProgramParticipationInputEnvelope>;
-    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
-    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>>;
+    set?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    disconnect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    delete?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
+    connect?: Array<Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>>;
     update?: Array<ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramParticipationInput>;
     updateMany?: Array<ProgramParticipationToProgramsUpdateManyWithWhereWithoutProgramParticipationInput>;
     deleteMany?: Array<ProgramParticipationToProgramsScalarWhereInput>;
 }
-export declare class ProgramParticipationToProgramsUpdateOneWithoutClaimProgramsNestedInput {
+export declare class ProgramParticipationToProgramsUpdateOneRequiredWithoutClaimProgramsNestedInput {
     create?: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutClaimProgramsInput>;
     connectOrCreate?: InstanceType<typeof ProgramParticipationToProgramsCreateOrConnectWithoutClaimProgramsInput>;
     upsert?: InstanceType<typeof ProgramParticipationToProgramsUpsertWithoutClaimProgramsInput>;
-    disconnect?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
-    delete?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
-    connect?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    connect?: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     update?: InstanceType<typeof ProgramParticipationToProgramsUpdateToOneWithWhereWithoutClaimProgramsInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateToOneWithWhereWithoutClaimProgramsInput {
@@ -17406,11 +17498,11 @@ export declare class ProgramParticipationToProgramsUpdateToOneWithWhereWithoutCl
     data: InstanceType<typeof ProgramParticipationToProgramsUpdateWithoutClaimProgramsInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramParticipationInput {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     data: InstanceType<typeof ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramInput {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     data: InstanceType<typeof ProgramParticipationToProgramsUpdateWithoutProgramInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateWithoutClaimProgramsInput {
@@ -17433,7 +17525,7 @@ export declare class ProgramParticipationToProgramsUpdateWithoutProgramParticipa
     allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutProgramParticipationsNestedInput>;
-    claimPrograms?: InstanceType<typeof ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramUpdateManyWithoutProgramParticipationToProgramNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateWithoutProgramInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17444,7 +17536,7 @@ export declare class ProgramParticipationToProgramsUpdateWithoutProgramInput {
     allowanceQuotaRemainingLastResetDate?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipation?: InstanceType<typeof ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput>;
-    claimPrograms?: InstanceType<typeof ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramUpdateManyWithoutProgramParticipationToProgramNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpdateInput {
     description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -17456,15 +17548,15 @@ export declare class ProgramParticipationToProgramsUpdateInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     programParticipation?: InstanceType<typeof ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput>;
     program?: InstanceType<typeof ProgramUpdateOneRequiredWithoutProgramParticipationsNestedInput>;
-    claimPrograms?: InstanceType<typeof ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput>;
+    claimPrograms?: InstanceType<typeof ClaimProgramUpdateManyWithoutProgramParticipationToProgramNestedInput>;
 }
 export declare class ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramParticipationInput {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     update: InstanceType<typeof ProgramParticipationToProgramsUpdateWithoutProgramParticipationInput>;
     create: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutProgramParticipationInput>;
 }
 export declare class ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramInput {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     update: InstanceType<typeof ProgramParticipationToProgramsUpdateWithoutProgramInput>;
     create: InstanceType<typeof ProgramParticipationToProgramsCreateWithoutProgramInput>;
 }
@@ -17474,7 +17566,6 @@ export declare class ProgramParticipationToProgramsUpsertWithoutClaimProgramsInp
     where?: InstanceType<typeof ProgramParticipationToProgramsWhereInput>;
 }
 export declare class ProgramParticipationToProgramsWhereUniqueInput {
-    claimProgramId?: number;
     programParticipationId_programId?: InstanceType<typeof ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput>;
     AND?: Array<ProgramParticipationToProgramsWhereInput>;
     OR?: Array<ProgramParticipationToProgramsWhereInput>;
@@ -17490,7 +17581,7 @@ export declare class ProgramParticipationToProgramsWhereUniqueInput {
     programId?: InstanceType<typeof IntFilter>;
     programParticipation?: InstanceType<typeof ProgramParticipationRelationFilter>;
     program?: InstanceType<typeof ProgramRelationFilter>;
-    claimPrograms?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
+    claimPrograms?: InstanceType<typeof ClaimProgramListRelationFilter>;
 }
 export declare class ProgramParticipationToProgramsWhereInput {
     AND?: Array<ProgramParticipationToProgramsWhereInput>;
@@ -17505,10 +17596,9 @@ export declare class ProgramParticipationToProgramsWhereInput {
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     programParticipationId?: InstanceType<typeof IntFilter>;
     programId?: InstanceType<typeof IntFilter>;
-    claimProgramId?: InstanceType<typeof IntNullableFilter>;
     programParticipation?: InstanceType<typeof ProgramParticipationRelationFilter>;
     program?: InstanceType<typeof ProgramRelationFilter>;
-    claimPrograms?: InstanceType<typeof ClaimProgramNullableRelationFilter>;
+    claimPrograms?: InstanceType<typeof ClaimProgramListRelationFilter>;
 }
 export declare class ProgramParticipationToPrograms {
     description: string | null;
@@ -17520,10 +17610,10 @@ export declare class ProgramParticipationToPrograms {
     updatedAt: Date;
     programParticipationId: number;
     programId: number;
-    claimProgramId: number | null;
     programParticipation?: InstanceType<typeof ProgramParticipation>;
     program?: InstanceType<typeof Program>;
-    claimPrograms?: InstanceType<typeof ClaimProgram> | null;
+    claimPrograms?: Array<ClaimProgram>;
+    _count?: InstanceType<typeof ProgramParticipationToProgramsCount>;
 }
 export declare class UpdateManyProgramParticipationToProgramsArgs {
     data: InstanceType<typeof ProgramParticipationToProgramsUpdateManyMutationInput>;
@@ -17531,10 +17621,10 @@ export declare class UpdateManyProgramParticipationToProgramsArgs {
 }
 export declare class UpdateOneProgramParticipationToProgramsArgs {
     data: InstanceType<typeof ProgramParticipationToProgramsUpdateInput>;
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
 }
 export declare class UpsertOneProgramParticipationToProgramsArgs {
-    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'claimProgramId' | 'programParticipationId_programId'>;
+    where: Prisma.AtLeast<ProgramParticipationToProgramsWhereUniqueInput, 'programParticipationId_programId'>;
     create: InstanceType<typeof ProgramParticipationToProgramsCreateInput>;
     update: InstanceType<typeof ProgramParticipationToProgramsUpdateInput>;
 }

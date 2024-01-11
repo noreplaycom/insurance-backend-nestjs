@@ -209,6 +209,14 @@ RI Non BPJS Kesehatan
     },
   ];
 
+  await prisma.program
+    .createMany({
+      data: programCreateManyInput,
+    })
+    .then((i) => console.log(i.count, ' Programs seeded.'));
+
+  const programFindMany = await prisma.program.findMany();
+
   const userCreateManyInput: Prisma.UserCreateManyInput[] = Array.from({
     length: records / 2,
   }).map((_, index) => ({
@@ -283,17 +291,33 @@ RI Non BPJS Kesehatan
     currentBalance: 50000000,
   }));
 
-  const programParticipationCreateManyInput: Prisma.ProgramParticipationCreateManyInput[] =
-    Array.from({
-      length: userCreateManyInput.length,
-    }).map((_, index) => ({
+  await prisma.account
+    .createMany({
+      data: accountCreateManyInput, // Replace with your actual input array for Funding
+    })
+    .then((i) => console.log(i.count, ' Accounts seeded.'));
+
+  const accountFindMany = await prisma.account.findMany();
+
+  const programParticipationCreateManyInput = accountFindMany.map(
+    (record, index) => ({
       bpjsNumber: '23432525',
       effectiveDate: new Date(),
       santunanHarianRawatInapPlan: faker.helpers.arrayElement(
         Object.values(SantunanHarianRawatInapPlan),
       ),
-      fundingId: index + 1,
-    }));
+      fundingId: record.id, // Use actual ID from created Funding records
+    }),
+  );
+
+  await prisma.programParticipation
+    .createMany({
+      data: programParticipationCreateManyInput,
+    })
+    .then((i) => console.log(i.count, ' Program participations seeded.'));
+
+  const programParticipationFindMany =
+    await prisma.programParticipation.findMany();
 
   const participantCreateManyInput: Prisma.ParticipantCreateManyInput[] =
     Array.from({
@@ -360,33 +384,26 @@ RI Non BPJS Kesehatan
     code: faker.random.numeric(5),
   }));
 
-  let programParticipationToProgramsCreateManyInput: Prisma.ProgramParticipationToProgramsCreateManyInput[] =
-    Array.from({ length: userCreateManyInput.length }).map((_, index) => ({
-      programParticipationId: index + 1,
-      programId: faker.datatype.number({
-        min: 1,
-        max: programCreateManyInput.length,
-      }),
-      isAvailable: faker.datatype.boolean(),
-      allowanceCeilingRemaining: faker.datatype.float({}),
-      allowanceQuotaRemaining: faker.datatype.float({}),
-    }));
+  let programParticipationToProgramsCreateManyInput =
+    programParticipationFindMany.map((ppRecord, index) => {
+      // Use modulo operation to safely loop over programRecords
+      let programIndex = index % programFindMany.length;
+      return {
+        programParticipationId: ppRecord.id,
+        programId: programFindMany[programIndex].id, // Correctly reference the program ID
+        isAvailable: faker.datatype.boolean(),
+        allowanceCeilingRemaining: faker.datatype.float({}),
+        allowanceQuotaRemaining: faker.datatype.float({}),
+      };
+    });
 
-  // for (let outerIndex = 0; outerIndex < 2; outerIndex++) {
-  //   for (let innerIndex = 0; innerIndex <= records / 2; innerIndex++) {
-  //     const currentIndex = innerIndex % records;
-  //     programParticipationToProgramsCreateManyInput.push({
-  //       programParticipationId:
-  //         programParticipationCreateManyInput[currentIndex].id,
-  //       programId: faker.helpers.arrayElement(programCreateManyInput).id,
-  //       isAvailable: faker.datatype.boolean(),
-  //       allowanceCeilingRemaining:
-  //         programCreateManyInput[currentIndex].allowanceCeiling,
-  //       allowanceQuotaRemaining:
-  //         programCreateManyInput[currentIndex].allowanceQuota,
-  //     });
-  //   }
-  // }
+  // Create ProgramParticipationToPrograms entries
+  await prisma.programParticipationToPrograms.createMany({
+    data: programParticipationToProgramsCreateManyInput,
+  });
+
+  const programParticipationToProgramsFindMany =
+    await prisma.programParticipationToPrograms.findMany();
 
   const claimProgramCreateManyInput: Prisma.ClaimProgramCreateManyInput[] =
     Array.from({ length: userCreateManyInput.length }).map((_, index) => ({
@@ -404,48 +421,11 @@ RI Non BPJS Kesehatan
         max: diseaseCreateManyInput.length,
       }),
       isReclaim: faker.datatype.boolean(),
+      programParticipationToProgramsProgramParticipationId:
+        programParticipationToProgramsFindMany[index].programParticipationId,
+      programParticipationToProgramsProgramId:
+        programParticipationToProgramsFindMany[index].programId,
     }));
-
-  // let claimProgramCreateManyInput: Prisma.ClaimProgramCreateManyInput[];
-
-  // for (let index = 0; index < 2; index++) {
-  //   for (let innerIndex = 0; innerIndex <= records / 2; innerIndex++) {
-  //     const currentIndex = innerIndex % records;
-  //     claimProgramCreateManyInput.push({
-  //       id: innerIndex + 1,
-  //       startTreatment: faker.date.past(),
-  //       endTreatment: faker.date.recent(),
-  //       submissionNote: faker.lorem.lines(),
-  //       description: faker.lorem.lines(),
-  //       additionalNote: faker.lorem.lines(),
-  //       clinicId: faker.helpers.arrayElement(clinicCreateManyInput).id,
-  //       diseaseId: faker.helpers.arrayElement(diseaseCreateManyInput).id,
-  //       isReclaim: faker.datatype.boolean(),
-  //       programParticipationToProgramsId:
-  //         programParticipationCreateManyInput[currentIndex].id,
-  //     });
-  //   }
-  // }
-
-  // let claimCreateManyInput: Prisma.ClaimCreateManyInput[] = [];
-
-  // for (let index = 0; index < 2; index++) {
-  //   for (let innerIndex = 0; innerIndex < records / 2; innerIndex++) {
-  //     claimCreateManyInput.push({
-  //       id: faker.datatype.uuid(),
-  //       channel: faker.helpers.arrayElement(Object.values(ClaimChannel)),
-  //       admedicaStatus: faker.helpers.arrayElement(
-  //         Object.values(AdmedicaStatus),
-  //       ),
-  //       company: faker.company.name(),
-  //       participantId: participantCreateManyInput[innerIndex].userId,
-  //       claimFinancialId: claimFinancialCreateManyInput[innerIndex].id,
-  //       claimProgramId: claimProgramCreateManyInput[innerIndex].id,
-  //       inputedById: faker.helpers.arrayElement(userCreateManyInput).id,
-  //       waitingForId: faker.helpers.arrayElement(userCreateManyInput).id,
-  //     });
-  //   }
-  // }
 
   let claimCreateManyInput: Prisma.ClaimCreateManyInput[] = Array.from({
     length: claimProgramCreateManyInput.length,
@@ -486,12 +466,6 @@ RI Non BPJS Kesehatan
       data: rolePermissionCreateManyInput,
     })
     .then((i) => console.log(i.count, ' Role permissions seeded.'));
-
-  await prisma.program
-    .createMany({
-      data: programCreateManyInput,
-    })
-    .then((i) => console.log(i.count, ' Programs seeded.'));
 
   await prisma.user
     .createMany({
@@ -576,14 +550,6 @@ RI Non BPJS Kesehatan
     })
     .then((i) => console.log(i.count, ' Diseases seeded.'));
 
-  await prisma.programParticipationToPrograms
-    .createMany({
-      data: programParticipationToProgramsCreateManyInput,
-    })
-    .then((i) =>
-      console.log(i.count, ' Program participation to programs seeded.'),
-    );
-
   await prisma.claimProgram
     .createMany({
       data: claimProgramCreateManyInput,
@@ -620,286 +586,6 @@ RI Non BPJS Kesehatan
       data: documentCreateManyInput,
     })
     .then((i) => console.log(i.count, ' Documents seeded.'));
-
-  // employment: {
-  //   create: {
-  //     employmentPosition: faker.helpers.arrayElement(
-  //       Object.values(Position),
-  //     ),
-  //     branch: {
-  //       connectOrCreate: {
-  //         where:
-  //           branches.length > 30
-  //             ? {
-  //                 id: faker.helpers.arrayElement(branches).id,
-  //               }
-  //             : { id: 1001010 },
-
-  //         create: {
-  //           name: faker.company.name(),
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
-  // contactInfo: {
-  //   create: {
-  //     phones: {
-  //       create: {
-  //         number: faker.datatype.number({
-  //           min: 100000,
-  //           max: 5000000,
-  //         }),
-  //       },
-  //     },
-  //     address: {
-  //       create: {
-  //         address: faker.address.streetAddress(),
-  //         subdistrict: {
-  //           connect: {
-  //             id: faker.helpers.arrayElement(subdistricts).id,
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
-  // programParticipation: {
-  //   create: {
-  //     bpjsNumber: '23432525',
-  //     effectiveDate: new Date(),
-  //     santunanHarianRawatInapPlan: faker.helpers.arrayElement(
-  //       Object.values(SantunanHarianRawatInapPlan),
-  //     ),
-  //     programParticipationToPrograms: {
-  //       createMany: {
-  //         data: [
-  //           {
-  //             programId: faker.helpers.arrayElement(programs).id,
-  //             isAvailable: true,
-  //             allowanceCeilingRemaining: faker.datatype.float({}),
-  //           },
-  //           {
-  //             programId: faker.helpers.arrayElement(programs).id,
-  //             isAvailable: true,
-  //             allowanceCeilingRemaining: faker.datatype.float({}),
-  //           },
-  //           {
-  //             programId: faker.helpers.arrayElement(programs).id,
-  //             isAvailable: true,
-  //             allowanceCeilingRemaining: faker.datatype.float({}),
-  //           },
-  //           {
-  //             programId: faker.helpers.arrayElement(programs).id,
-  //             isAvailable: true,
-  //             allowanceCeilingRemaining: faker.datatype.float({}),
-  //           },
-  //           {
-  //             programId: faker.helpers.arrayElement(programs).id,
-  //             isAvailable: true,
-  //             allowanceCeilingRemaining: faker.datatype.float({}),
-  //           },
-  //         ],
-  //       },
-  //     },
-  //   },
-  // },
-
-  // if (participants.length <= 0) {
-  //   for (let i = 0; i < 10; i++) {
-  //     const userCreateInput: Prisma.UserCreateWithoutParticipantInput = {
-  //       fullName: faker.name.firstName(),
-  //       email: faker.internet.email(),
-  //       password: faker.internet.password(),
-  //       role: { connect: { id: faker.helpers.arrayElement(newRoles).id } },
-  //     };
-  //     const participantCreateInput: Prisma.ParticipantCreateInput = {
-  //       gender: faker.helpers.arrayElement(Object.values(Gender)),
-  //       birthDate: faker.date.past(),
-  //       isActive: faker.datatype.boolean(),
-  //       status: faker.helpers.arrayElement(Object.values(ParticipantStatus)),
-  //       user: {
-  //         create: userCreateInput,
-  //       },
-  //       bankAccount: {
-  //         create: {
-  //           accountName: faker.finance.creditCardIssuer(),
-  //           accountNumber: faker.datatype.number({
-  //             min: 300000,
-  //             max: 500000,
-  //           }),
-  //         },
-  //       },
-  //       employment: {
-  //         create: {
-  //           employmentPosition: faker.helpers.arrayElement(
-  //             Object.values(Position),
-  //           ),
-  //           branch: {
-  //             connectOrCreate: {
-  //               where:
-  //                 branches.length > 30
-  //                   ? {
-  //                       id: faker.helpers.arrayElement(branches).id,
-  //                     }
-  //                   : { id: 1001010 },
-
-  //               create: {
-  //                 name: faker.company.name(),
-  //               },
-  //             },
-  //           },
-  //         },
-  //       },
-  //       contactInfo: {
-  //         create: {
-  //           phones: {
-  //             create: {
-  //               number: faker.datatype.number({
-  //                 min: 100000,
-  //                 max: 5000000,
-  //               }),
-  //             },
-  //           },
-  //           address: {
-  //             create: {
-  //               address: faker.address.streetAddress(),
-  //               subdistrict: {
-  //                 connect: {
-  //                   id: faker.helpers.arrayElement(subdistricts).id,
-  //                 },
-  //               },
-  //             },
-  //           },
-  //         },
-  //       },
-  //       programParticipation: {
-  //         create: {
-  //           bpjsNumber: '23432525',
-  //           effectiveDate: new Date(),
-  //           santunanHarianRawatInapPlan: faker.helpers.arrayElement(
-  //             Object.values(SantunanHarianRawatInapPlan),
-  //           ),
-  //           programParticipationToPrograms: {
-  //             createMany: {
-  //               data: [
-  //                 {
-  //                   programId: faker.helpers.arrayElement(programs).id,
-  //                   isAvailable: true,
-  //                   allowanceCeilingRemaining: faker.datatype.float({}),
-  //                 },
-  //                 {
-  //                   programId: faker.helpers.arrayElement(programs).id,
-  //                   isAvailable: true,
-  //                   allowanceCeilingRemaining: faker.datatype.float({}),
-  //                 },
-  //                 {
-  //                   programId: faker.helpers.arrayElement(programs).id,
-  //                   isAvailable: true,
-  //                   allowanceCeilingRemaining: faker.datatype.float({}),
-  //                 },
-  //                 {
-  //                   programId: faker.helpers.arrayElement(programs).id,
-  //                   isAvailable: true,
-  //                   allowanceCeilingRemaining: faker.datatype.float({}),
-  //                 },
-  //                 {
-  //                   programId: faker.helpers.arrayElement(programs).id,
-  //                   isAvailable: true,
-  //                   allowanceCeilingRemaining: faker.datatype.float({}),
-  //                 },
-  //               ],
-  //             },
-  //           },
-  //         },
-  //       },
-  //     };
-  //     console.log(
-  //       await prisma.participant.create({ data: participantCreateInput }),
-  //     );
-  //   }
-  // }
-
-  // Create claims
-  // for (let i = 0; i < 100; i++) {
-  //   const claimCreateInput: Prisma.ClaimCreateInput = {
-  //     id: faker.datatype.uuid(),
-  //     createdAt: faker.date.past(),
-  //     updatedAt: faker.date.recent(),
-  //     channel: faker.helpers.arrayElement(Object.values(ClaimChannel)),
-  //     admedicaStatus: faker.helpers.arrayElement(Object.values(AdmedicaStatus)),
-  //     company: faker.company.name(),
-  //     participant: {
-  //       connect: { userId: faker.helpers.arrayElement(participants).userId },
-  //     },
-  //     claimFinancials: {
-  //       create: {
-  //         requestedAmount: faker.datatype.float({
-  //           min: 300000,
-  //           max: 3000000,
-  //         }),
-  //         totalInvoiceProofAmount: faker.datatype.float({
-  //           min: 300000,
-  //           max: 3000000,
-  //         }),
-  //         previousBalance: faker.datatype.float({
-  //           min: 30000000,
-  //           max: 40000000,
-  //         }),
-  //         remainingBalance: faker.datatype.float({
-  //           min: 20000000,
-  //           max: 30000000,
-  //         }),
-  //       },
-  //     },
-  //     claimProgram: {
-  //       create: {
-  //         startTreatment: faker.date.past(),
-  //         endTreatment: faker.date.recent(),
-  //         submissionNote: faker.lorem.paragraph(),
-  //         description: faker.lorem.paragraph(),
-  //         additionalNote: faker.lorem.paragraph(),
-  //         programParticipationToProgram: {
-  //           connect: {
-  //             programId:
-  //               faker.helpers.arrayElement(participants).programParticipationId,
-  //           },
-  //         },
-  //       },
-  //     },
-  //     inputedBy: {
-  //       create: {
-  //         fullName: faker.name.firstName(),
-  //         email: faker.internet.email(),
-  //         password: faker.internet.password(),
-  //         role: { connect: { id: faker.helpers.arrayElement(newRoles).id } },
-  //       },
-  //     },
-  //     // claimStatuses: {
-  //     //   create: {
-  //     //     status: faker.helpers.arrayElement(Object.values(ClaimStatusType)),
-  //     //     changedBy: {
-  //     //       create: {
-  //     //         fullName: faker.name.firstName(),
-  //     //         email: faker.internet.email(),
-  //     //         password: faker.internet.password(),
-  //     //         role: {
-  //     //           connect: { id: faker.helpers.arrayElement(newRoles).id },
-  //     //         },
-  //     //       },
-  //     //     },
-  //     //   },
-  //     // },
-  //   };
-
-  //   // Create claim
-  //   await prisma.claim.create({
-  //     data: claimCreateInput,
-  //   });
-
-  //   //counter
-  //   console.log(`Claim ${i + 1} created.`);
-  // }
 
   console.log('Claims seeded with its relations completed.');
 }

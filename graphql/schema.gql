@@ -552,6 +552,8 @@ type ClaimProgramAvgAggregate {
   id: Float
   diseaseId: Float
   clinicId: Float
+  programParticipationToProgramsProgramParticipationId: Float
+  programParticipationToProgramsProgramId: Float
 }
 
 type ClaimProgramCountAggregate {
@@ -567,6 +569,8 @@ type ClaimProgramCountAggregate {
   kurisRodaOrWalkerStoreName: Int!
   diseaseId: Int!
   clinicId: Int!
+  programParticipationToProgramsProgramParticipationId: Int!
+  programParticipationToProgramsProgramId: Int!
   _all: Int!
 }
 
@@ -588,6 +592,8 @@ type ClaimProgramMaxAggregate {
   kurisRodaOrWalkerStoreName: String
   diseaseId: Int
   clinicId: Int
+  programParticipationToProgramsProgramParticipationId: Int
+  programParticipationToProgramsProgramId: Int
 }
 
 type ClaimProgramMinAggregate {
@@ -603,12 +609,16 @@ type ClaimProgramMinAggregate {
   kurisRodaOrWalkerStoreName: String
   diseaseId: Int
   clinicId: Int
+  programParticipationToProgramsProgramParticipationId: Int
+  programParticipationToProgramsProgramId: Int
 }
 
 type ClaimProgramSumAggregate {
   id: Int
   diseaseId: Int
   clinicId: Int
+  programParticipationToProgramsProgramParticipationId: Int
+  programParticipationToProgramsProgramId: Int
 }
 
 type ClaimProgram {
@@ -642,12 +652,16 @@ type ClaimProgram {
   """Penyakit:	Penyakit yang diderita"""
   diseaseId: Int
   clinicId: Int
+  programParticipationToProgramsProgramParticipationId: Int!
+  programParticipationToProgramsProgramId: Int!
 
   """Penyakit:	Penyakit yang diderita"""
   disease: Disease
   clinics: Clinic
   claim: Claim
-  programParticipationToProgram: ProgramParticipationToPrograms
+
+  """memilih program mana?"""
+  programParticipationToProgram: ProgramParticipationToPrograms!
 
   """Kwitansi, data, dll: Bukti Pembayaran/Invoice Rumah Sakit oleh Peserta"""
   documents: [Document!]
@@ -1668,7 +1682,6 @@ type ProgramParticipationToProgramsAvgAggregate {
   allowanceQuotaRemaining: Float
   programParticipationId: Float
   programId: Float
-  claimProgramId: Float
 }
 
 type ProgramParticipationToProgramsCountAggregate {
@@ -1681,8 +1694,11 @@ type ProgramParticipationToProgramsCountAggregate {
   updatedAt: Int!
   programParticipationId: Int!
   programId: Int!
-  claimProgramId: Int!
   _all: Int!
+}
+
+type ProgramParticipationToProgramsCount {
+  claimPrograms: Int!
 }
 
 type ProgramParticipationToProgramsMaxAggregate {
@@ -1695,7 +1711,6 @@ type ProgramParticipationToProgramsMaxAggregate {
   updatedAt: DateTime
   programParticipationId: Int
   programId: Int
-  claimProgramId: Int
 }
 
 type ProgramParticipationToProgramsMinAggregate {
@@ -1708,7 +1723,6 @@ type ProgramParticipationToProgramsMinAggregate {
   updatedAt: DateTime
   programParticipationId: Int
   programId: Int
-  claimProgramId: Int
 }
 
 type ProgramParticipationToProgramsSumAggregate {
@@ -1716,7 +1730,6 @@ type ProgramParticipationToProgramsSumAggregate {
   allowanceQuotaRemaining: Int
   programParticipationId: Int
   programId: Int
-  claimProgramId: Int
 }
 
 type ProgramParticipationToPrograms {
@@ -1737,10 +1750,10 @@ type ProgramParticipationToPrograms {
   updatedAt: DateTime!
   programParticipationId: Int!
   programId: Int!
-  claimProgramId: Int
   programParticipation: ProgramParticipation!
   program: Program!
-  claimPrograms: ClaimProgram
+  claimPrograms: [ClaimProgram!]
+  _count: ProgramParticipationToProgramsCount!
 }
 
 type ProvinceAvgAggregate {
@@ -2610,10 +2623,9 @@ input ProgramParticipationToProgramsWhereInput {
   updatedAt: DateTimeFilter
   programParticipationId: IntFilter
   programId: IntFilter
-  claimProgramId: IntNullableFilter
   programParticipation: ProgramParticipationRelationFilter
   program: ProgramRelationFilter
-  claimPrograms: ClaimProgramNullableRelationFilter
+  claimPrograms: ClaimProgramListRelationFilter
 }
 
 input StringNullableFilter {
@@ -3228,10 +3240,12 @@ input ClaimProgramWhereInput {
   kurisRodaOrWalkerStoreName: StringNullableFilter
   diseaseId: IntNullableFilter
   clinicId: IntNullableFilter
+  programParticipationToProgramsProgramParticipationId: IntFilter
+  programParticipationToProgramsProgramId: IntFilter
   disease: DiseaseNullableRelationFilter
   clinics: ClinicNullableRelationFilter
   claim: ClaimNullableRelationFilter
-  programParticipationToProgram: ProgramParticipationToProgramsNullableRelationFilter
+  programParticipationToProgram: ProgramParticipationToProgramsRelationFilter
   documents: DocumentListRelationFilter
   invoiceProofs: InvoiceProofListRelationFilter
 }
@@ -3286,7 +3300,7 @@ input ClinicWhereInput {
   claimProgram: ClaimProgramListRelationFilter
 }
 
-input ProgramParticipationToProgramsNullableRelationFilter {
+input ProgramParticipationToProgramsRelationFilter {
   is: ProgramParticipationToProgramsWhereInput
   isNot: ProgramParticipationToProgramsWhereInput
 }
@@ -4302,6 +4316,8 @@ input ClaimProgramOrderByWithRelationInput {
   kurisRodaOrWalkerStoreName: SortOrderInput
   diseaseId: SortOrderInput
   clinicId: SortOrderInput
+  programParticipationToProgramsProgramParticipationId: SortOrder
+  programParticipationToProgramsProgramId: SortOrder
   disease: DiseaseOrderByWithRelationInput
   clinics: ClinicOrderByWithRelationInput
   claim: ClaimOrderByWithRelationInput
@@ -4342,10 +4358,9 @@ input ProgramParticipationToProgramsOrderByWithRelationInput {
   updatedAt: SortOrder
   programParticipationId: SortOrder
   programId: SortOrder
-  claimProgramId: SortOrderInput
   programParticipation: ProgramParticipationOrderByWithRelationInput
   program: ProgramOrderByWithRelationInput
-  claimPrograms: ClaimProgramOrderByWithRelationInput
+  claimPrograms: ClaimProgramOrderByRelationAggregateInput
 }
 
 input InvoiceProofOrderByRelationAggregateInput {
@@ -4720,7 +4735,6 @@ enum AnnouncementScalarFieldEnum {
 }
 
 input ProgramParticipationToProgramsWhereUniqueInput {
-  claimProgramId: Int
   programParticipationId_programId: ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput
   AND: [ProgramParticipationToProgramsWhereInput!]
   OR: [ProgramParticipationToProgramsWhereInput!]
@@ -4736,7 +4750,7 @@ input ProgramParticipationToProgramsWhereUniqueInput {
   programId: IntFilter
   programParticipation: ProgramParticipationRelationFilter
   program: ProgramRelationFilter
-  claimPrograms: ClaimProgramNullableRelationFilter
+  claimPrograms: ClaimProgramListRelationFilter
 }
 
 input ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput {
@@ -4754,7 +4768,6 @@ enum ProgramParticipationToProgramsScalarFieldEnum {
   updatedAt
   programParticipationId
   programId
-  claimProgramId
 }
 
 type Mutation {
@@ -4886,7 +4899,7 @@ input ProgramParticipationToProgramsCreateNestedManyWithoutProgramInput {
 input ProgramParticipationToProgramsCreateWithoutProgramInput {
   description: String
   programParticipation: ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput!
-  claimPrograms: ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput
+  claimPrograms: ClaimProgramCreateNestedManyWithoutProgramParticipationToProgramInput
 }
 
 input ProgramParticipationCreateNestedOneWithoutProgramParticipationToProgramsInput {
@@ -5554,10 +5567,11 @@ input ProgramParticipationCreateOrConnectWithoutProgramParticipationToProgramsIn
   create: ProgramParticipationCreateWithoutProgramParticipationToProgramsInput!
 }
 
-input ClaimProgramCreateNestedOneWithoutProgramParticipationToProgramInput {
-  create: ClaimProgramCreateWithoutProgramParticipationToProgramInput
-  connectOrCreate: ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput
-  connect: ClaimProgramWhereUniqueInput
+input ClaimProgramCreateNestedManyWithoutProgramParticipationToProgramInput {
+  create: [ClaimProgramCreateWithoutProgramParticipationToProgramInput!]
+  connectOrCreate: [ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput!]
+  createMany: ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope
+  connect: [ClaimProgramWhereUniqueInput!]
 }
 
 input ClaimProgramCreateWithoutProgramParticipationToProgramInput {
@@ -5885,12 +5899,31 @@ input ClaimProgramWhereUniqueInput {
   kurisRodaOrWalkerStoreName: StringNullableFilter
   diseaseId: IntNullableFilter
   clinicId: IntNullableFilter
+  programParticipationToProgramsProgramParticipationId: IntFilter
+  programParticipationToProgramsProgramId: IntFilter
   disease: DiseaseNullableRelationFilter
   clinics: ClinicNullableRelationFilter
   claim: ClaimNullableRelationFilter
-  programParticipationToProgram: ProgramParticipationToProgramsNullableRelationFilter
+  programParticipationToProgram: ProgramParticipationToProgramsRelationFilter
   documents: DocumentListRelationFilter
   invoiceProofs: InvoiceProofListRelationFilter
+}
+
+input ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope {
+  data: [ClaimProgramCreateManyProgramParticipationToProgramInput!]!
+  skipDuplicates: Boolean
+}
+
+input ClaimProgramCreateManyProgramParticipationToProgramInput {
+  isReclaim: Boolean
+  isReclaimNoticeLetterDate: DateTime
+  submissionNote: String
+  description: String
+  additionalNote: String
+  startTreatment: DateTime
+  endTreatment: DateTime
+  kurisRodaOrWalkerStoreName: String
+  clinicId: Int
 }
 
 input ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput {
@@ -5905,7 +5938,6 @@ input ProgramParticipationToProgramsCreateManyProgramInputEnvelope {
 
 input ProgramParticipationToProgramsCreateManyProgramInput {
   description: String
-  claimProgramId: Int
 }
 
 input ProgramCreateManyInput {
@@ -5991,7 +6023,7 @@ input ProgramParticipationToProgramsUpsertWithWhereUniqueWithoutProgramInput {
 input ProgramParticipationToProgramsUpdateWithoutProgramInput {
   description: NullableStringFieldUpdateOperationsInput
   programParticipation: ProgramParticipationUpdateOneRequiredWithoutProgramParticipationToProgramsNestedInput
-  claimPrograms: ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput
+  claimPrograms: ClaimProgramUpdateManyWithoutProgramParticipationToProgramNestedInput
 }
 
 input NullableStringFieldUpdateOperationsInput {
@@ -6890,20 +6922,24 @@ input ProgramParticipationUpdateToOneWithWhereWithoutProgramParticipationToProgr
   data: ProgramParticipationUpdateWithoutProgramParticipationToProgramsInput!
 }
 
-input ClaimProgramUpdateOneWithoutProgramParticipationToProgramNestedInput {
-  create: ClaimProgramCreateWithoutProgramParticipationToProgramInput
-  connectOrCreate: ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput
-  upsert: ClaimProgramUpsertWithoutProgramParticipationToProgramInput
-  disconnect: ClaimProgramWhereInput
-  delete: ClaimProgramWhereInput
-  connect: ClaimProgramWhereUniqueInput
-  update: ClaimProgramUpdateToOneWithWhereWithoutProgramParticipationToProgramInput
+input ClaimProgramUpdateManyWithoutProgramParticipationToProgramNestedInput {
+  create: [ClaimProgramCreateWithoutProgramParticipationToProgramInput!]
+  connectOrCreate: [ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput!]
+  upsert: [ClaimProgramUpsertWithWhereUniqueWithoutProgramParticipationToProgramInput!]
+  createMany: ClaimProgramCreateManyProgramParticipationToProgramInputEnvelope
+  set: [ClaimProgramWhereUniqueInput!]
+  disconnect: [ClaimProgramWhereUniqueInput!]
+  delete: [ClaimProgramWhereUniqueInput!]
+  connect: [ClaimProgramWhereUniqueInput!]
+  update: [ClaimProgramUpdateWithWhereUniqueWithoutProgramParticipationToProgramInput!]
+  updateMany: [ClaimProgramUpdateManyWithWhereWithoutProgramParticipationToProgramInput!]
+  deleteMany: [ClaimProgramScalarWhereInput!]
 }
 
-input ClaimProgramUpsertWithoutProgramParticipationToProgramInput {
+input ClaimProgramUpsertWithWhereUniqueWithoutProgramParticipationToProgramInput {
+  where: ClaimProgramWhereUniqueInput!
   update: ClaimProgramUpdateWithoutProgramParticipationToProgramInput!
   create: ClaimProgramCreateWithoutProgramParticipationToProgramInput!
-  where: ClaimProgramWhereInput
 }
 
 input ClaimProgramUpdateWithoutProgramParticipationToProgramInput {
@@ -7256,9 +7292,46 @@ input InvoiceProofUpdateManyMutationInput {
   amount: FloatFieldUpdateOperationsInput
 }
 
-input ClaimProgramUpdateToOneWithWhereWithoutProgramParticipationToProgramInput {
-  where: ClaimProgramWhereInput
+input ClaimProgramUpdateWithWhereUniqueWithoutProgramParticipationToProgramInput {
+  where: ClaimProgramWhereUniqueInput!
   data: ClaimProgramUpdateWithoutProgramParticipationToProgramInput!
+}
+
+input ClaimProgramUpdateManyWithWhereWithoutProgramParticipationToProgramInput {
+  where: ClaimProgramScalarWhereInput!
+  data: ClaimProgramUpdateManyMutationInput!
+}
+
+input ClaimProgramScalarWhereInput {
+  AND: [ClaimProgramScalarWhereInput!]
+  OR: [ClaimProgramScalarWhereInput!]
+  NOT: [ClaimProgramScalarWhereInput!]
+  id: IntFilter
+  expeditionDate: DateTimeNullableFilter
+  isReclaim: BoolNullableFilter
+  isReclaimNoticeLetterDate: DateTimeNullableFilter
+  submissionNote: StringNullableFilter
+  description: StringNullableFilter
+  additionalNote: StringNullableFilter
+  startTreatment: DateTimeNullableFilter
+  endTreatment: DateTimeNullableFilter
+  kurisRodaOrWalkerStoreName: StringNullableFilter
+  diseaseId: IntNullableFilter
+  clinicId: IntNullableFilter
+  programParticipationToProgramsProgramParticipationId: IntFilter
+  programParticipationToProgramsProgramId: IntFilter
+}
+
+input ClaimProgramUpdateManyMutationInput {
+  expeditionDate: NullableDateTimeFieldUpdateOperationsInput
+  isReclaim: NullableBoolFieldUpdateOperationsInput
+  isReclaimNoticeLetterDate: NullableDateTimeFieldUpdateOperationsInput
+  submissionNote: NullableStringFieldUpdateOperationsInput
+  description: NullableStringFieldUpdateOperationsInput
+  additionalNote: NullableStringFieldUpdateOperationsInput
+  startTreatment: NullableDateTimeFieldUpdateOperationsInput
+  endTreatment: NullableDateTimeFieldUpdateOperationsInput
+  kurisRodaOrWalkerStoreName: NullableStringFieldUpdateOperationsInput
 }
 
 input ProgramParticipationToProgramsUpdateWithWhereUniqueWithoutProgramInput {
@@ -7284,7 +7357,6 @@ input ProgramParticipationToProgramsScalarWhereInput {
   updatedAt: DateTimeFilter
   programParticipationId: IntFilter
   programId: IntFilter
-  claimProgramId: IntNullableFilter
 }
 
 input ProgramParticipationToProgramsUpdateManyMutationInput {
@@ -7377,7 +7449,7 @@ input ClaimProgramCreateWithoutClaimInput {
   kurisRodaOrWalkerStoreName: String
   disease: DiseaseCreateNestedOneWithoutClaimProgramInput
   clinics: ClinicCreateNestedOneWithoutClaimProgramInput
-  programParticipationToProgram: ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput
+  programParticipationToProgram: ProgramParticipationToProgramsCreateNestedOneWithoutClaimProgramsInput!
   documents: DocumentCreateNestedManyWithoutClaimProgrammInput
   invoiceProofs: InvoiceProofCreateNestedManyWithoutClaimProgramInput
 }

@@ -594,9 +594,7 @@ model ProgramParticipationToPrograms {
     /// @HideField({ match: ['ProgramParticipationToProgramsCreate*Input','ProgramParticipationToProgramsUpdate*Input']})
     programId Int
 
-    claimPrograms ClaimProgram? @relation(fields: [claimProgramId], references: [id])
-
-    claimProgramId Int? @unique
+    claimPrograms ClaimProgram[]
 
     //-------------------------- m relations --------------------------------
 
@@ -978,8 +976,12 @@ model ClaimProgram {
 
     claim Claim?
 
-    programParticipationToProgram ProgramParticipationToPrograms?
+    ///memilih program mana?
+    programParticipationToProgram ProgramParticipationToPrograms @relation(fields: [programParticipationToProgramsProgramParticipationId, programParticipationToProgramsProgramId], references: [programParticipationId, programId])
 
+    programParticipationToProgramsProgramParticipationId Int
+
+    programParticipationToProgramsProgramId Int
     //-------------------------- m relations --------------------------------
 
     ///Kwitansi, data, dll: Bukti Pembayaran/Invoice Rumah Sakit oleh Peserta
