@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
@@ -6,11 +6,13 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class ClaimService {
   constructor(private prisma: PrismaService) {}
+  private readonly logger = new Logger(ClaimService.name);
 
   async createOne(claimCreateArgs: Prisma.ClaimCreateArgs) {
     try {
       return await this.prisma.claim.create(claimCreateArgs);
     } catch (err) {
+      this.logger.error(err);
       throw new IGraphQLError({ code: 123456, err: err });
     }
   }

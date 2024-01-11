@@ -64,7 +64,7 @@ export class ClaimResolver {
     @Relations() relations: ClaimSelect,
   ): Promise<Claim | void> {
     return await this.claimController.createOne({
-      ...replaceNullWithUndefined(claimCreateArgs),
+      ...claimCreateArgs,
       select: relations.select,
     });
   }

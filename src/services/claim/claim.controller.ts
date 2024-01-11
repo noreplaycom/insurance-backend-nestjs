@@ -71,6 +71,9 @@ export class ClaimController {
     claimCreateArgs.data.claimFinancials.create.previousBalance = 12414;
     claimCreateArgs.data.claimFinancials.create.remainingBalance = 1231;
     claimCreateArgs.data.claimFinancials.create.totalInvoiceProofAmount = 1231;
+    // claimCreateArgs.data.claimStatuses.create = {
+    //   type: ClaimStatusType.PENDING,changedById:
+    // };
 
     return await this.claimService.createOne(claimCreateArgs);
   }
