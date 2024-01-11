@@ -195,4 +195,12 @@ export class ParticipantResolver {
   async participantExport(): Promise<String> {
     return await this.participantController.export();
   }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  admedicaStatusFindMany() {
+    return this.participantController.admedicaStatusFindMany();
+  }
 }

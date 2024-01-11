@@ -2344,6 +2344,9 @@ type Query {
   participantExport: String!
 
   """Deskripsinya ada disini loh"""
+  admedicaStatusFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
   regionFindMany(where: RegionWhereInput, orderBy: [RegionOrderByWithRelationInput!], cursor: RegionWhereUniqueInput, take: Int, skip: Int, distinct: [RegionScalarFieldEnum!]): [Region!]
 
   """Deskripsinya ada disini loh"""
@@ -2365,6 +2368,9 @@ type Query {
   tagFindMany(where: TagWhereInput, orderBy: [TagOrderByWithRelationInput!], cursor: TagWhereUniqueInput, take: Int, skip: Int, distinct: [TagScalarFieldEnum!]): [Tag!]
 
   """Deskripsinya ada disini loh"""
+  tagColorFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
   notificationFindMany(where: NotificationWhereInput, orderBy: [NotificationOrderByWithRelationInput!], cursor: NotificationWhereUniqueInput, take: Int, skip: Int, distinct: [NotificationScalarFieldEnum!]): [Notification!]
 
   """Deskripsinya ada disini loh"""
@@ -2372,6 +2378,9 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   announcementFindMany(where: AnnouncementWhereInput, orderBy: [AnnouncementOrderByWithRelationInput!], cursor: AnnouncementWhereUniqueInput, take: Int, skip: Int, distinct: [AnnouncementScalarFieldEnum!]): [Announcement!]
+
+  """Deskripsinya ada disini loh"""
+  programParticipationToProgramsFindMany(where: ProgramParticipationToProgramsWhereInput, orderBy: [ProgramParticipationToProgramsOrderByWithRelationInput!], cursor: ProgramParticipationToProgramsWhereUniqueInput, take: Int, skip: Int, distinct: [ProgramParticipationToProgramsScalarFieldEnum!]): [ProgramParticipationToPrograms!]
 }
 
 input ProgramWhereUniqueInput {
@@ -4710,6 +4719,44 @@ enum AnnouncementScalarFieldEnum {
   createdById
 }
 
+input ProgramParticipationToProgramsWhereUniqueInput {
+  claimProgramId: Int
+  programParticipationId_programId: ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput
+  AND: [ProgramParticipationToProgramsWhereInput!]
+  OR: [ProgramParticipationToProgramsWhereInput!]
+  NOT: [ProgramParticipationToProgramsWhereInput!]
+  description: StringNullableFilter
+  isAvailable: BoolFilter
+  allowanceCeilingRemaining: FloatFilter
+  allowanceCeilingRemainingLastResetDate: DateTimeNullableFilter
+  allowanceQuotaRemaining: IntNullableFilter
+  allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
+  updatedAt: DateTimeFilter
+  programParticipationId: IntFilter
+  programId: IntFilter
+  programParticipation: ProgramParticipationRelationFilter
+  program: ProgramRelationFilter
+  claimPrograms: ClaimProgramNullableRelationFilter
+}
+
+input ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput {
+  programParticipationId: Int!
+  programId: Int!
+}
+
+enum ProgramParticipationToProgramsScalarFieldEnum {
+  description
+  isAvailable
+  allowanceCeilingRemaining
+  allowanceCeilingRemainingLastResetDate
+  allowanceQuotaRemaining
+  allowanceQuotaRemainingLastResetDate
+  updatedAt
+  programParticipationId
+  programId
+  claimProgramId
+}
+
 type Mutation {
   """Deskripsinya ada disini loh"""
   programCreateOne(data: ProgramCreateInput!): Program
@@ -5814,6 +5861,7 @@ input InvoiceProofCreateManyClaimProgramInputEnvelope {
 input InvoiceProofCreateManyClaimProgramInput {
   issuedDate: DateTime!
   amount: Float!
+  documentProofId: String!
 }
 
 input ClaimProgramCreateOrConnectWithoutProgramParticipationToProgramInput {
@@ -5848,31 +5896,6 @@ input ClaimProgramWhereUniqueInput {
 input ProgramParticipationToProgramsCreateOrConnectWithoutProgramInput {
   where: ProgramParticipationToProgramsWhereUniqueInput!
   create: ProgramParticipationToProgramsCreateWithoutProgramInput!
-}
-
-input ProgramParticipationToProgramsWhereUniqueInput {
-  claimProgramId: Int
-  programParticipationId_programId: ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput
-  AND: [ProgramParticipationToProgramsWhereInput!]
-  OR: [ProgramParticipationToProgramsWhereInput!]
-  NOT: [ProgramParticipationToProgramsWhereInput!]
-  description: StringNullableFilter
-  isAvailable: BoolFilter
-  allowanceCeilingRemaining: FloatFilter
-  allowanceCeilingRemainingLastResetDate: DateTimeNullableFilter
-  allowanceQuotaRemaining: IntNullableFilter
-  allowanceQuotaRemainingLastResetDate: DateTimeNullableFilter
-  updatedAt: DateTimeFilter
-  programParticipationId: IntFilter
-  programId: IntFilter
-  programParticipation: ProgramParticipationRelationFilter
-  program: ProgramRelationFilter
-  claimPrograms: ClaimProgramNullableRelationFilter
-}
-
-input ProgramParticipationToProgramsProgramParticipationIdProgramIdCompoundUniqueInput {
-  programParticipationId: Int!
-  programId: Int!
 }
 
 input ProgramParticipationToProgramsCreateManyProgramInputEnvelope {

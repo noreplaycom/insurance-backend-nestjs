@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Color, Prisma } from '@prisma/client';
 import { TagService } from './tag.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 
@@ -58,5 +58,9 @@ export class TagController {
 
   async count(tagCountArgs: Prisma.TagCountArgs) {
     return await this.tagService.count(tagCountArgs);
+  }
+
+  async colorFindMany(): Promise<string[]> {
+    return Object.values(Color);
   }
 }

@@ -158,4 +158,12 @@ export class TagResolver {
   // tagCount(@Args() tagCountAggregateInput: FindManyTagArgs) {
   //   return this.tagController.count(tagCountAggregateInput);
   // }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  tagColorFindMany() {
+    return this.tagController.colorFindMany();
+  }
 }

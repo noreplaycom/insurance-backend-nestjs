@@ -36712,7 +36712,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: false })
 ], InvoiceProofCreateManyClaimProgramInput.prototype, "amount", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], InvoiceProofCreateManyClaimProgramInput.prototype, "documentProofId", void 0);
 InvoiceProofCreateManyClaimProgramInput = __decorate([
     (0, graphql_4.InputType)()
@@ -36730,7 +36730,7 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: false })
 ], InvoiceProofCreateManyInput.prototype, "amount", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], InvoiceProofCreateManyInput.prototype, "documentProofId", void 0);
 __decorate([
     (0, graphql_7.HideField)()

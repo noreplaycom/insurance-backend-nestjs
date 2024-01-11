@@ -40,6 +40,7 @@ import { AnnouncementModule } from './services/announcement/announcement.module'
 import { AuthModule } from './services/auth/auth.module';
 import { Subdistrict } from './@generated';
 import { SubdistrictModule } from './services/subdistrict/subdistrict.module';
+import { ProgramParticipationToProgramsModule } from './services/program-participation-to-programs/program-participation-to-programs.module';
 // import { DashboardModule } from './services/Dashboard/dashboard.module';
 // import { ClaimManagementModule } from './services/ClaimManagement/claim-management.module';
 // import { UploaderModule } from './services/uploader/uploader.module';
@@ -141,6 +142,7 @@ import { SubdistrictModule } from './services/subdistrict/subdistrict.module';
     NotificationModule,
     UploaderModule,
     AnnouncementModule,
+    ProgramParticipationToProgramsModule,
   ],
   controllers: [],
   providers: [

@@ -1,6 +1,7 @@
 import { FileUpload } from 'graphql-upload';
 import { Injectable, Logger } from '@nestjs/common';
 import {
+  AdmedicaStatus,
   Participant,
   Position,
   Prisma,
@@ -233,5 +234,9 @@ export class ParticipantController {
     const result = appURL + '/' + xlsxFilePath;
 
     return result;
+  }
+
+  async admedicaStatusFindMany(): Promise<string[]> {
+    return Object.values(AdmedicaStatus);
   }
 }
