@@ -313,6 +313,7 @@ export function fakeProgramParticipationToProgramsComplete() {
     updatedAt: faker.datatype.datetime(),
     programParticipationId: faker.datatype.number(),
     programId: faker.datatype.number(),
+    claimProgramId: undefined,
   };
 }
 export function fakeProgram() {
@@ -468,7 +469,6 @@ export function fakeClaimProgramComplete() {
     kurisRodaOrWalkerStoreName: undefined,
     diseaseId: undefined,
     clinicId: undefined,
-    programParticipationToProgramsId: faker.datatype.number(),
   };
 }
 export function fakeInvoiceProof() {

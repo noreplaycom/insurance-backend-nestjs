@@ -404,7 +404,6 @@ RI Non BPJS Kesehatan
         max: diseaseCreateManyInput.length,
       }),
       isReclaim: faker.datatype.boolean(),
-      programParticipationToProgramsId: index + 1,
     }));
 
   // let claimProgramCreateManyInput: Prisma.ClaimProgramCreateManyInput[];
