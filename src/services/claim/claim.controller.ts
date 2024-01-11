@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Period, Prisma } from '@prisma/client';
+import { Injectable, Logger } from '@nestjs/common';
+import { DocumentSource, Period, Prisma } from '@prisma/client';
 import { ClaimService } from './claim.service';
 import { Claim, ClaimChannel, ClaimStatusType } from 'src/@generated';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
@@ -40,10 +40,38 @@ export class ClaimController {
     private readonly claimFinancialController: ClaimFinancialController,
   ) {}
 
+  private logger = new Logger('ClaimController');
+
   async createOne(claimCreateArgs: Prisma.ClaimCreateArgs) {
     //TODO: Auto assign claim status to new claim on claimCreateArgs
     //TODO: send notification to higher user role when new claim created
     //TODO: prevent participant doing new claim from unparticipated program and unavailable program
+
+    function addFieldsToData(dataArray) {
+      return dataArray.map((item) => {
+        // Add additional fields here
+        const additionalFields = {
+          size: 4,
+          source: DocumentSource.UPLOADED,
+        };
+
+        // Merge the additional fields with the existing item
+        return {
+          ...item,
+          ...additionalFields,
+        };
+      });
+    }
+
+    claimCreateArgs.data.claimProgram.create.documents.createMany.data =
+      addFieldsToData(
+        claimCreateArgs.data.claimProgram.create.documents.createMany.data,
+      );
+
+    claimCreateArgs.data.claimFinancials.create.previousBalance = 12414;
+    claimCreateArgs.data.claimFinancials.create.remainingBalance = 1231;
+    claimCreateArgs.data.claimFinancials.create.totalInvoiceProofAmount = 1231;
+
     return await this.claimService.createOne(claimCreateArgs);
   }
 
