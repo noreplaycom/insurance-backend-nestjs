@@ -157,4 +157,20 @@ export class DocumentResolver {
   // documentCount(@Args() documentCountAggregateInput: FindManyDocumentArgs) {
   //   return this.documentController.count(documentCountAggregateInput);
   // }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  documentSourceFindMany() {
+    return this.documentController.sourceFindMany();
+  }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  documentTypeFindMany() {
+    return this.documentController.typeFindMany();
+  }
 }

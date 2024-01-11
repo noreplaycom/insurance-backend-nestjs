@@ -110,7 +110,7 @@ import { ProgramParticipationToProgramsModule } from './services/program-partici
     DiseaseModule,
     DocumentModule,
     //EmailModule,
-    // UploaderModule,
+    UploaderModule,
     AccountModule,
     // AddressModule,
     // BankAccountModule,

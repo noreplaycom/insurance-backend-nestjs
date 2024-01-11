@@ -2303,6 +2303,12 @@ type Query {
   diseaseFindMany(where: DiseaseWhereInput, orderBy: [DiseaseOrderByWithRelationInput!], cursor: DiseaseWhereUniqueInput, take: Int, skip: Int, distinct: [DiseaseScalarFieldEnum!]): [Disease!]
 
   """Deskripsinya ada disini loh"""
+  documentSourceFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
+  documentTypeFindMany: [String!]
+
+  """Deskripsinya ada disini loh"""
   accountFindOne(where: AccountWhereUniqueInput!): Account
 
   """Deskripsinya ada disini loh"""
@@ -4864,6 +4870,11 @@ type Mutation {
   """Deskripsinya ada disini loh"""
   documentCreateOne(data: DocumentCreateInput!): Document
 
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  uploadSingleFile(file: Upload): String
+
   """Deskripsinya ada disini loh"""
   claimCreateOne(data: ClaimCreateInput!): Claim
 
@@ -4914,11 +4925,6 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   notificationUpdateMany(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): Notification
-
-  """
-  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
-  """
-  uploadSingleFile(file: Upload): String
 
   """Deskripsinya ada disini loh"""
   announcementCreateOne(data: AnnouncementCreateInput!): Announcement
@@ -7452,6 +7458,9 @@ input DocumentCreateInput {
   type: DocumentType!
 }
 
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
 input ClaimCreateInput {
   channel: ClaimChannel!
   admedicaStatus: AdmedicaStatus!
@@ -7504,9 +7513,6 @@ input ClaimProgramCreateOrConnectWithoutClaimInput {
   where: ClaimProgramWhereUniqueInput!
   create: ClaimProgramCreateWithoutClaimInput!
 }
-
-"""The `Upload` scalar type represents a file upload."""
-scalar Upload
 
 input ClaimUpdateOneOfStatusArgs {
   id: String!

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DocumentSource, Prisma } from '@prisma/client';
+import { DocumentSource, DocumentType, Prisma } from '@prisma/client';
 import { DocumentService } from './document.service';
 
 @Injectable()
@@ -52,5 +52,13 @@ export class DocumentController {
 
   async count(documentCountArgs: Prisma.DocumentCountArgs) {
     return await this.documentService.count(documentCountArgs);
+  }
+
+  async sourceFindMany() {
+    return Object.values(DocumentSource);
+  }
+
+  async typeFindMany() {
+    return Object.values(DocumentType);
   }
 }
