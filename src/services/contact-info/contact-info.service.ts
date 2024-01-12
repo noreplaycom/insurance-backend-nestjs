@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
@@ -6,6 +6,8 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class ContactInfoService {
   constructor(private prisma: PrismaService) {}
+
+  private readonly logger = new Logger(ContactInfoService.name);
 
   async createOne(contactInfoCreateArgs: Prisma.ContactInfoCreateArgs) {
     try {
@@ -15,9 +17,13 @@ export class ContactInfoService {
     }
   }
 
-  async createMany(contactInfoCreateManyArgs: Prisma.ContactInfoCreateManyArgs) {
+  async createMany(
+    contactInfoCreateManyArgs: Prisma.ContactInfoCreateManyArgs,
+  ) {
     try {
-      return await this.prisma.contactInfo.createMany(contactInfoCreateManyArgs);
+      return await this.prisma.contactInfo.createMany(
+        contactInfoCreateManyArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -25,7 +31,9 @@ export class ContactInfoService {
 
   async findOne(contactInfoFindUniqueArgs: Prisma.ContactInfoFindUniqueArgs) {
     try {
-      return await this.prisma.contactInfo.findUnique(contactInfoFindUniqueArgs);
+      return await this.prisma.contactInfo.findUnique(
+        contactInfoFindUniqueArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -51,13 +59,18 @@ export class ContactInfoService {
     try {
       return await this.prisma.contactInfo.update(contactInfoUpdateOneArgs);
     } catch (err) {
+      this.logger.error(err);
       throw new IGraphQLError({ code: 123456, err: err });
     }
   }
 
-  async updateMany(contactInfoUpdateManyArgs: Prisma.ContactInfoUpdateManyArgs) {
+  async updateMany(
+    contactInfoUpdateManyArgs: Prisma.ContactInfoUpdateManyArgs,
+  ) {
     try {
-      return await this.prisma.contactInfo.updateMany(contactInfoUpdateManyArgs);
+      return await this.prisma.contactInfo.updateMany(
+        contactInfoUpdateManyArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -72,7 +85,9 @@ export class ContactInfoService {
     }
   }
 
-  async deleteMany(contactInfoDeleteManyArgs: Prisma.ContactInfoDeleteManyArgs) {
+  async deleteMany(
+    contactInfoDeleteManyArgs: Prisma.ContactInfoDeleteManyArgs,
+  ) {
     try {
       await this.prisma.contactInfo.deleteMany(contactInfoDeleteManyArgs);
       return true;

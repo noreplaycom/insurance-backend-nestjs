@@ -98,19 +98,19 @@ export class UserResolver {
   //   });
   // }
 
-  // @Mutation(() => User, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async userUpdateOne(
-  //   @Args() userUpdateOneArgs: UpdateOneUserArgs,
-  //   @Relations() relations: UserSelect,
-  // ) {
-  //   return this.userController.updateOne({
-  //     ...replaceNullWithUndefined(userUpdateOneArgs),
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => User, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userUpdateOne(
+    @Args() userUpdateOneArgs: UpdateOneUserArgs,
+    @Relations() relations: UserSelect,
+  ) {
+    return this.userController.updateOne({
+      ...replaceNullWithUndefined(userUpdateOneArgs),
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => User, {
   //   nullable: true,

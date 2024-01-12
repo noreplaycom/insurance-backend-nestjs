@@ -28,75 +28,75 @@ interface ContactInfoSelect {
 export class ContactInfoResolver {
   constructor(private readonly contactInfoController: ContactInfoController) {}
 
-  @Mutation(() => ContactInfo, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async contactInfoCreateOne(
-    @Args()
-    contactInfoCreateArgs: CreateOneContactInfoArgs,
-    @Relations() relations: ContactInfoSelect,
-  ): Promise<ContactInfo | void> {
-    return await this.contactInfoController.createOne({
-      ...contactInfoCreateArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => ContactInfo, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async contactInfoCreateOne(
+  //   @Args()
+  //   contactInfoCreateArgs: CreateOneContactInfoArgs,
+  //   @Relations() relations: ContactInfoSelect,
+  // ): Promise<ContactInfo | void> {
+  //   return await this.contactInfoController.createOne({
+  //     ...contactInfoCreateArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => BatchPayload, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async contactInfoCreateMany(
-    @Args()
-    createManyContactInfoArgs: CreateManyContactInfoArgs,
-  ) {
-    return await this.contactInfoController.createMany(createManyContactInfoArgs);
-  }
+  // @Mutation(() => BatchPayload, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async contactInfoCreateMany(
+  //   @Args()
+  //   createManyContactInfoArgs: CreateManyContactInfoArgs,
+  // ) {
+  //   return await this.contactInfoController.createMany(createManyContactInfoArgs);
+  // }
 
-  @Query(() => ContactInfo, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  contactInfoFindOne(
-    @Args()
-    contactInfoFindUniqueArgs: FindUniqueContactInfoArgs,
-    @Relations() relations: ContactInfoSelect,
-  ): Promise<ContactInfo | void> {
-    return this.contactInfoController.findOne({
-      ...contactInfoFindUniqueArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => ContactInfo, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // contactInfoFindOne(
+  //   @Args()
+  //   contactInfoFindUniqueArgs: FindUniqueContactInfoArgs,
+  //   @Relations() relations: ContactInfoSelect,
+  // ): Promise<ContactInfo | void> {
+  //   return this.contactInfoController.findOne({
+  //     ...contactInfoFindUniqueArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Query(() => [ContactInfo], {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  contactInfoFindMany(
-    @Args() contactInfoFindManyArgs: FindManyContactInfoArgs,
-    @Relations() relations: ContactInfoSelect,
-  ) {
-    return this.contactInfoController.findMany({
-      ...contactInfoFindManyArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => [ContactInfo], {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // contactInfoFindMany(
+  //   @Args() contactInfoFindManyArgs: FindManyContactInfoArgs,
+  //   @Relations() relations: ContactInfoSelect,
+  // ) {
+  //   return this.contactInfoController.findMany({
+  //     ...contactInfoFindManyArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Query(() => ContactInfo, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  contactInfoFindFirst(
-    @Args()
-    findFirstContactInfoArgs: FindFirstContactInfoArgs,
-    @Relations() relations: ContactInfoSelect,
-  ): Promise<ContactInfo | void> {
-    return this.contactInfoController.findFirst({
-      ...findFirstContactInfoArgs,
-      select: relations.select,
-    });
-  }
+  // @Query(() => ContactInfo, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // contactInfoFindFirst(
+  //   @Args()
+  //   findFirstContactInfoArgs: FindFirstContactInfoArgs,
+  //   @Relations() relations: ContactInfoSelect,
+  // ): Promise<ContactInfo | void> {
+  //   return this.contactInfoController.findFirst({
+  //     ...findFirstContactInfoArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
   @Mutation(() => ContactInfo, {
     nullable: true,
@@ -112,49 +112,49 @@ export class ContactInfoResolver {
     });
   }
 
-  @Mutation(() => ContactInfo, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async contactInfoUpdateMany(@Args() updateManyContactInfoArgs: UpdateManyContactInfoArgs) {
-    return this.contactInfoController.updateMany(updateManyContactInfoArgs);
-  }
+  // @Mutation(() => ContactInfo, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async contactInfoUpdateMany(@Args() updateManyContactInfoArgs: UpdateManyContactInfoArgs) {
+  //   return this.contactInfoController.updateMany(updateManyContactInfoArgs);
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async contactInfoDelete(
-    @Args() deleteOneContactInfoArgs: DeleteOneContactInfoArgs,
-    @Relations() relations: ContactInfoSelect,
-  ) {
-    return this.contactInfoController.delete({
-      ...deleteOneContactInfoArgs,
-      select: relations.select,
-    });
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async contactInfoDelete(
+  //   @Args() deleteOneContactInfoArgs: DeleteOneContactInfoArgs,
+  //   @Relations() relations: ContactInfoSelect,
+  // ) {
+  //   return this.contactInfoController.delete({
+  //     ...deleteOneContactInfoArgs,
+  //     select: relations.select,
+  //   });
+  // }
 
-  @Mutation(() => Boolean, {
-    nullable: false,
-    description: 'Deskripsinya ada disini loh',
-  })
-  async contactInfoDeleteMany(@Args() deleteManyContactInfoArgs: DeleteManyContactInfoArgs) {
-    return this.contactInfoController.deleteMany(deleteManyContactInfoArgs);
-  }
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async contactInfoDeleteMany(@Args() deleteManyContactInfoArgs: DeleteManyContactInfoArgs) {
+  //   return this.contactInfoController.deleteMany(deleteManyContactInfoArgs);
+  // }
 
-  @Query(() => AggregateContactInfo, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  contactInfoAggregate(@Args() contactInfoAggregateArgs: ContactInfoAggregateArgs) {
-    return this.contactInfoController.aggregate(contactInfoAggregateArgs);
-  }
+  // @Query(() => AggregateContactInfo, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // contactInfoAggregate(@Args() contactInfoAggregateArgs: ContactInfoAggregateArgs) {
+  //   return this.contactInfoController.aggregate(contactInfoAggregateArgs);
+  // }
 
-  @Query(() => Float, {
-    nullable: true,
-    description: 'Deskripsinya ada disini loh',
-  })
-  contactInfoCount(@Args() contactInfoCountAggregateInput: FindManyContactInfoArgs) {
-    return this.contactInfoController.count(contactInfoCountAggregateInput);
-  }
+  // @Query(() => Float, {
+  //   nullable: true,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // contactInfoCount(@Args() contactInfoCountAggregateInput: FindManyContactInfoArgs) {
+  //   return this.contactInfoController.count(contactInfoCountAggregateInput);
+  // }
 }

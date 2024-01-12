@@ -4868,6 +4868,9 @@ type Mutation {
   userCreateOne(data: UserCreateInput!): User
 
   """Deskripsinya ada disini loh"""
+  userUpdateOne(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+
+  """Deskripsinya ada disini loh"""
   documentCreateOne(data: DocumentCreateInput!): Document
 
   """
@@ -4890,6 +4893,9 @@ type Mutation {
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
   """
   claimFileUpload(file: Upload): String
+
+  """Deskripsinya ada disini loh"""
+  contactInfoUpdateOne(data: ContactInfoUpdateInput!, where: ContactInfoWhereUniqueInput!): ContactInfo
 
   """Deskripsinya ada disini loh"""
   participantCreateOne(data: ParticipantCreateInput!): Participant
@@ -7453,6 +7459,15 @@ input UserCreateInput {
   participant: ParticipantCreateNestedOneWithoutUserInput
 }
 
+input UserUpdateInput {
+  fullName: StringFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  profilePictureUrl: NullableStringFieldUpdateOperationsInput
+  role: RoleUpdateOneRequiredWithoutUsersNestedInput
+  participant: ParticipantUpdateOneWithoutUserNestedInput
+}
+
 input DocumentCreateInput {
   uploadedFileUrl: String
   type: DocumentType!
@@ -7517,6 +7532,64 @@ input ClaimProgramCreateOrConnectWithoutClaimInput {
 input ClaimUpdateOneOfStatusArgs {
   id: String!
   status: ClaimStatusType!
+}
+
+input ContactInfoUpdateInput {
+  phones: phoneUpdateManyWithoutContactInfoNestedInput
+  participant: ParticipantUpdateOneWithoutContactInfoNestedInput
+  address: AddressUpdateOneRequiredWithoutContactInfoNestedInput
+}
+
+input ParticipantUpdateOneWithoutContactInfoNestedInput {
+  create: ParticipantCreateWithoutContactInfoInput
+  connectOrCreate: ParticipantCreateOrConnectWithoutContactInfoInput
+  upsert: ParticipantUpsertWithoutContactInfoInput
+  disconnect: ParticipantWhereInput
+  delete: ParticipantWhereInput
+  connect: ParticipantWhereUniqueInput
+  update: ParticipantUpdateToOneWithWhereWithoutContactInfoInput
+}
+
+input ParticipantCreateWithoutContactInfoInput {
+  gender: Gender!
+  birthDate: DateTime!
+  isActive: Boolean!
+  status: ParticipantStatus!
+  user: UserCreateNestedOneWithoutParticipantInput!
+  relation: ParticipantCreateNestedOneWithoutRelationsInput
+  employment: EmploymentCreateNestedOneWithoutParticipantInput!
+  bankAccount: BankAccountCreateNestedOneWithoutParticipantInput!
+  programParticipation: ProgramParticipationCreateNestedOneWithoutParticipantInput!
+  relations: ParticipantCreateNestedManyWithoutRelationInput
+}
+
+input ParticipantCreateOrConnectWithoutContactInfoInput {
+  where: ParticipantWhereUniqueInput!
+  create: ParticipantCreateWithoutContactInfoInput!
+}
+
+input ParticipantUpsertWithoutContactInfoInput {
+  update: ParticipantUpdateWithoutContactInfoInput!
+  create: ParticipantCreateWithoutContactInfoInput!
+  where: ParticipantWhereInput
+}
+
+input ParticipantUpdateWithoutContactInfoInput {
+  gender: EnumGenderFieldUpdateOperationsInput
+  birthDate: DateTimeFieldUpdateOperationsInput
+  isActive: BoolFieldUpdateOperationsInput
+  status: EnumParticipantStatusFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutParticipantNestedInput
+  relation: ParticipantUpdateOneWithoutRelationsNestedInput
+  employment: EmploymentUpdateOneRequiredWithoutParticipantNestedInput
+  bankAccount: BankAccountUpdateOneRequiredWithoutParticipantNestedInput
+  programParticipation: ProgramParticipationUpdateOneRequiredWithoutParticipantNestedInput
+  relations: ParticipantUpdateManyWithoutRelationNestedInput
+}
+
+input ParticipantUpdateToOneWithWhereWithoutContactInfoInput {
+  where: ParticipantWhereInput
+  data: ParticipantUpdateWithoutContactInfoInput!
 }
 
 input ParticipantCreateInput {

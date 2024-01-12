@@ -123,7 +123,7 @@ import { ProgramParticipationToProgramsModule } from './services/program-partici
     // ClaimTypeModule,
     // ClinicModule,
     // CompanyModule,
-    // ContactInfoModule,
+    ContactInfoModule,
     // DiseaseModule,
     // DiseaseClusterModule,
     // DiseaseGroupModule,
