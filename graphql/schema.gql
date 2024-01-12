@@ -4895,6 +4895,9 @@ type Mutation {
   claimFileUpload(file: Upload): String
 
   """Deskripsinya ada disini loh"""
+  claimStatusCreateOne(data: ClaimStatusCreateInput!): ClaimStatus
+
+  """Deskripsinya ada disini loh"""
   contactInfoUpdateOne(data: ContactInfoUpdateInput!, where: ContactInfoWhereUniqueInput!): ContactInfo
 
   """Deskripsinya ada disini loh"""
@@ -7532,6 +7535,123 @@ input ClaimProgramCreateOrConnectWithoutClaimInput {
 input ClaimUpdateOneOfStatusArgs {
   id: String!
   status: ClaimStatusType!
+}
+
+input ClaimStatusCreateInput {
+  description: String
+  rejectionReason: String
+  type: ClaimStatusType!
+  changedBy: UserCreateNestedOneWithoutClaimActionsInput!
+  claim: ClaimCreateNestedOneWithoutClaimStatusesInput!
+  rejectionLetter: DocumentCreateNestedOneWithoutRejectionLetterOfInput
+  guaranteeLetter: DocumentCreateNestedOneWithoutGuaranteeLetterOfInput
+  transactionLetter: DocumentCreateNestedOneWithoutTransactionLetterOfInput
+  bookKeepingOrder: DocumentCreateNestedOneWithoutBookKeepingOrderOfInput
+}
+
+input UserCreateNestedOneWithoutClaimActionsInput {
+  create: UserCreateWithoutClaimActionsInput
+  connectOrCreate: UserCreateOrConnectWithoutClaimActionsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutClaimActionsInput {
+  fullName: String!
+  email: String!
+  password: String
+  profilePictureUrl: String
+  role: RoleCreateNestedOneWithoutUsersInput
+  participant: ParticipantCreateNestedOneWithoutUserInput
+}
+
+input UserCreateOrConnectWithoutClaimActionsInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutClaimActionsInput!
+}
+
+input ClaimCreateNestedOneWithoutClaimStatusesInput {
+  create: ClaimCreateWithoutClaimStatusesInput
+  connectOrCreate: ClaimCreateOrConnectWithoutClaimStatusesInput
+  connect: ClaimWhereUniqueInput
+}
+
+input ClaimCreateWithoutClaimStatusesInput {
+  channel: ClaimChannel!
+  admedicaStatus: AdmedicaStatus!
+  company: String!
+  participant: ParticipantCreateNestedOneWithoutClaimsInput!
+  claimFinancials: ClaimFinancialCreateNestedOneWithoutClaimInput!
+  claimProgram: ClaimProgramCreateNestedOneWithoutClaimInput!
+  tags: TagCreateNestedManyWithoutClaimsInput
+}
+
+input ClaimCreateOrConnectWithoutClaimStatusesInput {
+  where: ClaimWhereUniqueInput!
+  create: ClaimCreateWithoutClaimStatusesInput!
+}
+
+input DocumentCreateNestedOneWithoutRejectionLetterOfInput {
+  create: DocumentCreateWithoutRejectionLetterOfInput
+  connectOrCreate: DocumentCreateOrConnectWithoutRejectionLetterOfInput
+  connect: DocumentWhereUniqueInput
+}
+
+input DocumentCreateWithoutRejectionLetterOfInput {
+  uploadedFileUrl: String
+  type: DocumentType!
+}
+
+input DocumentCreateOrConnectWithoutRejectionLetterOfInput {
+  where: DocumentWhereUniqueInput!
+  create: DocumentCreateWithoutRejectionLetterOfInput!
+}
+
+input DocumentCreateNestedOneWithoutGuaranteeLetterOfInput {
+  create: DocumentCreateWithoutGuaranteeLetterOfInput
+  connectOrCreate: DocumentCreateOrConnectWithoutGuaranteeLetterOfInput
+  connect: DocumentWhereUniqueInput
+}
+
+input DocumentCreateWithoutGuaranteeLetterOfInput {
+  uploadedFileUrl: String
+  type: DocumentType!
+}
+
+input DocumentCreateOrConnectWithoutGuaranteeLetterOfInput {
+  where: DocumentWhereUniqueInput!
+  create: DocumentCreateWithoutGuaranteeLetterOfInput!
+}
+
+input DocumentCreateNestedOneWithoutTransactionLetterOfInput {
+  create: DocumentCreateWithoutTransactionLetterOfInput
+  connectOrCreate: DocumentCreateOrConnectWithoutTransactionLetterOfInput
+  connect: DocumentWhereUniqueInput
+}
+
+input DocumentCreateWithoutTransactionLetterOfInput {
+  uploadedFileUrl: String
+  type: DocumentType!
+}
+
+input DocumentCreateOrConnectWithoutTransactionLetterOfInput {
+  where: DocumentWhereUniqueInput!
+  create: DocumentCreateWithoutTransactionLetterOfInput!
+}
+
+input DocumentCreateNestedOneWithoutBookKeepingOrderOfInput {
+  create: DocumentCreateWithoutBookKeepingOrderOfInput
+  connectOrCreate: DocumentCreateOrConnectWithoutBookKeepingOrderOfInput
+  connect: DocumentWhereUniqueInput
+}
+
+input DocumentCreateWithoutBookKeepingOrderOfInput {
+  uploadedFileUrl: String
+  type: DocumentType!
+}
+
+input DocumentCreateOrConnectWithoutBookKeepingOrderOfInput {
+  where: DocumentWhereUniqueInput!
+  create: DocumentCreateWithoutBookKeepingOrderOfInput!
 }
 
 input ContactInfoUpdateInput {

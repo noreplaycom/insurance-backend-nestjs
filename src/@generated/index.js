@@ -20453,7 +20453,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateManyChangedByInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateManyChangedByInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -20502,7 +20502,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateManyClaimInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateManyClaimInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -20538,7 +20538,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateManyInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateManyInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -20806,13 +20806,13 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateWithoutBookKeepingOrderInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateWithoutBookKeepingOrderInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutClaimActionsInput, { nullable: false })
 ], ClaimStatusCreateWithoutBookKeepingOrderInput.prototype, "changedBy", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimStatusesInput, { nullable: false })
 ], ClaimStatusCreateWithoutBookKeepingOrderInput.prototype, "claim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutRejectionLetterOfInput, { nullable: true })
@@ -20842,10 +20842,10 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateWithoutChangedByInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateWithoutChangedByInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimStatusesInput, { nullable: false })
 ], ClaimStatusCreateWithoutChangedByInput.prototype, "claim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutRejectionLetterOfInput, { nullable: true })
@@ -20878,13 +20878,13 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateWithoutClaimFinancialInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateWithoutClaimFinancialInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutClaimActionsInput, { nullable: false })
 ], ClaimStatusCreateWithoutClaimFinancialInput.prototype, "changedBy", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimStatusesInput, { nullable: false })
 ], ClaimStatusCreateWithoutClaimFinancialInput.prototype, "claim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutRejectionLetterOfInput, { nullable: true })
@@ -20914,10 +20914,10 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateWithoutClaimInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateWithoutClaimInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutClaimActionsInput, { nullable: false })
 ], ClaimStatusCreateWithoutClaimInput.prototype, "changedBy", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutRejectionLetterOfInput, { nullable: true })
@@ -20950,13 +20950,13 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateWithoutGuaranteeLetterInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateWithoutGuaranteeLetterInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutClaimActionsInput, { nullable: false })
 ], ClaimStatusCreateWithoutGuaranteeLetterInput.prototype, "changedBy", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimStatusesInput, { nullable: false })
 ], ClaimStatusCreateWithoutGuaranteeLetterInput.prototype, "claim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutRejectionLetterOfInput, { nullable: true })
@@ -20986,13 +20986,13 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateWithoutRejectionLetterInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateWithoutRejectionLetterInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutClaimActionsInput, { nullable: false })
 ], ClaimStatusCreateWithoutRejectionLetterInput.prototype, "changedBy", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimStatusesInput, { nullable: false })
 ], ClaimStatusCreateWithoutRejectionLetterInput.prototype, "claim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutGuaranteeLetterOfInput, { nullable: true })
@@ -21022,13 +21022,13 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateWithoutTransactionLetterInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateWithoutTransactionLetterInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutClaimActionsInput, { nullable: false })
 ], ClaimStatusCreateWithoutTransactionLetterInput.prototype, "changedBy", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimStatusesInput, { nullable: false })
 ], ClaimStatusCreateWithoutTransactionLetterInput.prototype, "claim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutRejectionLetterOfInput, { nullable: true })
@@ -21058,13 +21058,13 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusCreateInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimStatusType, { nullable: false })
 ], ClaimStatusCreateInput.prototype, "type", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutClaimActionsInput, { nullable: false })
 ], ClaimStatusCreateInput.prototype, "changedBy", void 0);
 __decorate([
-    (0, graphql_7.HideField)()
+    (0, graphql_1.Field)(() => ClaimCreateNestedOneWithoutClaimStatusesInput, { nullable: false })
 ], ClaimStatusCreateInput.prototype, "claim", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DocumentCreateNestedOneWithoutRejectionLetterOfInput, { nullable: true })
@@ -22791,7 +22791,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateManyMutationInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateManyMutationInput.prototype, "type", void 0);
 ClaimStatusUpdateManyMutationInput = __decorate([
     (0, graphql_4.InputType)()
@@ -23205,7 +23205,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutBookKeepingOrderInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutBookKeepingOrderInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -23241,7 +23241,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutChangedByInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutChangedByInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -23277,7 +23277,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutClaimFinancialInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutClaimFinancialInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -23313,7 +23313,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutClaimInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutClaimInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -23349,7 +23349,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutGuaranteeLetterInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutGuaranteeLetterInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -23385,7 +23385,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutRejectionLetterInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutRejectionLetterInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -23421,7 +23421,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutTransactionLetterInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateWithoutTransactionLetterInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()
@@ -23457,7 +23457,7 @@ __decorate([
     (0, graphql_7.HideField)()
 ], ClaimStatusUpdateInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumClaimStatusTypeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_7.HideField)()
 ], ClaimStatusUpdateInput.prototype, "type", void 0);
 __decorate([
     (0, graphql_7.HideField)()

@@ -1041,16 +1041,16 @@ model ClaimStatus {
 
     //-------------------------- 1 relations --------------------------------
 
-    /// @HideField({ match: ['ClaimStatusCreate*Input']})
+    /// @HideField({ match: ['ClaimStatusUpdate*Input']})
     type ClaimStatusType
 
-    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
+    /// @HideField({ match: ['ClaimStatusUpdate*Input']})
     changedBy User @relation("statusUpdatedBy", fields: [changedById], references: [id])
 
     /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
     changedById String
 
-    /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})
+    /// @HideField({ match: ['ClaimStatusUpdate*Input']})
     claim Claim @relation(fields: [claimId], references: [id])
 
     /// @HideField({ match: ['ClaimStatusCreate*Input','ClaimStatusUpdate*Input']})

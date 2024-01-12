@@ -28,20 +28,20 @@ interface ClaimStatusSelect {
 export class ClaimStatusResolver {
   constructor(private readonly claimStatusController: ClaimStatusController) {}
 
-  // @Mutation(() => ClaimStatus, {
-  //   nullable: true,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async claimStatusCreateOne(
-  //   @Args()
-  //   claimStatusCreateArgs: CreateOneClaimStatusArgs,
-  //   @Relations() relations: ClaimStatusSelect,
-  // ): Promise<ClaimStatus | void> {
-  //   return await this.claimStatusController.createOne({
-  //     ...claimStatusCreateArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => ClaimStatus, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async claimStatusCreateOne(
+    @Args()
+    claimStatusCreateArgs: CreateOneClaimStatusArgs,
+    @Relations() relations: ClaimStatusSelect,
+  ): Promise<ClaimStatus | void> {
+    return await this.claimStatusController.createOne({
+      ...replaceNullWithUndefined(claimStatusCreateArgs),
+      select: relations.select,
+    });
+  }
 
   // @Mutation(() => BatchPayload, {
   //   nullable: true,

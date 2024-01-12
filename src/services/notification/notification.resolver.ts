@@ -163,4 +163,12 @@ export class NotificationResolver {
   ) {
     return this.notificationController.count(notificationCountAggregateInput);
   }
+
+  // @Mutation(() => Boolean, {
+  //   nullable: false,
+  //   description: 'Deskripsinya ada disini loh',
+  // })
+  // async notificationDeleteMany(@Args() deleteManyNotificationArgs: DeleteManyNotificationArgs) {
+  //   return this.notificationController.deleteMany(deleteManyNotificationArgs);
+  // }
 }

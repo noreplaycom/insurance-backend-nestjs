@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
@@ -6,18 +6,24 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class ClaimStatusService {
   constructor(private prisma: PrismaService) {}
+  private readonly logger = new Logger(ClaimStatusService.name);
 
   async createOne(claimStatusCreateArgs: Prisma.ClaimStatusCreateArgs) {
     try {
       return await this.prisma.claimStatus.create(claimStatusCreateArgs);
     } catch (err) {
+      this.logger.error(err);
       throw new IGraphQLError({ code: 123456, err: err });
     }
   }
 
-  async createMany(claimStatusCreateManyArgs: Prisma.ClaimStatusCreateManyArgs) {
+  async createMany(
+    claimStatusCreateManyArgs: Prisma.ClaimStatusCreateManyArgs,
+  ) {
     try {
-      return await this.prisma.claimStatus.createMany(claimStatusCreateManyArgs);
+      return await this.prisma.claimStatus.createMany(
+        claimStatusCreateManyArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -25,7 +31,9 @@ export class ClaimStatusService {
 
   async findOne(claimStatusFindUniqueArgs: Prisma.ClaimStatusFindUniqueArgs) {
     try {
-      return await this.prisma.claimStatus.findUnique(claimStatusFindUniqueArgs);
+      return await this.prisma.claimStatus.findUnique(
+        claimStatusFindUniqueArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -55,9 +63,13 @@ export class ClaimStatusService {
     }
   }
 
-  async updateMany(claimStatusUpdateManyArgs: Prisma.ClaimStatusUpdateManyArgs) {
+  async updateMany(
+    claimStatusUpdateManyArgs: Prisma.ClaimStatusUpdateManyArgs,
+  ) {
     try {
-      return await this.prisma.claimStatus.updateMany(claimStatusUpdateManyArgs);
+      return await this.prisma.claimStatus.updateMany(
+        claimStatusUpdateManyArgs,
+      );
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
@@ -72,7 +84,9 @@ export class ClaimStatusService {
     }
   }
 
-  async deleteMany(claimStatusDeleteManyArgs: Prisma.ClaimStatusDeleteManyArgs) {
+  async deleteMany(
+    claimStatusDeleteManyArgs: Prisma.ClaimStatusDeleteManyArgs,
+  ) {
     try {
       await this.prisma.claimStatus.deleteMany(claimStatusDeleteManyArgs);
       return true;
