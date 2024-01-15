@@ -5,7 +5,12 @@ import { PrismaService } from 'prisma/prisma.service';
 import { DocumentController } from './document.controller';
 
 @Module({
-  providers: [PrismaService, DocumentResolver, DocumentController, DocumentService],
+  providers: [
+    PrismaService,
+    DocumentResolver,
+    DocumentController,
+    DocumentService,
+  ],
   exports: [DocumentController],
 })
 export class DocumentModule {}
