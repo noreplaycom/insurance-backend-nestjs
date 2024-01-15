@@ -2335,6 +2335,9 @@ type Query {
   """Deskripsinya ada disini loh"""
   claimChannelFindMany: [String!]
 
+  """Deskripsinya ada disini loh"""
+  programTypeFindMany: [String!]
+
   """deskripsi nya disini loh"""
   claimExport: String!
 
@@ -2406,6 +2409,9 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   programParticipationToProgramsFindMany(where: ProgramParticipationToProgramsWhereInput, orderBy: [ProgramParticipationToProgramsOrderByWithRelationInput!], cursor: ProgramParticipationToProgramsWhereUniqueInput, take: Int, skip: Int, distinct: [ProgramParticipationToProgramsScalarFieldEnum!]): [ProgramParticipationToPrograms!]
+
+  """Deskripsinya ada disini loh"""
+  santunanHarianRawatInapPlanFindMany: [String!]
 }
 
 input ProgramWhereUniqueInput {
@@ -4871,7 +4877,13 @@ type Mutation {
   userUpdateOne(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
 
   """Deskripsinya ada disini loh"""
+  userDelete(where: UserWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
   documentCreateOne(data: DocumentCreateInput!): Document
+
+  """Deskripsinya ada disini loh"""
+  documentDeleteOne(where: DocumentWhereUniqueInput!): Boolean!
 
   """
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress

@@ -23,8 +23,8 @@ async function main() {
 
   // await claimSeed();
 
-  // await participantCreateOne();
-  await claimCreateOne();
+  await participantCreateOne();
+  // await claimCreateOne();
 
   // console.log(
   //   await prisma.programParticipation.create({

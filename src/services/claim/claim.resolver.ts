@@ -256,6 +256,14 @@ export class ClaimResolver {
     return this.claimController.claimChannelFindMany();
   }
 
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  programTypeFindMany() {
+    return this.claimController.programTypeFindMany();
+  }
+
   // @RequiredPermission(Permission.IMPORT_CLAIM)
   // @UseGuards(PermissionGuard)
   @Mutation(() => Boolean, {

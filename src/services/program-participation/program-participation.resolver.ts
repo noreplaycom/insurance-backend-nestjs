@@ -161,4 +161,12 @@ export class ProgramParticipationResolver {
   // programParticipationCount(@Args() programParticipationCountAggregateInput: FindManyProgramParticipationArgs) {
   //   return this.programParticipationController.count(programParticipationCountAggregateInput);
   // }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  santunanHarianRawatInapPlanFindMany() {
+    return this.programParticipationController.santunanHarianRawatInapPlanFindMany();
+  }
 }

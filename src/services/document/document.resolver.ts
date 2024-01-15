@@ -120,19 +120,15 @@ export class DocumentResolver {
   //   return this.documentController.updateMany(updateManyDocumentArgs);
   // }
 
-  // @Mutation(() => Boolean, {
-  //   nullable: false,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async documentDelete(
-  //   @Args() deleteOneDocumentArgs: DeleteOneDocumentArgs,
-  //   @Relations() relations: DocumentSelect,
-  // ) {
-  //   return this.documentController.delete({
-  //     ...deleteOneDocumentArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async documentDeleteOne(
+    @Args() deleteOneDocumentArgs: DeleteOneDocumentArgs,
+  ) {
+    return this.documentController.delete(deleteOneDocumentArgs);
+  }
 
   // @Mutation(() => Boolean, {
   //   nullable: false,

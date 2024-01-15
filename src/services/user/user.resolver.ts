@@ -120,19 +120,16 @@ export class UserResolver {
   //   return this.userController.updateMany(updateManyUserArgs);
   // }
 
-  // @Mutation(() => Boolean, {
-  //   nullable: false,
-  //   description: 'Deskripsinya ada disini loh',
-  // })
-  // async userDelete(
-  //   @Args() deleteOneUserArgs: DeleteOneUserArgs,
-  //   @Relations() relations: UserSelect,
-  // ) {
-  //   return this.userController.delete({
-  //     ...deleteOneUserArgs,
-  //     select: relations.select,
-  //   });
-  // }
+  @Mutation(() => Boolean, {
+    nullable: false,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async userDelete(
+    @Args() deleteOneUserArgs: DeleteOneUserArgs,
+    @Relations() relations: UserSelect,
+  ) {
+    return this.userController.delete(deleteOneUserArgs);
+  }
 
   // @Mutation(() => Boolean, {
   //   nullable: false,

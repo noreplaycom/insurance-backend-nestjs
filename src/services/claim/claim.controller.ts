@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { DocumentSource, Period, Prisma } from '@prisma/client';
+import { DocumentSource, Period, Prisma, ProgramType } from '@prisma/client';
 import { ClaimService } from './claim.service';
 import { Claim, ClaimChannel, ClaimStatusType } from 'src/@generated';
 import { ClaimFindOneByIdArgs } from './dto/claim_find_one_by_id';
@@ -320,6 +320,10 @@ export class ClaimController {
 
   async claimChannelFindMany(): Promise<string[]> {
     return Object.keys(ClaimChannel);
+  }
+
+  async programTypeFindMany(): Promise<string[]> {
+    return Object.keys(ProgramType);
   }
 
   async findOneById(

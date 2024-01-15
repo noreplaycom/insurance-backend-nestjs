@@ -146,6 +146,7 @@ import { ProgramParticipationToProgramsModule } from './services/program-partici
     UploaderModule,
     AnnouncementModule,
     ProgramParticipationToProgramsModule,
+    ProgramParticipationModule,
   ],
   controllers: [],
   providers: [
