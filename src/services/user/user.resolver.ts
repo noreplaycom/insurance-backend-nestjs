@@ -71,7 +71,8 @@ export class UserResolver {
 
   @Query(() => [User], {
     nullable: true,
-    description: 'Deskripsinya ada disini loh',
+    description:
+      'Backend akan memfilter untuk tidak menampilkan participant dan user yang telah terhapus',
   })
   userFindMany(
     @Args() userFindManyArgs: FindManyUserArgs,
@@ -124,11 +125,10 @@ export class UserResolver {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
-  async userDelete(
-    @Args() deleteOneUserArgs: DeleteOneUserArgs,
-    @Relations() relations: UserSelect,
+  async userSoftDeleteOne(
+    @Args({ name: 'userId', type: () => String }) userId: string,
   ) {
-    return this.userController.delete(deleteOneUserArgs);
+    return this.userController.delete(userId);
   }
 
   // @Mutation(() => Boolean, {

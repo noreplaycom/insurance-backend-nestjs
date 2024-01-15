@@ -2293,7 +2293,9 @@ type Query {
   """Deskripsinya ada disini loh"""
   userFindOne(where: UserWhereUniqueInput!): User
 
-  """Deskripsinya ada disini loh"""
+  """
+  Backend akan memfilter untuk tidak menampilkan participant dan user yang telah terhapus
+  """
   userFindMany(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): [User!]
 
   """Deskripsinya ada disini loh"""
@@ -4877,7 +4879,7 @@ type Mutation {
   userUpdateOne(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
 
   """Deskripsinya ada disini loh"""
-  userDelete(where: UserWhereUniqueInput!): Boolean!
+  userSoftDeleteOne(userId: String!): Boolean!
 
   """Deskripsinya ada disini loh"""
   documentCreateOne(data: DocumentCreateInput!): Document

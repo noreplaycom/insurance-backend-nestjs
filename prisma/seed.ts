@@ -23,8 +23,21 @@ async function main() {
 
   // await claimSeed();
 
-  await participantCreateOne();
+  // await participantCreateOne();
   // await claimCreateOne();
+
+  // for (let i = 0; i < 100; i++) {
+  //   console.log(
+  //     await prisma.notification.create({
+  //       data: {
+  //         title: 'ini judul notifikasi loh',
+  //         content: 'ini konten notifikasi',
+  //         subtitle: 'ini subtitle notifikasi',
+  //         user: { connect: { id: '28c0d80a-0196-4aa4-bece-9de6eaa7236e' } },
+  //       },
+  //     }),
+  //   );
+  // }
 
   // console.log(
   //   await prisma.programParticipation.create({

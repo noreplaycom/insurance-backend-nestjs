@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { UserService } from './user.service';
 import { UserFindOneByIdArgs } from './dto/user_find_one';
@@ -10,6 +10,7 @@ import { encryptUserPassword } from 'src/utils/bcrypt.function';
 @Injectable()
 export class UserController {
   constructor(private readonly userService: UserService) {}
+  private readonly logger = new Logger(UserController.name);
 
   async createOne(userCreateArgs: Prisma.UserCreateArgs) {
     const { password } = userCreateArgs.data;
@@ -32,6 +33,13 @@ export class UserController {
   }
 
   async findMany(userFindManyArgs: Prisma.UserFindManyArgs) {
+    // filter not to show participant and deleted user
+    userFindManyArgs.where = {
+      ...userFindManyArgs.where,
+      participant: null,
+      deletedAt: { equals: null },
+    };
+
     return await this.userService.findMany(userFindManyArgs);
   }
 
@@ -59,8 +67,15 @@ export class UserController {
     return await this.userService.updateMany(userUpdateManyArgs);
   }
 
-  async delete(userDeleteArgs: Prisma.UserDeleteArgs) {
-    return await this.userService.delete(userDeleteArgs);
+  async delete(userId: string) {
+    //implement soft delete
+
+    this.updateOne({
+      where: { id: userId },
+      data: { deletedAt: new Date() },
+    });
+
+    return true;
   }
 
   async deleteMany(userDeleteManyArgs: Prisma.UserDeleteManyArgs) {
