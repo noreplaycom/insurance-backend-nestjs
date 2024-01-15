@@ -127,7 +127,7 @@ import { ProgramParticipationToProgramsModule } from './services/program-partici
     // DiseaseModule,
     // DiseaseClusterModule,
     // DiseaseGroupModule,
-    // DocumentModule,
+    DocumentModule,
     EmploymentModule,
     BranchModule,
     GroupModule,
